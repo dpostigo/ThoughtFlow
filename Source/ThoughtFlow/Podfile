@@ -1,0 +1,10 @@
+platform :ios, '7.0'
+
+pod 'AutoCoding'
+
+#
+# pod 'DPTransitions', :path => '~/Development/LocalPods/DPTransitions'
+# pod 'DPKit-Utils', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-Utils'
+# pod 'DPKit-UIView', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-UIView'
+
+

@@ -1,0 +1,29 @@
+PODS:
+  - DPKit-UIView (0.0.1):
+    - DPKit-Utils
+  - DPKit-Utils (0.0.7):
+    - JMSimpleDate
+  - DPTransitions (0.0.1):
+    - DPKit-Utils
+  - JMSimpleDate (0.0.6)
+
+DEPENDENCIES:
+  - DPKit-UIView (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIView`)
+  - DPKit-Utils (from `~/Development/LocalPods/DPKit-Suite/DPKit-Utils`)
+  - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
+
+EXTERNAL SOURCES:
+  DPKit-UIView:
+    :path: ~/Development/LocalPods/DPKit-Suite/DPKit-UIView
+  DPKit-Utils:
+    :path: ~/Development/LocalPods/DPKit-Suite/DPKit-Utils
+  DPTransitions:
+    :path: ~/Development/LocalPods/DPTransitions
+
+SPEC CHECKSUMS:
+  DPKit-UIView: e8edaf6b96628abaad92dd3de10d0a3f00074333
+  DPKit-Utils: e0ae2cc21288e75f04bb4f522dac2f381767d449
+  DPTransitions: 64dde9226d3cda93cf3cc63478d2b0d26ddc4108
+  JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
+
+COCOAPODS: 0.32.1

@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
 
-@interface EmptyMenuController : TFViewController <UITextFieldDelegate, UINavigationControllerDelegate> {
+@interface AddProjectController : TFViewController <UITextFieldDelegate, UINavigationControllerDelegate> {
 
     IBOutlet UITextField *textField;
 }

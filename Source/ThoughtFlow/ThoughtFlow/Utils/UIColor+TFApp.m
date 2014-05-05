@@ -11,4 +11,12 @@
 + (UIColor *) tfInputTextColor {
     return [UIColor colorWithString: @"AAABB2"];
 }
+
++ (UIColor *) tfGreenColor {
+    return [UIColor colorWithString: @"90BF86"];
+}
+
++ (UIColor *) tfRedColor {
+    return [UIColor colorWithString: @"F26F61"];
+}
 @end

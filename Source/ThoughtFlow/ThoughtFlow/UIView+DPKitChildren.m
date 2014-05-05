@@ -8,9 +8,7 @@
 @implementation UIView (DPKitChildren)
 
 - (NSArray *) childrenOfClass: (Class) classType {
-
     NSMutableArray *ret = [[NSMutableArray alloc] init];
-
     NSArray *children = [NSArray arrayWithArray: self.subviews];
 
     for (int j = 0; j < [children count]; j++) {

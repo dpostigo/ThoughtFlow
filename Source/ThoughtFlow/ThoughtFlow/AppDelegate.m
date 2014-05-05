@@ -8,15 +8,29 @@
 
 #import "AppDelegate.h"
 #import "UIFont+ThoughtFlow.h"
+#import "Model.h"
 
 @implementation AppDelegate
 
 - (BOOL) application: (UIApplication *) application didFinishLaunchingWithOptions: (NSDictionary *) launchOptions {
-    // self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    // self.window.backgroundColor = [UIColor whiteColor];
-    // [self.window makeKeyAndVisible];
-    //    [UIFont printFontNames];
+
+    Model *_model = [Model sharedModel];
+    NSLog(@"[_model.projects count] = %u", [_model.projects count]);
+
+    UITextField *lagFreeField = [[UITextField alloc] init];
+    [self.window addSubview: lagFreeField];
+    [lagFreeField becomeFirstResponder];
+    [lagFreeField resignFirstResponder];
+    [lagFreeField removeFromSuperview];
+
+    NSLog(@"self.window.rootViewController = %@", self.window.rootViewController);
+    UIStoryboard *storyboard = self.window.rootViewController.storyboard;
+
+    if ([self.window.rootViewController.restorationIdentifier isEqualToString: @"MainAppNavigationController"]) {
+        UINavigationController *navigationController = (UINavigationController *) self.window.rootViewController;
+
+    }
+
     return YES;
 }
 

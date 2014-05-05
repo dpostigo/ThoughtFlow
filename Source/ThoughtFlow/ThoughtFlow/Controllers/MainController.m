@@ -5,7 +5,7 @@
 
 #import "MainController.h"
 #import "Model.h"
-#import "EmptyMenuController.h"
+#import "AddProjectController.h"
 
 @implementation MainController
 

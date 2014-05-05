@@ -3,11 +3,12 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import "EmptyMenuController.h"
+#import "AddProjectController.h"
 #import "DPFadeTransition.h"
 #import "Model.h"
+#import "Project.h"
 
-@implementation EmptyMenuController
+@implementation AddProjectController
 
 - (void) loadView {
     [super loadView];
@@ -23,13 +24,21 @@
     [super viewDidLoad];
 
     self.navigationController.delegate = self;
-}
 
 
-- (void) touchesBegan: (NSSet *) touches withEvent: (UIEvent *) event {
-    //    [super touchesBegan: touches withEvent: event];
-    [self.view endEditing: YES];
+    if ([_model.projects count] > 0) {
+
+        [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
+    }
+
+
 }
+
+//
+//- (void) touchesBegan: (NSSet *) touches withEvent: (UIEvent *) event {
+//    //    [super touchesBegan: touches withEvent: event];
+//    //    [self.view endEditing: YES];
+//}
 
 #pragma mark UITextFieldDelegate
 
@@ -39,13 +48,15 @@
 }
 
 - (void) textFieldDidEndEditing: (UITextField *) textField1 {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-
     if (self.isValid) {
         NSDictionary *newProject = @{
                 TFProjectName : textField.text
         };
-        _model.selectedProject = newProject;
+
+        Project *project = [[Project alloc] initWithWord: textField.text];
+        _model.selectedProject = project;
+
+        [_model addProject: project];
         [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
     }
 
@@ -53,6 +64,9 @@
 
 
 - (BOOL) isValid {
+    if ([textField.text length] == 0) {
+        return NO;
+    }
     return YES;
 
 }

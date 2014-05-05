@@ -1,16 +1,22 @@
 PODS:
+  - AutoCoding (2.2)
   - DPKit-UIView (0.0.1):
     - DPKit-Utils
-  - DPKit-Utils (0.0.7):
+  - DPKit-Utils (0.0.9):
     - JMSimpleDate
   - DPTransitions (0.0.1):
     - DPKit-Utils
   - JMSimpleDate (0.0.6)
+  - NSObject+AutoDescription (0.1)
+  - UIColorCategories (0.1.0)
 
 DEPENDENCIES:
+  - AutoCoding
   - DPKit-UIView (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIView`)
   - DPKit-Utils (from `~/Development/LocalPods/DPKit-Suite/DPKit-Utils`)
   - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
+  - NSObject+AutoDescription
+  - UIColorCategories
 
 EXTERNAL SOURCES:
   DPKit-UIView:
@@ -21,9 +27,12 @@ EXTERNAL SOURCES:
     :path: ~/Development/LocalPods/DPTransitions
 
 SPEC CHECKSUMS:
+  AutoCoding: 642b320cc1d5f7c8397222ef8339ab7c9dca895d
   DPKit-UIView: e8edaf6b96628abaad92dd3de10d0a3f00074333
-  DPKit-Utils: e0ae2cc21288e75f04bb4f522dac2f381767d449
+  DPKit-Utils: 495cb9f87d43e5f5728c3967b5e8801e3dfea436
   DPTransitions: 64dde9226d3cda93cf3cc63478d2b0d26ddc4108
   JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
+  NSObject+AutoDescription: 95a585c85920551aed4ab18a5b96f62a572e0ef0
+  UIColorCategories: 3b1153d8e4b97d26f2107f0da5e898e4438b5fc8
 
 COCOAPODS: 0.32.1

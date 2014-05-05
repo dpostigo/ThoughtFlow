@@ -23,6 +23,11 @@
         [textField convertFonts];
     }];
 
+    NSArray *textViews = [self childrenOfClass: [UITextView class]];
+    [textViews enumerateObjectsUsingBlock: ^(UITextView *item, NSUInteger idx, BOOL *stop) {
+        [item convertFonts];
+    }];
+
 }
 
 

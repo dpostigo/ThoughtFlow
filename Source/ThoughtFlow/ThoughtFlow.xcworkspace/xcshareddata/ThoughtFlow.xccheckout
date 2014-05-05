@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8B8116CD-6F88-4742-89D7-40BA0BA0ECA6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ThoughtFlow</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CE3167F3-4FE6-4118-94F3-6C1022CF20EB</key>
+		<string>https://github.com/dpostigo/DPKit-Utils.git</string>
+		<key>DF2CCAD9-13F7-4B86-9017-E031FD3B74DE</key>
+		<string>https://github.com/dpostigo/ThoughtFlow.git</string>
+		<key>E1C65946-2849-49A1-AC83-07A2E7A5BDBF</key>
+		<string>https://github.com/dpostigo/DPKit-UIView.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Source/ThoughtFlow/ThoughtFlow.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5DA11FC3-D549-47DB-848A-AADFA9167101</key>
+		<string>../../../../LocalPods/DPTransitions</string>
+		<key>CE3167F3-4FE6-4118-94F3-6C1022CF20EB</key>
+		<string>../../../../LocalPods/DPKit-Suite/DPKit-Utils</string>
+		<key>DF2CCAD9-13F7-4B86-9017-E031FD3B74DE</key>
+		<string>../../..</string>
+		<key>E1C65946-2849-49A1-AC83-07A2E7A5BDBF</key>
+		<string>../../../../LocalPods/DPKit-Suite/DPKit-UIView</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/dpostigo/ThoughtFlow.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DF2CCAD9-13F7-4B86-9017-E031FD3B74DE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E1C65946-2849-49A1-AC83-07A2E7A5BDBF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DPKit-UIView</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CE3167F3-4FE6-4118-94F3-6C1022CF20EB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DPKit-Utils</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DF2CCAD9-13F7-4B86-9017-E031FD3B74DE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ThoughtFlow</string>
+		</dict>
+	</array>
+</dict>
+</plist>

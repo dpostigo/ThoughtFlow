@@ -9,5 +9,6 @@
 
 + (void) printFontNames;
 + (UIFont *) gothamLight: (CGFloat) fontSize;
++ (UIFont *) italicSerif: (CGFloat) fontSize;
 + (CGFloat) pixelToPoints: (CGFloat) px;
 @end

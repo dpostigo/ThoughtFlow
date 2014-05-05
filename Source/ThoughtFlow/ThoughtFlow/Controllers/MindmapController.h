@@ -5,8 +5,18 @@
 
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
+#import "TFNodeViewDelegate.h"
 
-@interface MindmapController : TFViewController {
+@class TFNodeView;
 
+@interface MindmapController : TFViewController <TFNodeViewDelegate> {
+
+    IBOutlet TFNodeView *firstNodeView;
+    UILongPressGestureRecognizer *pressGesture;
+
+    UIView *creationNode;
 }
+
+@property(nonatomic, strong) UIView *creationNode;
+@property(nonatomic, strong) UILongPressGestureRecognizer *pressGesture;
 @end

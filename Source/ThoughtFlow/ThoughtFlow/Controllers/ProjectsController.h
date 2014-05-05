@@ -6,8 +6,10 @@
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
 
-@interface ProjectsController : TFViewController <UICollectionViewDelegate, UICollectionViewDataSource> {
+@interface ProjectsController : TFViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource> {
 
     IBOutlet UICollectionView *collection;
 }
+
+@property(nonatomic, strong) UICollectionView *collection;
 @end

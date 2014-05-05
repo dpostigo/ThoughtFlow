@@ -12,4 +12,6 @@
 + (ProjectLibrary *) sharedLibrary;
 - (void) save;
 
+- (void) addItem: (id) item;
+- (void) addItems: (NSArray *) items;
 @end

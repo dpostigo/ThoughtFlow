@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-AutoCoding.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-DPKit-UIView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -24,6 +29,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-NSObject+AutoDescription.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-UIColorCategories.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>293EB34FDAD14C4491323AAF</key>
+		<key>054CF44B6043480A918B4A2F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5CC94DC1D10E4C93A1D5D95F</key>
+		<key>0981194F942441D7B57C8140</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>987F65D4258B4FED9477C273</key>
+		<key>1A39084AA384481F8B9BD798</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A53C0F6EBF1C499081FAEE70</key>
+		<key>368177128C324D9F95E333BA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D69F4BD7DA664DD79958187E</key>
+		<key>7BF54B8289B34B51B96932F0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A9C2838ACA8B4CA3876FF7ED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AED273DF238F449BA32E57A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FEB44142A44445F7B7E16722</key>
 		<dict>
 			<key>primary</key>
 			<true/>

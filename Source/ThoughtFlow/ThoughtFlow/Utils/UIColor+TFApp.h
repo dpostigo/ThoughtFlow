@@ -8,4 +8,6 @@
 @interface UIColor (TFApp)
 
 + (UIColor *) tfInputTextColor;
++ (UIColor *) tfGreenColor;
++ (UIColor *) tfRedColor;
 @end

@@ -4,14 +4,21 @@
 //
 
 #import "Model.h"
+#import "Project.h"
+#import "ProjectLibrary.h"
+#import "TFNode.h"
+#import "NSArray+DPKit.h"
 
 @implementation Model
 
 @synthesize queue;
-@synthesize projects;
 
 @synthesize selectedProject;
+@synthesize selectedProjectDictionary;
 
+@synthesize projectLibrary;
+
+@synthesize selectedNode;
 NSString *const TFProjectName = @"TF Project Name";
 
 + (Model *) sharedModel {
@@ -35,15 +42,33 @@ NSString *const TFProjectName = @"TF Project Name";
 }
 
 
-- (NSMutableArray *) projects {
-    if (projects == nil) {
-        projects = [[NSMutableArray alloc] init];
 
-        [projects addObject: @{
-                TFProjectName : @"Sample Project 1"
-        }];
+#pragma mark Projects
+- (NSArray *) projects {
+    return self.projectLibrary.items;
+}
+
+
+- (NSArray *) projectsSortedByDate {
+    return [self.projects sortedArrayUsingDescriptor: [NSSortDescriptor sortDescriptorWithKey: @"creationDate"
+                                                                                    ascending: NO]];
+}
+
+- (ProjectLibrary *) projectLibrary {
+    if (projectLibrary == nil) {
+        projectLibrary = [ProjectLibrary sharedLibrary];
     }
-    return projects;
+    return projectLibrary;
+}
+
+#pragma mark Projects
+
+- (void) addProject: (Project *) project {
+    [self.projectLibrary addItem: project];
+}
+
+- (void) addProjects: (NSArray *) projects {
+    [self.projectLibrary addItems: projects];
 }
 
 @end

@@ -7,9 +7,13 @@
 
 @interface TFProjectCollectionViewCell : UICollectionViewCell {
 
-    IBOutlet UILabel *projectField;
+    //    IBOutlet UILabel *firstWordField;
     IBOutlet UILabel *connectionsField;
     IBOutlet UILabel *wordsField;
-
 }
+
+@property(weak) IBOutlet UILabel *firstWordField;
+@property(weak) IBOutlet UIButton *button;
+@property(nonatomic, strong) UILabel *wordsField;
+@property(nonatomic, strong) UILabel *connectionsField;
 @end

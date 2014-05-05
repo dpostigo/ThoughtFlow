@@ -8,4 +8,5 @@
 @implementation FieldTableViewCell
 
 @synthesize textField;
+
 @end

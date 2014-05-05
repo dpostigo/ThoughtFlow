@@ -12,5 +12,8 @@
     IBOutlet UITextField *usernameField;
     IBOutlet UITextField *emailField;
 
+
+    IBOutlet UITextField *passwordField;
+
 }
 @end

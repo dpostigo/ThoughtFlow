@@ -7,16 +7,24 @@
 
 @interface UIView (DPConstraints)
 
+- (NSArray *) updateSuperConstraintsWithInsets: (UIEdgeInsets) insets;
+- (NSArray *) updateSuperEdgeConstraints: (CGFloat) constant;
 - (NSLayoutConstraint *) updateSuperLeadingConstraint: (CGFloat) constant;
 - (NSLayoutConstraint *) superLeadingConstraint;
 - (NSLayoutConstraint *) superTrailingConstraint;
 - (NSLayoutConstraint *) updateSuperTrailingConstraint: (CGFloat) constant;
 - (NSLayoutConstraint *) updateSuperTopConstraint: (CGFloat) constant;
 - (NSLayoutConstraint *) superTopConstraint;
+- (NSLayoutConstraint *) superBottomConstraint;
+- (NSLayoutConstraint *) updateSuperBottomConstraint: (CGFloat) constant;
 - (NSLayoutConstraint *) superHeightConstraint;
 - (NSLayoutConstraint *) updateSuperHeightConstraint: (CGFloat) constant;
 - (NSLayoutConstraint *) updateHeightConstraint: (CGFloat) constant;
 - (NSLayoutConstraint *) heightConstraint;
 - (NSLayoutConstraint *) updateWidthConstraint: (CGFloat) constant;
-- (NSLayoutConstraint *) widthConstraint;
+- (NSLayoutConstraint *) staticWidthConstraint;
+- (NSLayoutConstraint *) updateEqualWidthConstraint: (CGFloat) constant sibling: (UIView *) item;
+- (NSLayoutConstraint *) anyWidthConstraint;
+- (NSLayoutConstraint *) updateTrailingConstraint: (CGFloat) constant toSibling: (id) sibling;
+- (NSLayoutConstraint *) updateTrailingConstraint: (CGFloat) constant toSibling: (id) sibling attribute: (NSLayoutAttribute) attribute;
 @end

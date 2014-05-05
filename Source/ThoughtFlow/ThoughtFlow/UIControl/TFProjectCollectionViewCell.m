@@ -6,4 +6,8 @@
 #import "TFProjectCollectionViewCell.h"
 
 @implementation TFProjectCollectionViewCell
+
+@synthesize firstWordField;
+@synthesize wordsField;
+@synthesize connectionsField;
 @end

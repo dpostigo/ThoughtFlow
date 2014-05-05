@@ -20,9 +20,53 @@
     self.leftViewMode = UITextFieldViewModeAlways;
 
     self.rightView = self.rightAccessoryView;
-    self.rightViewMode = UITextFieldViewModeAlways;
+    //    self.rightViewMode = UITextFieldViewModeAlways;
+    self.rightViewMode = UITextFieldViewModeUnlessEditing;
+
+    //    self.enabled = NO;
+    super.delegate = self;
 
 }
+
+
+- (void) setDelegate: (id <UITextFieldDelegate>) delegate {
+    //    _delegate = delegate;
+    __delegate = delegate;
+}
+
+
+
+#pragma mark UITextFieldDelegate
+
+- (BOOL) textFieldShouldBeginEditing: (UITextField *) textField {
+    return self.rightAccessoryButton.selected;
+}
+
+
+- (BOOL) textFieldShouldReturn: (UITextField *) textField {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    if (__delegate && [__delegate respondsToSelector: @selector(textFieldShouldReturn:)]) {
+        return [__delegate performSelector: @selector(textFieldShouldReturn:) withObject: self];
+    }
+    [self resignFirstResponder];
+    return YES;
+}
+
+
+#pragma mark IBActions
+
+- (void) handleRightAccessoryView: (UIButton *) button {
+    button.selected = !button.selected;
+    NSLog(@"button.selected = %d", button.selected);
+    [self becomeFirstResponder];
+
+}
+
+
+- (UIButton *) rightAccessoryButton {
+    return (UIButton *) ([self.rightView isKindOfClass: [UIButton class]] ? self.rightView : nil);
+}
+#pragma mark Accesory views
 
 
 - (UIView *) rightAccessoryView {
@@ -32,15 +76,18 @@
 
     CGFloat accessoryWidth = 38;
     CGFloat accesoryHeight = 36;
-    UIView *accesoryView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, accessoryWidth + padding, 36)];
 
+
+    //    UIView *button = [[UIView alloc] initWithFrame: CGRectMake(0, 0, accessoryWidth + padding, 36)];
+    UIButton *button = [UIButton buttonWithType: UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, accessoryWidth + padding, 36);
 
     UIView *borderView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, borderWidth,
             accesoryHeight - 11)];
 
     borderView.backgroundColor = [UIColor tfInputTextColor];
     borderView.alpha = 0.5;
-    [accesoryView addSubview: borderView];
+    [button addSubview: borderView];
 
     borderView.left = padding;
     borderView.centerY = borderView.superview.height / 2;
@@ -49,9 +96,11 @@
             16, 16)];
     imageView.image = [UIImage imageNamed: @"default-user"];
     imageView.centerX = padding + (accessoryWidth / 2);
-    imageView.centerY = accesoryView.height / 2;
-    [accesoryView addSubview: imageView];
-    return accesoryView;
+    imageView.centerY = button.height / 2;
+    [button addSubview: imageView];
+
+    [button addTarget: self action: @selector(handleRightAccessoryView:) forControlEvents: UIControlEventTouchUpInside];
+    return button;
 }
 
 

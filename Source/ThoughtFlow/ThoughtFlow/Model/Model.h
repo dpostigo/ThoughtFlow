@@ -5,19 +5,32 @@
 
 #import <Foundation/Foundation.h>
 
+@class Project;
+@class ProjectLibrary;
+@class TFNode;
+
 NSString *const TFProjectName;
 
 
 @interface Model : NSObject {
     NSOperationQueue *queue;
-    NSMutableArray *projects;
 
-    NSDictionary *selectedProject;
+    ProjectLibrary *projectLibrary;
+
+    Project *selectedProject;
+    TFNode *selectedNode;
+    NSDictionary *selectedProjectDictionary;
 }
 
 @property(nonatomic, strong) NSOperationQueue *queue;
-@property(nonatomic, strong) NSMutableArray *projects;
-@property(nonatomic, strong) NSDictionary *selectedProject;
+@property(nonatomic, readonly) NSArray *projects;
+@property(nonatomic, strong) NSDictionary *selectedProjectDictionary;
+@property(nonatomic, strong) Project *selectedProject;
+@property(nonatomic, strong) TFNode *selectedNode;
+@property(nonatomic, strong) ProjectLibrary *projectLibrary;
 + (Model *) sharedModel;
 
+- (NSArray *) projectsSortedByDate;
+- (void) addProject: (Project *) project;
+- (void) addProjects: (NSArray *) projects;
 @end

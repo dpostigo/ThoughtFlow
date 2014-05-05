@@ -5,7 +5,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TFCustomTextField : UITextField {
+@interface TFCustomTextField : UITextField <UITextFieldDelegate> {
 
+
+    id<UITextFieldDelegate> __delegate;
 }
 @end

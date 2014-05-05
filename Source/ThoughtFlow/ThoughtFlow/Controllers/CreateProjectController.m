@@ -3,12 +3,12 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import "AddProjectController.h"
+#import "CreateProjectController.h"
 #import "DPFadeTransition.h"
 #import "Model.h"
 #import "Project.h"
 
-@implementation AddProjectController
+@implementation CreateProjectController
 
 - (void) loadView {
     [super loadView];
@@ -22,16 +22,30 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-
     self.navigationController.delegate = self;
 
-
     if ([_model.projects count] > 0) {
-
         [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
     }
 
+}
 
+- (void) viewDidDisappear: (BOOL) animated {
+    [super viewDidDisappear: animated];
+    textField.text = @"";
+}
+
+
+- (void) createProject {
+    NSDictionary *newProject = @{
+            TFProjectName : textField.text
+    };
+
+    Project *project = [[Project alloc] initWithWord: textField.text];
+    _model.selectedProject = project;
+    [_model addProject: project];
+
+    [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
 }
 
 //
@@ -49,15 +63,7 @@
 
 - (void) textFieldDidEndEditing: (UITextField *) textField1 {
     if (self.isValid) {
-        NSDictionary *newProject = @{
-                TFProjectName : textField.text
-        };
-
-        Project *project = [[Project alloc] initWithWord: textField.text];
-        _model.selectedProject = project;
-
-        [_model addProject: project];
-        [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
+        [self createProject];
     }
 
 }

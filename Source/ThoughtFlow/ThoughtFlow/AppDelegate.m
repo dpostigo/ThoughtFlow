@@ -23,7 +23,6 @@
     [lagFreeField resignFirstResponder];
     [lagFreeField removeFromSuperview];
 
-    NSLog(@"self.window.rootViewController = %@", self.window.rootViewController);
     UIStoryboard *storyboard = self.window.rootViewController.storyboard;
 
     if ([self.window.rootViewController.restorationIdentifier isEqualToString: @"MainAppNavigationController"]) {
@@ -31,6 +30,7 @@
 
     }
 
+    [[UITextField appearance] setKeyboardAppearance: UIKeyboardAppearanceDark];
     return YES;
 }
 

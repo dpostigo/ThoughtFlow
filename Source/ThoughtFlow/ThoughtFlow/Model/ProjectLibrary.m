@@ -60,4 +60,28 @@
 }
 
 
+- (void) removeItem: (id) item {
+    if ([self.items containsObject: item]) {
+        [self.items removeObject: item];
+        [self save];
+    }
+}
+
+
+- (void) setWithCoder: (NSCoder *) aDecoder {
+    [super setWithCoder: aDecoder];
+    //    NSLog(@"%s, [self.items count] = %u", __PRETTY_FUNCTION__, [self.items count]);
+    //
+    //    for (Project *project in self.items) {
+    //        project.parent = self;
+    //    }
+
+    for (id item in self.items) {
+        if ([item respondsToSelector: @selector(setParent:)]) {
+            [item performSelector: @selector(setParent:) withObject: self];
+        }
+    }
+}
+
+
 @end

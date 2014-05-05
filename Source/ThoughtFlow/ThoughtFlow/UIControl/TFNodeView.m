@@ -62,14 +62,13 @@ CGFloat const TFNodeViewHeight = 80;
 - (void) awakeFromNib {
     [super awakeFromNib];
 
-    self.clipsToBounds = YES;
-    self.backgroundColor = [UIColor blueColor];
     [self setup];
 
 }
 
 - (void) setup {
     self.clipsToBounds = YES;
+    self.backgroundColor = [UIColor blueColor];
 
     containerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, TFNodeViewWidth,
             TFNodeViewHeight)];
@@ -212,51 +211,51 @@ CGFloat const TFNodeViewHeight = 80;
         if (location.x < CGRectGetMidX(view.bounds)) {
 
         }
-    } else if (gesture.state == UIGestureRecognizerStateChanged) {
+    }
+
+    else {
+
         CGPoint translation = [gesture translationInView: view];
 
         CGFloat newX = [self constrainPositionX: startingPoint.x + (translation.x)];
         containerView.left = newX;
+        if (gesture.state == UIGestureRecognizerStateChanged) {
 
-    } else if (gesture.state == UIGestureRecognizerStateEnded) {
+        } else if (gesture.state == UIGestureRecognizerStateEnded) {
 
-        CGPoint velocity = [gesture velocityInView: view];
-        if (velocity.x > 0) {
+            CGPoint velocity = [gesture velocityInView: view];
+            if (velocity.x > 0) {
 
-            //            [self.interactionController finishInteractiveTransition];
-        } else {
-            //            [self.interactionController cancelInteractiveTransition];
+                //            [self.interactionController finishInteractiveTransition];
+            } else {
+                //            [self.interactionController cancelInteractiveTransition];
+            }
+
+            CGFloat snapX = [self constrainPositionX: roundf(containerView.left / self.width) * self.width];
+
+            CGPoint vel = [gesture velocityInView: view];
+            CGFloat curX = containerView.frame.origin.x;
+            CGFloat springVelocity = (-0.1f * vel.x) / (curX - snapX);
+
+            NSLog(@"vel.x = %f", vel.x);
+
+            [UIView animateWithDuration: 0.4 delay: 0.0
+                 usingSpringWithDamping: 0.9f
+                  initialSpringVelocity: springVelocity
+                                options: UIViewAnimationOptionCurveEaseOut
+                             animations: ^{
+                                 CGRect frame = containerView.frame;
+                                 frame.origin.x = snapX;
+                                 containerView.frame = frame;
+                             }
+                             completion: ^(BOOL finished) {
+                                 [self updateNodeState];
+                                 [self enableButtons];
+                             }];
+
         }
-        //        self.interactionController = nil;
-
-        // touch up, animate to top of self.view w/ spring
-
-        CGFloat snapX = [self constrainPositionX: roundf(containerView.left / self.width) * self.width];
-        //
-        //        [UIView animateWithDuration: 0.3 animations: ^{
-        //            containerView.left = snapX;
-        //        }];
-
-        CGPoint vel = [gesture velocityInView: view];
-        CGFloat curX = containerView.frame.origin.x;
-        CGFloat animationDuration = 1.0f;
-        CGFloat springVelocity = (-1.0f * vel.y) / (curX - snapX);
-
-        [UIView animateWithDuration: animationDuration delay: 0.0
-             usingSpringWithDamping: 0.1f
-              initialSpringVelocity: springVelocity
-                            options: UIViewAnimationOptionCurveLinear
-                         animations: ^{
-                             CGRect frame = containerView.frame;
-                             frame.origin.x = snapX;
-                             containerView.frame = frame;
-                         }
-                         completion: ^(BOOL finished) {
-                             [self updateNodeState];
-                             [self enableButtons];
-                         }];
-
     }
+
 }
 
 
@@ -371,6 +370,7 @@ CGFloat const TFNodeViewHeight = 80;
     if (node != node1) {
         node = node1;
         NSLog(@"normalView = %@", normalView);
+        NSLog(@"node.title = %@", node.title);
         normalView.textLabel.text = node.title;
         nodeNotification = [[NSNotificationCenter defaultCenter] addObserverForName: TFNodeUpdate
                                                                              object: nil
@@ -390,12 +390,6 @@ CGFloat const TFNodeViewHeight = 80;
 }
 
 - (void) setNodeState: (TFNodeViewState) nodeState1 {
-    //    if (nodeState1 != nodeState) {
-    //        nodeState = nodeState1;
-    //
-    //        containerView.left = [self positionForNodeState: nodeState];
-    //        [self nodeViewDidChangeState];
-    //    }
     [self setNodeState: nodeState1 animated: NO];
 }
 

@@ -8,6 +8,8 @@
 #import "UIView+TFFonts.h"
 #import "TFProjectCollectionViewCell.h"
 #import "Project.h"
+#import "TFConstants.h"
+#import "ProjectLibrary.h"
 
 @implementation ProjectsController
 
@@ -60,6 +62,11 @@
 }
 
 
+#pragma mark IBActions
+
+- (IBAction) handleNewProject: (id) sender {
+    [self.navigationController popViewControllerAnimated: YES];
+}
 #pragma mark UICollectionViewDelegateFlowLayout
 //
 //- (UIEdgeInsets) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout insetForSectionAtIndex: (NSInteger) section {
@@ -110,6 +117,7 @@
 
 - (void) collectionView: (UICollectionView *) collectionView didSelectItemAtIndexPath: (NSIndexPath *) indexPath {
     _model.selectedProject = [self projectForIndexPath: indexPath];
+    [[NSNotificationCenter defaultCenter] postNotificationName: TFToolbarMindmapNotification object: nil];
     [self performSegueWithIdentifier: @"MindmapSegue" sender: nil];
 
 }
@@ -133,11 +141,26 @@
             cell.firstWordField.text = project.word;
         }
         cell.button.tag = indexPath.item;
-        [cell.button addTarget: self action: @selector(handleButton:)
+        [cell.button addTarget: self action: @selector(handleTrashButton:)
               forControlEvents: UIControlEventTouchUpInside];
     }
 
     return ret;
+}
+
+- (void) handleTrashButton: (UIButton *) button {
+
+    TFProjectCollectionViewCell *cell = (TFProjectCollectionViewCell *) button.superview.superview;
+    if (cell) {
+        NSLog(@"cell = %@", cell);
+        NSIndexPath *indexPath = [collection indexPathForCell: cell];
+        Project *project = [self projectForIndexPath: indexPath];
+
+        [_model.projectLibrary removeItem: project];
+        [collection deleteItemsAtIndexPaths: @[indexPath]];
+
+    }
+
 }
 
 - (Project *) projectForIndexPath: (NSIndexPath *) indexPath {

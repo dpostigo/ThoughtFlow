@@ -11,7 +11,6 @@
 @implementation EditNodeController {
 }
 
-@synthesize dismissRecognizer;
 
 - (void) loadView {
     [super loadView];
@@ -21,7 +20,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
-    NSLog(@"_model.selectedNode = %@", _model.selectedNode);
+    dismisses = YES;
 
     _textView.text = _model.selectedNode.title;
     _textView.delegate = self;
@@ -44,31 +43,6 @@
     [self.presentingViewController dismissViewControllerAnimated: YES  completion: nil];
 }
 
-#pragma mark Dismiss
-
-- (void) viewDidAppear: (BOOL) animated {
-    [super viewDidAppear: animated];
-    [self.view.window addGestureRecognizer: self.dismissRecognizer];
-}
-
-
-- (void) viewWillDisappear: (BOOL) animated {
-    [super viewWillDisappear: animated];
-    [self.view.window removeGestureRecognizer: self.dismissRecognizer];
-}
-
-
-- (void) handleTapBehind: (UITapGestureRecognizer *) sender {
-    if (sender.state == UIGestureRecognizerStateEnded) {
-        CGPoint location = [sender locationInView: nil];
-        if (![self.view pointInside: [self.view convertPoint: location fromView: self.view.window] withEvent: nil]) {
-            [self.view.window removeGestureRecognizer: sender];
-            [self.presentingViewController dismissViewControllerAnimated: YES
-                                                              completion: nil];
-        }
-    }
-}
-
 
 #pragma mark UITextView delegate
 
@@ -78,7 +52,6 @@
 }
 
 - (BOOL) textView: (UITextView *) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString *) text {
-
     if ([text isEqualToString: @"\n"]) {
         [self.view endEditing: YES];
         return NO;
@@ -88,20 +61,6 @@
 
 
 
-
-
-#pragma mark Getters
-
-- (UITapGestureRecognizer *) dismissRecognizer {
-    if (dismissRecognizer == nil) {
-        dismissRecognizer = [[UITapGestureRecognizer alloc] initWithTarget: self
-                                                                    action: @selector(handleTapBehind:)];
-        dismissRecognizer.numberOfTapsRequired = 1;
-        dismissRecognizer.cancelsTouchesInView = NO; //So the user can still interact with controls in the modal view
-
-    }
-    return dismissRecognizer;
-}
 
 
 @end

@@ -12,6 +12,7 @@
 #import "ToolbarController.h"
 #import "ProjectLibrary.h"
 #import "NSObject+AutoDescription.h"
+#import "TFConstants.h"
 
 @implementation MindmapController
 
@@ -21,6 +22,8 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+
+
     firstNodeView.text = _model.selectedProject.word;
     firstNodeView.delegate = self;
 
@@ -31,6 +34,12 @@
                                                       object: nil
                                                        queue: nil
                                                   usingBlock: ^(NSNotification *notification) {
+
+                                                      if (self.presentedViewController) {
+                                                          NSLog(@"Mind map Has presented view controller.");
+                                                          [self dismissViewControllerAnimated: YES
+                                                                                   completion: nil];
+                                                      }
                                                       [self.navigationController popViewControllerAnimated: YES];
                                                   }];
 

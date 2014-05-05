@@ -14,6 +14,8 @@
 
 @synthesize parent;
 
+@synthesize notes;
+
 - (instancetype) initWithWord: (NSString *) aWord {
     self = [super init];
     if (self) {
@@ -41,6 +43,18 @@
     [self.items addObject: node];
     [self save];
 }
+
+
+#pragma mark Setters with save
+
+- (void) setNotes: (NSString *) notes1 {
+    if (![notes isEqualToString: notes1]) {
+        NSLog(@"%s", __PRETTY_FUNCTION__);
+        notes = [notes1 mutableCopy];
+        [self save];
+    }
+}
+
 
 #pragma mark Save
 

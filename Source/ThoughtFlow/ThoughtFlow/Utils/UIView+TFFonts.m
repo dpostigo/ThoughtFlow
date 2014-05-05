@@ -7,6 +7,7 @@
 #import "UIView+DPKitChildren.h"
 #import "UILabel+TFFonts.h"
 #import "UITextField+TFFonts.h"
+#import "UITextView+TFFonts.h"
 
 @implementation UIView (TFFonts)
 
@@ -25,7 +26,7 @@
 
     NSArray *textViews = [self childrenOfClass: [UITextView class]];
     [textViews enumerateObjectsUsingBlock: ^(UITextView *item, NSUInteger idx, BOOL *stop) {
-        [item convertFonts];
+        [item convertToAttributedString];
     }];
 
 }

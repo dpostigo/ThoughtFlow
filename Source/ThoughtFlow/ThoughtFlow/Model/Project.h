@@ -8,15 +8,19 @@
 @interface Project : NSObject {
 
     NSString *word;
+    NSString *notes;
     NSDate *creationDate;
 
     NSMutableArray *items;
     NSUInteger numNodes;
 
     __unsafe_unretained id parent;
+
+
 }
 
 @property(nonatomic, copy) NSString *word;
+@property(nonatomic, copy) NSString *notes;
 @property(nonatomic, strong) NSDate *creationDate;
 @property(nonatomic, assign) id parent;
 

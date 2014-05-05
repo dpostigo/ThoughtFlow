@@ -8,7 +8,17 @@
 
 @implementation UITextView (TFFonts)
 
-- (void) convertFonts {
+- (void) setFonts {
+
+    CGFloat pointSize = self.font.pointSize;
+    if ([self.font.fontName isEqualToString: @"Avenir-Light"]) {
+        self.font = [UIFont gothamLight: pointSize];
+    }
+
+}
+
+- (void) convertToAttributedString {
+
     CGFloat kerningSize = 0;
     CGFloat pointSize = self.font.pointSize;
 
@@ -19,6 +29,7 @@
         kerningSize = 60 * (pointSize / 1000);
         attributes = @{
                 NSFontAttributeName : [UIFont gothamLight: pointSize],
+                NSForegroundColorAttributeName : self.textColor,
                 NSKernAttributeName : @(kerningSize)
         };
 

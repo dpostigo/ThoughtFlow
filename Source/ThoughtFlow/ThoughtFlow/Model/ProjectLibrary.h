@@ -14,4 +14,5 @@
 
 - (void) addItem: (id) item;
 - (void) addItems: (NSArray *) items;
+- (void) removeItem: (id) item;
 @end

@@ -6,20 +6,25 @@
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
 
-
-extern NSString * const TFToolbarProjectsNotification;
-
+typedef enum {
+    TFToolbarModeDefault = 0,
+    TFToolbarModeMindmap = 1
+} TFToolbarMode;
 
 @interface ToolbarController : TFViewController <UIViewControllerTransitioningDelegate> {
-
-    IBOutlet UIButton *notesButton;
 
     IBOutlet UIView *buttonsView;
     IBOutlet UIView *drawerView;
 
     UIViewController *toolbarDrawer;
 
+    TFToolbarMode toolbarMode;
+
 }
 
 @property(nonatomic, strong) NSArray *buttons;
+@property(nonatomic) TFToolbarMode toolbarMode;
+
+@property(weak) IBOutlet UIButton *notesButton;
+@property(weak) IBOutlet UIButton *moodButton;
 @end

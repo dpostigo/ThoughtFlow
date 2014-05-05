@@ -5,7 +5,7 @@
 
 #import "MenuController.h"
 #import "Model.h"
-#import "AddProjectController.h"
+#import "CreateProjectController.h"
 
 @implementation MenuController
 
@@ -14,7 +14,7 @@
 
     NSLog(@"%s", __PRETTY_FUNCTION__);
     if ([_model.projects count] == 0) {
-        AddProjectController *controller = [self.storyboard instantiateViewControllerWithIdentifier: @"AddProjectController"];
+        CreateProjectController *controller = [self.storyboard instantiateViewControllerWithIdentifier: @"CreateProjectController"];
         [self.navigationController pushViewController: controller
                                              animated: YES];
 

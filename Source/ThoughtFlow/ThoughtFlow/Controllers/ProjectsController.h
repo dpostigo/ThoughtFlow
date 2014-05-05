@@ -12,4 +12,6 @@
 }
 
 @property(nonatomic, strong) UICollectionView *collection;
+
+//@property(weak) IBOutlet UIButton *newProjectButton;
 @end

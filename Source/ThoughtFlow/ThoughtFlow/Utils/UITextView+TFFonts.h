@@ -7,5 +7,6 @@
 
 @interface UITextView (TFFonts)
 
-- (void) convertFonts;
+- (void) setFonts;
+- (void) convertToAttributedString;
 @end

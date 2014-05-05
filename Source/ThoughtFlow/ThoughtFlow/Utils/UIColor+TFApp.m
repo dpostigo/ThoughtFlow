@@ -19,4 +19,9 @@
 + (UIColor *) tfRedColor {
     return [UIColor colorWithString: @"F26F61"];
 }
+
+
++ (UIColor *) tfOffWhiteColor {
+    return [UIColor colorWithString: @"E8E9EF"];
+}
 @end

@@ -55,7 +55,7 @@
     __block CGFloat sourceX = 0, destinationX = 0;
     __block CGFloat sourceY = 0, destinationY = 0;
     __block CGRect sourceFrame = CGRectZero, destinationFrame = CGRectZero;
-    __block CGFloat x = 0, y = 0, w, h;
+    __block CGFloat w, h;
 
     w = modalSize.width > 0 ? modalSize.width : 400;
     h = modalSize.height > 0 ? modalSize.height : 400;
@@ -86,12 +86,6 @@
 
     destinationFrame.origin.y = containerView.height - modalSize.width - destinationModalOrigin.x;
 
-    //    CALayer *maskLayer = [CALayer new];
-    //    maskLayer.backgroundColor = [UIColor blueColor].CGColor;
-    //    maskLayer.frame = CGRectMake(0, 0, 400, 400);
-    //    //    [containerView.layer addSublayer: maskLayer];
-    //    containerView.layer.mask = maskLayer;
-
     if (self.presenting) {
 
         destinationView.frame = sourceFrame;
@@ -109,16 +103,12 @@
 
                          }
                          completion: ^(BOOL finished) {
-
                              [transitionContext completeTransition: YES];
                          }];
 
     } else {
 
         NSLog(@"DISMISSING.");
-
-        NSLog(@"toViewController = %@", toViewController);
-        //        destinationView.frame = destinationFrame;
 
         [transitionContext.containerView addSubview: fromViewController.view];
         [transitionContext.containerView addSubview: clippingView];
@@ -129,8 +119,8 @@
                          animations: ^{
                              //                             fromViewController.view.alpha = 0;
                              destinationView.alpha = 0;
-                             destinationView.top += destinationView.width;
-                             //                             destinationView.frame = sourceFrame;
+                             //                             destinationView.top += destinationView.width;
+                             destinationView.frame = sourceFrame;
 
                              //                             destinationView.frame = sourceFrame;
 
@@ -153,8 +143,6 @@
 
 
 - (void) animationEnded: (BOOL) transitionCompleted {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-    NSLog(@"destinationView.superview = %@", destinationView.superview);
 
 }
 

@@ -28,8 +28,8 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIImage+DPKit.m" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Utils/UITextView+TFFonts.h" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Utils/UITextView+TFFonts.m" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/EmptyMenuController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/AddProjectController.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/EmptyMenuController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/AddProjectController.m" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/EmptyMenuController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/CreateProjectController.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/EmptyMenuController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/CreateProjectController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/FieldTableViewCell.m" afterPath="$PROJECT_DIR$/ThoughtFlow/FieldTableViewCell.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/MainController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/MainController.m" />
@@ -43,8 +43,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JMSimpleDate/JMSimpleDate/NSDate+JMSimpleDate.m" afterPath="$PROJECT_DIR$/Pods/JMSimpleDate/JMSimpleDate/NSDate+JMSimpleDate.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JMSimpleDate/JMSimpleDate/NSDateFormatter+JMSimpleDate.h" afterPath="$PROJECT_DIR$/Pods/JMSimpleDate/JMSimpleDate/NSDateFormatter+JMSimpleDate.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DPKit-Utils/DPKit-Utils/NSMutableArray+DPKit.m" afterPath="$PROJECT_DIR$/Pods/DPKit-Utils/DPKit-Utils/NSMutableArray+DPKit.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/NewToolbarController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/NewToolbarController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/NewToolbarController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/NewToolbarController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile.lock" afterPath="$PROJECT_DIR$/Podfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile" afterPath="$PROJECT_DIR$/Podfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-DPKit-UIView-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-DPKit-UIView-Private.xcconfig" />
@@ -71,7 +71,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.h" afterPath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.m" afterPath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/ThoughtFlow.xcscheme" afterPath="$PROJECT_DIR$/ThoughtFlow.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/ThoughtFlow.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarControllerOld.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarControllerOld.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarDrawerController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarDrawerController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarDrawerController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarDrawerController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Utils/UIColor+TFApp.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Utils/UIColor+TFApp.h" />
@@ -103,7 +103,7 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_65cc90685de4c0bb3af229152c5172e3f4afd998" />
   <component name="FavoritesManager">
     <favorites_list name="ThoughtFlow" />
   </component>
@@ -112,132 +112,70 @@
       <file leaf-file-name="ProjectsController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="140" column="21" selection-start="5240" selection-end="5240" vertical-scroll-proportion="0.0" vertical-offset="1781" max-vertical-offset="2637">
+            <state line="152" column="35" selection-start="5626" selection-end="5626" vertical-scroll-proportion="0.0" vertical-offset="2051" max-vertical-offset="2982">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ToolbarController.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarController.m">
+      <file leaf-file-name="UITextView+TFFonts.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Utils/UITextView+TFFonts.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="1" selection-start="3174" selection-end="3887" vertical-scroll-proportion="0.107913665" vertical-offset="1725" max-vertical-offset="3567">
+            <state line="7" column="11" selection-start="151" selection-end="151" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="580">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainMapController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MainMapController.m">
+      <file leaf-file-name="NotesDrawerController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/NotesDrawerController.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="410" selection-end="410" vertical-scroll-proportion="-2.3076923" vertical-offset="210" max-vertical-offset="1694">
-              <folding>
-                <marker date="1399252276000" expanded="true" signature="0:103" placeholder="//..." />
-                <marker date="1399252276000" expanded="true" signature="301:3134" placeholder="..." />
-                <marker date="1399252276000" expanded="true" signature="1664:2097" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainMapController.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MainMapController.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="4" selection-start="386" selection-end="386" vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="627">
-              <folding>
-                <marker date="1399252177000" expanded="true" signature="0:103" placeholder="//..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EditNodeController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/EditNodeController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="28" selection-start="2210" selection-end="2210" vertical-scroll-proportion="0.0" vertical-offset="975" max-vertical-offset="1992">
-              <folding>
-                <marker date="1399256789000" expanded="true" signature="0:103" placeholder="//..." />
-                <marker date="1399256789000" expanded="true" signature="235:2772" placeholder="..." />
-                <marker date="1399256789000" expanded="true" signature="236:239" placeholder="{...}" />
-                <marker date="1399256789000" expanded="true" signature="291:355" placeholder="{...}" />
-                <marker date="1399256789000" expanded="true" signature="1213:1329" placeholder="{...}" />
-                <marker date="1399256789000" expanded="true" signature="1960:2017" placeholder="{...}" />
-                <marker date="1399256789000" expanded="true" signature="2138:2261" placeholder="{...}" />
-                <marker date="1399256789000" expanded="true" signature="2336:2769" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MindmapController.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MindmapController.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="411" selection-end="411" vertical-scroll-proportion="0.0" vertical-offset="8" max-vertical-offset="730">
-              <folding>
-                <marker date="1399246730000" expanded="true" signature="0:104" placeholder="//..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddProjectController.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/AddProjectController.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="11" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="582">
+            <state line="9" column="76" selection-start="261" selection-end="279" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="627">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TFCustomTextField.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextField.h">
+      <file leaf-file-name="NotesDrawerController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/NotesDrawerController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="39" selection-start="249" selection-end="249" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+            <state line="79" column="51" selection-start="1899" selection-end="1899" vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="1782">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TFViewController.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/TFViewController.h">
+      <file leaf-file-name="Project.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/Project.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="11" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="655">
+            <state line="60" column="15" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="1630">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TFUserButton.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFUserButton.h">
+      <file leaf-file-name="ToolbarController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/ToolbarController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+            <state line="216" column="41" selection-start="6661" selection-end="6661" vertical-scroll-proportion="0.0" vertical-offset="2085" max-vertical-offset="3867">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DPBorderedView.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIView/DPKit-UIView/DPBorderedView.h">
+      <file leaf-file-name="ToolbarController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/ToolbarController.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="670">
+            <state line="28" column="45" selection-start="683" selection-end="683" vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="837">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MindmapController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MindmapController.m">
+      <file leaf-file-name="EditNodeController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/EditNodeController.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="62" selection-start="1502" selection-end="1502" vertical-scroll-proportion="0.0" vertical-offset="632" max-vertical-offset="3280">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFNode.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/TFNode.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="58" selection-start="908" selection-end="908" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="1122">
+            <state line="9" column="39" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="642">
               <folding />
             </state>
           </provider>
@@ -252,22 +190,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TFNode.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/TFNode.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="470" selection-end="470" vertical-scroll-proportion="0.0" vertical-offset="157" max-vertical-offset="820">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AppDelegate.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/AppDelegate.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="860" selection-end="860" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="1287">
-              <folding>
-                <marker date="1399252053000" expanded="true" signature="0:143" placeholder="//..." />
-              </folding>
+            <state line="35" column="0" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.0" vertical-offset="341" max-vertical-offset="1287">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -275,21 +202,26 @@
       <file leaf-file-name="TFNodeView.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="37" selection-start="1196" selection-end="1196" vertical-scroll-proportion="0.0" vertical-offset="52" max-vertical-offset="1180">
-              <folding>
-                <marker date="1399256916000" expanded="true" signature="0:104" placeholder="//..." />
-              </folding>
+            <state line="41" column="39" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0" vertical-offset="458" max-vertical-offset="1180">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TFNodeView.m" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TFNodeView.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="9" selection-start="1339" selection-end="1339" vertical-scroll-proportion="0.0" vertical-offset="911" max-vertical-offset="7467">
-              <folding>
-                <marker date="1399257833000" expanded="true" signature="0:104" placeholder="//..." />
-              </folding>
+            <state line="392" column="0" selection-start="12498" selection-end="12498" vertical-scroll-proportion="0.227957" vertical-offset="5774" max-vertical-offset="7425">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MindmapController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MindmapController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="20" selection-start="523" selection-end="523" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="3415">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -312,22 +244,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/AddProjectController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/EditNodeController.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Utils/UIView+TFFonts.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Base/TFModalViewController.m" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/EditNodeController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.h" />
-        <option value="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/DPFadeTransition.m" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Model/Project.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.m" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Model/Project.m" />
-        <option value="$PROJECT_DIR$/Podfile" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/MindmapController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/AppDelegate.m" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Model/ProjectLibrary.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Model/TFNode.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Model/TFNode.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.h" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/AddProjectController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/CreateProjectController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Utils/UIColor+TFApp.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/NotesDrawerController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/ToolbarController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/MindmapController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.m" />
       </list>
     </option>
   </component>
@@ -404,24 +336,6 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Utils" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThoughtFlow" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThoughtFlow" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="UIControl" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
@@ -459,6 +373,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Model" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Base" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -614,11 +568,11 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32719547" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19940916" sideWeight="0.61048156" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17577548" sideWeight="0.61048156" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3895184" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19940916" sideWeight="0.71529746" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17577548" sideWeight="0.71529746" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28470254" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32816902" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3895184" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -654,78 +608,9 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/Model.h">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="7" selection-start="148" selection-end="148" vertical-scroll-proportion="0.24418604" vertical-offset="0" max-vertical-offset="940">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/Project.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="19" selection-start="571" selection-end="571" vertical-scroll-proportion="0.8023256" vertical-offset="15" max-vertical-offset="835">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="37" selection-start="1196" selection-end="1196" vertical-scroll-proportion="0.0" vertical-offset="577" max-vertical-offset="1180">
-          <folding>
-            <marker date="1399256916000" expanded="true" signature="0:104" placeholder="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="9" selection-start="1339" selection-end="1339" vertical-scroll-proportion="0.0" vertical-offset="911" max-vertical-offset="7467">
-          <folding>
-            <marker date="1399257833000" expanded="true" signature="0:104" placeholder="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/Project.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="31" selection-start="402" selection-end="402" vertical-scroll-proportion="0.6465116" vertical-offset="22" max-vertical-offset="1420">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/TFViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="11" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="655">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MindmapController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="411" selection-end="411" vertical-scroll-proportion="0.0" vertical-offset="22" max-vertical-offset="730">
-          <folding>
-            <marker date="1399246730000" expanded="true" signature="0:104" placeholder="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Podfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="326" selection-end="326" vertical-scroll-proportion="0.41860464" vertical-offset="0" max-vertical-offset="595">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MindmapController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="62" selection-start="1502" selection-end="1502" vertical-scroll-proportion="0.0" vertical-offset="632" max-vertical-offset="3280">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/ProjectLibrary.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="84" selection-start="1293" selection-end="1293" vertical-scroll-proportion="0.7194245" vertical-offset="330" max-vertical-offset="1332">
+        <state line="16" column="54" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="625">
           <folding />
         </state>
       </provider>
@@ -739,35 +624,98 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/TFNode.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="58" selection-start="908" selection-end="908" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="1122">
+        <state line="39" column="58" selection-start="908" selection-end="908" vertical-scroll-proportion="0.43165466" vertical-offset="405" max-vertical-offset="1122">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.h">
+    <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIView/DPKit-UIView/DPBorderedView.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="48" selection-start="375" selection-end="375" vertical-scroll-proportion="0.4883721" vertical-offset="0" max-vertical-offset="685">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="670">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFUserButton.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="16" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/ProjectLibrary.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="22" selection-start="1620" selection-end="1620" vertical-scroll-proportion="0.64028776" vertical-offset="633" max-vertical-offset="1692">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/AppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="0" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.0" vertical-offset="341" max-vertical-offset="1287">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/main.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="43" selection-start="345" selection-end="345" vertical-scroll-proportion="0.44124702" vertical-offset="71" max-vertical-offset="657">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/CreateProjectController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="25" selection-start="1086" selection-end="1086" vertical-scroll-proportion="0.78417265" vertical-offset="318" max-vertical-offset="1842">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="140" column="21" selection-start="5240" selection-end="5240" vertical-scroll-proportion="0.0" vertical-offset="1781" max-vertical-offset="2637">
+        <state line="152" column="35" selection-start="5626" selection-end="5626" vertical-scroll-proportion="0.0" vertical-offset="2051" max-vertical-offset="2982">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/ToolbarController.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Utils/UIColor+TFApp.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="1" selection-start="3174" selection-end="3887" vertical-scroll-proportion="0.107913665" vertical-offset="1725" max-vertical-offset="3567">
+        <state line="23" column="23" selection-start="473" selection-end="473" vertical-scroll-proportion="0.8023256" vertical-offset="0" max-vertical-offset="805">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/ToolbarController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="216" column="41" selection-start="6661" selection-end="6661" vertical-scroll-proportion="0.0" vertical-offset="2085" max-vertical-offset="3867">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/NotesDrawerController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="51" selection-start="1899" selection-end="1899" vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="1782">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MindmapController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="20" selection-start="523" selection-end="523" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="3415">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="39" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0" vertical-offset="458" max-vertical-offset="1180">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="392" column="0" selection-start="12498" selection-end="12498" vertical-scroll-proportion="0.227957" vertical-offset="5774" max-vertical-offset="7425">
           <folding />
         </state>
       </provider>

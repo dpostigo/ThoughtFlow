@@ -5,14 +5,13 @@
 
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
+#import "TFModalViewController.h"
 
-@interface EditNodeController : TFViewController <UITextViewDelegate, UITextFieldDelegate> {
+@interface EditNodeController : TFModalViewController <UITextViewDelegate, UITextFieldDelegate> {
 
     //    IBOutlet UITextField *textField;
-    UITapGestureRecognizer *dismissRecognizer;
 }
 
 @property(weak) IBOutlet UITextView *textView;
 @property(weak) IBOutlet UILabel *charactersLabel;
-@property(nonatomic, strong) UITapGestureRecognizer *dismissRecognizer;
 @end

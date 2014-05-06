@@ -14,12 +14,14 @@ extern CGFloat const TFNodeViewWidth;
 extern CGFloat const TFNodeViewHeight;
 
 typedef enum {
-    TFNodeViewStateNormal = 0,
-    TFNodeViewStateCreate = 1,
-    TFNodeViewStateDelete = 2
+    TFNodeViewStateNone = 0,
+    TFNodeViewStateNormal = 1,
+    TFNodeViewStateCreate = 2,
+    TFNodeViewStateDelete = 3,
+    TFNodeViewStateRelated = 4
 } TFNodeViewState;
 
-@interface TFNodeView : UIView {
+@interface TFNodeView : UIView <UIGestureRecognizerDelegate> {
 
     TFNode *node;
     TFNodeViewState nodeState;
@@ -37,6 +39,12 @@ typedef enum {
     IBOutlet __unsafe_unretained id <TFNodeViewDelegate> delegate;
 
     id nodeNotification;
+    BOOL isPanning;
+    BOOL enabled;
+    BOOL selected;
+    BOOL isPanningUp;
+    UIButton *relatedButton;
+    BOOL isSnappingDown;
 }
 
 @property(nonatomic, strong) NSString *text;
@@ -47,6 +55,10 @@ typedef enum {
 @property(nonatomic, assign) id <TFNodeViewDelegate> delegate;
 @property(nonatomic) TFNodeViewState nodeState;
 @property(nonatomic, strong) TFNode *node;
-+ (UIView *) greenNode;
+@property(nonatomic) BOOL enabled;
+@property(nonatomic) BOOL selected;
++ (UIView *) greenGhostView;
 - (void) setNodeState: (TFNodeViewState) nodeState1 animated: (BOOL) flag;
+- (NSString *) nodeStateAsString;
+- (NSString *) stringForNodeState: (TFNodeViewState) state;
 @end

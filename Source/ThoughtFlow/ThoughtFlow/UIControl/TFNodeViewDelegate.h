@@ -11,7 +11,10 @@
 
 @optional
 
-
 - (void) nodeViewDidDoubleTap: (TFNodeView *) node;
 - (void) nodeViewDidChangeState: (TFNodeView *) node;
+- (void) nodeViewDidChangeSelection: (TFNodeView *) node;
+- (void) nodeViewDidTriggerDeletion: (TFNodeView *) node;
+
+
 @end

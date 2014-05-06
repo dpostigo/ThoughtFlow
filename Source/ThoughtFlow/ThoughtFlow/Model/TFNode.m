@@ -11,6 +11,7 @@
 
 @synthesize positionX;
 @synthesize positionY;
+@synthesize position;
 NSString *const TFNodeUpdate = @"TFNodeUpdate";
 
 - (instancetype) initWithTitle: (NSString *) aTitle {
@@ -35,14 +36,40 @@ NSString *const TFNodeUpdate = @"TFNodeUpdate";
     }
 }
 
-- (void) setPosition: (CGPoint) position {
-    self.positionX = [NSNumber numberWithFloat: position.x];
-    self.positionY = [NSNumber numberWithFloat: position.y];
-}
+//
+//- (void) setPosition: (CGPoint) position {
+//    self.positionX = [NSNumber numberWithFloat: position.x];
+//    self.positionY = [NSNumber numberWithFloat: position.y];
+//}
+//
+//
+//- (CGPoint) position {
+//    return CGPointMake([self.positionX floatValue], [self.positionY floatValue]);
+//}
+//
+//#pragma mark Setters with save
+//
+//- (void) setPositionX: (NSNumber *) positionX1 {
+//    if (positionX.floatValue != positionX1.floatValue) {
+//        positionX = positionX1;
+//        [self save];
+//    }
+//
+//}
+//
+//- (void) setPositionY: (NSNumber *) positionY1 {
+//    if (positionY.floatValue != positionY1.floatValue) {
+//        positionY = positionY1;
+//        [self save];
+//    }
+//}
 
 
-- (CGPoint) position {
-    return CGPointMake([self.positionX floatValue], [self.positionY floatValue]);
+- (void) setPosition: (CGPoint) position1 {
+    NSLog(@"%s, self.parent = %@", __PRETTY_FUNCTION__, self.parent);
+    position = position1;
+
+    [self save];
 }
 
 

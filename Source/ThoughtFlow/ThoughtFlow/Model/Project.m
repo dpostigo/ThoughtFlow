@@ -12,8 +12,6 @@
 @synthesize items;
 @synthesize creationDate;
 
-@synthesize parent;
-
 @synthesize notes;
 
 - (instancetype) initWithWord: (NSString *) aWord {
@@ -56,15 +54,6 @@
 }
 
 
-#pragma mark Save
-
-- (void) save {
-    if (parent) {
-        if ([parent respondsToSelector: @selector(save)]) {
-            [parent performSelector: @selector(save)];
-        }
-    }
-}
 #pragma mark Getters
 
 - (NSMutableArray *) items {

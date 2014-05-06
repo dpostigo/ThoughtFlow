@@ -21,6 +21,11 @@
 }
 
 
++ (UIColor *) tfPurpleColor {
+    return [UIColor colorWithString: @"3A3A66"];
+}
+
+
 + (UIColor *) tfOffWhiteColor {
     return [UIColor colorWithString: @"E8E9EF"];
 }

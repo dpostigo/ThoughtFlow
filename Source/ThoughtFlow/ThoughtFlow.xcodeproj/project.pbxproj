@@ -85,6 +85,7 @@
 		F29B8B514D52B15862BF2416 /* TFMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8D4423E74CB70D19BE4C /* TFMenuButton.m */; };
 		F29B8D2957A56C68737432FB /* ProjectLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B86ADF6D80AB38FCAFD31 /* ProjectLibrary.m */; };
 		F29B8D84B0290A982DEB32B7 /* TFProjectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8D46CFF482505998DA71 /* TFProjectCollectionViewCell.m */; };
+		F29B8E6AFCCEF428079247EB /* LibraryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B86C9198B73E500121F04 /* LibraryObject.m */; };
 		F29B8EB36670FA6376E58734 /* TFNotesAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8A0A76E6EEA64B6A6F56 /* TFNotesAnimator.m */; };
 		F29B8EF1522DDF320FB629DB /* TFToolbarModalAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8AA01E8AAB67777B59ED /* TFToolbarModalAnimator.m */; };
 /* End PBXBuildFile section */
@@ -196,6 +197,7 @@
 		F29B8688A32FC0452BC9DC97 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
 		F29B86ADF6D80AB38FCAFD31 /* ProjectLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectLibrary.m; sourceTree = "<group>"; };
 		F29B86BC13EDAFFE1404F230 /* TFNodeStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNodeStateView.h; sourceTree = "<group>"; };
+		F29B86C9198B73E500121F04 /* LibraryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryObject.m; sourceTree = "<group>"; };
 		F29B86E73BFDD99E76BC602C /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		F29B877CC764DEDC051A9339 /* EditNodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNodeController.h; sourceTree = "<group>"; };
 		F29B87874B76F65842B5B73E /* EditNodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNodeController.m; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 		F29B8DD281E307FA929542A4 /* TFUserButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUserButton.m; sourceTree = "<group>"; };
 		F29B8E4BC16EA1668E7C4EE0 /* UIColor+TFApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TFApp.h"; sourceTree = "<group>"; };
 		F29B8EB588F761A857F9EDE1 /* TFCustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFCustomTextField.m; sourceTree = "<group>"; };
+		F29B8F5F43422CBC0EDDF3C9 /* LibraryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryObject.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -555,6 +558,8 @@
 				F29B8A5747A55E2E770C11C9 /* TFNode.h */,
 				F29B847C6B38F6326FE2E662 /* TFConstants.m */,
 				F29B8A1A69B6CD3B4CB42521 /* TFConstants.h */,
+				F29B86C9198B73E500121F04 /* LibraryObject.m */,
+				F29B8F5F43422CBC0EDDF3C9 /* LibraryObject.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -758,6 +763,7 @@
 				F29B8515BDEFCFA6B98C5631 /* NotesDrawerController.m in Sources */,
 				F29B84632F4E26A5B9524BFC /* TFModalViewController.m in Sources */,
 				F29B8540D0D63FC0DF4F3AD2 /* TFConstants.m in Sources */,
+				F29B8E6AFCCEF428079247EB /* LibraryObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

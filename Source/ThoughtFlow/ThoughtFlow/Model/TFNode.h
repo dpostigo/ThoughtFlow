@@ -4,13 +4,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LibraryObject.h"
 
 extern NSString *const TFNodeUpdate;
 
 
-@interface TFNode : NSObject {
+@interface TFNode : LibraryObject {
     NSString *title;
 
+
+    CGPoint position;
     NSNumber *positionX;
     NSNumber *positionY;
 

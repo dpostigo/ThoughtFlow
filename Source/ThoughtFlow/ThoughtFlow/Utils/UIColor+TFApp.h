@@ -10,5 +10,6 @@
 + (UIColor *) tfInputTextColor;
 + (UIColor *) tfGreenColor;
 + (UIColor *) tfRedColor;
++ (UIColor *) tfPurpleColor;
 + (UIColor *) tfOffWhiteColor;
 @end

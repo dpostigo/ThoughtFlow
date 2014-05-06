@@ -624,7 +624,7 @@
             </objects>
             <point key="canvasLocation" x="2525" y="2148"/>
         </scene>
-        <!--Add Project Controller-->
+        <!--Create Project Controller-->
         <scene sceneID="2a-g7j-7t-kwy">
             <objects>
                 <viewController storyboardIdentifier="CreateProjectController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vhg-fi-VVU" customClass="CreateProjectController" sceneMemberID="viewController">
@@ -877,20 +877,33 @@ siblings, joy...</string>
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySO-MR-3K4" customClass="TFNodeView">
-                                <rect key="frame" x="472" y="334" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yo8-gh-H0B">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="728"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySO-MR-3K4" customClass="TFNodeView">
+                                        <rect key="frame" x="472" y="324" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="ATj-rt-deu"/>
+                                            <constraint firstAttribute="width" constant="80" id="Cge-Mq-Ggc"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="ATj-rt-deu"/>
-                                    <constraint firstAttribute="width" constant="80" id="Cge-Mq-Ggc"/>
+                                    <constraint firstItem="ySO-MR-3K4" firstAttribute="top" secondItem="Yo8-gh-H0B" secondAttribute="top" constant="324" id="3os-Lx-gQP"/>
+                                    <constraint firstItem="ySO-MR-3K4" firstAttribute="leading" secondItem="Yo8-gh-H0B" secondAttribute="leading" constant="472" id="CNG-C6-ovr"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.16078431904315948" green="0.16078431904315948" blue="0.18039216101169586" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="ySO-MR-3K4" secondAttribute="centerX" id="7OR-lA-ASp"/>
-                            <constraint firstAttribute="centerY" secondItem="ySO-MR-3K4" secondAttribute="centerY" id="LjH-wi-lu2"/>
+                            <constraint firstItem="UyA-GJ-sQu" firstAttribute="top" secondItem="Yo8-gh-H0B" secondAttribute="bottom" id="CGp-ho-dRU"/>
+                            <constraint firstAttribute="trailing" secondItem="Yo8-gh-H0B" secondAttribute="trailing" id="CPj-Qv-QyH"/>
+                            <constraint firstItem="Yo8-gh-H0B" firstAttribute="top" secondItem="0LE-dk-dE0" secondAttribute="top" id="OXC-j4-MAP"/>
+                            <constraint firstItem="Yo8-gh-H0B" firstAttribute="leading" secondItem="Q0T-yt-8qV" secondAttribute="leading" id="RMf-N6-wbN"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>

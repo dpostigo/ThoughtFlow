@@ -9,20 +9,16 @@
 #import "AppDelegate.h"
 #import "UIFont+ThoughtFlow.h"
 #import "Model.h"
+#import "Project.h"
+#import "NSObject+AutoDescription.h"
+#import "TFNode.h"
 
 @implementation AppDelegate
 
 - (BOOL) application: (UIApplication *) application didFinishLaunchingWithOptions: (NSDictionary *) launchOptions {
 
-    Model *_model = [Model sharedModel];
-    NSLog(@"[_model.projects count] = %u", [_model.projects count]);
-
-    UITextField *lagFreeField = [[UITextField alloc] init];
-    [self.window addSubview: lagFreeField];
-    [lagFreeField becomeFirstResponder];
-    [lagFreeField resignFirstResponder];
-    [lagFreeField removeFromSuperview];
-
+    [self testDestore];
+    [self preloadKeyboard];
     UIStoryboard *storyboard = self.window.rootViewController.storyboard;
 
     if ([self.window.rootViewController.restorationIdentifier isEqualToString: @"MainAppNavigationController"]) {
@@ -32,6 +28,28 @@
 
     [[UITextField appearance] setKeyboardAppearance: UIKeyboardAppearanceDark];
     return YES;
+}
+
+- (void) testDestore {
+    Model *_model = [Model sharedModel];
+    NSLog(@"[_model.projects count] = %u", [_model.projects count]);
+
+    for (Project *project in _model.projects) {
+        NSArray *nodes = project.nodes;
+        for (TFNode *node in nodes) {
+            NSLog(@"[node autoDescription] = %@", [node autoDescription]);
+        }
+    }
+
+}
+
+- (void) preloadKeyboard {
+    UITextField *lagFreeField = [[UITextField alloc] init];
+    [self.window addSubview: lagFreeField];
+    [lagFreeField becomeFirstResponder];
+    [lagFreeField resignFirstResponder];
+    [lagFreeField removeFromSuperview];
+
 }
 
 - (void) applicationWillResignActive: (UIApplication *) application {

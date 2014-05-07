@@ -1,19 +1,22 @@
 PODS:
-  - DPKit-Utils (0.0.7):
+  - DPKit-Utils (0.0.9):
     - JMSimpleDate
   - DPTransitions (0.0.1):
     - DPKit-Utils
   - JMSimpleDate (0.0.6)
 
 DEPENDENCIES:
+  - DPKit-Utils (from `~/Development/LocalPods/DPKit-Suite/DPKit-Utils`)
   - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
 
 EXTERNAL SOURCES:
+  DPKit-Utils:
+    :path: ~/Development/LocalPods/DPKit-Suite/DPKit-Utils
   DPTransitions:
     :path: ~/Development/LocalPods/DPTransitions
 
 SPEC CHECKSUMS:
-  DPKit-Utils: e0ae2cc21288e75f04bb4f522dac2f381767d449
+  DPKit-Utils: 495cb9f87d43e5f5728c3967b5e8801e3dfea436
   DPTransitions: 64dde9226d3cda93cf3cc63478d2b0d26ddc4108
   JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
 

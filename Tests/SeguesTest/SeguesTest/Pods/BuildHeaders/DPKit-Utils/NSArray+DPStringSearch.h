@@ -1,1 +1,1 @@
-../../DPKit-Utils/DPKit-Utils/NSArray+DPStringSearch.h
+../../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/NSArray+DPStringSearch.h

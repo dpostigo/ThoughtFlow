@@ -22,10 +22,16 @@
     UIView *lineView;
 
     NSMutableArray *nodeViews;
+
+    UIView *nodeContainerView;
+    BOOL layerAnimationEnabled;
+
+    CALayer *tempLine;
 }
 
 
 @property(nonatomic, strong) UIView *creationNode;
 @property(nonatomic, strong) UILongPressGestureRecognizer *pressGesture;
 @property(nonatomic, strong) NSMutableArray *nodeViews;
+- (void) drawLineForIndex: (int) j;
 @end

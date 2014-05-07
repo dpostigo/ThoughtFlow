@@ -11,7 +11,6 @@
 @implementation TFNodeStateView
 
 @synthesize textLabel;
-
 @synthesize button;
 
 - (id) initWithFrame: (CGRect) frame {

@@ -1,0 +1,5 @@
+platform :ios, '7.0'
+
+
+pod 'DPKit-Utils', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-Utils'
+pod 'DPTransitions', :path => '~/Development/LocalPods/DPTransitions'

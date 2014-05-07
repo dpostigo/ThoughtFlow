@@ -10,9 +10,8 @@
 
 #pragma mark Dismiss
 
-@synthesize dismissRecognizer;
-
 @synthesize dismisses;
+@synthesize dismissRecognizer;
 
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];

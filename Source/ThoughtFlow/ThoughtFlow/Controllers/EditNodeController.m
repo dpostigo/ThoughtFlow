@@ -8,14 +8,7 @@
 #import "Model.h"
 #import "TFNode.h"
 
-@implementation EditNodeController {
-}
-
-
-- (void) loadView {
-    [super loadView];
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-}
+@implementation EditNodeController
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -31,9 +24,23 @@
     //                options: NSKeyValueObservingOptionNew context: NULL];
 }
 
+- (void) viewWillAppear: (BOOL) animated {
+    [super viewWillAppear: animated];
+    self.view.userInteractionEnabled = NO;
+}
 
 
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+    [self performSelector: @selector(activateTextView) withObject: nil afterDelay: 0.1];
+}
 
+- (void) activateTextView {
+
+    self.view.userInteractionEnabled = YES;
+    [_textView becomeFirstResponder];
+
+}
 
 #pragma mark IBActions
 
@@ -58,9 +65,6 @@
     }
     return YES;
 }
-
-
-
 
 
 @end

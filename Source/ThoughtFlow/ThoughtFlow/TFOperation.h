@@ -15,6 +15,9 @@
 @property(nonatomic, copy) void (^failure)();
 
 - (instancetype) initWithSuccess: (void (^)()) aSuccess failure: (void (^)()) aFailure;
+- (instancetype) initWithSuccess: (void (^)()) aSuccess;
++ (instancetype) operationWithSuccess: (void (^)()) aSuccess;
+
 + (instancetype) operationWithSuccess: (void (^)()) aSuccess failure: (void (^)()) aFailure;
 
 

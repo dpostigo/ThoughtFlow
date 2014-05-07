@@ -15,6 +15,7 @@
 - (void) nodeViewDidChangeState: (TFNodeView *) node;
 - (void) nodeViewDidChangeSelection: (TFNodeView *) node;
 - (void) nodeViewDidTriggerDeletion: (TFNodeView *) node;
+- (void) nodeViewDidTriggerRelated: (TFNodeView *) node;
 
 
 @end

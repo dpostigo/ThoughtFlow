@@ -8,39 +8,31 @@
 #import "TFNodeStateView.h"
 #import "UIView+DPConstraints.h"
 #import "UIView+DPKit.h"
-#import "UIGestureRecognizer+DPKit.h"
 #import "UIFont+ThoughtFlow.h"
 #import "UIColor+TFApp.h"
 #import "TFNodeViewDelegate.h"
-#import "UIImage+DPKit.h"
 #import "TFNode.h"
-#import "UIColor+Modify.h"
+#import "TFNodeView+Utils.h"
 
-@implementation TFNodeView {
-    CGPoint startingPoint;
-}
-
-@synthesize textLabel;
-@synthesize normalView;
-@synthesize debugView;
-
-@synthesize greenView;
-
-@synthesize delegate;
-@synthesize nodeState;
+@implementation TFNodeView
 
 @synthesize node;
-
+@synthesize nodeState;
+@synthesize delegate;
 @synthesize enabled;
 @synthesize selected;
-#define NODE_WIDTH 80
+@synthesize textLabel;
+@synthesize debugView;
+
+@synthesize normalView;
+@synthesize greenView;
 
 CGFloat const TFNodeViewWidth = 80;
 CGFloat const TFNodeViewHeight = 80;
 
 + (UIView *) greenGhostView {
-    UIView *ret = [[UIView alloc] initWithFrame: CGRectMake(0, 0, NODE_WIDTH,
-            NODE_WIDTH)];
+    UIView *ret = [[UIView alloc] initWithFrame: CGRectMake(0, 0, TFNodeViewWidth,
+            TFNodeViewHeight)];
     ret.backgroundColor = [UIColor tfGreenColor];
 
     return ret;
@@ -74,6 +66,8 @@ CGFloat const TFNodeViewHeight = 80;
     self.clipsToBounds = YES;
     self.backgroundColor = [UIColor blueColor];
 
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+
     containerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, TFNodeViewWidth,
             TFNodeViewHeight)];
     containerView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -82,11 +76,19 @@ CGFloat const TFNodeViewHeight = 80;
     [self createGreenView];
     [self createRedView];
     [self createRelatedView];
+    [self createNormalView];
 
-    normalView = [[TFNodeStateView alloc] initWithFrame: self.bounds];
-    normalView.translatesAutoresizingMaskIntoConstraints = NO;
-    normalView.backgroundColor = [[self class] deselectedBackgroundColor];
-    [containerView addSubview: normalView];
+    containerView.backgroundColor = [UIColor redColor];
+
+    [self setupConstraints];
+    [self setupGestures];
+    [self setNeedsUpdateConstraints];
+    self.nodeState = TFNodeViewStateNormal;
+
+}
+
+
+- (void) setupConstraints {
 
     [greenButton updateSuperTopConstraint: 0];
     //    [greenButton updateSuperBottomConstraint: 0];
@@ -112,7 +114,6 @@ CGFloat const TFNodeViewHeight = 80;
 
     [containerView updateSuperTopConstraint: 0];
     //    [containerView updateHeightConstraint: TFNodeViewHeight * 2];
-    containerView.backgroundColor = [UIColor redColor];
     //    [containerView updateSuperBottomConstraint: 5];
 
     [self addConstraint: [NSLayoutConstraint constraintWithItem: relatedButton attribute: NSLayoutAttributeCenterX
@@ -130,15 +131,17 @@ CGFloat const TFNodeViewHeight = 80;
                                                       attribute: NSLayoutAttributeBottom
                                                      multiplier: 1.0 constant: 0]];
 
-    containerView.left = [self positionForNodeState: TFNodeViewStateNormal];
-    [self setNeedsUpdateConstraints];
-    [self setupGestures];
-
-    containerView.left = [self positionForNodeState: TFNodeViewStateNormal];
-    containerView.left = 0;
-
+    [self updateWidthConstraint: TFNodeViewWidth];
+    [self updateHeightConstraint: TFNodeViewHeight];
 }
 
+
+- (void) createNormalView {
+    normalView = [[TFNodeStateView alloc] initWithFrame: self.bounds];
+    normalView.translatesAutoresizingMaskIntoConstraints = NO;
+    normalView.backgroundColor = [[self class] deselectedBackgroundColor];
+    [containerView addSubview: normalView];
+}
 
 - (void) createGreenView {
     greenView = [[TFNodeStateView alloc] initWithFrame: self.bounds];
@@ -202,7 +205,7 @@ CGFloat const TFNodeViewHeight = 80;
     relatedButton.titleLabel.textColor = [UIColor whiteColor];
     relatedButton.translatesAutoresizingMaskIntoConstraints = NO;
     [relatedButton setTitle: @"RELATED" forState: UIControlStateNormal];
-    [relatedButton addTarget: self action: @selector(handleRedButton:)
+    [relatedButton addTarget: self action: @selector(handleRelatedButton:)
             forControlEvents: UIControlEventTouchUpInside];
     relatedButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0,
             10);
@@ -238,7 +241,6 @@ CGFloat const TFNodeViewHeight = 80;
 
 - (void) handleGreenButton: (id) sender {
     if (!isPanning) {
-        NSLog(@"%s", __PRETTY_FUNCTION__);
 
     }
 }
@@ -252,6 +254,11 @@ CGFloat const TFNodeViewHeight = 80;
 
 }
 
+- (void) handleRelatedButton: (UIButton *) button {
+    [self nodeViewDidTriggerRelated];
+
+}
+
 
 #pragma mark Handle Gestures
 #pragma mark Gestures
@@ -259,33 +266,34 @@ CGFloat const TFNodeViewHeight = 80;
 - (void) handlePanGesture: (UIPanGestureRecognizer *) gesture {
     if (!enabled) return;
 
-    CGPoint translation = [gesture translationInView: gesture.view];
-    //    NSLog(@"translation = %@", NSStringFromCGPoint(translation));
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan :
+            isPanning = YES;
+            startingPoint = containerView.origin;
+            [self disableButtons];
+            break;
 
-    if (gesture.state == UIGestureRecognizerStateBegan) {
-        isPanning = YES;
-        startingPoint = containerView.origin;
-        [self disableButtons];
+        case UIGestureRecognizerStateCancelled :
+        case UIGestureRecognizerStateEnded :
+        case UIGestureRecognizerStateFailed :
+            isPanning = NO;
+            break;
+
+        default :
+            break;
     }
 
-    if (gesture.state == UIGestureRecognizerStateCancelled ||
-            gesture.state == UIGestureRecognizerStateEnded ||
-            gesture.state == UIGestureRecognizerStateFailed) {
-        isPanning = NO;
-    }
-
-    if (translation.x == 0 || containerView.top != 0) {
+    if ([self isRelatedGesture: gesture]) {
         [self handleRelatedPan: gesture];
     } else if (!isSnappingDown) {
         [self handleStatePan: gesture];
     }
-
 }
 
-- (void) handleSwipeUp: (UISwipeGestureRecognizer *) gesture {
 
-    CGPoint location = [gesture locationInView: gesture.view];
-    //    NSLog(@"location = %@", NSStringFromCGPoint(location));
+- (BOOL) isRelatedGesture: (UIPanGestureRecognizer *) gesture {
+    CGPoint translation = [gesture translationInView: gesture.view];
+    return (translation.x == 0 || containerView.top != 0);
 
 }
 
@@ -335,11 +343,6 @@ CGFloat const TFNodeViewHeight = 80;
 
         }
     }
-}
-
-- (void) endVerticalSnapping {
-
-    isSnappingDown = NO;
 }
 
 - (void) handleStatePan: (UIPanGestureRecognizer *) gesture {
@@ -395,86 +398,25 @@ CGFloat const TFNodeViewHeight = 80;
 
 }
 
-- (void) handleSwipe: (UISwipeGestureRecognizer *) swipe {
-}
-
-
-#pragma mark Enable / disable buttons
-
-- (void) enableButtons {
-    NSArray *buttons = [NSArray arrayWithObjects: greenButton, redButton, nil];
-
-    for (UIButton *button in buttons) {
-        button.enabled = YES;
-    }
-}
-
-
-- (void) disableButtons {
-    NSArray *buttons = [NSArray arrayWithObjects: greenButton, redButton, nil];
-    for (UIButton *button in buttons) {
-        button.enabled = NO;
-    }
-}
-
-
-#pragma mark Positioning
-
-
-- (CGFloat) constrainPositionX: (CGFloat) snapX {
-    const CGFloat absoluteMaxX = 0;
-    const CGFloat absoluteMinX = -containerView.width + TFNodeViewWidth;
-
-    CGFloat maxX = fminf(absoluteMaxX, startingPoint.x + NODE_WIDTH);
-    CGFloat minX = fmaxf(absoluteMinX, startingPoint.x - NODE_WIDTH);
-
-    //    NSLog(@"startingPoint.x = %f, maxX = %f, minX = %f", startingPoint.x, maxX, minX);
-
-    CGFloat ret = snapX;
-    ret = fminf(ret, maxX);
-    ret = fmaxf(ret, minX);
-
-    //    NSLog(@"snapX = %f, ret = %f", snapX, ret);
-
-    return ret;
-}
-
-
-- (CGFloat) constrainPositionY: (CGFloat) posY {
-    const CGFloat absoluteMinY = -TFNodeViewHeight;
-    const CGFloat absoluteMaxY = 0;
-
-    CGFloat ret = posY;
-    ret = fmaxf(ret, absoluteMinY);
-    ret = fminf(ret, absoluteMaxY);
-    return ret;
-
-}
-
-- (void) snap {
-    CGFloat snapX = roundf(containerView.left / self.width) * self.width;
-    snapX = fmaxf(snapX, -self.width);
-    snapX = fminf(snapX, 0);
-
-    [UIView animateWithDuration: 0.3 animations: ^{
-        containerView.left = snapX;
-        [self updateNodeState];
-    }];
-
+- (void) endVerticalSnapping {
+    isSnappingDown = NO;
 }
 
 
 - (void) updateNodeState {
-    if (containerView.left < 0) {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSLog(@"containerView.origin = %@, self.nodeState = %@", NSStringFromCGPoint(containerView.origin),
+            self.nodeStateAsString);
+
+    if (containerView.top < 0) {
         self.nodeState = TFNodeViewStateRelated;
-    }
-    else if (containerView.left == 0) {
+    } else if (containerView.left == 0) {
         self.nodeState = TFNodeViewStateCreate;
 
-    } else if (containerView.left == -NODE_WIDTH) {
+    } else if (containerView.left == -TFNodeViewWidth) {
         self.nodeState = TFNodeViewStateNormal;
 
-    } else if (containerView.left == -NODE_WIDTH * 2) {
+    } else if (containerView.left == -TFNodeViewWidth * 2) {
         self.nodeState = TFNodeViewStateDelete;
     }
 }
@@ -500,8 +442,6 @@ CGFloat const TFNodeViewHeight = 80;
     //    if (nodeNotification) [[NSNotificationCenter defaultCenter] removeObserver: nodeNotification];
     if (node != node1) {
         node = node1;
-        NSLog(@"normalView = %@", normalView);
-        NSLog(@"node.title = %@", node.title);
         normalView.textLabel.text = node.title;
         nodeNotification = [[NSNotificationCenter defaultCenter] addObserverForName: TFNodeUpdate
                                                                              object: nil
@@ -509,7 +449,6 @@ CGFloat const TFNodeViewHeight = 80;
                                                                          usingBlock: ^(NSNotification *notification) {
 
                                                                              TFNode *aNode = notification.object;
-                                                                             NSLog(@"aNode = %@", aNode);
                                                                              if (notification.object == self.node) {
 
                                                                              }
@@ -550,9 +489,9 @@ CGFloat const TFNodeViewHeight = 80;
     if (state == TFNodeViewStateCreate) {
         ret = 0;
     } else if (state == TFNodeViewStateNormal) {
-        ret = -NODE_WIDTH;
+        ret = -TFNodeViewWidth;
     } else if (state == TFNodeViewStateDelete) {
-        ret = -NODE_WIDTH * 2;
+        ret = -TFNodeViewWidth * 2;
     }
     return ret;
 }
@@ -583,6 +522,13 @@ CGFloat const TFNodeViewHeight = 80;
     }
 }
 
+
+- (void) nodeViewDidTriggerRelated {
+    if (delegate && [delegate respondsToSelector: @selector(nodeViewDidTriggerRelated:)]) {
+        [delegate performSelector: @selector(nodeViewDidTriggerRelated:) withObject: self];
+    }
+}
+
 #pragma mark Getters
 
 //
@@ -598,7 +544,6 @@ CGFloat const TFNodeViewHeight = 80;
 - (void) setFrame: (CGRect) frame {
     [super setFrame: frame];
 
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (node) {
         node.position = frame.origin;
     }
@@ -626,10 +571,10 @@ CGFloat const TFNodeViewHeight = 80;
 
 
 - (NSString *) nodeStateAsString {
-    return [self stringForNodeState: self.nodeState];
+    return [[self class] stringForNodeState: self.nodeState];
 }
 
-- (NSString *) stringForNodeState: (TFNodeViewState) state {
++ (NSString *) stringForNodeState: (TFNodeViewState) state {
     NSString *ret = nil;
     if (state == TFNodeViewStateNone) {
         ret = @"TFNodeViewStateNone";

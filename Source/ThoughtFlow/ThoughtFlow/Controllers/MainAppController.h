@@ -8,8 +8,10 @@
 
 @class ToolbarController;
 
-@interface MainMapController : TFViewController <UIViewControllerTransitioningDelegate> {
+@interface MainAppController : TFViewController  {
 
+
+    BOOL showsPrelogin;
     ToolbarController *toolbarController;
     IBOutlet  UIViewController *contentController;
 }

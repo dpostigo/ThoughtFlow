@@ -4,15 +4,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LibraryObject.h"
 
-@interface ProjectLibrary : NSObject
+@interface ProjectLibrary : LibraryObject
 
-@property(nonatomic, strong) NSMutableArray *items;
 
 + (ProjectLibrary *) sharedLibrary;
 - (void) save;
 
-- (void) addItem: (id) item;
-- (void) addItems: (NSArray *) items;
-- (void) removeItem: (id) item;
 @end

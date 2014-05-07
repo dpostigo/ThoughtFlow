@@ -12,7 +12,6 @@
     NSString *notes;
     NSDate *creationDate;
 
-    NSMutableArray *items;
     NSUInteger numNodes;
 
 
@@ -22,7 +21,6 @@
 @property(nonatomic, copy) NSString *notes;
 @property(nonatomic, strong) NSDate *creationDate;
 
-@property(nonatomic, strong) NSMutableArray *items;
 - (instancetype) initWithWord: (NSString *) aWord;
 + (instancetype) projectWithWord: (NSString *) aWord;
 - (NSArray *) nodes;

@@ -39,30 +39,30 @@
 #pragma mark IBActions
 
 - (IBAction) handleLogin: (id) sender {
-    TFLoginOperation *operation = [[TFLoginOperation alloc] init];
+    TFLoginOperation *operation = [[TFLoginOperation alloc] initWithSuccess: ^{
 
-    operation.success = ^{
-        NSLog(@"%s", __PRETTY_FUNCTION__);
+        [self.presentingViewController dismissViewControllerAnimated: YES completion: nil];
+        //        __block UIViewController *controller = self.presentingViewController;
+        //        __block UINavigationController *navController = (UINavigationController *) ([controller isKindOfClass: [UINavigationController class]] ? controller : nil);
+        //
+        //        [controller
+        //                dismissViewControllerAnimated: YES
+        //                                   completion: ^{
+        //                                       [self performSegueWithIdentifier: @"MenuSegue2"
+        //                                                                 sender: nil];
+        //                                       //
+        //                                       //                                       if (navController) {
+        //                                       //                                           [navController pushViewController: [self.storyboard instantiateViewControllerWithIdentifier: @"MainController"]
+        //                                       //                                                                    animated: YES];
+        //                                       //                                       }
+        //                                   }];
 
-        __block UIViewController *controller = self.presentingViewController;
-        __block UINavigationController *navController = (UINavigationController *) ([controller isKindOfClass: [UINavigationController class]] ? controller : nil);
+    }];
 
-        [controller
-                dismissViewControllerAnimated: YES
-                                   completion: ^{
-                                       [self performSegueWithIdentifier: @"MenuSegue2"
-                                                                 sender: nil];
-                                       //
-//                                       if (navController) {
-//                                           [navController pushViewController: [self.storyboard instantiateViewControllerWithIdentifier: @"MainController"]
-//                                                                    animated: YES];
-//                                       }
-                                   }];
-
-    };
     operation.failure = ^{
 
     };
+
     [_queue addOperation: operation];
 
 }

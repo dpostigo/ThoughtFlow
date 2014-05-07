@@ -26,9 +26,6 @@
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="J9Y-8x-50W" kind="modal" identifier="LoginModalSegue" id="3sV-Dj-7Nw"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.16078431904315948" green="0.16078431904315948" blue="0.18039216101169586" alpha="1" colorSpace="deviceRGB"/>
@@ -44,7 +41,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X9f-7x-70m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="328" y="-71"/>
+            <point key="canvasLocation" x="327" y="-1213"/>
         </scene>
         <!--Login Modal Controller-->
         <scene sceneID="ucw-eZ-M1y">
@@ -161,14 +158,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DV8-nn-Ce8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1944" y="288"/>
+            <point key="canvasLocation" x="3367" y="1442"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yMN-Kh-8zV">
             <objects>
                 <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="J9Y-8x-50W" sceneMemberID="viewController">
                     <nil key="simulatedStatusBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="300" height="380"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qA7-HO-yas">
                         <autoresizingMask key="autoresizingMask"/>
@@ -179,7 +175,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l3u-ZM-4u4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1465" y="288"/>
+            <point key="canvasLocation" x="2079" y="1238"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bHl-J5-pPs">
@@ -197,7 +193,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7lK-rR-sJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-877" y="-71"/>
+            <point key="canvasLocation" x="-878" y="-1213"/>
         </scene>
         <!--Login Modal Controller-->
         <scene sceneID="US1-CX-euk">
@@ -300,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lOD-el-LSN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2283" y="288"/>
+            <point key="canvasLocation" x="3706" y="1442"/>
         </scene>
         <!--Main Controller-->
         <scene sceneID="h0E-Iq-cKP">
@@ -348,12 +344,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEv-bX-x4l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="328" y="1049"/>
+            <point key="canvasLocation" x="327" y="-93"/>
         </scene>
-        <!--Main Map Controller-->
+        <!--Prelogin Container Controller-->
+        <scene sceneID="9Ig-5u-jLP">
+            <objects>
+                <viewController storyboardIdentifier="PreloginContainerController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rlB-r6-EJn" customClass="PreloginContainerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0DR-Dd-FuA"/>
+                        <viewControllerLayoutGuide type="bottom" id="HCf-Ph-vuH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cqo-tL-Ajc">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="geO-zg-9qM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1233" y="706"/>
+        </scene>
+        <!--Main App Controller-->
         <scene sceneID="1a-l3f-bZ-BVA">
             <objects>
-                <viewController storyboardIdentifier="MainMapController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qGI-nC-wjD" customClass="MainMapController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainAppController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qGI-nC-wjD" customClass="MainAppController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Db-hS-vff"/>
                         <viewControllerLayoutGuide type="bottom" id="mxH-iR-19t"/>
@@ -398,6 +412,9 @@
                     <navigationItem key="navigationItem" id="qOo-jP-VCi"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <segue destination="J9Y-8x-50W" kind="custom" identifier="PreloginSegue" customClass="CustomModalSegue" id="mzF-tf-evo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y39-Df-dN7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -622,7 +639,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMt-Ek-ryo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2525" y="2148"/>
+            <point key="canvasLocation" x="2501" y="2276"/>
         </scene>
         <!--Create Project Controller-->
         <scene sceneID="2a-g7j-7t-kwy">
@@ -911,6 +928,7 @@ siblings, joy...</string>
                     <connections>
                         <outlet property="firstNodeView" destination="ySO-MR-3K4" id="t8L-yb-63K"/>
                         <segue destination="8lQ-Kp-1Om" kind="custom" identifier="EditModalSegue" customClass="CustomModalSegue" id="xrc-p6-HGA"/>
+                        <segue destination="UHL-PD-38a" kind="custom" identifier="RelatedSegue" customClass="CustomModalSegue" id="foT-mt-vRk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6J9-zx-0dV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1029,7 +1047,7 @@ siblings, joy...</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8h2-0U-y8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1465" y="1049"/>
+            <point key="canvasLocation" x="1464" y="-93"/>
         </scene>
         <!--Menu Controller-->
         <scene sceneID="wzB-Uo-d9a">
@@ -1049,7 +1067,7 @@ siblings, joy...</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IDd-vU-COZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3453" y="485"/>
+            <point key="canvasLocation" x="3452" y="-657"/>
         </scene>
         <!--Edit Node Controller-->
         <scene sceneID="wHo-dl-z0k">
@@ -1127,7 +1145,59 @@ siblings, joy...</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fjI-9o-kkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6349" y="3345"/>
+            <point key="canvasLocation" x="6413" y="3345"/>
+        </scene>
+        <!--Node Related Controller-->
+        <scene sceneID="jl1-Yk-icP">
+            <objects>
+                <viewController storyboardIdentifier="RelatedController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UHL-PD-38a" customClass="NodeRelatedController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Akr-Ex-FPa"/>
+                        <viewControllerLayoutGuide type="bottom" id="81J-3u-fhp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZIM-oC-2VK">
+                        <rect key="frame" x="0.0" y="0.0" width="815" height="650"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="05-related-modal" translatesAutoresizingMaskIntoConstraints="NO" id="7pW-OJ-6IF">
+                                <rect key="frame" x="0.0" y="0.0" width="815" height="650"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5IU-mT-Ne6" customClass="TFUserButton">
+                                <rect key="frame" x="241" y="569" width="334" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.24313727021217346" green="0.24313727021217346" blue="0.27450981736183167" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="K9M-cy-VlU"/>
+                                    <constraint firstAttribute="width" constant="334" id="UDR-MP-oMa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                <state key="normal" title="CLOSE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleClose:" destination="UHL-PD-38a" eventType="touchUpInside" id="bKO-6T-Tlm"/>
+                                    <action selector="handleLogin:" destination="YbT-ku-Qcx" eventType="touchUpInside" id="c5e-Ob-i1l"/>
+                                    <action selector="handleSave:" destination="8lQ-Kp-1Om" eventType="touchUpInside" id="uX8-zf-2Jg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="81J-3u-fhp" firstAttribute="top" secondItem="5IU-mT-Ne6" secondAttribute="bottom" constant="41" id="KGz-Xf-e1H"/>
+                            <constraint firstItem="7pW-OJ-6IF" firstAttribute="leading" secondItem="ZIM-oC-2VK" secondAttribute="leading" id="Me2-1D-dVf"/>
+                            <constraint firstAttribute="centerX" secondItem="5IU-mT-Ne6" secondAttribute="centerX" id="SXh-rv-doi"/>
+                            <constraint firstItem="7pW-OJ-6IF" firstAttribute="top" secondItem="ZIM-oC-2VK" secondAttribute="top" id="Sxs-pX-zg8"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="815" height="650"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="clr-CA-aR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6413" y="3860"/>
         </scene>
         <!--Toolbar Controller-->
         <scene sceneID="dIQ-Ma-mEL">
@@ -1566,7 +1636,7 @@ siblings, joy...</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsz-hK-i8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2723" y="1068"/>
+            <point key="canvasLocation" x="2722" y="-74"/>
         </scene>
     </scenes>
     <resources>
@@ -1574,6 +1644,7 @@ siblings, joy...</string>
         <image name="02-registermodal" width="300" height="390"/>
         <image name="04-youraccount-drawer" width="290" height="768"/>
         <image name="05-editmodal" width="340" height="340"/>
+        <image name="05-related-modal" width="815" height="650"/>
         <image name="06-projectsmenu" width="1024" height="769"/>
         <image name="edit-icon" width="20" height="20"/>
         <image name="tf-ipad-wireframes-v1-5-tf-screen-01a-login" width="1024" height="769"/>

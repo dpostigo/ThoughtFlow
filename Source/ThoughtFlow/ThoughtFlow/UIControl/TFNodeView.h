@@ -45,6 +45,8 @@ typedef enum {
     BOOL isPanningUp;
     UIButton *relatedButton;
     BOOL isSnappingDown;
+
+    CGPoint startingPoint;
 }
 
 @property(nonatomic, strong) NSString *text;
@@ -60,5 +62,5 @@ typedef enum {
 + (UIView *) greenGhostView;
 - (void) setNodeState: (TFNodeViewState) nodeState1 animated: (BOOL) flag;
 - (NSString *) nodeStateAsString;
-- (NSString *) stringForNodeState: (TFNodeViewState) state;
++ (NSString *) stringForNodeState: (TFNodeViewState) state;
 @end

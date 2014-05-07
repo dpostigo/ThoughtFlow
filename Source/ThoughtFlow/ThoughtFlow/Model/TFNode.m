@@ -66,9 +66,7 @@ NSString *const TFNodeUpdate = @"TFNodeUpdate";
 
 
 - (void) setPosition: (CGPoint) position1 {
-    NSLog(@"%s, self.parent = %@", __PRETTY_FUNCTION__, self.parent);
     position = position1;
-
     [self save];
 }
 

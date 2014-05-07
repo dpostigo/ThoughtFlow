@@ -126,6 +126,8 @@
 		EFFC960E43AD46139E28B510 /* NSDate+DPKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B19CEB7AC584EE586FC147C /* NSDate+DPKit.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -DOS_OBJECT_USE_OBJC=0"; }; };
 		F16DF061D21D499894886CF1 /* UIImage+UIColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 576E681247A544D7BBA5964C /* UIImage+UIColor.h */; };
 		F1AFA494A1E04C1EA90F7E32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820CD74070B2439F88A23B84 /* Foundation.framework */; };
+		F29B85EEE82C66818161F934 /* UIView+DPKitDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = F29B88510B54B252B1AB7739 /* UIView+DPKitDebug.h */; };
+		F29B87365C10989BE6BFE7AA /* UIView+DPKitDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8D96C0A7905C01BE9241 /* UIView+DPKitDebug.m */; };
 		F4DC98DD555B4E0C9BC43E20 /* DPTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 77F22B68FB2D4D288C264789 /* DPTransition.h */; };
 		F8BC9A3E73B849B8A4131EC2 /* UIGestureRecognizer+DPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = FC9120E188524A53BD6DB1EA /* UIGestureRecognizer+DPKit.h */; };
 		FB83D1D781514FBABF0D4BB6 /* NSAttributedString+DPKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8C883EA8CA4B9EB67A7024 /* NSAttributedString+DPKit.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -DOS_OBJECT_USE_OBJC=0"; }; };
@@ -339,6 +341,9 @@
 		E7B3146DF0C448A8AAAA25BC /* Pods-UIColorCategories.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-UIColorCategories.xcconfig"; sourceTree = "<group>"; };
 		EC169A0EBBE5423EB7575E08 /* Pods-DPTransitions.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DPTransitions.xcconfig"; sourceTree = "<group>"; };
 		F0129D7EF10F46A1A313E6CC /* NSLayoutConstraint+DPUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+DPUtils.h"; path = "DPKit-Utils/ios/NSLayoutConstraint+DPUtils.h"; sourceTree = "<group>"; };
+		F29B85CEA5E75090EAF8777C /* CustomModalPresentedControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomModalPresentedControllerProtocol.h; sourceTree = "<group>"; };
+		F29B88510B54B252B1AB7739 /* UIView+DPKitDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+DPKitDebug.h"; path = "DPKit-Utils/ios/UIView+DPKitDebug.h"; sourceTree = "<group>"; };
+		F29B8D96C0A7905C01BE9241 /* UIView+DPKitDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+DPKitDebug.m"; path = "DPKit-Utils/ios/UIView+DPKitDebug.m"; sourceTree = "<group>"; };
 		F5B6863D0FEB452A936D47AA /* Animator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Animator.h; path = DPTransitions/Animator.h; sourceTree = "<group>"; };
 		F5FEEFA171794B01BE6D5F67 /* DPTransitionsNavigationControllerDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DPTransitionsNavigationControllerDelegate.m; path = DPTransitions/DPTransitionsNavigationControllerDelegate.m; sourceTree = "<group>"; };
 		F76A6ECF69634CFE9B93965D /* JMSimpleDateConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JMSimpleDateConstants.m; path = JMSimpleDate/JMSimpleDateConstants.m; sourceTree = "<group>"; };
@@ -529,6 +534,7 @@
 				187C23D42AC34A13BA911D93 /* TLFreeformModalAnimator.m */,
 				D3CF1198816543DBBF9BA3AE /* TLFreeformModalProtocol.h */,
 				0940A4D1208D47F288CEC199 /* Support Files */,
+				F29B85CEA5E75090EAF8777C /* CustomModalPresentedControllerProtocol.h */,
 			);
 			name = DPTransitions;
 			path = /Users/danipostigo/Development/LocalPods/DPTransitions;
@@ -586,6 +592,8 @@
 				7F3B4A4E7C844ED089B0C02E /* UIView+DPKitKeyboard.h */,
 				B0A380A411D242AC90B47878 /* UIView+DPKitKeyboard.m */,
 				2A9945F1265B434DA289A6C9 /* Support Files */,
+				F29B8D96C0A7905C01BE9241 /* UIView+DPKitDebug.m */,
+				F29B88510B54B252B1AB7739 /* UIView+DPKitDebug.h */,
 			);
 			name = "DPKit-Utils";
 			path = "/Users/danipostigo/Development/LocalPods/DPKit-Suite/DPKit-Utils";
@@ -851,6 +859,7 @@
 				1E293A9D915D4F72A382077D /* UITextField+DPKit.h in Headers */,
 				BF07C6A7D44D4734BD7B5365 /* UIView+DPKit.h in Headers */,
 				51ED68F71C3E49FEA7140F1C /* UIView+DPKitKeyboard.h in Headers */,
+				F29B85EEE82C66818161F934 /* UIView+DPKitDebug.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1087,6 +1096,7 @@
 				3F593AF1C2E54BB480E25575 /* UITextField+DPKit.m in Sources */,
 				8B29552CCE074D6F9F397017 /* UIView+DPKit.m in Sources */,
 				29AF2FB672BA47FD8643DCE0 /* UIView+DPKitKeyboard.m in Sources */,
+				F29B87365C10989BE6BFE7AA /* UIView+DPKitDebug.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

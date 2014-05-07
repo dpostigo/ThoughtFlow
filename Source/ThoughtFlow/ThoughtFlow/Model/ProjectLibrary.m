@@ -27,12 +27,6 @@
     return sharedLibrary;
 }
 
-- (id) init {
-    if ((self = [super init])) {
-        _items = [NSMutableArray array];
-    }
-    return self;
-}
 
 - (void) save {
     NSString *path = [[[self class] documentsDirectory] stringByAppendingPathComponent: @"ProjectLibrary.plist"];
@@ -41,29 +35,6 @@
     for (int j = 0; j < [self.items count]; j++) {
         id item = [self.items objectAtIndex: j];
         NSLog(@"[item autoDescription] = %@", [item autoDescription]);
-    }
-}
-
-
-- (void) addItem: (id) item {
-    [self.items addObject: item];
-    [self save];
-}
-
-
-- (void) addItems: (NSArray *) items {
-    [self.items addObjectsFromArray: items];
-    [items enumerateObjectsUsingBlock: ^(Project *project, NSUInteger idx, BOOL *stop) {
-        project.parent = self;
-    }];
-    [self save];
-}
-
-
-- (void) removeItem: (id) item {
-    if ([self.items containsObject: item]) {
-        [self.items removeObject: item];
-        [self save];
     }
 }
 

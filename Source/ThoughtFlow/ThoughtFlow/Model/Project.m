@@ -9,9 +9,7 @@
 @implementation Project
 
 @synthesize word;
-@synthesize items;
 @synthesize creationDate;
-
 @synthesize notes;
 
 - (instancetype) initWithWord: (NSString *) aWord {
@@ -42,12 +40,15 @@
     [self save];
 }
 
+//- (void) removeNode: (id) node {
+//    [self removeItem: node];
+//}
+
 
 #pragma mark Setters with save
 
 - (void) setNotes: (NSString *) notes1 {
     if (![notes isEqualToString: notes1]) {
-        NSLog(@"%s", __PRETTY_FUNCTION__);
         notes = [notes1 mutableCopy];
         [self save];
     }

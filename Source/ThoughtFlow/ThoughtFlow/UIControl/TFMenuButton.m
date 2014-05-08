@@ -4,14 +4,15 @@
 //
 
 #import "TFMenuButton.h"
+#import "UIColor+TFApp.h"
 
 @implementation TFMenuButton
 
 - (void) awakeFromNib {
     [super awakeFromNib];
 
-    self.layer.borderWidth = 1.0;
-    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.layer.borderWidth = 0.5;
+    self.layer.borderColor = [UIColor tfToolbarBorderColor].CGColor;
 }
 
 @end

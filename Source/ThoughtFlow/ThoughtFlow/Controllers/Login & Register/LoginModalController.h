@@ -6,12 +6,12 @@
 #import <Foundation/Foundation.h>
 #import "TLFreeformModalProtocol.h"
 #import "TFViewController.h"
+#import "TFModalViewController.h"
 
 @class DPTableView;
 
-@interface LoginModalController : TFViewController <TLFreeformModalProtocol, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
-
-   IBOutlet DPTableView *table;
+@interface LoginModalController : TFModalViewController <TLFreeformModalProtocol, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+    IBOutlet DPTableView *table;
 
 }
 

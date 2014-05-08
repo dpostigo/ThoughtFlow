@@ -5,7 +5,7 @@
 
 #import "ToolbarControllerOld.h"
 #import "TLFreeformModalAnimator.h"
-#import "ToolbarDrawerController.h"
+#import "TFAccountDrawerController.h"
 #import "UIView+DPKit.h"
 #import "UIView+DPConstraints.h"
 #import "UIView+DPKitChildren.h"
@@ -169,9 +169,9 @@
 
 #pragma mark Getters
 
-- (ToolbarDrawerController *) drawerController {
+- (TFAccountDrawerController *) drawerController {
     if (drawerController == nil) {
-        drawerController = [self.storyboard instantiateViewControllerWithIdentifier: @"ToolbarDrawerController"];
+        drawerController = [self.storyboard instantiateViewControllerWithIdentifier: @"TFAccountDrawerController"];
     }
     return drawerController;
 }

@@ -8,7 +8,7 @@
 #import "TLFreeformModalProtocol.h"
 #import "TFModalViewController.h"
 
-@interface ToolbarDrawerController : TFModalViewController <TLFreeformModalProtocol> {
+@interface TFAccountDrawerController : TFModalViewController <TLFreeformModalProtocol> {
 
     IBOutlet UITextField *usernameField;
     IBOutlet UITextField *emailField;

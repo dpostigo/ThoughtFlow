@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Modal View Controller-->
         <scene sceneID="O2M-zm-dah">
             <objects>
-                <viewController id="3pJ-wq-rT1" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginModal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3pJ-wq-rT1" customClass="TFModalViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JCJ-6f-tiZ"/>
                         <viewControllerLayoutGuide type="bottom" id="7Mr-tQ-NGi"/>
@@ -18,15 +18,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="dismisses" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R8a-3s-SMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1473" y="-1793"/>
         </scene>
-        <!--View Controller-->
+        <!--Main Controller-->
         <scene sceneID="DUf-eR-Vv7">
             <objects>
-                <viewController id="b1K-34-CXb" sceneMemberID="viewController">
+                <viewController id="b1K-34-CXb" customClass="MainController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="prT-Sx-Y8c"/>
                         <viewControllerLayoutGuide type="bottom" id="RbA-Vp-PyG"/>
@@ -34,12 +37,12 @@
                     <view key="view" contentMode="scaleToFill" id="Kiv-6i-AyD">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.51372551919999998" green="0.6549019814" blue="0.48235297199999999" alpha="1" colorSpace="deviceRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <segue destination="3pJ-wq-rT1" kind="modal" id="HdM-IK-wgi"/>
+                        <segue destination="3pJ-wq-rT1" kind="custom" identifier="PreloginSegue" customClass="CustomModalSegue" id="Daw-1d-t5e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OhA-uC-Mzz" userLabel="First Responder" sceneMemberID="firstResponder"/>

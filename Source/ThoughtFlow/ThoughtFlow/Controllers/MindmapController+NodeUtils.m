@@ -11,6 +11,7 @@
 #import "UIView+DPKitChildren.h"
 #import "Model.h"
 #import "Project.h"
+#import "PanningView.h"
 
 CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
     CGFloat dx = point2.x - point1.x;
@@ -135,7 +136,7 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
     self.creationNode.center = location;
     self.creationNode.alpha = 0;
     self.creationNode.transform = CGAffineTransformMakeScale(0.9, 0.9);
-    [self.view addSubview: self.creationNode];
+    [nodeContainerView addSubview: self.creationNode];
     [node setNodeState: TFNodeViewStateNormal animated: YES];
 
     [UIView animateWithDuration: 0.4 animations: ^{
@@ -162,14 +163,12 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 
 - (void) endCreateNode {
 
-
     [tempLine removeFromSuperlayer];
     tempLine = nil;
 
     TFNode *projectNode = [[TFNode alloc] initWithTitle: @""];
     TFNodeView *newNodeView = [self instantiateNodeViewForNode: projectNode];
     [self selectNode: newNodeView];
-
 
     [self performSegueWithIdentifier: @"EditModalSegue" sender: nil];
 

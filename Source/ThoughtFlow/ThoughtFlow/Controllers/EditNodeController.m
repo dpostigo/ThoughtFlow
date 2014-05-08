@@ -19,9 +19,7 @@
     _textView.delegate = self;
 
     [self.view convertFonts];
-    //
-    //    [_model addObserver: self forKeyPath: @"selectedNode"
-    //                options: NSKeyValueObservingOptionNew context: NULL];
+    [self updateDoneButton];
 }
 
 - (void) viewWillAppear: (BOOL) animated {
@@ -36,10 +34,13 @@
 }
 
 - (void) activateTextView {
-
     self.view.userInteractionEnabled = YES;
     [_textView becomeFirstResponder];
 
+}
+
+- (void) updateDoneButton {
+    _doneButton.enabled = [_textView.text length] > 0;
 }
 
 #pragma mark IBActions
@@ -64,6 +65,11 @@
         return NO;
     }
     return YES;
+}
+
+- (void) textViewDidChange: (UITextView *) textView {
+    [self updateDoneButton];
+
 }
 
 

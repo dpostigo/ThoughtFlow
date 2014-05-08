@@ -14,7 +14,6 @@
 #pragma mark Super Insets
 
 
-
 - (NSArray *) updateSuperConstraintsWithInsets: (UIEdgeInsets) insets {
     NSMutableArray *ret = [[NSMutableArray alloc] init];
     [ret addObject: [self updateSuperTopConstraint: insets.top]];
@@ -35,7 +34,66 @@
 }
 
 
+#pragma mark Super CenterX
+
+- (NSLayoutConstraint *) superCenterXConstraint {
+    return [self superConstraintForAttribute: NSLayoutAttributeCenterX];
+}
+
+- (NSLayoutConstraint *) updateSuperXConstraint: (CGFloat) constant {
+    NSLayoutConstraint *ret = nil;
+    if (self.superview) {
+        ret = [self superCenterXConstraint];
+        if (ret == nil) {
+            ret = [NSLayoutConstraint constraintWithItem: self
+                                               attribute: NSLayoutAttributeCenterX
+                                               relatedBy: NSLayoutRelationEqual
+                                                  toItem: self.superview
+                                               attribute: NSLayoutAttributeCenterX
+                                              multiplier: 1
+                                                constant: constant];
+            [self.superview addConstraint: ret];
+        }
+        ret.constant = constant;
+    }
+
+    return ret;
+}
+
+
+#pragma mark Super CenterX
+
+- (NSLayoutConstraint *) superCenterYConstraint {
+    return [self superConstraintForAttribute: NSLayoutAttributeCenterY];
+}
+
+- (NSLayoutConstraint *) updateSuperCenterYConstraint: (CGFloat) constant {
+    NSLayoutConstraint *ret = nil;
+    if (self.superview) {
+        ret = [self superCenterYConstraint];
+        if (ret == nil) {
+            ret = [NSLayoutConstraint constraintWithItem: self
+                                               attribute: NSLayoutAttributeCenterY
+                                               relatedBy: NSLayoutRelationEqual
+                                                  toItem: self.superview
+                                               attribute: NSLayoutAttributeCenterY
+                                              multiplier: 1
+                                                constant: constant];
+            [self.superview addConstraint: ret];
+        }
+        ret.constant = constant;
+    }
+
+    return ret;
+}
+
+
+
 #pragma mark Super Leading
+
+- (NSLayoutConstraint *) superLeadingConstraint {
+    return [self superConstraintForAttribute: NSLayoutAttributeLeading];
+}
 
 - (NSLayoutConstraint *) updateSuperLeadingConstraint: (CGFloat) constant {
     NSLayoutConstraint *ret = nil;
@@ -55,10 +113,6 @@
     }
 
     return ret;
-}
-
-- (NSLayoutConstraint *) superLeadingConstraint {
-    return [self superConstraintForAttribute: NSLayoutAttributeLeading];
 }
 
 
@@ -434,6 +488,15 @@
                 if (constraint.secondItem == self.superview && constraint.secondAttribute == attribute) {
                     ret = constraint;
                     break;
+                }
+
+                if (attribute == NSLayoutAttributeTop || attribute == NSLayoutAttributeBottom) {
+                    if ([NSStringFromClass(
+                            [constraint.secondItem class]) isEqualToString: @"_UILayoutGuide"] && constraint.secondAttribute == attribute) {
+                        ret = constraint;
+                        break;
+                    }
+
                 }
             } else if (constraint.secondItem == self && constraint.secondAttribute == attribute) {
                 if (constraint.firstItem == self.superview && constraint.firstAttribute == attribute) {

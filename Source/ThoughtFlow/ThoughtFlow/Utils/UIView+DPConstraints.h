@@ -9,7 +9,11 @@
 
 - (NSArray *) updateSuperConstraintsWithInsets: (UIEdgeInsets) insets;
 - (NSArray *) updateSuperEdgeConstraints: (CGFloat) constant;
+- (NSLayoutConstraint *) superCenterXConstraint;
+- (NSLayoutConstraint *) updateSuperXConstraint: (CGFloat) constant;
 - (NSLayoutConstraint *) updateSuperLeadingConstraint: (CGFloat) constant;
+- (NSLayoutConstraint *) superCenterYConstraint;
+- (NSLayoutConstraint *) updateSuperCenterYConstraint: (CGFloat) constant;
 - (NSLayoutConstraint *) superLeadingConstraint;
 - (NSLayoutConstraint *) superTrailingConstraint;
 - (NSLayoutConstraint *) updateSuperTrailingConstraint: (CGFloat) constant;
@@ -23,6 +27,8 @@
 - (NSLayoutConstraint *) heightConstraint;
 - (NSLayoutConstraint *) updateWidthConstraint: (CGFloat) constant;
 - (NSLayoutConstraint *) staticWidthConstraint;
+- (NSLayoutConstraint *) superWidthConstraint;
+- (NSLayoutConstraint *) updateSuperWidthConstraint: (CGFloat) constant;
 - (NSLayoutConstraint *) updateEqualWidthConstraint: (CGFloat) constant sibling: (UIView *) item;
 - (NSLayoutConstraint *) anyWidthConstraint;
 - (NSLayoutConstraint *) updateTrailingConstraint: (CGFloat) constant toSibling: (id) sibling;

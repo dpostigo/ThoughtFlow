@@ -11,4 +11,5 @@
 + (UIFont *) gothamLight: (CGFloat) fontSize;
 + (UIFont *) italicSerif: (CGFloat) fontSize;
 + (CGFloat) pixelToPoints: (CGFloat) px;
++ (NSDictionary *) attributesForFont: (UIFont *) font;
 @end

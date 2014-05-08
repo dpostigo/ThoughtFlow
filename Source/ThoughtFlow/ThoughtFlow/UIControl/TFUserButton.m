@@ -4,6 +4,7 @@
 //
 
 #import "TFUserButton.h"
+#import "UIImage+DPKit.h"
 
 @implementation TFUserButton
 
@@ -11,6 +12,9 @@
     [super awakeFromNib];
 
     self.layer.cornerRadius = 2;
+
+    [self setTitleColor: [UIColor lightGrayColor] forState: UIControlStateDisabled];
+    [self setBackgroundImage: [UIImage imageWithColor: [UIColor colorWithWhite: 0.8 alpha: 0.5]] forState: UIControlStateDisabled];
 }
 
 @end

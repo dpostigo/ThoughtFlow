@@ -12,6 +12,7 @@
 #import "Project.h"
 #import "NSObject+AutoDescription.h"
 #import "TFNode.h"
+#import "UIColor+TFApp.h"
 
 @implementation AppDelegate
 
@@ -27,6 +28,8 @@
     }
 
     [[UITextField appearance] setKeyboardAppearance: UIKeyboardAppearanceDark];
+
+    self.window.backgroundColor = [UIColor tfBackgroundColor];
     return YES;
 }
 
@@ -37,7 +40,7 @@
     for (Project *project in _model.projects) {
         NSArray *nodes = project.nodes;
         for (TFNode *node in nodes) {
-           // NSLog(@"[node autoDescription] = %@", [node autoDescription]);
+            // NSLog(@"[node autoDescription] = %@", [node autoDescription]);
         }
     }
 

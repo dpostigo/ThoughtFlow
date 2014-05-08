@@ -3,21 +3,18 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import "ToolbarDrawerController.h"
+#import "TFAccountDrawerController.h"
 #import "UIView+TFFonts.h"
 
-@implementation ToolbarDrawerController
+@implementation TFAccountDrawerController
 
 - (void) viewDidLoad {
     [super viewDidLoad];
 
-    //    [self.view convertToAttributedString];
 }
 
 
 #pragma mark Dismiss
-
-
 
 - (CGSize) freeformSizeForViewController {
     return CGSizeMake(290, 768);

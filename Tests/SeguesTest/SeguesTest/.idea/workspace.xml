@@ -2,82 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c84161b-f19c-417f-ac49-7a39c9142b3f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Images.xcassets/05-related-modal.imageset/05-related-modal.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest.xcodeproj/project.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/AppDelegate.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/AppDelegate.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Images.xcassets/05-related-modal.imageset/Contents.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/Images.xcassets/AppIcon.appiconset/Contents.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/Images.xcassets/LaunchImage.launchimage/Contents.json" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/CustomModalPresentedControllerProtocol.h" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/CustomModalSegue.h" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/CustomModalSegue.m" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/DPSegueManager.h" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/DPSegueManager.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/en.lproj/InfoPlist.strings" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTestTests/en.lproj/InfoPlist.strings" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/Controllers/MainController.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/Controllers/MainController.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/MindmapController+NodeUtils.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/MindmapController+NodeUtils.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/NodeRelatedController.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/NodeRelatedController.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Podfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/SeguesTest-Info.plist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/SeguesTest-Prefix.pch" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/SeguesTest.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/SeguesTest.xcscheme" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTestTests/SeguesTestTests-Info.plist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTestTests/SeguesTestTests.m" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/SlideModalSegue.h" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/SlideModalSegue.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/Storyboard.storyboard" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/UIControl/TFNodeView+Utils.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/UIControl/TFNodeView+Utils.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/Controllers/TFModalViewController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/Controllers/TFModalViewController.m" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/TLTransitions/TLAnimator.h" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/TLTransitions/TLAnimator.m" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/TLTransitions/TLFreeformModalProtocol.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest.xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest/main.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest.xcodeproj/project.pbxproj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/xcode.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SeguesTest.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/xcschememanagement.plist" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/MainMapController.h" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/MainAppController.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/MainMapController.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/MainAppController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/AppDelegate.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/AppDelegate.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/EditNodeController.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/EditNodeController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/LibraryObject.h" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/LibraryObject.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/LibraryObject.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/LibraryObject.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/MindmapController.h" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/MindmapController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/MindmapController.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/MindmapController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/Project.h" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/Project.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/Project.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/Project.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/ProjectLibrary.h" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/ProjectLibrary.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/ProjectLibrary.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/ProjectLibrary.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/ProjectsController.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/ProjectsController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Resources/Storyboard.storyboard" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Resources/Storyboard.storyboard" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/Base/TFModalViewController.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Controllers/Base/TFModalViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/TFNode.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/Model/TFNode.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/UIControl/TFNodeStateView.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/UIControl/TFNodeStateView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/UIControl/TFNodeView.h" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/UIControl/TFNodeView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/UIControl/TFNodeView.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/UIControl/TFNodeView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/UIControl/TFNodeViewDelegate.h" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/UIControl/TFNodeViewDelegate.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/TFOperation.h" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/TFOperation.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/TFOperation.m" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow/TFOperation.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/Pods/Pods.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/ThoughtFlow.xcodeproj/project.pbxproj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/TestAnimator.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/TestAnimator.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIApplication+DPKit.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIApplication+DPKit.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIGestureRecognizer+DPKit.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIGestureRecognizer+DPKit.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIImage+DPKit.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIImage+DPKit.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKitDebug.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKitDebug.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIViewController+DPKitDebug.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIViewController+DPKitDebug.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SeguesTest.xcodeproj/project.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/SeguesTest.xcodeproj/project.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SeguesTest/Controllers/MainController.h" afterPath="$PROJECT_DIR$/SeguesTest/Controllers/MainController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SeguesTest/Controllers/MainController.m" afterPath="$PROJECT_DIR$/SeguesTest/Controllers/MainController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPKit-Utils.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPKit-Utils.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPTransitions.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPTransitions.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-JMSimpleDate.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-JMSimpleDate.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/SeguesTest.iml" afterPath="$PROJECT_DIR$/.idea/SeguesTest.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SeguesTest/Storyboard.storyboard" afterPath="$PROJECT_DIR$/SeguesTest/Storyboard.storyboard" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SeguesTest.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/SeguesTest.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Source/ThoughtFlow/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../../Source/ThoughtFlow/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SeguesTest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,11 +62,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainController.m" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainController.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SeguesTest/Controllers/MainController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="528">
+            <state line="24" column="4" selection-start="529" selection-end="941" vertical-scroll-proportion="0.49279538" vertical-offset="18" max-vertical-offset="1444">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestAnimator.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/TestAnimator.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="0" selection-start="704" selection-end="704" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="4639">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestAnimator.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pods/Headers/DPTransitions/TestAnimator.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="19" selection-start="312" selection-end="312" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="285">
+              <folding>
+                <marker date="1399481908000" expanded="true" signature="0:43" placeholder="//..." />
+                <marker date="1399481908000" expanded="true" signature="289:404" placeholder="..." />
+                <marker date="1399481908000" expanded="true" signature="290:351" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UIView+DPKitDebug.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKitDebug.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="22" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="240">
+              <folding>
+                <marker date="1399481537000" expanded="true" signature="0:43" placeholder="//..." />
+                <marker date="1399481537000" expanded="true" signature="98:240" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestAnimator.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/TestAnimator.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="285">
+              <folding>
+                <marker date="1399481908000" expanded="true" signature="442:444" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,26 +119,11 @@
       <file leaf-file-name="MainController.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SeguesTest/Controllers/MainController.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="13" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomModalSegue.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/CustomModalSegue.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="103" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1268">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Podfile" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Podfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="77" selection-start="100" selection-end="100" vertical-scroll-proportion="0.100446425" vertical-offset="0" max-vertical-offset="493">
-              <folding />
+            <state line="9" column="13" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="225">
+              <folding>
+                <marker date="1399480777000" expanded="true" signature="206:240" placeholder="..." />
+                <marker date="1399480777000" expanded="true" signature="207:239" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,6 +148,15 @@
       <list>
         <option value="$PROJECT_DIR$/SeguesTest/Controllers/MainController.h" />
         <option value="$PROJECT_DIR$/Podfile" />
+        <option value="$PROJECT_DIR$/SeguesTest/Controllers/TFModalViewController.h" />
+        <option value="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/CustomModalSegue.m" />
+        <option value="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIViewController.h" />
+        <option value="$PROJECT_DIR$/SeguesTest/Controllers/MainController.m" />
+        <option value="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKitDebug.m" />
+        <option value="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIViewController+DPKitDebug.m" />
+        <option value="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/TestAnimator.h" />
+        <option value="$PROJECT_DIR$/Pods/Headers/DPTransitions/TestAnimator.h" />
+        <option value="$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/TestAnimator.m" />
       </list>
     </option>
   </component>
@@ -191,7 +192,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -241,18 +241,34 @@
               <option name="myItemId" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SeguesTest" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Products" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="SeguesTest" />
-    <property name="options.searchVisible" value="true" />
+    <property name="recentsLimit" value="5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios" />
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Pods-DPKit-Utils" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Application.SeguesTest">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="SeguesTest" TARGET_NAME="SeguesTest" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="SeguesTest" RUN_TARGET_NAME="SeguesTest" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
@@ -273,8 +289,28 @@
       <ConfigurationWrapper RunnerId="AppRunner" />
       <method />
     </configuration>
-    <list size="1">
+    <configuration default="false" name="Pods-DPKit-Utils" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Pods-DPKit-Utils" PROJECT_NAME="Pods" TARGET_NAME="Pods-DPKit-Utils" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Pods-DPTransitions" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Pods-DPTransitions" PROJECT_NAME="Pods" TARGET_NAME="Pods-DPTransitions" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Pods-JMSimpleDate" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Pods-JMSimpleDate" PROJECT_NAME="Pods" TARGET_NAME="Pods-JMSimpleDate" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Pods" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Pods" PROJECT_NAME="Pods" TARGET_NAME="Pods" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.SeguesTest" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Pods-DPKit-Utils" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Pods-DPTransitions" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Pods-JMSimpleDate" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Pods" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -307,23 +343,23 @@
     <frame x="20" y="22" width="1400" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3286119" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24981844" sideWeight="0.6713881" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39943343" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963072" sideWeight="0.96033996" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17355983" sideWeight="0.96033996" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.039660055" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -338,30 +374,120 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SeguesTest/Controllers/MainController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="528">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SeguesTest/Controllers/MainController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/CustomModalSegue.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="103" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1268">
-          <folding />
+        <state line="9" column="13" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="653">
+          <folding>
+            <marker date="1399480777000" expanded="true" signature="206:240" placeholder="..." />
+            <marker date="1399480777000" expanded="true" signature="207:239" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Podfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="77" selection-start="100" selection-end="100" vertical-scroll-proportion="0.100446425" vertical-offset="0" max-vertical-offset="493">
+        <state line="4" column="17" selection-start="118" selection-end="118" vertical-scroll-proportion="0.14184397" vertical-offset="0" max-vertical-offset="468">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SeguesTest/Controllers/TFModalViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="32" selection-start="151" selection-end="172" vertical-scroll-proportion="0.24822696" vertical-offset="0" max-vertical-offset="663" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SeguesTest/Controllers/TFModalViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="43" selection-start="677" selection-end="677" vertical-scroll-proportion="0.58536583" vertical-offset="180" max-vertical-offset="1400">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/Animator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="30" selection-start="217" selection-end="257" vertical-scroll-proportion="0.35460994" vertical-offset="0" max-vertical-offset="603" />
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="471" column="53" selection-start="27930" selection-end="27930" vertical-scroll-proportion="0.4304348" vertical-offset="6867" max-vertical-offset="7645">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/CustomModalTransitionOld.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="1" selection-start="677" selection-end="902" vertical-scroll-proportion="0.47560975" vertical-offset="300" max-vertical-offset="2600">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/CustomModalTransitionOld.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="618" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/CustomModalSegue.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="0" selection-start="2863" selection-end="2991" vertical-scroll-proportion="0.39130434" vertical-offset="1080" max-vertical-offset="1780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIViewController+DPKitDebug.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="26" selection-start="218" selection-end="218" vertical-scroll-proportion="0.35460994" vertical-offset="0" max-vertical-offset="558">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKitDebug.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="22" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="618">
+          <folding>
+            <marker date="1399481537000" expanded="true" signature="0:43" placeholder="//..." />
+            <marker date="1399481537000" expanded="true" signature="98:240" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/TestAnimator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="650">
+          <folding>
+            <marker date="1399481908000" expanded="true" signature="442:444" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/Headers/DPTransitions/TestAnimator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="19" selection-start="312" selection-end="312" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="663">
+          <folding>
+            <marker date="1399481908000" expanded="true" signature="0:43" placeholder="//..." />
+            <marker date="1399481908000" expanded="true" signature="289:404" placeholder="..." />
+            <marker date="1399481908000" expanded="true" signature="290:351" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIViewController+DPKitDebug.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="26" selection-start="507" selection-end="1012" vertical-scroll-proportion="0.40425533" vertical-offset="339" max-vertical-offset="1443">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../LocalPods/DPTransitions/DPTransitions/TestAnimator.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="704" selection-end="704" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="4639">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SeguesTest/Controllers/MainController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="4" selection-start="529" selection-end="941" vertical-scroll-proportion="0.49279538" vertical-offset="18" max-vertical-offset="1444">
           <folding />
         </state>
       </provider>

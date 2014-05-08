@@ -6,13 +6,13 @@
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
 
-@class ToolbarDrawerController;
+@class TFAccountDrawerController;
 
 @interface ToolbarControllerOld : TFViewController <UIViewControllerTransitioningDelegate> {
 
-    ToolbarDrawerController *drawerController;
+    TFAccountDrawerController *drawerController;
 }
 
-@property(nonatomic, strong) ToolbarDrawerController *drawerController;
+@property(nonatomic, strong) TFAccountDrawerController *drawerController;
 @property(nonatomic, strong) NSArray *buttons;
 @end

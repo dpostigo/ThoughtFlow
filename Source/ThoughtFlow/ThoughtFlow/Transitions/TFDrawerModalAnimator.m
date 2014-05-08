@@ -19,8 +19,19 @@
 
 @synthesize sourceController;
 
+@synthesize duration;
+
+- (id) init {
+    self = [super init];
+    if (self) {
+        duration = 0.5;
+    }
+
+    return self;
+}
+
 - (NSTimeInterval) transitionDuration: (id <UIViewControllerContextTransitioning>) transitionContext {
-    return 0.5f;
+    return self.duration;
 }
 
 - (void) animateTransition: (id <UIViewControllerContextTransitioning>) transitionContext {
@@ -107,8 +118,6 @@
                          }];
 
     } else {
-
-        NSLog(@"DISMISSING.");
 
         [transitionContext.containerView addSubview: fromViewController.view];
         [transitionContext.containerView addSubview: clippingView];

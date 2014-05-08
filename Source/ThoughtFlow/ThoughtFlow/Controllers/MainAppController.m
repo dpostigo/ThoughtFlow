@@ -4,9 +4,8 @@
 //
 
 #import <DPTransitions/CustomModalSegue.h>
+#import "CustomModalAnimator.h"
 #import "MainAppController.h"
-#import "TFDrawerModalAnimator.h"
-#import "UIView+DPKit.h"
 #import "ToolbarController.h"
 
 @implementation MainAppController
@@ -16,7 +15,7 @@
     showsPrelogin = YES;
 
     if (showsPrelogin) {
-        self.view.hidden = YES;
+        //        self.view.hidden = YES;
     }
 }
 
@@ -24,7 +23,15 @@
     [super viewDidAppear: animated];
 
     if (showsPrelogin) {
-        [self performSegueWithIdentifier: @"PreloginSegue" sender: nil];
+        animator = [CustomModalAnimator new];
+        animator.modalPresentationSize = CGSizeMake(300, 380);
+        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier: @"PreloginNavigationController"];
+        controller.modalPresentationStyle = UIModalPresentationCustom;
+        controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        controller.transitioningDelegate = animator;
+        [self presentViewController: controller animated: YES completion: ^{
+
+        }];
     }
 
 }

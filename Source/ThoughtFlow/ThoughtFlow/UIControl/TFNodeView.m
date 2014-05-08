@@ -291,20 +291,15 @@ CGFloat const TFNodeViewHeight = 80;
 }
 
 
-- (BOOL) isRelatedGesture: (UIPanGestureRecognizer *) gesture {
-    CGPoint translation = [gesture translationInView: gesture.view];
-    return (translation.x == 0 || containerView.top != 0);
-
-}
-
 - (void) handleRelatedPan: (UIPanGestureRecognizer *) gesture {
-
     if (gesture.state != UIGestureRecognizerStateBegan) {
         CGPoint translation = [gesture translationInView: self];
         CGFloat newY = [self constrainPositionY: startingPoint.y + translation.y];
         //        containerView.top = newY;
 
 
+        NSLayoutConstraint *leftConstraint = [containerView superLeadingConstraint];
+        leftConstraint.constant = -TFNodeViewWidth;
         NSLayoutConstraint *constraint = containerView.superTopConstraint;
         constraint.constant = newY;
 
@@ -400,6 +395,12 @@ CGFloat const TFNodeViewHeight = 80;
 
 - (void) endVerticalSnapping {
     isSnappingDown = NO;
+}
+
+- (BOOL) isRelatedGesture: (UIPanGestureRecognizer *) gesture {
+    CGPoint translation = [gesture translationInView: gesture.view];
+    return (translation.x == 0 || containerView.top != 0);
+
 }
 
 

@@ -40,4 +40,40 @@
     CGFloat result = px * pointsPerInch / pixelPerInch;
     return result;
 }
+
+
++ (NSDictionary *) attributesForFont: (UIFont *) font {
+    NSDictionary *ret = nil;
+    CGFloat pointSize = font.pointSize;
+    CGFloat kerningSize = 0;
+
+    NSMutableParagraphStyle *paragraphStyle;
+
+    if ([font.fontName isEqualToString: @"Avenir-Light"] || [font.fontName isEqualToString: @"GothamRounded-Light"]) {
+        kerningSize = 60 * (pointSize / 1000);
+        ret = @{
+                NSFontAttributeName : [UIFont gothamLight: pointSize],
+                NSKernAttributeName : @(kerningSize)
+        };
+
+    } else if ([font.fontName isEqualToString: @"TimesNewRomanPS-ItalicMT"] || [font.fontName isEqualToString: @"Mercury-TextG1Italic"]) {
+        paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineSpacing = 25.6 / 18;
+        ret = @{
+                NSFontAttributeName : [UIFont fontWithName: @"Mercury-TextG1Italic" size: pointSize],
+                NSKernAttributeName : @(kerningSize),
+                NSParagraphStyleAttributeName : paragraphStyle
+        };
+
+    } else if ([font.fontName isEqualToString: @"Baskerville-Italic"]) {
+        paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        ret = @{
+                NSFontAttributeName : [UIFont fontWithName: @"AGaramondPro-Italic" size: pointSize],
+                NSKernAttributeName : @(kerningSize),
+                NSParagraphStyleAttributeName : paragraphStyle
+        };
+
+    }
+    return ret;
+}
 @end

@@ -12,6 +12,7 @@
     //    IBOutlet UITextField *textField;
 }
 
+@property(weak) IBOutlet UIButton *doneButton;
 @property(weak) IBOutlet UITextView *textView;
 @property(weak) IBOutlet UILabel *charactersLabel;
 @end

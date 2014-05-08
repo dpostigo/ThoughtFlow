@@ -4,8 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFModalViewController.h"
 
-@interface PreloginContainerController : UIViewController {
+@interface PreloginContainerController : TFModalViewController {
 
 }
 @end

@@ -7,9 +7,12 @@
 
 @interface UIColor (TFApp)
 
++ (UIColor *) tfBackgroundColor;
 + (UIColor *) tfInputTextColor;
++ (UIColor *) tfCellTextColor;
 + (UIColor *) tfGreenColor;
 + (UIColor *) tfRedColor;
 + (UIColor *) tfPurpleColor;
 + (UIColor *) tfOffWhiteColor;
++ (UIColor *) tfToolbarBorderColor;
 @end

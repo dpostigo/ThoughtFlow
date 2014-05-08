@@ -12,9 +12,6 @@
     NSString *notes;
     NSDate *creationDate;
 
-    NSUInteger numNodes;
-
-
 }
 
 @property(nonatomic, copy) NSString *word;
@@ -25,6 +22,5 @@
 + (instancetype) projectWithWord: (NSString *) aWord;
 - (NSArray *) nodes;
 
-- (NSUInteger) numNodes;
 - (void) addNode: (id) node;
 @end

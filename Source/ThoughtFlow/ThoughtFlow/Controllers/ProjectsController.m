@@ -20,10 +20,6 @@
 
     collection.delegate = self;
     collection.dataSource = self;
-    //    collection.layout
-
-    //    ((UICollectionViewFlowLayout *) collection.collectionViewLayout).minimumLineSpacing = 0.0f;
-    //    ((UICollectionViewFlowLayout *) collection.collectionViewLayout).scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [collection reloadData];
 
 }
@@ -49,8 +45,8 @@
 
     }
 
+    [collection reloadData];
 
-    //    collection.scroll
 }
 
 
@@ -80,14 +76,12 @@
     UICollectionViewCell *ret = [collection dequeueReusableCellWithReuseIdentifier: @"CollectionCell"
                                                                       forIndexPath: indexPath];
 
-    [ret convertFonts];
-
     if ([ret isKindOfClass: [TFProjectCollectionViewCell class]]) {
 
         TFProjectCollectionViewCell *cell = (TFProjectCollectionViewCell *) ret;
         Project *project = [self projectForIndexPath: indexPath];
         if (project) {
-            cell.firstWordField.text = project.word;
+            cell.project = project;
         }
         cell.button.tag = indexPath.item;
         [cell.button addTarget: self action: @selector(handleTrashButton:)

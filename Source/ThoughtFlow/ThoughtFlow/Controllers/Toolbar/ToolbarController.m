@@ -3,17 +3,16 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import <DPTransitions/CustomModalSegue.h>
 #import "ToolbarController.h"
 #import "UIView+DPConstraints.h"
-#import "NSLayoutConstraint+DPUtils.h"
 #import "UIView+DPKit.h"
 #import "UIView+TFFonts.h"
 #import "UIView+DPKitChildren.h"
-#import "TLFreeformModalAnimator.h"
 #import "TFDrawerModalAnimator.h"
 #import "NotesDrawerController.h"
 #import "TFConstants.h"
+#import "UIColor+TFApp.h"
+#import "ToolbarController+Utils.h"
 
 @implementation ToolbarController
 
@@ -21,9 +20,9 @@
 
 - (void) loadView {
     [super loadView];
-
-    buttonsView.layer.borderWidth = 1.0;
-    buttonsView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.layer.borderWidth = 0.5;
+    self.view.layer.borderColor = [UIColor tfToolbarBorderColor].CGColor;
 
 }
 
@@ -43,6 +42,8 @@
 
     self.toolbarMode = TFToolbarModeDefault;
 }
+
+
 
 
 #pragma mark Setup
@@ -68,41 +69,10 @@
                                                       self.toolbarMode = TFToolbarModeMindmap;
                                                   }];
 
-    //    [[NSNotificationCenter defaultCenter] addObserverForName: TFToolbarProjectsNotification
-    //                                                      object: nil
-    //                                                       queue: nil
-    //                                                  usingBlock: ^(NSNotification *notification) {
-    //
-    //                                                      if (self.presentedViewController) {
-    //                                                          [self closeDrawer];
-    //                                                      }
-    //                                                  }];
-
 }
 
 
 #pragma mark IBActions
-
-
-- (IBAction) handleProjectsButton: (UIButton *) button {
-    self.toolbarMode = TFToolbarModeDefault;
-    [[NSNotificationCenter defaultCenter] postNotificationName: TFToolbarProjectsNotification object: nil];
-}
-
-
-- (IBAction) handleNotesButton: (UIButton *) button {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-    [self deselectAll: button];
-    button.selected = !button.selected;
-
-    if (button.selected) {
-        [self openDrawer: [self.storyboard instantiateViewControllerWithIdentifier: @"NotesDrawerController"]];
-
-    } else {
-        [self closeDrawer];
-    }
-
-}
 
 
 - (IBAction) handleButton: (id) sender {
@@ -116,8 +86,54 @@
 }
 
 
-- (void) openDrawer: (UIViewController *) controller {
+- (IBAction) handleNotesButton: (UIButton *) button {
+    [self deselectAll: button];
+    button.selected = !button.selected;
 
+    if (button.selected) {
+        [self openDrawer: self.notesDrawerController];
+
+    } else {
+        [self closeDrawer];
+    }
+
+}
+
+
+- (IBAction) handleProjectsButton: (UIButton *) button {
+    self.toolbarMode = TFToolbarModeDefault;
+    [[NSNotificationCenter defaultCenter] postNotificationName: TFToolbarProjectsNotification object: nil];
+}
+
+
+- (IBAction) handleSettingsButton: (UIButton *) button {
+    [self deselectAll: button];
+    button.selected = !button.selected;
+
+    if (button.selected) {
+        [self openDrawer: self.settingsDrawerController];
+
+    } else {
+        [self closeDrawer];
+    }
+
+}
+
+
+#pragma mark Drawer
+
+
+- (IBAction) toggleDrawer: (id) sender {
+    UIButton *button = sender;
+    if (button.selected) {
+        [self openDrawer: self.generalDrawerController];
+
+    } else {
+        [self closeDrawer];
+    }
+}
+
+- (void) openDrawer: (UIViewController *) controller {
     void (^completion)() = ^{
         controller.transitioningDelegate = self;
         controller.modalPresentationStyle = UIModalPresentationCustom;
@@ -128,7 +144,6 @@
     };
 
     if (self.presentedViewController) {
-        NSLog(@"%s, closing self.presentedViewController = %@", __PRETTY_FUNCTION__, self.presentedViewController);
         [self dismissViewControllerAnimated: YES completion: completion];
     } else {
         completion();
@@ -144,20 +159,12 @@
 }
 
 
-#pragma mark Button states
 
-- (void) deselectAll: (id) sender {
-    for (UIButton *button in self.buttons) {
-        if (button != sender) {
-            button.selected = NO;
-        }
-    }
-}
+
 
 #pragma mark Toolbar mode
 
 - (void) setToolbarMode: (TFToolbarMode) toolbarMode1 {
-
     toolbarMode = toolbarMode1;
 
     [UIView animateWithDuration: 0.4 animations: ^{
@@ -168,24 +175,12 @@
         } else {
             _notesButton.alpha = 0;
             _moodButton.alpha = 0;
+            [self deselectAll: nil];
         }
     }];
 }
 
 
-#pragma mark Drawer
-
-
-- (IBAction) toggleDrawer: (id) sender {
-
-    UIButton *button = sender;
-    if (button.selected) {
-        [self openDrawer: [self.storyboard instantiateViewControllerWithIdentifier: @"ToolbarDrawerController"]];
-
-    } else {
-        [self closeDrawer];
-    }
-}
 
 #pragma mark UIViewControllerTransitioningDelegate
 
@@ -198,7 +193,6 @@
 
 
 - (id <UIViewControllerAnimatedTransitioning>) animationControllerForDismissedController: (UIViewController *) dismissed {
-
     // TODO : Capture the dismissed controller, update button state
     TFDrawerModalAnimator *animator = [self animatorForPresentedController: dismissed];
     //    animator.modalSize = CGSizeMake(290, self.view.height);
@@ -224,9 +218,22 @@
     }
     return animator;
 }
-#pragma mark Open close
 
 
+#pragma mark View controller instantiation
+
+- (UIViewController *) generalDrawerController {
+    return [self.storyboard instantiateViewControllerWithIdentifier: @"TFAccountDrawerController"];
+}
+
+- (UIViewController *) notesDrawerController {
+    return [self.storyboard instantiateViewControllerWithIdentifier: @"NotesDrawerController"];
+}
+
+
+- (UIViewController *) settingsDrawerController {
+    return [self.storyboard instantiateViewControllerWithIdentifier: @"TFSettingsDrawerController"];
+}
 
 
 @end

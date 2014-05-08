@@ -6,6 +6,7 @@
 
 @interface TFDrawerModalAnimator : NSObject <UIViewControllerAnimatedTransitioning> {
 
+    CGFloat duration;
     BOOL debug;
     BOOL presenting;
 
@@ -22,4 +23,5 @@
 @property(nonatomic) CGPoint sourceModalOrigin;
 @property(nonatomic) CGPoint destinationModalOrigin;
 @property(nonatomic, strong) UIViewController *sourceController;
+@property(nonatomic) CGFloat duration;
 @end

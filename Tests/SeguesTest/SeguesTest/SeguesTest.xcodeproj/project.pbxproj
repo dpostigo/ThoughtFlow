@@ -20,6 +20,7 @@
 		33CDC21A191A8F0500C2BD23 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33CDC218191A8F0500C2BD23 /* InfoPlist.strings */; };
 		33CDC21C191A8F0500C2BD23 /* SeguesTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CDC21B191A8F0500C2BD23 /* SeguesTestTests.m */; };
 		33CDC226191A8F1000C2BD23 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33CDC225191A8F1000C2BD23 /* Storyboard.storyboard */; };
+		33CDC22A191A92FD00C2BD23 /* TFModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CDC229191A92FD00C2BD23 /* TFModalViewController.m */; };
 		A9D38844ADAD401D88697E8D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67AF34D93BD846A9AEAE5385 /* libPods.a */; };
 		F29B86FBEBDAD592948FF186 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8EB581189077D15B2C5E /* MainController.m */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,8 @@
 		33CDC219191A8F0500C2BD23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		33CDC21B191A8F0500C2BD23 /* SeguesTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeguesTestTests.m; sourceTree = "<group>"; };
 		33CDC225191A8F1000C2BD23 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		33CDC228191A92FD00C2BD23 /* TFModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFModalViewController.h; sourceTree = "<group>"; };
+		33CDC229191A92FD00C2BD23 /* TFModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFModalViewController.m; sourceTree = "<group>"; };
 		67AF34D93BD846A9AEAE5385 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F572F5ED331452183105C3D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F29B8C40A24E498372ACD312 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 		33CDC227191A8F9700C2BD23 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				33CDC228191A92FD00C2BD23 /* TFModalViewController.h */,
+				33CDC229191A92FD00C2BD23 /* TFModalViewController.m */,
 				F29B8EB581189077D15B2C5E /* MainController.m */,
 				F29B8C40A24E498372ACD312 /* MainController.h */,
 			);
@@ -230,8 +235,6 @@
 			mainGroup = 33CDC1EA191A8F0400C2BD23;
 			productRefGroup = 33CDC1F4191A8F0400C2BD23 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				33CDC1F2191A8F0400C2BD23 /* SeguesTest */,
@@ -299,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33CDC22A191A92FD00C2BD23 /* TFModalViewController.m in Sources */,
 				33CDC207191A8F0400C2BD23 /* AppDelegate.m in Sources */,
 				33CDC203191A8F0400C2BD23 /* main.m in Sources */,
 				F29B86FBEBDAD592948FF186 /* MainController.m in Sources */,
@@ -502,6 +506,7 @@
 				33CDC221191A8F0500C2BD23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		33CDC222191A8F0500C2BD23 /* Build configuration list for PBXNativeTarget "SeguesTestTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +515,7 @@
 				33CDC224191A8F0500C2BD23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

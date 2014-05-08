@@ -5,7 +5,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class TestAnimator;
+
 @interface MainController : UIViewController {
 
+    TestAnimator *animator;
 }
 @end

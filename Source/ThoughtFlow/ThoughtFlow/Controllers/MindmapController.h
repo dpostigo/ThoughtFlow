@@ -8,12 +8,11 @@
 #import "TFNodeViewDelegate.h"
 
 @class TFNodeView;
+@class PanningView;
 
 @interface MindmapController : TFViewController <TFNodeViewDelegate> {
 
     IBOutlet TFNodeView *firstNodeView;
-
-    UILongPressGestureRecognizer *pressGesture;
 
     UIView *creationNode;
 
@@ -23,15 +22,13 @@
 
     NSMutableArray *nodeViews;
 
-    UIView *nodeContainerView;
+    PanningView *nodeContainerView;
     BOOL layerAnimationEnabled;
 
     CALayer *tempLine;
 }
 
-
 @property(nonatomic, strong) UIView *creationNode;
-@property(nonatomic, strong) UILongPressGestureRecognizer *pressGesture;
 @property(nonatomic, strong) NSMutableArray *nodeViews;
 - (void) drawLineForIndex: (int) j;
 @end

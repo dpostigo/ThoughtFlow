@@ -8,8 +8,16 @@
 
 @implementation UIColor (TFApp)
 
++ (UIColor *) tfBackgroundColor {
+    return [UIColor colorWithString: @"29292E"];
+}
+
 + (UIColor *) tfInputTextColor {
     return [UIColor colorWithString: @"AAABB2"];
+}
+
++ (UIColor *) tfCellTextColor {
+    return [UIColor colorWithString: @"8A8B94"];
 }
 
 + (UIColor *) tfGreenColor {
@@ -25,8 +33,11 @@
     return [UIColor colorWithString: @"3A3A66"];
 }
 
-
 + (UIColor *) tfOffWhiteColor {
     return [UIColor colorWithString: @"E8E9EF"];
+}
+
++ (UIColor *) tfToolbarBorderColor {
+    return [UIColor colorWithString: @"54555D"];
 }
 @end

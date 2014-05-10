@@ -25,4 +25,8 @@
 
     return ret;
 }
+
+- (id) firstChildOfClass: (Class) classType {
+    return [self childrenOfClass: classType][0];
+}
 @end

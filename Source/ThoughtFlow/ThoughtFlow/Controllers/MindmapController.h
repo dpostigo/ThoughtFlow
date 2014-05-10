@@ -12,17 +12,16 @@
 
 @interface MindmapController : TFViewController <TFNodeViewDelegate> {
 
+    TFNodeView *currentNodeView;
     IBOutlet TFNodeView *firstNodeView;
+
+    UIView *lineView;
+    IBOutlet  UIView *interfaceView;
+    PanningView *nodeContainerView;
 
     UIView *creationNode;
 
-    TFNodeView *currentNodeView;
-
-    UIView *lineView;
-
     NSMutableArray *nodeViews;
-
-    PanningView *nodeContainerView;
     BOOL layerAnimationEnabled;
 
     CALayer *tempLine;

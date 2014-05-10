@@ -14,10 +14,8 @@ typedef enum {
 @interface ToolbarController : TFViewController <UIViewControllerTransitioningDelegate> {
 
     IBOutlet UIView *buttonsView;
-    IBOutlet UIView *drawerView;
 
     UIViewController *toolbarDrawer;
-
     TFToolbarMode toolbarMode;
 
 }
@@ -26,5 +24,7 @@ typedef enum {
 @property(nonatomic) TFToolbarMode toolbarMode;
 
 @property(weak) IBOutlet UIButton *notesButton;
+@property(weak) IBOutlet UIButton *accountButton;
+@property(weak) IBOutlet UIButton *settingsButton;
 @property(weak) IBOutlet UIButton *moodButton;
 @end

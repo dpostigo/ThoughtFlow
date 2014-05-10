@@ -8,4 +8,5 @@
 @interface UIView (DPKitChildren)
 
 - (NSArray *) childrenOfClass: (Class) classType;
+- (id) firstChildOfClass: (Class) classType;
 @end

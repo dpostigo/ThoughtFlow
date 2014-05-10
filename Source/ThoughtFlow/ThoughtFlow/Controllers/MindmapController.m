@@ -15,6 +15,7 @@
 #import "UIView+DPKit.h"
 #import "MindmapController+NodeUtils.h"
 #import "PanningView.h"
+#import "TFNodeView+Utils.h"
 
 @implementation MindmapController {
     TFNodeViewState lastNodeState;
@@ -30,11 +31,11 @@
 
     nodeContainerView = (PanningView *) firstNodeView.superview;
     nodeContainerView.translatesAutoresizingMaskIntoConstraints = NO;
-    nodeContainerView.backgroundColor = [UIColor blueColor];
+    //    nodeContainerView.backgroundColor = [UIColor blueColor];
 
     lineView = [[UIView alloc] initWithFrame: nodeContainerView.bounds];
     lineView.translatesAutoresizingMaskIntoConstraints = NO;
-    lineView.backgroundColor = [UIColor redColor];
+    //    lineView.backgroundColor = [UIColor redColor];
     [nodeContainerView insertSubview: lineView belowSubview: firstNodeView];
     [lineView updateSuperEdgeConstraints: 0];
 
@@ -159,7 +160,6 @@
         CGPoint offset = nodeContainerView.origin;
         if (nodeContainerView.left > 0) {
             [nodeContainerView updateSuperWidthConstraint: nodeContainerView.left];
-
         }
         if (nodeContainerView.top > 0) {
             [nodeContainerView updateSuperHeightConstraint: nodeContainerView.top];
@@ -177,9 +177,17 @@
 
         [nodeContainerView updateSuperTopConstraint: 0];
         [nodeContainerView updateSuperLeadingConstraint: 0];
-        [self.view setNeedsUpdateConstraints];
-        [self.view layoutIfNeeded];
+        [nodeContainerView setNeedsUpdateConstraints];
+        [nodeContainerView layoutIfNeeded];
+
+        [lineView.layer.sublayers enumerateObjectsUsingBlock: ^(CALayer *layer, NSUInteger idx, BOOL *stop) {
+            layer.delegate = self;
+        }];
+
         [self setupLineDrawing];
+        [lineView.layer.sublayers enumerateObjectsUsingBlock: ^(CALayer *layer, NSUInteger idx, BOOL *stop) {
+            layer.delegate = self;
+        }];
 
     }
 
@@ -200,6 +208,26 @@ CGPoint midPoint(CGPoint p1, CGPoint p2) {
 
         CALayer *layer = [lineView.layer.sublayers objectAtIndex: j];
         [self setLayerLine: layer fromPoint: nodeView.center toPoint: previousView.center];
+
+        //        TFNodeView *nodeView = [self.nodeViews objectAtIndex: j];
+        //        TFNodeView *previousView = [self.nodeViews objectAtIndex: j - 1];
+        //        CALayer *layer = [lineView.layer.sublayers objectAtIndex: j];
+        //        [self setLayerLine: layer
+        //                 fromPoint: CGPointMake(nodeView.node.position.x + TFNodeViewWidth,
+        //                         nodeView.node.position.y + TFNodeViewHeight)
+        //                   toPoint: CGPointMake(
+        //                           previousView.node.position.x + TFNodeViewWidth,
+        //                           previousView.node.position.y + TFNodeViewHeight)];
+
+        //        TFNode *node = [[self.nodeViews objectAtIndex: j] node];
+        //        TFNode *previousNode = [[self.nodeViews objectAtIndex: j - 1] node];
+        //        CALayer *layer = [lineView.layer.sublayers objectAtIndex: j];
+        //        [self setLayerLine: layer
+        //                 fromPoint: CGPointMake(node.position.x + TFNodeViewWidth,
+        //                         node.position.y + TFNodeViewHeight)
+        //                   toPoint: CGPointMake(
+        //                           previousNode.position.x + TFNodeViewWidth,
+        //                           previousNode.position.y + TFNodeViewHeight)];
     }
 }
 

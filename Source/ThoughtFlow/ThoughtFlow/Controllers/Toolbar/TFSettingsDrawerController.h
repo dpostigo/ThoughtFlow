@@ -4,9 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TFModalViewController.h"
+#import "TFDrawerController.h"
 
-@interface TFSettingsDrawerController : TFModalViewController {
+@interface TFSettingsDrawerController : TFDrawerController {
 
 }
 @end

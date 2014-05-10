@@ -32,7 +32,7 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
           initialSpringVelocity: springVelocity
                         options: UIViewAnimationOptionCurveEaseOut
                      animations: ^{
-                         node.center = location;
+                         node.center = [self constrainNodeCenter: node forLocation: location];;
                          [self updateLineMove: node location: location animated: YES];
                      }
                      completion: ^(BOOL completion) {
@@ -41,27 +41,73 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 
                      }];
 
+    [self optimizeNodeViews];
+
 }
 
 - (void) updateNodeMove: (TFNodeView *) node location: (CGPoint) location {
-    node.center = location;
-    [self updateLineMove: node location: location animated: NO];
+    node.center = [self constrainNodeCenter: node forLocation: location];
+    [self updateLineMove: node location: node.center animated: NO];
 }
 
-
 - (void) endNodeMove: (TFNodeView *) node location: (CGPoint) location {
+    location = [self constrainNodeCenter: node forLocation: location];
     location = CGPointMake(location.x - (node.width / 2), location.y - (node.height / 2));
     [node updateSuperLeadingConstraint: location.x];
     [node updateSuperTopConstraint: location.y];
     node.node.position = location;
+
     [self.view setNeedsUpdateConstraints];
+    [self updateLineMove: node location: node.center animated: NO];
 
     [UIView animateWithDuration: 0.4
                      animations: ^{
                          [self.view layoutIfNeeded];
-                         //                             node.transform = CGAffineTransformIdentity;
                      }
                      completion: nil];
+
+    [self unoptimizeNodeViews];
+
+}
+
+- (CGPoint) constrainNodeCenter: (TFNodeView *) node forLocation: (CGPoint) location {
+
+    CGPoint ret = node.center;
+    //    return location;
+
+    CGRect boundingRect = CGRectMake(self.view.left + 60, self.view.top, self.view.width - 60, self.view.height);
+    boundingRect = CGRectInset(boundingRect, 10, 10);
+
+    CGRect nodeFrame = node.frame;
+    nodeFrame.origin.x = location.x - (node.width / 2);
+    nodeFrame.origin.y = location.y - (node.height / 2);
+
+    CGRect smallerBounds = CGRectInset(boundingRect, 10, 10);
+    if (CGRectContainsRect(smallerBounds, nodeFrame)) {
+        ret = location;
+    } else {
+        //    NSLog(@"CGRectGetMinY(nodeFrame) = %f", CGRectGetMinY(nodeFrame));
+        //    NSLog(@"CGRectGetMaxY(nodeFrame) = %f", CGRectGetMaxY(nodeFrame));
+
+        //    NSLog(@"CGRectGetMinY(boundingRect) = %f", CGRectGetMinY(boundingRect));
+        //    NSLog(@"CGRectGetMaxY(boundingRect) = %f", CGRectGetMaxY(boundingRect));
+
+        //    CGFloat nodeRight = CGRectGetMaxX(nodeFrame);
+        //    NSLog(@"nodeRight = %f", nodeRight);
+
+        if (CGRectGetMinY(nodeFrame) > CGRectGetMinY(boundingRect) && CGRectGetMaxY(nodeFrame) < CGRectGetMaxY(
+                boundingRect)) {
+            ret.y = location.y;
+        }
+
+        if (CGRectGetMinX(nodeFrame) > CGRectGetMinX(boundingRect) && CGRectGetMaxX(nodeFrame) < CGRectGetMaxX(
+                boundingRect)) {
+            ret.x = location.x;
+        }
+
+    }
+
+    return ret;
 
 }
 
@@ -162,7 +208,6 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 
 
 - (void) endCreateNode {
-
     [tempLine removeFromSuperlayer];
     tempLine = nil;
 
@@ -190,11 +235,25 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 
     TFNodeView *ret = [[TFNodeView alloc] init];
     ret.node = projectNode;
-    ret.center = self.creationNode.center;
+    //    ret.center = self.creationNode.center;
+    ret.frame = [self frameForNewNode];
     ret.node.position = ret.origin;
 
     [self setupNodeView: ret];
     [self drawLineForIndex: [self.nodeViews count] - 1];
+
+    return ret;
+}
+
+- (CGRect) frameForNewNode {
+    CGRect ret = self.creationNode.frame;
+
+    for (TFNodeView *node in self.nodeViews) {
+        CGRect nodeFrame = node.frame;
+        if (CGRectIntersectsRect(ret, nodeFrame)) {
+
+        }
+    }
 
     return ret;
 }
@@ -237,7 +296,7 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 
     // Gestures
     UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(nodeViewDidLongPress:)];
-    gesture.minimumPressDuration = 0.1;
+    gesture.minimumPressDuration = 0.25;
     [nodeView addGestureRecognizer: gesture];
 
     // Lines
@@ -247,14 +306,32 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 
 - (CALayer *) createLineSublayer {
     CALayer *sublayer = [CALayer new];
-    sublayer.backgroundColor = [UIColor whiteColor].CGColor;
+    sublayer.backgroundColor = [UIColor colorWithWhite: 0.5 alpha: 1.0].CGColor;
     //    sublayer.delegate = self;
     sublayer.contents = nil;
-    sublayer.opacity = 0.5;
+    //    sublayer.opacity = 0.5;
+    sublayer.opaque = YES;
     sublayer.speed = 3.0;
     sublayer.allowsEdgeAntialiasing = YES;
     [lineView.layer addSublayer: sublayer];
     return sublayer;
+}
+
+#pragma mark Performance
+
+- (void) optimizeNodeViews {
+
+    for (TFNodeView *node in self.nodeViews) {
+        node.optimized = YES;
+        [node rasterize];
+    }
+}
+
+- (void) unoptimizeNodeViews {
+    for (TFNodeView *node in self.nodeViews) {
+        node.optimized = NO;
+        [node rasterize];
+    }
 }
 
 @end

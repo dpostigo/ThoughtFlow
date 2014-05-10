@@ -4,6 +4,7 @@
 //
 
 #import "TFSettingsDrawerController.h"
+#import "TFConstants.h"
 
 @implementation TFSettingsDrawerController
 
@@ -11,7 +12,11 @@
 
 #pragma mark IBActions
 
-- (IBAction) handleCloseButton: (UIButton *) button {
-    [self.presentingViewController dismissViewControllerAnimated: YES completion: nil];
+- (IBAction) closeDrawer: (id) sender {
+    [self.presentingViewController dismissViewControllerAnimated: YES completion: ^() {
+        [[NSNotificationCenter defaultCenter] postNotificationName: TFToolbarSettingsDrawerClosed object: nil];
+    }];
 }
+
+
 @end

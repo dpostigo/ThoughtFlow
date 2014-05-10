@@ -3,13 +3,16 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <DPKit-Utils/UIColor+DPKit.h>
 #import "TFNodeView+Utils.h"
+#import "TFNodeStateView.h"
+#import "UIFont+ThoughtFlow.h"
+#import "UIColor+TFApp.h"
 
 @implementation TFNodeView (Utils)
 
 - (void) enableButtons {
     NSArray *buttons = [NSArray arrayWithObjects: greenButton, redButton, nil];
-
     for (UIButton *button in buttons) {
         button.enabled = YES;
     }
@@ -26,7 +29,6 @@
 
 
 #pragma mark Positioning
-
 
 - (CGFloat) constrainPositionX: (CGFloat) snapX {
     const CGFloat absoluteMaxX = 0;
@@ -56,5 +58,118 @@
 
 }
 
+#pragma mark Setup
+
+
++ (UIColor *) deselectedBackgroundColor {
+    return [UIColor colorWithString: @"bdbdbe"];
+}
+
+- (void) createNormalView {
+    TFNodeStateView *ret = [[TFNodeStateView alloc] initWithFrame: self.bounds];
+    ret.translatesAutoresizingMaskIntoConstraints = NO;
+    ret.backgroundColor = [[self class] deselectedBackgroundColor];
+    [containerView addSubview: ret];
+
+    normalView = ret;
+}
+
+- (void) createGreenView {
+
+    UIButton *ret = [UIButton buttonWithType: UIButtonTypeCustom];
+    ret.frame = self.bounds;
+    ret.backgroundColor = [UIColor tfGreenColor];
+    ret.titleLabel.font = [UIFont gothamLight: 12];
+    //    ret.titleLabel.textColor = [UIColor whiteColor];
+    ret.translatesAutoresizingMaskIntoConstraints = NO;
+    ret.adjustsImageWhenDisabled = NO;
+    ret.adjustsImageWhenHighlighted = NO;
+    //    [ret setTitle: @"DRAG OUT" forState: UIControlStateNormal];
+    //    [ret setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
+    [ret setImage: [UIImage imageNamed: @"node-dragout-image"] forState: UIControlStateNormal];
+    [ret addTarget: self action: @selector(handleGreenButton:) forControlEvents: UIControlEventTouchDragOutside];
+    ret.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+    ret.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    ret.titleLabel.textAlignment = NSTextAlignmentCenter;
+    //    greenButton.reversesTitleShadowWhenHighlighted = YES;
+    //    [greenButton setBackgroundImage: [UIImage imageWithColor: [greenButton.backgroundColor darkenColor: 0.1]]
+    //                           forState: UIControlStateHighlighted];
+    //    greenButton.userInteractionEnabled = NO;
+    [containerView addSubview: ret];
+    greenButton = ret;
+}
+
+- (void) createRedView {
+    UIButton *ret = [UIButton buttonWithType: UIButtonTypeCustom];
+    ret.frame = self.bounds;
+    ret.backgroundColor = [UIColor tfRedColor];
+    ret.titleLabel.font = [UIFont gothamLight: 12];
+    ret.titleLabel.textColor = [UIColor whiteColor];
+    ret.translatesAutoresizingMaskIntoConstraints = NO;
+    ret.adjustsImageWhenDisabled = NO;
+    ret.adjustsImageWhenHighlighted = NO;
+    //    [ret setTitle: @"DELETE" forState: UIControlStateNormal];
+    //    UIImage *image = [UIImage imageNamed: @"icon-node-delete"];
+    //    ret.titleEdgeInsets = UIEdgeInsetsMake(40, -20, 0, 0);
+    //    ret.imageEdgeInsets = UIEdgeInsetsMake(0, -image.size.width, 0, 0);
+
+    [ret setImage: [UIImage imageNamed: @"cancel-icon"] forState: UIControlStateNormal];
+    [ret addTarget: self action: @selector(handleRedButton:) forControlEvents: UIControlEventTouchUpInside];
+    //    ret.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+    //    ret.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    //    ret.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [containerView addSubview: ret];
+    redButton = ret;
+}
+
+
+- (void) createRelatedView {
+    relatedButton = [UIButton buttonWithType: UIButtonTypeCustom];
+    relatedButton.frame = self.bounds;
+    relatedButton.backgroundColor = [UIColor tfPurpleColor];
+    relatedButton.titleLabel.font = [UIFont gothamLight: 12];
+    relatedButton.titleLabel.textColor = [UIColor whiteColor];
+    relatedButton.adjustsImageWhenHighlighted = NO;
+    relatedButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [relatedButton setImage: [UIImage imageNamed: @"node-related-image"] forState: UIControlStateNormal];
+    //    [relatedButton setTitle: @"RELATED" forState: UIControlStateNormal];
+    [relatedButton addTarget: self action: @selector(handleRelatedButton:) forControlEvents: UIControlEventTouchUpInside];
+    relatedButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0,
+            10);
+    relatedButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    relatedButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [containerView addSubview: relatedButton];
+
+}
+
+#pragma mark Utils
+
+- (void) toggleSelection: (id) sender {
+    self.selected = !self.selected;
+}
+
+
+#pragma mark Node state
+
+
+- (NSString *) nodeStateAsString {
+    return [[self class] stringForNodeState: self.nodeState];
+}
+
++ (NSString *) stringForNodeState: (TFNodeViewState) state {
+    NSString *ret = nil;
+    if (state == TFNodeViewStateNone) {
+        ret = @"TFNodeViewStateNone";
+    } else if (state == TFNodeViewStateNormal) {
+        ret = @"TFNodeViewStateNormal";
+    } else if (state == TFNodeViewStateCreate) {
+        ret = @"TFNodeViewStateCreate";
+    } else if (state == TFNodeViewStateDelete) {
+        ret = @"TFNodeViewStateDelete";
+    } else if (state == TFNodeViewStateRelated) {
+        ret = @"TFNodeViewStateRelated";
+    }
+    return ret;
+}
 
 @end

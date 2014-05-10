@@ -4,9 +4,25 @@
 //
 
 #import "FieldTableViewCell.h"
+#import "TFCustomTextField.h"
 
 @implementation FieldTableViewCell
 
 @synthesize textField;
+
+- (void) awakeFromNib {
+    [super awakeFromNib];
+
+    //    self.translatesAutoresizingMaskIntoConstraints  = NO;
+}
+
+- (UIImageView *) imageView {
+    return self.tfCustomTextField.leftAccessoryImageView;
+}
+
+
+- (TFCustomTextField *) tfCustomTextField {
+    return (TFCustomTextField *) ([self.textField isKindOfClass: [TFCustomTextField class]] ? self.textField : nil);
+}
 
 @end

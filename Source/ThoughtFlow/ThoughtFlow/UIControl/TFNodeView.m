@@ -27,6 +27,8 @@
 @synthesize normalView;
 @synthesize greenView;
 
+@synthesize optimized;
+@synthesize swipeDirection;
 CGFloat const TFNodeViewWidth = 80;
 CGFloat const TFNodeViewHeight = 80;
 
@@ -43,12 +45,9 @@ CGFloat const TFNodeViewHeight = 80;
 #pragma mark Setup
 
 - (id) initWithFrame: (CGRect) frame {
-    frame.size.width = TFNodeViewWidth;
-    frame.size.height = TFNodeViewHeight;
-    self = [super initWithFrame: frame];
+    self = [super initWithFrame: CGRectMake(frame.origin.x, frame.origin.y, TFNodeViewWidth, TFNodeViewHeight)];
     if (self) {
         [self setup];
-
     }
 
     return self;
@@ -56,10 +55,11 @@ CGFloat const TFNodeViewHeight = 80;
 
 - (void) awakeFromNib {
     [super awakeFromNib];
-
     [self setup];
-
 }
+
+
+#pragma mark Setup
 
 - (void) setup {
     enabled = YES;
@@ -68,8 +68,7 @@ CGFloat const TFNodeViewHeight = 80;
 
     self.translatesAutoresizingMaskIntoConstraints = NO;
 
-    containerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, TFNodeViewWidth,
-            TFNodeViewHeight)];
+    containerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, TFNodeViewWidth, TFNodeViewHeight)];
     containerView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview: containerView];
 
@@ -136,99 +135,14 @@ CGFloat const TFNodeViewHeight = 80;
 }
 
 
-- (void) createNormalView {
-    normalView = [[TFNodeStateView alloc] initWithFrame: self.bounds];
-    normalView.translatesAutoresizingMaskIntoConstraints = NO;
-    normalView.backgroundColor = [[self class] deselectedBackgroundColor];
-    [containerView addSubview: normalView];
-}
-
-- (void) createGreenView {
-    greenView = [[TFNodeStateView alloc] initWithFrame: self.bounds];
-    greenView.textLabel.text = @"DRAG OUT";
-    greenView.textLabel.font = [UIFont gothamLight: 12];
-    greenView.textLabel.textColor = [UIColor whiteColor];
-    greenView.translatesAutoresizingMaskIntoConstraints = NO;
-    greenView.backgroundColor = [UIColor tfGreenColor];
-    [greenView.button addTarget: self action: @selector(handleGreenButton:)
-               forControlEvents: UIControlEventTouchUpInside];
-    //    [containerView addSubview: greenView];
-
-    greenView.textLabel.text = @"";
-    [greenView.button setTitle: @"DRAG OUT" forState: UIControlStateNormal];
-
-    greenButton = [UIButton buttonWithType: UIButtonTypeCustom];
-    greenButton.frame = self.bounds;
-    greenButton.backgroundColor = [UIColor tfGreenColor];
-    greenButton.titleLabel.font = [UIFont gothamLight: 12];
-    //    greenButton.titleLabel.textColor = [UIColor whiteColor];
-    greenButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [greenButton setTitle: @"DRAG OUT" forState: UIControlStateNormal];
-    [greenButton setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
-    [greenButton addTarget: self action: @selector(handleGreenButton:)
-          forControlEvents: UIControlEventTouchDragInside];
-    greenButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0,
-            10);
-    greenButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    greenButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    greenButton.adjustsImageWhenHighlighted = YES;
-    //    greenButton.reversesTitleShadowWhenHighlighted = YES;
-    //    [greenButton setBackgroundImage: [UIImage imageWithColor: [greenButton.backgroundColor darkenColor: 0.1]]
-    //                           forState: UIControlStateHighlighted];
-    //    greenButton.userInteractionEnabled = NO;
-    [containerView addSubview: greenButton];
-}
-
-- (void) createRedView {
-    redButton = [UIButton buttonWithType: UIButtonTypeCustom];
-    redButton.frame = self.bounds;
-    redButton.backgroundColor = [UIColor tfRedColor];
-    redButton.titleLabel.font = [UIFont gothamLight: 12];
-    redButton.titleLabel.textColor = [UIColor whiteColor];
-    redButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [redButton setTitle: @"DELETE" forState: UIControlStateNormal];
-    [redButton addTarget: self action: @selector(handleRedButton:)
-        forControlEvents: UIControlEventTouchUpInside];
-    redButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0,
-            10);
-    redButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    redButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [containerView addSubview: redButton];
-}
-
-
-- (void) createRelatedView {
-    relatedButton = [UIButton buttonWithType: UIButtonTypeCustom];
-    relatedButton.frame = self.bounds;
-    relatedButton.backgroundColor = [UIColor tfPurpleColor];
-    relatedButton.titleLabel.font = [UIFont gothamLight: 12];
-    relatedButton.titleLabel.textColor = [UIColor whiteColor];
-    relatedButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [relatedButton setTitle: @"RELATED" forState: UIControlStateNormal];
-    [relatedButton addTarget: self action: @selector(handleRelatedButton:)
-            forControlEvents: UIControlEventTouchUpInside];
-    relatedButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0,
-            10);
-    relatedButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    relatedButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [containerView addSubview: relatedButton];
-
-}
-
 - (void) setupGestures {
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget: self
-                                                                          action: @selector(handlePanGesture:)];
-
-
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget: self
-                                                                                action: @selector(handleDoubleTap:)];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(handlePanGesture:)];
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(handleDoubleTap:)];
     doubleTap.numberOfTapsRequired = 2;
 
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self
-                                                                                action: @selector(toggleSelection:)];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(toggleSelection:)];
     singleTap.numberOfTapsRequired = 1;
 
-    //    [containerView addGestureRecognizer: swipe];
     [containerView addGestureRecognizer: pan];
     [normalView addGestureRecognizer: doubleTap];
     [normalView addGestureRecognizer: singleTap];
@@ -260,7 +174,6 @@ CGFloat const TFNodeViewHeight = 80;
 }
 
 
-#pragma mark Handle Gestures
 #pragma mark Gestures
 
 - (void) handlePanGesture: (UIPanGestureRecognizer *) gesture {
@@ -283,42 +196,62 @@ CGFloat const TFNodeViewHeight = 80;
             break;
     }
 
-    if ([self isRelatedGesture: gesture]) {
-        [self handleRelatedPan: gesture];
-    } else if (!isSnappingDown) {
-        [self handleStatePan: gesture];
+    CGPoint translation = [gesture translationInView: gesture.view];
+
+    if ((translation.x == 0 || containerView.top != 0) && swipeDirection != TFSwipeDirectionHorizontal) {
+        [self panVertically: gesture];
+
+    } else if (!isSnappingDown && swipeDirection != TFSwipeDirectionVertical) {
+        [self panHorizontally: gesture];
+    }
+
+    if (swipeDirection == TFSwipeDirectionNone) {
+        if (fabsf(containerView.top) > 20) {
+            swipeDirection = TFSwipeDirectionVertical;
+        } else if (fabsf(containerView.left + 80) > 20) {
+            swipeDirection = TFSwipeDirectionHorizontal;
+        }
+    }
+
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        swipeDirection = TFSwipeDirectionNone;
     }
 }
 
 
-- (void) handleRelatedPan: (UIPanGestureRecognizer *) gesture {
-    if (gesture.state != UIGestureRecognizerStateBegan) {
-        CGPoint translation = [gesture translationInView: self];
-        CGFloat newY = [self constrainPositionY: startingPoint.y + translation.y];
-        //        containerView.top = newY;
+- (void) panVertically: (UIPanGestureRecognizer *) gesture {
 
+    CGPoint translation = [gesture translationInView: self];
+    CGFloat newY = [self constrainPositionY: startingPoint.y + translation.y];
+    NSLayoutConstraint *leftConstraint = [containerView superLeadingConstraint];
+    NSLayoutConstraint *topConstraint = containerView.superTopConstraint;
 
-        NSLayoutConstraint *leftConstraint = [containerView superLeadingConstraint];
-        leftConstraint.constant = -TFNodeViewWidth;
-        NSLayoutConstraint *constraint = containerView.superTopConstraint;
-        constraint.constant = newY;
+    switch (gesture.state) {
 
-        if (gesture.state == UIGestureRecognizerStateEnded) {
+        case UIGestureRecognizerStateChanged : {
+            leftConstraint.constant = -TFNodeViewWidth;
+            topConstraint.constant = newY;
 
+            if (fabsf(newY) > 10) {
+                swipeDirection = TFSwipeDirectionVertical;
+            }
+        }
+            break;
+
+        case UIGestureRecognizerStateEnded :
+        case UIGestureRecognizerStateCancelled :
+        case UIGestureRecognizerStateFailed : {
             CGPoint velocity = [gesture velocityInView: self];
 
             CGFloat snapY = [self constrainPositionY: roundf(containerView.top / self.height) * self.height];
-            //
+
             CGPoint vel = [gesture velocityInView: self];
             CGFloat curY = containerView.frame.origin.y;
             CGFloat springVelocity = (-0.1f * vel.x) / (curY - snapY);
 
-            //            NSLog(@"vel.x = %f", vel.x);
-
-
             isSnappingDown = YES;
 
-            constraint.constant = snapY;
+            topConstraint.constant = snapY;
             [self setNeedsUpdateConstraints];
             [UIView animateWithDuration: 0.4 delay: 0.0
                  usingSpringWithDamping: 0.9f
@@ -335,12 +268,58 @@ CGFloat const TFNodeViewHeight = 80;
                                  //                                 [self performSelector: @selector(endVerticalSnapping) withObject: nil
                                  //                                            afterDelay: 0.4];
                              }];
-
         }
+            break;
+
+        default :
+            break;
+
     }
+    //    if (gesture.state != UIGestureRecognizerStateBegan) {
+    //        CGPoint translation = [gesture translationInView: self];
+    //        CGFloat newY = [self constrainPositionY: startingPoint.y + translation.y];
+    //
+    //
+    //        NSLayoutConstraint *leftConstraint = [containerView superLeadingConstraint];
+    //        leftConstraint.constant = -TFNodeViewWidth;
+    //        NSLayoutConstraint *constraint = containerView.superTopConstraint;
+    //        topConstraint.constant = newY;
+    //
+    //        if (gesture.state == UIGestureRecognizerStateEnded) {
+    //
+    //            CGPoint velocity = [gesture velocityInView: self];
+    //
+    //            CGFloat snapY = [self constrainPositionY: roundf(containerView.top / self.height) * self.height];
+    //
+    //            CGPoint vel = [gesture velocityInView: self];
+    //            CGFloat curY = containerView.frame.origin.y;
+    //            CGFloat springVelocity = (-0.1f * vel.x) / (curY - snapY);
+    //
+    //            isSnappingDown = YES;
+    //
+    //            topConstraint.constant = snapY;
+    //            [self setNeedsUpdateConstraints];
+    //            [UIView animateWithDuration: 0.4 delay: 0.0
+    //                 usingSpringWithDamping: 0.9f
+    //                  initialSpringVelocity: springVelocity
+    //                                options: UIViewAnimationOptionCurveEaseOut
+    //                             animations: ^{
+    //                                 //                                 containerView.top = snapY;
+    //                                 [self layoutIfNeeded];
+    //                             }
+    //                             completion: ^(BOOL finished) {
+    //                                 [self updateNodeState];
+    //                                 [self enableButtons];
+    //                                 isSnappingDown = NO;
+    //                                 //                                 [self performSelector: @selector(endVerticalSnapping) withObject: nil
+    //                                 //                                            afterDelay: 0.4];
+    //                             }];
+    //
+    //        }
+    //    }
 }
 
-- (void) handleStatePan: (UIPanGestureRecognizer *) gesture {
+- (void) panHorizontally: (UIPanGestureRecognizer *) gesture {
 
     UIView *view = self;
     if (gesture.state != UIGestureRecognizerStateBegan) {
@@ -440,7 +419,6 @@ CGFloat const TFNodeViewHeight = 80;
 
 - (void) setNode: (TFNode *) node1 {
 
-    //    if (nodeNotification) [[NSNotificationCenter defaultCenter] removeObserver: nodeNotification];
     if (node != node1) {
         node = node1;
         normalView.textLabel.text = node.title;
@@ -532,14 +510,9 @@ CGFloat const TFNodeViewHeight = 80;
 
 #pragma mark Getters
 
-//
-//- (TFNodeStateView *) normalView {
-//    if (normalView == nil) {
-//        normalView = [[TFNodeStateView alloc] init];
-//        [self addSubview: normalView];
-//    }
-//    return normalView;
-//}
+
+
+#pragma mark Setters
 
 
 - (void) setFrame: (CGRect) frame {
@@ -550,9 +523,6 @@ CGFloat const TFNodeViewHeight = 80;
     }
 }
 
-
-#pragma mark Setters
-
 - (void) setSelected: (BOOL) selected1 {
     if (selected != selected1) {
         selected = selected1;
@@ -562,33 +532,24 @@ CGFloat const TFNodeViewHeight = 80;
 }
 
 
-- (void) toggleSelection: (id) sender {
-    self.selected = !self.selected;
-}
+- (void) setOptimized: (BOOL) optimized1 {
+    if (optimized != optimized1) {
+        optimized = optimized1;
 
-+ (UIColor *) deselectedBackgroundColor {
-    return [UIColor colorWithString: @"bdbdbe"];
-}
+        if (optimized) {
+            self.backgroundColor = normalView.backgroundColor;
+            [containerView removeFromSuperview];
 
+            [self addSubview: normalView];
+            [normalView updateSuperEdgeConstraints: 0];
 
-- (NSString *) nodeStateAsString {
-    return [[self class] stringForNodeState: self.nodeState];
-}
+        } else {
 
-+ (NSString *) stringForNodeState: (TFNodeViewState) state {
-    NSString *ret = nil;
-    if (state == TFNodeViewStateNone) {
-        ret = @"TFNodeViewStateNone";
-    } else if (state == TFNodeViewStateNormal) {
-        ret = @"TFNodeViewStateNormal";
-    } else if (state == TFNodeViewStateCreate) {
-        ret = @"TFNodeViewStateCreate";
-    } else if (state == TFNodeViewStateDelete) {
-        ret = @"TFNodeViewStateDelete";
-    } else if (state == TFNodeViewStateRelated) {
-        ret = @"TFNodeViewStateRelated";
+            [containerView addSubview: normalView];
+            [self addSubview: containerView];
+            [self setupConstraints];
+        }
     }
-    return ret;
 }
 
 @end

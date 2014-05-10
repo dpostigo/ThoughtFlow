@@ -7,6 +7,10 @@
 #import "UIView+TFFonts.h"
 #import "Model.h"
 #import "TFNode.h"
+#import "UIFont+ThoughtFlow.h"
+#import "UIColor+TFApp.h"
+
+#define CHARACTER_LIMIT 20.0f
 
 @implementation EditNodeController
 
@@ -25,6 +29,7 @@
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
     self.view.userInteractionEnabled = NO;
+    [self updateCharactersLabel];
 }
 
 
@@ -43,7 +48,18 @@
     _doneButton.enabled = [_textView.text length] > 0;
 }
 
+- (void) updateCharactersLabel {
+    CGFloat characterCount = CHARACTER_LIMIT - [_textView.text length];
+    NSString *string = [NSString stringWithFormat: @"%.0f %@ LEFT", characterCount, fabsf(characterCount) == 1 ? @"CHARACTER" : @"CHARACTERS"];
+    NSMutableDictionary *attributes = [[UIFont attributesForFont: [UIFont fontWithName: @"GothamRounded-Light" size: _charactersLabel.font.pointSize]] mutableCopy];
+    if (characterCount < 0) {
+        [attributes setObject: [UIColor tfRedColor] forKey: NSForegroundColorAttributeName];
+    }
+    _charactersLabel.attributedText = [[NSMutableAttributedString alloc] initWithString: string attributes: attributes];
+}
+
 #pragma mark IBActions
+
 
 - (IBAction) handleSave: (id) sender {
     _model.selectedNode.title = _textView.text;
@@ -51,11 +67,9 @@
     [self.presentingViewController dismissViewControllerAnimated: YES  completion: nil];
 }
 
-
 #pragma mark UITextView delegate
 
 - (BOOL) textFieldShouldReturn: (UITextField *) textField {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     return NO;
 }
 
@@ -67,10 +81,10 @@
     return YES;
 }
 
+
 - (void) textViewDidChange: (UITextView *) textView {
     [self updateDoneButton];
-
+    [self updateCharactersLabel];
 }
-
 
 @end

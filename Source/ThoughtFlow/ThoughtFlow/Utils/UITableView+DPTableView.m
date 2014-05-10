@@ -56,11 +56,14 @@
     for (int j = 0; j < numSections; j++) {
 
         ret += [self estimatedSectionHeaderHeight];
-        int numRows = [self numberOfRowsInSection: j];
+        int numRows = self.dataSource ? [self.dataSource tableView: self numberOfRowsInSection: j] : [self numberOfRowsInSection: j];
 
         for (int k = 0; k < numRows; k++) {
-            ret += [self rowHeight];
-
+            if (self.delegate && [self.delegate respondsToSelector: @selector(tableView:heightForRowAtIndexPath:)]) {
+                ret += [self.delegate tableView: self heightForRowAtIndexPath: [NSIndexPath indexPathForRow: k inSection: j]];
+            } else {
+                ret += [self rowHeight];
+            }
         }
     }
     return ret;

@@ -25,7 +25,7 @@
     if (showsPrelogin) {
         animator = [CustomModalAnimator new];
         animator.modalPresentationSize = CGSizeMake(300, 380);
-        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier: @"PreloginNavigationController"];
+        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier: @"PreloginController"];
         controller.modalPresentationStyle = UIModalPresentationCustom;
         controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         controller.transitioningDelegate = animator;

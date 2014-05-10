@@ -20,12 +20,7 @@
 
     [self testDestore];
     [self preloadKeyboard];
-    UIStoryboard *storyboard = self.window.rootViewController.storyboard;
-
-    if ([self.window.rootViewController.restorationIdentifier isEqualToString: @"MainAppNavigationController"]) {
-        UINavigationController *navigationController = (UINavigationController *) self.window.rootViewController;
-
-    }
+ 
 
     [[UITextField appearance] setKeyboardAppearance: UIKeyboardAppearanceDark];
 

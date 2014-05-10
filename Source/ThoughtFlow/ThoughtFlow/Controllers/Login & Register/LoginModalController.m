@@ -11,6 +11,9 @@
 #import "FieldTableViewCell.h"
 #import "UIView+DPKitKeyboard.h"
 #import "TFLoginOperation.h"
+#import "DPTableView+DataUtils.h"
+#import "TFCustomTextField.h"
+#import "UIView+TFFonts.h"
 
 @implementation LoginModalController
 
@@ -19,24 +22,41 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    [self.view convertFonts];
     table.delegate = self;
     table.dataSource = self;
-
     table.populateTextLabels = YES;
 
-    [table.rows addObject: @{DPTableViewTextLabelName : @"Username or email"}];
-    [table.rows addObject: @{DPTableViewTextLabelName : @"Password"}];
+    [self prepareDatasource];
 
+    __weak UIViewController *weakSelf = self;
     table.onReload = ^(DPTableView *theTable) {
-        [theTable updateHeightConstraint: theTable.calculatedTableHeight];
+
+        __strong UIViewController *strongSelf = weakSelf;
+        if (strongSelf) {
+            CGFloat newheight = theTable.calculatedTableHeight;
+            theTable.height = newheight;
+            [theTable updateHeightConstraint: newheight];
+            [strongSelf.view setNeedsUpdateConstraints];
+        }
     };
 
     [table reloadData];
+    table.layer.cornerRadius = 3;
 
+}
+
+- (void) prepareDatasource {
+    [table.rows addObject: @{DPTableViewTextLabelName : @"Username or email", DPTableViewImageName : [UIImage imageNamed: @"user-icon"]}];
+    [table.rows addObject: @{DPTableViewTextLabelName : @"Password", DPTableViewImageName : [UIImage imageNamed: @"password-icon"]}];
 }
 
 
 #pragma mark IBActions
+
+- (IBAction) signInInstead: (id) sender {
+    [self.navigationController popViewControllerAnimated: YES];
+}
 
 - (IBAction) handleLogin: (id) sender {
     TFLoginOperation *operation = [[TFLoginOperation alloc] initWithSuccess: ^{
@@ -79,18 +99,25 @@
 #pragma mark UITableViewDatasource
 
 - (NSInteger) tableView: (UITableView *) tableView numberOfRowsInSection: (NSInteger) section {
-    return 2;
+    return [table numberOfRowsInSection: section];
 }
 
-- (UITableViewCell *) tableView: (UITableView *) tableView
-          cellForRowAtIndexPath: (NSIndexPath *) indexPath {
-
+- (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath {
     UITableViewCell *ret = [tableView dequeueReusableCellWithIdentifier: @"TableCell"];
 
+
+    NSDictionary *dictionary = [table dataForIndexPath: indexPath];
     if ([ret isKindOfClass: [FieldTableViewCell class]]) {
         FieldTableViewCell *cell = (FieldTableViewCell *) ret;
         cell.textField.delegate = self;
         cell.textField.placeholder = [table textLabelForIndexPath: indexPath];
+        cell.imageView.image = [table imageForIndexPath: indexPath];
+        cell.textField.rightView = nil;
+
+
+        UIImage *image = [table imageForIndexPath: indexPath];
+        NSLog(@"image = %@", image);
+        NSLog(@"cell.imageView = %@", cell.imageView);
     }
 
     return ret;

@@ -5,9 +5,14 @@
 
 #import <Foundation/Foundation.h>
 
+extern CGFloat const leftAccessoryWidth;
+extern CGFloat const TFTextFieldBorderWidth;
+
 @interface TFCustomTextField : UITextField <UITextFieldDelegate> {
 
-
-    id<UITextFieldDelegate> __delegate;
+    //    UIImageView *leftImageView;
+    id <UITextFieldDelegate> __delegate;
 }
+
+- (UIImageView *) leftAccessoryImageView;
 @end

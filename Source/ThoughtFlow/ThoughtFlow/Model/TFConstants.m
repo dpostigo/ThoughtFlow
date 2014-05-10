@@ -10,4 +10,7 @@
 NSString *const TFToolbarProjectsNotification = @"TFToolbarProjectsNotification";
 NSString *const TFToolbarMindmapNotification = @"TFToolbarMindmapNotification";
 
+NSString *const TFToolbarAccountDrawerClosed = @"TFToolbarAccountDrawerClosed";
+NSString *const TFToolbarSettingsDrawerClosed = @"TFToolbarSettingsDrawerClosed";
+
 @end

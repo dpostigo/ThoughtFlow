@@ -69,6 +69,19 @@
                                                       self.toolbarMode = TFToolbarModeMindmap;
                                                   }];
 
+    [[NSNotificationCenter defaultCenter] addObserverForName: TFToolbarAccountDrawerClosed
+                                                      object: nil
+                                                       queue: nil
+                                                  usingBlock: ^(NSNotification *notification) {
+                                                      _accountButton.selected = NO;
+                                                  }];
+    [[NSNotificationCenter defaultCenter] addObserverForName: TFToolbarSettingsDrawerClosed
+                                                      object: nil
+                                                       queue: nil
+                                                  usingBlock: ^(NSNotification *notification) {
+                                                      _settingsButton.selected = NO;
+                                                  }];
+
 }
 
 
@@ -96,7 +109,6 @@
     } else {
         [self closeDrawer];
     }
-
 }
 
 
@@ -116,9 +128,12 @@
     } else {
         [self closeDrawer];
     }
-
 }
 
+
+- (IBAction) handleInfoButton: (UIButton *) button {
+
+}
 
 #pragma mark Drawer
 
@@ -195,6 +210,8 @@
 - (id <UIViewControllerAnimatedTransitioning>) animationControllerForDismissedController: (UIViewController *) dismissed {
     // TODO : Capture the dismissed controller, update button state
     TFDrawerModalAnimator *animator = [self animatorForPresentedController: dismissed];
+
+    NSLog(@"dismissed = %@", dismissed);
     //    animator.modalSize = CGSizeMake(290, self.view.height);
     //    animator.sourceModalOrigin = CGPointMake(-450, 0);
     //    animator.destinationModalOrigin = CGPointMake(60, 0);

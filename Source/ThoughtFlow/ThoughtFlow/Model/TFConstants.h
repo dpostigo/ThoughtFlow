@@ -9,6 +9,9 @@
 extern NSString * const TFToolbarProjectsNotification;
 extern NSString * const TFToolbarMindmapNotification;
 
+extern NSString * const TFToolbarAccountDrawerClosed;
+extern NSString * const TFToolbarSettingsDrawerClosed;
+
 
 @interface TFConstants : NSObject {
 

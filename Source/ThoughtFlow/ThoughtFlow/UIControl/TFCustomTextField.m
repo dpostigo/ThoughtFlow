@@ -8,6 +8,10 @@
 #import "UIView+DPConstraints.h"
 #import "DPBorderedView.h"
 #import "UIColor+TFApp.h"
+#import "UIView+DPKitChildren.h"
+
+CGFloat const leftAccessoryWidth = 30;
+CGFloat const TFTextFieldBorderWidth = 0.5;
 
 @implementation TFCustomTextField
 
@@ -16,38 +20,37 @@
 
     self.layer.cornerRadius = 2;
 
-    self.leftView = self.leftAccessoryView;
+    self.leftView = [self createLeftAccessoryView];
     self.leftViewMode = UITextFieldViewModeAlways;
 
-    self.rightView = self.rightAccessoryView;
-    //    self.rightViewMode = UITextFieldViewModeAlways;
+    self.rightView = [self createRightAccessoryView];
     self.rightViewMode = UITextFieldViewModeUnlessEditing;
 
-    //    self.enabled = NO;
     super.delegate = self;
 
-}
-
-
-- (void) setDelegate: (id <UITextFieldDelegate>) delegate {
-    //    _delegate = delegate;
-    __delegate = delegate;
 }
 
 
 
 #pragma mark UITextFieldDelegate
 
+- (void) setDelegate: (id <UITextFieldDelegate>) delegate {
+    __delegate = delegate;
+}
+
 - (BOOL) textFieldShouldBeginEditing: (UITextField *) textField {
-    return self.rightAccessoryButton.selected;
+    if (__delegate && [__delegate respondsToSelector: @selector(textFieldShouldBeginEditing:)]) {
+        return [__delegate performSelector: @selector(textFieldShouldBeginEditing:) withObject: self];
+    }
+    return self.rightView == nil ? YES : self.rightAccessoryButton.selected;
 }
 
 
 - (BOOL) textFieldShouldReturn: (UITextField *) textField {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (__delegate && [__delegate respondsToSelector: @selector(textFieldShouldReturn:)]) {
         return [__delegate performSelector: @selector(textFieldShouldReturn:) withObject: self];
     }
+
     [self resignFirstResponder];
     return YES;
 }
@@ -57,123 +60,111 @@
 
 - (void) handleRightAccessoryView: (UIButton *) button {
     button.selected = !button.selected;
-    NSLog(@"button.selected = %d", button.selected);
     [self becomeFirstResponder];
 
 }
 
 
+#pragma mark Accesory views
+
 - (UIButton *) rightAccessoryButton {
     return (UIButton *) ([self.rightView isKindOfClass: [UIButton class]] ? self.rightView : nil);
 }
-#pragma mark Accesory views
 
 
-- (UIView *) rightAccessoryView {
+- (UIView *) createRightAccessoryView {
+    UIButton *ret = [UIButton buttonWithType: UIButtonTypeCustom];
+    ret.frame = CGRectMake(0, 0, self.rightAccessoryWidth + self.rightAccessoryPadding, 36);
 
-    CGFloat padding = 15;
-    CGFloat borderWidth = 0.5;
-
-    CGFloat accessoryWidth = 38;
-    CGFloat accesoryHeight = 36;
-
-
-    //    UIView *button = [[UIView alloc] initWithFrame: CGRectMake(0, 0, accessoryWidth + padding, 36)];
-    UIButton *button = [UIButton buttonWithType: UIButtonTypeCustom];
-    button.frame = CGRectMake(0, 0, accessoryWidth + padding, 36);
-
-    UIView *borderView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, borderWidth,
-            accesoryHeight - 11)];
+    UIView *borderView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, self.rightBorderWidth,
+            self.rightAccessoryHeight - 11)];
 
     borderView.backgroundColor = [UIColor tfInputTextColor];
     borderView.alpha = 0.5;
-    [button addSubview: borderView];
+    [ret addSubview: borderView];
 
-    borderView.left = padding;
+    borderView.left = self.rightAccessoryPadding;
     borderView.centerY = borderView.superview.height / 2;
 
     UIImageView *imageView = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0,
             16, 16)];
-    imageView.image = [UIImage imageNamed: @"default-user"];
-    imageView.centerX = padding + (accessoryWidth / 2);
-    imageView.centerY = button.height / 2;
-    [button addSubview: imageView];
+    imageView.image = [UIImage imageNamed: @"edit-icon"];
+    imageView.centerX = self.rightAccessoryPadding + (self.rightAccessoryWidth / 2);
+    imageView.centerY = ret.height / 2;
+    [ret addSubview: imageView];
 
-    [button addTarget: self action: @selector(handleRightAccessoryView:) forControlEvents: UIControlEventTouchUpInside];
-    return button;
+    [ret addTarget: self action: @selector(handleRightAccessoryView:) forControlEvents: UIControlEventTouchUpInside];
+    return ret;
 }
 
 
-- (UIView *) leftAccessoryView {
+#pragma mark Getters
 
-    CGFloat leftPadding = 12;
-    CGFloat borderWidth = 0.5;
+- (UIImageView *) leftAccessoryImageView {
+    return [self.leftView firstChildOfClass: [UIImageView class]];
+}
 
-    CGFloat accessoryWidth = 30;
-    CGFloat accesoryHeight = 36;
+- (UIView *) createLeftAccessoryView {
 
-    UIView *accesoryView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, accessoryWidth + leftPadding, 36)];
+    UIView *ret = [[UIView alloc] initWithFrame: CGRectMake(0, 0, leftAccessoryWidth + self.leftAccessoryPadding,
+            self.leftAccessoryHeight)];
 
 
-    UIView *borderView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, borderWidth,
+    UIView *borderView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, TFTextFieldBorderWidth,
             25)];
 
     borderView.alpha = 0.5;
     borderView.backgroundColor = [UIColor tfInputTextColor];
-    [accesoryView addSubview: borderView];
+    [ret addSubview: borderView];
 
-    borderView.right = borderView.superview.width - borderWidth - leftPadding;
+    borderView.right = borderView.superview.width - self.leftBorderWidth - self.leftAccessoryPadding;
     borderView.centerY = borderView.superview.height / 2;
 
     UIImageView *imageView = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0,
             16, 16)];
     imageView.image = [UIImage imageNamed: @"default-user"];
-    imageView.centerX = (accesoryView.width - leftPadding) / 2;
-    imageView.centerY = accesoryView.height / 2;
-    [accesoryView addSubview: imageView];
-    return accesoryView;
+    imageView.centerX = (ret.width - self.leftAccessoryPadding) / 2;
+    imageView.centerY = ret.height / 2;
+    [ret addSubview: imageView];
+    return ret;
 }
 
-- (void) test1 {
-    CGFloat leftPadding = 10;
-    CGFloat borderWidth = 0.5;
 
-    CGRect leftViewFrame = CGRectMake(0, 0, 30, 35);
-    //    leftViewFrame.size.width += leftPadding + borderWidth;
-    UIView *leftView = [[UIView alloc] initWithFrame: leftViewFrame];
-    leftView.backgroundColor = [UIColor clearColor];
+#pragma mark Values
 
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0,
-            16, 16)];
-    imageView.image = [UIImage imageNamed: @"default-user"];
-    imageView.centerX = (leftView.width / 2);
-    imageView.centerY = leftView.height / 2;
-    [leftView addSubview: imageView];
-
-    CGRect borderFrame = CGRectInset(imageView.bounds, 0, -3);
-    borderFrame.size.width = borderWidth;
-    borderFrame.origin.x = leftView.width - borderFrame.size.width - leftPadding;
-
-    UIView *borderView = [[UIView alloc] initWithFrame: borderFrame];
-    borderView.backgroundColor = [UIColor whiteColor];
-    [imageView addSubview: borderView];
-
-    leftView.width += leftPadding + borderWidth;
-
-    self.leftView = leftView;
-    self.leftViewMode = UITextFieldViewModeAlways;
+- (CGFloat) rightBorderWidth {
+    return TFTextFieldBorderWidth;
 }
 
-- (void) testBorderedView {
-    DPBorderedView *borderedView = [[DPBorderedView alloc] initWithFrame: CGRectMake(0, 0,
-            30, 35)];
-
-    borderedView.backgroundColor = [UIColor clearColor];
-    borderedView.borderOptions = UIRectEdgeRight;
-    borderedView.borderColor = [UIColor whiteColor];
-    borderedView.borderWidth = 1;
-
+- (CGFloat) rightAccessoryPadding {
+    return 15;
 }
 
+- (CGFloat) rightAccessoryWidth {
+    return 38.0;
+}
+
+- (CGFloat) rightAccessoryHeight {
+    return 36.0;
+}
+
+
+#pragma mark Left accessory prefs
+- (CGFloat) leftBorderWidth {
+    return TFTextFieldBorderWidth;
+}
+
+
+- (CGFloat) leftAccessoryPadding {
+    return 12.0;
+}
+
+- (CGFloat) leftAccessoryWidth {
+    return leftAccessoryWidth;
+}
+
+- (CGFloat) leftAccessoryHeight {
+    return 36.0;
+}
 
 @end

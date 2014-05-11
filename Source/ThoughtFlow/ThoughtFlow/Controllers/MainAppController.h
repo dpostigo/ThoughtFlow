@@ -9,12 +9,14 @@
 @class ToolbarController;
 @class CustomModalAnimator;
 
-@interface MainAppController : TFViewController  {
-
+@interface MainAppController : TFViewController {
 
     BOOL showsPrelogin;
     ToolbarController *toolbarController;
-    IBOutlet  UIViewController *contentController;
+    IBOutlet UIViewController *contentController;
     CustomModalAnimator *animator;
+    UINavigationController *navController;
+
 }
+
 @end

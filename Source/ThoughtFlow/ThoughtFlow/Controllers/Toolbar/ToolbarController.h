@@ -6,6 +6,8 @@
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
 
+@class TFRightDrawerAnimator;
+
 typedef enum {
     TFToolbarModeDefault = 0,
     TFToolbarModeMindmap = 1
@@ -18,11 +20,14 @@ typedef enum {
     UIViewController *toolbarDrawer;
     TFToolbarMode toolbarMode;
 
+    TFRightDrawerAnimator *rightDrawerAnimator;
+
 }
 
 @property(nonatomic, strong) NSArray *buttons;
 @property(nonatomic) TFToolbarMode toolbarMode;
 
+@property(weak) IBOutlet UIButton *projectsButton;
 @property(weak) IBOutlet UIButton *notesButton;
 @property(weak) IBOutlet UIButton *accountButton;
 @property(weak) IBOutlet UIButton *settingsButton;

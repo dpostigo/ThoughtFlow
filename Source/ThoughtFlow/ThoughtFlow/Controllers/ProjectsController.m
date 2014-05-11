@@ -62,7 +62,8 @@
 
 - (void) collectionView: (UICollectionView *) collectionView didSelectItemAtIndexPath: (NSIndexPath *) indexPath {
     _model.selectedProject = [self projectForIndexPath: indexPath];
-    [[NSNotificationCenter defaultCenter] postNotificationName: TFToolbarMindmapNotification object: nil];
+
+    [self postNavigationNotificationForType: TFControllerMindmap pushes: NO];
     [self performSegueWithIdentifier: @"MindmapSegue" sender: nil];
 
 }
@@ -95,15 +96,16 @@
 
     TFProjectCollectionViewCell *cell = (TFProjectCollectionViewCell *) button.superview.superview;
     if (cell) {
-        NSLog(@"cell = %@", cell);
         NSIndexPath *indexPath = [collection indexPathForCell: cell];
         Project *project = [self projectForIndexPath: indexPath];
 
         [_model.projectLibrary removeItem: project];
         [collection deleteItemsAtIndexPaths: @[indexPath]];
 
+        if ([_model.projects count] == 0) {
+            [self postNavigationNotificationForType: TFControllerCreateProject pushes: YES];
+        }
     }
-
 }
 
 - (Project *) projectForIndexPath: (NSIndexPath *) indexPath {

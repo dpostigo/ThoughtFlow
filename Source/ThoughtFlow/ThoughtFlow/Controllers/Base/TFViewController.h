@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFConstants.h"
 
 @class Model;
 
@@ -14,4 +15,6 @@
 
 @property(nonatomic, strong) Model *model;
 @property(nonatomic, strong) NSOperationQueue *queue;
+- (void) postNavigationNotificationForType: (TFViewControllerType) type;
+- (void) postNavigationNotificationForType: (TFViewControllerType) type pushes: (BOOL) flag;
 @end

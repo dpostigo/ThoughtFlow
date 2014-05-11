@@ -5,15 +5,29 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    TFControllerNone = 0,
+    TFControllerProjects = 1,
+    TFControllerMoodboard = 2,
+    TFControllerMindmap = 3,
+    TFControllerCreateProject = 4
+} TFViewControllerType;
 
-extern NSString * const TFToolbarProjectsNotification;
-extern NSString * const TFToolbarMindmapNotification;
+extern NSString *const TFViewControllerTypeKey;
+extern NSString *const TFViewControllerShouldPushKey;
+extern NSString *const TFViewControllerTypeName;
 
-extern NSString * const TFToolbarAccountDrawerClosed;
-extern NSString * const TFToolbarSettingsDrawerClosed;
+extern NSString *const TFNavigationNotification;
+extern NSString *const TFToolbarProjectsNotification;
+extern NSString *const TFToolbarMindmapNotification;
+
+extern NSString *const TFToolbarAccountDrawerClosed;
+extern NSString *const TFToolbarSettingsDrawerClosed;
 
 
 @interface TFConstants : NSObject {
 
 }
+
++ (NSString *) stringForControllerType: (TFViewControllerType) type;
 @end

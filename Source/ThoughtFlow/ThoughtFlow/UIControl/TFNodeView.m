@@ -21,14 +21,15 @@
 @synthesize delegate;
 @synthesize enabled;
 @synthesize selected;
-@synthesize textLabel;
 @synthesize debugView;
 
-@synthesize normalView;
-@synthesize greenView;
+@synthesize viewNormal;
 
 @synthesize optimized;
 @synthesize swipeDirection;
+
+@synthesize nodeUpdateDisabled;
+
 CGFloat const TFNodeViewWidth = 80;
 CGFloat const TFNodeViewHeight = 80;
 
@@ -92,11 +93,11 @@ CGFloat const TFNodeViewHeight = 80;
     [greenButton updateSuperTopConstraint: 0];
     //    [greenButton updateSuperBottomConstraint: 0];
     [greenButton updateSuperLeadingConstraint: 0];
-    [greenButton updateTrailingConstraint: 0 toSibling: normalView attribute: NSLayoutAttributeLeading];
+    [greenButton updateTrailingConstraint: 0 toSibling: viewNormal attribute: NSLayoutAttributeLeading];
 
-    [normalView updateSuperTopConstraint: 0];
-    //    [normalView updateSuperBottomConstraint: 0];
-    [normalView updateTrailingConstraint: 0 toSibling: redButton attribute: NSLayoutAttributeLeading];
+    [viewNormal updateSuperTopConstraint: 0];
+    //    [viewNormal updateSuperBottomConstraint: 0];
+    [viewNormal updateTrailingConstraint: 0 toSibling: redButton attribute: NSLayoutAttributeLeading];
 
     [redButton updateSuperTopConstraint: 0];
     //    [redButton updateSuperBottomConstraint: 0];
@@ -104,8 +105,8 @@ CGFloat const TFNodeViewHeight = 80;
 
     [greenButton updateWidthConstraint: TFNodeViewWidth];
     [greenButton updateHeightConstraint: TFNodeViewHeight];
-    [normalView updateWidthConstraint: TFNodeViewWidth];
-    [normalView updateHeightConstraint: TFNodeViewHeight];
+    [viewNormal updateWidthConstraint: TFNodeViewWidth];
+    [viewNormal updateHeightConstraint: TFNodeViewHeight];
     [redButton updateWidthConstraint: TFNodeViewWidth];
     [redButton updateHeightConstraint: TFNodeViewHeight];
     [relatedButton updateWidthConstraint: TFNodeViewWidth];
@@ -116,19 +117,19 @@ CGFloat const TFNodeViewHeight = 80;
     //    [containerView updateSuperBottomConstraint: 5];
 
     [self addConstraint: [NSLayoutConstraint constraintWithItem: relatedButton attribute: NSLayoutAttributeCenterX
-                                                      relatedBy: NSLayoutRelationEqual toItem: containerView
-                                                      attribute: NSLayoutAttributeCenterX
-                                                     multiplier: 1.0 constant: 0]];
+            relatedBy: NSLayoutRelationEqual toItem: containerView
+            attribute: NSLayoutAttributeCenterX
+            multiplier: 1.0 constant: 0]];
 
     [containerView addConstraint: [NSLayoutConstraint constraintWithItem: relatedButton attribute: NSLayoutAttributeTop
-                                                               relatedBy: NSLayoutRelationEqual toItem: normalView
-                                                               attribute: NSLayoutAttributeBottom
-                                                              multiplier: 1.0 constant: 0]];
+            relatedBy: NSLayoutRelationEqual toItem: viewNormal
+            attribute: NSLayoutAttributeBottom
+            multiplier: 1.0 constant: 0]];
 
     [self addConstraint: [NSLayoutConstraint constraintWithItem: relatedButton attribute: NSLayoutAttributeBottom
-                                                      relatedBy: NSLayoutRelationEqual toItem: containerView
-                                                      attribute: NSLayoutAttributeBottom
-                                                     multiplier: 1.0 constant: 0]];
+            relatedBy: NSLayoutRelationEqual toItem: containerView
+            attribute: NSLayoutAttributeBottom
+            multiplier: 1.0 constant: 0]];
 
     [self updateWidthConstraint: TFNodeViewWidth];
     [self updateHeightConstraint: TFNodeViewHeight];
@@ -144,8 +145,8 @@ CGFloat const TFNodeViewHeight = 80;
     singleTap.numberOfTapsRequired = 1;
 
     [containerView addGestureRecognizer: pan];
-    [normalView addGestureRecognizer: doubleTap];
-    [normalView addGestureRecognizer: singleTap];
+    [viewNormal addGestureRecognizer: doubleTap];
+    [viewNormal addGestureRecognizer: singleTap];
 
 }
 
@@ -254,20 +255,20 @@ CGFloat const TFNodeViewHeight = 80;
             topConstraint.constant = snapY;
             [self setNeedsUpdateConstraints];
             [UIView animateWithDuration: 0.4 delay: 0.0
-                 usingSpringWithDamping: 0.9f
-                  initialSpringVelocity: springVelocity
-                                options: UIViewAnimationOptionCurveEaseOut
-                             animations: ^{
-                                 //                                 containerView.top = snapY;
-                                 [self layoutIfNeeded];
-                             }
-                             completion: ^(BOOL finished) {
-                                 [self updateNodeState];
-                                 [self enableButtons];
-                                 isSnappingDown = NO;
-                                 //                                 [self performSelector: @selector(endVerticalSnapping) withObject: nil
-                                 //                                            afterDelay: 0.4];
-                             }];
+                    usingSpringWithDamping: 0.9f
+                    initialSpringVelocity: springVelocity
+                    options: UIViewAnimationOptionCurveEaseOut
+                    animations: ^{
+                        //                                 containerView.top = snapY;
+                        [self layoutIfNeeded];
+                    }
+                    completion: ^(BOOL finished) {
+                        [self updateNodeState];
+                        [self enableButtons];
+                        isSnappingDown = NO;
+                        //                                 [self performSelector: @selector(endVerticalSnapping) withObject: nil
+                        //                                            afterDelay: 0.4];
+                    }];
         }
             break;
 
@@ -349,18 +350,18 @@ CGFloat const TFNodeViewHeight = 80;
             //            NSLog(@"vel.x = %f", vel.x);
 
             [UIView animateWithDuration: 0.4 delay: 0.0
-                 usingSpringWithDamping: 0.9f
-                  initialSpringVelocity: springVelocity
-                                options: UIViewAnimationOptionCurveEaseOut
-                             animations: ^{
-                                 CGRect frame = containerView.frame;
-                                 frame.origin.x = snapX;
-                                 containerView.frame = frame;
-                             }
-                             completion: ^(BOOL finished) {
-                                 [self updateNodeState];
-                                 [self enableButtons];
-                             }];
+                    usingSpringWithDamping: 0.9f
+                    initialSpringVelocity: springVelocity
+                    options: UIViewAnimationOptionCurveEaseOut
+                    animations: ^{
+                        CGRect frame = containerView.frame;
+                        frame.origin.x = snapX;
+                        containerView.frame = frame;
+                    }
+                    completion: ^(BOOL finished) {
+                        [self updateNodeState];
+                        [self enableButtons];
+                    }];
 
         }
     }
@@ -403,14 +404,15 @@ CGFloat const TFNodeViewHeight = 80;
 
 
 
+
 #pragma mark Text
 
 - (NSString *) text {
-    return normalView.textLabel.text;
+    return viewNormal.currentTitle;
 }
 
 - (void) setText: (NSString *) text {
-    normalView.textLabel.text = text;
+    [viewNormal setTitle: text forState: UIControlStateNormal];
 }
 
 
@@ -421,19 +423,20 @@ CGFloat const TFNodeViewHeight = 80;
 
     if (node != node1) {
         node = node1;
-        normalView.textLabel.text = node.title;
+
+        [viewNormal setTitle: node.title forState: UIControlStateNormal];
         nodeNotification = [[NSNotificationCenter defaultCenter] addObserverForName: TFNodeUpdate
-                                                                             object: nil
-                                                                              queue: nil
-                                                                         usingBlock: ^(NSNotification *notification) {
+                object: nil
+                queue: nil
+                usingBlock: ^(NSNotification *notification) {
 
-                                                                             TFNode *aNode = notification.object;
-                                                                             if (notification.object == self.node) {
+                    TFNode *aNode = notification.object;
+                    if (notification.object == self.node) {
 
-                                                                             }
-                                                                             normalView.textLabel.text = self.node.title;
+                    }
+                    [viewNormal setTitle: node.title forState: UIControlStateNormal];
 
-                                                                         }];
+                }];
     }
 
 }
@@ -452,10 +455,10 @@ CGFloat const TFNodeViewHeight = 80;
 
         if (flag) {
             [UIView animateWithDuration: 0.3
-                             animations: ^{
-                                 containerView.left = [self positionForNodeState: nodeState1];
-                             }
-                             completion: completionBlock];
+                    animations: ^{
+                        containerView.left = [self positionForNodeState: nodeState1];
+                    }
+                    completion: completionBlock];
         } else {
             completionBlock(YES);
         }
@@ -518,7 +521,7 @@ CGFloat const TFNodeViewHeight = 80;
 - (void) setFrame: (CGRect) frame {
     [super setFrame: frame];
 
-    if (node) {
+    if (!nodeUpdateDisabled && node) {
         node.position = frame.origin;
     }
 }
@@ -526,8 +529,8 @@ CGFloat const TFNodeViewHeight = 80;
 - (void) setSelected: (BOOL) selected1 {
     if (selected != selected1) {
         selected = selected1;
-        normalView.backgroundColor = selected ? [UIColor whiteColor] : [[self class] deselectedBackgroundColor];
-        [self nodeViewDidChangeSelection];
+        viewNormal.backgroundColor = selected ? [UIColor whiteColor] : [[self class] deselectedBackgroundColor];
+        if (selected) [self nodeViewDidChangeSelection];
     }
 }
 
@@ -537,17 +540,18 @@ CGFloat const TFNodeViewHeight = 80;
         optimized = optimized1;
 
         if (optimized) {
-            self.backgroundColor = normalView.backgroundColor;
+            self.backgroundColor = viewNormal.backgroundColor;
             [containerView removeFromSuperview];
-
-            [self addSubview: normalView];
-            [normalView updateSuperEdgeConstraints: 0];
+            [self addSubview: viewNormal];
+            [viewNormal updateSuperEdgeConstraints: 0];
+            //            self.alpha = 0.5;
 
         } else {
 
-            [containerView addSubview: normalView];
+            [containerView addSubview: viewNormal];
             [self addSubview: containerView];
             [self setupConstraints];
+            //            self.alpha = 1.0;
         }
     }
 }

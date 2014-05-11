@@ -22,6 +22,21 @@
     }
 
     [self replaceFonts];
+}
+
+
+- (void) postNavigationNotificationForType: (TFViewControllerType) type {
+    [self postNavigationNotificationForType: type pushes: YES];
+}
+
+- (void) postNavigationNotificationForType: (TFViewControllerType) type pushes: (BOOL) flag {
+    [[NSNotificationCenter defaultCenter] postNotificationName: TFNavigationNotification
+                                                        object: nil
+                                                      userInfo: @{
+                                                              TFViewControllerTypeName : [TFConstants stringForControllerType: type],
+                                                              TFViewControllerTypeKey : @(type),
+                                                              TFViewControllerShouldPushKey : @(flag)
+                                                      }];
 
 }
 

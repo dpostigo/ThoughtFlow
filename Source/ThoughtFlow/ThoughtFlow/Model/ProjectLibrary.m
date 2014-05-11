@@ -33,8 +33,8 @@
     [self writeToFile: path atomically: YES];
 
     for (int j = 0; j < [self.items count]; j++) {
-        id item = [self.items objectAtIndex: j];
-        NSLog(@"[item autoDescription] = %@", [item autoDescription]);
+        // id item = [self.items objectAtIndex: j];
+        // NSLog(@"[item autoDescription] = %@", [item autoDescription]);
     }
 }
 

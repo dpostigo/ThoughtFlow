@@ -9,9 +9,7 @@
 @implementation PasswordController
 
 - (void) prepareDatasource {
-    //    [super prepareDatasource];
-
-    [table.rows addObject: @{DPTableViewTextLabelName : @"Email address", DPTableViewTextLabelName : [UIImage imageNamed: @"email-icon"]}];
+    [table.rows addObject: @{DPTableViewTextLabelName : @"Email address", DPTableViewImageName : [UIImage imageNamed: @"email-icon"]}];
 }
 
 @end

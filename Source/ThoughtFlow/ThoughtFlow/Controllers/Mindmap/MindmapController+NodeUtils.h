@@ -19,8 +19,12 @@
 - (void) startCreateNodeFromNode: (TFNodeView *) node location: (CGPoint) location;
 - (void) updateCreateNodeAtLocation: (CGPoint) location;
 - (void) endCreateNode;
-- (void) selectNode: (TFNodeView *) nodeView;
+- (void) updateLastNode;
+- (void) deselectOtherNodes: (TFNodeView *) nodeView;
+- (TFNodeView *) selectedNode;
 - (void) disableLayerAnimations;
 - (void) setupNodeView: (TFNodeView *) nodeView;
 - (CALayer *) createLineSublayer;
+- (void) enableNodeUpdate;
+- (void) disableNodeUpdate;
 @end

@@ -113,11 +113,6 @@
         cell.textField.placeholder = [table textLabelForIndexPath: indexPath];
         cell.imageView.image = [table imageForIndexPath: indexPath];
         cell.textField.rightView = nil;
-
-
-        UIImage *image = [table imageForIndexPath: indexPath];
-        NSLog(@"image = %@", image);
-        NSLog(@"cell.imageView = %@", cell.imageView);
     }
 
     return ret;

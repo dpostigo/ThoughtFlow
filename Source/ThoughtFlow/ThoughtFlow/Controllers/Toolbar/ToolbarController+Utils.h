@@ -5,8 +5,11 @@
 
 #import <Foundation/Foundation.h>
 #import "ToolbarController.h"
+#import "TFConstants.h"
 
 @interface ToolbarController (Utils)
 
+- (void) selectButtonForType: (TFViewControllerType) type;
+- (void) toggleButton: (UIButton *) button;
 - (void) deselectAll: (id) sender;
 @end

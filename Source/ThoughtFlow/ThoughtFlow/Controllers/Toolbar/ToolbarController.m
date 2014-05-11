@@ -13,6 +13,8 @@
 #import "TFConstants.h"
 #import "UIColor+TFApp.h"
 #import "ToolbarController+Utils.h"
+#import "TFRightDrawerAnimator.h"
+#import "UIViewController+BasicAnimator.h"
 
 @implementation ToolbarController
 
@@ -23,12 +25,13 @@
     self.view.backgroundColor = [UIColor clearColor];
     self.view.layer.borderWidth = 0.5;
     self.view.layer.borderColor = [UIColor tfToolbarBorderColor].CGColor;
-
 }
 
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+
+    rightDrawerAnimator = [TFRightDrawerAnimator new];
 
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view updateWidthConstraint: buttonsView.width];
@@ -53,7 +56,7 @@
         NSArray *actions = [button actionsForTarget: self forControlEvent: UIControlEventTouchUpInside];
         if ([actions count] == 0) {
             [button addTarget: self action: @selector(handleButton:)
-             forControlEvents: UIControlEventTouchUpInside];
+                    forControlEvents: UIControlEventTouchUpInside];
         }
         [button setAttributedTitle: nil forState: UIControlStateNormal];
         [button setTitleColor: [UIColor darkGrayColor] forState: UIControlStateNormal];
@@ -62,25 +65,44 @@
 }
 
 - (void) setupNotifications {
-    [[NSNotificationCenter defaultCenter] addObserverForName: TFToolbarMindmapNotification
-                                                      object: nil
-                                                       queue: nil
-                                                  usingBlock: ^(NSNotification *notification) {
-                                                      self.toolbarMode = TFToolbarModeMindmap;
-                                                  }];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName: TFNavigationNotification
+            object: nil
+            queue: nil
+            usingBlock: ^(NSNotification *notification) {
+
+                NSNumber *number = [notification.userInfo objectForKey: TFViewControllerTypeKey];
+                TFViewControllerType type = (TFViewControllerType) [number intValue];
+                [self selectButtonForType: type];
+
+                switch (type) {
+
+                    case TFControllerMindmap :
+                        self.toolbarMode = TFToolbarModeMindmap;
+                        break;
+                }
+
+            }];
+
+    //    [[NSNotificationCenter defaultCenter] addObserverForName: TFToolbarMindmapNotification
+    //                                                      object: nil
+    //                                                       queue: nil
+    //                                                  usingBlock: ^(NSNotification *notification) {
+    //                                                      self.toolbarMode = TFToolbarModeMindmap;
+    //                                                  }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName: TFToolbarAccountDrawerClosed
-                                                      object: nil
-                                                       queue: nil
-                                                  usingBlock: ^(NSNotification *notification) {
-                                                      _accountButton.selected = NO;
-                                                  }];
+            object: nil
+            queue: nil
+            usingBlock: ^(NSNotification *notification) {
+                _accountButton.selected = NO;
+            }];
     [[NSNotificationCenter defaultCenter] addObserverForName: TFToolbarSettingsDrawerClosed
-                                                      object: nil
-                                                       queue: nil
-                                                  usingBlock: ^(NSNotification *notification) {
-                                                      _settingsButton.selected = NO;
-                                                  }];
+            object: nil
+            queue: nil
+            usingBlock: ^(NSNotification *notification) {
+                _settingsButton.selected = NO;
+            }];
 
 }
 
@@ -88,39 +110,41 @@
 #pragma mark IBActions
 
 
-- (IBAction) handleButton: (id) sender {
-    [self deselectAll: sender];
-
-    UIButton *button = sender;
-    button.selected = !button.selected;
-
+- (IBAction) handleButton: (UIButton *) button {
+    [self toggleButton: button];
     [self toggleDrawer: button];
 
 }
 
 
-- (IBAction) handleNotesButton: (UIButton *) button {
-    [self deselectAll: button];
-    button.selected = !button.selected;
+- (IBAction) handleProjectsButton: (UIButton *) button {
+    //    [self toggleButton: button];
+    self.toolbarMode = TFToolbarModeDefault;
+    //    [[NSNotificationCenter defaultCenter] postNotificationName: TFToolbarProjectsNotification object: nil];
+    //    [[NSNotificationCenter defaultCenter] postNotificationName: TFNavigationNotification
+    //                                                        object: nil
+    //                                                      userInfo: @{
+    //                                                              TFViewControllerTypeName : @"ProjectsController",
+    //                                                              TFViewControllerTypeKey : [NSNumber numberWithInteger: TFControllerProjects]
+    //                                                      }];
 
-    if (button.selected) {
-        [self openDrawer: self.notesDrawerController];
-
-    } else {
-        [self closeDrawer];
-    }
+    [self postNavigationNotificationForType: TFControllerProjects];
 }
 
 
-- (IBAction) handleProjectsButton: (UIButton *) button {
-    self.toolbarMode = TFToolbarModeDefault;
-    [[NSNotificationCenter defaultCenter] postNotificationName: TFToolbarProjectsNotification object: nil];
+- (IBAction) handleMoodboardButton: (UIButton *) button {
+    [self toggleButton: button];
+    [self postNavigationNotificationForType: button.selected ? TFControllerMoodboard : TFControllerMindmap];
+    //    [self postNavigationNotificationForController: button.selected ? @"MoodboardController" : @"MindmapController"];
+
 }
 
 
 - (IBAction) handleSettingsButton: (UIButton *) button {
-    [self deselectAll: button];
-    button.selected = !button.selected;
+    //    [self deselectAll: button];
+    //    button.selected = !button.selected;
+
+    [self toggleButton: button];
 
     if (button.selected) {
         [self openDrawer: self.settingsDrawerController];
@@ -130,6 +154,15 @@
     }
 }
 
+
+- (IBAction) handleNotesButton: (UIButton *) button {
+    [self toggleButton: button];
+    if (button.selected) {
+        [self openDrawer: self.notesDrawerController];
+    } else {
+        [self closeDrawer];
+    }
+}
 
 - (IBAction) handleInfoButton: (UIButton *) button {
 
@@ -149,13 +182,17 @@
 }
 
 - (void) openDrawer: (UIViewController *) controller {
+
+    if ([controller isKindOfClass: [NotesDrawerController class]]) {
+        [self presentController: controller withAnimator: rightDrawerAnimator];
+    }
     void (^completion)() = ^{
         controller.transitioningDelegate = self;
         controller.modalPresentationStyle = UIModalPresentationCustom;
         toolbarDrawer = controller;
 
         [self presentViewController: toolbarDrawer animated: YES
-                         completion: nil];
+                completion: nil];
     };
 
     if (self.presentedViewController) {
@@ -190,7 +227,6 @@
         } else {
             _notesButton.alpha = 0;
             _moodButton.alpha = 0;
-            [self deselectAll: nil];
         }
     }];
 }
@@ -212,18 +248,17 @@
     TFDrawerModalAnimator *animator = [self animatorForPresentedController: dismissed];
 
     NSLog(@"dismissed = %@", dismissed);
-    //    animator.modalSize = CGSizeMake(290, self.view.height);
-    //    animator.sourceModalOrigin = CGPointMake(-450, 0);
-    //    animator.destinationModalOrigin = CGPointMake(60, 0);
     return animator;
 }
 
 
 - (TFDrawerModalAnimator *) animatorForPresentedController: (UIViewController *) presented {
 
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     TFDrawerModalAnimator *animator = [TFDrawerModalAnimator new];
     animator.debug = YES;
     if ([presented isKindOfClass: [NotesDrawerController class]]) {
+        return rightDrawerAnimator;
         animator.modalSize = CGSizeMake(450, self.view.height);
         animator.sourceModalOrigin = CGPointMake(self.view.window.height + 450, 0);
         animator.destinationModalOrigin = CGPointMake(1024 - 450, 0);

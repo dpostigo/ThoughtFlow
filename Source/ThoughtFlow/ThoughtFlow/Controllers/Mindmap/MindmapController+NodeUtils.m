@@ -12,6 +12,7 @@
 #import "Model.h"
 #import "Project.h"
 #import "PanningView.h"
+#import "MindmapController+LineDrawing.h"
 
 CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
     CGFloat dx = point2.x - point1.x;
@@ -22,24 +23,21 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 @implementation MindmapController (NodeUtils)
 
 - (void) startNodeMove: (TFNodeView *) node location: (CGPoint) location {
+
+    node.selected = YES;
     CGFloat springVelocity = (-0.1 * 30.0) / (node.frame.origin.x - location.x);
 
-    //    layerAnimationEnabled = YES;
-    //    [self enableLayerAnimations: node];
-
     [UIView animateWithDuration: 1.0 delay: 0.0
-         usingSpringWithDamping: 0.9f
-          initialSpringVelocity: springVelocity
-                        options: UIViewAnimationOptionCurveEaseOut
-                     animations: ^{
-                         node.center = [self constrainNodeCenter: node forLocation: location];;
-                         [self updateLineMove: node location: location animated: YES];
-                     }
-                     completion: ^(BOOL completion) {
-                         //                         layerAnimationEnabled = NO;
-                         //                         [self disableLayerAnimations];
+            usingSpringWithDamping: 0.9f
+            initialSpringVelocity: springVelocity
+            options: UIViewAnimationOptionCurveEaseOut
+            animations: ^{
+                node.center = [self constrainNodeCenter: node forLocation: location];;
+                [self updateLineMove: node location: location animated: YES];
+            }
+            completion: ^(BOOL completion) {
 
-                     }];
+            }];
 
     [self optimizeNodeViews];
 
@@ -61,12 +59,15 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
     [self updateLineMove: node location: node.center animated: NO];
 
     [UIView animateWithDuration: 0.4
-                     animations: ^{
-                         [self.view layoutIfNeeded];
-                     }
-                     completion: nil];
+            animations: ^{
+                [self.view layoutIfNeeded];
+            }
+            completion: ^(BOOL completion) {
+                //                [self deselectOtherNodes: node];
+            }];
 
     [self unoptimizeNodeViews];
+    //    [self updateLastNode];
 
 }
 
@@ -213,19 +214,20 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 
     TFNode *projectNode = [[TFNode alloc] initWithTitle: @""];
     TFNodeView *newNodeView = [self instantiateNodeViewForNode: projectNode];
-    [self selectNode: newNodeView];
+    newNodeView.selected = YES;
 
     [self performSegueWithIdentifier: @"EditModalSegue" sender: nil];
 
     [UIView animateWithDuration: 0.4
-                     animations: ^{
-                         self.creationNode.alpha = 0;
-                     }
-                     completion: ^(BOOL finished) {
-                         if (self.creationNode.superview) {
-                             [self.creationNode removeFromSuperview];
-                         }
-                     }];
+            animations: ^{
+                self.creationNode.alpha = 0;
+            }
+            completion: ^(BOOL finished) {
+                if (self.creationNode.superview) {
+                    [self.creationNode removeFromSuperview];
+                }
+                [self updateLastNode];
+            }];
 
 }
 
@@ -258,15 +260,40 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
     return ret;
 }
 
+
+#pragma mark Utils
+
+- (void) updateLastNode {
+    //    int count = [self.nodeViews count];
+    //    for (int j = 0; j < count; j++) {
+    //        TFNodeView *node = [self.nodeViews objectAtIndex: j];
+    //        //        node.optimized = j != count - 1;
+    //        if (j == count - 1) {
+    //            node.optimized = NO;
+    //        } else {
+    //            node.optimized = YES;
+    //        }
+    //    }
+}
+
 #pragma mark Selection
 
-- (void) selectNode: (TFNodeView *) nodeView {
-    NSArray *nodes = [self.view childrenOfClass: [TFNodeView class]];
-    for (TFNodeView *node in nodes) {
+- (void) deselectOtherNodes: (TFNodeView *) nodeView {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    for (TFNodeView *node in self.nodeViews) {
         if (node != nodeView) {
             node.selected = NO;
         }
     }
+}
+
+- (TFNodeView *) selectedNode {
+    for (TFNodeView *node in self.nodeViews) {
+        if (node.selected) {
+            return node;
+        }
+    }
+    return nil;
 }
 
 
@@ -320,7 +347,6 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 #pragma mark Performance
 
 - (void) optimizeNodeViews {
-
     for (TFNodeView *node in self.nodeViews) {
         node.optimized = YES;
         [node rasterize];
@@ -331,6 +357,18 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
     for (TFNodeView *node in self.nodeViews) {
         node.optimized = NO;
         [node rasterize];
+    }
+}
+
+- (void) enableNodeUpdate {
+    for (TFNodeView *node in self.nodeViews) {
+        node.nodeUpdateDisabled = NO;
+    }
+}
+
+- (void) disableNodeUpdate {
+    for (TFNodeView *node in self.nodeViews) {
+        node.nodeUpdateDisabled = YES;
     }
 }
 

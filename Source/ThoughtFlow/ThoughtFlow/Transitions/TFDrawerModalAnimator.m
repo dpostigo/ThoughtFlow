@@ -4,7 +4,8 @@
 
 #import "TFDrawerModalAnimator.h"
 #import "UIView+DPKit.h"
-#import "UIApplication+DPKit.h"
+#import "UIView+DPKitDebug.h"
+#import "NSObject+InterfaceUtils.h"
 
 @implementation TFDrawerModalAnimator {
     UIView *destinationView;
@@ -16,7 +17,6 @@
 @synthesize modalSize;
 @synthesize sourceModalOrigin;
 @synthesize destinationModalOrigin;
-
 @synthesize sourceController;
 
 @synthesize duration;
@@ -43,26 +43,15 @@
     UIView *containerView = transitionContext.containerView;
 
     UIView *clippingView = [[UIView alloc] initWithFrame: containerView.bounds];
-    clippingView.height -= 60;
     clippingView.clipsToBounds = YES;
+    clippingView.height -= 60;
 
-    UIView *sourceView = sourceController.view;
+    if (self.isLandscapeRight) {
+        clippingView.top -= 60;
+    }
+
     destinationView = toViewController.view;
 
-    if (debug) {
-
-        //        UIView *fromView = fromViewController.view;
-        //
-        //        NSLog(@"fromView = %@", fromView);
-        //
-        //        NSLog(@"sourceView = %@", sourceView);
-        //        NSLog(@"sourceView.superview = %@", sourceView.superview);
-        //        NSLog(@"sourceView.superview.superview = %@", sourceView.superview.superview);
-        //
-        //        NSLog(@"containerView = %@", containerView);
-        //        NSLog(@"containerView.superview = %@", containerView.superview);
-
-    }
     __block CGFloat sourceX = 0, destinationX = 0;
     __block CGFloat sourceY = 0, destinationY = 0;
     __block CGRect sourceFrame = CGRectZero, destinationFrame = CGRectZero;
@@ -88,14 +77,13 @@
 
     destinationFrame.origin.x = 0;
 
-    sourceFrame.origin.y = containerViewWidth - w - sourceModalOrigin.x;
-    //        sourceFrame.size.width = 290;
-    //        sourceFrame.size.height = self.isLandscape ? modalSize.width : modalSize.height;
+    if (self.isLandscapeLeft) {
+        sourceFrame.origin.y = containerViewWidth - w - sourceModalOrigin.x;
+        destinationFrame.origin.y = containerView.height - modalSize.width - destinationModalOrigin.x;
+    }
 
     w = self.isLandscape ? modalSize.height : modalSize.width;
     h = self.isLandscape ? modalSize.width : modalSize.height;
-
-    destinationFrame.origin.y = containerView.height - modalSize.width - destinationModalOrigin.x;
 
     if (self.presenting) {
 
@@ -139,15 +127,6 @@
                              [transitionContext completeTransition: YES];
                          }];
     }
-}
-
-
-- (UIInterfaceOrientation) statusOrientation {
-    return [[UIApplication sharedApplication] statusBarOrientation];
-}
-
-- (BOOL) isLandscape {
-    return UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
 }
 
 

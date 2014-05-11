@@ -34,15 +34,13 @@ typedef enum {
     TFNodeViewState nodeState;
     TFSwipeDirection swipeDirection;
 
-    TFNodeStateView *normalView;
-    TFNodeStateView *greenView;
+    UIButton *viewNormal;
     UIButton *greenButton;
     UIButton *redButton;
     UIView *debugView;
 
 
     UIView *containerView;
-    UILabel *textLabel;
 
     IBOutlet __unsafe_unretained id <TFNodeViewDelegate> delegate;
 
@@ -51,6 +49,7 @@ typedef enum {
     BOOL enabled;
     BOOL selected;
     BOOL optimized;
+    BOOL nodeUpdateDisabled;
 
 
     BOOL isSnappingDown;
@@ -58,17 +57,16 @@ typedef enum {
     CGPoint startingPoint;
 }
 
+@property(nonatomic, strong) UIButton *viewNormal;
 @property(nonatomic, strong) NSString *text;
-@property(nonatomic, strong) UILabel *textLabel;
-@property(nonatomic, strong) TFNodeStateView *normalView;
 @property(nonatomic, strong) UIView *debugView;
-@property(nonatomic, strong) TFNodeStateView *greenView;
 @property(nonatomic, assign) id <TFNodeViewDelegate> delegate;
 @property(nonatomic) TFNodeViewState nodeState;
 @property(nonatomic, strong) TFNode *node;
 @property(nonatomic) BOOL enabled;
 @property(nonatomic) BOOL selected;
 @property(nonatomic) BOOL optimized;
+@property(nonatomic) BOOL nodeUpdateDisabled;
 @property(nonatomic) TFSwipeDirection swipeDirection;
 + (UIView *) greenGhostView;
 - (void) setNodeState: (TFNodeViewState) nodeState1 animated: (BOOL) flag;

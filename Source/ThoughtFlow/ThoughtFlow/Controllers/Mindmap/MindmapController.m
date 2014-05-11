@@ -9,13 +9,14 @@
 #import "Project.h"
 #import "CustomModalSegue.h"
 #import "TFNode.h"
-#import "ProjectLibrary.h"
-#import "TFConstants.h"
 #import "UIView+DPConstraints.h"
 #import "UIView+DPKit.h"
 #import "MindmapController+NodeUtils.h"
 #import "PanningView.h"
 #import "TFNodeView+Utils.h"
+#import "MindmapController+LineDrawing.h"
+#import "MindmapController+UIPinch.h"
+#import "MindmapController+NodePositioning.h"
 
 @implementation MindmapController {
     TFNodeViewState lastNodeState;
@@ -31,20 +32,17 @@
 
     nodeContainerView = (PanningView *) firstNodeView.superview;
     nodeContainerView.translatesAutoresizingMaskIntoConstraints = NO;
-    //    nodeContainerView.backgroundColor = [UIColor blueColor];
 
     lineView = [[UIView alloc] initWithFrame: nodeContainerView.bounds];
     lineView.translatesAutoresizingMaskIntoConstraints = NO;
-    //    lineView.backgroundColor = [UIColor redColor];
     [nodeContainerView insertSubview: lineView belowSubview: firstNodeView];
     [lineView updateSuperEdgeConstraints: 0];
 
     firstNodeView.nodeState = TFNodeViewStateNormal;
 
-    [self setupNotifications];
     [self setupProjectNodes];
     [self.view setNeedsUpdateConstraints];
-    [self setupLineDrawing];
+    [self redrawLines];
 
     [self setupGestures];
 
@@ -52,22 +50,6 @@
 
 #pragma mark Setup
 
-- (void) setupNotifications {
-    [[NSNotificationCenter defaultCenter] addObserverForName: TFToolbarProjectsNotification
-                                                      object: nil
-                                                       queue: nil
-                                                  usingBlock: ^(NSNotification *notification) {
-
-                                                      [_model.projectLibrary save];
-
-                                                      if (self.presentedViewController) {
-                                                          [self dismissViewControllerAnimated: YES
-                                                                                   completion: nil];
-                                                      }
-                                                      [self.navigationController popViewControllerAnimated: YES];
-                                                  }];
-
-}
 
 - (void) setupProjectNodes {
     NSArray *nodes = self.currentProject.nodes;
@@ -98,24 +80,82 @@
         [self setupNodeView: nodeView];
 
     }
-}
 
-
-- (void) setupLineDrawing {
-    if ([self.nodeViews count] > 1) {
-        for (int j = 1; j < [self.nodeViews count]; j++) {
-            [self drawLineForIndex: j];
-        }
-    }
+    [self updateLastNode];
 
 }
+
 
 - (void) setupGestures {
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(handleDoublePan:)];
     recognizer.minimumNumberOfTouches = 2;
-
     [self.view addGestureRecognizer: recognizer];
+
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget: self action: @selector(handlePinch:)];
+    [self.view addGestureRecognizer: pinch];
 }
+
+
+#pragma mark Pinch
+
+- (void) handlePinch: (UIPinchGestureRecognizer *) gesture {
+    TFNodeView *node = self.selectedNode;
+    if (node == nil)
+        return;
+
+    [node.superview bringSubviewToFront: node];
+
+    NSLog(@"gesture.scale = %f", gesture.scale);
+    CGFloat newScale = fmaxf(0, (gesture.scale - 0.3) / 0.7);
+    newScale = 1 - newScale;
+
+    switch (gesture.state) {
+
+        case UIGestureRecognizerStateBegan :
+            [self startPinchWithScale: newScale];
+            break;
+
+        case UIGestureRecognizerStateChanged : {
+            if (gesture.scale < 1) {
+                [self updatePinchWithScale: newScale];
+            }
+        }
+            break;
+
+        case UIGestureRecognizerStateEnded :
+        case UIGestureRecognizerStateFailed :
+        case UIGestureRecognizerStateCancelled :
+            [self endPinchWithScale: newScale];
+            break;
+    }
+
+}
+
+- (void) startPinchWithScale: (CGFloat) scale {
+    [self disableNodeUpdate];
+
+}
+
+
+- (void) endPinchWithScale: (CGFloat) scale {
+    //            [self enableNodeUpdate];
+    NSLog(@"scale = %f", scale);
+    if (scale == 1.0) {
+        [self mindmapDidCompletePinch];
+    } else {
+        NSLog(@"Animating.");
+
+        [nodeContainerView setNeedsUpdateConstraints];
+
+        [UIView animateWithDuration: 0.4 animations: ^{
+            //            [nodeContainerView layoutIfNeeded];
+            [self resetNodeLocations];
+        }];
+    }
+
+}
+
+#pragma mark Two-finger Pan
 
 - (void) handleDoublePan: (UIPanGestureRecognizer *) gesture {
 
@@ -180,14 +220,9 @@
         [nodeContainerView setNeedsUpdateConstraints];
         [nodeContainerView layoutIfNeeded];
 
-        [lineView.layer.sublayers enumerateObjectsUsingBlock: ^(CALayer *layer, NSUInteger idx, BOOL *stop) {
-            layer.delegate = self;
-        }];
-
-        [self setupLineDrawing];
-        [lineView.layer.sublayers enumerateObjectsUsingBlock: ^(CALayer *layer, NSUInteger idx, BOOL *stop) {
-            layer.delegate = self;
-        }];
+        [self assignDelegate: self];
+        [self redrawLines];
+        [self assignDelegate: nil];
 
     }
 
@@ -196,41 +231,6 @@
 - (void) startDoublePanWithPoint: (CGPoint) point secondPoint: (CGPoint) point2 {
 
 }
-
-CGPoint midPoint(CGPoint p1, CGPoint p2) {
-    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
-}
-
-- (void) drawLineForIndex: (int) j {
-    if (j < [self.nodeViews count]) {
-        TFNodeView *nodeView = [self.nodeViews objectAtIndex: j];
-        TFNodeView *previousView = [self.nodeViews objectAtIndex: j - 1];
-
-        CALayer *layer = [lineView.layer.sublayers objectAtIndex: j];
-        [self setLayerLine: layer fromPoint: nodeView.center toPoint: previousView.center];
-
-        //        TFNodeView *nodeView = [self.nodeViews objectAtIndex: j];
-        //        TFNodeView *previousView = [self.nodeViews objectAtIndex: j - 1];
-        //        CALayer *layer = [lineView.layer.sublayers objectAtIndex: j];
-        //        [self setLayerLine: layer
-        //                 fromPoint: CGPointMake(nodeView.node.position.x + TFNodeViewWidth,
-        //                         nodeView.node.position.y + TFNodeViewHeight)
-        //                   toPoint: CGPointMake(
-        //                           previousView.node.position.x + TFNodeViewWidth,
-        //                           previousView.node.position.y + TFNodeViewHeight)];
-
-        //        TFNode *node = [[self.nodeViews objectAtIndex: j] node];
-        //        TFNode *previousNode = [[self.nodeViews objectAtIndex: j - 1] node];
-        //        CALayer *layer = [lineView.layer.sublayers objectAtIndex: j];
-        //        [self setLayerLine: layer
-        //                 fromPoint: CGPointMake(node.position.x + TFNodeViewWidth,
-        //                         node.position.y + TFNodeViewHeight)
-        //                   toPoint: CGPointMake(
-        //                           previousNode.position.x + TFNodeViewWidth,
-        //                           previousNode.position.y + TFNodeViewHeight)];
-    }
-}
-
 
 
 
@@ -247,7 +247,8 @@ CGPoint midPoint(CGPoint p1, CGPoint p2) {
 }
 
 - (void) nodeViewDidChangeSelection: (TFNodeView *) node {
-    [self selectNode: node];
+    _model.selectedNode = node.node;
+    [self deselectOtherNodes: node];
 
 }
 
@@ -261,26 +262,26 @@ CGPoint midPoint(CGPoint p1, CGPoint p2) {
     [[lineView.layer.sublayers objectAtIndex: index] removeFromSuperlayer];
     [self.nodeViews removeObject: node];
 
-    [self setupLineDrawing];
+    [self redrawLines];
     [UIView animateWithDuration: 1.0 delay: 0.0
-         usingSpringWithDamping: 0.9f
-          initialSpringVelocity: -1.0
-                        options: UIViewAnimationOptionCurveEaseOut
-                     animations: ^{
+            usingSpringWithDamping: 0.9f
+            initialSpringVelocity: -1.0
+            options: UIViewAnimationOptionCurveEaseOut
+            animations: ^{
 
-                         node.top = self.view.height + node.height;
-                         node.alpha = 0;
-                         //                         node.transform = CGAffineTransformMakeScale(0, 0);
-                     }
-                     completion: ^(BOOL completion) {
-                         [node removeFromSuperview];
-                     }];
+                node.top = self.view.height + node.height;
+                node.alpha = 0;
+                //                         node.transform = CGAffineTransformMakeScale(0, 0);
+            }
+            completion: ^(BOOL completion) {
+                [node removeFromSuperview];
+                [self updateLastNode];
+            }];
 
 }
 
 
 - (void) nodeViewDidTriggerRelated: (TFNodeView *) node {
-
     _model.selectedNode = node.node;
     [self performSegueWithIdentifier: @"RelatedSegue" sender: nil];
 
@@ -397,7 +398,6 @@ CGPoint midPoint(CGPoint p1, CGPoint p2) {
 
 #pragma mark CALayerDelegate
 
-
 - (id <CAAction>) actionForLayer: (CALayer *) layer forKey: (NSString *) event {
     return (id) [NSNull null]; // disable all implicit animations
 }
@@ -407,6 +407,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2) {
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender {
     [super prepareForSegue: segue sender: sender];
 
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     if ([segue isKindOfClass: [CustomModalSegue class]]) {
         CustomModalSegue *customSegue = (CustomModalSegue *) segue;
         customSegue.modalSize = CGSizeMake(340, 340);
@@ -423,10 +424,29 @@ CGPoint midPoint(CGPoint p1, CGPoint p2) {
     }
 }
 
-#pragma mark Utils
 
 
+#pragma mark IBActions
 
+- (IBAction) handleGridButton: (UIButton *) sender {
+    //    [[NSNotificationCenter defaultCenter] postNotificationName: TFNavigationNotification
+    //                                                        object: nil
+    //                                                      userInfo: @{
+    //                                                              TFViewControllerTypeName : @"MoodboardController",
+    //                                                              TFViewControllerTypeKey : [NSNumber numberWithInteger: TFControllerMoodboard]
+    //                                                      }];
+
+    //    [self postNavigationNotificationForType: TFControllerMoodboard];
+
+}
+
+- (IBAction) handleInfoButton: (UIButton *) sender {
+
+}
+
+- (IBAction) handlePinButton: (UIButton *) sender {
+
+}
 
 
 @end

@@ -14,20 +14,18 @@
 
     TFNodeView *currentNodeView;
     IBOutlet TFNodeView *firstNodeView;
+    IBOutlet  UIView *interfaceView;
 
     UIView *lineView;
-    IBOutlet  UIView *interfaceView;
     PanningView *nodeContainerView;
 
     UIView *creationNode;
 
     NSMutableArray *nodeViews;
-    BOOL layerAnimationEnabled;
 
     CALayer *tempLine;
 }
 
 @property(nonatomic, strong) UIView *creationNode;
 @property(nonatomic, strong) NSMutableArray *nodeViews;
-- (void) drawLineForIndex: (int) j;
 @end

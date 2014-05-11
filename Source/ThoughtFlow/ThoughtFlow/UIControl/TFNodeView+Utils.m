@@ -66,12 +66,18 @@
 }
 
 - (void) createNormalView {
-    TFNodeStateView *ret = [[TFNodeStateView alloc] initWithFrame: self.bounds];
+
+    UIButton *ret = [UIButton buttonWithType: UIButtonTypeCustom];
     ret.translatesAutoresizingMaskIntoConstraints = NO;
     ret.backgroundColor = [[self class] deselectedBackgroundColor];
+    ret.titleLabel.font = [UIFont italicSerif: 14];
+    ret.titleLabel.textColor = [UIColor blackColor];
+    ret.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    ret.titleLabel.textAlignment = NSTextAlignmentCenter;
+    ret.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
+    [ret setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
     [containerView addSubview: ret];
-
-    normalView = ret;
+    viewNormal = ret;
 }
 
 - (void) createGreenView {

@@ -8,6 +8,7 @@
 #import "TFNodeStateView.h"
 #import "UIFont+ThoughtFlow.h"
 #import "UIColor+TFApp.h"
+#import "UIButton+TFNodeView.h"
 
 @implementation TFNodeView (Utils)
 
@@ -61,15 +62,12 @@
 #pragma mark Setup
 
 
-+ (UIColor *) deselectedBackgroundColor {
-    return [UIColor colorWithString: @"bdbdbe"];
-}
 
 - (void) createNormalView {
-
     UIButton *ret = [UIButton buttonWithType: UIButtonTypeCustom];
+    ret.frame = self.bounds;
     ret.translatesAutoresizingMaskIntoConstraints = NO;
-    ret.backgroundColor = [[self class] deselectedBackgroundColor];
+    ret.backgroundColor = [UIColor deselectedNodeBackgroundColor];
     ret.titleLabel.font = [UIFont italicSerif: 14];
     ret.titleLabel.textColor = [UIColor blackColor];
     ret.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -97,10 +95,6 @@
     ret.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
     ret.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     ret.titleLabel.textAlignment = NSTextAlignmentCenter;
-    //    greenButton.reversesTitleShadowWhenHighlighted = YES;
-    //    [greenButton setBackgroundImage: [UIImage imageWithColor: [greenButton.backgroundColor darkenColor: 0.1]]
-    //                           forState: UIControlStateHighlighted];
-    //    greenButton.userInteractionEnabled = NO;
     [containerView addSubview: ret];
     greenButton = ret;
 }

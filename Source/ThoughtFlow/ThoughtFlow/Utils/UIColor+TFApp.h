@@ -15,4 +15,5 @@
 + (UIColor *) tfPurpleColor;
 + (UIColor *) tfOffWhiteColor;
 + (UIColor *) tfToolbarBorderColor;
++ (UIColor *) deselectedNodeBackgroundColor;
 @end

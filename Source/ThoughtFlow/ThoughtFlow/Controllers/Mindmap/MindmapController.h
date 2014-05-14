@@ -24,6 +24,7 @@
     NSMutableArray *nodeViews;
 
     CALayer *tempLine;
+    BOOL isPinched;
 }
 
 @property(nonatomic, strong) UIView *creationNode;

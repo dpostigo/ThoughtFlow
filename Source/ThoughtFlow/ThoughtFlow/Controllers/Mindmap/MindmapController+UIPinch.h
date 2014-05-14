@@ -8,6 +8,9 @@
 
 @interface MindmapController (UIPinch)
 
+- (void) startPinchWithScale: (CGFloat) scale;
 - (void) updatePinchWithScale: (CGFloat) scale;
+- (void) endPinchWithScale: (CGFloat) scale;
+- (void) unpinch;
 - (void) mindmapDidCompletePinch;
 @end

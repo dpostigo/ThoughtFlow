@@ -9,4 +9,5 @@
 @interface MindmapController (NodePositioning)
 
 - (void) resetNodeLocations;
+- (void) resetNodeConstraints;
 @end

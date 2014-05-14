@@ -40,4 +40,8 @@
 + (UIColor *) tfToolbarBorderColor {
     return [UIColor colorWithString: @"54555D"];
 }
+
++ (UIColor *) deselectedNodeBackgroundColor {
+    return [UIColor colorWithString: @"bdbdbe"];
+}
 @end

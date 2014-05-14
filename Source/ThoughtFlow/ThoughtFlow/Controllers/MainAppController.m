@@ -4,6 +4,7 @@
 //
 
 #import <DPTransitions/CustomModalSegue.h>
+#import <DPTransitions/DPFadeTransition.h>
 #import "CustomModalAnimator.h"
 #import "MainAppController.h"
 #import "ToolbarController.h"
@@ -16,9 +17,6 @@
     [super viewWillAppear: animated];
     showsPrelogin = YES;
 
-    if (showsPrelogin) {
-        //        self.view.hidden = YES;
-    }
 }
 
 - (void) viewDidAppear: (BOOL) animated {
@@ -27,7 +25,8 @@
     if (showsPrelogin) {
         animator = [CustomModalAnimator new];
         animator.modalPresentationSize = CGSizeMake(300, 380);
-        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier: @"PreloginController"];
+
+        UIViewController *controller = self.preloginController;
         controller.modalPresentationStyle = UIModalPresentationCustom;
         controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         controller.transitioningDelegate = animator;
@@ -45,11 +44,12 @@
     if (navController) {
         [self setupNotifications];
     }
-
 }
 
-- (void) setupNotifications {
 
+#pragma mark Notifications
+
+- (void) setupNotifications {
     void (^block)(NSNotification *) = ^(NSNotification *notification) {
 
         BOOL pushes = [[notification.userInfo objectForKey: TFViewControllerShouldPushKey] boolValue];
@@ -66,9 +66,9 @@
     };
 
     [[NSNotificationCenter defaultCenter] addObserverForName: TFNavigationNotification
-                                                      object: nil
-                                                       queue: nil
-                                                  usingBlock: block];
+            object: nil
+            queue: nil
+            usingBlock: block];
     //
     //    [[NSNotificationCenter defaultCenter] addObserverForName: TFToolbarProjectsNotification
     //                                                      object: nil
@@ -83,6 +83,9 @@
 
 }
 
+
+
+#pragma mark Custom NavigationController Transitions
 
 - (void) goToViewControllerClass: (Class) class {
     if (navController.presentedViewController) [navController dismissViewControllerAnimated: YES completion: nil];
@@ -124,5 +127,20 @@
 
     }
 }
+
+#pragma mark Getters
+
+- (UIViewController *) preloginController {
+    return [self.storyboard instantiateViewControllerWithIdentifier: @"PreloginController"];
+}
+//
+//
+//#pragma mark UINavigationControllerDelegate
+//
+//
+//- (id <UIViewControllerAnimatedTransitioning>) navigationController: (UINavigationController *) navigationController animationControllerForOperation: (UINavigationControllerOperation) operation fromViewController: (UIViewController *) fromVC toViewController: (UIViewController *) toVC {
+//    DPFadeTransition *animator = [DPFadeTransition new];
+//    return [DPFadeTransition new];
+//}
 
 @end

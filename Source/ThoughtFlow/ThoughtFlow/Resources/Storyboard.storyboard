@@ -1322,7 +1322,7 @@ siblings, joy...</string>
                     <view key="view" contentMode="scaleToFill" id="RKA-rz-qks">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.24705882370471954" green="0.24705882370471954" blue="0.27450981736183167" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.16078431904315948" green="0.16078431904315948" blue="0.18039216101169586" alpha="1" colorSpace="deviceRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="dPv-hW-9r1"/>

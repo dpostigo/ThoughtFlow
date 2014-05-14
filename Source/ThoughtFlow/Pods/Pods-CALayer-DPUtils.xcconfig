@@ -1,0 +1,1 @@
+PODS_CALAYER_DPUTILS_OTHER_LDFLAGS = -framework QuartzCore -framework UIKit

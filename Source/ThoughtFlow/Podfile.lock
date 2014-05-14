@@ -1,5 +1,7 @@
 PODS:
   - AutoCoding (2.2)
+  - CALayer-DPUtils (0.1.6):
+    - DPKit-Utils
   - DPKit-UIView (0.0.1):
     - DPKit-Utils
   - DPKit-Utils (0.0.9):
@@ -12,6 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - AutoCoding
+  - CALayer-DPUtils
   - DPKit-UIView (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIView`)
   - DPKit-Utils (from `~/Development/LocalPods/DPKit-Suite/DPKit-Utils`)
   - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
@@ -28,6 +31,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AutoCoding: 642b320cc1d5f7c8397222ef8339ab7c9dca895d
+  CALayer-DPUtils: eaf33dc7e1432fdc5b179172e116dd26b02d1891
   DPKit-UIView: e8edaf6b96628abaad92dd3de10d0a3f00074333
   DPKit-Utils: 495cb9f87d43e5f5728c3967b5e8801e3dfea436
   DPTransitions: 64dde9226d3cda93cf3cc63478d2b0d26ddc4108

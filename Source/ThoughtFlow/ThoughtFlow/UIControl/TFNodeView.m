@@ -45,9 +45,12 @@ CGFloat const TFNodeViewHeight = 80;
 
 #pragma mark Setup
 
+
+
 - (id) initWithFrame: (CGRect) frame {
     self = [super initWithFrame: CGRectMake(frame.origin.x, frame.origin.y, TFNodeViewWidth, TFNodeViewHeight)];
     if (self) {
+        NSLog(@"%s", __PRETTY_FUNCTION__);
         [self setup];
     }
 
@@ -529,7 +532,7 @@ CGFloat const TFNodeViewHeight = 80;
 - (void) setSelected: (BOOL) selected1 {
     if (selected != selected1) {
         selected = selected1;
-        viewNormal.backgroundColor = selected ? [UIColor whiteColor] : [[self class] deselectedBackgroundColor];
+        viewNormal.backgroundColor = selected ? [UIColor whiteColor] : [UIColor deselectedNodeBackgroundColor];
         if (selected) [self nodeViewDidChangeSelection];
     }
 }

@@ -5,6 +5,8 @@ pod 'AutoCoding'
 pod 'UIColorCategories'
 pod 'NSObject+AutoDescription'
 
+pod 'CALayer-DPUtils'
+
 pod 'DPKit-Utils', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-Utils'
 pod 'DPTransitions', :path => '~/Development/LocalPods/DPTransitions'
 pod 'DPKit-UIView', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-UIView'

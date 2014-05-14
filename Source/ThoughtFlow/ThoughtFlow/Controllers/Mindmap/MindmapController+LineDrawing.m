@@ -18,6 +18,12 @@
 }
 
 
+- (void) redrawLinesWithConstraints {
+
+    for (TFNodeView *node in self.nodeViews) {
+
+    }
+}
 - (void) drawLineForIndex: (int) j {
     if (j < [self.nodeViews count]) {
         TFNodeView *nodeView = [self.nodeViews objectAtIndex: j];
@@ -25,26 +31,6 @@
 
         CALayer *layer = [lineView.layer.sublayers objectAtIndex: j];
         [self setLayerLine: layer fromPoint: nodeView.center toPoint: previousView.center];
-
-        //        TFNodeView *nodeView = [self.nodeViews objectAtIndex: j];
-        //        TFNodeView *previousView = [self.nodeViews objectAtIndex: j - 1];
-        //        CALayer *layer = [lineView.layer.sublayers objectAtIndex: j];
-        //        [self setLayerLine: layer
-        //                 fromPoint: CGPointMake(nodeView.node.position.x + TFNodeViewWidth,
-        //                         nodeView.node.position.y + TFNodeViewHeight)
-        //                   toPoint: CGPointMake(
-        //                           previousView.node.position.x + TFNodeViewWidth,
-        //                           previousView.node.position.y + TFNodeViewHeight)];
-
-        //        TFNode *node = [[self.nodeViews objectAtIndex: j] node];
-        //        TFNode *previousNode = [[self.nodeViews objectAtIndex: j - 1] node];
-        //        CALayer *layer = [lineView.layer.sublayers objectAtIndex: j];
-        //        [self setLayerLine: layer
-        //                 fromPoint: CGPointMake(node.position.x + TFNodeViewWidth,
-        //                         node.position.y + TFNodeViewHeight)
-        //                   toPoint: CGPointMake(
-        //                           previousNode.position.x + TFNodeViewWidth,
-        //                           previousNode.position.y + TFNodeViewHeight)];
     }
 }
 

@@ -17,6 +17,7 @@
 #import "MindmapController+LineDrawing.h"
 #import "MindmapController+UIPinch.h"
 #import "MindmapController+NodePositioning.h"
+#import "CALayer+SublayerUtils.h"
 
 @implementation MindmapController {
     TFNodeViewState lastNodeState;
@@ -45,8 +46,15 @@
     [self redrawLines];
 
     [self setupGestures];
-
 }
+
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+    if (isPinched) {
+        [self unpinch];
+    }
+}
+
 
 #pragma mark Setup
 
@@ -128,31 +136,6 @@
             [self endPinchWithScale: newScale];
             break;
     }
-
-}
-
-- (void) startPinchWithScale: (CGFloat) scale {
-    [self disableNodeUpdate];
-
-}
-
-
-- (void) endPinchWithScale: (CGFloat) scale {
-    //            [self enableNodeUpdate];
-    NSLog(@"scale = %f", scale);
-    if (scale == 1.0) {
-        [self mindmapDidCompletePinch];
-    } else {
-        NSLog(@"Animating.");
-
-        [nodeContainerView setNeedsUpdateConstraints];
-
-        [UIView animateWithDuration: 0.4 animations: ^{
-            //            [nodeContainerView layoutIfNeeded];
-            [self resetNodeLocations];
-        }];
-    }
-
 }
 
 #pragma mark Two-finger Pan

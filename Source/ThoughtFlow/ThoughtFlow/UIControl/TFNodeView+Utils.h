@@ -8,7 +8,6 @@
 
 @interface TFNodeView (Utils)
 
-+ (UIColor *) deselectedBackgroundColor;
 - (NSString *) nodeStateAsString;
 + (NSString *) stringForNodeState: (TFNodeViewState) state;
 - (void) enableButtons;

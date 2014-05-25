@@ -16,11 +16,14 @@
 #import "TFNodeView+Utils.h"
 #import "MindmapController+LineDrawing.h"
 #import "MindmapController+UIPinch.h"
-#import "MindmapController+NodePositioning.h"
-#import "CALayer+SublayerUtils.h"
+#import "MindmapBackgroundController.h"
+#import "TFRightDrawerAnimator.h"
+#import "UIViewController+TFControllers.h"
+#import "UIViewController+BasicAnimator.h"
 
 @implementation MindmapController {
     TFNodeViewState lastNodeState;
+    TFRightDrawerAnimator *rightDrawerAnimator;
 }
 
 @synthesize creationNode;
@@ -34,10 +37,19 @@
     nodeContainerView = (PanningView *) firstNodeView.superview;
     nodeContainerView.translatesAutoresizingMaskIntoConstraints = NO;
 
+    backgroundController = [self.storyboard instantiateViewControllerWithIdentifier: @"MindmapBackgroundController"];
+    [nodeContainerView addSubview: backgroundController.view];
+    [self addChildViewController: backgroundController];
+    [nodeContainerView sendSubviewToBack: backgroundController.view];
+    backgroundController.view.frame = self.view.bounds;
+    backgroundController.view.translatesAutoresizingMaskIntoConstraints = NO;
+    [backgroundController.view updateSuperEdgeConstraints: 0];
+
     lineView = [[UIView alloc] initWithFrame: nodeContainerView.bounds];
     lineView.translatesAutoresizingMaskIntoConstraints = NO;
     [nodeContainerView insertSubview: lineView belowSubview: firstNodeView];
     [lineView updateSuperEdgeConstraints: 0];
+    lineView.userInteractionEnabled = NO;
 
     firstNodeView.nodeState = TFNodeViewStateNormal;
 
@@ -46,6 +58,7 @@
     [self redrawLines];
 
     [self setupGestures];
+
 }
 
 - (void) viewDidAppear: (BOOL) animated {
@@ -68,6 +81,8 @@
 
         if (j == 0) {
             nodeView = firstNodeView;
+            [nodeContainerView addSubview: nodeView];
+
             if ([nodes count] == 1) {
                 node.position = nodeView.origin;
             } else {
@@ -424,6 +439,11 @@
 }
 
 - (IBAction) handleInfoButton: (UIButton *) sender {
+
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
+    rightDrawerAnimator = [TFRightDrawerAnimator new];
+    [self presentController: self.imageDrawerController withAnimator: rightDrawerAnimator];
 
 }
 

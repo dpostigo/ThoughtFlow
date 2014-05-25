@@ -2,9 +2,10 @@ PODS:
   - AutoCoding (2.2)
   - CALayer-DPUtils (0.1.6):
     - DPKit-Utils
+  - DPCollectionView (0.0.1)
   - DPKit-UIView (0.0.1):
     - DPKit-Utils
-  - DPKit-Utils (0.0.9):
+  - DPKit-Utils (0.0.12):
     - JMSimpleDate
   - DPTransitions (0.0.1):
     - DPKit-Utils
@@ -15,6 +16,7 @@ PODS:
 DEPENDENCIES:
   - AutoCoding
   - CALayer-DPUtils
+  - DPCollectionView
   - DPKit-UIView (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIView`)
   - DPKit-Utils (from `~/Development/LocalPods/DPKit-Suite/DPKit-Utils`)
   - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
@@ -30,13 +32,14 @@ EXTERNAL SOURCES:
     :path: ~/Development/LocalPods/DPTransitions
 
 SPEC CHECKSUMS:
-  AutoCoding: 642b320cc1d5f7c8397222ef8339ab7c9dca895d
+  AutoCoding: 2a15d57acf78912b72cc3b3a472e614b2f112a18
   CALayer-DPUtils: eaf33dc7e1432fdc5b179172e116dd26b02d1891
-  DPKit-UIView: e8edaf6b96628abaad92dd3de10d0a3f00074333
-  DPKit-Utils: 495cb9f87d43e5f5728c3967b5e8801e3dfea436
+  DPCollectionView: 284b18f43d0d10484acc36d57e36877b943c38f1
+  DPKit-UIView: 9689d56fa74ad4419b240d8453f644c6b88c4d14
+  DPKit-Utils: 42407bfc430da44dd84a8b7b932c3cff77e9cca4
   DPTransitions: 64dde9226d3cda93cf3cc63478d2b0d26ddc4108
   JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
-  NSObject+AutoDescription: 95a585c85920551aed4ab18a5b96f62a572e0ef0
-  UIColorCategories: 3b1153d8e4b97d26f2107f0da5e898e4438b5fc8
+  NSObject+AutoDescription: 741983bfabbfd2813c77078fdc91526853bad16d
+  UIColorCategories: 8fbcc33a0ed3a03395caabfcb39f77231986413b
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1

@@ -10,7 +10,6 @@
 #import "UIView+DPKitChildren.h"
 #import "TFDrawerModalAnimator.h"
 #import "NotesDrawerController.h"
-#import "TFConstants.h"
 #import "UIColor+TFApp.h"
 #import "ToolbarController+Utils.h"
 #import "TFRightDrawerAnimator.h"

@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
 
 
   s.source       = { :git => "https://github.com/dpostigo/DPKit-UIView.git", :tag => s.version.to_s }
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '6.0'
 
 
   s.dependency     'DPKit-Utils'

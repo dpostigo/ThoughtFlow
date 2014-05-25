@@ -9,8 +9,11 @@
 
 @class TFNodeView;
 @class PanningView;
+@class MindmapBackgroundController;
 
 @interface MindmapController : TFViewController <TFNodeViewDelegate> {
+    MindmapBackgroundController *backgroundController;
+
 
     TFNodeView *currentNodeView;
     IBOutlet TFNodeView *firstNodeView;

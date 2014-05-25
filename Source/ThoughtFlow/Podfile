@@ -4,8 +4,10 @@ platform :ios, '7.0'
 pod 'AutoCoding'
 pod 'UIColorCategories'
 pod 'NSObject+AutoDescription'
+#pod 'TestFlightSDK'
 
 pod 'CALayer-DPUtils'
+pod 'DPCollectionView'
 
 pod 'DPKit-Utils', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-Utils'
 pod 'DPTransitions', :path => '~/Development/LocalPods/DPTransitions'

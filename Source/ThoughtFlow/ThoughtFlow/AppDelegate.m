@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "UIFont+ThoughtFlow.h"
 #import "Model.h"
 #import "Project.h"
 #import "NSObject+AutoDescription.h"
@@ -17,10 +16,9 @@
 @implementation AppDelegate
 
 - (BOOL) application: (UIApplication *) application didFinishLaunchingWithOptions: (NSDictionary *) launchOptions {
-
+    //  [TestFlight takeOff: @"fa4efa7c-ddc8-4377-a8da-c2708c1b0216"];
     [self testDestore];
     [self preloadKeyboard];
- 
 
     [[UITextField appearance] setKeyboardAppearance: UIKeyboardAppearanceDark];
 
@@ -33,6 +31,7 @@
     NSLog(@"[_model.projects count] = %u", [_model.projects count]);
 
     for (Project *project in _model.projects) {
+        NSLog(@"[project autoDescription] = %@", [project autoDescription]);
         NSArray *nodes = project.nodes;
         for (TFNode *node in nodes) {
             // NSLog(@"[node autoDescription] = %@", [node autoDescription]);

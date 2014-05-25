@@ -75,7 +75,7 @@
 
 - (UICollectionViewCell *) collectionView: (UICollectionView *) collectionView cellForItemAtIndexPath: (NSIndexPath *) indexPath {
     UICollectionViewCell *ret = [collection dequeueReusableCellWithReuseIdentifier: @"CollectionCell"
-                                                                      forIndexPath: indexPath];
+            forIndexPath: indexPath];
 
     if ([ret isKindOfClass: [TFProjectCollectionViewCell class]]) {
 
@@ -86,7 +86,7 @@
         }
         cell.button.tag = indexPath.item;
         [cell.button addTarget: self action: @selector(handleTrashButton:)
-              forControlEvents: UIControlEventTouchUpInside];
+                forControlEvents: UIControlEventTouchUpInside];
     }
 
     return ret;

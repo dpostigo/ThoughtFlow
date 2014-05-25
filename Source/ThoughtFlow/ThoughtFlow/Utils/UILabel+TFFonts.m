@@ -8,7 +8,18 @@
 
 @implementation UILabel (TFFonts)
 
+- (void) setKerning: (CGFloat) kerningSize {
+    CGFloat pointSize = self.font.pointSize;
 
+    NSDictionary *attributes;
+    kerningSize = 60 * (pointSize / 1000);
+    attributes = @{
+            NSFontAttributeName : self.font,
+            NSKernAttributeName : @(kerningSize)
+    };
+
+    self.attributedText = [[NSMutableAttributedString alloc] initWithString: self.text attributes: attributes];
+}
 
 - (void) convertLabelFonts {
     CGFloat kerningSize = 0;

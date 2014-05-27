@@ -33,7 +33,7 @@
 
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    self.view.backgroundColor = [UIColor tfBackgroundColor];
+    //    self.view.backgroundColor = [UIColor tfBackgroundColor];
     _collection.backgroundColor = self.view.backgroundColor;
 
 }
@@ -92,6 +92,7 @@
     UIImage *image = [self.images objectAtIndex: indexPath.item];
     ret.backgroundColor = self.view.backgroundColor;
     ret.imageView.image = image;
+    ret.imageView.alpha = 0.2;
     [ret.imageView rasterize];
     [ret rasterize];
     return ret;

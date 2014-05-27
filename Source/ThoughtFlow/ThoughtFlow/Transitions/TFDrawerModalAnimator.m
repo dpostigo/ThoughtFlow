@@ -10,7 +10,7 @@
 - (id) init {
     self = [super init];
     if (self) {
-        transitionDuration = 0.45;
+        transitionDuration = 0.6;
         modalPresentationSize = CGSizeMake(290, 0);
         presentationEdge = UIRectEdgeLeft;
     }
@@ -43,7 +43,6 @@
 
 
 - (void) dismissWithContext: (id <UIViewControllerContextTransitioning>) context {
-    [super dismissWithContext: context];
 
     UIView *containerView = context.containerView;
     UIView *sourceView = [self fromViewController: context].view;
@@ -51,13 +50,11 @@
 
     CGPoint startingPoint = [self startingPointForContext: context];
 
-    if (self.needsClippingView) {
-        UIView *clippingView = [self clippingViewForContext: context];
-        [containerView addSubview: clippingView];
-        [clippingView addSubview: destinationView];
-    }
+    UIView *clippingView = [self clippingViewForContext: context];
+    [containerView addSubview: clippingView];
+    [clippingView addSubview: destinationView];
 
-    [UIView animateWithDuration: [self transitionDuration: context]
+    [UIView animateWithDuration: [self transitionDuration: context] + 0.5
             delay: 0
             usingSpringWithDamping: 1.0
             initialSpringVelocity: 5

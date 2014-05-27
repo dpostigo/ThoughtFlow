@@ -59,11 +59,11 @@
 
 - (void) setupButtons {
     for (UIButton *button in self.buttons) {
-        NSArray *actions = [button actionsForTarget: self forControlEvent: UIControlEventTouchUpInside];
-        if ([actions count] == 0) {
-            [button addTarget: self action: @selector(handleButton:)
-                    forControlEvents: UIControlEventTouchUpInside];
-        }
+        //        NSArray *actions = [button actionsForTarget: self forControlEvent: UIControlEventTouchUpInside];
+        //        if ([actions count] == 0) {
+        //            [button addTarget: self action: @selector(handleButton:)
+        //                    forControlEvents: UIControlEventTouchUpInside];
+        //        }
         [button setAttributedTitle: nil forState: UIControlStateNormal];
         [button setTitleColor: [UIColor darkGrayColor] forState: UIControlStateNormal];
         [button setTitleColor: [UIColor whiteColor] forState: UIControlStateSelected];

@@ -183,7 +183,7 @@
 
 
 - (void) openLeftDrawerWithController: (UIViewController *) controller {
-    [self openDrawerWithController: controller animator: testAnimator];
+    [self openDrawerWithController: controller animator: leftDrawerAnimator];
 }
 
 - (void) openRightDrawerWithController: (UIViewController *) controller {
@@ -192,7 +192,7 @@
 
 - (void) openDrawerWithController: (UIViewController *) controller animator: (id) anAnimator {
 
-    UIViewController *presenter = self.navigationController;
+    UIViewController *presenter = self;
     controller.transitioningDelegate = anAnimator;
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -201,9 +201,11 @@
         [self presentViewController: controller animated: YES completion: nil];
     };
 
+    NSLog(@"presenter.presentedViewController = %@", presenter.presentedViewController);
     if (presenter.presentedViewController) {
         [presenter dismissViewControllerAnimated: NO completion: presentBlock];
     } else {
+
         presentBlock();
     }
     //

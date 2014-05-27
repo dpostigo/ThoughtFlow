@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_CALayer_DPUtils 1
 #define COCOAPODS_VERSION_PATCH_CALayer_DPUtils 6
 
+// DPAnimators
+#define COCOAPODS_POD_AVAILABLE_DPAnimators
+#define COCOAPODS_VERSION_MAJOR_DPAnimators 0
+#define COCOAPODS_VERSION_MINOR_DPAnimators 0
+#define COCOAPODS_VERSION_PATCH_DPAnimators 1
+
 // DPCollectionView
 #define COCOAPODS_POD_AVAILABLE_DPCollectionView
 #define COCOAPODS_VERSION_MAJOR_DPCollectionView 0
@@ -41,6 +47,12 @@
 #define COCOAPODS_VERSION_MAJOR_DPTransitions 0
 #define COCOAPODS_VERSION_MINOR_DPTransitions 0
 #define COCOAPODS_VERSION_PATCH_DPTransitions 1
+
+// DPTransitions/Segues
+#define COCOAPODS_POD_AVAILABLE_DPTransitions_Segues
+#define COCOAPODS_VERSION_MAJOR_DPTransitions_Segues 0
+#define COCOAPODS_VERSION_MINOR_DPTransitions_Segues 0
+#define COCOAPODS_VERSION_PATCH_DPTransitions_Segues 1
 
 // JMSimpleDate
 #define COCOAPODS_POD_AVAILABLE_JMSimpleDate

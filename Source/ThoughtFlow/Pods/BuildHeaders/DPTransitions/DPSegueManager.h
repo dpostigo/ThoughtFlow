@@ -1,1 +1,1 @@
-../../../../../../LocalPods/DPTransitions/DPTransitions/DPSegueManager.h
+../../../../../../LocalPods/DPTransitions/DPTransitions/Segues/DPSegueManager.h

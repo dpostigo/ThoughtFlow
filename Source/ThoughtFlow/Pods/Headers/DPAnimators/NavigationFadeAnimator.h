@@ -1,0 +1,1 @@
+../../../../../../LocalPods/DPAnimators/DPAnimators/NavigationFadeAnimator.h

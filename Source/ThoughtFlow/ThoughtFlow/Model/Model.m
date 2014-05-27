@@ -17,8 +17,8 @@
 @synthesize selectedProjectDictionary;
 
 @synthesize projectLibrary;
-
 @synthesize selectedNode;
+@synthesize loggedIn;
 NSString *const TFProjectName = @"TF Project Name";
 
 + (Model *) sharedModel {

@@ -14,6 +14,11 @@
 
 @property(nonatomic, strong) UITapGestureRecognizer *dismissRecognizer;
 @property(nonatomic) BOOL dismisses;
+
+- (void) addRecognizer;
 - (void) handleTapBehind: (UITapGestureRecognizer *) sender;
+- (void) userTapBehind: (UITapGestureRecognizer *) sender;
+- (void) modalWillDismiss;
+- (void) dismiss;
 - (void) didTapBehind;
 @end

@@ -4,12 +4,17 @@
 //
 
 #import <DPTransitions/CustomModalSegue.h>
-#import <DPTransitions/DPFadeTransition.h>
+#import <DPAnimators/NavigationFadeAnimator.h>
+#import <DPAnimators/ModalChildDrawerAnimator.h>
+#import "ModalDrawerAnimator.h"
 #import "CustomModalAnimator.h"
 #import "MainAppController.h"
-#import "ToolbarController.h"
 #import "Model.h"
 #import "ProjectLibrary.h"
+#import "UIViewController+TFControllers.h"
+#import "UINavigationController+BasicNavigationAnimator.h"
+#import "TFRightDrawerAnimator.h"
+#import "TFLeftDrawerAnimator.h"
 
 @implementation MainAppController
 
@@ -22,17 +27,14 @@
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
 
-    if (showsPrelogin) {
-        animator = [CustomModalAnimator new];
+    if (!_model.loggedIn && showsPrelogin) {
         animator.modalPresentationSize = CGSizeMake(300, 380);
 
         UIViewController *controller = self.preloginController;
         controller.modalPresentationStyle = UIModalPresentationCustom;
         controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         controller.transitioningDelegate = animator;
-        [self presentViewController: controller animated: YES completion: ^{
-
-        }];
+        [self presentViewController: controller animated: YES completion: nil];
     }
 
 }
@@ -40,6 +42,16 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+
+    animator = [CustomModalAnimator new];
+    navigationAnimator = [NavigationFadeAnimator new];
+    navigationAnimator.releasesAnimator = YES;
+
+    rightDrawerAnimator = [TFRightDrawerAnimator new];
+    leftDrawerAnimator = [TFLeftDrawerAnimator new];
+
+    [self setupTestAnimator];
+
     navController = (UINavigationController *) ([contentController isKindOfClass: [UINavigationController class]] ? contentController : nil);
     if (navController) {
         [self setupNotifications];
@@ -47,42 +59,50 @@
 }
 
 
-#pragma mark Notifications
+- (void) setupTestAnimator {
 
-- (void) setupNotifications {
-    void (^block)(NSNotification *) = ^(NSNotification *notification) {
+    testAnimator = [ModalDrawerAnimator new];
 
-        BOOL pushes = [[notification.userInfo objectForKey: TFViewControllerShouldPushKey] boolValue];
-        NSNumber *number = [notification.userInfo objectForKey: TFViewControllerTypeKey];
-        TFViewControllerType type = (TFViewControllerType) [number intValue];
+    testAnimator.presentationEdge = UIRectEdgeLeft;
+    testAnimator.presentationOffset = CGPointMake(60, 0);
+    testAnimator.modalPresentationSize = CGSizeMake(300, 0);
 
-        // [_model.projectLibrary save];
 
-        if (pushes) {
-            NSString *name = [notification.userInfo objectForKey: TFViewControllerTypeName];
-            [self goToViewControllerClass: NSClassFromString(name)];
-        }
-
-    };
-
-    [[NSNotificationCenter defaultCenter] addObserverForName: TFNavigationNotification
-            object: nil
-            queue: nil
-            usingBlock: block];
     //
-    //    [[NSNotificationCenter defaultCenter] addObserverForName: TFToolbarProjectsNotification
-    //                                                      object: nil
-    //                                                       queue: nil
-    //                                                  usingBlock: ^(NSNotification *notification) {
-    //
-    //                                                      NSLog(@"notification.userInfo = %@", notification.userInfo);
-    //                                                      [_model.projectLibrary save];
-    //
-    //                                                      [self goToViewControllerClass: [ProjectsController class]];
-    //                                                  }];
+    //    testAnimator.presentationEdge = UIRectEdgeRight;
+    //    testAnimator.presentationOffset = CGPointMake(-60, 0);
+    //    testAnimator.modalPresentationSize = CGSizeMake(300, 0);
+
+
+    //    testAnimator.presentationEdge = UIRectEdgeTop;
+    //    testAnimator.modalPresentationSize = CGSizeMake(0, 300);
+
+    //    testAnimator.presentationEdge = UIRectEdgeBottom;
+    //    testAnimator.modalPresentationSize = CGSizeMake(0, 300);
 
 }
 
+#pragma mark Notifications
+
+- (void) setupNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(handleNavNotification:) name: TFNavigationNotification object: nil];
+
+}
+
+- (void) handleNavNotification: (NSNotification *) notification {
+
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    BOOL pushes = [[notification.userInfo objectForKey: TFViewControllerShouldPushKey] boolValue];
+    NSNumber *number = [notification.userInfo objectForKey: TFViewControllerTypeKey];
+    TFViewControllerType type = (TFViewControllerType) [number intValue];
+
+    [_model.projectLibrary save];
+
+    if (pushes) {
+        NSString *name = [notification.userInfo objectForKey: TFViewControllerTypeName];
+        [self goToViewControllerClass: NSClassFromString(name)];
+    }
+}
 
 
 #pragma mark Custom NavigationController Transitions
@@ -106,6 +126,11 @@
 }
 
 
+
+
+#pragma mark Segue
+
+
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender {
     [super prepareForSegue: segue sender: sender];
 
@@ -123,24 +148,129 @@
         contentController = controller;
 
     } else if ([segue.identifier isEqualToString: @"ToolbarEmbedSegue"]) {
-        toolbarController = (ToolbarController *) controller;
+        toolbarController = (TFToolbarController *) controller;
+        toolbarController.delegate = self;
 
     }
 }
 
-#pragma mark Getters
 
-- (UIViewController *) preloginController {
-    return [self.storyboard instantiateViewControllerWithIdentifier: @"PreloginController"];
+
+#pragma mark Toolbar drawers
+
+- (void) toggleRightDrawer: (BOOL) selected withController: (UIViewController *) controller {
+    if (selected) {
+        [self openRightDrawerWithController: controller];
+    } else {
+        [self closeDrawers];
+    }
 }
-//
-//
-//#pragma mark UINavigationControllerDelegate
-//
-//
-//- (id <UIViewControllerAnimatedTransitioning>) navigationController: (UINavigationController *) navigationController animationControllerForOperation: (UINavigationControllerOperation) operation fromViewController: (UIViewController *) fromVC toViewController: (UIViewController *) toVC {
-//    DPFadeTransition *animator = [DPFadeTransition new];
-//    return [DPFadeTransition new];
-//}
+
+- (void) toggleLeftDrawer: (BOOL) selected withController: (UIViewController *) controller {
+    if (selected) {
+        [self openLeftDrawerWithController: controller];
+    } else {
+        [self closeDrawers];
+    }
+}
+
+
+- (void) closeDrawers {
+    if (self.presentedViewController) {
+        [self dismissViewControllerAnimated: YES completion: nil];
+    }
+}
+
+
+- (void) openLeftDrawerWithController: (UIViewController *) controller {
+    [self openDrawerWithController: controller animator: testAnimator];
+}
+
+- (void) openRightDrawerWithController: (UIViewController *) controller {
+    [self openDrawerWithController: controller animator: rightDrawerAnimator];
+}
+
+- (void) openDrawerWithController: (UIViewController *) controller animator: (id) anAnimator {
+
+    UIViewController *presenter = self.navigationController;
+    controller.transitioningDelegate = anAnimator;
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+
+    void (^presentBlock)() = ^{
+        [self presentViewController: controller animated: YES completion: nil];
+    };
+
+    if (presenter.presentedViewController) {
+        [presenter dismissViewControllerAnimated: NO completion: presentBlock];
+    } else {
+        presentBlock();
+    }
+    //
+    //    if (self.presentedViewController && self.presentedViewController.transitioningDelegate == anAnimator) {
+    //        [self dismissViewControllerAnimated: NO completion: presentBlock];
+    //    } else {
+    //        presentBlock();
+    //    }
+
+}
+
+
+#pragma mark Fullscreen modals
+
+
+- (void) toggleFullscreenTransition: (BOOL) selected withController: (UIViewController *) controller {
+    if (selected) {
+        [navController pushViewController: controller withAnimator: navigationAnimator];
+    } else if ([[navController.viewControllers lastObject] isKindOfClass: [controller class]]) {
+        [navController popViewControllerAnimated: YES];
+    }
+}
+
+#pragma mark TFToolbarDelegate
+
+- (void) toolbarChangeSelection: (BOOL) selected forType: (TFToolbarButtonType) type {
+    NSLog(@"%s, selected = %d", __PRETTY_FUNCTION__, selected);
+    switch (type) {
+        case TFToolbarButtonInfo :
+            [self closeDrawers];
+            [self toggleFullscreenTransition: selected withController: self.infoViewController];
+            break;
+
+        case TFToolbarButtonMoodboard :
+            [self closeDrawers];
+            [self toggleFullscreenTransition: selected withController: self.moodboardController];
+            break;
+
+        case TFToolbarButtonNotes  :
+            [self toggleRightDrawer: selected withController: self.notesViewController];
+            //            [self toggleLeftDrawer: selected withController: self.notesViewController];
+            break;
+
+        case TFToolbarButtonAccount :
+            [self toggleLeftDrawer: selected withController: self.accountViewController];
+            break;
+
+        case TFToolbarButtonSettings :
+            [self toggleLeftDrawer: selected withController: self.imageSettingsController];
+            break;
+
+        default :
+            break;
+    }
+
+}
+
+
+- (void) toolbarDidSelectButtonWithType: (NSNumber *) numberType {
+    TFToolbarButtonType type = (TFToolbarButtonType) [numberType integerValue];
+
+}
+
+- (void) toolbarDidDeselectButtonWithType: (NSNumber *) numberType {
+    TFToolbarButtonType type = (TFToolbarButtonType) [numberType integerValue];
+
+}
+
 
 @end

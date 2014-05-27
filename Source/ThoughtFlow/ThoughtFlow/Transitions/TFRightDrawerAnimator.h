@@ -4,9 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TFDrawerAnimator.h"
+#import "TFDrawerModalAnimator.h"
 
-@interface TFRightDrawerAnimator : TFDrawerAnimator {
+@interface TFRightDrawerAnimator : TFDrawerModalAnimator {
 
 }
 @end

@@ -4,135 +4,75 @@
 
 #import "TFDrawerModalAnimator.h"
 #import "UIView+DPKit.h"
-#import "UIView+DPKitDebug.h"
-#import "NSObject+InterfaceUtils.h"
 
-@implementation TFDrawerModalAnimator {
-    UIView *destinationView;
-}
-
-@synthesize debug;
-@synthesize presenting;
-
-@synthesize modalSize;
-@synthesize sourceModalOrigin;
-@synthesize destinationModalOrigin;
-@synthesize sourceController;
-
-@synthesize duration;
+@implementation TFDrawerModalAnimator
 
 - (id) init {
     self = [super init];
     if (self) {
-        duration = 0.5;
+        transitionDuration = 0.45;
+        modalPresentationSize = CGSizeMake(290, 0);
+        presentationEdge = UIRectEdgeLeft;
     }
 
     return self;
 }
 
-- (NSTimeInterval) transitionDuration: (id <UIViewControllerContextTransitioning>) transitionContext {
-    return self.duration;
+
+- (void) presentWithContext: (id <UIViewControllerContextTransitioning>) context {
+    [self positionWithContext: context];
+
+    UIView *containerView = context.containerView;
+    UIView *destinationView = [self toViewController: context].view;
+    CGPoint finalPoint = [self finalPointForContext: context];
+
+    [UIView animateWithDuration: [self transitionDuration: context]
+            delay: 0
+            usingSpringWithDamping: 1.0
+            initialSpringVelocity: 5
+            options: UIViewAnimationOptionCurveEaseOut
+            animations: ^{
+                destinationView.left = finalPoint.x;
+                destinationView.top = finalPoint.y;
+            }
+            completion: ^(BOOL finished) {
+                [containerView addSubview: destinationView];
+                [context completeTransition: YES];
+            }];
 }
 
-- (void) animateTransition: (id <UIViewControllerContextTransitioning>) transitionContext {
 
-    UIViewController *fromViewController = self.presenting ? [transitionContext viewControllerForKey: UITransitionContextFromViewControllerKey] : [transitionContext viewControllerForKey: UITransitionContextToViewControllerKey];
-    UIViewController *toViewController = self.presenting ? [transitionContext viewControllerForKey: UITransitionContextToViewControllerKey] : [transitionContext viewControllerForKey: UITransitionContextFromViewControllerKey];
+- (void) dismissWithContext: (id <UIViewControllerContextTransitioning>) context {
+    [super dismissWithContext: context];
 
+    UIView *containerView = context.containerView;
+    UIView *sourceView = [self fromViewController: context].view;
+    UIView *destinationView = [self toViewController: context].view;
 
-    UIView *containerView = transitionContext.containerView;
+    CGPoint startingPoint = [self startingPointForContext: context];
 
-    UIView *clippingView = [[UIView alloc] initWithFrame: containerView.bounds];
-    clippingView.clipsToBounds = YES;
-    clippingView.height -= 60;
-
-    if (self.isLandscapeRight) {
-        clippingView.top -= 60;
-    }
-
-    destinationView = toViewController.view;
-
-    __block CGFloat sourceX = 0, destinationX = 0;
-    __block CGFloat sourceY = 0, destinationY = 0;
-    __block CGRect sourceFrame = CGRectZero, destinationFrame = CGRectZero;
-    __block CGFloat w, h;
-
-    w = modalSize.width > 0 ? modalSize.width : 400;
-    h = modalSize.height > 0 ? modalSize.height : 400;
-    w = self.isLandscape ? modalSize.height : modalSize.width;
-    h = self.isLandscape ? modalSize.width : modalSize.height;
-
-    sourceX = self.isLandscape ? sourceModalOrigin.y : sourceModalOrigin.x;
-    sourceY = self.isLandscape ? sourceModalOrigin.x : sourceModalOrigin.y;
-
-    destinationX = self.isLandscape ? destinationModalOrigin.y : destinationModalOrigin.x;
-    destinationY = self.isLandscape ? destinationModalOrigin.x : destinationModalOrigin.y;
-
-    sourceFrame = CGRectMake(sourceX, sourceY, w, h);
-    destinationFrame = CGRectMake(destinationX, destinationY, w, h);
-
-    w = 100;
-    CGFloat containerViewWidth = self.isLandscape ? containerView.height : containerView.width;
-    CGFloat containerViewHeight = self.isLandscape ? containerView.width : containerView.height;
-
-    destinationFrame.origin.x = 0;
-
-    if (self.isLandscapeLeft) {
-        sourceFrame.origin.y = containerViewWidth - w - sourceModalOrigin.x;
-        destinationFrame.origin.y = containerView.height - modalSize.width - destinationModalOrigin.x;
-    }
-
-    w = self.isLandscape ? modalSize.height : modalSize.width;
-    h = self.isLandscape ? modalSize.width : modalSize.height;
-
-    if (self.presenting) {
-
-        destinationView.frame = sourceFrame;
-        //        destinationView.frame = destinationFrame;
-
-        [containerView addSubview: fromViewController.view];
+    if (self.needsClippingView) {
+        UIView *clippingView = [self clippingViewForContext: context];
         [containerView addSubview: clippingView];
-        [clippingView addSubview: toViewController.view];
-        //        [containerView addSubview: sourceController.view];
-        //        [sourceController.view.superview bringSubviewToFront: sourceController.view];
-
-        [UIView animateWithDuration: [self transitionDuration: transitionContext]
-                         animations: ^{
-                             destinationView.frame = destinationFrame;
-
-                         }
-                         completion: ^(BOOL finished) {
-                             [transitionContext completeTransition: YES];
-                         }];
-
-    } else {
-
-        [transitionContext.containerView addSubview: fromViewController.view];
-        [transitionContext.containerView addSubview: clippingView];
-        [clippingView addSubview: toViewController.view];
-
-        [UIView animateWithDuration: [self transitionDuration: transitionContext] delay: 0.0f
-                            options: UIViewAnimationOptionCurveEaseOut
-                         animations: ^{
-                             //                             fromViewController.view.alpha = 0;
-                             destinationView.alpha = 0;
-                             //                             destinationView.top += destinationView.width;
-                             destinationView.frame = sourceFrame;
-
-                             //                             destinationView.frame = sourceFrame;
-
-
-                         }
-                         completion: ^(BOOL finished) {
-                             [transitionContext completeTransition: YES];
-                         }];
+        [clippingView addSubview: destinationView];
     }
+
+    [UIView animateWithDuration: [self transitionDuration: context]
+            delay: 0
+            usingSpringWithDamping: 1.0
+            initialSpringVelocity: 5
+            options: UIViewAnimationOptionCurveEaseOut
+            animations: ^{
+
+                destinationView.left = startingPoint.x;
+                destinationView.top = startingPoint.y;
+
+            }
+            completion: ^(BOOL finished) {
+                [destinationView removeFromSuperview];
+                [context completeTransition: YES];
+            }];
+
 }
-
-
-- (void) animationEnded: (BOOL) transitionCompleted {
-
-}
-
 
 @end

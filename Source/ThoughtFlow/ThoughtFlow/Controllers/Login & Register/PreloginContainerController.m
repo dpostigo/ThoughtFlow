@@ -4,9 +4,15 @@
 //
 
 #import "PreloginContainerController.h"
+#import "Model.h"
 
 @implementation PreloginContainerController
 
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+    _model.loggedIn = YES;
+
+}
 
 
 @end

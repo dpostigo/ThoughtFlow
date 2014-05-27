@@ -5,18 +5,31 @@
 
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
+#import "TFToolbarDelegate.h"
 
-@class ToolbarController;
+@class TFToolbarController;
 @class CustomModalAnimator;
+@class NavigationFadeAnimator;
+@class ModalDrawerAnimator;
+@class NavigationModalAnimator;
+@class TFRightDrawerAnimator;
+@class TFLeftDrawerAnimator;
+@class ModalChildDrawerAnimator;
 
-@interface MainAppController : TFViewController {
+@interface MainAppController : TFViewController <TFToolbarDelegate> {
 
     BOOL showsPrelogin;
-    ToolbarController *toolbarController;
-    IBOutlet UIViewController *contentController;
-    CustomModalAnimator *animator;
-    UINavigationController *navController;
 
+    TFToolbarController *toolbarController;
+    UINavigationController *navController;
+    IBOutlet UIViewController *contentController;
+
+    CustomModalAnimator *animator;
+
+    NavigationFadeAnimator *navigationAnimator;
+    ModalDrawerAnimator *testAnimator;
+    TFRightDrawerAnimator *rightDrawerAnimator;
+    TFLeftDrawerAnimator *leftDrawerAnimator;
 }
 
 @end

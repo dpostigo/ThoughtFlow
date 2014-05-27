@@ -19,7 +19,7 @@
 #import "MindmapBackgroundController.h"
 #import "TFRightDrawerAnimator.h"
 #import "UIViewController+TFControllers.h"
-#import "UIViewController+BasicAnimator.h"
+#import "UIViewController+BasicModalAnimator.h"
 
 @implementation MindmapController {
     TFNodeViewState lastNodeState;
@@ -100,6 +100,7 @@
         }
 
         nodeView.node = node;
+
         [self setupNodeView: nodeView];
 
     }
@@ -290,6 +291,8 @@
 #pragma mark Node Interaction
 
 - (void) nodeViewDidLongPress: (UILongPressGestureRecognizer *) gesture {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
     TFNodeView *node = (TFNodeView *) gesture.view;
 
     if (gesture.state == UIGestureRecognizerStateBegan) {
@@ -298,6 +301,7 @@
 
     switch (lastNodeState) {
         case TFNodeViewStateNormal :
+            NSLog(@"%s", __PRETTY_FUNCTION__);
             [self moveNodeViewWithGesture: gesture];
             break;
 
@@ -313,6 +317,7 @@
 }
 
 - (void) moveNodeViewWithGesture: (UILongPressGestureRecognizer *) gesture {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     TFNodeView *node = (TFNodeView *) gesture.view;
     CGPoint location = [gesture locationInView: node.superview];
 
@@ -439,11 +444,8 @@
 }
 
 - (IBAction) handleInfoButton: (UIButton *) sender {
-
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-
     rightDrawerAnimator = [TFRightDrawerAnimator new];
-    [self presentController: self.imageDrawerController withAnimator: rightDrawerAnimator];
+    [self.navigationController presentController: self.imageDrawerController withAnimator: rightDrawerAnimator];
 
 }
 

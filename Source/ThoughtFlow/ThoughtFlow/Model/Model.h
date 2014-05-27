@@ -13,6 +13,8 @@ NSString *const TFProjectName;
 
 
 @interface Model : NSObject {
+
+    BOOL loggedIn;
     NSOperationQueue *queue;
 
     ProjectLibrary *projectLibrary;
@@ -28,6 +30,7 @@ NSString *const TFProjectName;
 @property(nonatomic, strong) Project *selectedProject;
 @property(nonatomic, strong) TFNode *selectedNode;
 @property(nonatomic, strong) ProjectLibrary *projectLibrary;
+@property(nonatomic) BOOL loggedIn;
 + (Model *) sharedModel;
 
 - (NSArray *) projectsSortedByDate;

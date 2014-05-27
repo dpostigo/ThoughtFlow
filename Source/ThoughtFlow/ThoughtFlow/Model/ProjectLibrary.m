@@ -27,6 +27,21 @@
     return sharedLibrary;
 }
 
+- (id) init {
+    self = [super init];
+    if (self) {
+
+        [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(save:) name: @"TFNodeDidUpdatePosition" object: nil];
+    }
+
+    return self;
+}
+
+
+- (void) save: (id) sender {
+    [self save];
+
+}
 
 - (void) save {
     NSString *path = [[[self class] documentsDirectory] stringByAppendingPathComponent: @"ProjectLibrary.plist"];
@@ -36,6 +51,7 @@
         // id item = [self.items objectAtIndex: j];
         // NSLog(@"[item autoDescription] = %@", [item autoDescription]);
     }
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 

@@ -10,9 +10,12 @@
 NSString *const TFViewControllerTypeName = @"TFViewControllerTypeName";
 NSString *const TFViewControllerTypeKey = @"TFViewControllerTypeKey";
 NSString *const TFViewControllerShouldPushKey = @"TFViewControllerShouldPushKey";
+
 NSString *const TFNavigationNotification = @"TFNavigationNotification";
-NSString *const TFToolbarProjectsNotification = @"TFToolbarProjectsNotification";
-NSString *const TFToolbarMindmapNotification = @"TFToolbarMindmapNotification";
+
+
+NSString *const TFInfoNotificationOn = @"TFInfoNotificationOn";
+NSString *const TFInfoNotificationOff = @"TFInfoNotificationOff";
 
 NSString *const TFToolbarAccountDrawerClosed = @"TFToolbarAccountDrawerClosed";
 NSString *const TFToolbarSettingsDrawerClosed = @"TFToolbarSettingsDrawerClosed";

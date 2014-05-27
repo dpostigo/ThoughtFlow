@@ -1,1 +1,1 @@
-../../../../../../LocalPods/DPTransitions/DPTransitions/TLTransitions/TLAnimator.h
+../../../../../../LocalPods/DPTransitions/DPTransitions/Segues/TLAnimator.h

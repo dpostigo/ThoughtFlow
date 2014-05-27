@@ -7,5 +7,11 @@
 
 @interface UIViewController (TFControllers)
 
+- (UIViewController *) preloginController;
 - (UIViewController *) imageDrawerController;
+- (UIViewController *) infoViewController;
+- (UIViewController *) moodboardController;
+- (UIViewController *) notesViewController;
+- (UIViewController *) accountViewController;
+- (UIViewController *) imageSettingsController;
 @end

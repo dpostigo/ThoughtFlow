@@ -5,8 +5,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class Model;
+
 @interface TFOperation : NSOperation {
 
+    Model *_model;
     void (^success)();
     void (^failure)();
 }

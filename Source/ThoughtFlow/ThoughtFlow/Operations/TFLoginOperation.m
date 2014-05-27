@@ -4,12 +4,14 @@
 //
 
 #import "TFLoginOperation.h"
+#import "Model.h"
 
 @implementation TFLoginOperation
 
 - (void) main {
     [super main];
 
+    _model.loggedIn = YES;
     [self performSuccess];
 }
 

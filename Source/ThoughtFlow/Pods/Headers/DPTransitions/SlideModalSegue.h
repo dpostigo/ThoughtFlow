@@ -1,1 +1,1 @@
-../../../../../../LocalPods/DPTransitions/DPTransitions/SlideModalSegue.h
+../../../../../../LocalPods/DPTransitions/DPTransitions/Segues/SlideModalSegue.h

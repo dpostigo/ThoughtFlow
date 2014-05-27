@@ -6,7 +6,6 @@
 #import <DPKit-Utils/UIView+DPKit.h>
 #import "MoodboardItemController.h"
 #import "TFRightDrawerAnimator.h"
-#import "BasicAnimator+UIViewController.h"
 
 @implementation MoodboardItemController
 
@@ -14,7 +13,7 @@
     [super viewDidLoad];
 
     drawerAnimator = [TFRightDrawerAnimator new];
-    drawerAnimator.modalSize = CGSizeMake(300, self.view.height);
+    //    drawerAnimator.modalSize = CGSizeMake(300, self.view.height);
 }
 
 

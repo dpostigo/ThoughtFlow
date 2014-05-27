@@ -18,9 +18,10 @@ extern NSString *const TFViewControllerShouldPushKey;
 extern NSString *const TFViewControllerTypeName;
 
 extern NSString *const TFNavigationNotification;
-extern NSString *const TFToolbarProjectsNotification;
-extern NSString *const TFToolbarMindmapNotification;
 
+
+
+extern NSString *const TFInfoNotification;
 extern NSString *const TFToolbarAccountDrawerClosed;
 extern NSString *const TFToolbarSettingsDrawerClosed;
 

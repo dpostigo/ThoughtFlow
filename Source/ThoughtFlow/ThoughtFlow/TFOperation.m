@@ -4,6 +4,7 @@
 //
 
 #import "TFOperation.h"
+#import "Model.h"
 
 @implementation TFOperation
 
@@ -13,6 +14,7 @@
 - (instancetype) initWithSuccess: (void (^)()) aSuccess failure: (void (^)()) aFailure {
     self = [super init];
     if (self) {
+        _model = [Model sharedModel];
         success = aSuccess;
         failure = aFailure;
     }
@@ -23,6 +25,7 @@
 - (instancetype) initWithSuccess: (void (^)()) aSuccess {
     self = [super init];
     if (self) {
+        _model = [Model sharedModel];
         success = aSuccess;
     }
 

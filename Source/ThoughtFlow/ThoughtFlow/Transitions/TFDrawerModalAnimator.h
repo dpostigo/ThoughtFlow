@@ -3,25 +3,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <DPAnimators/ModalDrawerAnimator.h>
 
-@interface TFDrawerModalAnimator : NSObject <UIViewControllerAnimatedTransitioning> {
+@interface TFDrawerModalAnimator : ModalDrawerAnimator {
 
-    CGFloat duration;
-    BOOL debug;
-    BOOL presenting;
-
-    CGSize modalSize;
-    CGPoint sourceModalOrigin;
-    CGPoint destinationModalOrigin;
-
-    UIViewController *sourceController;
 }
 
-@property(nonatomic) BOOL debug;
-@property(nonatomic) BOOL presenting;
-@property(nonatomic) CGSize modalSize;
-@property(nonatomic) CGPoint sourceModalOrigin;
-@property(nonatomic) CGPoint destinationModalOrigin;
-@property(nonatomic, strong) UIViewController *sourceController;
-@property(nonatomic) CGFloat duration;
 @end

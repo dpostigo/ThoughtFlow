@@ -183,7 +183,7 @@
 
 
 - (void) openLeftDrawerWithController: (UIViewController *) controller {
-    [self openDrawerWithController: controller animator: leftDrawerAnimator];
+    [self openDrawerWithController: controller animator: testAnimator];
 }
 
 - (void) openRightDrawerWithController: (UIViewController *) controller {
@@ -232,7 +232,6 @@
 #pragma mark TFToolbarDelegate
 
 - (void) toolbarChangeSelection: (BOOL) selected forType: (TFToolbarButtonType) type {
-    NSLog(@"%s, selected = %d", __PRETTY_FUNCTION__, selected);
     switch (type) {
         case TFToolbarButtonInfo :
             [self closeDrawers];

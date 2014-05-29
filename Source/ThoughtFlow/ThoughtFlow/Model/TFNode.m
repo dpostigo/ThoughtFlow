@@ -68,7 +68,6 @@ NSString *const TFNodeUpdate = @"TFNodeUpdate";
 - (void) setPosition: (CGPoint) position1 {
     position = position1;
     [[NSNotificationCenter defaultCenter] postNotificationName: @"TFNodeDidUpdatePosition" object: nil];
-    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 

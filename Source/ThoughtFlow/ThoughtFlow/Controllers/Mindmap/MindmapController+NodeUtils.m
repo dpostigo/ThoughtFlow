@@ -49,7 +49,6 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 }
 
 - (void) endNodeMove: (TFNodeView *) node location: (CGPoint) location {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     location = [self constrainNodeCenter: node forLocation: location];
     location = CGPointMake(location.x - (node.width / 2), location.y - (node.height / 2));
     [node updateSuperLeadingConstraint: location.x];
@@ -318,8 +317,6 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 #pragma mark Setup
 
 - (void) setupNodeView: (TFNodeView *) nodeView {
-
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     [nodeContainerView addSubview: nodeView];
     [self.nodeViews addObject: nodeView];
     nodeView.delegate = self;

@@ -18,4 +18,5 @@
 @property(nonatomic, strong) DPTableView *table;
 - (void) prepareDatasource;
 - (IBAction) signInInstead: (id) sender;
+- (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath;
 @end

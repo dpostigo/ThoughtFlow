@@ -1,5 +1,5 @@
 #include "Pods-NSObject+AutoDescription.xcconfig"
 GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/NSObject+AutoDescription" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AutoCoding" "${PODS_ROOT}/Headers/CALayer-DPUtils" "${PODS_ROOT}/Headers/DPAnimators" "${PODS_ROOT}/Headers/DPCollectionView" "${PODS_ROOT}/Headers/DPKit-UIView" "${PODS_ROOT}/Headers/DPKit-Utils" "${PODS_ROOT}/Headers/DPTransitions" "${PODS_ROOT}/Headers/JMSimpleDate" "${PODS_ROOT}/Headers/NSObject+AutoDescription" "${PODS_ROOT}/Headers/UIColorCategories"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/NSObject+AutoDescription" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/AFOAuth2Client" "${PODS_ROOT}/Headers/AutoCoding" "${PODS_ROOT}/Headers/CALayer-DPUtils" "${PODS_ROOT}/Headers/DPAnimators" "${PODS_ROOT}/Headers/DPCollectionView" "${PODS_ROOT}/Headers/DPKit-UIView" "${PODS_ROOT}/Headers/DPKit-Utils" "${PODS_ROOT}/Headers/DPTransitions" "${PODS_ROOT}/Headers/JMSimpleDate" "${PODS_ROOT}/Headers/NSObject+AutoDescription" "${PODS_ROOT}/Headers/UIAlertView+Blocks" "${PODS_ROOT}/Headers/UIColorCategories"
 OTHER_LDFLAGS = -ObjC
 PODS_ROOT = ${SRCROOT}

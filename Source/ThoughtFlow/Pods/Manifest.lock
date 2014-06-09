@@ -1,4 +1,25 @@
 PODS:
+  - AFNetworking (2.2.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.2.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.2.4):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.2.4)
+  - AFNetworking/Security (2.2.4)
+  - AFNetworking/Serialization (2.2.4)
+  - AFNetworking/UIKit (2.2.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - AFOAuth2Client (0.1.1):
+    - AFNetworking (~> 2.0)
   - AutoCoding (2.2)
   - CALayer-DPUtils (0.1.6):
     - DPKit-Utils
@@ -8,7 +29,7 @@ PODS:
   - DPCollectionView (0.0.1)
   - DPKit-UIView (0.0.1):
     - DPKit-Utils
-  - DPKit-Utils (0.0.12):
+  - DPKit-Utils (0.0.18):
     - JMSimpleDate
   - DPTransitions (0.0.1):
     - DPAnimators (= 0.0.1)
@@ -19,9 +40,12 @@ PODS:
     - DPKit-Utils
   - JMSimpleDate (0.0.6)
   - NSObject+AutoDescription (0.1)
+  - UIAlertView+Blocks (0.8.1)
   - UIColorCategories (0.1.0)
 
 DEPENDENCIES:
+  - AFNetworking
+  - AFOAuth2Client (from `https://github.com/mlwelles/AFOAuth2Client`)
   - AutoCoding
   - CALayer-DPUtils
   - DPAnimators (from `~/Development/LocalPods/DPAnimators`)
@@ -30,9 +54,12 @@ DEPENDENCIES:
   - DPKit-Utils (from `~/Development/LocalPods/DPKit-Suite/DPKit-Utils`)
   - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
   - NSObject+AutoDescription
+  - UIAlertView+Blocks
   - UIColorCategories
 
 EXTERNAL SOURCES:
+  AFOAuth2Client:
+    :git: https://github.com/mlwelles/AFOAuth2Client
   DPAnimators:
     :path: ~/Development/LocalPods/DPAnimators
   DPKit-UIView:
@@ -43,15 +70,18 @@ EXTERNAL SOURCES:
     :path: ~/Development/LocalPods/DPTransitions
 
 SPEC CHECKSUMS:
+  AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
+  AFOAuth2Client: 05536bd4175add72e7efcb6b749d4e9685ed02f7
   AutoCoding: 2a15d57acf78912b72cc3b3a472e614b2f112a18
   CALayer-DPUtils: eaf33dc7e1432fdc5b179172e116dd26b02d1891
   DPAnimators: b5d8bf1ed85f17a49cabad1bcc22010c70d27ba8
   DPCollectionView: 284b18f43d0d10484acc36d57e36877b943c38f1
   DPKit-UIView: 9689d56fa74ad4419b240d8453f644c6b88c4d14
-  DPKit-Utils: 42407bfc430da44dd84a8b7b932c3cff77e9cca4
+  DPKit-Utils: abfdeb220b3a624affcf1d3b6f50137f1d4b18f0
   DPTransitions: fb247247ff38c47a0fb2ca0f97d9d9ad4b8924b8
   JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
   NSObject+AutoDescription: 741983bfabbfd2813c77078fdc91526853bad16d
+  UIAlertView+Blocks: 0b749f1f7bd5131ff2233b30a406c1585a7171b2
   UIColorCategories: 8fbcc33a0ed3a03395caabfcb39f77231986413b
 
 COCOAPODS: 0.33.1

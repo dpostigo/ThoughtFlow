@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3D5C83A33474457FAB17EFEB"
+               BlueprintIdentifier = "4D6C554374704D489991A164"
                BuildableName = "libPods-CALayer-DPUtils.a"
                BlueprintName = "Pods-CALayer-DPUtils"
                ReferencedContainer = "container:Pods.xcodeproj">

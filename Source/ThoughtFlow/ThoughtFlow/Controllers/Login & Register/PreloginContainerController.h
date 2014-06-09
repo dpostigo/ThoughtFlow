@@ -6,7 +6,12 @@
 #import <Foundation/Foundation.h>
 #import "TFModalViewController.h"
 
+@class NavigationFadeAnimator;
+
 @interface PreloginContainerController : TFModalViewController {
 
+    NavigationFadeAnimator *animator;
 }
+
+@property(nonatomic, strong) NavigationFadeAnimator *animator;
 @end

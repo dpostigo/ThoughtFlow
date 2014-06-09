@@ -30,6 +30,7 @@
     ModalDrawerAnimator *testAnimator;
     TFRightDrawerAnimator *rightDrawerAnimator;
     TFLeftDrawerAnimator *leftDrawerAnimator;
+    ModalChildDrawerAnimator *childDrawerAnimator;
 }
 
 @end

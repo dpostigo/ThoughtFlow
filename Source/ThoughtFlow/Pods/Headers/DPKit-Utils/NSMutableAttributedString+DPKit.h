@@ -1,1 +1,1 @@
-../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/NSMutableAttributedString+DPKit.h
+../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/NSMutableAttributedString+DPKit.h

@@ -6,6 +6,7 @@
 #import <DPTransitions/CustomModalSegue.h>
 #import <DPAnimators/NavigationFadeAnimator.h>
 #import <DPAnimators/ModalChildDrawerAnimator.h>
+#import <DPKit-Utils/UIView+DPKit.h>
 #import "ModalDrawerAnimator.h"
 #import "CustomModalAnimator.h"
 #import "MainAppController.h"
@@ -15,6 +16,7 @@
 #import "UINavigationController+BasicNavigationAnimator.h"
 #import "TFRightDrawerAnimator.h"
 #import "TFLeftDrawerAnimator.h"
+#import "UIView+DPKit.h"
 
 @implementation MainAppController
 
@@ -51,6 +53,7 @@
     leftDrawerAnimator = [TFLeftDrawerAnimator new];
 
     [self setupTestAnimator];
+    [self testModalChildDrawer];
 
     navController = (UINavigationController *) ([contentController isKindOfClass: [UINavigationController class]] ? contentController : nil);
     if (navController) {
@@ -82,6 +85,12 @@
 
 }
 
+
+- (void) testModalChildDrawer {
+    childDrawerAnimator = [ModalChildDrawerAnimator new];
+}
+
+
 #pragma mark Notifications
 
 - (void) setupNotifications {
@@ -91,7 +100,6 @@
 
 - (void) handleNavNotification: (NSNotification *) notification {
 
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     BOOL pushes = [[notification.userInfo objectForKey: TFViewControllerShouldPushKey] boolValue];
     NSNumber *number = [notification.userInfo objectForKey: TFViewControllerTypeKey];
     TFViewControllerType type = (TFViewControllerType) [number intValue];
@@ -183,31 +191,60 @@
 
 
 - (void) openLeftDrawerWithController: (UIViewController *) controller {
-    [self openDrawerWithController: controller animator: testAnimator];
+    [self openDrawerWithController: controller animator: leftDrawerAnimator];
 }
 
 - (void) openRightDrawerWithController: (UIViewController *) controller {
     [self openDrawerWithController: controller animator: rightDrawerAnimator];
 }
 
-- (void) openDrawerWithController: (UIViewController *) controller animator: (id) anAnimator {
 
-    UIViewController *presenter = self;
-    controller.transitioningDelegate = anAnimator;
-    controller.modalPresentationStyle = UIModalPresentationCustom;
-    controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
-    void (^presentBlock)() = ^{
-        [self presentViewController: controller animated: YES completion: nil];
-    };
+- (void) openDrawerWithController: (UIViewController *) controller animator: (TFDrawerModalAnimator *) anAnimator {
 
-    NSLog(@"presenter.presentedViewController = %@", presenter.presentedViewController);
-    if (presenter.presentedViewController) {
-        [presenter dismissViewControllerAnimated: NO completion: presentBlock];
-    } else {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    UIRectEdge edge = anAnimator.presentationEdge;
+    UIView *view = controller.view;
+    view.size = anAnimator.modalPresentationSize;
 
-        presentBlock();
-    }
+
+    if (view.width == 0) view.width = self.view.width;
+    if (view.height == 0) view.height = self.view.height;
+
+
+
+    [view positionAtEdge: edge hidden: YES];
+
+
+    [self.view addSubview: view];
+    [self addChildViewController: controller];
+
+    NSLog(@"view.frame = %@", NSStringFromCGRect(view.frame));
+
+    [UIView animateWithDuration: 0.4 animations: ^{
+        [view positionAtEdge: edge];
+    }];
+
+
+
+
+
+    //    UIViewController *presenter = self;
+    //    controller.transitioningDelegate = anAnimator;
+    //    controller.modalPresentationStyle = UIModalPresentationCustom;
+    //    controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //
+    //    void (^presentBlock)() = ^{
+    //        [self presentViewController: controller animated: YES completion: nil];
+    //    };
+    //
+    //    NSLog(@"presenter.presentedViewController = %@", presenter.presentedViewController);
+    //    if (presenter.presentedViewController) {
+    //        [presenter dismissViewControllerAnimated: NO completion: presentBlock];
+    //    } else {
+    //
+    //        presentBlock();
+    //    }
     //
     //    if (self.presentedViewController && self.presentedViewController.transitioningDelegate == anAnimator) {
     //        [self dismissViewControllerAnimated: NO completion: presentBlock];

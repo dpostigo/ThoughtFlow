@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-AFOAuth2Client.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-AutoCoding.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -49,6 +59,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-UIAlertView+Blocks.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-UIColorCategories.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,57 +77,72 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>23B6584D63E745599B41FB7A</key>
+		<key>2487BC36BEF94FED9DE2BA67</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>28090A88AA1347CD947B4509</key>
+		<key>2CA3BB534B3049B99443A6B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3D5C83A33474457FAB17EFEB</key>
+		<key>362CA1AD4F80444D9792453D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A679B821A064E83AA321E44</key>
+		<key>4D6C554374704D489991A164</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5D7B78DE5DF046D4A5728380</key>
+		<key>5072A6682AE24C20A2DB0F57</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B3DB0D68E244154AF6B8B31</key>
+		<key>55A25C88F7F642068733BDA8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A3619E477AF842F3AFEC814F</key>
+		<key>637412D896744ECC8704E4C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7310E1431904C18BE082AFD</key>
+		<key>70ECA134F0044B119F84A678</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E04D1785515F45239BA2BEF6</key>
+		<key>AE62087C2E404F068F2B9D86</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E74EDC73951B41C7BE681DE8</key>
+		<key>BDDFDA815F8A408AB3C0A154</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E7AA40644E00441C9A39CEFD</key>
+		<key>E3CD382002384DD39B157585</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EF6AC7F2B8C54771BA618422</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0454D32D8714D56A9288B6E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FBD6D106EEA44909A48E3210</key>
 		<dict>
 			<key>primary</key>
 			<true/>

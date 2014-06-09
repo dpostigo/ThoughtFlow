@@ -8,6 +8,9 @@
 #import "ProjectLibrary.h"
 #import "TFNode.h"
 #import "NSArray+DPKit.h"
+#import "AFOAuth2Client.h"
+#import "AFHTTPSessionManager.h"
+#import "APIModel.h"
 
 @implementation Model
 
@@ -19,7 +22,13 @@
 @synthesize projectLibrary;
 @synthesize selectedNode;
 @synthesize loggedIn;
+@synthesize authClient;
+
+@synthesize apiModel;
 NSString *const TFProjectName = @"TF Project Name";
+
+
+static NSString *baseURL = @"http://188.226.201.79/api";
 
 + (Model *) sharedModel {
     static Model *_instance = nil;
@@ -42,6 +51,26 @@ NSString *const TFProjectName = @"TF Project Name";
 }
 
 
+- (AFOAuth2Client *) authClient {
+    if (authClient == nil) {
+
+        NSURL *url = [NSURL URLWithString: @"http://188.226.201.79/api"];
+        authClient = [AFOAuth2Client clientWithBaseURL: url
+                clientID: @"2dc300c232a003156fddd1d9aecb38d9da9ad49a"
+                secret: @"66df225f66bdbe89d5f04825aea2efa9731edd5a"];
+    }
+    return authClient;
+}
+
+
+- (APIModel *) apiModel {
+    if (apiModel == nil) {
+        apiModel = [[APIModel alloc] init];
+    }
+    return apiModel;
+}
+
+
 
 #pragma mark Projects
 - (NSArray *) projects {
@@ -51,7 +80,7 @@ NSString *const TFProjectName = @"TF Project Name";
 
 - (NSArray *) projectsSortedByDate {
     return [self.projects sortedArrayUsingDescriptor: [NSSortDescriptor sortDescriptorWithKey: @"creationDate"
-                                                                                    ascending: NO]];
+            ascending: NO]];
 }
 
 - (ProjectLibrary *) projectLibrary {

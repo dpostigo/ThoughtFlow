@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A3619E477AF842F3AFEC814F"
+               BlueprintIdentifier = "55A25C88F7F642068733BDA8"
                BuildableName = "libPods-JMSimpleDate.a"
                BlueprintName = "Pods-JMSimpleDate"
                ReferencedContainer = "container:Pods.xcodeproj">

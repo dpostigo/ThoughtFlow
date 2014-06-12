@@ -65,7 +65,7 @@ static NSString *baseURL = @"http://188.226.201.79/api";
 
 - (APIModel *) apiModel {
     if (apiModel == nil) {
-        apiModel = [[APIModel alloc] init];
+        apiModel = [APIModel sharedModel];
     }
     return apiModel;
 }

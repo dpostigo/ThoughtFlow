@@ -19,6 +19,8 @@ extern NSString *const ThoughtFlowBaseURL;
 
 @property(nonatomic, strong) APIUser *currentUser;
 + (void) alertErrorWithTitle: (NSString *) title message: (NSString *) message;
++ (APIModel *) sharedModel;
+
 - (BOOL) loggedIn;
 - (void (^)()) generalFailureBlock;
 - (void) login: (NSString *) username password: (NSString *) password completion: (void (^)()) completion failure: (void (^)()) failure;

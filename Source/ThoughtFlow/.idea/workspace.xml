@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d8c16d6-eb25-4426-a1f8-2564ebf0e0c6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/APIUser.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/APIUser.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Components/FieldTableViewCell.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Components/FieldTableViewCell.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Operations/TFOperation.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Operations/TFOperation.m" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/BasicAnimator+UIViewController.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/BasicAnimator+UIViewController.m" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/BasicAnimator.h" afterPath="" />
@@ -25,54 +25,40 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/TLTransitions/TLFreeformModalProtocol.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/UIViewController+BasicAnimator.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/UIViewController+BasicAnimator.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/FieldTableViewCell.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/FieldTableViewCell.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/TFOperation.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/TFOperation.m" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/AppDelegate.m" afterPath="$PROJECT_DIR$/ThoughtFlow/AppDelegate.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/Utils/BasicAnimator+Utils.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/Utils/BasicAnimator+Utils.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Local Podspecs/DPAnimators.podspec" afterPath="$PROJECT_DIR$/Pods/Local Podspecs/DPAnimators.podspec" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Local Podspecs/DPKit-Utils.podspec" afterPath="$PROJECT_DIR$/Pods/Local Podspecs/DPKit-Utils.podspec" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions.podspec" afterPath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions.podspec" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Manifest.lock" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/ModalChildDrawerAnimator.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/ModalChildDrawerAnimator.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/Model.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/Model.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/Model.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/Model.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/DPKit-Utils/NSMutableAttributedString+DPKit.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/DPKit-Utils/NSMutableAttributedString+DPKit.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/DPKit-Utils/NSMutableAttributedString+DPKit.h" afterPath="$PROJECT_DIR$/Pods/Headers/DPKit-Utils/NSMutableAttributedString+DPKit.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/NewRegisterController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/NewRegisterController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile.lock" afterPath="$PROJECT_DIR$/Podfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile" afterPath="$PROJECT_DIR$/Podfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-AutoCoding-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-AutoCoding-Private.xcconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-AFNetworking.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-AFNetworking.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-AFOAuth2Client.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-AFOAuth2Client.xcscheme" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-AutoCoding.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-AutoCoding.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-CALayer-DPUtils-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-CALayer-DPUtils-Private.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-CALayer-DPUtils.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-CALayer-DPUtils.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-DPAnimators-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-DPAnimators-Private.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPAnimators.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPAnimators.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-DPCollectionView-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-DPCollectionView-Private.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPCollectionView.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPCollectionView.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-DPKit-UIView-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-DPKit-UIView-Private.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPKit-UIView.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPKit-UIView.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-DPKit-Utils-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-DPKit-Utils-Private.xcconfig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-DPKit-Utils.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-DPKit-Utils.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPKit-Utils.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPKit-Utils.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-DPTransitions-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-DPTransitions-Private.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPTransitions.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-DPTransitions.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-JMSimpleDate-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-JMSimpleDate-Private.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-JMSimpleDate.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-JMSimpleDate.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-NSObject+AutoDescription-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-NSObject+AutoDescription-Private.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-NSObject+AutoDescription.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-NSObject+AutoDescription.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-UIColorCategories-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-UIColorCategories-Private.xcconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-UIAlertView+Blocks.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-UIAlertView+Blocks.xcscheme" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-UIColorCategories.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-UIColorCategories.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-acknowledgements.markdown" afterPath="$PROJECT_DIR$/Pods/Pods-acknowledgements.markdown" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-acknowledgements.plist" afterPath="$PROJECT_DIR$/Pods/Pods-acknowledgements.plist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-environment.h" afterPath="$PROJECT_DIR$/Pods/Pods-environment.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Resources/Storyboard.storyboard" afterPath="$PROJECT_DIR$/ThoughtFlow/Resources/Storyboard.storyboard" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerAnimator.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerAnimator.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIFont+DPKit.h" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIFont+DPKit.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIFont+DPKit.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIFont+DPKit.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKit.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKit.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/ThoughtFlow.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -93,7 +79,7 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_iPad_Retina_7.0" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos" />
   <component name="FavoritesManager">
     <favorites_list name="ThoughtFlow" />
   </component>
@@ -102,8 +88,59 @@
       <file leaf-file-name="MainAppController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="237" column="56" selection-start="7223" selection-end="7223" vertical-scroll-proportion="0.0" vertical-offset="2220" max-vertical-offset="5154">
+            <state line="39" column="7" selection-start="843" selection-end="1319" vertical-scroll-proportion="0.0" vertical-offset="585" max-vertical-offset="4680">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFLeftDrawerAnimator.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerAnimator.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="43" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="195">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFDrawerModalAnimator.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerModalAnimator.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="11" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="195">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFDrawerModalAnimator.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerModalAnimator.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="34" selection-start="791" selection-end="791" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1500">
+              <folding>
+                <marker date="1401360971000" expanded="true" signature="0:43" placeholder="//..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PreloginContainerController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="16" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="600">
+              <folding>
+                <marker date="1402311916000" expanded="true" signature="0:103" placeholder="//..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFLeftDrawerAnimator.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerAnimator.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="4" selection-start="409" selection-end="409" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="345">
+              <folding>
+                <marker date="1402311746000" expanded="true" signature="0:104" placeholder="//..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -111,52 +148,39 @@
       <file leaf-file-name="NewRegisterController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/NewRegisterController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="37" selection-start="2690" selection-end="2690" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2079">
-              <folding />
+            <state line="70" column="37" selection-start="2690" selection-end="2690" vertical-scroll-proportion="0.0" vertical-offset="1050" max-vertical-offset="1650">
+              <folding>
+                <marker date="1402269375000" expanded="true" signature="0:103" placeholder="//..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppDelegate.m" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="AppDelegate.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/AppDelegate.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="688" selection-end="688" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1869">
+            <state line="43" column="0" selection-start="1263" selection-end="1263" vertical-scroll-proportion="0.2821997" vertical-offset="450" max-vertical-offset="2146">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginModalController.m" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="LoginModalController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="16" selection-start="1506" selection-end="1506" vertical-scroll-proportion="0.3317647" vertical-offset="609" max-vertical-offset="4220">
-              <folding />
+            <state line="60" column="11" selection-start="1596" selection-end="1596" vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="3915">
+              <folding>
+                <marker date="1402311523000" expanded="true" signature="0:104" placeholder="//..." />
+                <marker date="1402311523000" expanded="true" signature="1625:1741" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="APIModel.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/APIModel.h">
+      <file leaf-file-name="ModalChildDrawerAnimator.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/ModalChildDrawerAnimator.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="23" selection-start="318" selection-end="318" vertical-scroll-proportion="0.0" vertical-offset="24" max-vertical-offset="800">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="APIModel.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="36" selection-start="864" selection-end="864" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="2199">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Podfile" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Podfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="787">
+            <state line="24" column="0" selection-start="783" selection-end="783" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1380">
               <folding />
             </state>
           </provider>
@@ -168,17 +192,6 @@
             <state line="44" column="9" selection-start="1396" selection-end="1396" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="720">
               <folding>
                 <marker date="1401544853000" expanded="true" signature="200:1387" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIView+DPKit.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKit.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="263" column="15" selection-start="5719" selection-end="5719" vertical-scroll-proportion="0.0" vertical-offset="3945" max-vertical-offset="4530">
-              <folding>
-                <marker date="1401544863000" expanded="true" signature="0:148" placeholder="//..." />
               </folding>
             </state>
           </provider>
@@ -202,22 +215,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIResponder+PreloadKeyboard.m" />
         <option value="$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/ModalChildDrawerAnimator.m" />
-        <option value="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKit.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/AppDelegate.m" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.m" />
         <option value="$PROJECT_DIR$/Podfile" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Model/Model.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Model/Model.m" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/NewRegisterController.m" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.h" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Model/APIUser.h" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Model/APIUser.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m" />
+        <option value="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKit.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerAnimator.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Model/Model.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/AppDelegate.m" />
       </list>
     </option>
   </component>
@@ -440,13 +453,13 @@
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.splitter.main.proportions" value="0.1944" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="ThoughtFlow" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Application.ThoughtFlow">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="ThoughtFlow" TARGET_NAME="ThoughtFlow" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="ThoughtFlow" RUN_TARGET_NAME="ThoughtFlow" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
@@ -592,12 +605,10 @@
     <frame x="0" y="22" width="1440" height="799" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37730497" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32719547" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34751773" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1456241" sideWeight="0.622695" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18005739" sideWeight="0.622695" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1456241" sideWeight="0.6921986" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18292683" sideWeight="0.6921986" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30780143" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3895184" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -609,6 +620,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32957748" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34751773" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37730497" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -631,9 +644,9 @@
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1456241" sideWeight="0.69121814" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26398852" sideWeight="0.69121814" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -668,114 +681,121 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/NewRegisterController.h">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="42" selection-start="215" selection-end="215" vertical-scroll-proportion="0.24640657" vertical-offset="0" max-vertical-offset="637">
+        <state line="60" column="11" selection-start="1596" selection-end="1596" vertical-scroll-proportion="0.0" vertical-offset="639" max-vertical-offset="4344">
+          <folding>
+            <marker date="1402311523000" expanded="true" signature="0:104" placeholder="//..." />
+            <marker date="1402311523000" expanded="true" signature="1625:1741" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/ModalChildDrawerAnimator.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="783" selection-end="783" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1809">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.h">
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIGeometry.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="34" selection-start="306" selection-end="306" vertical-scroll-proportion="0.30800822" vertical-offset="30" max-vertical-offset="712">
+        <state line="33" column="36" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.74472576" vertical-offset="142" max-vertical-offset="2064" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKit.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="274" column="22" selection-start="5976" selection-end="5976" vertical-scroll-proportion="0.42827004" vertical-offset="3907" max-vertical-offset="4959" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerAnimator.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="4" selection-start="409" selection-end="409" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="787">
+          <folding>
+            <marker date="1402311746000" expanded="true" signature="0:104" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerAnimator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="43" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerModalAnimator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="237" column="56" selection-start="7223" selection-end="7223" vertical-scroll-proportion="0.0" vertical-offset="3300" max-vertical-offset="5126">
+        <state line="7" column="11" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="637">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/Headers/AFOAuth2Client/AFOAuth2Client.h">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerModalAnimator.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="279" column="48" selection-start="13298" selection-end="13298" vertical-scroll-proportion="0.71308017" vertical-offset="3847" max-vertical-offset="4929">
-          <folding />
+        <state line="30" column="34" selection-start="791" selection-end="791" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1942">
+          <folding>
+            <marker date="1401360971000" expanded="true" signature="0:43" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/AFOAuth2Client/AFOAuth2Client/AFOAuth2Client.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/PreloginContainerController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="16" selection-start="2309" selection-end="2309" vertical-scroll-proportion="0.33333334" vertical-offset="607" max-vertical-offset="5949">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/NewRegisterController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="37" selection-start="2690" selection-end="2690" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2079">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/AppDelegate.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="688" selection-end="688" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1869">
-          <folding />
+        <state line="9" column="16" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1042">
+          <folding>
+            <marker date="1402311916000" expanded="true" signature="0:103" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/Model.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="22" selection-start="432" selection-end="432" vertical-scroll-proportion="0.5548523" vertical-offset="52" max-vertical-offset="1989">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/Model.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="45" selection-start="1053" selection-end="1053" vertical-scroll-proportion="1.1704313" vertical-offset="0" max-vertical-offset="1132">
+        <state line="74" column="55" selection-start="1517" selection-end="1517" vertical-scroll-proportion="0.61814344" vertical-offset="817" max-vertical-offset="1989">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/APIModel.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="23" selection-start="318" selection-end="318" vertical-scroll-proportion="0.0" vertical-offset="24" max-vertical-offset="800">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Podfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="787">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/main.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="41" selection-start="345" selection-end="345" vertical-scroll-proportion="0.42505133" vertical-offset="48" max-vertical-offset="727">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/APIUser.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="37" selection-start="1246" selection-end="1246" vertical-scroll-proportion="1.2658228" vertical-offset="0" max-vertical-offset="1299">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/APIUser.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="39" selection-start="179" selection-end="179" vertical-scroll-proportion="0.21097046" vertical-offset="5" max-vertical-offset="789">
+        <state line="21" column="15" selection-start="489" selection-end="489" vertical-scroll-proportion="0.33333334" vertical-offset="157" max-vertical-offset="879">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="36" selection-start="864" selection-end="864" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="2199">
+        <state line="32" column="45" selection-start="645" selection-end="645" vertical-scroll-proportion="0.74050635" vertical-offset="129" max-vertical-offset="2379">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="16" selection-start="1506" selection-end="1506" vertical-scroll-proportion="0.3317647" vertical-offset="609" max-vertical-offset="4220">
+        <state line="39" column="7" selection-start="843" selection-end="1319" vertical-scroll-proportion="0.0" vertical-offset="697" max-vertical-offset="5060">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKit.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="9" selection-start="1396" selection-end="1396" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="720">
+          <folding>
+            <marker date="1401544853000" expanded="true" signature="200:1387" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Podfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="27" selection-start="115" selection-end="140" vertical-scroll-proportion="0.12747875" vertical-offset="0" max-vertical-offset="1006">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/AppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="0" selection-start="1263" selection-end="1263" vertical-scroll-proportion="0.2821997" vertical-offset="450" max-vertical-offset="2146">
           <folding />
         </state>
       </provider>

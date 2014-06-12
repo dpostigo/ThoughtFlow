@@ -60,10 +60,11 @@
 		338C77EA191E4C5A00E6DDCA /* MindmapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338C77E5191E4C5A00E6DDCA /* MindmapController.m */; };
 		338C77EB191E4C5A00E6DDCA /* NodeRelatedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338C77E7191E4C5A00E6DDCA /* NodeRelatedController.m */; };
 		338C77EE191F0B1800E6DDCA /* JKInterpolationMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 338C77ED191F0B1800E6DDCA /* JKInterpolationMath.m */; };
+		33B30DCC1945CC2800B05AB7 /* FieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B30DCB1945CC2800B05AB7 /* FieldTableViewCell.m */; };
+		33B30DCF1945CC3800B05AB7 /* TFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B30DCE1945CC3800B05AB7 /* TFOperation.m */; };
 		33EE9B5919342DC000C023AB /* TFInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EE9B5819342DC000C023AB /* TFInfoViewController.m */; };
 		5C202FE88EF8455D89258345 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2C77D73AEEB49B6B04A2464 /* libPods.a */; };
 		F29B802FE7C6606BCE09EC93 /* MindmapMinimizedController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8D44198BB2E9B260E72D /* MindmapMinimizedController.m */; };
-		F29B80A3EC59F2299C37894C /* TFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B89E4FB2F6BBEC19F8E46 /* TFOperation.m */; };
 		F29B813572109AE1535AFD36 /* TFNodeView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B866B0D04087B246A7B47 /* TFNodeView+Utils.m */; };
 		F29B82402CF538D0DF9AE332 /* TFUserButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8DD281E307FA929542A4 /* TFUserButton.m */; };
 		F29B829D197CDBCA5B4A1758 /* MoodboardItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B87B18BE12A6B67D2BCC2 /* MoodboardItemController.m */; };
@@ -91,7 +92,6 @@
 		F29B890EB1087B15FE4D38FD /* UIFont+ThoughtFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8B8AA5A7D5C753A4616D /* UIFont+ThoughtFlow.m */; };
 		F29B893454B7741476A7A0D0 /* TFRightDrawerAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B815935DC8551FD511F22 /* TFRightDrawerAnimator.m */; };
 		F29B8962E7568768D71DBA68 /* PasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B82BAB951AD48B733496B /* PasswordController.m */; };
-		F29B8967ABD3F28A24B13E5E /* FieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8D9F544F879C8CDC4FA0 /* FieldTableViewCell.m */; };
 		F29B89B9FFD2ED59EBB1FC0B /* MindmapController+LineDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B84A56C9689981772F647 /* MindmapController+LineDrawing.m */; };
 		F29B89D32524A2B07686290F /* NewTFDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8C2FF4291093CDF7AA59 /* NewTFDrawerController.m */; };
 		F29B89FEDAAD93EC0E638587 /* UIButton+TFNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B87F6F4A85999EFEAAE5C /* UIButton+TFNodeView.m */; };
@@ -202,6 +202,10 @@
 		338C77E7191E4C5A00E6DDCA /* NodeRelatedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeRelatedController.m; sourceTree = "<group>"; };
 		338C77EC191F0B1800E6DDCA /* JKInterpolationMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKInterpolationMath.h; sourceTree = "<group>"; };
 		338C77ED191F0B1800E6DDCA /* JKInterpolationMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKInterpolationMath.m; sourceTree = "<group>"; };
+		33B30DCA1945CC2800B05AB7 /* FieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldTableViewCell.h; sourceTree = "<group>"; };
+		33B30DCB1945CC2800B05AB7 /* FieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldTableViewCell.m; sourceTree = "<group>"; };
+		33B30DCD1945CC3800B05AB7 /* TFOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFOperation.h; sourceTree = "<group>"; };
+		33B30DCE1945CC3800B05AB7 /* TFOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFOperation.m; sourceTree = "<group>"; };
 		33EE9B5719342DC000C023AB /* TFInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFInfoViewController.h; sourceTree = "<group>"; };
 		33EE9B5819342DC000C023AB /* TFInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFInfoViewController.m; sourceTree = "<group>"; };
 		D6FBCA26BF384944ABF007BD /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -275,9 +279,7 @@
 		F29B8963F13F557EE54CAAF5 /* APIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIModel.h; sourceTree = "<group>"; };
 		F29B8975B0055601C3A72EC8 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
 		F29B8979EBE696E0C59F86BF /* UITextView+TFFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+TFFonts.h"; sourceTree = "<group>"; };
-		F29B899584129A78B3076336 /* TFOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFOperation.h; sourceTree = "<group>"; };
 		F29B89C851102245A0CB39D2 /* APIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIModel.m; sourceTree = "<group>"; };
-		F29B89E4FB2F6BBEC19F8E46 /* TFOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFOperation.m; sourceTree = "<group>"; };
 		F29B89EA04B3F92ECF78F8E6 /* UIViewController+TFControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TFControllers.h"; sourceTree = "<group>"; };
 		F29B89FA2B784DA35E294B7B /* TFProjectCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFProjectCollectionViewCell.h; sourceTree = "<group>"; };
 		F29B8A1A69B6CD3B4CB42521 /* TFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFConstants.h; sourceTree = "<group>"; };
@@ -297,12 +299,10 @@
 		F29B8C96008825E09888AD41 /* TFImageFetchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFImageFetchOperation.m; sourceTree = "<group>"; };
 		F29B8C9F1D834F0A8BC7C030 /* TFImageFetchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFImageFetchOperation.h; sourceTree = "<group>"; };
 		F29B8CB94049E79A5D9A481E /* UIButton+TFNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+TFNodeView.h"; sourceTree = "<group>"; };
-		F29B8D08EF278D244AF417D2 /* FieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldTableViewCell.h; sourceTree = "<group>"; };
 		F29B8D1E7373D4546B7F254A /* TFDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDrawerController.h; sourceTree = "<group>"; };
 		F29B8D44198BB2E9B260E72D /* MindmapMinimizedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MindmapMinimizedController.m; sourceTree = "<group>"; };
 		F29B8D4423E74CB70D19BE4C /* TFMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFMenuButton.m; sourceTree = "<group>"; };
 		F29B8D46CFF482505998DA71 /* TFProjectCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFProjectCollectionViewCell.m; sourceTree = "<group>"; };
-		F29B8D9F544F879C8CDC4FA0 /* FieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldTableViewCell.m; sourceTree = "<group>"; };
 		F29B8DB80BCA2F59803EC881 /* MainAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppController.h; sourceTree = "<group>"; };
 		F29B8DD278313EE07F77BDD7 /* PreloginContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreloginContainerController.m; sourceTree = "<group>"; };
 		F29B8DD281E307FA929542A4 /* TFUserButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUserButton.m; sourceTree = "<group>"; };
@@ -380,16 +380,12 @@
 				3343C76219095CBC00B9C582 /* AppDelegate.h */,
 				3343C76319095CBC00B9C582 /* AppDelegate.m */,
 				3343C78F190B309D00B9C582 /* Controllers */,
-				F29B8D08EF278D244AF417D2 /* FieldTableViewCell.h */,
-				F29B8D9F544F879C8CDC4FA0 /* FieldTableViewCell.m */,
 				3343C76519095CBC00B9C582 /* Images.xcassets */,
 				3386D0E91911ABBB007A96AA /* Model */,
 				3343C78E190B2E1800B9C582 /* Operations */,
 				3386D0A9190E7E1E007A96AA /* Resources */,
 				3386D0BE190E7F49007A96AA /* Styles */,
 				3343C75A19095CBC00B9C582 /* Supporting Files */,
-				F29B899584129A78B3076336 /* TFOperation.h */,
-				F29B89E4FB2F6BBEC19F8E46 /* TFOperation.m */,
 				3377E26F1916B93D00A54C39 /* Transitions */,
 				3343C796190B445400B9C582 /* UIControl */,
 				3386D0DF1911959C007A96AA /* Utils */,
@@ -429,6 +425,8 @@
 		3343C78E190B2E1800B9C582 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				33B30DCD1945CC3800B05AB7 /* TFOperation.h */,
+				33B30DCE1945CC3800B05AB7 /* TFOperation.m */,
 				F29B80E2F92CC6EAC0AEFE7F /* TFLoginOperation.m */,
 				F29B844CFD6A9814158164FD /* TFLoginOperation.h */,
 				F29B8C96008825E09888AD41 /* TFImageFetchOperation.m */,
@@ -672,6 +670,8 @@
 		338C77D9191D415700E6DDCA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				33B30DCA1945CC2800B05AB7 /* FieldTableViewCell.h */,
+				33B30DCB1945CC2800B05AB7 /* FieldTableViewCell.m */,
 				338C77DA191D415700E6DDCA /* DPTableView */,
 			);
 			path = Components;
@@ -904,13 +904,11 @@
 				3377E27E1917AB1800A54C39 /* TFToolbarController.m in Sources */,
 				338C77DD191D415700E6DDCA /* DPTableView.m in Sources */,
 				3343C794190B309D00B9C582 /* FirstViewController.m in Sources */,
-				F29B8967ABD3F28A24B13E5E /* FieldTableViewCell.m in Sources */,
 				3386D0EC1911ABBB007A96AA /* Model.m in Sources */,
 				3386D0E71911959C007A96AA /* UITextField+TFFonts.m in Sources */,
 				338C77E9191E4C5A00E6DDCA /* MindmapController+NodeUtils.m in Sources */,
 				3377E27D1917AB1800A54C39 /* LoginModalController.m in Sources */,
 				3377E2801917AB1800A54C39 /* TFAccountDrawerController.m in Sources */,
-				F29B80A3EC59F2299C37894C /* TFOperation.m in Sources */,
 				F29B84F165D59CE9210AC2F0 /* TFLoginOperation.m in Sources */,
 				F29B84C1C57BC1677722BE58 /* CreateProjectController.m in Sources */,
 				F29B8B514D52B15862BF2416 /* TFMenuButton.m in Sources */,
@@ -944,8 +942,10 @@
 				F29B86EA50374F5241A52EAA /* TFToolbarController+Utils.m in Sources */,
 				F29B88AD135F79A1801E5C97 /* TFSettingsDrawerController.m in Sources */,
 				F29B8A1566EB3F877FA7A500 /* PanningView.m in Sources */,
+				33B30DCC1945CC2800B05AB7 /* FieldTableViewCell.m in Sources */,
 				F29B8CE00C54DD339ABFFB22 /* DPTableView+DataUtils.m in Sources */,
 				F29B82A2574CDADF50B82C04 /* NewRegisterController.m in Sources */,
+				33B30DCF1945CC3800B05AB7 /* TFOperation.m in Sources */,
 				F29B8C782F33AB59816E4246 /* TFDrawerController.m in Sources */,
 				F29B8BF3CC7852418AA80AC4 /* TFToggleButton.m in Sources */,
 				F29B8962E7568768D71DBA68 /* PasswordController.m in Sources */,

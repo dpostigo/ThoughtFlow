@@ -29,15 +29,15 @@
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
 
-    if (!_model.loggedIn && showsPrelogin) {
-        animator.modalPresentationSize = CGSizeMake(300, 380);
-
-        UIViewController *controller = self.preloginController;
-        controller.modalPresentationStyle = UIModalPresentationCustom;
-        controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        controller.transitioningDelegate = animator;
-        [self presentViewController: controller animated: YES completion: nil];
-    }
+//    if (!_model.loggedIn && showsPrelogin) {
+//        animator.modalPresentationSize = CGSizeMake(300, 380);
+//
+//        UIViewController *controller = self.preloginController;
+//        controller.modalPresentationStyle = UIModalPresentationCustom;
+//        controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        controller.transitioningDelegate = animator;
+//        [self presentViewController: controller animated: YES completion: nil];
+//    }
 
 }
 
@@ -199,53 +199,50 @@
 }
 
 
-
 - (void) openDrawerWithController: (UIViewController *) controller animator: (TFDrawerModalAnimator *) anAnimator {
-
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-    UIRectEdge edge = anAnimator.presentationEdge;
-    UIView *view = controller.view;
-    view.size = anAnimator.modalPresentationSize;
-
-
-    if (view.width == 0) view.width = self.view.width;
-    if (view.height == 0) view.height = self.view.height;
-
-
-
-    [view positionAtEdge: edge hidden: YES];
-
-
-    [self.view addSubview: view];
-    [self addChildViewController: controller];
-
-    NSLog(@"view.frame = %@", NSStringFromCGRect(view.frame));
-
-    [UIView animateWithDuration: 0.4 animations: ^{
-        [view positionAtEdge: edge];
-    }];
-
-
-
-
-
-    //    UIViewController *presenter = self;
-    //    controller.transitioningDelegate = anAnimator;
-    //    controller.modalPresentationStyle = UIModalPresentationCustom;
-    //    controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     //
-    //    void (^presentBlock)() = ^{
-    //        [self presentViewController: controller animated: YES completion: nil];
-    //    };
+    //    NSLog(@"%s", __PRETTY_FUNCTION__);
+    //    UIRectEdge edge = anAnimator.presentationEdge;
+    //    UIView *view = controller.view;
+    //    view.size = anAnimator.modalPresentationSize;
     //
-    //    NSLog(@"presenter.presentedViewController = %@", presenter.presentedViewController);
-    //    if (presenter.presentedViewController) {
-    //        [presenter dismissViewControllerAnimated: NO completion: presentBlock];
-    //    } else {
+    //    view.width = anAnimator.modalPresentationSize.width == 0 ? self.view.width : anAnimator.modalPresentationSize.width;
+    //    view.height = anAnimator.modalPresentationSize.height == 0 ? self.view.height : anAnimator.modalPresentationSize.height;
     //
-    //        presentBlock();
-    //    }
+    //    [view positionAtEdge: edge hidden: YES];
     //
+    //    [self.view addSubview: view];
+    //    [self addChildViewController: controller];
+    //
+    //    NSLog(@"view.frame = %@", NSStringFromCGRect(view.frame));
+    //
+    //    [UIView animateWithDuration: 0.4 animations: ^{
+    //        [view positionAtEdge: edge];
+    //    }];
+    //
+    //
+
+
+
+    UIViewController *presenter = self;
+    controller.transitioningDelegate = anAnimator;
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+
+    void (^presentBlock)() = ^{
+        [self presentViewController: controller animated: YES completion: nil];
+    };
+
+    NSLog(@"presenter.presentedViewController = %@", presenter.presentedViewController);
+
+    if (presenter.presentedViewController) {
+        [presenter dismissViewControllerAnimated: YES completion: ^{
+            presentBlock();
+        }];
+    } else {
+        presentBlock();
+    }
+
     //    if (self.presentedViewController && self.presentedViewController.transitioningDelegate == anAnimator) {
     //        [self dismissViewControllerAnimated: NO completion: presentBlock];
     //    } else {

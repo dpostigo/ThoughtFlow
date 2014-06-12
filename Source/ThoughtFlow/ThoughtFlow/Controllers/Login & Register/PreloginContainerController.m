@@ -22,10 +22,8 @@
     [super prepareForSegue: segue sender: sender];
 
     if ([segue.identifier isEqualToString: @"EmbedSegue"]) {
-        NSLog(@"%s", __PRETTY_FUNCTION__);
         UINavigationController *controller = segue.destinationViewController;
         controller.delegate = self.animator;
-
     }
 }
 

@@ -48,7 +48,6 @@
             if (strongSelf.model.apiModel.loggedIn) {
                 strongSelf.usernameField.text = strongSelf.model.apiModel.currentUser.username;
                 strongSelf.passwordField.text = strongSelf.model.apiModel.currentUser.password;
-                [strongSelf handleLogin: nil];
             }
         }
 
@@ -56,9 +55,15 @@
 
     [table reloadData];
     table.layer.cornerRadius = 3;
+}
 
-    NSLog(@"_model.apiModel.loggedIn = %d", _model.apiModel.loggedIn);
 
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+
+    if (_model.apiModel.loggedIn) {
+        [self handleLogin: nil];
+    }
 }
 
 - (void) prepareDatasource {

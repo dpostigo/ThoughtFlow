@@ -26,6 +26,18 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 }
 
 
++ (APIModel *) sharedModel {
+    static APIModel *_instance = nil;
+
+    @synchronized (self) {
+        if (_instance == nil) {
+            _instance = [[self alloc] init];
+        }
+    }
+
+    return _instance;
+}
+
 - (BOOL) loggedIn {
     AFOAuthCredential *credential = [AFOAuthCredential retrieveCredentialWithIdentifier: ThoughtFlowIdentifier];
     if (credential) {

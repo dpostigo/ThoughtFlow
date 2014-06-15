@@ -25,5 +25,6 @@ extern NSString *const ThoughtFlowBaseURL;
 - (void (^)()) generalFailureBlock;
 - (void) login: (NSString *) username password: (NSString *) password completion: (void (^)()) completion failure: (void (^)()) failure;
 - (void) userExists: (NSString *) username completion: (void (^)(BOOL exists)) success;
-- (void) createUser: (NSString *) username password: (NSString *) password email: (NSString *) email success: (void (^)()) success failure: (void (^)()) failure;
+- (void) registerUser: (NSString *) username password: (NSString *) password email: (NSString *) email success: (void (^)()) success failure: (void (^)()) failure;
+- (void) getImages: (NSString *) string success: (void (^)(NSArray *images)) success failure: (void (^)()) failure;
 @end

@@ -12,7 +12,7 @@
     if (self) {
         presentationEdge = UIRectEdgeLeft;
         presentationOffset = CGPointMake(60, 0);
-        modalPresentationSize = CGSizeMake(290, 0);
+        viewSize = CGSizeMake(290, 0);
     }
 
     return self;

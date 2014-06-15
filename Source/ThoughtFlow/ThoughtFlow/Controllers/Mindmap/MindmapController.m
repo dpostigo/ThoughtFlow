@@ -32,18 +32,23 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
     [CATransaction setAnimationDuration: 5.0];
 
     nodeContainerView = (PanningView *) firstNodeView.superview;
     nodeContainerView.translatesAutoresizingMaskIntoConstraints = NO;
 
-    backgroundController = [self.storyboard instantiateViewControllerWithIdentifier: @"MindmapBackgroundController"];
+    backgroundController = (MindmapBackgroundController *) self.moodboardBackgroundController;
     [nodeContainerView addSubview: backgroundController.view];
+
+    UIView *backgroundView = backgroundController.view;
     [self addChildViewController: backgroundController];
-    [nodeContainerView sendSubviewToBack: backgroundController.view];
-    backgroundController.view.frame = self.view.bounds;
-    backgroundController.view.translatesAutoresizingMaskIntoConstraints = NO;
-    [backgroundController.view updateSuperEdgeConstraints: 0];
+    [nodeContainerView sendSubviewToBack: backgroundView];
+    backgroundView.frame = self.view.bounds;
+
+    backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
+    backgroundController.imageString = _model.selectedProject.word;
 
     lineView = [[UIView alloc] initWithFrame: nodeContainerView.bounds];
     lineView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -66,6 +71,18 @@
     if (isPinched) {
         [self unpinch];
     }
+}
+
+
+- (void) updateViewConstraints {
+    [super updateViewConstraints];
+
+    UIView *backgroundView = backgroundController.view;
+    [backgroundView updateSuperLeadingConstraint: 0];
+    [backgroundView updateSuperTrailingConstraint: 0];
+    [self.view addConstraint: [NSLayoutConstraint constraintWithItem: backgroundView attribute: NSLayoutAttributeTop relatedBy: NSLayoutRelationEqual toItem: self.topLayoutGuide attribute: NSLayoutAttributeTop multiplier: 1.0 constant: 0.0]];
+    [self.view addConstraint: [NSLayoutConstraint constraintWithItem: backgroundView attribute: NSLayoutAttributeBottom relatedBy: NSLayoutRelationEqual toItem: self.bottomLayoutGuide attribute: NSLayoutAttributeBottom multiplier: 1.0 constant: 0.0]];
+
 }
 
 
@@ -249,6 +266,8 @@
     _model.selectedNode = node.node;
     [self deselectOtherNodes: node];
 
+    backgroundController.imageString = _model.selectedNode.title;
+
 }
 
 
@@ -291,7 +310,6 @@
 #pragma mark Node Interaction
 
 - (void) nodeViewDidLongPress: (UILongPressGestureRecognizer *) gesture {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
 
     TFNodeView *node = (TFNodeView *) gesture.view;
 

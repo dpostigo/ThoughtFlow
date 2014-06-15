@@ -23,14 +23,12 @@
 }
 
 - (void) setProject: (Project *) project1 {
-    if (project != project1) {
-        project = project1;
+    project = project1;
 
-        if (project) {
-            firstWordField.text = project.word;
-            [self updateConnectionsField];
-            [self updateWordsField];
-        }
+    if (project) {
+        firstWordField.text = project.word;
+        [self updateConnectionsField];
+        [self updateWordsField];
     }
 }
 

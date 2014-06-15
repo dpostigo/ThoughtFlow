@@ -4,9 +4,9 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface DPCollectionViewCell : UICollectionViewCell {
 
 }
+
 @property(weak) IBOutlet UIImageView *imageView;
 @end

@@ -5,5 +5,10 @@
 #import <Foundation/Foundation.h>
 
 
-@interface DPCollectionView : UICollectionView
+@interface DPCollectionView : UICollectionView {
+
+
+    void (^onReload)(DPCollectionView *collectionView);
+}
+@property(nonatomic, copy) void (^onReload)(DPCollectionView *);
 @end

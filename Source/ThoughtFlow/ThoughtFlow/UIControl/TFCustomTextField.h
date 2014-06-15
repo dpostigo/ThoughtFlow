@@ -14,5 +14,6 @@ extern CGFloat const TFTextFieldBorderWidth;
     id <UITextFieldDelegate> __delegate;
 }
 
+- (UIButton *) rightAccessoryButton;
 - (UIImageView *) leftAccessoryImageView;
 @end

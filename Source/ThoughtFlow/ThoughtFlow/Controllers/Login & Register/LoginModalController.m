@@ -19,6 +19,7 @@
 #import "UIAlertView+Blocks.h"
 #import "APIModel.h"
 #import "APIUser.h"
+#import "UIViewController+TFControllers.h"
 
 @implementation LoginModalController
 
@@ -35,9 +36,8 @@
 
     [self prepareDatasource];
 
-    __weak UIViewController *weakSelf = self;
+    __weak LoginModalController *weakSelf = self;
     table.onReload = ^(DPTableView *theTable) {
-
         __strong LoginModalController *strongSelf = weakSelf;
         if (strongSelf) {
             CGFloat newheight = theTable.calculatedTableHeight;
@@ -97,26 +97,39 @@
                 tapBlock: nil];
     } else {
 
-        [_model.apiModel login: self.usernameField.text
-                password: self.passwordField.text
-                completion: ^{
-                    [self.presentingViewController dismissViewControllerAnimated: YES completion: nil];
-                }
-                failure: ^{
-                    [UIAlertView showWithTitle: @"Login Error"
-                            message: @"There was an error."
-                            cancelButtonTitle: @"OK"
-                            otherButtonTitles: @[]
-                            tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                //                            if (buttonIndex == [alertView cancelButtonIndex]) {
-                                //                                NSLog(@"Cancelled");
-                                //                            } else if ([[alertView buttonTitleAtIndex: buttonIndex] isEqualToString: @"Beer"]) {
-                                //                                NSLog(@"Have a cold beer");
-                                //                            } else if ([[alertView buttonTitleAtIndex: buttonIndex] isEqualToString: @"Wine"]) {
-                                //                                NSLog(@"Have a glass of chardonnay");
-                                //                            }
-                            }];
-                }];
+        [_model.apiModel userExists: self.usernameField.text completion: ^(BOOL exists) {
+            if (exists) {
+                [_model.apiModel login: self.usernameField.text
+                        password: self.passwordField.text
+                        completion: ^{
+                            UINavigationController *navigationController = self.parentViewController.navigationController;
+                            [navigationController setViewControllers: @[self.mainController] animated: YES];
+                        }
+                        failure: ^{
+                            [UIAlertView showWithTitle: @"Login Error"
+                                    message: @"There was an error."
+                                    cancelButtonTitle: @"OK"
+                                    otherButtonTitles: @[]
+                                    tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                        //                            if (buttonIndex == [alertView cancelButtonIndex]) {
+                                        //                                NSLog(@"Cancelled");
+                                        //                            } else if ([[alertView buttonTitleAtIndex: buttonIndex] isEqualToString: @"Beer"]) {
+                                        //                                NSLog(@"Have a cold beer");
+                                        //                            } else if ([[alertView buttonTitleAtIndex: buttonIndex] isEqualToString: @"Wine"]) {
+                                        //                                NSLog(@"Have a glass of chardonnay");
+                                        //                            }
+                                    }];
+                        }];
+            } else {
+                [UIAlertView showWithTitle: @"User doesn't exist"
+                        message: @"No user exists with this username."
+                        cancelButtonTitle: @"OK"
+                        otherButtonTitles: @[]
+                        tapBlock: nil];
+
+            }
+        }];
+
 
         //
         //        [_model.authClient authenticateUsingOAuthWithURLString: @"http://188.226.201.79/api/oauth/token"
@@ -227,12 +240,20 @@
 #pragma mark UITextFieldDelegate
 
 
+
+- (BOOL) textFieldShouldBeginEditing: (UITextField *) textField {
+    TFCustomTextField *customTextField = (TFCustomTextField *) textField;
+    return customTextField.rightView == nil ? YES : customTextField.rightAccessoryButton.selected;
+}
+
 - (void) textFieldDidBeginEditing: (UITextField *) textField {
+
     //    [self.view adjustViewForKeyboard: 20];
 
 }
 
 - (BOOL) textFieldShouldReturn: (UITextField *) textField {
+
     UITextField *nextTextField = [table nextTableTextField: textField];
     [textField resignFirstResponder];
     if (nextTextField) {
@@ -240,6 +261,7 @@
     } else {
         //        [self.view unadjustViewForKeyboard: 20];
     }
+
     return YES;
 }
 

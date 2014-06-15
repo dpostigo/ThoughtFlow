@@ -15,6 +15,15 @@
 }
 
 
+- (UIViewController *) mainController {
+    return [self.storyboard instantiateViewControllerWithIdentifier: @"MainAppController"];
+}
+
+
+- (UIViewController *) moodboardBackgroundController {
+    return [self.backgroundStoryboard instantiateViewControllerWithIdentifier: @"MindmapBackgroundController"];
+}
+
 
 #pragma mark Toolbar controllers
 
@@ -43,6 +52,13 @@
 
 - (UIViewController *) infoViewController {
     return [self.storyboard instantiateViewControllerWithIdentifier: @"TFInfoViewController"];
+}
+
+
+#pragma mark Storyboards
+
+- (UIStoryboard *) backgroundStoryboard {
+    return [UIStoryboard storyboardWithName: @"MindmapBackground" bundle: nil];
 }
 
 

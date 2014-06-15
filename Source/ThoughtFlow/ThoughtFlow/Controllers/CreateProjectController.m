@@ -23,7 +23,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.delegate = self;
+    //    self.navigationController.delegate = self;
 
     if ([_model.projects count] > 0) {
         [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];

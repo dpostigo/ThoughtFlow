@@ -11,7 +11,7 @@
     self = [super init];
     if (self) {
         presentationEdge = UIRectEdgeRight;
-        modalPresentationSize = CGSizeMake(450, 0);
+        //        viewSize = CGSizeMake(450, 0);
     }
 
     return self;

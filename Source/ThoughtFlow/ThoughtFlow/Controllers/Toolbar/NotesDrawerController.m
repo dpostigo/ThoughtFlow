@@ -35,12 +35,15 @@
 
 - (IBAction) handleDoneButton: (id) sender {
 
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     _model.selectedProject.notes = _textView.text;
 
-    NSLog(@"self.presentingViewController = %@", self.presentingViewController);
-    [self.presentingViewController dismissViewControllerAnimated: YES
-            completion: nil];
+    if (self.presentingViewController) {
+        [self.presentingViewController dismissViewControllerAnimated: YES
+                completion: nil];
+    } else {
+        [self.navigationController popViewControllerAnimated: YES];
+
+    }
 
 }
 

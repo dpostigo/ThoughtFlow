@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E96510D82CE64A2AA81DABDA"
+               BlueprintIdentifier = "99E85EE46CCF4231909D3805"
                BuildableName = "libPods-DPAnimators.a"
                BlueprintName = "Pods-DPAnimators"
                ReferencedContainer = "container:Pods.xcodeproj">

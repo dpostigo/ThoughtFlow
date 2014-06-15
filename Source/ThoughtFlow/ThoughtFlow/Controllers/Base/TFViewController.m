@@ -8,6 +8,7 @@
 #import "UIColor+DPKit.h"
 #import "UIView+DPKitChildren.h"
 #import "UIFont+ThoughtFlow.h"
+#import "APIModel.h"
 
 @implementation TFViewController
 
@@ -15,6 +16,7 @@
     [super viewDidLoad];
 
     _model = [Model sharedModel];
+    _apiModel = [APIModel sharedModel];
     _queue = _model.queue;
 
     if ([self.view.backgroundColor isEqual: [UIColor whiteColor]]) {

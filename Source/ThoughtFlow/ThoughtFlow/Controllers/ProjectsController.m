@@ -10,6 +10,8 @@
 #import "Project.h"
 #import "TFConstants.h"
 #import "ProjectLibrary.h"
+#import "APIModel.h"
+#import "APIUser.h"
 
 @implementation ProjectsController
 
@@ -45,9 +47,13 @@
 
     }
 
-    [collection reloadData];
-
 }
+
+- (void) viewWillAppear: (BOOL) animated {
+    [super viewWillAppear: animated];
+    [collection reloadData];
+}
+
 
 
 #pragma mark IBActions
@@ -55,6 +61,8 @@
 - (IBAction) handleNewProject: (id) sender {
     [self.navigationController popViewControllerAnimated: YES];
 }
+
+
 #pragma mark UICollectionViewDelegateFlowLayout
 
 
@@ -74,22 +82,19 @@
 }
 
 - (UICollectionViewCell *) collectionView: (UICollectionView *) collectionView cellForItemAtIndexPath: (NSIndexPath *) indexPath {
-    UICollectionViewCell *ret = [collection dequeueReusableCellWithReuseIdentifier: @"CollectionCell"
+    TFProjectCollectionViewCell *cell = [collection dequeueReusableCellWithReuseIdentifier: @"CollectionCell"
             forIndexPath: indexPath];
 
-    if ([ret isKindOfClass: [TFProjectCollectionViewCell class]]) {
 
-        TFProjectCollectionViewCell *cell = (TFProjectCollectionViewCell *) ret;
-        Project *project = [self projectForIndexPath: indexPath];
-        if (project) {
-            cell.project = project;
-        }
-        cell.button.tag = indexPath.item;
-        [cell.button addTarget: self action: @selector(handleTrashButton:)
-                forControlEvents: UIControlEventTouchUpInside];
+    Project *project = [self projectForIndexPath: indexPath];
+    if (project) {
+        cell.project = project;
     }
+    cell.button.tag = indexPath.item;
+    [cell.button addTarget: self action: @selector(handleTrashButton:)
+            forControlEvents: UIControlEventTouchUpInside];
 
-    return ret;
+    return cell;
 }
 
 - (void) handleTrashButton: (UIButton *) button {

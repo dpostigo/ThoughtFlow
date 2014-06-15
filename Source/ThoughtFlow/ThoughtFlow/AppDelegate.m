@@ -21,13 +21,11 @@
     //  [TestFlight takeOff: @"fa4efa7c-ddc8-4377-a8da-c2708c1b0216"];
     [self testOAuth];
     [self testDestore];
-    [self preloadKeyboard];
+    //    [self preloadKeyboard];
 
     [[UITextField appearance] setKeyboardAppearance: UIKeyboardAppearanceDark];
 
     self.window.backgroundColor = [UIColor tfBackgroundColor];
-
-
 
     return YES;
 }

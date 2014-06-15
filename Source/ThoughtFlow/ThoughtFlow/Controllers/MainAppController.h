@@ -15,8 +15,11 @@
 @class TFRightDrawerAnimator;
 @class TFLeftDrawerAnimator;
 @class ModalChildDrawerAnimator;
+@class TFLeftDrawerNavAnimator;
+@class TFDrawerNavAnimator;
+@class TFDrawerModalAnimator;
 
-@interface MainAppController : TFViewController <TFToolbarDelegate> {
+@interface MainAppController : TFViewController <TFToolbarDelegate, UINavigationControllerDelegate> {
 
     BOOL showsPrelogin;
 
@@ -27,10 +30,12 @@
     CustomModalAnimator *animator;
 
     NavigationFadeAnimator *navigationAnimator;
-    ModalDrawerAnimator *testAnimator;
+    TFDrawerModalAnimator *testAnimator;
     TFRightDrawerAnimator *rightDrawerAnimator;
     TFLeftDrawerAnimator *leftDrawerAnimator;
     ModalChildDrawerAnimator *childDrawerAnimator;
+    TFDrawerNavAnimator *navAnimator;
+    TFDrawerNavAnimator *rightNavAnimator;
 }
 
 @end

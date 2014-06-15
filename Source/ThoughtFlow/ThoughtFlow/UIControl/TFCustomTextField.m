@@ -5,8 +5,6 @@
 
 #import "TFCustomTextField.h"
 #import "UIView+DPKit.h"
-#import "UIView+DPConstraints.h"
-#import "DPBorderedView.h"
 #import "UIColor+TFApp.h"
 #import "UIView+DPKitChildren.h"
 
@@ -26,34 +24,19 @@ CGFloat const TFTextFieldBorderWidth = 0.5;
     self.rightView = [self createRightAccessoryView];
     self.rightViewMode = UITextFieldViewModeUnlessEditing;
 
-    super.delegate = self;
+    //    super.delegate = self;
 
 }
+
 
 
 
 #pragma mark UITextFieldDelegate
+//
+//- (void) setDelegate: (id <UITextFieldDelegate>) delegate {
+//    __delegate = delegate;
+//}
 
-- (void) setDelegate: (id <UITextFieldDelegate>) delegate {
-    __delegate = delegate;
-}
-
-- (BOOL) textFieldShouldBeginEditing: (UITextField *) textField {
-    if (__delegate && [__delegate respondsToSelector: @selector(textFieldShouldBeginEditing:)]) {
-        return [__delegate performSelector: @selector(textFieldShouldBeginEditing:) withObject: self];
-    }
-    return self.rightView == nil ? YES : self.rightAccessoryButton.selected;
-}
-
-
-- (BOOL) textFieldShouldReturn: (UITextField *) textField {
-    if (__delegate && [__delegate respondsToSelector: @selector(textFieldShouldReturn:)]) {
-        return [__delegate performSelector: @selector(textFieldShouldReturn:) withObject: self];
-    }
-
-    [self resignFirstResponder];
-    return YES;
-}
 
 
 #pragma mark IBActions

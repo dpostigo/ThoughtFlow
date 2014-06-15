@@ -6,7 +6,6 @@
 #import <DPTransitions/CustomModalSegue.h>
 #import <DPAnimators/NavigationFadeAnimator.h>
 #import <DPAnimators/ModalChildDrawerAnimator.h>
-#import <DPKit-Utils/UIView+DPKit.h>
 #import "ModalDrawerAnimator.h"
 #import "CustomModalAnimator.h"
 #import "MainAppController.h"
@@ -16,7 +15,12 @@
 #import "UINavigationController+BasicNavigationAnimator.h"
 #import "TFRightDrawerAnimator.h"
 #import "TFLeftDrawerAnimator.h"
-#import "UIView+DPKit.h"
+#import "TFLeftDrawerNavAnimator.h"
+#import "UINavigationController+TFDrawerNavAnimator.h"
+#import "UIViewController+BasicModalAnimator.h"
+#import "TFDrawerModalAnimator.h"
+#import "TFDrawerController.h"
+#import "NotesDrawerController.h"
 
 @implementation MainAppController
 
@@ -29,15 +33,15 @@
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
 
-//    if (!_model.loggedIn && showsPrelogin) {
-//        animator.modalPresentationSize = CGSizeMake(300, 380);
-//
-//        UIViewController *controller = self.preloginController;
-//        controller.modalPresentationStyle = UIModalPresentationCustom;
-//        controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        controller.transitioningDelegate = animator;
-//        [self presentViewController: controller animated: YES completion: nil];
-//    }
+    //    if (!_model.loggedIn && showsPrelogin) {
+    //        animator.viewSize = CGSizeMake(300, 380);
+    //
+    //        UIViewController *controller = self.preloginController;
+    //        controller.modalPresentationStyle = UIModalPresentationCustom;
+    //        controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //        controller.transitioningDelegate = animator;
+    //        [self presentViewController: controller animated: YES completion: nil];
+    //    }
 
 }
 
@@ -56,6 +60,7 @@
     [self testModalChildDrawer];
 
     navController = (UINavigationController *) ([contentController isKindOfClass: [UINavigationController class]] ? contentController : nil);
+    navController.delegate = self;
     if (navController) {
         [self setupNotifications];
     }
@@ -64,24 +69,33 @@
 
 - (void) setupTestAnimator {
 
-    testAnimator = [ModalDrawerAnimator new];
+    navAnimator = [TFDrawerNavAnimator new];
+    navAnimator.presentationEdge = UIRectEdgeLeft;
+    navAnimator.presentationOffset = CGPointMake(60, 0);
+    navAnimator.viewSize = CGSizeMake(300, 0);
 
+    rightNavAnimator = [TFDrawerNavAnimator new];
+    rightNavAnimator.presentationEdge = UIRectEdgeRight;
+    rightNavAnimator.presentationOffset = CGPointMake(60, 0);
+    rightNavAnimator.viewSize = CGSizeMake(450, 0);
+
+    testAnimator = [TFDrawerModalAnimator new];
     testAnimator.presentationEdge = UIRectEdgeLeft;
     testAnimator.presentationOffset = CGPointMake(60, 0);
-    testAnimator.modalPresentationSize = CGSizeMake(300, 0);
+    testAnimator.viewSize = CGSizeMake(300, 0);
 
 
     //
     //    testAnimator.presentationEdge = UIRectEdgeRight;
     //    testAnimator.presentationOffset = CGPointMake(-60, 0);
-    //    testAnimator.modalPresentationSize = CGSizeMake(300, 0);
+    //    testAnimator.viewSize = CGSizeMake(300, 0);
 
 
     //    testAnimator.presentationEdge = UIRectEdgeTop;
-    //    testAnimator.modalPresentationSize = CGSizeMake(0, 300);
+    //    testAnimator.viewSize = CGSizeMake(0, 300);
 
     //    testAnimator.presentationEdge = UIRectEdgeBottom;
-    //    testAnimator.modalPresentationSize = CGSizeMake(0, 300);
+    //    testAnimator.viewSize = CGSizeMake(0, 300);
 
 }
 
@@ -175,6 +189,8 @@
 }
 
 - (void) toggleLeftDrawer: (BOOL) selected withController: (UIViewController *) controller {
+
+    NSLog(@"navController.delegate = %@", navController.delegate);
     if (selected) {
         [self openLeftDrawerWithController: controller];
     } else {
@@ -184,70 +200,39 @@
 
 
 - (void) closeDrawers {
-    if (self.presentedViewController) {
-        [self dismissViewControllerAnimated: YES completion: nil];
+
+    if ([navController.visibleViewController isKindOfClass: [TFDrawerController class]]) {
+        [navController popViewControllerAnimated: YES];
     }
+    //
+    //    if (navController.delegate == navAnimator) {
+    //        //        [navController popViewControllerAnimated: YES];
+    //        [navController popViewControllerWithAnimator: navAnimator completion: ^{
+    //
+    //            //            navController.delegate = navigationAnimator;
+    //        }];
+    //    }
+    //    if (self.presentedViewController) {
+    //        [self dismissViewControllerAnimated: YES completion: nil];
+    //    }
 }
 
 
 - (void) openLeftDrawerWithController: (UIViewController *) controller {
-    [self openDrawerWithController: controller animator: leftDrawerAnimator];
+    [self openDrawerWithController: controller animator: navAnimator];
 }
 
 - (void) openRightDrawerWithController: (UIViewController *) controller {
-    [self openDrawerWithController: controller animator: rightDrawerAnimator];
+    [self openDrawerWithController: controller animator: rightNavAnimator];
 }
 
 
-- (void) openDrawerWithController: (UIViewController *) controller animator: (TFDrawerModalAnimator *) anAnimator {
-    //
-    //    NSLog(@"%s", __PRETTY_FUNCTION__);
-    //    UIRectEdge edge = anAnimator.presentationEdge;
-    //    UIView *view = controller.view;
-    //    view.size = anAnimator.modalPresentationSize;
-    //
-    //    view.width = anAnimator.modalPresentationSize.width == 0 ? self.view.width : anAnimator.modalPresentationSize.width;
-    //    view.height = anAnimator.modalPresentationSize.height == 0 ? self.view.height : anAnimator.modalPresentationSize.height;
-    //
-    //    [view positionAtEdge: edge hidden: YES];
-    //
-    //    [self.view addSubview: view];
-    //    [self addChildViewController: controller];
-    //
-    //    NSLog(@"view.frame = %@", NSStringFromCGRect(view.frame));
-    //
-    //    [UIView animateWithDuration: 0.4 animations: ^{
-    //        [view positionAtEdge: edge];
-    //    }];
-    //
-    //
+- (void) openDrawerWithController: (UIViewController *) controller animator: (BasicNavigationAnimator *) anAnimator {
+    //    [navController pushViewController: controller withAnimator: anAnimator];
 
-
-
-    UIViewController *presenter = self;
-    controller.transitioningDelegate = anAnimator;
-    controller.modalPresentationStyle = UIModalPresentationCustom;
-    controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-
-    void (^presentBlock)() = ^{
-        [self presentViewController: controller animated: YES completion: nil];
-    };
-
-    NSLog(@"presenter.presentedViewController = %@", presenter.presentedViewController);
-
-    if (presenter.presentedViewController) {
-        [presenter dismissViewControllerAnimated: YES completion: ^{
-            presentBlock();
-        }];
-    } else {
-        presentBlock();
-    }
-
-    //    if (self.presentedViewController && self.presentedViewController.transitioningDelegate == anAnimator) {
-    //        [self dismissViewControllerAnimated: NO completion: presentBlock];
-    //    } else {
-    //        presentBlock();
-    //    }
+    [navController pushViewController: controller animated: YES];
+    //    NSLog(@"navController.view.frame = %@", NSStringFromCGRect(navController.view.frame));
+    //    [navController presentController: controller withAnimator: testAnimator];
 
 }
 
@@ -279,7 +264,6 @@
 
         case TFToolbarButtonNotes  :
             [self toggleRightDrawer: selected withController: self.notesViewController];
-            //            [self toggleLeftDrawer: selected withController: self.notesViewController];
             break;
 
         case TFToolbarButtonAccount :
@@ -305,6 +289,32 @@
 - (void) toolbarDidDeselectButtonWithType: (NSNumber *) numberType {
     TFToolbarButtonType type = (TFToolbarButtonType) [numberType integerValue];
 
+}
+
+
+
+#pragma mark UINavigationController delegate
+
+- (id <UIViewControllerAnimatedTransitioning>) navigationController: (UINavigationController *) navigationController
+                                    animationControllerForOperation: (UINavigationControllerOperation) operation
+                                                 fromViewController: (UIViewController *) fromVC
+                                                   toViewController: (UIViewController *) toVC {
+
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    BasicAnimator *ret = nil;
+
+    if ([fromVC isKindOfClass: [NotesDrawerController class]] || [toVC isKindOfClass: [NotesDrawerController class]]) {
+        ret = rightNavAnimator;
+    } else if ([fromVC isKindOfClass: [TFDrawerController class]] || [toVC isKindOfClass: [TFDrawerController class]]) {
+        ret = navAnimator;
+    } else {
+        ret = navigationAnimator;
+        //        navigationAnimator = [NavigationFadeAnimator new];
+    }
+
+    ret.isPresenting = operation == UINavigationControllerOperationPush;
+
+    return ret;
 }
 
 

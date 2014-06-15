@@ -50,7 +50,6 @@ CGFloat const TFNodeViewHeight = 80;
 - (id) initWithFrame: (CGRect) frame {
     self = [super initWithFrame: CGRectMake(frame.origin.x, frame.origin.y, TFNodeViewWidth, TFNodeViewHeight)];
     if (self) {
-        NSLog(@"%s", __PRETTY_FUNCTION__);
         [self setup];
     }
 

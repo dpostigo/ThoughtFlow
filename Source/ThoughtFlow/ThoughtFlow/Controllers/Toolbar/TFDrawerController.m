@@ -7,9 +7,12 @@
 
 @implementation TFDrawerController
 
-
 - (IBAction) closeDrawer: (id) sender {
-    [self.presentingViewController dismissViewControllerAnimated: YES completion: nil];
+    if (self.presentingViewController) {
+        [self.presentingViewController dismissViewControllerAnimated: YES completion: nil];
+    } else {
+        [self.navigationController popViewControllerAnimated: YES];
+    }
 }
 
 @end

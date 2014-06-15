@@ -60,10 +60,11 @@
                 }];
 
             } else {
-                [_model.apiModel createUser: self.usernameField.text
+                [_model.apiModel registerUser: self.usernameField.text
                         password: self.passwordField.text
                         email: self.emailField.text
                         success: ^{
+
                             [_model.apiModel login: self.usernameField.text
                                     password: self.passwordField.text
                                     completion: ^{

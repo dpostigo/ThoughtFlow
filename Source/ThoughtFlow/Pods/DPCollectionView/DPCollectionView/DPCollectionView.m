@@ -5,7 +5,17 @@
 #import "DPCollectionView.h"
 
 
-@implementation DPCollectionView {
+@implementation DPCollectionView
 
+
+@synthesize onReload;
+
+- (void)reloadData {
+    [super reloadData];
+
+    if (onReload) {
+        onReload(self);
+    }
 }
+
 @end

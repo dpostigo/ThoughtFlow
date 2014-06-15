@@ -19,3 +19,6 @@ pod 'DPAnimators', :path => '~/Development/LocalPods/DPAnimators'
 
 pod 'AFOAuth2Client', :git => 'https://github.com/mlwelles/AFOAuth2Client'
 
+
+
+pod 'Reveal-iOS-SDK'

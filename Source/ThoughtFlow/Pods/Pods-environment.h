@@ -9,44 +9,44 @@
 // AFNetworking
 #define COCOAPODS_POD_AVAILABLE_AFNetworking
 #define COCOAPODS_VERSION_MAJOR_AFNetworking 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking 2
-#define COCOAPODS_VERSION_PATCH_AFNetworking 4
+#define COCOAPODS_VERSION_MINOR_AFNetworking 3
+#define COCOAPODS_VERSION_PATCH_AFNetworking 1
 
 // AFNetworking/NSURLConnection
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_NSURLConnection
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_NSURLConnection 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLConnection 2
-#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLConnection 4
+#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLConnection 3
+#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLConnection 1
 
 // AFNetworking/NSURLSession
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_NSURLSession
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_NSURLSession 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLSession 2
-#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLSession 4
+#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLSession 3
+#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLSession 1
 
 // AFNetworking/Reachability
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_Reachability
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_Reachability 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_Reachability 2
-#define COCOAPODS_VERSION_PATCH_AFNetworking_Reachability 4
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Reachability 3
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Reachability 1
 
 // AFNetworking/Security
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_Security
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_Security 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_Security 2
-#define COCOAPODS_VERSION_PATCH_AFNetworking_Security 4
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Security 3
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Security 1
 
 // AFNetworking/Serialization
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_Serialization
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_Serialization 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_Serialization 2
-#define COCOAPODS_VERSION_PATCH_AFNetworking_Serialization 4
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Serialization 3
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Serialization 1
 
 // AFNetworking/UIKit
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_UIKit
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_UIKit 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 2
-#define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 4
+#define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 3
+#define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
 // AFOAuth2Client
 #define COCOAPODS_POD_AVAILABLE_AFOAuth2Client
@@ -76,7 +76,7 @@
 #define COCOAPODS_POD_AVAILABLE_DPCollectionView
 #define COCOAPODS_VERSION_MAJOR_DPCollectionView 0
 #define COCOAPODS_VERSION_MINOR_DPCollectionView 0
-#define COCOAPODS_VERSION_PATCH_DPCollectionView 1
+#define COCOAPODS_VERSION_PATCH_DPCollectionView 2
 
 // DPKit-UIView
 #define COCOAPODS_POD_AVAILABLE_DPKit_UIView
@@ -88,7 +88,7 @@
 #define COCOAPODS_POD_AVAILABLE_DPKit_Utils
 #define COCOAPODS_VERSION_MAJOR_DPKit_Utils 0
 #define COCOAPODS_VERSION_MINOR_DPKit_Utils 0
-#define COCOAPODS_VERSION_PATCH_DPKit_Utils 18
+#define COCOAPODS_VERSION_PATCH_DPKit_Utils 22
 
 // DPTransitions
 #define COCOAPODS_POD_AVAILABLE_DPTransitions
@@ -113,6 +113,12 @@
 #define COCOAPODS_VERSION_MAJOR_NSObject_AutoDescription 0
 #define COCOAPODS_VERSION_MINOR_NSObject_AutoDescription 1
 #define COCOAPODS_VERSION_PATCH_NSObject_AutoDescription 0
+
+// Reveal-iOS-SDK
+#define COCOAPODS_POD_AVAILABLE_Reveal_iOS_SDK
+#define COCOAPODS_VERSION_MAJOR_Reveal_iOS_SDK 1
+#define COCOAPODS_VERSION_MINOR_Reveal_iOS_SDK 0
+#define COCOAPODS_VERSION_PATCH_Reveal_iOS_SDK 4
 
 // UIAlertView+Blocks
 #define COCOAPODS_POD_AVAILABLE_UIAlertView_Blocks

@@ -7,10 +7,12 @@
 #import "TFConstants.h"
 
 @class Model;
+@class APIModel;
 
 @interface TFViewController : UIViewController {
     Model *_model;
     NSOperationQueue *_queue;
+    APIModel *_apiModel;
 }
 
 @property(nonatomic, strong) Model *model;

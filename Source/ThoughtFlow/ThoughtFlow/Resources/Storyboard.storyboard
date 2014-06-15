@@ -237,7 +237,7 @@
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.32941177487373352" green="0.3333333432674408" blue="0.36862745881080627" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="n6z-v0-3Br" secondAttribute="centerX" id="MGt-Lc-K5O"/>
                             <constraint firstAttribute="centerY" secondItem="n6z-v0-3Br" secondAttribute="centerY" id="bSY-kT-BDG"/>
@@ -1164,7 +1164,7 @@ siblings, joy...</string>
         <!--Mindmap Controller-->
         <scene sceneID="3d-rTA-wc-3Es">
             <objects>
-                <viewController storyboardIdentifier="MindmapController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fa3-80-OiI" customClass="MindmapController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MindmapController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fa3-80-OiI" customClass="MindmapController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0LE-dk-dE0"/>
                         <viewControllerLayoutGuide type="bottom" id="UyA-GJ-sQu"/>
@@ -1227,7 +1227,7 @@ siblings, joy...</string>
                         <color key="backgroundColor" red="0.16078431904315948" green="0.16078431904315948" blue="0.18039216101169586" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="VUX-Xr-Vrs" firstAttribute="leading" secondItem="aNn-3V-GHf" secondAttribute="trailing" constant="10" id="JRF-Iz-pS1"/>
-                            <constraint firstItem="Yo8-gh-H0B" firstAttribute="top" secondItem="0LE-dk-dE0" secondAttribute="top" id="MBd-Rx-Tj1"/>
+                            <constraint firstItem="Yo8-gh-H0B" firstAttribute="top" secondItem="0LE-dk-dE0" secondAttribute="bottom" id="MBd-Rx-Tj1"/>
                             <constraint firstItem="Yo8-gh-H0B" firstAttribute="height" secondItem="Q0T-yt-8qV" secondAttribute="height" id="UyL-2R-oht"/>
                             <constraint firstItem="4aU-CM-caM" firstAttribute="top" secondItem="0LE-dk-dE0" secondAttribute="bottom" constant="10" id="YKk-Q2-qH8"/>
                             <constraint firstItem="Yo8-gh-H0B" firstAttribute="leading" secondItem="Q0T-yt-8qV" secondAttribute="leading" id="arh-Zi-Z4q"/>
@@ -1397,7 +1397,7 @@ siblings, joy...</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vOQ-wW-OAz">
-                                <rect key="frame" x="0.0" y="-20" width="768" height="1044"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.074509806931018829" green="0.074509806931018829" blue="0.086274512112140656" alpha="1" colorSpace="deviceRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="AUG-1g-jmC">
@@ -1408,7 +1408,7 @@ siblings, joy...</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCell" id="SRx-Cu-Ne2" customClass="DPCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="158" width="964" height="728"/>
+                                        <rect key="frame" x="0.0" y="148" width="964" height="728"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="964" height="728"/>
@@ -1438,13 +1438,14 @@ siblings, joy...</string>
                         </subviews>
                         <color key="backgroundColor" red="0.074509806931018829" green="0.074509806931018829" blue="0.086274512112140656" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="vOQ-wW-OAz" firstAttribute="height" secondItem="APx-Jm-mqk" secondAttribute="height" constant="20" id="JO8-UD-aTe"/>
                             <constraint firstItem="vOQ-wW-OAz" firstAttribute="leading" secondItem="APx-Jm-mqk" secondAttribute="leading" id="R96-m1-hHz"/>
+                            <constraint firstItem="vOQ-wW-OAz" firstAttribute="top" secondItem="0zZ-hN-cWH" secondAttribute="bottom" id="eRU-tw-9cC"/>
                             <constraint firstItem="I0G-H1-3Od" firstAttribute="top" secondItem="vOQ-wW-OAz" secondAttribute="bottom" id="evi-Rx-OSd"/>
                             <constraint firstAttribute="trailing" secondItem="vOQ-wW-OAz" secondAttribute="trailing" id="fkg-JN-kSu"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="collection" destination="vOQ-wW-OAz" id="bn5-2k-f5g"/>
                     </connections>

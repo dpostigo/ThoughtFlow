@@ -12,6 +12,8 @@
 @synthesize creationDate;
 @synthesize notes;
 
+@synthesize pins;
+
 - (instancetype) initWithWord: (NSString *) aWord {
     self = [super init];
     if (self) {
@@ -57,16 +59,29 @@
 
 #pragma mark Getters
 
-- (NSMutableArray *) items {
-    if (items == nil) {
-        items = [[NSMutableArray alloc] init];
-    }
-    return items;
-}
+
 
 
 - (NSArray *) nodes {
     return self.items;
 }
 
+
+
+#pragma mark Lazy getters
+
+
+- (NSMutableArray *) pins {
+    if (pins == nil) {
+        pins = [[NSMutableArray alloc] init];
+    }
+    return pins;
+}
+
+- (NSMutableArray *) items {
+    if (items == nil) {
+        items = [[NSMutableArray alloc] init];
+    }
+    return items;
+}
 @end

@@ -20,6 +20,8 @@
 #import "TFRightDrawerAnimator.h"
 #import "UIViewController+TFControllers.h"
 #import "UIViewController+BasicModalAnimator.h"
+#import "TFDrawerController.h"
+#import "MindmapButtonsController.h"
 
 @implementation MindmapController {
     TFNodeViewState lastNodeState;
@@ -32,23 +34,20 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-
     [CATransaction setAnimationDuration: 5.0];
 
     nodeContainerView = (PanningView *) firstNodeView.superview;
     nodeContainerView.translatesAutoresizingMaskIntoConstraints = NO;
+    //    [nodeContainerView addSubview: backgroundController.view];
 
-    backgroundController = (MindmapBackgroundController *) self.moodboardBackgroundController;
-    [nodeContainerView addSubview: backgroundController.view];
-
-    UIView *backgroundView = backgroundController.view;
-    [self addChildViewController: backgroundController];
-    [nodeContainerView sendSubviewToBack: backgroundView];
-    backgroundView.frame = self.view.bounds;
-
-    backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
-    backgroundController.imageString = _model.selectedProject.word;
+    [self embedControllers];
+    //
+    //    UIView *backgroundView = backgroundController.view;
+    //    [self addChildViewController: backgroundController];
+    //    [nodeContainerView sendSubviewToBack: backgroundView];
+    //    backgroundView.frame = self.view.bounds;
+    //
+    //    backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
 
     lineView = [[UIView alloc] initWithFrame: nodeContainerView.bounds];
     lineView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -73,6 +72,35 @@
     }
 }
 
+
+- (void) embedControllers {
+
+    MindmapButtonsController *buttonsController = (MindmapButtonsController *) self.mindmapButtonsController;
+    buttonsController.drawerPresenter = self;
+    [self embedController: buttonsController];
+
+    backgroundController = (MindmapBackgroundController *) self.mindmapBackgroundController;
+    [self embedController: backgroundController];
+    backgroundController.imageString = _model.selectedProject.word;
+
+}
+
+- (UIView *) embedController: (UIViewController *) controller {
+
+    UIView *view = controller.view;
+    [self addChildViewController: controller];
+    [self.view addSubview: view];
+    [self.view sendSubviewToBack: view];
+    view.frame = self.view.bounds;
+
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    [view updateSuperLeadingConstraint: 0];
+    [view updateSuperTrailingConstraint: 0];
+    [self.view addConstraint: [NSLayoutConstraint constraintWithItem: view attribute: NSLayoutAttributeTop relatedBy: NSLayoutRelationEqual toItem: self.topLayoutGuide attribute: NSLayoutAttributeTop multiplier: 1.0 constant: 0.0]];
+    [self.view addConstraint: [NSLayoutConstraint constraintWithItem: view attribute: NSLayoutAttributeBottom relatedBy: NSLayoutRelationEqual toItem: self.bottomLayoutGuide attribute: NSLayoutAttributeBottom multiplier: 1.0 constant: 0.0]];
+
+    return view;
+}
 
 - (void) updateViewConstraints {
     [super updateViewConstraints];
@@ -146,7 +174,6 @@
 
     [node.superview bringSubviewToFront: node];
 
-    NSLog(@"gesture.scale = %f", gesture.scale);
     CGFloat newScale = fmaxf(0, (gesture.scale - 0.3) / 0.7);
     newScale = 1 - newScale;
 
@@ -447,27 +474,70 @@
 
 
 
-#pragma mark IBActions
 
-- (IBAction) handleGridButton: (UIButton *) sender {
-    //    [[NSNotificationCenter defaultCenter] postNotificationName: TFNavigationNotification
-    //                                                        object: nil
-    //                                                      userInfo: @{
-    //                                                              TFViewControllerTypeName : @"MoodboardController",
-    //                                                              TFViewControllerTypeKey : [NSNumber numberWithInteger: TFControllerMoodboard]
-    //                                                      }];
 
-    //    [self postNavigationNotificationForType: TFControllerMoodboard];
+
+#pragma mark TFDrawerPresenter
+
+
+- (void) presentImageDrawer: (UIViewController *) controller {
+    if (isPresenting) return;
+
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    isPresenting = YES;
+    UIViewController *presenterController = self;
+    UIView *presenterView = presenterController.view;
+    [presenterController addChildViewController: controller];
+
+    UIView *view = controller.view;
+    [presenterView addSubview: view];
+
+    view.width = 450;
+    view.height = self.view.height;
+    view.left = self.view.width;
+
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    [view updateWidthConstraint: 450];
+    [view updateSuperTrailingConstraint: -view.width];
+    [presenterView addConstraint: [NSLayoutConstraint constraintWithItem: view attribute: NSLayoutAttributeTop relatedBy: NSLayoutRelationEqual toItem: presenterController.topLayoutGuide attribute: NSLayoutAttributeTop multiplier: 1.0 constant: 0.0]];
+    [presenterView addConstraint: [NSLayoutConstraint constraintWithItem: view attribute: NSLayoutAttributeBottom relatedBy: NSLayoutRelationEqual toItem: presenterController.bottomLayoutGuide attribute: NSLayoutAttributeTop multiplier: 1.0 constant: 0.0]];
+
+    [presenterView layoutIfNeeded];
+    [view updateSuperTrailingConstraint: 0];
+
+    [UIView animateWithDuration: 0.4
+            delay: 0.0f
+            usingSpringWithDamping: 0.8
+            initialSpringVelocity: 2.0f
+            options: UIViewAnimationOptionCurveLinear
+            animations: ^{
+                [presenterView layoutIfNeeded];
+            }
+            completion: ^(BOOL finished) {
+            }];
 
 }
 
-- (IBAction) handleInfoButton: (UIButton *) sender {
-    rightDrawerAnimator = [TFRightDrawerAnimator new];
-    [self.navigationController presentController: self.imageDrawerController withAnimator: rightDrawerAnimator];
 
-}
+- (void) dismissDrawerController: (TFDrawerController *) controller {
+    UIViewController *presenterController = controller.presentingViewController;
+    UIView *presenterView = controller.view.superview;
 
-- (IBAction) handlePinButton: (UIButton *) sender {
+    UIView *view = controller.view;
+    [view updateSuperTrailingConstraint: -view.width];
+
+    [UIView animateWithDuration: 0.4
+            delay: 0.0f
+            usingSpringWithDamping: 0.8
+            initialSpringVelocity: 2.0f
+            options: UIViewAnimationOptionCurveLinear
+            animations: ^{
+                [presenterView layoutIfNeeded];
+
+            }
+            completion: ^(BOOL finished) {
+                [controller removeFromParentViewController];
+            }];
 
 }
 

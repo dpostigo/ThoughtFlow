@@ -25,7 +25,7 @@
     for (TFNodeView *node in self.nodeViews) {
         CGPoint originalPoint = node.node.position;
 
-        CGPoint endPoint = CGPointMake(60 + 10, self.view.height - TFNodeViewHeight - 10);
+        CGPoint endPoint = CGPointMake(10, self.view.height - TFNodeViewHeight - 10);
         //        if (!node.selected) {
         //            NSUInteger index = [nodeContainerView.subviews indexOfObject: node];
         //            endPoint.x += (index * 2);
@@ -79,7 +79,7 @@
 }
 
 - (UIViewController *) minimizedController {
-    return [self.storyboard instantiateViewControllerWithIdentifier: @"MindmapMinimizedController"];
+    return [self.storyboard instantiateViewControllerWithIdentifier: @"MinimizedLayerController"];
 }
 
 @end

@@ -16,6 +16,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 @implementation APIModel
 
 @synthesize currentUser;
+@synthesize authClient;
 
 - (id) init {
     self = [super init];
@@ -70,12 +71,12 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 #pragma mark Login / Register
 
 - (void) login: (NSString *) username password: (NSString *) password completion: (void (^)()) completion failure: (void (^)()) failure {
-    [_model.authClient authenticateUsingOAuthWithURLString: @"http://188.226.201.79/api/oauth/token"
+    [self.authClient authenticateUsingOAuthWithURLString: @"http://188.226.201.79/api/oauth/token"
             username: username
             password: password
             scope: @"email"
             success: ^(AFOAuthCredential *credential) {
-                NSLog(@"_model.authClient.serviceProviderIdentifier = %@", _model.authClient.serviceProviderIdentifier);
+                NSLog(@"_model.authClient.serviceProviderIdentifier = %@", self.authClient.serviceProviderIdentifier);
 
                 self.currentUser = [[APIUser alloc] initWithUsername: username password: password];
                 [[NSUserDefaults standardUserDefaults] setObject: [NSKeyedArchiver archivedDataWithRootObject: self.currentUser] forKey: @"currentUser"];
@@ -85,7 +86,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
                     self.currentUser.email = [response objectForKey: @"email"];
                 } failure: nil];
 
-                [AFOAuthCredential storeCredential: credential withIdentifier: _model.authClient.serviceProviderIdentifier];
+                [AFOAuthCredential storeCredential: credential withIdentifier: self.authClient.serviceProviderIdentifier];
 
                 if (completion) {
                     completion();
@@ -102,7 +103,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 
 
 - (void) getUserInfo: (NSString *) username completion: (void (^)(id response)) success failure: (void (^)()) failure {
-    [_model.authClient GET: [NSString stringWithFormat: @"user/%@", username]
+    [self.authClient GET: [NSString stringWithFormat: @"user/%@", username]
             parameters: nil
             success: ^(AFHTTPRequestOperation *task, id responseObject) {
                 success(responseObject);
@@ -113,7 +114,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 }
 
 - (void) userExists: (NSString *) username completion: (void (^)(BOOL exists)) success {
-    [_model.authClient GET: [NSString stringWithFormat: @"username/%@", username]
+    [self.authClient GET: [NSString stringWithFormat: @"username/%@", username]
             parameters: nil
             success: ^(AFHTTPRequestOperation *task, id responseObject) {
                 success(YES);
@@ -127,7 +128,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 - (void) registerUser: (NSString *) username password: (NSString *) password email: (NSString *) email
               success: (void (^)()) success failure: (void (^)()) failure {
 
-    [_model.authClient POST: @"user"
+    [self.authClient POST: @"user"
             parameters: @{
                     @"username" : username,
                     @"password" : password,
@@ -158,7 +159,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 - (void) getImages: (NSString *) string
            success: (void (^)(NSArray *images)) success failure: (void (^)()) failure {
 
-    [_model.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", string]
+    [self.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", string]
             parameters: @{
 
             }
@@ -168,7 +169,9 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
                 for (NSDictionary *photo in photos) {
                     TFPhoto *tfPhoto = [[TFPhoto alloc] initWithTitle: [photo objectForKey: @"title"]
                             description: [photo objectForKey: @"description"]
-                            URL: [NSURL URLWithString: [photo objectForKey: @"url"]]];
+                            URL: [NSURL URLWithString: [photo objectForKey: @"url"]]
+                            tagString: [photo objectForKey: @"tags"]];
+
                     [ret addObject: tfPhoto];
                 }
 
@@ -203,6 +206,18 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 
 - (void) cacheImageWithURL: (NSURL *) url {
 
-
 }
+
+
+- (AFOAuth2Client *) authClient {
+    if (authClient == nil) {
+
+        NSURL *url = [NSURL URLWithString: @"http://188.226.201.79/api"];
+        authClient = [AFOAuth2Client clientWithBaseURL: url
+                clientID: @"2dc300c232a003156fddd1d9aecb38d9da9ad49a"
+                secret: @"66df225f66bdbe89d5f04825aea2efa9731edd5a"];
+    }
+    return authClient;
+}
+
 @end

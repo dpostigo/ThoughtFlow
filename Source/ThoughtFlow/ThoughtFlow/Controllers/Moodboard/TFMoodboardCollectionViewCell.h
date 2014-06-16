@@ -4,12 +4,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DPCollectionViewCell.h"
 
-@interface TFMoodboardCollectionViewCell : UICollectionViewCell {
+@interface TFMoodboardCollectionViewCell : DPCollectionViewCell {
 
 }
 
 @property (weak) IBOutlet UIView *buttonsView;
+@property (weak) IBOutlet UIButton *button;
 @property (weak) IBOutlet UIButton *infoButton;
 @property (weak) IBOutlet UIButton *deleteButton;
 @end

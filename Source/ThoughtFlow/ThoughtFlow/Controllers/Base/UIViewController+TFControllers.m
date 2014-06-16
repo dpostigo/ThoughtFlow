@@ -11,7 +11,7 @@
 #pragma mark Main controllers
 
 - (UIViewController *) moodboardController {
-    return [self.storyboard instantiateViewControllerWithIdentifier: @"MoodboardController"];
+    return [self.moodboardStoryboard instantiateViewControllerWithIdentifier: @"MoodboardController"];
 }
 
 
@@ -20,8 +20,32 @@
 }
 
 
-- (UIViewController *) moodboardBackgroundController {
-    return [self.backgroundStoryboard instantiateViewControllerWithIdentifier: @"MindmapBackgroundController"];
+
+#pragma mark Mindmap
+
+- (UIViewController *) mindmapController {
+    return [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"MindmapController"];
+}
+
+
+- (UIViewController *) mindmapGridController {
+    return [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"MindmapGridController"];
+}
+
+
+#pragma mark Mindmap Layers
+
+- (UIViewController *) minimizedLayerController {
+    return [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"MinimizedLayerController"];
+}
+
+- (UIViewController *) mindmapBackgroundController {
+    return [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"MindmapBackgroundController"];
+}
+
+
+- (UIViewController *) mindmapButtonsController {
+    return [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"MindmapButtonsController"];
 }
 
 
@@ -57,8 +81,12 @@
 
 #pragma mark Storyboards
 
-- (UIStoryboard *) backgroundStoryboard {
-    return [UIStoryboard storyboardWithName: @"MindmapBackground" bundle: nil];
+- (UIStoryboard *) mindmapStoryboard {
+    return [UIStoryboard storyboardWithName: @"Mindmap" bundle: nil];
+}
+
+- (UIStoryboard *) moodboardStoryboard {
+    return [UIStoryboard storyboardWithName: @"Moodboard" bundle: nil];
 }
 
 

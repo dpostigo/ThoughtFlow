@@ -2,24 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d8c16d6-eb25-4426-a1f8-2564ebf0e0c6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Interface/Mindmap.storyboard" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Interface/MindmapBackground.storyboard" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapButtonsController.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapButtonsController.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapFlowLayout.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapFlowLayout.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextFieldDelegate.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextFieldDelegate.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerNavAnimator.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerNavAnimator.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerNavAnimator.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerNavAnimator.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/TFPhoto.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/TFPhoto.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFRightDrawerNavAnimator.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFRightDrawerNavAnimator.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/UINavigationController+TFDrawerNavAnimator.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/UINavigationController+TFDrawerNavAnimator.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Images.xcassets/_buttons/heart-button-icon.imageset/heart-button-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Images.xcassets/_buttons/heart-button-icon.imageset/heart-button-icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Images.xcassets/_buttons/heart-button-icon.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Projects/CreateProjectController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Projects/CreateProjectController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPModalBackgroundView.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPModalBackgroundView.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Modals/EditNodeController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Modals/EditNodeController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Components/Labels/GothamLightLabel.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Components/Labels/GothamLightLabel.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapBackgroundController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapBackgroundController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapButtonsController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapButtonsController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Utils/MindmapController+LineDrawing.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Utils/MindmapController+LineDrawing.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Utils/MindmapController+NodePositioning.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Utils/MindmapController+NodePositioning.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Utils/MindmapController+NodeUtils.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Utils/MindmapController+NodeUtils.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Utils/MindmapController+UIPinch.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Utils/MindmapController+UIPinch.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapLinesController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapLinesController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapNodesController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapNodesController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MinimizedLayerController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Interface/Moodboard.storyboard" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Modals/NodeRelatedController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Modals/NodeRelatedController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Projects/ProjectsController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Projects/ProjectsController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/TFAPIModel.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/TFAPIModel.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Base/TFDrawerPresenter.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Base/UIViewController+TFControllers.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Base/UIViewController+TFControllers.m" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/BasicAnimator+UIViewController.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/BasicAnimator+UIViewController.m" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/BasicAnimator.h" afterPath="" />
@@ -39,45 +59,56 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/TLTransitions/TLFreeformModalProtocol.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/UIViewController+BasicAnimator.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/UIViewController+BasicAnimator.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/CreateProjectController.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/CreateProjectController.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/FirstViewController.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/FirstViewController.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/EditNodeController.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/EditNodeController.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapBackgroundController.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapBackgroundController.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapButtonsController.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapButtonsController.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController+LineDrawing.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController+LineDrawing.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController+NodePositioning.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController+NodePositioning.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController+NodeUtils.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController+NodeUtils.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController+UIPinch.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController+UIPinch.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/NodeRelatedController.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/NodeRelatedController.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/UIViewController+TFControllers.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/UIViewController+TFControllers.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Interface/MindmapBackground.storyboard" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapMinimizedController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MinimizedLayerController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPRequestOperation.h" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPRequestOperation.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPRequestOperation.m" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPRequestOperation.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.h" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.m" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPSessionManager.m" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPSessionManager.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFSecurityPolicy.m" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFSecurityPolicy.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLConnectionOperation.h" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLConnectionOperation.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLConnectionOperation.m" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLConnectionOperation.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLRequestSerialization.h" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLRequestSerialization.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLRequestSerialization.m" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLRequestSerialization.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLResponseSerialization.h" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLResponseSerialization.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLResponseSerialization.m" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLResponseSerialization.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLSessionManager.h" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLSessionManager.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLSessionManager.m" afterPath="$PROJECT_DIR$/Pods/AFNetworking/AFNetworking/AFURLSessionManager.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/AppDelegate.m" afterPath="$PROJECT_DIR$/ThoughtFlow/AppDelegate.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/CreateProjectController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/CreateProjectController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Local Podspecs/DPAnimators.podspec" afterPath="$PROJECT_DIR$/Pods/Local Podspecs/DPAnimators.podspec" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DPCollectionView/DPCollectionView/DPCollectionView.h" afterPath="$PROJECT_DIR$/Pods/DPCollectionView/DPCollectionView/DPCollectionView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DPCollectionView/DPCollectionView/DPCollectionView.m" afterPath="$PROJECT_DIR$/Pods/DPCollectionView/DPCollectionView/DPCollectionView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DPCollectionView/DPCollectionView/DPCollectionViewCell.h" afterPath="$PROJECT_DIR$/Pods/DPCollectionView/DPCollectionView/DPCollectionViewCell.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DPCollectionView/DPCollectionView/DPCollectionViewCell.m" afterPath="$PROJECT_DIR$/Pods/DPCollectionView/DPCollectionView/DPCollectionViewCell.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Local Podspecs/DPKit-Utils.podspec" afterPath="$PROJECT_DIR$/Pods/Local Podspecs/DPKit-Utils.podspec" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions.podspec" afterPath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions.podspec" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/ImageDrawerController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/ImageDrawerController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/ImageDrawerController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/ImageDrawerController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Manifest.lock" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapBackgroundController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapBackgroundController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapBackgroundController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapBackgroundController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Interface/Mindmap.storyboard" afterPath="$PROJECT_DIR$/ThoughtFlow/Interface/Mindmap.storyboard" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapGridController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapGridController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapGridController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapGridController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapMinimizedController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapMinimizedController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapMinimizedController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapMinimizedController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/Model.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/Model.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/Model.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/Model.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/MoodboardController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/MoodboardController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/MoodboardController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/MoodboardController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/NavigationFadeAnimator.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/NavigationFadeAnimator.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/NewRegisterController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/NewRegisterController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/NotesDrawerController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/NotesDrawerController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/NotesDrawerController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/NotesDrawerController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/UIControl/PanningView.h" afterPath="$PROJECT_DIR$/ThoughtFlow/UIControl/PanningView.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/UIControl/PanningView.m" afterPath="$PROJECT_DIR$/ThoughtFlow/UIControl/PanningView.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile.lock" afterPath="$PROJECT_DIR$/Podfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile" afterPath="$PROJECT_DIR$/Podfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-AFNetworking-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-AFNetworking-Private.xcconfig" />
@@ -102,6 +133,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-JMSimpleDate.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-JMSimpleDate.xcscheme" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-NSObject+AutoDescription-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-NSObject+AutoDescription-Private.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-NSObject+AutoDescription.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-NSObject+AutoDescription.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-Reveal-iOS-SDK-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-Reveal-iOS-SDK-Private.xcconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-Reveal-iOS-SDK.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-Reveal-iOS-SDK.xcscheme" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-UIAlertView+Blocks-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-UIAlertView+Blocks-Private.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-UIAlertView+Blocks.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods-UIAlertView+Blocks.xcscheme" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-UIColorCategories-Private.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods-UIColorCategories-Private.xcconfig" />
@@ -111,26 +144,21 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods-environment.h" afterPath="$PROJECT_DIR$/Pods/Pods-environment.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcconfig" afterPath="$PROJECT_DIR$/Pods/Pods.xcconfig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/Pods.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/README.md" afterPath="$PROJECT_DIR$/Pods/AFNetworking/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/Project.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/Project.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/Project.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/Project.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/SlidingModalAnimator.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/SlidingModalAnimator.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Resources/Storyboard.storyboard" afterPath="$PROJECT_DIR$/ThoughtFlow/Resources/Storyboard.storyboard" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/TFAccountDrawerController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/TFAccountDrawerController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextField.h" afterPath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextField.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextField.m" afterPath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextField.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/TFDrawerController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/TFDrawerController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/TFDrawerController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/TFDrawerController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerModalAnimator.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerModalAnimator.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerModalAnimator.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerModalAnimator.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerAnimator.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerAnimator.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.m" afterPath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.m" afterPath="$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFRightDrawerAnimator.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFRightDrawerAnimator.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Base/TFViewController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Base/TFViewController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerNavAnimator.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerNavAnimator.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/TFMoodboardCollectionViewCell.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/TFMoodboardCollectionViewCell.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/TFMoodboardCollectionViewCell.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/TFMoodboardCollectionViewCell.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/TFPhoto.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/TFPhoto.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/TFPhoto.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/TFPhoto.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/Base/TFViewController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/Base/TFViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.h" afterPath="$PROJECT_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.m" afterPath="$PROJECT_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/UIViewController+TFControllers.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/UIViewController+TFControllers.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/UIViewController+TFControllers.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/UIViewController+TFControllers.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIView/DPKit-UIView/UIView+DPConstraints.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIView/DPKit-UIView/UIView+DPConstraints.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIViewController+DPKit.h" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIViewController+DPKit.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIViewController+DPKit.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIViewController+DPKit.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/ThoughtFlow.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -151,16 +179,88 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_65cc90685de4c0bb3af229152c5172e3f4afd998" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_iPad_Retina_7.0" />
   <component name="FavoritesManager">
     <favorites_list name="ThoughtFlow" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainAppController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m">
+      <file leaf-file-name="TFDrawerController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/TFDrawerController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="231" column="0" selection-start="7548" selection-end="7548" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="5164">
+            <state line="44" column="76" selection-start="1616" selection-end="1616" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="780">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NavigationFadeAnimator.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/NavigationFadeAnimator.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="39" selection-start="793" selection-end="793" vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="930">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFMoodboardCollectionViewCell.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/TFMoodboardCollectionViewCell.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="4" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="270">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageDrawerController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/ImageDrawerController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="5" selection-start="1346" selection-end="1346" vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1185">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MindmapNodesController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapNodesController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="538">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MindmapLinesController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapLinesController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="538">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MindmapLinesController.h" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapLinesController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="52" selection-start="193" selection-end="193" vertical-scroll-proportion="0.24249423" vertical-offset="0" max-vertical-offset="568">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MindmapNodesController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapNodesController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="4" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="583">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GothamLightLabel.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Components/Labels/GothamLightLabel.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="0" selection-start="962" selection-end="962" vertical-scroll-proportion="0.0" vertical-offset="350" max-vertical-offset="1020">
               <folding />
             </state>
           </provider>
@@ -169,172 +269,35 @@
       <file leaf-file-name="MindmapController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="466" column="0" selection-start="14168" selection-end="14168" vertical-scroll-proportion="0.0" vertical-offset="6625" max-vertical-offset="7515">
+            <state line="51" column="17" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.0" vertical-offset="505" max-vertical-offset="8565">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MindmapButtonsController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapButtonsController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="53" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GothamLightLabel.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Components/Labels/GothamLightLabel.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="4" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="180">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="MindmapButtonsController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapButtonsController.m">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapButtonsController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="538">
+            <state line="49" column="0" selection-start="1709" selection-end="1709" vertical-scroll-proportion="0.0" vertical-offset="482" max-vertical-offset="2325">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MindmapButtonsController.h" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapButtonsController.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="46" selection-start="205" selection-end="205" vertical-scroll-proportion="0.34642032" vertical-offset="0" max-vertical-offset="568">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomModalSegue.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/Segues/CustomModalSegue.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="50" selection-start="984" selection-end="984" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="1740">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MindmapBackgroundController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapBackgroundController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="0" selection-start="1365" selection-end="1365" vertical-scroll-proportion="0.0" vertical-offset="370" max-vertical-offset="4230">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProjectsController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="0" selection-start="1511" selection-end="1511" vertical-scroll-proportion="0.0" vertical-offset="667" max-vertical-offset="2290">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFProjectCollectionViewCell.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="38" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0" vertical-offset="168" max-vertical-offset="818">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="APIModel.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="205" column="0" selection-start="6747" selection-end="6747" vertical-scroll-proportion="0.0" vertical-offset="2780" max-vertical-offset="3565">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFDrawerNavAnimator.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerNavAnimator.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="0" selection-start="5559" selection-end="5559" vertical-scroll-proportion="0.0" vertical-offset="2081" max-vertical-offset="2839">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFImage.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/TFImage.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="25" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="773">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFNode.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/TFNode.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="923">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFLeftDrawerAnimator.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/TFLeftDrawerAnimator.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="345">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NewRegisterController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/NewRegisterController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="0" selection-start="2334" selection-end="2334" vertical-scroll-proportion="0.0" vertical-offset="682" max-vertical-offset="2095">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppDelegate.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/AppDelegate.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="42" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0" vertical-offset="129" max-vertical-offset="1804">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BasicNavigationAnimator.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/BasicNavigationAnimator.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="65" selection-start="824" selection-end="824" vertical-scroll-proportion="0.0" vertical-offset="164" max-vertical-offset="925">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginModalController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="252" column="1" selection-start="11126" selection-end="11126" vertical-scroll-proportion="0.0" vertical-offset="3520" max-vertical-offset="4620">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFAccountDrawerController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/TFAccountDrawerController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="27" selection-start="1177" selection-end="1177" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="1240">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModalChildDrawerAnimator.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/ModalChildDrawerAnimator.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="783" selection-end="783" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1380">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIView+DPKit.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKit.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="9" selection-start="1396" selection-end="1396" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="720">
-              <folding>
-                <marker date="1401544853000" expanded="true" signature="200:1387" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -357,22 +320,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Pods/DPCollectionView/DPCollectionView/DPCollectionViewCell.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapBackgroundController.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/UIControl/TFNodeView.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerNavAnimator.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapMinimizedController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Model/Project.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Model/Project.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/TFMoodboardCollectionViewCell.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/TFMoodboardCollectionViewCell.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Utils/UILabel+TFFonts.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Components/Labels/GothamLightLabel.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/TFDrawerController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapNodesController.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/ImageDrawerController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Components/Labels/GothamLightLabel.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Base/TFDrawerPresenter.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapButtonsController.h" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/AppDelegate.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextFieldDelegate.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextFieldDelegate.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextField.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapBackgroundController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapButtonsController.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapButtonsController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapLinesController.h" />
       </list>
     </option>
   </component>
@@ -596,7 +559,139 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Toolbar" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Mindmap" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mindmap" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Layers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Login &amp; Register" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Base" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Components" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtFlow" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Components" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Labels" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -627,13 +722,13 @@
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.splitter.main.proportions" value="0.1944" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="ThoughtFlow" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.ThoughtFlow">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="ThoughtFlow" TARGET_NAME="ThoughtFlow" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="ThoughtFlow" RUN_TARGET_NAME="ThoughtFlow" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
@@ -714,7 +809,11 @@
       <envs />
       <method />
     </configuration>
-    <list size="16">
+    <configuration default="false" name="Pods-NSAttributedString-DDHTML" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Pods-NSAttributedString-DDHTML" PROJECT_NAME="Pods" TARGET_NAME="Pods-NSAttributedString-DDHTML" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <list size="17">
       <item index="0" class="java.lang.String" itemvalue="Application.ThoughtFlow" />
       <item index="1" class="java.lang.String" itemvalue="Application.Pods" />
       <item index="2" class="java.lang.String" itemvalue="Application.Pods-AutoCoding" />
@@ -731,6 +830,7 @@
       <item index="13" class="java.lang.String" itemvalue="Application.Pods-AFOAuth2Client" />
       <item index="14" class="java.lang.String" itemvalue="Application.Pods-UIAlertView+Blocks" />
       <item index="15" class="java.lang.String" itemvalue="Application.Pods-Reveal-iOS-SDK" />
+      <item index="16" class="java.lang.String" itemvalue="Application.Pods-NSAttributedString-DDHTML" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -787,8 +887,9 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30212766" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32719547" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34751773" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1456241" sideWeight="0.61560285" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19727403" sideWeight="0.61560285" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24748924" sideWeight="0.61560285" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38439715" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3895184" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -800,11 +901,32 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32957748" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34751773" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32719547" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32957748" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34751773" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38439715" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3895184" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30212766" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1456241" sideWeight="0.61560285" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24390244" sideWeight="0.61560285" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -827,130 +949,125 @@
       <breakpoints>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController.m</url>
-          <line>312</line>
+          <line>340</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapBackgroundController.m</url>
-          <line>86</line>
-          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="27" />
+      <option name="time" value="29" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/ProjectsController.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/Project.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="0" selection-start="1511" selection-end="1511" vertical-scroll-proportion="0.0" vertical-offset="667" max-vertical-offset="2290">
+        <state line="77" column="16" selection-start="1238" selection-end="1238" vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="1320">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFProjectCollectionViewCell.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/Project.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="16" selection-start="627" selection-end="627" vertical-scroll-proportion="-0.4539749" vertical-offset="652" max-vertical-offset="1558">
+        <state line="14" column="21" selection-start="294" selection-end="294" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="450">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/UINavigationController+TFDrawerNavAnimator.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Base/UIViewController+TFControllers.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="19" selection-start="492" selection-end="492" vertical-scroll-proportion="0.50526315" vertical-offset="0" max-vertical-offset="775">
+        <state line="39" column="1" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.0" vertical-offset="585" max-vertical-offset="1410">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Transitions/TFDrawerNavAnimator.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapMinimizedController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="0" selection-start="5559" selection-end="5559" vertical-scroll-proportion="0.0" vertical-offset="2081" max-vertical-offset="2839">
+        <state line="8" column="57" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="195">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/MainAppController.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapGridController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="231" column="0" selection-start="7548" selection-end="7548" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="5164">
+        <state line="10" column="4" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="180">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/AppDelegate.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapGridController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="42" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0" vertical-offset="129" max-vertical-offset="1804">
+        <state line="19" column="12" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="930">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Toolbar/TFDrawerController.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MinimizedLayerController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="18" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="715">
+        <state line="16" column="12" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="330">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextFieldDelegate.h">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MinimizedLayerController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="30" selection-start="171" selection-end="171" vertical-scroll-proportion="0.24249423" vertical-offset="0" max-vertical-offset="598">
+        <state line="40" column="31" selection-start="1147" selection-end="1147" vertical-scroll-proportion="0.0" vertical-offset="600" max-vertical-offset="795">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextFieldDelegate.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Moodboard/ImageDrawerController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="73" selection-start="319" selection-end="393" vertical-scroll-proportion="0.42857143" vertical-offset="30" max-vertical-offset="975">
+        <state line="39" column="5" selection-start="1346" selection-end="1346" vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1185">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/UIControl/TFCustomTextField.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Base/TFDrawerPresenter.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="21" selection-start="182" selection-end="182" vertical-scroll-proportion="0.25" vertical-offset="0" max-vertical-offset="2685">
+        <state line="12" column="32" selection-start="251" selection-end="251" vertical-scroll-proportion="0.39215687" vertical-offset="0" max-vertical-offset="654">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Login &amp; Register/LoginModalController.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapButtonsController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="252" column="1" selection-start="11126" selection-end="11126" vertical-scroll-proportion="0.0" vertical-offset="3520" max-vertical-offset="4620">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapBackgroundController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="1365" selection-end="1365" vertical-scroll-proportion="0.0" vertical-offset="370" max-vertical-offset="4230">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/Segues/CustomModalSegue.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="50" selection-start="984" selection-end="984" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="1740">
+        <state line="11" column="53" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="466" column="0" selection-start="14168" selection-end="14168" vertical-scroll-proportion="0.0" vertical-offset="6625" max-vertical-offset="7515">
+        <state line="51" column="17" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.0" vertical-offset="505" max-vertical-offset="8565">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapButtonsController.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapButtonsController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="0" selection-start="1709" selection-end="1709" vertical-scroll-proportion="0.0" vertical-offset="482" max-vertical-offset="2325">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapNodesController.m">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="538">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/MindmapButtonsController.h">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapLinesController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="46" selection-start="205" selection-end="205" vertical-scroll-proportion="0.34642032" vertical-offset="0" max-vertical-offset="568">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="538">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/Mindmap/Layers/MindmapLinesController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="52" selection-start="193" selection-end="193" vertical-scroll-proportion="0.24249423" vertical-offset="0" max-vertical-offset="568">
           <folding />
         </state>
       </provider>

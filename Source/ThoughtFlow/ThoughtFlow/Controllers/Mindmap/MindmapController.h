@@ -6,12 +6,13 @@
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
 #import "TFNodeViewDelegate.h"
+#import "TFDrawerPresenter.h"
 
 @class TFNodeView;
 @class PanningView;
 @class MindmapBackgroundController;
 
-@interface MindmapController : TFViewController <TFNodeViewDelegate> {
+@interface MindmapController : TFViewController <TFNodeViewDelegate, TFDrawerPresenter> {
     MindmapBackgroundController *backgroundController;
 
 
@@ -28,6 +29,7 @@
 
     CALayer *tempLine;
     BOOL isPinched;
+    BOOL isPresenting;
 }
 
 @property(nonatomic, strong) UIView *creationNode;

@@ -21,6 +21,7 @@
 #import "TFDrawerModalAnimator.h"
 #import "TFDrawerController.h"
 #import "NotesDrawerController.h"
+#import "ImageDrawerController.h"
 
 @implementation MainAppController
 
@@ -300,10 +301,12 @@
                                                  fromViewController: (UIViewController *) fromVC
                                                    toViewController: (UIViewController *) toVC {
 
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     BasicAnimator *ret = nil;
 
-    if ([fromVC isKindOfClass: [NotesDrawerController class]] || [toVC isKindOfClass: [NotesDrawerController class]]) {
+    if ([fromVC isKindOfClass: [NotesDrawerController class]] ||
+            [toVC isKindOfClass: [NotesDrawerController class]] ||
+            [fromVC isKindOfClass: [ImageDrawerController class]] ||
+            [toVC isKindOfClass: [ImageDrawerController class]]) {
         ret = rightNavAnimator;
     } else if ([fromVC isKindOfClass: [TFDrawerController class]] || [toVC isKindOfClass: [TFDrawerController class]]) {
         ret = navAnimator;
@@ -313,6 +316,10 @@
     }
 
     ret.isPresenting = operation == UINavigationControllerOperationPush;
+
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSLog(@"toVC = %@", toVC);
+    NSLog(@"fromVC = %@", fromVC);
 
     return ret;
 }

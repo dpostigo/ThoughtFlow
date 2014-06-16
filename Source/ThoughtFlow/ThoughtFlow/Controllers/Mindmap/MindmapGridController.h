@@ -7,6 +7,5 @@
 #import "MoodboardController.h"
 
 @interface MindmapGridController : MoodboardController {
-
 }
 @end

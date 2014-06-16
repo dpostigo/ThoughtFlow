@@ -108,6 +108,12 @@
 #define COCOAPODS_VERSION_MINOR_JMSimpleDate 0
 #define COCOAPODS_VERSION_PATCH_JMSimpleDate 6
 
+// NSAttributedString-DDHTML
+#define COCOAPODS_POD_AVAILABLE_NSAttributedString_DDHTML
+#define COCOAPODS_VERSION_MAJOR_NSAttributedString_DDHTML 0
+#define COCOAPODS_VERSION_MINOR_NSAttributedString_DDHTML 0
+#define COCOAPODS_VERSION_PATCH_NSAttributedString_DDHTML 1
+
 // NSObject+AutoDescription
 #define COCOAPODS_POD_AVAILABLE_NSObject_AutoDescription
 #define COCOAPODS_VERSION_MAJOR_NSObject_AutoDescription 0

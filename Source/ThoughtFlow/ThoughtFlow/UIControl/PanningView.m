@@ -8,6 +8,5 @@
 @implementation PanningView
 
 @synthesize startingPoint;
-
 @synthesize offsetPoint;
 @end

@@ -6,9 +6,10 @@
 #import <Foundation/Foundation.h>
 #import "TFModalViewController.h"
 
-@interface TFDrawerController : TFModalViewController {
+@interface TFDrawerController : TFViewController {
 
 }
 
+- (void) handleTap: (UITapGestureRecognizer *) recognizer;
 - (IBAction) closeDrawer: (id) sender;
 @end

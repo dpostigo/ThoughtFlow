@@ -33,8 +33,14 @@
 }
 
 
-- (IBAction) handleDoneButton: (id) sender {
+- (void) handleTap: (UITapGestureRecognizer *) recognizer {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 
+//    [super handleTap: recognizer];
+}
+
+
+- (IBAction) handleDoneButton: (id) sender {
     _model.selectedProject.notes = _textView.text;
 
     if (self.presentingViewController) {
@@ -47,10 +53,9 @@
 
 }
 
-- (void) didTapBehind {
-    [super didTapBehind];
-    [self.view endEditing: YES];
-}
+//- (void) didTapBehind {
+//    [self.view endEditing: YES];
+//}
 
 //
 //#pragma mark UITextViewDelegate

@@ -4,14 +4,13 @@
 //
 
 #import <DPKit-Utils/UIView+DPKit.h>
-#import <DPKit-Utils/UIView+DPKitDebug.h>
-#import <AFNetworking/AFHTTPRequestOperationManager.h>
 #import "MindmapBackgroundController.h"
 #import "DPCollectionViewCell.h"
 #import "UICollectionView+DPKit.h"
 #import "TFPhoto.h"
 #import "UIImageView+AFNetworking.h"
 #import "APIModel.h"
+#import "Model.h"
 
 @implementation MindmapBackgroundController
 
@@ -159,6 +158,8 @@
 
     [ret.imageView rasterize];
     [ret rasterize];
+
+    _model.selectedPhoto = photo;
 
     [self preloadForIndexPath: indexPath];
 

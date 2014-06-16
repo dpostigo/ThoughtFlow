@@ -12,12 +12,15 @@
     NSString *notes;
     NSDate *creationDate;
 
+    NSMutableArray *pins;
+
 }
 
 @property(nonatomic, copy) NSString *word;
 @property(nonatomic, copy) NSString *notes;
 @property(nonatomic, strong) NSDate *creationDate;
 
+@property(nonatomic, strong) NSMutableArray *pins;
 - (instancetype) initWithWord: (NSString *) aWord;
 + (instancetype) projectWithWord: (NSString *) aWord;
 - (NSArray *) nodes;

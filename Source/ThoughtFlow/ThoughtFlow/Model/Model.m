@@ -11,6 +11,7 @@
 #import "AFOAuth2Client.h"
 #import "AFHTTPSessionManager.h"
 #import "APIModel.h"
+#import "TFPhoto.h"
 
 @implementation Model
 
@@ -22,9 +23,9 @@
 @synthesize projectLibrary;
 @synthesize selectedNode;
 @synthesize loggedIn;
-@synthesize authClient;
 
 @synthesize apiModel;
+@synthesize selectedPhoto;
 NSString *const TFProjectName = @"TF Project Name";
 
 
@@ -48,18 +49,6 @@ static NSString *baseURL = @"http://188.226.201.79/api";
         queue = [NSOperationQueue new];
     }
     return queue;
-}
-
-
-- (AFOAuth2Client *) authClient {
-    if (authClient == nil) {
-
-        NSURL *url = [NSURL URLWithString: @"http://188.226.201.79/api"];
-        authClient = [AFOAuth2Client clientWithBaseURL: url
-                clientID: @"2dc300c232a003156fddd1d9aecb38d9da9ad49a"
-                secret: @"66df225f66bdbe89d5f04825aea2efa9731edd5a"];
-    }
-    return authClient;
 }
 
 

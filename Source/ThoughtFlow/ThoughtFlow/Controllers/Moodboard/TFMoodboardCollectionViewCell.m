@@ -20,9 +20,11 @@
 - (void) setSelected: (BOOL) selected {
     [super setSelected: selected];
 
-    [UIView animateWithDuration: 0.5 animations: ^{
-        _buttonsView.alpha = self.selected ? 1 : 0;
-    }                completion: nil];
+    [UIView animateWithDuration: 0.5
+            animations: ^{
+                _buttonsView.alpha = self.selected ? 1 : 0;
+            }
+            completion: nil];
 }
 
 @end

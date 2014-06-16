@@ -60,7 +60,6 @@
 - (void) dismissWithContext: (id <UIViewControllerContextTransitioning>) context {
     [super dismissWithContext: context];
 
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     UIView *containerView = context.containerView;
     UIView *sourceView = [self fromViewController: context].view;
     UIView *destinationView = [self toViewController: context].view;
@@ -71,7 +70,6 @@
     //    [self animateDestinationView: destinationView];
     //    [containerView layoutIfNeeded];
 
-    [sourceView addDebugBorder: [UIColor redColor]];
 
     [self dismissDestinationView: destinationView];
 
@@ -155,12 +153,15 @@
     UIView *ret = nil;
 
     if (controller.navigationController) {
-
         ret = [controller.navigationController.view snapshotViewAfterScreenUpdates: NO];
     } else {
         ret = [controller.view snapshotViewAfterScreenUpdates: NO];
     }
+
+
     return ret;
 }
+
+
 
 @end

@@ -7,17 +7,19 @@
 
 @class Model;
 @class APIUser;
+@class AFOAuth2Client;
 
 extern NSString *const ThoughtFlowIdentifier;
 extern NSString *const ThoughtFlowBaseURL;
 
 @interface APIModel : NSObject {
-
+    AFOAuth2Client *authClient;
     APIUser *currentUser;
     Model *_model;
 }
 
 @property(nonatomic, strong) APIUser *currentUser;
+@property(nonatomic, strong) AFOAuth2Client *authClient;
 + (void) alertErrorWithTitle: (NSString *) title message: (NSString *) message;
 + (APIModel *) sharedModel;
 

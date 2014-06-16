@@ -41,6 +41,7 @@ PODS:
     - DPAnimators (= 0.0.1)
     - DPKit-Utils
   - JMSimpleDate (0.0.6)
+  - NSAttributedString-DDHTML (0.0.1)
   - NSObject+AutoDescription (0.1)
   - Reveal-iOS-SDK (1.0.4)
   - UIAlertView+Blocks (0.8.1)
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - DPKit-UIView (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIView`)
   - DPKit-Utils (from `~/Development/LocalPods/DPKit-Suite/DPKit-Utils`)
   - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
+  - NSAttributedString-DDHTML
   - NSObject+AutoDescription
   - Reveal-iOS-SDK
   - UIAlertView+Blocks
@@ -84,6 +86,7 @@ SPEC CHECKSUMS:
   DPKit-Utils: b4208ab7993602e1436c25e80b67219920dcad77
   DPTransitions: fb247247ff38c47a0fb2ca0f97d9d9ad4b8924b8
   JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
+  NSAttributedString-DDHTML: b660068de47108746a88474e29f98ac32b5d3e16
   NSObject+AutoDescription: 741983bfabbfd2813c77078fdc91526853bad16d
   Reveal-iOS-SDK: d3c8e109d42219daaa7a6e1ad2de34f0bdbb7a88
   UIAlertView+Blocks: 0b749f1f7bd5131ff2233b30a406c1585a7171b2

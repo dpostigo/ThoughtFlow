@@ -4,8 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DPPassThroughView.h"
 
-@interface PanningView : UIView {
+@interface PanningView : DPPassThroughView {
     CGPoint startingPoint;
     CGPoint offsetPoint;
 }

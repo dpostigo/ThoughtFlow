@@ -45,6 +45,8 @@
             [theTable updateHeightConstraint: newheight];
             [strongSelf.view setNeedsUpdateConstraints];
 
+            NSLog(@"strongSelf.model.apiModel.loggedIn = %d", strongSelf.model.apiModel.loggedIn);
+
             if (strongSelf.model.apiModel.loggedIn) {
                 strongSelf.usernameField.text = strongSelf.model.apiModel.currentUser.username;
                 strongSelf.passwordField.text = strongSelf.model.apiModel.currentUser.password;

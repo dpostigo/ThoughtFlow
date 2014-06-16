@@ -7,8 +7,12 @@
 #import "MoodboardController.h"
 #import "TFMoodboardCollectionViewCell.h"
 #import "UIColor+TFApp.h"
+#import "TFPhoto.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation MoodboardController
+
+@synthesize images;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -17,9 +21,10 @@
     _collection.dataSource = self;
     _collection.allowsMultipleSelection = YES;
 
-    CGFloat cellHeight = _collection.height / 3;
-    NSLog(@"cellHeight = %f", cellHeight);
+    CGFloat cellHeight = self.view.height / 3;
     UICollectionViewFlowLayout *flow = (UICollectionViewFlowLayout *) _collection.collectionViewLayout;
+    flow.minimumLineSpacing = 0;
+    flow.minimumInteritemSpacing = 0;
     flow.itemSize = CGSizeMake(cellHeight, cellHeight);
 
     [_collection reloadData];
@@ -37,30 +42,31 @@
 #pragma mark UICollectionViewDataSource
 
 - (NSInteger) collectionView: (UICollectionView *) collectionView numberOfItemsInSection: (NSInteger) section {
-    return 3 * 20;
+    return [self.images count];
 }
 
 - (UICollectionViewCell *) collectionView: (UICollectionView *) collectionView cellForItemAtIndexPath: (NSIndexPath *) indexPath {
-    UICollectionViewCell *ret = [collectionView dequeueReusableCellWithReuseIdentifier: @"CollectionCell"
+    TFMoodboardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"CollectionCell"
             forIndexPath: indexPath];
 
-    if ([ret isKindOfClass: [TFMoodboardCollectionViewCell class]]) {
+//    cell.layer.borderWidth = 0.5;
+//    cell.layer.borderColor = [UIColor tfToolbarBorderColor].CGColor;
 
-        TFMoodboardCollectionViewCell *cell = (TFMoodboardCollectionViewCell *) ret;
-        cell.layer.borderWidth = 0.5;
-        cell.layer.borderColor = [UIColor tfToolbarBorderColor].CGColor;
+    cell.infoButton.tag = indexPath.item;
 
-        cell.infoButton.tag = indexPath.item;
-        //        Project *project = [self projectForIndexPath: indexPath];
-        //        if (project) {
-        //            cell.project = project;
-        //        }
-        //        cell.button.tag = indexPath.item;
-        //        [cell.button addTarget: self action: @selector(handleTrashButton:)
-        //              forControlEvents: UIControlEventTouchUpInside];
-    }
+    TFPhoto *photo = [self.images objectAtIndex: indexPath.item];
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [cell.imageView setImageWithURL: photo.URL];
 
-    return ret;
+    //        Project *project = [self projectForIndexPath: indexPath];
+    //        if (project) {
+    //            cell.project = project;
+    //        }
+    //        cell.button.tag = indexPath.item;
+    //        [cell.button addTarget: self action: @selector(handleTrashButton:)
+    //              forControlEvents: UIControlEventTouchUpInside];
+
+    return cell;
 }
 
 
@@ -90,6 +96,42 @@
 
 - (BOOL) collectionView: (UICollectionView *) collectionView shouldDeselectItemAtIndexPath: (NSIndexPath *) indexPath {
     return YES;
+}
+
+
+
+#pragma mark Flow layout
+
+
+- (CGFloat) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout minimumLineSpacingForSectionAtIndex: (NSInteger) section {
+    return 0;
+}
+
+- (CGFloat) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout minimumInteritemSpacingForSectionAtIndex: (NSInteger) section {
+    return 0;
+}
+
+- (CGSize) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout sizeForItemAtIndexPath: (NSIndexPath *) indexPath {
+    CGFloat cellHeight = self.view.height / 3;
+    //UICollectionViewFlowLayout *flow = (UICollectionViewFlowLayout *) _collection.collectionViewLayout;
+    //flow.minimumLineSpacing = 0;
+    //flow.minimumInteritemSpacing = 0;
+    //flow.itemSize = ;
+    return CGSizeMake(cellHeight, cellHeight);
+}
+
+- (UIEdgeInsets) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout insetForSectionAtIndex: (NSInteger) section {
+    return UIEdgeInsetsMake(-22, 0, 0, 0);
+}
+
+
+#pragma mark Getters
+
+- (NSArray *) images {
+    if (images == nil) {
+        images = [NSArray array];
+    }
+    return images;
 }
 
 

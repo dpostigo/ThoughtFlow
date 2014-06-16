@@ -12,6 +12,7 @@
 #import "ProjectLibrary.h"
 #import "APIModel.h"
 #import "APIUser.h"
+#import "UIViewController+TFControllers.h"
 
 @implementation ProjectsController
 
@@ -72,7 +73,7 @@
     _model.selectedProject = [self projectForIndexPath: indexPath];
 
     [self postNavigationNotificationForType: TFControllerMindmap pushes: NO];
-    [self performSegueWithIdentifier: @"MindmapSegue" sender: nil];
+    [self.navigationController pushViewController: self.mindmapController animated: YES];
 
 }
 

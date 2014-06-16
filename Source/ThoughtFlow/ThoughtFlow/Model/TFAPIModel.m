@@ -3,7 +3,7 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import "MindmapButtonsController.h"
+#import "TFAPIModel.h"
 
-@implementation MindmapButtonsController
+@implementation TFAPIModel
 @end

@@ -9,4 +9,9 @@
 @interface ImageDrawerController : TFDrawerController {
 
 }
+
+@property(weak) IBOutlet UILabel *titleLabel;
+@property(weak) IBOutlet UILabel *tagLabel;
+@property(weak) IBOutlet UILabel *sourceLabel;
+@property(weak) IBOutlet UITextView *descriptionLabel;
 @end

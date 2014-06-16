@@ -47,7 +47,7 @@
     [labels addObjectsFromArray: self.buttonLabels];
 
     for (UILabel *label in labels) {
-        NSAttributedString *string = [self attributedStringForString: label.text
+        NSAttributedString *string = [self attributedStringForString: label.text == nil ? @"" : label.text
                                                                 font: label.font
                                                        textAlignment: label.textAlignment];
 

@@ -8,21 +8,20 @@
 @class Project;
 @class ProjectLibrary;
 @class TFNode;
-@class AFOAuth2Client;
 @class AFHTTPSessionManager;
 @class APIModel;
+@class TFPhoto;
 
 NSString *const TFProjectName;
 
 
 @interface Model : NSObject {
-    APIModel *apiModel;
-    AFOAuth2Client *authClient;
     BOOL loggedIn;
+    APIModel *apiModel;
     NSOperationQueue *queue;
-
     ProjectLibrary *projectLibrary;
 
+    TFPhoto *selectedPhoto;
     Project *selectedProject;
     TFNode *selectedNode;
     NSDictionary *selectedProjectDictionary;
@@ -35,8 +34,8 @@ NSString *const TFProjectName;
 @property(nonatomic, strong) TFNode *selectedNode;
 @property(nonatomic, strong) ProjectLibrary *projectLibrary;
 @property(nonatomic) BOOL loggedIn;
-@property(nonatomic, strong) AFOAuth2Client *authClient;
 @property(nonatomic, strong) APIModel *apiModel;
+@property(nonatomic, strong) TFPhoto *selectedPhoto;
 + (Model *) sharedModel;
 
 - (NSArray *) projectsSortedByDate;

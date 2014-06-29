@@ -12,6 +12,13 @@
     return [UIColor colorWithString: @"29292E"];
 }
 
+
+#pragma mark Text colors
+
++ (UIColor *) tfDetailTextColor {
+    return [UIColor colorWithString: @"8A8B94"];
+}
+
 + (UIColor *) tfInputTextColor {
     return [UIColor colorWithString: @"AAABB2"];
 }
@@ -27,7 +34,6 @@
 + (UIColor *) tfRedColor {
     return [UIColor colorWithString: @"F26F61"];
 }
-
 
 + (UIColor *) tfPurpleColor {
     return [UIColor colorWithString: @"3A3A66"];

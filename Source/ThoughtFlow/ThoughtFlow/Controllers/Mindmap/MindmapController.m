@@ -19,7 +19,6 @@
 #import "MindmapBackgroundController.h"
 #import "TFRightDrawerAnimator.h"
 #import "UIViewController+TFControllers.h"
-#import "UIViewController+BasicModalAnimator.h"
 #import "TFDrawerController.h"
 #import "MindmapButtonsController.h"
 
@@ -480,10 +479,13 @@
 #pragma mark TFDrawerPresenter
 
 
-- (void) presentImageDrawer: (UIViewController *) controller {
-    if (isPresenting) return;
+- (void) presentDrawerController: (UIViewController *) controller {
+    if (isPresenting) {
+        NSLog(@"isPresenting.");
 
-    NSLog(@"%s", __PRETTY_FUNCTION__);
+        return;
+    }
+
     isPresenting = YES;
     UIViewController *presenterController = self;
     UIView *presenterView = presenterController.view;
@@ -520,7 +522,9 @@
 
 
 - (void) dismissDrawerController: (TFDrawerController *) controller {
-    UIViewController *presenterController = controller.presentingViewController;
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
+    UIViewController *presenterController = (id) controller.presenter;
     UIView *presenterView = controller.view.superview;
 
     UIView *view = controller.view;
@@ -536,6 +540,7 @@
 
             }
             completion: ^(BOOL finished) {
+                isPresenting = NO;
                 [controller removeFromParentViewController];
             }];
 

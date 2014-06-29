@@ -39,27 +39,27 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
 /**
  The criteria by which server trust should be evaluated against the pinned SSL certificates. Defaults to `AFSSLPinningModeNone`.
  */
-@property (nonatomic, assign) AFSSLPinningMode SSLPinningMode;
+@property(nonatomic, assign) AFSSLPinningMode SSLPinningMode;
 
 /**
  Whether to evaluate an entire SSL certificate chain, or just the leaf certificate. Defaults to `YES`.
  */
-@property (nonatomic, assign) BOOL validatesCertificateChain;
+@property(nonatomic, assign) BOOL validatesCertificateChain;
 
 /**
  The certificates used to evaluate server trust according to the SSL pinning mode. By default, this property is set to any (`.cer`) certificates included in the app bundle.
  */
-@property (nonatomic, strong) NSArray *pinnedCertificates;
+@property(nonatomic, strong) NSArray *pinnedCertificates;
 
 /**
  Whether or not to trust servers with an invalid or expired SSL certificates. Defaults to `NO`.
  */
-@property (nonatomic, assign) BOOL allowInvalidCertificates;
+@property(nonatomic, assign) BOOL allowInvalidCertificates;
 
 /**
  Whether or not to validate the domain name in the certificates CN field. Defaults to `YES` for `AFSSLPinningModePublicKey` or `AFSSLPinningModeCertificate`, otherwise `NO`.
  */
-@property (nonatomic, assign) BOOL validatesDomainName;
+@property(nonatomic, assign) BOOL validatesDomainName;
 
 ///-----------------------------------------
 /// @name Getting Specific Security Policies
@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
  
  @return The default security policy.
  */
-+ (instancetype)defaultPolicy;
++ (instancetype) defaultPolicy;
 
 ///---------------------
 /// @name Initialization
@@ -83,7 +83,7 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
  
  @return A new security policy.
  */
-+ (instancetype)policyWithPinningMode:(AFSSLPinningMode)pinningMode;
++ (instancetype) policyWithPinningMode: (AFSSLPinningMode) pinningMode;
 
 ///------------------------------
 /// @name Evaluating Server Trust
@@ -100,7 +100,7 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
  
  @warning This method has been deprecated in favor of `-evaluateServerTrust:forDomain:`.
  */
-- (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust DEPRECATED_ATTRIBUTE;
+- (BOOL) evaluateServerTrust: (SecTrustRef) serverTrust DEPRECATED_ATTRIBUTE;
 
 /**
  Whether or not the specified server trust should be accepted, based on the security policy. 
@@ -112,8 +112,8 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
  
  @return Whether or not to trust the server.
  */
-- (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust
-                  forDomain:(NSString *)domain;
+- (BOOL) evaluateServerTrust: (SecTrustRef) serverTrust
+                   forDomain: (NSString *) domain;
 
 @end
 

@@ -21,31 +21,29 @@
 #import "APIUser.h"
 #import "UIViewController+TFControllers.h"
 
-@implementation LoginModalController
-
-@synthesize table;
+@implementation LoginModalController {
+    UITextField *_currentTextField;
+}
 
 - (void) viewDidLoad {
     [super viewDidLoad];
     dismisses = NO;
 
-    [self.view convertFonts];
-    table.delegate = self;
-    table.dataSource = self;
-    table.populateTextLabels = YES;
+    [self _setup];
+    _table.delegate = self;
+    _table.dataSource = self;
+    _table.populateTextLabels = YES;
 
     [self prepareDatasource];
 
     __weak LoginModalController *weakSelf = self;
-    table.onReload = ^(DPTableView *theTable) {
+    _table.onReload = ^(DPTableView *theTable) {
         __strong LoginModalController *strongSelf = weakSelf;
         if (strongSelf) {
             CGFloat newheight = theTable.calculatedTableHeight;
             theTable.height = newheight;
             [theTable updateHeightConstraint: newheight];
             [strongSelf.view setNeedsUpdateConstraints];
-
-            NSLog(@"strongSelf.model.apiModel.loggedIn = %d", strongSelf.model.apiModel.loggedIn);
 
             if (strongSelf.model.apiModel.loggedIn) {
                 strongSelf.usernameField.text = strongSelf.model.apiModel.currentUser.username;
@@ -55,8 +53,9 @@
 
     };
 
-    [table reloadData];
-    table.layer.cornerRadius = 3;
+    [_table reloadData];
+    _table.layer.cornerRadius = 3;
+
 }
 
 
@@ -69,8 +68,8 @@
 }
 
 - (void) prepareDatasource {
-    [table.rows addObject: @{DPTableViewTextLabelName : @"Username or email", DPTableViewImageName : [UIImage imageNamed: @"user-icon"]}];
-    [table.rows addObject: @{DPTableViewTextLabelName : @"Password", DPTableViewImageName : [UIImage imageNamed: @"password-icon"]}];
+    [_table.rows addObject: @{DPTableViewTextLabelName : @"Username or email", DPTableViewImageName : [UIImage imageNamed: @"user-icon"]}];
+    [_table.rows addObject: @{DPTableViewTextLabelName : @"Password", DPTableViewImageName : [UIImage imageNamed: @"password-icon"]}];
 }
 
 
@@ -82,9 +81,13 @@
 
 - (IBAction) handleLogin: (id) sender {
 
+    if (!USE_API) {
+        [self loginDidSucceed];
+        return;
+    }
+
     NSString *errorTitle = nil;
     NSString *errorMessage = nil;
-    NSLog(@"self.usernameField = %@", self.usernameField);
     if ([self.usernameField.text length] == 0 || [self.usernameField.text isEqualToString: @""]) {
         [UIAlertView showWithTitle: @"No username"
                 message: @"Please fill out a username."
@@ -104,8 +107,7 @@
                 [_model.apiModel login: self.usernameField.text
                         password: self.passwordField.text
                         completion: ^{
-                            UINavigationController *navigationController = self.parentViewController.navigationController;
-                            [navigationController setViewControllers: @[self.mainController] animated: YES];
+                            [self loginDidSucceed];
                         }
                         failure: ^{
                             [UIAlertView showWithTitle: @"Login Error"
@@ -132,71 +134,13 @@
             }
         }];
 
-
-        //
-        //        [_model.authClient authenticateUsingOAuthWithURLString: @"http://188.226.201.79/api/oauth/token"
-        //                username: self.usernameField.text
-        //                password: self.passwordField.text
-        //                scope: @"email"
-        //                success: ^(AFOAuthCredential *credential) {
-        //                    NSLog(@"I have a token! %@", credential.accessToken);
-        //                    [AFOAuthCredential storeCredential: credential withIdentifier: _model.authClient.serviceProviderIdentifier];
-        //                    [self.presentingViewController dismissViewControllerAnimated: YES completion: nil];
-        //                }
-        //                failure: ^(NSError *error) {
-        //                    NSLog(@"Error: %@", error);
-        //
-        //                    [UIAlertView showWithTitle: @"Login Error"
-        //                            message: @"There was an error."
-        //                            cancelButtonTitle: @"OK"
-        //                            otherButtonTitles: @[]
-        //                            tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-        //                                //                            if (buttonIndex == [alertView cancelButtonIndex]) {
-        //                                //                                NSLog(@"Cancelled");
-        //                                //                            } else if ([[alertView buttonTitleAtIndex: buttonIndex] isEqualToString: @"Beer"]) {
-        //                                //                                NSLog(@"Have a cold beer");
-        //                                //                            } else if ([[alertView buttonTitleAtIndex: buttonIndex] isEqualToString: @"Wine"]) {
-        //                                //                                NSLog(@"Have a glass of chardonnay");
-        //                                //                            }
-        //                            }];
-        //
-        //                    //
-        //                    //                [UIActionSheet showInView: self.view
-        //                    //                        withTitle: @"Are you sure you want to delete all the things?"
-        //                    //                        cancelButtonTitle: @"Cancel"
-        //                    //                        destructiveButtonTitle: @"Delete all the things"
-        //                    //                        otherButtonTitles: @[@"Just some of the things", @"Most of the things"]
-        //                    //                        tapBlock: ^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-        //                    //                            NSLog(@"Chose %@", [actionSheet buttonTitleAtIndex: buttonIndex]);
-        //                    //                        }];
-        //                }];
-
     }
 
-    TFLoginOperation *operation = [[TFLoginOperation alloc] initWithSuccess: ^{
+}
 
-        //        __block UIViewController *controller = self.presentingViewController;
-        //        __block UINavigationController *navController = (UINavigationController *) ([controller isKindOfClass: [UINavigationController class]] ? controller : nil);
-        //
-        //        [controller
-        //                dismissViewControllerAnimated: YES
-        //                                   completion: ^{
-        //                                       [self performSegueWithIdentifier: @"MenuSegue2"
-        //                                                                 sender: nil];
-        //                                       //
-        //                                       //                                       if (navController) {
-        //                                       //                                           [navController pushViewController: [self.storyboard instantiateViewControllerWithIdentifier: @"MainController"]
-        //                                       //                                                                    animated: YES];
-        //                                       //                                       }
-        //                                   }];
-
-    }];
-
-    operation.failure = ^{
-
-    };
-
-    [_queue addOperation: operation];
+- (void) loginDidSucceed {
+    UINavigationController *navigationController = self.parentViewController.navigationController;
+    [navigationController setViewControllers: @[self.mainController] animated: YES];
 
 }
 
@@ -212,22 +156,22 @@
 #pragma mark UITableViewDatasource
 
 - (NSInteger) tableView: (UITableView *) tableView numberOfRowsInSection: (NSInteger) section {
-    return [table numberOfRowsInSection: section];
+    return [_table numOfRowsInSection: section];
 }
 
 - (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath {
     UITableViewCell *ret = [tableView dequeueReusableCellWithIdentifier: @"TableCell"];
 
 
-    NSDictionary *dictionary = [table dataForIndexPath: indexPath];
+    NSDictionary *dictionary = [_table dataForIndexPath: indexPath];
     if ([ret isKindOfClass: [FieldTableViewCell class]]) {
         FieldTableViewCell *cell = (FieldTableViewCell *) ret;
         cell.textField.delegate = self;
-        cell.textField.placeholder = [table textLabelForIndexPath: indexPath];
-        cell.imageView.image = [table imageForIndexPath: indexPath];
+        cell.textField.placeholder = [_table textLabelForIndexPath: indexPath];
+        cell.imageView.image = [_table imageForIndexPath: indexPath];
         cell.textField.rightView = nil;
 
-        if ([[table textLabelForIndexPath: indexPath] isEqualToString: @"Password"]) {
+        if ([[_table textLabelForIndexPath: indexPath] isEqualToString: @"Password"]) {
             cell.textField.secureTextEntry = YES;
         }
 
@@ -250,13 +194,14 @@
 
 - (void) textFieldDidBeginEditing: (UITextField *) textField {
 
+    _currentTextField = textField;
     //    [self.view adjustViewForKeyboard: 20];
 
 }
 
 - (BOOL) textFieldShouldReturn: (UITextField *) textField {
 
-    UITextField *nextTextField = [table nextTableTextField: textField];
+    UITextField *nextTextField = [_table nextTableTextField: textField];
     [textField resignFirstResponder];
     if (nextTextField) {
         [nextTextField becomeFirstResponder];
@@ -279,6 +224,52 @@
 - (UITextField *) passwordField {
     FieldTableViewCell *cell = (FieldTableViewCell *) [self.table cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 1 inSection: 0]];
     return cell.textField;
+}
+
+
+- (void) touchesBegan: (NSSet *) touches withEvent: (UIEvent *) event {
+    [super touchesBegan: touches withEvent: event];
+    [_currentTextField resignFirstResponder];
+}
+
+
+
+#pragma mark - Private
+
+- (void) _setup {
+
+    [self.view convertFonts];
+    self.view.backgroundColor = [UIColor clearColor];
+
+    [self _setupTapRecognizer];
+}
+
+- (void) _setupTapRecognizer {
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(handleTap:)];
+    recognizer.numberOfTapsRequired = 1;
+    recognizer.cancelsTouchesInView = NO;
+    [self.view.window addGestureRecognizer: recognizer];
+}
+
+
+- (void) handleTap: (UITapGestureRecognizer *) sender {
+
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint location = [sender locationInView: nil];
+        if (![self.view pointInside: [self.view convertPoint: location fromView: self.view.window]
+                withEvent: nil]) {
+            [_currentTextField resignFirstResponder];
+            //            if (dismisses) {
+            //                [self modalWillDismiss];
+            //                [self.view.window removeGestureRecognizer: sender];
+            //                [self dismiss];
+            //
+            //            } else {
+            ////                [self didTapBehind];
+            //            }
+
+        }
+    }
 }
 
 @end

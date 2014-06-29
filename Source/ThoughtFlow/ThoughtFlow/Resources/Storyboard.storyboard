@@ -151,7 +151,7 @@
                                     <segue destination="J9Y-8x-50W" kind="embed" identifier="EmbedSegue" id="yqC-G8-6as"/>
                                 </connections>
                             </containerView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-full-black" translatesAutoresizingMaskIntoConstraints="NO" id="PRF-fL-yFq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo-full-black" translatesAutoresizingMaskIntoConstraints="NO" id="PRF-fL-yFq">
                                 <rect key="frame" x="75" y="39" width="150" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>

@@ -29,13 +29,14 @@
 #import "AFHTTPRequestOperation.h"
 
 @interface UIButton (_AFNetworking)
-@property (readwrite, nonatomic, strong, setter = af_setImageRequestOperation:) AFHTTPRequestOperation *af_imageRequestOperation;
-@property (readwrite, nonatomic, strong, setter = af_setBackgroundImageRequestOperation:) AFHTTPRequestOperation *af_backgroundImageRequestOperation;
+
+@property(readwrite, nonatomic, strong, setter = af_setImageRequestOperation:) AFHTTPRequestOperation *af_imageRequestOperation;
+@property(readwrite, nonatomic, strong, setter = af_setBackgroundImageRequestOperation:) AFHTTPRequestOperation *af_backgroundImageRequestOperation;
 @end
 
 @implementation UIButton (_AFNetworking)
 
-+ (NSOperationQueue *)af_sharedImageRequestOperationQueue {
++ (NSOperationQueue *) af_sharedImageRequestOperationQueue {
     static NSOperationQueue *_af_sharedImageRequestOperationQueue = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -46,19 +47,19 @@
     return _af_sharedImageRequestOperationQueue;
 }
 
-- (AFHTTPRequestOperation *)af_imageRequestOperation {
-    return (AFHTTPRequestOperation *)objc_getAssociatedObject(self, @selector(af_imageRequestOperation));
+- (AFHTTPRequestOperation *) af_imageRequestOperation {
+    return (AFHTTPRequestOperation *) objc_getAssociatedObject(self, @selector(af_imageRequestOperation));
 }
 
-- (void)af_setImageRequestOperation:(AFHTTPRequestOperation *)imageRequestOperation {
+- (void) af_setImageRequestOperation: (AFHTTPRequestOperation *) imageRequestOperation {
     objc_setAssociatedObject(self, @selector(af_imageRequestOperation), imageRequestOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (AFHTTPRequestOperation *)af_backgroundImageRequestOperation {
-    return (AFHTTPRequestOperation *)objc_getAssociatedObject(self, @selector(af_backgroundImageRequestOperation));
+- (AFHTTPRequestOperation *) af_backgroundImageRequestOperation {
+    return (AFHTTPRequestOperation *) objc_getAssociatedObject(self, @selector(af_backgroundImageRequestOperation));
 }
 
-- (void)af_setBackgroundImageRequestOperation:(AFHTTPRequestOperation *)imageRequestOperation {
+- (void) af_setBackgroundImageRequestOperation: (AFHTTPRequestOperation *) imageRequestOperation {
     objc_setAssociatedObject(self, @selector(af_backgroundImageRequestOperation), imageRequestOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -68,114 +69,108 @@
 
 @implementation UIButton (AFNetworking)
 
-- (void)setImageForState:(UIControlState)state
-                 withURL:(NSURL *)url
-{
-    [self setImageForState:state withURL:url placeholderImage:nil];
+- (void) setImageForState: (UIControlState) state
+                  withURL: (NSURL *) url {
+    [self setImageForState: state withURL: url placeholderImage: nil];
 }
 
-- (void)setImageForState:(UIControlState)state
-                 withURL:(NSURL *)url
-        placeholderImage:(UIImage *)placeholderImage
-{
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+- (void) setImageForState: (UIControlState) state
+                  withURL: (NSURL *) url
+         placeholderImage: (UIImage *) placeholderImage {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
+    [request addValue: @"image/*" forHTTPHeaderField: @"Accept"];
 
-    [self setImageForState:state withURLRequest:request placeholderImage:placeholderImage success:nil failure:nil];
+    [self setImageForState: state withURLRequest: request placeholderImage: placeholderImage success: nil failure: nil];
 }
 
-- (void)setImageForState:(UIControlState)state
-          withURLRequest:(NSURLRequest *)urlRequest
-        placeholderImage:(UIImage *)placeholderImage
-                 success:(void (^)(NSHTTPURLResponse *response, UIImage *image))success
-                 failure:(void (^)(NSError *error))failure
-{
+- (void) setImageForState: (UIControlState) state
+           withURLRequest: (NSURLRequest *) urlRequest
+         placeholderImage: (UIImage *) placeholderImage
+                  success: (void (^)(NSHTTPURLResponse *response, UIImage *image)) success
+                  failure: (void (^)(NSError *error)) failure {
     [self cancelImageRequestOperation];
 
-    [self setImage:placeholderImage forState:state];
+    [self setImage: placeholderImage forState: state];
 
-    __weak __typeof(self)weakSelf = self;
-    self.af_imageRequestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
+    __weak __typeof (self) weakSelf = self;
+    self.af_imageRequestOperation = [[AFHTTPRequestOperation alloc] initWithRequest: urlRequest];
     self.af_imageRequestOperation.responseSerializer = [AFImageResponseSerializer serializer];
-    [self.af_imageRequestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        __strong __typeof(weakSelf)strongSelf = weakSelf;
-        if ([[urlRequest URL] isEqual:[operation.request URL]]) {
+    [self.af_imageRequestOperation setCompletionBlockWithSuccess: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        __strong __typeof (weakSelf) strongSelf = weakSelf;
+        if ([[urlRequest URL] isEqual: [operation.request URL]]) {
             if (success) {
                 success(operation.response, responseObject);
             } else if (responseObject) {
-                [strongSelf setImage:responseObject forState:state];
+                [strongSelf setImage: responseObject forState: state];
             }
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([[urlRequest URL] isEqual:[operation.response URL]]) {
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+        if ([[urlRequest URL] isEqual: [operation.response URL]]) {
             if (failure) {
                 failure(error);
             }
         }
     }];
 
-    [[[self class] af_sharedImageRequestOperationQueue] addOperation:self.af_imageRequestOperation];
+    [[[self class] af_sharedImageRequestOperationQueue] addOperation: self.af_imageRequestOperation];
 }
 
 #pragma mark -
 
-- (void)setBackgroundImageForState:(UIControlState)state
-                           withURL:(NSURL *)url
-{
-    [self setBackgroundImageForState:state withURL:url placeholderImage:nil];
+- (void) setBackgroundImageForState: (UIControlState) state
+                            withURL: (NSURL *) url {
+    [self setBackgroundImageForState: state withURL: url placeholderImage: nil];
 }
 
-- (void)setBackgroundImageForState:(UIControlState)state
-                           withURL:(NSURL *)url
-                  placeholderImage:(UIImage *)placeholderImage
-{
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+- (void) setBackgroundImageForState: (UIControlState) state
+                            withURL: (NSURL *) url
+                   placeholderImage: (UIImage *) placeholderImage {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
+    [request addValue: @"image/*" forHTTPHeaderField: @"Accept"];
 
-    [self setBackgroundImageForState:state withURLRequest:request placeholderImage:placeholderImage success:nil failure:nil];
+    [self setBackgroundImageForState: state withURLRequest: request placeholderImage: placeholderImage success: nil failure: nil];
 }
 
-- (void)setBackgroundImageForState:(UIControlState)state
-                    withURLRequest:(NSURLRequest *)urlRequest
-                  placeholderImage:(UIImage *)placeholderImage
-                           success:(void (^)(NSHTTPURLResponse *response, UIImage *image))success
-                           failure:(void (^)(NSError *error))failure
-{
+- (void) setBackgroundImageForState: (UIControlState) state
+                     withURLRequest: (NSURLRequest *) urlRequest
+                   placeholderImage: (UIImage *) placeholderImage
+                            success: (void (^)(NSHTTPURLResponse *response, UIImage *image)) success
+                            failure: (void (^)(NSError *error)) failure {
     [self cancelBackgroundImageRequestOperation];
 
-    [self setBackgroundImage:placeholderImage forState:state];
+    [self setBackgroundImage: placeholderImage forState: state];
 
-    __weak __typeof(self)weakSelf = self;
-    self.af_backgroundImageRequestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
+    __weak __typeof (self) weakSelf = self;
+    self.af_backgroundImageRequestOperation = [[AFHTTPRequestOperation alloc] initWithRequest: urlRequest];
     self.af_backgroundImageRequestOperation.responseSerializer = [AFImageResponseSerializer serializer];
-    [self.af_backgroundImageRequestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        __strong __typeof(weakSelf)strongSelf = weakSelf;
-        if ([[urlRequest URL] isEqual:[operation.request URL]]) {
+    [self.af_backgroundImageRequestOperation setCompletionBlockWithSuccess: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        __strong __typeof (weakSelf) strongSelf = weakSelf;
+        if ([[urlRequest URL] isEqual: [operation.request URL]]) {
             if (success) {
                 success(operation.response, responseObject);
             } else if (responseObject) {
-                [strongSelf setBackgroundImage:responseObject forState:state];
+                [strongSelf setBackgroundImage: responseObject forState: state];
             }
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([[urlRequest URL] isEqual:[operation.response URL]]) {
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+        if ([[urlRequest URL] isEqual: [operation.response URL]]) {
             if (failure) {
                 failure(error);
             }
         }
     }];
 
-    [[[self class] af_sharedImageRequestOperationQueue] addOperation:self.af_backgroundImageRequestOperation];
+    [[[self class] af_sharedImageRequestOperationQueue] addOperation: self.af_backgroundImageRequestOperation];
 }
 
 #pragma mark -
 
-- (void)cancelImageRequestOperation {
+- (void) cancelImageRequestOperation {
     [self.af_imageRequestOperation cancel];
     self.af_imageRequestOperation = nil;
 }
 
-- (void)cancelBackgroundImageRequestOperation {
+- (void) cancelBackgroundImageRequestOperation {
     [self.af_backgroundImageRequestOperation cancel];
     self.af_backgroundImageRequestOperation = nil;
 }

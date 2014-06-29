@@ -31,7 +31,7 @@
 		<string>AGaramondPro-Italic.otf</string>
 	</array>
 	<key>UIMainStoryboardFile~ipad</key>
-	<string>Storyboard</string>
+	<string>Prestoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

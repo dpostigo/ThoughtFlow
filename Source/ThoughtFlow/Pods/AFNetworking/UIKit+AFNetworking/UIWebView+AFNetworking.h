@@ -41,12 +41,12 @@
 /**
  The request serializer used to serialize requests made with the `-loadRequest:...` category methods. By default, this is an instance of `AFHTTPRequestSerializer`.
  */
-@property (nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
+@property(nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> *requestSerializer;
 
 /**
  The response serializer used to serialize responses made with the `-loadRequest:...` category methods. By default, this is an instance of `AFHTTPResponseSerializer`.
  */
-@property (nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
+@property(nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer;
 
 /**
  Asynchronously loads the specified request.
@@ -56,10 +56,10 @@
  @param success A block object to be executed when the request finishes loading successfully. This block returns the HTML string to be loaded by the web view, and takes two arguments: the response, and the response string.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a single argument: the error that occurred.
  */
-- (void)loadRequest:(NSURLRequest *)request
-           progress:(void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))progress
-            success:(NSString * (^)(NSHTTPURLResponse *response, NSString *HTML))success
-            failure:(void (^)(NSError *error))failure;
+- (void) loadRequest: (NSURLRequest *) request
+            progress: (void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite)) progress
+             success: (NSString * (^)(NSHTTPURLResponse *response, NSString *HTML)) success
+             failure: (void (^)(NSError *error)) failure;
 
 /**
  Asynchronously loads the data associated with a particular request with a specified MIME type and text encoding.
@@ -71,12 +71,12 @@
  @param success A block object to be executed when the request finishes loading successfully. This block returns the data to be loaded by the web view and takes two arguments: the response, and the downloaded data.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a single argument: the error that occurred.
  */
-- (void)loadRequest:(NSURLRequest *)request
-           MIMEType:(NSString *)MIMEType
-   textEncodingName:(NSString *)textEncodingName
-           progress:(void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))progress
-            success:(NSData * (^)(NSHTTPURLResponse *response, NSData *data))success
-            failure:(void (^)(NSError *error))failure;
+- (void) loadRequest: (NSURLRequest *) request
+            MIMEType: (NSString *) MIMEType
+    textEncodingName: (NSString *) textEncodingName
+            progress: (void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite)) progress
+             success: (NSData * (^)(NSHTTPURLResponse *response, NSData *data)) success
+             failure: (void (^)(NSError *error)) failure;
 
 @end
 

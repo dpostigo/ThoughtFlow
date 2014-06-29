@@ -12,9 +12,8 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface NSObject (AutoDescription)
 
-- (NSString *)autoDescription;
+- (NSString *) autoDescription;
 
 @end

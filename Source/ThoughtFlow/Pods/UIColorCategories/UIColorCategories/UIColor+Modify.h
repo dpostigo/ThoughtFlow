@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor(Modify)
+@interface UIColor (Modify)
 
-- (UIColor *)invertedColor;
-- (UIColor *)colorForTranslucency;
+- (UIColor *) invertedColor;
+- (UIColor *) colorForTranslucency;
 
-- (UIColor *)lightenColor:(CGFloat)lighten;
-- (UIColor *)darkenColor:(CGFloat)darken;
+- (UIColor *) lightenColor: (CGFloat) lighten;
+- (UIColor *) darkenColor: (CGFloat) darken;
 
 @end

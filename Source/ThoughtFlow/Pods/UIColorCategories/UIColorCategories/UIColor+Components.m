@@ -8,30 +8,30 @@
 
 #import "UIColor+Components.h"
 
-@implementation UIColor(Components)
+@implementation UIColor (Components)
 
-- (CGFloat)alphaComponent{
+- (CGFloat) alphaComponent {
     return CGColorGetAlpha([self CGColor]);
 }
 
-- (UIColor *)colorWithoutAlpha{
-    return [UIColor colorWithColor:self andAlpha:1];
+- (UIColor *) colorWithoutAlpha {
+    return [UIColor colorWithColor: self andAlpha: 1];
 }
 
-+ (UIColor *)colorWithColor:(UIColor *)color andAlpha:(CGFloat)alpha{
++ (UIColor *) colorWithColor: (UIColor *) color andAlpha: (CGFloat) alpha {
     NSArray *component = [color componentArray];
-    return [UIColor colorWithRed:[component[0] doubleValue] green:[component[1] doubleValue] blue:[component[2] doubleValue] alpha:alpha];
+    return [UIColor colorWithRed: [component[0] doubleValue] green: [component[1] doubleValue] blue: [component[2] doubleValue] alpha: alpha];
 }
 
-- (NSArray *)componentArray{
+- (NSArray *) componentArray {
     CGFloat red, green, blue, alpha;
     const CGFloat *components = CGColorGetComponents([self CGColor]);
-    if(CGColorGetNumberOfComponents([self CGColor]) == 2){
+    if (CGColorGetNumberOfComponents([self CGColor]) == 2) {
         red = components[0];
         green = components[0];
         blue = components[0];
         alpha = components[1];
-    }else{
+    } else {
         red = components[0];
         green = components[1];
         blue = components[2];

@@ -13,6 +13,7 @@
 @class TFPhoto;
 
 NSString *const TFProjectName;
+NSString *const TFSelectedPhotoDidChange;
 
 
 @interface Model : NSObject {

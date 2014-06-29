@@ -6,7 +6,6 @@
 
 @implementation NSMutableArray (DPKit)
 
-
 - (void) sortUsingDescriptor: (NSSortDescriptor *) descriptor {
     [self sortUsingDescriptors: [NSArray arrayWithObject: descriptor]];
 }

@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIImage(UIColor)
+@interface UIImage (UIColor)
 
-- (UIColor *)averageColor;
+- (UIColor *) averageColor;
 
 @end

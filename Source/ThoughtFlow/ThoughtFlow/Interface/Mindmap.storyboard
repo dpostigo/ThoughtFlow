@@ -388,7 +388,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[IMAGE TITLE]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUJ-HC-N6D" customClass="GothamLightLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[IMAGE TITLE]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUJ-HC-N6D" customClass="TFGothamLightLabelOld">
                                 <rect key="frame" x="22" y="32" width="91" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
@@ -403,28 +403,28 @@
                                     <constraint firstAttribute="height" constant="1" id="nIp-hk-LNf"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="IMAGE CREDITS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ED5-YM-LwB" customClass="GothamLightLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="IMAGE CREDITS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ED5-YM-LwB" customClass="TFGothamLightLabelOld">
                                 <rect key="frame" x="22" y="84" width="90" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                                 <color key="textColor" red="0.24705882370000001" green="0.24705882370000001" blue="0.27450981740000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Author from Source." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIV-il-DS1" customClass="GothamLightLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Author from Source." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIV-il-DS1" customClass="TFGothamLightLabelOld">
                                 <rect key="frame" x="22" y="109" width="108" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                                 <color key="textColor" red="0.54117649793624878" green="0.54509806632995605" blue="0.58039218187332153" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="IMAGE DESCRIPTION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hen-MO-aAB" customClass="GothamLightLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="IMAGE DESCRIPTION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hen-MO-aAB" customClass="TFGothamLightLabelOld">
                                 <rect key="frame" x="22" y="141" width="120" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                                 <color key="textColor" red="0.24705882370471954" green="0.24705882370471954" blue="0.27450981736183167" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" verticalCompressionResistancePriority="754" text="Tag, tag, tag, tag, tag, tag, Tag, tag, tag, tag, tag, tag, Tag, tag, tag, tag, tag, tag" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="258" translatesAutoresizingMaskIntoConstraints="NO" id="whM-pQ-XEA" customClass="GothamLightLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="754" text="Tag, tag, tag, tag, tag, tag, Tag, tag, tag, tag, tag, tag, Tag, tag, tag, tag, tag, tag" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="258" translatesAutoresizingMaskIntoConstraints="NO" id="whM-pQ-XEA" customClass="TFGothamLightLabelOld">
                                 <rect key="frame" x="22" y="655" width="258" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
@@ -697,12 +697,109 @@
             </objects>
             <point key="canvasLocation" x="6413" y="5574"/>
         </scene>
+        <!--New Image Drawer Controller-->
+        <scene sceneID="gGR-TO-9Ja">
+            <objects>
+                <viewController storyboardIdentifier="NewImageDrawerController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d5n-mR-G9K" customClass="NewImageDrawerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C1l-RB-pkZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="4yf-U8-g8u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IfE-iL-0vC">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[IMAGE TITLE]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36k-9h-25e" customClass="TFGothamLightLabelOld">
+                                <rect key="frame" x="20" y="32" width="91" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8X-Fr-1Hh" userLabel="Divider View">
+                                <rect key="frame" x="20" y="62" width="255" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.32941177490000001" green="0.33333334329999997" blue="0.36862745879999997" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="9um-I4-2hi"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="c2L-AI-ios" customClass="DPTableView">
+                                <rect key="frame" x="20" y="78" width="255" height="540"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zjs-pY-21a" customClass="TFUserButton">
+                                <rect key="frame" x="25" y="708" width="249" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.24313727020000001" green="0.24313727020000001" blue="0.27450981740000002" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="4un-du-TXj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                <state key="normal" title="CLOSE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeDrawer:" destination="d5n-mR-G9K" eventType="touchUpInside" id="BQi-Q0-9w6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMK-VH-oTa" customClass="TFUserButton">
+                                <rect key="frame" x="25" y="651" width="249" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.28627450980392155" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ssZ-1S-B93"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                <state key="normal" title="PIN TO MOODBOARD" image="icon-button-pin">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeDrawer:" destination="d5n-mR-G9K" eventType="touchUpInside" id="Y4a-Y5-QfN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.074509806930000005" green="0.074509806930000005" blue="0.086274512110000007" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="c2L-AI-ios" firstAttribute="top" secondItem="t8X-Fr-1Hh" secondAttribute="bottom" constant="15" id="3rR-Ad-t4b"/>
+                            <constraint firstItem="4yf-U8-g8u" firstAttribute="top" secondItem="Zjs-pY-21a" secondAttribute="bottom" priority="250" constant="20" id="E3L-v6-M6l"/>
+                            <constraint firstItem="36k-9h-25e" firstAttribute="leading" secondItem="IfE-iL-0vC" secondAttribute="leading" constant="20" id="Hei-EU-4VF"/>
+                            <constraint firstItem="t8X-Fr-1Hh" firstAttribute="trailing" secondItem="c2L-AI-ios" secondAttribute="trailing" id="LcR-5P-PDj"/>
+                            <constraint firstAttribute="trailing" secondItem="Zjs-pY-21a" secondAttribute="trailing" constant="26" id="MAU-F8-gdW"/>
+                            <constraint firstItem="t8X-Fr-1Hh" firstAttribute="leading" secondItem="c2L-AI-ios" secondAttribute="leading" id="Uoq-lt-BxU"/>
+                            <constraint firstItem="36k-9h-25e" firstAttribute="top" secondItem="C1l-RB-pkZ" secondAttribute="top" constant="32" id="Vec-2g-4HH"/>
+                            <constraint firstItem="gMK-VH-oTa" firstAttribute="leading" secondItem="Zjs-pY-21a" secondAttribute="leading" id="YOY-cA-Fft"/>
+                            <constraint firstItem="Zjs-pY-21a" firstAttribute="leading" secondItem="IfE-iL-0vC" secondAttribute="leading" constant="25" id="agP-r0-ccP"/>
+                            <constraint firstItem="36k-9h-25e" firstAttribute="leading" secondItem="t8X-Fr-1Hh" secondAttribute="leading" id="eSX-Gt-bXD"/>
+                            <constraint firstItem="gMK-VH-oTa" firstAttribute="trailing" secondItem="Zjs-pY-21a" secondAttribute="trailing" id="jl5-u9-cEQ"/>
+                            <constraint firstItem="Zjs-pY-21a" firstAttribute="top" secondItem="gMK-VH-oTa" secondAttribute="bottom" constant="17" id="kaL-IL-6F3"/>
+                            <constraint firstItem="gMK-VH-oTa" firstAttribute="top" secondItem="c2L-AI-ios" secondAttribute="bottom" constant="33" id="nAf-Bd-nQ0"/>
+                            <constraint firstItem="t8X-Fr-1Hh" firstAttribute="top" secondItem="36k-9h-25e" secondAttribute="bottom" constant="10" id="tsy-6n-3kb"/>
+                            <constraint firstAttribute="trailing" secondItem="t8X-Fr-1Hh" secondAttribute="trailing" constant="25" id="vOd-Cv-ont"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="768"/>
+                    <connections>
+                        <outlet property="table" destination="c2L-AI-ios" id="YUx-gO-hpZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="77Q-HP-jv9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5569" y="4246"/>
+        </scene>
     </scenes>
     <resources>
         <image name="05-editmodal" width="340" height="340"/>
         <image name="05-related-modal" width="815" height="650"/>
         <image name="delete-icon" width="20" height="20"/>
         <image name="grid-icon" width="44" height="44"/>
+        <image name="icon-button-pin" width="12" height="12"/>
         <image name="image-placeholder" width="120" height="120"/>
         <image name="info-button-icon" width="44" height="44"/>
         <image name="pin-button-icon" width="44" height="44"/>

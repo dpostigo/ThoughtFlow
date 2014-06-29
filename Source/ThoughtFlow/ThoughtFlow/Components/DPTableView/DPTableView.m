@@ -8,7 +8,6 @@
 @implementation DPTableView
 
 @synthesize onReload;
-@synthesize data;
 
 @synthesize populateTextLabels;
 @synthesize dataDictionary;
@@ -53,8 +52,12 @@ NSString *const DPTableViewImageName = @"Image";
     return self.rowData[indexPath.section][indexPath.row];
 }
 
-- (NSInteger) numberOfRowsInSection: (NSInteger) section {
+- (NSInteger) numOfRowsInSection: (NSInteger) section {
     return [self.rowData[section] count];
+}
+
+- (NSInteger) numOfSections {
+    return [self.sectionData count];
 }
 
 #pragma mark Getters
@@ -84,14 +87,6 @@ NSString *const DPTableViewImageName = @"Image";
 
 - (NSMutableArray *) sectionData {
     return [self.dataDictionary objectForKey: @"sections"];
-}
-
-
-- (NSMutableArray *) data {
-    if (data == nil) {
-        data = [[NSMutableArray alloc] init];
-    }
-    return data;
 }
 
 

@@ -22,12 +22,6 @@
 
     preloader = [[UIImageView alloc] init];
 
-    //    [_queue addOperation: [[TFImageFetchOperation alloc] initWithImageSuccess: ^(NSArray *imageArray) {
-    //        images = imageArray;
-    //        _imageView.image = images[0];
-    //        [_collection reloadData];
-    //    }]];
-
     _collection.pagingEnabled = YES;
     _collection.showsHorizontalScrollIndicator = NO;
     _collection.showsVerticalScrollIndicator = NO;
@@ -116,6 +110,8 @@
             images = imageArray;
             [_collection reloadData];
             [_collection scrollToItemAtIndexPath: [NSIndexPath indexPathForItem: 0 inSection: 0] atScrollPosition: UICollectionViewScrollPositionNone animated: NO];
+
+            _model.selectedPhoto = images[0];
             [UIView animateWithDuration: 0.4 animations: ^{
                 _collection.alpha = 1;
             }];
@@ -159,8 +155,6 @@
     [ret.imageView rasterize];
     [ret rasterize];
 
-    _model.selectedPhoto = photo;
-
     [self preloadForIndexPath: indexPath];
 
     //    UIImage *image = [self.images objectAtIndex: indexPath.item];
@@ -184,16 +178,18 @@
     }
 
 }
-//
-//- (void) scrollViewDidEndDecelerating: (UIScrollView *) scrollView {
-//    NSIndexPath *indexPath = [_collection indexPathForItemAtPoint: _collection.contentOffset];
-//
-//    if (indexPath.item < [self.images count] - 1) {
-//        NSIndexPath *nextIndexPath = [NSIndexPath indexPathForItem: indexPath.item + 1 inSection: indexPath.section];
-//        TFPhoto *photo = [self.images objectAtIndex: nextIndexPath.item];
-//        [preloader setImageWithURL: photo.URL];
-//    }
-//}
+
+- (void) scrollViewDidEndDecelerating: (UIScrollView *) scrollView {
+    NSIndexPath *indexPath = [_collection indexPathForItemAtPoint: _collection.contentOffset];
+
+    if (indexPath.item < [self.images count] - 1) {
+
+        //        NSIndexPath *nextIndexPath = [NSIndexPath indexPathForItem: indexPath.item + 1 inSection: indexPath.section];
+        TFPhoto *photo = [self.images objectAtIndex: indexPath.item];
+        _model.selectedPhoto = photo;
+        //        [preloader setImageWithURL: photo.URL];
+    }
+}
 
 //
 //
@@ -242,6 +238,7 @@
 //    float offset = currentIndex * currentSize.width;
 //    [self.collection setContentOffset: CGPointMake(offset, 0)];
 //}
+
 
 
 

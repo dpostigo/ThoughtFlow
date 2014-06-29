@@ -24,16 +24,16 @@
 
 @interface NSDateFormatter (JMSimpleDate)
 
-+ (NSString *)formattedStringTimeElapsedFromDate:(NSDate *)date;
++ (NSString *) formattedStringTimeElapsedFromDate: (NSDate *) date;
 
 #pragma mark - Date Format Templates
-+ (NSString *)timeFormatStringShowingSeconds:(BOOL)showSeconds;
-+ (NSString *)timeFormatString;
++ (NSString *) timeFormatStringShowingSeconds: (BOOL) showSeconds;
++ (NSString *) timeFormatString;
 
-+ (NSString *)dateFormatStringWithAmericanFormat:(BOOL)isAmerican;
-+ (NSString *)dateFormatString;
++ (NSString *) dateFormatStringWithAmericanFormat: (BOOL) isAmerican;
++ (NSString *) dateFormatString;
 
-+ (NSString *)timestampFormatStringWithAmericanFormat:(BOOL)isAmerican showingSeconds:(BOOL)showSeconds;
-+ (NSString *)timestampFormatString;
++ (NSString *) timestampFormatStringWithAmericanFormat: (BOOL) isAmerican showingSeconds: (BOOL) showSeconds;
++ (NSString *) timestampFormatString;
 
 @end

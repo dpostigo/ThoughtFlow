@@ -27,6 +27,7 @@
 @synthesize apiModel;
 @synthesize selectedPhoto;
 NSString *const TFProjectName = @"TF Project Name";
+NSString *const TFSelectedPhotoDidChange = @"TFSelectedPhotoDidChange";
 
 
 static NSString *baseURL = @"http://188.226.201.79/api";
@@ -60,6 +61,15 @@ static NSString *baseURL = @"http://188.226.201.79/api";
 }
 
 
+
+#pragma mark Property notifications
+
+- (void) setSelectedPhoto: (TFPhoto *) selectedPhoto1 {
+    if (selectedPhoto != selectedPhoto1) {
+        selectedPhoto = selectedPhoto1;
+        [[NSNotificationCenter defaultCenter] postNotificationName: TFSelectedPhotoDidChange object: nil];
+    }
+}
 
 #pragma mark Projects
 - (NSArray *) projects {

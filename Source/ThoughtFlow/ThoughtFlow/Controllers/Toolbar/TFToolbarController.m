@@ -82,7 +82,6 @@
                 [self selectButtonForType: type];
 
                 switch (type) {
-
                     case TFControllerMindmap :
                         self.toolbarMode = TFToolbarModeMindmap;
                         break;

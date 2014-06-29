@@ -13,6 +13,7 @@
 #import "MindmapController+NodeUtils.h"
 #import "PanningView.h"
 #import "MindmapController+NodePositioning.h"
+#import "MindmapMinimizedController.h"
 
 @implementation MindmapController (UIPinch)
 
@@ -75,11 +76,11 @@
 }
 
 - (void) mindmapDidCompletePinch {
-    [self.navigationController pushViewController: self.minimizedController animated: NO];
+    [self.navigationController pushViewController: [[MindmapMinimizedController alloc] init] animated: NO];
 }
 
-- (UIViewController *) minimizedController {
-    return [self.storyboard instantiateViewControllerWithIdentifier: @"MinimizedLayerController"];
-}
+//- (UIViewController *) minimizedController {
+//    return [self.storyboard instantiateViewControllerWithIdentifier: @"MinimizedLayerController"];
+//}
 
 @end

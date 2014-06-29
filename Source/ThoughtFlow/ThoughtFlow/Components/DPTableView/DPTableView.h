@@ -14,7 +14,6 @@ NSString *const DPTableViewImageName;
 
     BOOL populateTextLabels;
     void (^onReload)(DPTableView *);
-    NSMutableArray *data;
 
     NSMutableDictionary *dataDictionary;
 
@@ -27,6 +26,9 @@ NSString *const DPTableViewImageName;
 - (void) populateItem: (id) item atIndexPath: (NSIndexPath *) indexPath;
 - (id) dataForKey: (NSString *) key atIndexPath: (NSIndexPath *) indexPath;
 - (NSDictionary *) dataForIndexPath: (NSIndexPath *) indexPath;
+- (NSInteger) numOfRowsInSection: (NSInteger) section;
+- (NSInteger) numOfSections;
 - (NSMutableArray *) rows;
+- (NSMutableArray *) rowData;
 - (NSMutableArray *) sectionData;
 @end

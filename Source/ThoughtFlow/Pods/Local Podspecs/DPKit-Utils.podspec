@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DPKit-Utils"
-  s.version      = "0.0.22"
+  s.version      = "0.0.31"
   s.summary      = "DPKit-Utils"
   s.homepage     = "http://dpostigo.com"
   s.license      = 'BSD'

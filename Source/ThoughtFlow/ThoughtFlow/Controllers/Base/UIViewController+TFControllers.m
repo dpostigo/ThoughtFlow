@@ -8,6 +8,22 @@
 @implementation UIViewController (TFControllers)
 
 
+#pragma mark Storyboards
+
+- (UIStoryboard *) mainStoryboard {
+    return [UIStoryboard storyboardWithName: @"Storyboard" bundle: nil];
+}
+
+
+- (UIStoryboard *) mindmapStoryboard {
+    return [UIStoryboard storyboardWithName: @"Mindmap" bundle: nil];
+}
+
+- (UIStoryboard *) moodboardStoryboard {
+    return [UIStoryboard storyboardWithName: @"Moodboard" bundle: nil];
+}
+
+
 #pragma mark Main controllers
 
 - (UIViewController *) moodboardController {
@@ -16,7 +32,7 @@
 
 
 - (UIViewController *) mainController {
-    return [self.storyboard instantiateViewControllerWithIdentifier: @"MainAppController"];
+    return [self.mainStoryboard instantiateViewControllerWithIdentifier: @"MainAppController"];
 }
 
 
@@ -33,7 +49,10 @@
 }
 
 
+
+
 #pragma mark Mindmap Layers
+
 
 - (UIViewController *) minimizedLayerController {
     return [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"MinimizedLayerController"];
@@ -42,7 +61,6 @@
 - (UIViewController *) mindmapBackgroundController {
     return [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"MindmapBackgroundController"];
 }
-
 
 - (UIViewController *) mindmapButtonsController {
     return [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"MindmapButtonsController"];
@@ -60,6 +78,7 @@
 }
 
 - (UIViewController *) imageDrawerController {
+    return [self.storyboard instantiateViewControllerWithIdentifier: @"NewImageDrawerController"];
     return [self.storyboard instantiateViewControllerWithIdentifier: @"ImageDrawerController"];
 }
 
@@ -76,17 +95,6 @@
 
 - (UIViewController *) infoViewController {
     return [self.storyboard instantiateViewControllerWithIdentifier: @"TFInfoViewController"];
-}
-
-
-#pragma mark Storyboards
-
-- (UIStoryboard *) mindmapStoryboard {
-    return [UIStoryboard storyboardWithName: @"Mindmap" bundle: nil];
-}
-
-- (UIStoryboard *) moodboardStoryboard {
-    return [UIStoryboard storyboardWithName: @"Moodboard" bundle: nil];
 }
 
 

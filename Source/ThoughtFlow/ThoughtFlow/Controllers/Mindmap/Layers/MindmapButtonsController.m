@@ -37,10 +37,10 @@
 
 - (IBAction) handleInfoButton: (UIButton *) sender {
     if (self.drawerPresenter) {
-        [self.drawerPresenter presentDrawerController: (TFDrawerController *) self.imageDrawerController];
+        TFDrawerController *controller = (TFDrawerController *) self.imageDrawerController;
+        controller.presenter = self.drawerPresenter;
+        [self.drawerPresenter presentDrawerController: controller];
     }
-    //    [self presentImageDrawer: self.imageDrawerController];
-    //    [self.navigationController pushViewController: self.imageDrawerController animated: YES];
 
 }
 

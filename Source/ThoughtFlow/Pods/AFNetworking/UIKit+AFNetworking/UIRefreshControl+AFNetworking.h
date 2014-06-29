@@ -45,7 +45,8 @@
  @param task The task. If `nil`, automatic updating from any previously specified operation will be diabled.
  */
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-- (void)setRefreshingWithStateOfTask:(NSURLSessionTask *)task;
+
+- (void) setRefreshingWithStateOfTask: (NSURLSessionTask *) task;
 #endif
 
 ///----------------------------------------
@@ -57,7 +58,7 @@
 
  @param operation The operation. If `nil`, automatic updating from any previously specified operation will be disabled.
  */
-- (void)setRefreshingWithStateOfOperation:(AFURLConnectionOperation *)operation;
+- (void) setRefreshingWithStateOfOperation: (AFURLConnectionOperation *) operation;
 
 @end
 

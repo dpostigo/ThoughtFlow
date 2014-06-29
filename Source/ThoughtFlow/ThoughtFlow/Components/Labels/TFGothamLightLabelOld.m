@@ -3,10 +3,10 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import "GothamLightLabel.h"
+#import "TFGothamLightLabelOld.h"
 #import "UIFont+ThoughtFlow.h"
 
-@implementation GothamLightLabel
+@implementation TFGothamLightLabelOld
 
 - (void) awakeFromNib {
     [super awakeFromNib];
@@ -35,7 +35,7 @@
     };
 
     self.attributedText = [[NSAttributedString alloc] initWithString: self.text attributes: attributes];
-    [self sizeToFit];
+    //    [self sizeToFit];
 }
 
 

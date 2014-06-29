@@ -34,4 +34,8 @@
 
 @property(nonatomic, strong) UIView *creationNode;
 @property(nonatomic, strong) NSMutableArray *nodeViews;
+
+#pragma mark TFDrawerPresenter
+- (void) presentDrawerController: (UIViewController *) controller;
+
 @end

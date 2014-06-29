@@ -11,11 +11,10 @@
 @class DPTableView;
 
 @interface LoginModalController : TFModalViewController <TLFreeformModalProtocol, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
-    IBOutlet DPTableView *table;
 
 }
 
-@property(nonatomic, strong) DPTableView *table;
+@property (weak) IBOutlet DPTableView *table;
 - (void) prepareDatasource;
 - (IBAction) signInInstead: (id) sender;
 - (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath;

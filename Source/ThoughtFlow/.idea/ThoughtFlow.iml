@@ -4,6 +4,9 @@
     <content url="file://$MODULE_DIR$/../../../LocalPods/DPAnimators">
       <sourceFolder url="file://$MODULE_DIR$/../../../LocalPods/DPAnimators" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIFont">
+      <sourceFolder url="file://$MODULE_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIFont" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIView">
       <sourceFolder url="file://$MODULE_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIView" isTestSource="false" />
     </content>

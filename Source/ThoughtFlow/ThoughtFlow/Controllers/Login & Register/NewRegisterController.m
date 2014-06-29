@@ -17,9 +17,9 @@
 
 - (void) prepareDatasource {
     //    [super prepareDatasource];
-    [table.rows addObject: @{DPTableViewTextLabelName : @"Username", DPTableViewImageName : [UIImage imageNamed: @"user-icon"]}];
-    [table.rows addObject: @{DPTableViewTextLabelName : @"Email", DPTableViewImageName : [UIImage imageNamed: @"email-icon"]}];
-    [table.rows addObject: @{DPTableViewTextLabelName : @"Password", DPTableViewImageName : [UIImage imageNamed: @"password-icon"]}];
+    [self.table.rows addObject: @{DPTableViewTextLabelName : @"Username", DPTableViewImageName : [UIImage imageNamed: @"user-icon"]}];
+    [self.table.rows addObject: @{DPTableViewTextLabelName : @"Email", DPTableViewImageName : [UIImage imageNamed: @"email-icon"]}];
+    [self.table.rows addObject: @{DPTableViewTextLabelName : @"Password", DPTableViewImageName : [UIImage imageNamed: @"password-icon"]}];
 
 }
 

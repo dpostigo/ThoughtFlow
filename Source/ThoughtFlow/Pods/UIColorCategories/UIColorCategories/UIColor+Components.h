@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor(Components)
+@interface UIColor (Components)
 
-+ (UIColor *)colorWithColor:(UIColor *)color andAlpha:(CGFloat)alpha;
++ (UIColor *) colorWithColor: (UIColor *) color andAlpha: (CGFloat) alpha;
 
-- (CGFloat)alphaComponent;
-- (UIColor *)colorWithoutAlpha;
-- (NSArray *)componentArray;
+- (CGFloat) alphaComponent;
+- (UIColor *) colorWithoutAlpha;
+- (NSArray *) componentArray;
 
 @end

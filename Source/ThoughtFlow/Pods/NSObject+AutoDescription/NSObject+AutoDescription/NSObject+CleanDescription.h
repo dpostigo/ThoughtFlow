@@ -12,37 +12,36 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface NSObject (CleanDescription)
 
-- (NSString *)cleanDescription;
+- (NSString *) cleanDescription;
 
 @end
 
 
 @interface NSString (CleanDescription)
 
-- (NSString *)cleanDescription;
+- (NSString *) cleanDescription;
 
 @end
 
 
 @interface NSArray (CleanDescription)
 
-- (NSString *)cleanDescription;
+- (NSString *) cleanDescription;
 
 @end
 
 
 @interface NSSet (CleanDescription)
 
-- (NSString *)cleanDescription;
+- (NSString *) cleanDescription;
 
 @end
 
 
 @interface NSDictionary (CleanDescription)
 
-- (NSString *)cleanDescription;
+- (NSString *) cleanDescription;
 
 @end

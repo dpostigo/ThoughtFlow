@@ -20,6 +20,8 @@ pod 'DPAnimators', :path => '~/Development/LocalPods/DPAnimators'
 
 pod 'AFOAuth2Client', :git => 'https://github.com/mlwelles/AFOAuth2Client'
 
+pod 'DPKit-UIFont', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-UIFont'
 
 
 pod 'Reveal-iOS-SDK'
+pod 'CrashlyticsFramework'

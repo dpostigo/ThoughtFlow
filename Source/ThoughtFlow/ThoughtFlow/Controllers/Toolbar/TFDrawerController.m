@@ -8,13 +8,21 @@
 
 @implementation TFDrawerController
 
+@synthesize presenter;
+
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
 
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(handleTap:)];
+    recognizer = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(handleTap:)];
     recognizer.numberOfTapsRequired = 1;
     [self.view.superview addGestureRecognizer: recognizer];
 }
+
+- (void) viewWillDisappear: (BOOL) animated {
+    [super viewWillDisappear: animated];
+    [recognizer.view removeGestureRecognizer: recognizer];
+}
+
 
 - (void) handleTap: (UITapGestureRecognizer *) recognizer {
     [self closeDrawer: nil];
@@ -27,19 +35,20 @@
     NSLog(@"self.presentingViewController = %@", self.presentingViewController);
     NSLog(@"%s", __PRETTY_FUNCTION__);
 
-    if (self.presentingViewController) {
-        NSLog(@"self.presentingViewController = %@", self.presentingViewController);
-        [self.presentingViewController dismissViewControllerAnimated: YES completion: nil];
-    }
+    if (self.presenter) {
+        [self.presenter dismissDrawerController: self];
 
-    else if (self.parentViewController) {
+    } else if (self.presentingViewController) {
+        [self.presentingViewController dismissViewControllerAnimated: YES completion: nil];
+
+    } else if (self.parentViewController) {
         if ([self.parentViewController conformsToProtocol: @protocol(TFDrawerPresenter)]) {
-            id <TFDrawerPresenter> presenter = (id <TFDrawerPresenter>) self.parentViewController;
-            [presenter dismissDrawerController: self];
+            id <TFDrawerPresenter> aPresenter = (id <TFDrawerPresenter>) self.parentViewController;
+            [aPresenter dismissDrawerController: self];
         } else {
             NSLog(@"Does not conform.");
-
         }
+
     } else if (self.navigationController) {
 
         NSLog(@"self.navigationController = %@", self.navigationController);

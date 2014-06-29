@@ -45,22 +45,25 @@ static dispatch_group_t http_request_operation_completion_group() {
 #pragma mark -
 
 @interface AFURLConnectionOperation ()
-@property (readwrite, nonatomic, strong) NSURLRequest *request;
-@property (readwrite, nonatomic, strong) NSURLResponse *response;
+
+@property(readwrite, nonatomic, strong) NSURLRequest *request;
+@property(readwrite, nonatomic, strong) NSURLResponse *response;
 @end
 
 @interface AFHTTPRequestOperation ()
-@property (readwrite, nonatomic, strong) NSHTTPURLResponse *response;
-@property (readwrite, nonatomic, strong) id responseObject;
-@property (readwrite, nonatomic, strong) NSError *responseSerializationError;
-@property (readwrite, nonatomic, strong) NSRecursiveLock *lock;
+
+@property(readwrite, nonatomic, strong) NSHTTPURLResponse *response;
+@property(readwrite, nonatomic, strong) id responseObject;
+@property(readwrite, nonatomic, strong) NSError *responseSerializationError;
+@property(readwrite, nonatomic, strong) NSRecursiveLock *lock;
 @end
 
 @implementation AFHTTPRequestOperation
+
 @dynamic lock;
 
-- (instancetype)initWithRequest:(NSURLRequest *)urlRequest {
-    self = [super initWithRequest:urlRequest];
+- (instancetype) initWithRequest: (NSURLRequest *) urlRequest {
+    self = [super initWithRequest: urlRequest];
     if (!self) {
         return nil;
     }
@@ -70,7 +73,7 @@ static dispatch_group_t http_request_operation_completion_group() {
     return self;
 }
 
-- (void)setResponseSerializer:(AFHTTPResponseSerializer <AFURLResponseSerialization> *)responseSerializer {
+- (void) setResponseSerializer: (AFHTTPResponseSerializer <AFURLResponseSerialization> *) responseSerializer {
     NSParameterAssert(responseSerializer);
 
     [self.lock lock];
@@ -80,11 +83,11 @@ static dispatch_group_t http_request_operation_completion_group() {
     [self.lock unlock];
 }
 
-- (id)responseObject {
+- (id) responseObject {
     [self.lock lock];
     if (!_responseObject && [self isFinished] && !self.error) {
         NSError *error = nil;
-        self.responseObject = [self.responseSerializer responseObjectForResponse:self.response data:self.responseData error:&error];
+        self.responseObject = [self.responseSerializer responseObjectForResponse: self.response data: self.responseData error: &error];
         if (error) {
             self.responseSerializationError = error;
         }
@@ -94,7 +97,7 @@ static dispatch_group_t http_request_operation_completion_group() {
     return _responseObject;
 }
 
-- (NSError *)error {
+- (NSError *) error {
     if (_responseSerializationError) {
         return _responseSerializationError;
     } else {
@@ -104,9 +107,8 @@ static dispatch_group_t http_request_operation_completion_group() {
 
 #pragma mark - AFHTTPRequestOperation
 
-- (void)setCompletionBlockWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{
+- (void) setCompletionBlockWithSuccess: (void (^)(AFHTTPRequestOperation *operation, id responseObject)) success
+                               failure: (void (^)(AFHTTPRequestOperation *operation, NSError *error)) failure {
     // completionBlock is manually nilled out in AFURLConnectionOperation to break the retain cycle.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
@@ -150,53 +152,53 @@ static dispatch_group_t http_request_operation_completion_group() {
 
 #pragma mark - AFURLRequestOperation
 
-- (void)pause {
+- (void) pause {
     [super pause];
 
     u_int64_t offset = 0;
-    if ([self.outputStream propertyForKey:NSStreamFileCurrentOffsetKey]) {
-        offset = [(NSNumber *)[self.outputStream propertyForKey:NSStreamFileCurrentOffsetKey] unsignedLongLongValue];
+    if ([self.outputStream propertyForKey: NSStreamFileCurrentOffsetKey]) {
+        offset = [(NSNumber *) [self.outputStream propertyForKey: NSStreamFileCurrentOffsetKey] unsignedLongLongValue];
     } else {
-        offset = [(NSData *)[self.outputStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey] length];
+        offset = [(NSData *) [self.outputStream propertyForKey: NSStreamDataWrittenToMemoryStreamKey] length];
     }
 
     NSMutableURLRequest *mutableURLRequest = [self.request mutableCopy];
-    if ([self.response respondsToSelector:@selector(allHeaderFields)] && [[self.response allHeaderFields] valueForKey:@"ETag"]) {
-        [mutableURLRequest setValue:[[self.response allHeaderFields] valueForKey:@"ETag"] forHTTPHeaderField:@"If-Range"];
+    if ([self.response respondsToSelector: @selector(allHeaderFields)] && [[self.response allHeaderFields] valueForKey: @"ETag"]) {
+        [mutableURLRequest setValue: [[self.response allHeaderFields] valueForKey: @"ETag"] forHTTPHeaderField: @"If-Range"];
     }
-    [mutableURLRequest setValue:[NSString stringWithFormat:@"bytes=%llu-", offset] forHTTPHeaderField:@"Range"];
+    [mutableURLRequest setValue: [NSString stringWithFormat: @"bytes=%llu-", offset] forHTTPHeaderField: @"Range"];
     self.request = mutableURLRequest;
 }
 
 #pragma mark - NSecureCoding
 
-+ (BOOL)supportsSecureCoding {
++ (BOOL) supportsSecureCoding {
     return YES;
 }
 
-- (id)initWithCoder:(NSCoder *)decoder {
-    self = [super initWithCoder:decoder];
+- (id) initWithCoder: (NSCoder *) decoder {
+    self = [super initWithCoder: decoder];
     if (!self) {
         return nil;
     }
 
-    self.responseSerializer = [decoder decodeObjectOfClass:[AFHTTPResponseSerializer class] forKey:NSStringFromSelector(@selector(responseSerializer))];
+    self.responseSerializer = [decoder decodeObjectOfClass: [AFHTTPResponseSerializer class] forKey: NSStringFromSelector(@selector(responseSerializer))];
 
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)coder {
-    [super encodeWithCoder:coder];
+- (void) encodeWithCoder: (NSCoder *) coder {
+    [super encodeWithCoder: coder];
 
-    [coder encodeObject:self.responseSerializer forKey:NSStringFromSelector(@selector(responseSerializer))];
+    [coder encodeObject: self.responseSerializer forKey: NSStringFromSelector(@selector(responseSerializer))];
 }
 
 #pragma mark - NSCopying
 
-- (id)copyWithZone:(NSZone *)zone {
-    AFHTTPRequestOperation *operation = [[[self class] allocWithZone:zone] initWithRequest:self.request];
+- (id) copyWithZone: (NSZone *) zone {
+    AFHTTPRequestOperation *operation = [[[self class] allocWithZone: zone] initWithRequest: self.request];
 
-    operation.responseSerializer = [self.responseSerializer copyWithZone:zone];
+    operation.responseSerializer = [self.responseSerializer copyWithZone: zone];
     operation.completionQueue = self.completionQueue;
     operation.completionGroup = self.completionGroup;
 

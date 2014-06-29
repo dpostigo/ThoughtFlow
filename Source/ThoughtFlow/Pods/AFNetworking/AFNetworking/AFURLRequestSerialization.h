@@ -21,8 +21,11 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+
 #import <UIKit/UIKit.h>
+
 #endif
 
 /**
@@ -41,9 +44,9 @@
 
  @return A serialized request.
  */
-- (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request
-                               withParameters:(id)parameters
-                                        error:(NSError * __autoreleasing *)error;
+- (NSURLRequest *) requestBySerializingRequest: (NSURLRequest *) request
+                                withParameters: (id) parameters
+                                         error: (NSError * __autoreleasing *) error;
 
 @end
 
@@ -68,49 +71,49 @@ typedef NS_ENUM(NSUInteger, AFHTTPRequestQueryStringSerializationStyle) {
 /**
  The string encoding used to serialize parameters. `NSUTF8StringEncoding` by default.
  */
-@property (nonatomic, assign) NSStringEncoding stringEncoding;
+@property(nonatomic, assign) NSStringEncoding stringEncoding;
 
 /**
  Whether created requests can use the device’s cellular radio (if present). `YES` by default.
  
  @see NSMutableURLRequest -setAllowsCellularAccess:
  */
-@property (nonatomic, assign) BOOL allowsCellularAccess;
+@property(nonatomic, assign) BOOL allowsCellularAccess;
 
 /**
  The cache policy of created requests. `NSURLRequestUseProtocolCachePolicy` by default.
  
  @see NSMutableURLRequest -setCachePolicy:
  */
-@property (nonatomic, assign) NSURLRequestCachePolicy cachePolicy;
+@property(nonatomic, assign) NSURLRequestCachePolicy cachePolicy;
 
 /**
  Whether created requests should use the default cookie handling. `YES` by default.
  
  @see NSMutableURLRequest -setHTTPShouldHandleCookies:
  */
-@property (nonatomic, assign) BOOL HTTPShouldHandleCookies;
+@property(nonatomic, assign) BOOL HTTPShouldHandleCookies;
 
 /**
  Whether created requests can continue transmitting data before receiving a response from an earlier transmission. `NO` by default
  
  @see NSMutableURLRequest -setHTTPShouldUsePipelining:
  */
-@property (nonatomic, assign) BOOL HTTPShouldUsePipelining;
+@property(nonatomic, assign) BOOL HTTPShouldUsePipelining;
 
 /**
  The network service type for created requests. `NSURLNetworkServiceTypeDefault` by default.
  
  @see NSMutableURLRequest -setNetworkServiceType:
  */
-@property (nonatomic, assign) NSURLRequestNetworkServiceType networkServiceType;
+@property(nonatomic, assign) NSURLRequestNetworkServiceType networkServiceType;
 
 /**
  The timeout interval, in seconds, for created requests. The default timeout interval is 60 seconds.
  
  @see NSMutableURLRequest -setTimeoutInterval:
  */
-@property (nonatomic, assign) NSTimeInterval timeoutInterval;
+@property(nonatomic, assign) NSTimeInterval timeoutInterval;
 
 ///---------------------------------------
 /// @name Configuring HTTP Request Headers
@@ -119,12 +122,12 @@ typedef NS_ENUM(NSUInteger, AFHTTPRequestQueryStringSerializationStyle) {
 /**
  Default HTTP header field values to be applied to serialized requests.
  */
-@property (readonly, nonatomic, strong) NSDictionary *HTTPRequestHeaders;
+@property(readonly, nonatomic, strong) NSDictionary *HTTPRequestHeaders;
 
 /**
  Creates and returns a serializer with default configuration.
  */
-+ (instancetype)serializer;
++ (instancetype) serializer;
 
 /**
  Sets the value for the HTTP headers set in request objects made by the HTTP client. If `nil`, removes the existing value for that header.
@@ -132,8 +135,8 @@ typedef NS_ENUM(NSUInteger, AFHTTPRequestQueryStringSerializationStyle) {
  @param field The HTTP header to set a default value for
  @param value The value set as default for the specified header, or `nil`
  */
-- (void)setValue:(NSString *)value
-forHTTPHeaderField:(NSString *)field;
+- (void)  setValue: (NSString *) value
+forHTTPHeaderField: (NSString *) field;
 
 /**
  Sets the "Authorization" HTTP header set in request objects made by the HTTP client to a basic authentication value with Base64-encoded username and password. This overwrites any existing value for this header.
@@ -141,19 +144,19 @@ forHTTPHeaderField:(NSString *)field;
  @param username The HTTP basic auth username
  @param password The HTTP basic auth password
  */
-- (void)setAuthorizationHeaderFieldWithUsername:(NSString *)username
-                                       password:(NSString *)password;
+- (void) setAuthorizationHeaderFieldWithUsername: (NSString *) username
+                                        password: (NSString *) password;
 
 /**
  @deprecated This method has been deprecated. Use -setValue:forHTTPHeaderField: instead.
  */
-- (void)setAuthorizationHeaderFieldWithToken:(NSString *)token DEPRECATED_ATTRIBUTE;
+- (void) setAuthorizationHeaderFieldWithToken: (NSString *) token DEPRECATED_ATTRIBUTE;
 
 
 /**
  Clears any existing value for the "Authorization" HTTP header.
  */
-- (void)clearAuthorizationHeader;
+- (void) clearAuthorizationHeader;
 
 ///-------------------------------------------------------
 /// @name Configuring Query String Parameter Serialization
@@ -162,7 +165,7 @@ forHTTPHeaderField:(NSString *)field;
 /**
  HTTP methods for which serialized requests will encode parameters as a query string. `GET`, `HEAD`, and `DELETE` by default.
  */
-@property (nonatomic, strong) NSSet *HTTPMethodsEncodingParametersInURI;
+@property(nonatomic, strong) NSSet *HTTPMethodsEncodingParametersInURI;
 
 /**
  Set the method of query string serialization according to one of the pre-defined styles.
@@ -171,14 +174,14 @@ forHTTPHeaderField:(NSString *)field;
 
  @see AFHTTPRequestQueryStringSerializationStyle
  */
-- (void)setQueryStringSerializationWithStyle:(AFHTTPRequestQueryStringSerializationStyle)style;
+- (void) setQueryStringSerializationWithStyle: (AFHTTPRequestQueryStringSerializationStyle) style;
 
 /**
  Set the a custom method of query string serialization according to the specified block.
 
  @param block A block that defines a process of encoding parameters into a query string. This block returns the query string and takes three arguments: the request, the parameters to encode, and the error that occurred when attempting to encode parameters for the given request.
  */
-- (void)setQueryStringSerializationWithBlock:(NSString * (^)(NSURLRequest *request, NSDictionary *parameters, NSError * __autoreleasing *error))block;
+- (void) setQueryStringSerializationWithBlock: (NSString * (^)(NSURLRequest *request, NSDictionary *parameters, NSError *__autoreleasing *error)) block;
 
 ///-------------------------------
 /// @name Creating Request Objects
@@ -187,9 +190,9 @@ forHTTPHeaderField:(NSString *)field;
 /**
  @deprecated This method has been deprecated. Use -requestWithMethod:URLString:parameters:error: instead.
  */
-- (NSMutableURLRequest *)requestWithMethod:(NSString *)method
-                                 URLString:(NSString *)URLString
-                                parameters:(id)parameters DEPRECATED_ATTRIBUTE;
+- (NSMutableURLRequest *) requestWithMethod: (NSString *) method
+                                  URLString: (NSString *) URLString
+                                 parameters: (id) parameters DEPRECATED_ATTRIBUTE;
 
 /**
  Creates an `NSMutableURLRequest` object with the specified HTTP method and URL string.
@@ -203,18 +206,18 @@ forHTTPHeaderField:(NSString *)field;
 
  @return An `NSMutableURLRequest` object.
  */
-- (NSMutableURLRequest *)requestWithMethod:(NSString *)method
-                                 URLString:(NSString *)URLString
-                                parameters:(id)parameters
-                                     error:(NSError * __autoreleasing *)error;
+- (NSMutableURLRequest *) requestWithMethod: (NSString *) method
+                                  URLString: (NSString *) URLString
+                                 parameters: (id) parameters
+                                      error: (NSError * __autoreleasing *) error;
 
 /**
  @deprecated This method has been deprecated. Use -multipartFormRequestWithMethod:URLString:parameters:constructingBodyWithBlock:error: instead.
  */
-- (NSMutableURLRequest *)multipartFormRequestWithMethod:(NSString *)method
-                                              URLString:(NSString *)URLString
-                                             parameters:(NSDictionary *)parameters
-                              constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block DEPRECATED_ATTRIBUTE;
+- (NSMutableURLRequest *) multipartFormRequestWithMethod: (NSString *) method
+                                               URLString: (NSString *) URLString
+                                              parameters: (NSDictionary *) parameters
+                               constructingBodyWithBlock: (void (^)(id <AFMultipartFormData> formData)) block DEPRECATED_ATTRIBUTE;
 
 /**
  Creates an `NSMutableURLRequest` object with the specified HTTP method and URLString, and constructs a `multipart/form-data` HTTP body, using the specified parameters and multipart form data block. See http://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.2
@@ -229,11 +232,11 @@ forHTTPHeaderField:(NSString *)field;
 
  @return An `NSMutableURLRequest` object
  */
-- (NSMutableURLRequest *)multipartFormRequestWithMethod:(NSString *)method
-                                              URLString:(NSString *)URLString
-                                             parameters:(NSDictionary *)parameters
-                              constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
-                                                  error:(NSError * __autoreleasing *)error;
+- (NSMutableURLRequest *) multipartFormRequestWithMethod: (NSString *) method
+                                               URLString: (NSString *) URLString
+                                              parameters: (NSDictionary *) parameters
+                               constructingBodyWithBlock: (void (^)(id <AFMultipartFormData> formData)) block
+                                                   error: (NSError * __autoreleasing *) error;
 
 /**
  Creates an `NSMutableURLRequest` by removing the `HTTPBodyStream` from a request, and asynchronously writing its contents into the specified file, invoking the completion handler when finished.
@@ -246,9 +249,9 @@ forHTTPHeaderField:(NSString *)field;
 
  @see https://github.com/AFNetworking/AFNetworking/issues/1398
  */
-- (NSMutableURLRequest *)requestWithMultipartFormRequest:(NSURLRequest *)request
-                             writingStreamContentsToFile:(NSURL *)fileURL
-                                       completionHandler:(void (^)(NSError *error))handler;
+- (NSMutableURLRequest *) requestWithMultipartFormRequest: (NSURLRequest *) request
+                              writingStreamContentsToFile: (NSURL *) fileURL
+                                        completionHandler: (void (^)(NSError *error)) handler;
 
 @end
 
@@ -270,9 +273,9 @@ forHTTPHeaderField:(NSString *)field;
 
  @return `YES` if the file data was successfully appended, otherwise `NO`.
  */
-- (BOOL)appendPartWithFileURL:(NSURL *)fileURL
-                         name:(NSString *)name
-                        error:(NSError * __autoreleasing *)error;
+- (BOOL) appendPartWithFileURL: (NSURL *) fileURL
+                          name: (NSString *) name
+                         error: (NSError * __autoreleasing *) error;
 
 /**
  Appends the HTTP header `Content-Disposition: file; filename=#{filename}; name=#{name}"` and `Content-Type: #{mimeType}`, followed by the encoded file data and the multipart form boundary.
@@ -285,11 +288,11 @@ forHTTPHeaderField:(NSString *)field;
 
  @return `YES` if the file data was successfully appended otherwise `NO`.
  */
-- (BOOL)appendPartWithFileURL:(NSURL *)fileURL
-                         name:(NSString *)name
-                     fileName:(NSString *)fileName
-                     mimeType:(NSString *)mimeType
-                        error:(NSError * __autoreleasing *)error;
+- (BOOL) appendPartWithFileURL: (NSURL *) fileURL
+                          name: (NSString *) name
+                      fileName: (NSString *) fileName
+                      mimeType: (NSString *) mimeType
+                         error: (NSError * __autoreleasing *) error;
 
 /**
  Appends the HTTP header `Content-Disposition: file; filename=#{filename}; name=#{name}"` and `Content-Type: #{mimeType}`, followed by the data from the input stream and the multipart form boundary.
@@ -300,11 +303,11 @@ forHTTPHeaderField:(NSString *)field;
  @param length The length of the specified input stream in bytes.
  @param mimeType The MIME type of the specified data. (For example, the MIME type for a JPEG image is image/jpeg.) For a list of valid MIME types, see http://www.iana.org/assignments/media-types/. This parameter must not be `nil`.
  */
-- (void)appendPartWithInputStream:(NSInputStream *)inputStream
-                             name:(NSString *)name
-                         fileName:(NSString *)fileName
-                           length:(int64_t)length
-                         mimeType:(NSString *)mimeType;
+- (void) appendPartWithInputStream: (NSInputStream *) inputStream
+                              name: (NSString *) name
+                          fileName: (NSString *) fileName
+                            length: (int64_t) length
+                          mimeType: (NSString *) mimeType;
 
 /**
  Appends the HTTP header `Content-Disposition: file; filename=#{filename}; name=#{name}"` and `Content-Type: #{mimeType}`, followed by the encoded file data and the multipart form boundary.
@@ -314,10 +317,10 @@ forHTTPHeaderField:(NSString *)field;
  @param fileName The filename to be associated with the specified data. This parameter must not be `nil`.
  @param mimeType The MIME type of the specified data. (For example, the MIME type for a JPEG image is image/jpeg.) For a list of valid MIME types, see http://www.iana.org/assignments/media-types/. This parameter must not be `nil`.
  */
-- (void)appendPartWithFileData:(NSData *)data
-                          name:(NSString *)name
-                      fileName:(NSString *)fileName
-                      mimeType:(NSString *)mimeType;
+- (void) appendPartWithFileData: (NSData *) data
+                           name: (NSString *) name
+                       fileName: (NSString *) fileName
+                       mimeType: (NSString *) mimeType;
 
 /**
  Appends the HTTP headers `Content-Disposition: form-data; name=#{name}"`, followed by the encoded data and the multipart form boundary.
@@ -326,8 +329,8 @@ forHTTPHeaderField:(NSString *)field;
  @param name The name to be associated with the specified data. This parameter must not be `nil`.
  */
 
-- (void)appendPartWithFormData:(NSData *)data
-                          name:(NSString *)name;
+- (void) appendPartWithFormData: (NSData *) data
+                           name: (NSString *) name;
 
 
 /**
@@ -336,8 +339,8 @@ forHTTPHeaderField:(NSString *)field;
  @param headers The HTTP headers to be appended to the form data.
  @param body The data to be encoded and appended to the form data.
  */
-- (void)appendPartWithHeaders:(NSDictionary *)headers
-                         body:(NSData *)body;
+- (void) appendPartWithHeaders: (NSDictionary *) headers
+                          body: (NSData *) body;
 
 /**
  Throttles request bandwidth by limiting the packet size and adding a delay for each chunk read from the upload stream.
@@ -347,8 +350,8 @@ forHTTPHeaderField:(NSString *)field;
  @param numberOfBytes Maximum packet size, in number of bytes. The default packet size for an input stream is 16kb.
  @param delay Duration of delay each time a packet is read. By default, no delay is set.
  */
-- (void)throttleBandwidthWithPacketSize:(NSUInteger)numberOfBytes
-                                  delay:(NSTimeInterval)delay;
+- (void) throttleBandwidthWithPacketSize: (NSUInteger) numberOfBytes
+                                   delay: (NSTimeInterval) delay;
 
 @end
 
@@ -359,14 +362,14 @@ forHTTPHeaderField:(NSString *)field;
 /**
  Options for writing the request JSON data from Foundation objects. For possible values, see the `NSJSONSerialization` documentation section "NSJSONWritingOptions". `0` by default.
  */
-@property (nonatomic, assign) NSJSONWritingOptions writingOptions;
+@property(nonatomic, assign) NSJSONWritingOptions writingOptions;
 
 /**
  Creates and returns a JSON serializer with specified reading and writing options.
 
  @param writingOptions The specified JSON writing options.
  */
-+ (instancetype)serializerWithWritingOptions:(NSJSONWritingOptions)writingOptions;
++ (instancetype) serializerWithWritingOptions: (NSJSONWritingOptions) writingOptions;
 
 @end
 
@@ -375,12 +378,12 @@ forHTTPHeaderField:(NSString *)field;
 /**
  The property list format. Possible values are described in "NSPropertyListFormat".
  */
-@property (nonatomic, assign) NSPropertyListFormat format;
+@property(nonatomic, assign) NSPropertyListFormat format;
 
 /**
  @warning The `writeOptions` property is currently unused.
  */
-@property (nonatomic, assign) NSPropertyListWriteOptions writeOptions;
+@property(nonatomic, assign) NSPropertyListWriteOptions writeOptions;
 
 /**
  Creates and returns a property list serializer with a specified format, read options, and write options.
@@ -390,8 +393,8 @@ forHTTPHeaderField:(NSString *)field;
  
  @warning The `writeOptions` property is currently unused.
  */
-+ (instancetype)serializerWithFormat:(NSPropertyListFormat)format
-                        writeOptions:(NSPropertyListWriteOptions)writeOptions;
++ (instancetype) serializerWithFormat: (NSPropertyListFormat) format
+                         writeOptions: (NSPropertyListWriteOptions) writeOptions;
 
 @end
 
@@ -411,7 +414,7 @@ forHTTPHeaderField:(NSString *)field;
  `AFURLRequestSerializationErrorDomain`
  AFURLRequestSerializer errors. Error codes for `AFURLRequestSerializationErrorDomain` correspond to codes in `NSURLErrorDomain`.
  */
-extern NSString * const AFURLRequestSerializationErrorDomain;
+extern NSString *const AFURLRequestSerializationErrorDomain;
 
 /**
  ## User info dictionary keys
@@ -425,7 +428,7 @@ extern NSString * const AFURLRequestSerializationErrorDomain;
  `AFNetworkingOperationFailingURLRequestErrorKey`
  The corresponding value is an `NSURLRequest` containing the request of the operation associated with an error. This key is only present in the `AFURLRequestSerializationErrorDomain`.
  */
-extern NSString * const AFNetworkingOperationFailingURLRequestErrorKey;
+extern NSString *const AFNetworkingOperationFailingURLRequestErrorKey;
 
 /**
  ## Throttling Bandwidth for HTTP Request Input Streams

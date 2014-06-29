@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFViewController.h"
 
 @interface MindmapLinesController : TFViewController {
 

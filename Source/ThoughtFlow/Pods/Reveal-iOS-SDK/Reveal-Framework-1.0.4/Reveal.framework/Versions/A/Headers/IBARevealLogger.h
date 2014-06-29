@@ -20,10 +20,10 @@ CF_EXTERN_C_BEGIN
  */
 typedef NS_OPTIONS(int32_t, IBARevealLogLevel)
 {
-    IBARevealLogLevelNone  = 0,
+    IBARevealLogLevelNone = 0,
     IBARevealLogLevelDebug = (1 << 0),
-    IBARevealLogLevelInfo  = (1 << 1),
-    IBARevealLogLevelWarn  = (1 << 2),
+    IBARevealLogLevelInfo = (1 << 1),
+    IBARevealLogLevelWarn = (1 << 2),
     IBARevealLogLevelError = (1 << 3)
 };
 

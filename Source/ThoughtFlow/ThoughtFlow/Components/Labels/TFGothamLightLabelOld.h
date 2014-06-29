@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GothamLightLabel : UILabel {
+@interface TFGothamLightLabelOld : UILabel {
 
 }
 @end

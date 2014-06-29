@@ -25,13 +25,16 @@ PODS:
   - AutoCoding (2.2)
   - CALayer-DPUtils (0.1.6):
     - DPKit-Utils
+  - CrashlyticsFramework (2.2.1)
   - DPAnimators (0.0.1):
     - DPKit-UIView
     - DPKit-Utils
-  - DPCollectionView (0.0.2)
-  - DPKit-UIView (0.0.1):
+  - DPCollectionView (0.0.4):
     - DPKit-Utils
-  - DPKit-Utils (0.0.22):
+  - DPKit-UIFont (0.0.3)
+  - DPKit-UIView (0.0.3):
+    - DPKit-Utils
+  - DPKit-Utils (0.0.30):
     - JMSimpleDate
   - DPTransitions (0.0.1):
     - DPAnimators (= 0.0.1)
@@ -52,8 +55,10 @@ DEPENDENCIES:
   - AFOAuth2Client (from `https://github.com/mlwelles/AFOAuth2Client`)
   - AutoCoding
   - CALayer-DPUtils
+  - CrashlyticsFramework
   - DPAnimators (from `~/Development/LocalPods/DPAnimators`)
   - DPCollectionView
+  - DPKit-UIFont (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIFont`)
   - DPKit-UIView (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIView`)
   - DPKit-Utils (from `~/Development/LocalPods/DPKit-Suite/DPKit-Utils`)
   - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
@@ -68,6 +73,8 @@ EXTERNAL SOURCES:
     :git: https://github.com/mlwelles/AFOAuth2Client
   DPAnimators:
     :path: ~/Development/LocalPods/DPAnimators
+  DPKit-UIFont:
+    :path: ~/Development/LocalPods/DPKit-Suite/DPKit-UIFont
   DPKit-UIView:
     :path: ~/Development/LocalPods/DPKit-Suite/DPKit-UIView
   DPKit-Utils:
@@ -80,10 +87,12 @@ SPEC CHECKSUMS:
   AFOAuth2Client: 05536bd4175add72e7efcb6b749d4e9685ed02f7
   AutoCoding: 2a15d57acf78912b72cc3b3a472e614b2f112a18
   CALayer-DPUtils: eaf33dc7e1432fdc5b179172e116dd26b02d1891
+  CrashlyticsFramework: a9d172599c3a34e68067e16446a764041b980162
   DPAnimators: b5d8bf1ed85f17a49cabad1bcc22010c70d27ba8
-  DPCollectionView: de4be374a4e55fa089bdba40ac68ae0fb95da39b
-  DPKit-UIView: 9689d56fa74ad4419b240d8453f644c6b88c4d14
-  DPKit-Utils: b4208ab7993602e1436c25e80b67219920dcad77
+  DPCollectionView: f9fa97254c21ff6dcec0a8e33f93b21bb315ac99
+  DPKit-UIFont: 5128d629296622358f66b6d8d9fd16ab532578ea
+  DPKit-UIView: 069926abffec4884ea0236a7f1072005eb9cf0be
+  DPKit-Utils: 367b2b35209031eb0d322db082bbb03f68194c76
   DPTransitions: fb247247ff38c47a0fb2ca0f97d9d9ad4b8924b8
   JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
   NSAttributedString-DDHTML: b660068de47108746a88474e29f98ac32b5d3e16

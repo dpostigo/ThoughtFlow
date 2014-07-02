@@ -11,9 +11,24 @@
 #import "APIModel.h"
 #import "TFImageGridViewCell.h"
 #import "TFPhoto.h"
+#import "Project.h"
 
 
 @implementation TFMindmapGridViewController
+
+- (instancetype) initWithProject: (Project *) project imageString: (NSString *) imageString {
+    self = [super init];
+    if (self) {
+        _project = project;
+        _imageString = imageString;
+    }
+
+    return self;
+}
+
++ (instancetype) controllerWithProject: (Project *) project imageString: (NSString *) imageString {
+    return [[self alloc] initWithProject: project imageString: imageString];
+}
 
 - (instancetype) initWithImageString: (NSString *) imageString {
     self = [super init];
@@ -40,12 +55,26 @@
 }
 
 
+#pragma mark - Public
+
+
+- (void) reloadImage: (TFPhoto *) image {
+    NSUInteger index = [_imagesController.images indexOfObject: image];
+    [self reloadImageAtIndexPath: [NSIndexPath indexPathForItem: index inSection: 0]];
+}
+
+- (void) reloadImageAtIndexPath: (NSIndexPath *) indexPath {
+    [_imagesController.collection reloadItemsAtIndexPaths: @[indexPath]];
+}
+
 #pragma mark - TFImageGridViewControllerDelegate
 
 - (void) imageGridViewController: (TFImageGridViewController *) controller dequeuedCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
-    UIImage *image = [UIImage imageNamed: @"pin-button-icon"];
+
+    TFPhoto *photo = [controller.images objectAtIndex: indexPath.item];
+    UIImage *image = [UIImage imageNamed: [_project.pinnedImages containsObject: photo] ? @"remove-button" : @"pin-button-icon"];
     [cell.topRightButton setImage: image forState: UIControlStateNormal];
-    [controller addTargetToButton: cell.topLeftButton];
+    [controller addTargetToButton: cell.topRightButton];
 
 }
 

@@ -8,11 +8,14 @@
 
 @class TFImageGridViewCell;
 @class TFImageGridViewController;
+@class TFPhoto;
 
-@protocol TFImageGridViewControllerDelegate <NSObject>
+@protocol TFImageGridViewControllerDelegate <NSObject, UICollectionViewDelegateFlowLayout>
 
+@optional
 - (void) imageGridViewController: (TFImageGridViewController *) controller dequeuedCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath;
 - (void) imageGridViewController: (TFImageGridViewController *) controller didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath;
+- (void) imageGridViewController: (TFImageGridViewController *) controller didSelectImage: (TFPhoto *) image atIndexPath: (NSIndexPath *) indexPath;
 @end
 
 @interface TFImageGridViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>

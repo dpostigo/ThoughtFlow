@@ -24,6 +24,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    [self _setupView];
     [self _setupCollection];
 }
 
@@ -39,6 +40,11 @@
 
 #pragma mark - Setup
 
+- (void) _setupView {
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.opaque = NO;
+}
+
 - (void) _setupCollection {
     CGFloat cellHeight = self.view.height / 3;
 
@@ -52,6 +58,8 @@
     [self.view addSubview: _collection];
 
     _collection.translatesAutoresizingMaskIntoConstraints = NO;
+    _collection.pagingEnabled = YES;
+    _collection.backgroundColor = [UIColor clearColor];
 
     [self.view addConstraints: @[
             [NSLayoutConstraint constraintWithItem: _collection attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeLeading multiplier: 1.0 constant: 0.0],
@@ -68,7 +76,6 @@
     [_collection reloadData];
 
 }
-
 
 
 #pragma mark - UICollectionView
@@ -104,6 +111,17 @@
 }
 
 
+- (void) collectionView: (UICollectionView *) collectionView didSelectItemAtIndexPath: (NSIndexPath *) indexPath {
+    TFPhoto *image = [self.images objectAtIndex: indexPath.item];
+
+    if (_delegate && [_delegate respondsToSelector: @selector(imageGridViewController:didSelectImage:atIndexPath:)]) {
+        [_delegate imageGridViewController: self didSelectImage: image atIndexPath: indexPath];
+    }
+}
+
+
+#pragma mark - Buttons
+
 - (void) addTargetToButton: (UIButton *) button {
     [button addTarget: self action: @selector(handleButton:) forControlEvents: UIControlEventTouchUpInside];
 }
@@ -118,19 +136,32 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGFloat) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout minimumLineSpacingForSectionAtIndex: (NSInteger) section {
+
+    if (_delegate && [_delegate respondsToSelector: @selector(collectionView:layout:minimumLineSpacingForSectionAtIndex:)]) {
+        return [_delegate collectionView: collectionView layout: collectionViewLayout minimumLineSpacingForSectionAtIndex: section];
+    }
     return 0;
 }
 
 - (CGFloat) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout minimumInteritemSpacingForSectionAtIndex: (NSInteger) section {
+    if (_delegate && [_delegate respondsToSelector: @selector(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]) {
+        return [_delegate collectionView: collectionView layout: collectionViewLayout minimumInteritemSpacingForSectionAtIndex: section];
+    }
     return 0;
 }
 
 - (CGSize) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout sizeForItemAtIndexPath: (NSIndexPath *) indexPath {
+    if (_delegate && [_delegate respondsToSelector: @selector(collectionView:layout:sizeForItemAtIndexPath:)]) {
+        return [_delegate collectionView: collectionView layout: collectionViewLayout sizeForItemAtIndexPath: indexPath];
+    }
     CGFloat cellHeight = self.view.height / 3;
     return CGSizeMake(cellHeight, cellHeight);
 }
 
 - (UIEdgeInsets) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout insetForSectionAtIndex: (NSInteger) section {
+    if (_delegate && [_delegate respondsToSelector: @selector(collectionView:layout:insetForSectionAtIndex:)]) {
+        return [_delegate collectionView: collectionView layout: collectionViewLayout insetForSectionAtIndex: section];
+    }
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 

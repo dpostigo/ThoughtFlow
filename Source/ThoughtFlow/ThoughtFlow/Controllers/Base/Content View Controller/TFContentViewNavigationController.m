@@ -3,10 +3,11 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import "TFContentNavigationController.h"
+#import "TFContentViewNavigationController.h"
 #import "TFContentView.h"
 
-@implementation TFContentNavigationController
+
+@implementation TFContentViewNavigationController
 
 - (void) toggleViewController: (UIViewController *) controller animated: (BOOL) flag {
     if ([self.visibleViewController isKindOfClass: [controller class]]) {
@@ -17,27 +18,7 @@
 }
 
 
-- (void) setViewControllers: (NSArray *) viewControllers animated: (BOOL) animated {
-    if ([viewControllers count] == 1 && [self.viewControllers count] == 1) {
-        UIViewController *controller = viewControllers[0];
-        if ([controller isKindOfClass: [self.visibleViewController class]]) {
-            return;
-        }
-    }
-
-    [super setViewControllers: viewControllers animated: animated];
-}
-
-
-
-
-
-
-
-
-
 #pragma mark - Content view
-
 
 - (void) setContentView: (TFContentView *) contentView {
     _contentView = contentView;
@@ -71,10 +52,6 @@
 }
 
 #pragma mark - TFContentViewDelegate
-
-
-
-
 
 - (void) contentView: (TFContentView *) contentView didCloseLeftController: (TFNewDrawerController *) leftController {
     if (self.delegate && [self.delegate respondsToSelector: @selector(navigationController:didShowViewController:animated:)]) {

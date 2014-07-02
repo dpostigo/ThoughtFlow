@@ -6,12 +6,10 @@
 #import "Model.h"
 #import "Project.h"
 #import "ProjectLibrary.h"
-#import "TFNode.h"
 #import "NSArray+DPKit.h"
-#import "AFOAuth2Client.h"
-#import "AFHTTPSessionManager.h"
 #import "APIModel.h"
 #import "TFPhoto.h"
+
 
 @implementation Model
 

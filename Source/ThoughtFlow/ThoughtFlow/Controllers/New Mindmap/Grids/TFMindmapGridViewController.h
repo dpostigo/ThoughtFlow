@@ -17,16 +17,23 @@
 
 @class TFImageGridViewController;
 @class TFEmptyViewController;
+@class Project;
 
 
 @interface TFMindmapGridViewController : UIViewController <TFImageGridViewControllerDelegate>
 
+
+@property(nonatomic, strong) Project *project;
 @property(nonatomic, copy) NSString *imageString;
 @property(nonatomic, assign) id <TFMindmapGridViewControllerDelegate> delegate;
 @property(nonatomic, strong) TFEmptyViewController *emptyController;
 @property(nonatomic, strong) TFImageGridViewController *imagesController;
 
 - (instancetype) initWithImageString: (NSString *) imageString;
+- (instancetype) initWithProject: (Project *) project imageString: (NSString *) imageString;
++ (instancetype) controllerWithProject: (Project *) project imageString: (NSString *) imageString;
+
+- (void) reloadImage: (TFPhoto *) image;
 + (instancetype) controllerWithImageString: (NSString *) imageString;
 
 

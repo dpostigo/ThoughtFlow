@@ -661,10 +661,10 @@ biB3aXRoIGEgdGhvdWdodCBhbmQgc2VlIHdoZXJlIGl0IHRha2VzIHlvdS4
             </objects>
             <point key="canvasLocation" x="2778" y="3345"/>
         </scene>
-        <!--Content Navigation Controller-->
+        <!--Main Content View Navigation Controller-->
         <scene sceneID="3a-GgE-37-7Jo">
             <objects>
-                <navigationController storyboardIdentifier="ProjectNavigationController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="rFg-SM-3rz" customClass="TFContentNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProjectNavigationController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="rFg-SM-3rz" customClass="TFMainContentViewNavigationController" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="igK-QH-d0Y">
                         <autoresizingMask key="autoresizingMask"/>

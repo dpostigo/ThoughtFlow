@@ -9,7 +9,7 @@
 @class TFContentView;
 @class TFNewDrawerController;
 
-@interface TFContentNavigationController : UINavigationController <TFContentViewDelegate>
+@interface TFContentViewNavigationController : UINavigationController <TFContentViewDelegate>
 
 @property(nonatomic, strong) TFContentView *contentView;
 @property(nonatomic, strong) TFNewDrawerController *leftDrawerController;

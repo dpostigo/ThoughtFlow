@@ -7,7 +7,6 @@
 #import "TFNode.h"
 
 
-
 @implementation Project
 
 - (instancetype) initWithWord: (NSString *) aWord {
@@ -16,8 +15,6 @@
 
         _creationDate = [NSDate date];
         _word = aWord;
-
-        _pinnedImages = [[NSMutableArray alloc] init];
 
         [self.mutableChildren addObject: [[TFNode alloc] initWithTitle: _word]];
     }
@@ -77,4 +74,16 @@
     [ret addObjectsFromArray: [self.firstNode allChildren]];
     return ret;
 }
+
+
+
+#pragma mark - Private
+
+- (NSMutableArray *) pinnedImages {
+    if (_pinnedImages == nil) {
+        _pinnedImages = [[NSMutableArray alloc] init];
+    }
+    return _pinnedImages;
+}
+
 @end

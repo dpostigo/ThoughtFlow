@@ -9,7 +9,7 @@
 
 @class TFNewToolbarController;
 @class NavigationSlideAnimator;
-@class TFContentNavigationController;
+@class TFContentViewNavigationController;
 @class TFContentView;
 @class NavigationFadeAnimator;
 
@@ -19,7 +19,7 @@
 
 @property(weak) IBOutlet TFContentView *contentView;
 @property(nonatomic, strong) TFNewToolbarController *toolbarController;
-@property(nonatomic, strong) TFContentNavigationController *contentNavigationController;
+@property(nonatomic, strong) TFContentViewNavigationController *contentNavigationController;
 
 @property(nonatomic, strong) NavigationFadeAnimator *fadingNavigationAnimator;
 @property(nonatomic, strong) NavigationSlideAnimator *slidingNavigationAnimator;

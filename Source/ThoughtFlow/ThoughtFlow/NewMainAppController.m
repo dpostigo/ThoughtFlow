@@ -9,13 +9,11 @@
 #import "UIViewController+TFControllers.h"
 #import "NavigationSlideAnimator.h"
 #import "Model.h"
-#import "TFContentNavigationController.h"
-#import "TFContentView.h"
+#import "TFContentViewNavigationController.h"
 #import "TFInfoViewController.h"
-#import "NSArray+DPKit.h"
-#import "MoodboardController.h"
 #import "TFMoodboardViewController.h"
 #import "TFMindmapGridViewController.h"
+#import "TFNewMoodboardViewController.h"
 
 
 @implementation NewMainAppController {
@@ -48,7 +46,7 @@
         destinationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
     } else if ([segue.identifier isEqualToString: @"ContentEmbedSegue"]) {
-        _contentNavigationController = (TFContentNavigationController *) controller;
+        _contentNavigationController = (TFContentViewNavigationController *) controller;
         //        _contentNavigationController.delegate = self.slidingNavigationAnimator;
         _contentNavigationController.delegate = self;
 
@@ -82,7 +80,10 @@
             break;
 
         case TFNewToolbarButtonTypeMoodboard : {
-            [_contentNavigationController toggleViewController: [[TFMoodboardViewController alloc] initWithProject: _model.selectedProject] animated: YES];
+            TFNewMoodboardViewController *controller = [[TFNewMoodboardViewController alloc] initWithProject: _model.selectedProject];
+            //            controller.modalPresentationStyle = UIModalPresentationCurrentContext;
+            //            [_contentNavigationController presentViewController: controller animated: YES completion: nil];
+            [_contentNavigationController toggleViewController: controller animated: YES];
 
         }
             break;
@@ -144,10 +145,11 @@
     BasicAnimator *ret = nil;
 
     if ([destinationController isKindOfClass: [TFInfoViewController class]] ||
-            [destinationController isKindOfClass: [TFMoodboardViewController class]] ||
+            [destinationController isKindOfClass: [TFNewMoodboardViewController class]] ||
             [destinationController isKindOfClass: [TFMindmapGridViewController class]]) {
         ret = self.fadingNavigationAnimator;
     } else {
+        NSLog(@"destinationController = %@", destinationController);
         ret = self.slidingNavigationAnimator;
     }
     ret.isPresenting = operation == UINavigationControllerOperationPush ? YES : NO;

@@ -6,13 +6,30 @@
 #import <DPKit-UIView/UIView+DPConstraints.h>
 #import "TFContentView.h"
 #import "UIView+DPKit.h"
-#import "TFNewDrawerController.h"
+
 
 @implementation TFContentView
 
 - (void) awakeFromNib {
     [super awakeFromNib];
+    [self _setup];
+}
 
+
+- (id) initWithFrame: (CGRect) frame {
+    self = [super initWithFrame: frame];
+    if (self) {
+        [self _setup];
+    }
+
+    return self;
+}
+
+
+
+#pragma mark - Setup
+
+- (void) _setup {
     self.clipsToBounds = YES;
     _leftContainerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 290, self.height)];
     _leftContainerView.backgroundColor = [UIColor blackColor];
@@ -21,8 +38,9 @@
     _rightContainerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 450, self.height)];
     _rightContainerView.backgroundColor = [UIColor blackColor];
     _rightContainerView.translatesAutoresizingMaskIntoConstraints = NO;
-
 }
+
+#pragma mark - Containers
 
 
 - (void) openLeftContainer {

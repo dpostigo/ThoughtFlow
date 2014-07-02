@@ -5,9 +5,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class TFContentNavigationController;
+@class TFContentViewNavigationController;
 
 @interface UIViewController (TFContentNavigationController)
 
-- (TFContentNavigationController *) contentNavigationController;
+- (TFContentViewNavigationController *) contentNavigationController;
 @end

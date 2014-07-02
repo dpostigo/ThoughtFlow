@@ -16,7 +16,7 @@
 #import "UIView+DPKit.h"
 #import "Model.h"
 #import "UIViewController+TFContentNavigationController.h"
-#import "TFContentNavigationController.h"
+#import "TFContentViewNavigationController.h"
 #import "TFMindmapGridViewController.h"
 #import "TFPhoto.h"
 
@@ -98,7 +98,7 @@
     switch (type) {
 
         case TFMindmapButtonTypeGrid : {
-            TFMindmapGridViewController *controller = [[TFMindmapGridViewController alloc] initWithImageString: _selectedNode.title];
+            TFMindmapGridViewController *controller = [[TFMindmapGridViewController alloc] initWithProject: _project imageString: _selectedNode.title];
             controller.delegate = self;
             [self.navigationController pushViewController: controller animated: YES];
         }
@@ -126,6 +126,9 @@
 
 - (void) mindmapGridViewController: (TFMindmapGridViewController *) controller clickedButtonForImage: (TFPhoto *) image {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    [_project.pinnedImages addObject: image];
+    [_project save];
+    [controller reloadImage: image];
 
 }
 

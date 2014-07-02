@@ -4,11 +4,11 @@
 //
 
 #import "UIViewController+TFContentNavigationController.h"
-#import "TFContentNavigationController.h"
+#import "TFContentViewNavigationController.h"
 
 @implementation UIViewController (TFContentNavigationController)
 
-- (TFContentNavigationController *) contentNavigationController {
-    return (TFContentNavigationController *) ([self.navigationController isKindOfClass: [TFContentNavigationController class]] ? self.navigationController : nil);
+- (TFContentViewNavigationController *) contentNavigationController {
+    return (TFContentViewNavigationController *) ([self.navigationController isKindOfClass: [TFContentViewNavigationController class]] ? self.navigationController : nil);
 }
 @end

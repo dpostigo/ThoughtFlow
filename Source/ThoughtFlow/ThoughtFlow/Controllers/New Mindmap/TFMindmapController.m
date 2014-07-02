@@ -5,7 +5,7 @@
 
 #import <DPTransitions/CustomModalSegue.h>
 #import "TFMindmapController.h"
-#import "MindmapButtonsController.h"
+#import "TFMindmapButtonsViewController.h"
 #import "MindmapBackgroundController.h"
 #import "UIViewController+TFControllers.h"
 #import "UIViewController+DPKit.h"
@@ -15,6 +15,11 @@
 #import "MindmapLinesController.h"
 #import "UIView+DPKit.h"
 #import "Model.h"
+#import "UIViewController+TFContentNavigationController.h"
+#import "TFContentNavigationController.h"
+#import "TFMindmapGridViewController.h"
+#import "TFPhoto.h"
+
 
 @implementation TFMindmapController
 
@@ -61,8 +66,8 @@
     _nodesController.delegate = self;
     [self embedFullscreenController: _nodesController];
 
-    MindmapButtonsController *buttonsController = (MindmapButtonsController *) self.mindmapButtonsController;
-    //    buttonsController.drawerPresenter = self;
+    TFMindmapButtonsViewController *buttonsController = (TFMindmapButtonsViewController *) self.mindmapButtonsController;
+    buttonsController.delegate = self;
     [self embedFullscreenController: buttonsController];
 
     NSLog(@"self.navigationController = %@", self.navigationController);
@@ -75,6 +80,7 @@
 
 - (void) _setupProject {
     if (_project) {
+        _backgroundController.imageString = _project.word;
         _nodesController.nodes = _project.flattenedChildren;
         //        _linesController.nodes = _project.nodes;
 
@@ -85,9 +91,46 @@
 }
 
 
+
+#pragma mark - TFMindmapButtonsViewControllerDelegate
+
+- (void) buttonsController: (TFMindmapButtonsViewController *) buttonsController tappedButtonWithType: (TFMindmapButtonType) type {
+    switch (type) {
+
+        case TFMindmapButtonTypeGrid : {
+            TFMindmapGridViewController *controller = [[TFMindmapGridViewController alloc] initWithImageString: _selectedNode.title];
+            controller.delegate = self;
+            [self.navigationController pushViewController: controller animated: YES];
+        }
+            break;
+
+        case TFMindmapButtonTypeInfo : {
+            self.contentNavigationController.rightDrawerController = (id) self.imageDrawerController;
+            [self.contentNavigationController openRightContainer];
+        }
+            break;
+
+        case TFMindmapButtonTypePin : {
+
+        }
+            break;
+
+        default :
+            break;
+    }
+
+}
+
+
+#pragma mark - TFMindmapGridViewControllerDelegate
+
+- (void) mindmapGridViewController: (TFMindmapGridViewController *) controller clickedButtonForImage: (TFPhoto *) image {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
+}
+
+
 #pragma mark - TFNodesViewDelegate
-
-
 
 - (void) nodesControllerDidUpdateViews: (NSArray *) nodeViews {
     _linesController.rootNode = _project.firstNode;
@@ -148,11 +191,24 @@
 
 
 - (void) nodesControllerDidDoubleTapNode: (TFNode *) node {
-
     _model.selectedNode = node;
     [self performSegueWithIdentifier: @"EditModalSegue" sender: nil];
 
 }
+
+- (void) nodesControllerDidTapRelated: (TFNodeView *) nodeView forNode: (TFNode *) node {
+    _model.selectedNode = node;
+    [self performSegueWithIdentifier: @"RelatedSegue" sender: nil];
+}
+
+
+- (void) nodesControllerDidSelectNode: (TFNode *) node {
+    _selectedNode = node;
+    _backgroundController.imageString = node.title;
+
+}
+
+
 
 
 #pragma mark - TFEditNodeControllerDelegate

@@ -14,6 +14,9 @@
 #import "TFInfoViewController.h"
 #import "NSArray+DPKit.h"
 #import "MoodboardController.h"
+#import "TFMoodboardViewController.h"
+#import "TFMindmapGridViewController.h"
+
 
 @implementation NewMainAppController {
 }
@@ -79,7 +82,7 @@
             break;
 
         case TFNewToolbarButtonTypeMoodboard : {
-            [_contentNavigationController toggleViewController: self.moodboardController animated: YES];
+            [_contentNavigationController toggleViewController: [[TFMoodboardViewController alloc] initWithProject: _model.selectedProject] animated: YES];
 
         }
             break;
@@ -141,7 +144,8 @@
     BasicAnimator *ret = nil;
 
     if ([destinationController isKindOfClass: [TFInfoViewController class]] ||
-            [destinationController isKindOfClass: [MoodboardController class]]) {
+            [destinationController isKindOfClass: [TFMoodboardViewController class]] ||
+            [destinationController isKindOfClass: [TFMindmapGridViewController class]]) {
         ret = self.fadingNavigationAnimator;
     } else {
         ret = self.slidingNavigationAnimator;

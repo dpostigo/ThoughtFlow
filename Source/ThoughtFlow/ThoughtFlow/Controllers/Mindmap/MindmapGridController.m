@@ -36,7 +36,7 @@
 
     NSString *imageString = _model.selectedNode.title;
     [_apiModel getImages: imageString success: ^(NSArray *imageArray) {
-        images = imageArray;
+        self.images = imageArray;
         [self.collection reloadData];
         //        [self.collection scrollToItemAtIndexPath: [NSIndexPath indexPathForItem: 0 inSection: 0] atScrollPosition: UICollectionViewScrollPositionNone animated: NO];
         [UIView animateWithDuration: 0.4 animations: ^{

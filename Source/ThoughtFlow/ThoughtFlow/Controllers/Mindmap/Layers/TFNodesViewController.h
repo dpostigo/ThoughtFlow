@@ -21,7 +21,9 @@
 - (void) nodesControllerDidEndCreatingNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node;
 
 - (void) nodesControllerDidCreateNode: (TFNode *) node withRoot: (TFNode *) rootNode;
+- (void) nodesControllerDidSelectNode: (TFNode *) node;
 - (void) nodesControllerDidDoubleTapNode: (TFNode *) node;
+- (void) nodesControllerDidTapRelated: (TFNodeView *) nodeView forNode: (TFNode *) node;
 
 - (void) nodesControllerDidBeginMovingNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node;
 - (void) nodesControllerDidUpdateMovingNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node;
@@ -30,7 +32,6 @@
 @end
 
 @interface TFNodesViewController : TFViewController <TFNodeViewDelegate> {
-    __unsafe_unretained id <TFNodesViewDelegate> delegate;
 }
 
 @property(nonatomic, strong) NSArray *nodes;

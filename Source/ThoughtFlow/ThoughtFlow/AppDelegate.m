@@ -12,6 +12,8 @@
 #import "NSObject+AutoDescription.h"
 #import "TFNode.h"
 #import "UIColor+TFApp.h"
+#import "DDTTYLogger.h"
+#import "DDASLLogger.h"
 #import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate {
@@ -20,6 +22,7 @@
 
 - (BOOL) application: (UIApplication *) application didFinishLaunchingWithOptions: (NSDictionary *) launchOptions {
 
+    [self _setup];
     [self testDestore];
 
     //    [self _setupSampleProject];
@@ -33,6 +36,20 @@
     return YES;
 }
 
+
+- (void) _setup {
+    [self _setupLumberjack];
+}
+
+
+- (void) _setupLumberjack {
+    [DDLog addLogger: [DDASLLogger sharedInstance]];
+    [DDLog addLogger: [DDTTYLogger sharedInstance]];
+
+    [[DDTTYLogger sharedInstance] setColorsEnabled: YES];
+    [[DDTTYLogger sharedInstance] setForegroundColor: [UIColor colorWithRed: (255 / 255.0) green: (58 / 255.0) blue: (159 / 255.0) alpha: 1.0] backgroundColor: nil forFlag: LOG_FLAG_VERBOSE];
+
+}
 
 - (void) _setupSampleProject {
     _model = [Model sharedModel];

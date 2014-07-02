@@ -26,6 +26,7 @@
 
 - (void) handleButton: (UIButton *) button {
     NSInteger tag = button.tag;
+    button.selected = !button.selected;
     [self _notifyButtonClickedWithType: (TFNewToolbarButtonType) tag];
 
 }

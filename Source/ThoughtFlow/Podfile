@@ -26,3 +26,4 @@ pod 'DPKit-UIFont', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-UIFont'
 
 pod 'Reveal-iOS-SDK'
 pod 'CrashlyticsFramework'
+pod 'CocoaLumberjack'

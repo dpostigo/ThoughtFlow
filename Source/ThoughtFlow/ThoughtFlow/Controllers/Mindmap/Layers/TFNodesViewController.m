@@ -4,13 +4,14 @@
 //
 
 #import <DPKit-UIView/UIView+DPConstraints.h>
-#import <NSObject+AutoDescription/NSObject+AutoDescription.h>
 #import "TFNodesViewController.h"
 #import "TFNode.h"
 #import "UIView+DPKit.h"
 #import "TFNodeView.h"
 #import "TFNewNodeView.h"
-#import "Model.h"
+#import "DPPassThroughView.h"
+
+
 
 @implementation TFNodesViewController {
     TFNodeViewState _lastNodeState;
@@ -23,11 +24,12 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
     return (CGFloat) sqrt(dx * dx + dy * dy);
 }
 
-@synthesize delegate;
 
 - (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
     self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
+
+        self.view = [[DPPassThroughView alloc] init];
         _nodeViews = [[NSMutableArray alloc] init];
     }
 
@@ -116,6 +118,26 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 }
 
 
+- (void) nodeViewDidTriggerRelated: (TFNodeView *) node {
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidTapRelated:forNode:)]) {
+        [_delegate nodesControllerDidTapRelated: node forNode: node.node];
+    }
+}
+
+
+- (void) nodeViewDidChangeSelection: (TFNodeView *) node {
+    [self deselectOtherNodes: node];
+    [self _notifyControllerDidSelectNode: node.node];
+}
+
+
+- (void) deselectOtherNodes: (TFNodeView *) nodeView {
+    for (TFNodeView *node in _nodeViews) {
+        if (node != nodeView) {
+            node.selected = NO;
+        }
+    }
+}
 
 #pragma mark Node Interaction
 
@@ -398,42 +420,50 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 
 
 
+#pragma mark - Notify - nodes
+
 #pragma mark - Notify
 
 - (void) _notifyControllerDidUpdateViews {
-    if (delegate && [delegate respondsToSelector: @selector(nodesControllerDidUpdateViews:)]) {
-        [delegate nodesControllerDidUpdateViews: _nodeViews];
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidUpdateViews:)]) {
+        [_delegate nodesControllerDidUpdateViews: _nodeViews];
     }
 }
 
 
 - (void) _notifyControllerDidDoubleTapNode: (TFNode *) node {
-    if (delegate && [delegate respondsToSelector: @selector(nodesControllerDidDoubleTapNode:)]) {
-        [delegate nodesControllerDidDoubleTapNode: node];
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidDoubleTapNode:)]) {
+        [_delegate nodesControllerDidDoubleTapNode: node];
     }
 }
 
+
+- (void) _notifyControllerDidSelectNode: (TFNode *) node {
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidSelectNode:)]) {
+        [_delegate nodesControllerDidSelectNode: node];
+    }
+}
 
 #pragma mark - Moving
 
 
 - (void) _notifyControllerDidBeginMovingNodeView: (TFNodeView *) nodeView {
-    if (delegate && [delegate respondsToSelector: @selector(nodesControllerDidBeginMovingNodeView:forNode:)]) {
-        [delegate nodesControllerDidBeginMovingNodeView: nodeView forNode: nodeView.node];
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidBeginMovingNodeView:forNode:)]) {
+        [_delegate nodesControllerDidBeginMovingNodeView: nodeView forNode: nodeView.node];
     }
 }
 
 
 - (void) _notifyControllerDidUpdateMovingNodeView: (TFNodeView *) nodeView {
-    if (delegate && [delegate respondsToSelector: @selector(nodesControllerDidUpdateMovingNodeView:forNode:)]) {
-        [delegate nodesControllerDidUpdateMovingNodeView: nodeView forNode: nodeView.node];
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidUpdateMovingNodeView:forNode:)]) {
+        [_delegate nodesControllerDidUpdateMovingNodeView: nodeView forNode: nodeView.node];
     }
 }
 
 
 - (void) _notifyControllerDidEndMovingNodeView: (TFNodeView *) nodeView {
-    if (delegate && [delegate respondsToSelector: @selector(nodesControllerDidEndMovingNodeView:forNode:)]) {
-        [delegate nodesControllerDidEndMovingNodeView: nodeView forNode: nodeView.node];
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidEndMovingNodeView:forNode:)]) {
+        [_delegate nodesControllerDidEndMovingNodeView: nodeView forNode: nodeView.node];
     }
 }
 
@@ -441,27 +471,27 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 #pragma mark - Creation
 
 - (void) _notifyControllerDidBeginCreatingNodeView: (TFNodeView *) nodeView withParent: (TFNodeView *) parentNodeView {
-    if (delegate && [delegate respondsToSelector: @selector(nodesControllerDidBeginCreatingNodeView:withParent:)]) {
-        [delegate nodesControllerDidBeginCreatingNodeView: nodeView withParent: parentNodeView];
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidBeginCreatingNodeView:withParent:)]) {
+        [_delegate nodesControllerDidBeginCreatingNodeView: nodeView withParent: parentNodeView];
     }
 }
 
 - (void) _notifyControllerDidUpdateCreatingNodeView: (TFNodeView *) nodeView withParent: (TFNodeView *) parentNodeView {
-    if (delegate && [delegate respondsToSelector: @selector(nodesControllerDidUpdateCreatingNodeView:withParent:)]) {
-        [delegate nodesControllerDidUpdateCreatingNodeView: nodeView withParent: parentNodeView];
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidUpdateCreatingNodeView:withParent:)]) {
+        [_delegate nodesControllerDidUpdateCreatingNodeView: nodeView withParent: parentNodeView];
     }
 }
 
 - (void) _notifyControllerDidEndCreateNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node {
-    if (delegate && [delegate respondsToSelector: @selector(nodesControllerDidEndCreatingNodeView:forNode:)]) {
-        [delegate nodesControllerDidEndCreatingNodeView: nodeView forNode: node];
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidEndCreatingNodeView:forNode:)]) {
+        [_delegate nodesControllerDidEndCreatingNodeView: nodeView forNode: node];
     }
 }
 
 
 - (void) _notifyControllerDidCreateNode: (TFNode *) node withRoot: (TFNode *) rootNode {
-    if (delegate && [delegate respondsToSelector: @selector(nodesControllerDidCreateNode:withRoot:)]) {
-        [delegate nodesControllerDidCreateNode: node withRoot: rootNode];
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidCreateNode:withRoot:)]) {
+        [_delegate nodesControllerDidCreateNode: node withRoot: rootNode];
     }
 }
 

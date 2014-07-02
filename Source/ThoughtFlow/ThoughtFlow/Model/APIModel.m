@@ -71,6 +71,8 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 #pragma mark Login / Register
 
 - (void) login: (NSString *) username password: (NSString *) password completion: (void (^)()) completion failure: (void (^)()) failure {
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
     [self.authClient authenticateUsingOAuthWithURLString: @"http://188.226.201.79/api/oauth/token"
             username: username
             password: password
@@ -103,6 +105,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 
 
 - (void) getUserInfo: (NSString *) username completion: (void (^)(id response)) success failure: (void (^)()) failure {
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
     [self.authClient GET: [NSString stringWithFormat: @"user/%@", username]
             parameters: nil
             success: ^(AFHTTPRequestOperation *task, id responseObject) {
@@ -114,6 +117,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 }
 
 - (void) userExists: (NSString *) username completion: (void (^)(BOOL exists)) success {
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
     [self.authClient GET: [NSString stringWithFormat: @"username/%@", username]
             parameters: nil
             success: ^(AFHTTPRequestOperation *task, id responseObject) {
@@ -128,6 +132,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 - (void) registerUser: (NSString *) username password: (NSString *) password email: (NSString *) email
               success: (void (^)()) success failure: (void (^)()) failure {
 
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
     [self.authClient POST: @"user"
             parameters: @{
                     @"username" : username,
@@ -159,6 +164,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 - (void) getImages: (NSString *) string
            success: (void (^)(NSArray *images)) success failure: (void (^)()) failure {
 
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
     [self.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", string]
             parameters: @{
 
@@ -212,7 +218,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 - (AFOAuth2Client *) authClient {
     if (authClient == nil) {
 
-        NSURL *url = [NSURL URLWithString: @"http://188.226.201.79/api"];
+        NSURL *url = [NSURL URLWithString: @"http://188.226.201.79/api/v1"];
         authClient = [AFOAuth2Client clientWithBaseURL: url
                 clientID: @"2dc300c232a003156fddd1d9aecb38d9da9ad49a"
                 secret: @"66df225f66bdbe89d5f04825aea2efa9731edd5a"];

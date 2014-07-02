@@ -25,6 +25,11 @@ PODS:
   - AutoCoding (2.2)
   - CALayer-DPUtils (0.1.6):
     - DPKit-Utils
+  - CocoaLumberjack (1.9.1):
+    - CocoaLumberjack/Extensions
+  - CocoaLumberjack/Core (1.9.1)
+  - CocoaLumberjack/Extensions (1.9.1):
+    - CocoaLumberjack/Core
   - CrashlyticsFramework (2.2.1)
   - DPAnimators (0.0.1):
     - DPKit-UIView
@@ -55,6 +60,7 @@ DEPENDENCIES:
   - AFOAuth2Client (from `https://github.com/mlwelles/AFOAuth2Client`)
   - AutoCoding
   - CALayer-DPUtils (from `~/Development/LocalPods/Utilities/CALayer-DPUtils`)
+  - CocoaLumberjack
   - CrashlyticsFramework
   - DPAnimators (from `~/Development/LocalPods/DPAnimators`)
   - DPCollectionView
@@ -89,6 +95,7 @@ SPEC CHECKSUMS:
   AFOAuth2Client: 05536bd4175add72e7efcb6b749d4e9685ed02f7
   AutoCoding: 2a15d57acf78912b72cc3b3a472e614b2f112a18
   CALayer-DPUtils: cdd3ef1b054136ee30215aa7c06b0675f442f084
+  CocoaLumberjack: 94accd5749f5c5d15134c8d50f34a973aed8ef69
   CrashlyticsFramework: a9d172599c3a34e68067e16446a764041b980162
   DPAnimators: b5d8bf1ed85f17a49cabad1bcc22010c70d27ba8
   DPCollectionView: f9fa97254c21ff6dcec0a8e33f93b21bb315ac99

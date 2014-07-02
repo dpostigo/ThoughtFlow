@@ -6,7 +6,6 @@
 #import <DPKit-Utils/UIView+DPKit.h>
 #import <DPKit-Utils/UIView+DPKitDebug.h>
 #import "ImageDrawerController.h"
-#import "UIView+TFFonts.h"
 #import "Model.h"
 #import "TFPhoto.h"
 #import "NSAttributedString+DDHTML.h"

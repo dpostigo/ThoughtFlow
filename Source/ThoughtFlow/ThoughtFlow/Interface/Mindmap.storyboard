@@ -33,7 +33,7 @@
         <!--Mindmap Buttons Controller-->
         <scene sceneID="5So-MG-Fph">
             <objects>
-                <viewController storyboardIdentifier="MindmapButtonsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="F1Y-m7-Vam" customClass="MindmapButtonsController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TFMindmapButtonsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="F1Y-m7-Vam" customClass="TFMindmapButtonsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d90-bo-bPg"/>
                         <viewControllerLayoutGuide type="bottom" id="4e4-6d-QQh"/>
@@ -423,7 +423,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="closeDrawer:" destination="E4l-jH-l7D" eventType="touchUpInside" id="7NI-AR-9o9"/>
+                                    <action selector="closeDrawer:" destination="E4l-jH-l7D" eventType="touchUpInside" id="ISN-0K-zjp"/>
                                 </connections>
                             </button>
                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcf-65-h0q">

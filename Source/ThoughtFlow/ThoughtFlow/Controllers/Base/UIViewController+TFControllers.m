@@ -5,6 +5,8 @@
 
 #import "UIViewController+TFControllers.h"
 
+
+
 @implementation UIViewController (TFControllers)
 
 
@@ -35,6 +37,10 @@
     return [self.mainStoryboard instantiateViewControllerWithIdentifier: @"NewMainAppController"];
 }
 
+- (UIViewController *) emptyController {
+    return [self.moodboardStoryboard instantiateViewControllerWithIdentifier: @"TFEmptyViewController"];
+}
+
 
 
 #pragma mark - Projects
@@ -43,8 +49,6 @@
 - (UIViewController *) projectsController {
     return [self.mainStoryboard instantiateViewControllerWithIdentifier: @"ProjectsController"];
 }
-
-
 
 
 - (UIViewController *) createProjectController {
@@ -80,7 +84,7 @@
 }
 
 - (UIViewController *) mindmapButtonsController {
-    return [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"MindmapButtonsController"];
+    return [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"TFMindmapButtonsViewController"];
 }
 
 
@@ -95,7 +99,7 @@
 }
 
 - (UIViewController *) imageDrawerController {
-    return [self.storyboard instantiateViewControllerWithIdentifier: @"NewImageDrawerController"];
+    //    return [self.storyboard instantiateViewControllerWithIdentifier: @"NewImageDrawerController"];
     return [self.storyboard instantiateViewControllerWithIdentifier: @"ImageDrawerController"];
 }
 

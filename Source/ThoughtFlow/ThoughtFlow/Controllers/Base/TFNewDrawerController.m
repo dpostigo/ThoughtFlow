@@ -9,6 +9,10 @@
 
 @synthesize drawerDelegate;
 
+- (IBAction) closeDrawer: (id) sender {
+    [self _notifyDrawerControllerShouldDismiss];
+}
+
 - (void) _notifyDrawerControllerShouldDismiss {
     if (drawerDelegate && [drawerDelegate respondsToSelector: @selector(drawerControllerShouldDismiss:)]) {
         [drawerDelegate drawerControllerShouldDismiss: self];

@@ -8,6 +8,7 @@
 #import "CALayer+SublayerUtils.h"
 #import "TFNode.h"
 #import "TFNodeView.h"
+#import "DPPassThroughView.h"
 
 @implementation MindmapLinesController {
     NSArray *_affectedNodes;
@@ -16,6 +17,9 @@
 - (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
     self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
+
+        self.view = [[DPPassThroughView alloc] init];
+
         _lineColor = [UIColor colorWithWhite: 0.5 alpha: 1.0];
 
         _mainLayer = [CALayer layer];

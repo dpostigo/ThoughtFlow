@@ -20,7 +20,7 @@
 #import "TFRightDrawerAnimator.h"
 #import "UIViewController+TFControllers.h"
 #import "TFDrawerController.h"
-#import "MindmapButtonsController.h"
+#import "TFMindmapButtonsViewController.h"
 
 @implementation MindmapController {
     TFNodeViewState lastNodeState;
@@ -74,8 +74,7 @@
 
 - (void) embedControllers {
 
-    MindmapButtonsController *buttonsController = (MindmapButtonsController *) self.mindmapButtonsController;
-    buttonsController.drawerPresenter = self;
+    TFMindmapButtonsViewController *buttonsController = (TFMindmapButtonsViewController *) self.mindmapButtonsController;
     [self embedController: buttonsController];
 
     backgroundController = (MindmapBackgroundController *) self.mindmapBackgroundController;

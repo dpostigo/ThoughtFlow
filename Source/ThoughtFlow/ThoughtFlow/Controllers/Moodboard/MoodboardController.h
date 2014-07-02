@@ -6,11 +6,10 @@
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
 
-@interface MoodboardController : TFViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource> {
-    NSArray *images;
-}
+@interface MoodboardController : TFViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property(weak) IBOutlet UICollectionView *collection;
 @property(nonatomic, strong) NSArray *images;
+
 - (UICollectionViewCell *) collectionView: (UICollectionView *) collectionView cellForItemAtIndexPath: (NSIndexPath *) indexPath;
 @end

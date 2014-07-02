@@ -6,6 +6,8 @@
 #import <Foundation/Foundation.h>
 #import "LibraryObject.h"
 
+
+
 @class TFNode;
 
 @interface Project : LibraryObject
@@ -14,7 +16,7 @@
 @property(nonatomic, strong) NSDate *modifiedDate;
 @property(nonatomic, copy) NSString *word;
 @property(nonatomic, copy) NSString *notes;
-@property(nonatomic, strong) NSMutableArray *pins;
+@property(nonatomic, strong) NSMutableArray *pinnedImages;
 
 - (instancetype) initWithWord: (NSString *) aWord;
 + (instancetype) projectWithWord: (NSString *) aWord;

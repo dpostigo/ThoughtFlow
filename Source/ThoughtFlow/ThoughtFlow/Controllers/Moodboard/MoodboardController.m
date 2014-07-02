@@ -6,13 +6,12 @@
 #import <DPKit-Utils/UIView+DPKit.h>
 #import "MoodboardController.h"
 #import "TFMoodboardCollectionViewCell.h"
-#import "UIColor+TFApp.h"
 #import "TFPhoto.h"
 #import "UIImageView+AFNetworking.h"
 
-@implementation MoodboardController
 
-@synthesize images;
+
+@implementation MoodboardController
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -49,8 +48,8 @@
     TFMoodboardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"CollectionCell"
             forIndexPath: indexPath];
 
-//    cell.layer.borderWidth = 0.5;
-//    cell.layer.borderColor = [UIColor tfToolbarBorderColor].CGColor;
+    //    cell.layer.borderWidth = 0.5;
+    //    cell.layer.borderColor = [UIColor tfToolbarBorderColor].CGColor;
 
     cell.infoButton.tag = indexPath.item;
 
@@ -128,10 +127,10 @@
 #pragma mark Getters
 
 - (NSArray *) images {
-    if (images == nil) {
-        images = [NSArray array];
+    if (_images == nil) {
+        _images = [NSArray array];
     }
-    return images;
+    return _images;
 }
 
 

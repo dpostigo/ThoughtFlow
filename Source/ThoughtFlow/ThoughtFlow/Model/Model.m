@@ -73,7 +73,7 @@ static NSString *baseURL = @"http://188.226.201.79/api";
 
 #pragma mark Projects
 - (NSArray *) projects {
-    return self.projectLibrary.items;
+    return self.projectLibrary.children;
 }
 
 

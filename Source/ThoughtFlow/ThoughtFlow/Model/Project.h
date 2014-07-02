@@ -6,24 +6,21 @@
 #import <Foundation/Foundation.h>
 #import "LibraryObject.h"
 
-@interface Project : LibraryObject {
+@class TFNode;
 
-    NSString *word;
-    NSString *notes;
-    NSDate *creationDate;
+@interface Project : LibraryObject
 
-    NSMutableArray *pins;
-
-}
-
+@property(nonatomic, strong) NSDate *creationDate;
+@property(nonatomic, strong) NSDate *modifiedDate;
 @property(nonatomic, copy) NSString *word;
 @property(nonatomic, copy) NSString *notes;
-@property(nonatomic, strong) NSDate *creationDate;
-
 @property(nonatomic, strong) NSMutableArray *pins;
+
 - (instancetype) initWithWord: (NSString *) aWord;
 + (instancetype) projectWithWord: (NSString *) aWord;
 - (NSArray *) nodes;
 
+- (TFNode *) firstNode;
+- (NSArray *) flattenedChildren;
 - (void) addNode: (id) node;
 @end

@@ -8,18 +8,16 @@
 
 @implementation Project
 
-@synthesize word;
-@synthesize creationDate;
-@synthesize notes;
-
-@synthesize pins;
-
 - (instancetype) initWithWord: (NSString *) aWord {
     self = [super init];
     if (self) {
-        word = aWord;
-        [self.items addObject: [[TFNode alloc] initWithTitle: word]];
-        creationDate = [NSDate date];
+
+        _creationDate = [NSDate date];
+        _word = aWord;
+
+        _pins = [[NSMutableArray alloc] init];
+
+        [self.mutableChildren addObject: [[TFNode alloc] initWithTitle: _word]];
     }
 
     return self;
@@ -38,7 +36,7 @@
 #pragma mark Nodes
 
 - (void) addNode: (id) node {
-    [self.items addObject: node];
+    [self.mutableChildren addObject: node];
     [self save];
 }
 
@@ -50,8 +48,8 @@
 #pragma mark Setters with save
 
 - (void) setNotes: (NSString *) notes1 {
-    if (![notes isEqualToString: notes1]) {
-        notes = [notes1 mutableCopy];
+    if (![_notes isEqualToString: notes1]) {
+        _notes = [notes1 mutableCopy];
         [self save];
     }
 }
@@ -63,25 +61,18 @@
 
 
 - (NSArray *) nodes {
-    return self.items;
+    return self.children;
 }
 
 
-
-#pragma mark Lazy getters
-
-
-- (NSMutableArray *) pins {
-    if (pins == nil) {
-        pins = [[NSMutableArray alloc] init];
-    }
-    return pins;
+- (TFNode *) firstNode {
+    return [self.children objectAtIndex: 0];
 }
 
-- (NSMutableArray *) items {
-    if (items == nil) {
-        items = [[NSMutableArray alloc] init];
-    }
-    return items;
+- (NSArray *) flattenedChildren {
+    NSMutableArray *ret = [[NSMutableArray alloc] init];
+    [ret addObject: self.firstNode];
+    [ret addObjectsFromArray: [self.firstNode allChildren]];
+    return ret;
 }
 @end

@@ -47,23 +47,22 @@
     NSString *path = [[[self class] documentsDirectory] stringByAppendingPathComponent: @"ProjectLibrary.plist"];
     [self writeToFile: path atomically: YES];
 
-    for (int j = 0; j < [self.items count]; j++) {
-        // id item = [self.items objectAtIndex: j];
+    for (int j = 0; j < [self.children count]; j++) {
+        // id item = [self.children objectAtIndex: j];
         // NSLog(@"[item autoDescription] = %@", [item autoDescription]);
     }
-    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 
 - (void) setWithCoder: (NSCoder *) aDecoder {
     [super setWithCoder: aDecoder];
-    //    NSLog(@"%s, [self.items count] = %u", __PRETTY_FUNCTION__, [self.items count]);
+    //    NSLog(@"%s, [self.children count] = %u", __PRETTY_FUNCTION__, [self.children count]);
     //
-    //    for (Project *project in self.items) {
+    //    for (Project *project in self.children) {
     //        project.parent = self;
     //    }
 
-    for (id item in self.items) {
+    for (id item in self.children) {
         if ([item respondsToSelector: @selector(setParent:)]) {
             [item performSelector: @selector(setParent:) withObject: self];
         }

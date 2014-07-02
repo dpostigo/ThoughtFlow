@@ -8,55 +8,63 @@
 #import "Model.h"
 #import "Project.h"
 #import "ProjectsController.h"
+#import "TFNode.h"
+#import "UIViewController+TFControllers.h"
 
 @implementation CreateProjectController
 
-- (void) loadView {
-    [super loadView];
-
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString: textField.placeholder
-            attributes: @{NSForegroundColorAttributeName : [UIColor lightGrayColor]}];
-    textField.attributedPlaceholder = string;
-    textField.delegate = self;
-
-}
-
 - (void) viewDidLoad {
     [super viewDidLoad];
-    //    self.navigationController.delegate = self;
+    [self _setup];
+
+    //    if (DEBUG) {
+    //        Project *project = [[Project alloc] initWithWord: @"test"];
+    //
+    //        //        TFNode *node = [[TFNode alloc] initWithTitle: @"node1"];
+    //        //        [node.children addObject: [[TFNode alloc] initWithTitle: @"node1 child1"]];
+    //        //        [node.children addObject: [[TFNode alloc] initWithTitle: @"node1 child2"]];
+    //        //        [node.children addObject: [[TFNode alloc] initWithTitle: @"node1 child2"]];
+    //        //
+    //        //        [project.firstNode.children addObject: node];
+    //
+    //        _model.selectedProject = project;
+    //        [_model addProject: project];
+    //        [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
+    //    }
 
     if ([_model.projects count] > 0) {
-        [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
+//        [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
     }
 }
 
 - (void) viewDidDisappear: (BOOL) animated {
     [super viewDidDisappear: animated];
-    textField.text = @"";
+    _textField.text = @"";
 }
 
 
-- (void) createProject {
-    NSDictionary *newProject = @{
-            TFProjectName : textField.text
-    };
 
-    Project *project = [[Project alloc] initWithWord: textField.text];
+#pragma mark - Actions
+- (void) createProject {
+
+    Project *project = [[Project alloc] initWithWord: _textField.text];
     _model.selectedProject = project;
     [_model addProject: project];
 
-    [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
+    [self.navigationController setViewControllers: @[self.projectsController] animated: YES];
+
+    //    [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
 }
 
 
 #pragma mark UITextFieldDelegate
 
-- (BOOL) textFieldShouldReturn: (UITextField *) textField1 {
-    [textField1 resignFirstResponder];
+- (BOOL) textFieldShouldReturn: (UITextField *) textField {
+    [textField resignFirstResponder];
     return YES;
 }
 
-- (void) textFieldDidEndEditing: (UITextField *) textField1 {
+- (void) textFieldDidEndEditing: (UITextField *) textField {
     if (self.isValid) {
         [self createProject];
     }
@@ -67,16 +75,41 @@
 #pragma mark Validate
 
 - (BOOL) isValid {
-    if ([textField.text length] == 0) {
+    if ([_textField.text length] == 0) {
         return NO;
     }
     return YES;
 }
 
+
+- (void) touchesBegan: (NSSet *) touches withEvent: (UIEvent *) event {
+    [super touchesBegan: touches withEvent: event];
+    [_textField resignFirstResponder];
+}
+
+
 #pragma mark UINavigationControllerDelegate
 
 - (id <UIViewControllerAnimatedTransitioning>) navigationController: (UINavigationController *) navigationController animationControllerForOperation: (UINavigationControllerOperation) operation fromViewController: (UIViewController *) fromVC toViewController: (UIViewController *) toVC {
     return (id <UIViewControllerAnimatedTransitioning>) ([toVC isKindOfClass: [ProjectsController class]] ? [DPFadeTransition new] : nil);
+}
+
+
+
+#pragma mark - Private
+
+- (void) _setup {
+    self.view.opaque = NO;
+    self.view.backgroundColor = [UIColor clearColor];
+
+    self.navigationController.view.opaque = NO;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString: _textField.placeholder
+            attributes: @{NSForegroundColorAttributeName : [UIColor lightGrayColor]}];
+    _textField.attributedPlaceholder = string;
+    _textField.delegate = self;
+    _textField.layer.cornerRadius = 2.0;
 }
 
 

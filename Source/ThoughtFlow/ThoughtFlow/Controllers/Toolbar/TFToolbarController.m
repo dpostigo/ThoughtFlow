@@ -24,7 +24,7 @@
 
 - (void) loadView {
     [super loadView];
-    [self setupCosmetic];
+    [self _setupCosmetic];
 }
 
 
@@ -51,10 +51,10 @@
 
 #pragma mark Setup
 
-- (void) setupCosmetic {
+- (void) _setupCosmetic {
     self.view.backgroundColor = [UIColor clearColor];
-    self.view.layer.borderWidth = 0.5;
-    self.view.layer.borderColor = [UIColor tfToolbarBorderColor].CGColor;
+//    self.view.layer.borderWidth = 0.5;
+//    self.view.layer.borderColor = [UIColor tfToolbarBorderColor].CGColor;
 }
 
 - (void) setupButtons {

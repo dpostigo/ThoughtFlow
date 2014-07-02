@@ -7,6 +7,14 @@
 
 @implementation CALayer (SublayerUtils)
 
+- (void) removeAllSublayers {
+    NSArray *layers = [NSArray arrayWithArray: self.sublayers];
+
+    for (CALayer *layer in layers) {
+        [layer removeFromSuperlayer];
+    }
+}
+
 - (CALayer *) sublayerWithName: (NSString *) name {
     CALayer *ret = nil;
     NSArray *sublayers = self.sublayers;

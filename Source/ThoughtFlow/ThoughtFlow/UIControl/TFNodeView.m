@@ -66,31 +66,40 @@ CGFloat const TFNodeViewHeight = 80;
 
 - (void) setup {
     enabled = YES;
-    self.clipsToBounds = YES;
-    self.backgroundColor = [UIColor blueColor];
 
-    self.translatesAutoresizingMaskIntoConstraints = NO;
+    [self _setupView];
+    [self _setupContainerView];
 
-    containerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, TFNodeViewWidth, TFNodeViewHeight)];
-    containerView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview: containerView];
+    [self _setupGreenView];
+    [self _setupRedView];
+    [self _setupRelatedView];
+    [self _setupNormalView];
 
-    [self createGreenView];
-    [self createRedView];
-    [self createRelatedView];
-    [self createNormalView];
+    [self _setupConstraints];
+    [self _setupGestures];
 
-    containerView.backgroundColor = [UIColor redColor];
-
-    [self setupConstraints];
-    [self setupGestures];
     [self setNeedsUpdateConstraints];
     self.nodeState = TFNodeViewStateNormal;
 
 }
 
 
-- (void) setupConstraints {
+- (void) _setupView {
+    self.clipsToBounds = YES;
+    self.backgroundColor = [UIColor clearColor];
+    self.opaque = NO;
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+}
+
+- (void) _setupContainerView {
+    _containerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, TFNodeViewWidth, TFNodeViewHeight)];
+    _containerView.translatesAutoresizingMaskIntoConstraints = NO;
+    _containerView.backgroundColor = [UIColor clearColor];
+    [self addSubview: _containerView];
+
+}
+
+- (void) _setupConstraints {
 
     [greenButton updateSuperTopConstraint: 0];
     //    [greenButton updateSuperBottomConstraint: 0];
@@ -114,22 +123,22 @@ CGFloat const TFNodeViewHeight = 80;
     [relatedButton updateWidthConstraint: TFNodeViewWidth];
     [relatedButton updateHeightConstraint: TFNodeViewHeight];
 
-    [containerView updateSuperTopConstraint: 0];
+    [self.containerView updateSuperTopConstraint: 0];
     //    [containerView updateHeightConstraint: TFNodeViewHeight * 2];
     //    [containerView updateSuperBottomConstraint: 5];
 
     [self addConstraint: [NSLayoutConstraint constraintWithItem: relatedButton attribute: NSLayoutAttributeCenterX
-            relatedBy: NSLayoutRelationEqual toItem: containerView
+            relatedBy: NSLayoutRelationEqual toItem: self.containerView
             attribute: NSLayoutAttributeCenterX
             multiplier: 1.0 constant: 0]];
 
-    [containerView addConstraint: [NSLayoutConstraint constraintWithItem: relatedButton attribute: NSLayoutAttributeTop
+    [self.containerView addConstraint: [NSLayoutConstraint constraintWithItem: relatedButton attribute: NSLayoutAttributeTop
             relatedBy: NSLayoutRelationEqual toItem: viewNormal
             attribute: NSLayoutAttributeBottom
             multiplier: 1.0 constant: 0]];
 
     [self addConstraint: [NSLayoutConstraint constraintWithItem: relatedButton attribute: NSLayoutAttributeBottom
-            relatedBy: NSLayoutRelationEqual toItem: containerView
+            relatedBy: NSLayoutRelationEqual toItem: self.containerView
             attribute: NSLayoutAttributeBottom
             multiplier: 1.0 constant: 0]];
 
@@ -138,7 +147,7 @@ CGFloat const TFNodeViewHeight = 80;
 }
 
 
-- (void) setupGestures {
+- (void) _setupGestures {
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(handlePanGesture:)];
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(handleDoubleTap:)];
     doubleTap.numberOfTapsRequired = 2;
@@ -146,7 +155,7 @@ CGFloat const TFNodeViewHeight = 80;
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(toggleSelection:)];
     singleTap.numberOfTapsRequired = 1;
 
-    [containerView addGestureRecognizer: pan];
+    [self.containerView addGestureRecognizer: pan];
     [viewNormal addGestureRecognizer: doubleTap];
     [viewNormal addGestureRecognizer: singleTap];
 
@@ -185,7 +194,7 @@ CGFloat const TFNodeViewHeight = 80;
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan :
             isPanning = YES;
-            startingPoint = containerView.origin;
+            startingPoint = self.containerView.origin;
             [self disableButtons];
             break;
 
@@ -201,7 +210,7 @@ CGFloat const TFNodeViewHeight = 80;
 
     CGPoint translation = [gesture translationInView: gesture.view];
 
-    if ((translation.x == 0 || containerView.top != 0) && swipeDirection != TFSwipeDirectionHorizontal) {
+    if ((translation.x == 0 || self.containerView.top != 0) && swipeDirection != TFSwipeDirectionHorizontal) {
         [self panVertically: gesture];
 
     } else if (!isSnappingDown && swipeDirection != TFSwipeDirectionVertical) {
@@ -209,9 +218,9 @@ CGFloat const TFNodeViewHeight = 80;
     }
 
     if (swipeDirection == TFSwipeDirectionNone) {
-        if (fabsf(containerView.top) > 20) {
+        if (fabsf(self.containerView.top) > 20) {
             swipeDirection = TFSwipeDirectionVertical;
-        } else if (fabsf(containerView.left + 80) > 20) {
+        } else if (fabsf(self.containerView.left + 80) > 20) {
             swipeDirection = TFSwipeDirectionHorizontal;
         }
     }
@@ -226,8 +235,8 @@ CGFloat const TFNodeViewHeight = 80;
 
     CGPoint translation = [gesture translationInView: self];
     CGFloat newY = [self constrainPositionY: startingPoint.y + translation.y];
-    NSLayoutConstraint *leftConstraint = [containerView superLeadingConstraint];
-    NSLayoutConstraint *topConstraint = containerView.superTopConstraint;
+    NSLayoutConstraint *leftConstraint = [self.containerView superLeadingConstraint];
+    NSLayoutConstraint *topConstraint = self.containerView.superTopConstraint;
 
     switch (gesture.state) {
 
@@ -246,10 +255,10 @@ CGFloat const TFNodeViewHeight = 80;
         case UIGestureRecognizerStateFailed : {
             CGPoint velocity = [gesture velocityInView: self];
 
-            CGFloat snapY = [self constrainPositionY: roundf(containerView.top / self.height) * self.height];
+            CGFloat snapY = [self constrainPositionY: roundf(self.containerView.top / self.height) * self.height];
 
             CGPoint vel = [gesture velocityInView: self];
-            CGFloat curY = containerView.frame.origin.y;
+            CGFloat curY = self.containerView.frame.origin.y;
             CGFloat springVelocity = (-0.1f * vel.x) / (curY - snapY);
 
             isSnappingDown = YES;
@@ -329,7 +338,7 @@ CGFloat const TFNodeViewHeight = 80;
 
         CGPoint translation = [gesture translationInView: view];
         CGFloat newX = [self constrainPositionX: startingPoint.x + (translation.x)];
-        containerView.left = newX;
+        self.containerView.left = newX;
 
         if (gesture.state == UIGestureRecognizerStateChanged) {
 
@@ -343,10 +352,10 @@ CGFloat const TFNodeViewHeight = 80;
                 //            [self.interactionController cancelInteractiveTransition];
             }
 
-            CGFloat snapX = [self constrainPositionX: roundf(containerView.left / self.width) * self.width];
+            CGFloat snapX = [self constrainPositionX: roundf(self.containerView.left / self.width) * self.width];
 
             CGPoint vel = [gesture velocityInView: view];
-            CGFloat curX = containerView.frame.origin.x;
+            CGFloat curX = self.containerView.frame.origin.x;
             CGFloat springVelocity = (-0.1f * vel.x) / (curX - snapX);
 
             //            NSLog(@"vel.x = %f", vel.x);
@@ -356,9 +365,9 @@ CGFloat const TFNodeViewHeight = 80;
                     initialSpringVelocity: springVelocity
                     options: UIViewAnimationOptionCurveEaseOut
                     animations: ^{
-                        CGRect frame = containerView.frame;
+                        CGRect frame = self.containerView.frame;
                         frame.origin.x = snapX;
-                        containerView.frame = frame;
+                        self.containerView.frame = frame;
                     }
                     completion: ^(BOOL finished) {
                         [self updateNodeState];
@@ -381,25 +390,25 @@ CGFloat const TFNodeViewHeight = 80;
 
 - (BOOL) isRelatedGesture: (UIPanGestureRecognizer *) gesture {
     CGPoint translation = [gesture translationInView: gesture.view];
-    return (translation.x == 0 || containerView.top != 0);
+    return (translation.x == 0 || self.containerView.top != 0);
 
 }
 
 
 - (void) updateNodeState {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    NSLog(@"containerView.origin = %@, self.nodeState = %@", NSStringFromCGPoint(containerView.origin),
+    NSLog(@"containerView.origin = %@, self.nodeState = %@", NSStringFromCGPoint(self.containerView.origin),
             self.nodeStateAsString);
 
-    if (containerView.top < 0) {
+    if (self.containerView.top < 0) {
         self.nodeState = TFNodeViewStateRelated;
-    } else if (containerView.left == 0) {
+    } else if (self.containerView.left == 0) {
         self.nodeState = TFNodeViewStateCreate;
 
-    } else if (containerView.left == -TFNodeViewWidth) {
+    } else if (self.containerView.left == -TFNodeViewWidth) {
         self.nodeState = TFNodeViewStateNormal;
 
-    } else if (containerView.left == -TFNodeViewWidth * 2) {
+    } else if (self.containerView.left == -TFNodeViewWidth * 2) {
         self.nodeState = TFNodeViewStateDelete;
     }
 }
@@ -458,7 +467,7 @@ CGFloat const TFNodeViewHeight = 80;
         if (flag) {
             [UIView animateWithDuration: 0.3
                     animations: ^{
-                        containerView.left = [self positionForNodeState: nodeState1];
+                        self.containerView.left = [self positionForNodeState: nodeState1];
                     }
                     completion: completionBlock];
         } else {
@@ -523,9 +532,9 @@ CGFloat const TFNodeViewHeight = 80;
 - (void) setFrame: (CGRect) frame {
     [super setFrame: frame];
 
-    if (!nodeUpdateDisabled && node) {
-        node.position = frame.origin;
-    }
+    //    if (!nodeUpdateDisabled && node) {
+    //        node.position = frame.origin;
+    //    }
 }
 
 - (void) setSelected: (BOOL) selected1 {
@@ -543,16 +552,16 @@ CGFloat const TFNodeViewHeight = 80;
 
         if (optimized) {
             self.backgroundColor = viewNormal.backgroundColor;
-            [containerView removeFromSuperview];
+            [self.containerView removeFromSuperview];
             [self addSubview: viewNormal];
             [viewNormal updateSuperEdgeConstraints: 0];
             //            self.alpha = 0.5;
 
         } else {
 
-            [containerView addSubview: viewNormal];
-            [self addSubview: containerView];
-            [self setupConstraints];
+            [self.containerView addSubview: viewNormal];
+            [self addSubview: self.containerView];
+            [self _setupConstraints];
             //            self.alpha = 1.0;
         }
     }

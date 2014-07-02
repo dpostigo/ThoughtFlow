@@ -8,6 +8,7 @@
 
 @interface CALayer (SublayerUtils)
 
+- (void) removeAllSublayers;
 - (CALayer *) sublayerWithName: (NSString *) name;
 - (void) setSublayerCornerRadius: (CGFloat) radius;
 - (void) setSublayerSpeed: (CGFloat) speed;

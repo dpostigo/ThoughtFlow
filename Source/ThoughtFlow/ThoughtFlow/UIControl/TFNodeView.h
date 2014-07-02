@@ -39,9 +39,6 @@ typedef enum {
     UIButton *redButton;
     UIView *debugView;
 
-
-    UIView *containerView;
-
     IBOutlet __unsafe_unretained id <TFNodeViewDelegate> delegate;
 
     id nodeNotification;
@@ -68,6 +65,7 @@ typedef enum {
 @property(nonatomic) BOOL optimized;
 @property(nonatomic) BOOL nodeUpdateDisabled;
 @property(nonatomic) TFSwipeDirection swipeDirection;
+@property(nonatomic, strong) UIView *containerView;
 + (UIView *) greenGhostView;
 - (void) setNodeState: (TFNodeViewState) nodeState1 animated: (BOOL) flag;
 

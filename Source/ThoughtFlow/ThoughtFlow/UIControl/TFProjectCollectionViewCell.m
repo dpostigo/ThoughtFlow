@@ -55,7 +55,7 @@
     NSMutableAttributedString *ret = [[NSMutableAttributedString alloc] init];
     [ret appendAttributedString: [[NSAttributedString alloc] initWithString: @"AND MADE " attributes: attributes]];
     [attributes setObject: [UIColor whiteColor] forKey: NSForegroundColorAttributeName];
-    [ret appendAttributedString: [[NSAttributedString alloc] initWithString: [NSString stringWithFormat: @"%u", [project.nodes count] - 1] attributes: attributes]];
+    [ret appendAttributedString: [[NSAttributedString alloc] initWithString: [NSString stringWithFormat: @"%u", [project.flattenedChildren count] - 1] attributes: attributes]];
     [attributes setObject: [UIColor tfCellTextColor] forKey: NSForegroundColorAttributeName];
     [ret appendAttributedString: [[NSAttributedString alloc] initWithString: @" CONNECTIONS " attributes: attributes]];
 

@@ -20,6 +20,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    [self _setup];
     preloader = [[UIImageView alloc] init];
 
     _collection.pagingEnabled = YES;
@@ -62,8 +63,6 @@
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
 
-    NSLog(@"self.view.frame = %@", NSStringFromCGRect(self.view.frame));
-    NSLog(@"_collection.frame = %@", NSStringFromCGRect(_collection.frame));
 
     //    [self fixCollectionView: YES];
 
@@ -251,4 +250,11 @@
     return images;
 }
 
+
+#pragma mark - Setup
+
+- (void) _setup {
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.opaque = NO;
+}
 @end

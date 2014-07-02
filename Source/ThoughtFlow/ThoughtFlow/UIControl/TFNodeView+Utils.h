@@ -14,9 +14,9 @@
 - (void) disableButtons;
 - (CGFloat) constrainPositionX: (CGFloat) snapX;
 - (CGFloat) constrainPositionY: (CGFloat) posY;
-- (void) createNormalView;
-- (void) createGreenView;
-- (void) createRedView;
-- (void) createRelatedView;
+- (void) _setupNormalView;
+- (void) _setupGreenView;
+- (void) _setupRedView;
+- (void) _setupRelatedView;
 - (void) toggleSelection: (id) sender;
 @end

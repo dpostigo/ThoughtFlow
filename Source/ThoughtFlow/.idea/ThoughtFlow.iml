@@ -16,6 +16,9 @@
     <content url="file://$MODULE_DIR$/../../../LocalPods/DPTransitions">
       <sourceFolder url="file://$MODULE_DIR$/../../../LocalPods/DPTransitions" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../../LocalPods/Utilities/CALayer-DPUtils">
+      <sourceFolder url="file://$MODULE_DIR$/../../../LocalPods/Utilities/CALayer-DPUtils" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

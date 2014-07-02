@@ -19,6 +19,7 @@
 #import "UINavigationController+TFDrawerNavAnimator.h"
 #import "UIViewController+BasicModalAnimator.h"
 #import "TFDrawerModalAnimator.h"
+#import "TFNewToolbarController.h"
 #import "TFDrawerController.h"
 #import "NotesDrawerController.h"
 #import "ImageDrawerController.h"
@@ -65,6 +66,11 @@
     if (navController) {
         [self setupNotifications];
     }
+
+    if ([_model.projects count] > 0) {
+        [navController setViewControllers: @[self.projectsController] animated: YES];
+    }
+
 }
 
 
@@ -171,8 +177,9 @@
         contentController = controller;
 
     } else if ([segue.identifier isEqualToString: @"ToolbarEmbedSegue"]) {
-        toolbarController = (TFToolbarController *) controller;
-        toolbarController.delegate = self;
+        //        toolbarController = (TFToolbarController *) controller;
+        //        toolbarController.delegate = self;
+        newToolbarController = (TFNewToolbarController *) controller;
 
     }
 }
@@ -210,7 +217,7 @@
     //        //        [navController popViewControllerAnimated: YES];
     //        [navController popViewControllerWithAnimator: navAnimator completion: ^{
     //
-    //            //            navController.delegate = navigationAnimator;
+    //            //            navController.delegate = slidingNavigationAnimator;
     //        }];
     //    }
     //    if (self.presentedViewController) {
@@ -312,7 +319,7 @@
         ret = navAnimator;
     } else {
         ret = navigationAnimator;
-        //        navigationAnimator = [NavigationFadeAnimator new];
+        //        slidingNavigationAnimator = [NavigationFadeAnimator new];
     }
 
     ret.isPresenting = operation == UINavigationControllerOperationPush;

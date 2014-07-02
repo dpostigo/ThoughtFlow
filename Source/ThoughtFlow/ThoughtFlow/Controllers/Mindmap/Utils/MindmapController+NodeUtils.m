@@ -200,10 +200,10 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
     self.creationNode.center = location;
     [self updateLineForNodeView: currentNodeView location: self.creationNode.center];
 
-    //        CGFloat distance = DistanceBetweenTwoPoints(self.creationNode.center, currentNodeView.center);
-    //        self.creationNode.alpha = fmaxf(distance / 200, 1);
-    //        self.creationNode.center = location;
-    //        setLayerToLineFromAToB(lineView.layer, self.creationNode.center, currentNodeView.center, 1);
+    //        CGFloat distance = DistanceBetweenTwoPoints(self.creationNodeView.center, currentNodeView.center);
+    //        self.creationNodeView.alpha = fmaxf(distance / 200, 1);
+    //        self.creationNodeView.center = location;
+    //        setLayerToLineFromAToB(lineView.layer, self.creationNodeView.center, currentNodeView.center, 1);
 
 }
 
@@ -237,7 +237,7 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
 
     TFNodeView *ret = [[TFNodeView alloc] init];
     ret.node = projectNode;
-    //    ret.center = self.creationNode.center;
+    //    ret.center = self.creationNodeView.center;
     ret.frame = [self frameForNewNode];
     ret.node.position = ret.origin;
 

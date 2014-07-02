@@ -6,11 +6,11 @@
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
 #import "TLFreeformModalProtocol.h"
-#import "TFDrawerController.h"
+#import "TFNewDrawerController.h"
 
 @class TFCustomTextField;
 
-@interface TFAccountDrawerController : TFDrawerController <TLFreeformModalProtocol> {
+@interface TFAccountDrawerController : TFNewDrawerController <TLFreeformModalProtocol> {
 
     IBOutlet TFCustomTextField *usernameField;
     IBOutlet TFCustomTextField *emailField;

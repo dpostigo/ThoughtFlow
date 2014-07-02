@@ -7,7 +7,7 @@
         <!--Mindmap Controller-->
         <scene sceneID="s2Q-pF-BS8">
             <objects>
-                <viewController storyboardIdentifier="MindmapController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nQt-lj-0x7" customClass="MindmapController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TFMindmapController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nQt-lj-0x7" customClass="TFMindmapController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zHZ-xr-zf3"/>
                         <viewControllerLayoutGuide type="bottom" id="dxx-EZ-MsC"/>
@@ -15,41 +15,12 @@
                     <view key="view" contentMode="scaleToFill" id="sha-Nq-ieo">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm9-zS-R8P" customClass="PanningView" propertyAccessControl="none">
-                                <rect key="frame" x="0.0" y="20" width="1024" height="768"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmB-Qc-3Mm" customClass="TFNodeView">
-                                        <rect key="frame" x="472" y="324" width="80" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="gEB-zC-m8x"/>
-                                            <constraint firstAttribute="height" constant="80" id="h8b-IQ-dhS"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="dmB-Qc-3Mm" firstAttribute="leading" secondItem="Nm9-zS-R8P" secondAttribute="leading" constant="472" id="lsu-ST-KSf"/>
-                                    <constraint firstItem="dmB-Qc-3Mm" firstAttribute="top" secondItem="Nm9-zS-R8P" secondAttribute="top" constant="324" id="m79-BZ-eVG"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" red="0.16078431900000001" green="0.16078431900000001" blue="0.180392161" alpha="1" colorSpace="deviceRGB"/>
-                        <constraints>
-                            <constraint firstItem="Nm9-zS-R8P" firstAttribute="width" secondItem="sha-Nq-ieo" secondAttribute="width" id="ELJ-aW-sY9"/>
-                            <constraint firstItem="Nm9-zS-R8P" firstAttribute="top" secondItem="zHZ-xr-zf3" secondAttribute="bottom" id="H5h-T0-DGH"/>
-                            <constraint firstItem="Nm9-zS-R8P" firstAttribute="height" secondItem="sha-Nq-ieo" secondAttribute="height" id="O8b-Mi-DS4"/>
-                            <constraint firstItem="Nm9-zS-R8P" firstAttribute="leading" secondItem="sha-Nq-ieo" secondAttribute="leading" id="ZlR-12-QIK"/>
-                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="cxj-7E-iVq"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="firstNodeView" destination="dmB-Qc-3Mm" id="BDu-6M-VOS"/>
                         <segue destination="3Ll-55-tJO" kind="custom" identifier="EditModalSegue" customClass="CustomModalSegue" id="DrK-N4-gD3"/>
                         <segue destination="5qz-ED-L57" kind="custom" identifier="RelatedSegue" customClass="CustomModalSegue" id="A00-P4-X8n"/>
                         <segue destination="feb-ON-wb1" kind="push" identifier="MinimizedSegue" id="Ir4-an-56D"/>
@@ -193,7 +164,7 @@
         <!--Edit Node Controller-->
         <scene sceneID="7sp-hu-13t">
             <objects>
-                <viewController id="3Ll-55-tJO" customClass="EditNodeController" sceneMemberID="viewController">
+                <viewController id="3Ll-55-tJO" customClass="TFEditNodeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JkT-gd-ECm"/>
                         <viewControllerLayoutGuide type="bottom" id="0Ll-EW-8eX"/>
@@ -792,6 +763,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77Q-HP-jv9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5569" y="4246"/>
+        </scene>
+        <!--Mindmap Controller-->
+        <scene sceneID="Old-IS-4w9">
+            <objects>
+                <viewController storyboardIdentifier="MindmapController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pjg-tm-GCT" customClass="MindmapController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ih1-ac-uLz"/>
+                        <viewControllerLayoutGuide type="bottom" id="azu-LA-eKl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1bT-Tu-JBX">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVJ-Ra-enT" customClass="PanningView" propertyAccessControl="none">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUh-SC-Xha" customClass="TFNodeView">
+                                        <rect key="frame" x="472" y="324" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="EJ4-SF-1L5"/>
+                                            <constraint firstAttribute="width" constant="80" id="dLw-cd-M1t"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="EUh-SC-Xha" firstAttribute="leading" secondItem="QVJ-Ra-enT" secondAttribute="leading" constant="472" id="Ccj-ug-NaO"/>
+                                    <constraint firstItem="EUh-SC-Xha" firstAttribute="top" secondItem="QVJ-Ra-enT" secondAttribute="top" constant="324" id="zkI-fe-nvd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.16078431900000001" green="0.16078431900000001" blue="0.180392161" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="QVJ-Ra-enT" firstAttribute="top" secondItem="ih1-ac-uLz" secondAttribute="bottom" id="3FD-qS-ag8"/>
+                            <constraint firstItem="QVJ-Ra-enT" firstAttribute="leading" secondItem="1bT-Tu-JBX" secondAttribute="leading" id="6cb-xu-zsP"/>
+                            <constraint firstItem="QVJ-Ra-enT" firstAttribute="height" secondItem="1bT-Tu-JBX" secondAttribute="height" id="H1p-5k-hj4"/>
+                            <constraint firstItem="QVJ-Ra-enT" firstAttribute="width" secondItem="1bT-Tu-JBX" secondAttribute="width" id="NCJ-99-GoF"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uXJ-r1-HeV"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="firstNodeView" destination="EUh-SC-Xha" id="2n9-vg-7DQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="psU-yE-HDH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3665" y="5393"/>
         </scene>
     </scenes>
     <resources>

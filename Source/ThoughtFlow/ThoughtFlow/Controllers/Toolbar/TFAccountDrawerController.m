@@ -29,16 +29,7 @@
 
 - (IBAction) closeDrawer: (id) sender {
 
-    if (self.presentingViewController) {
-        [self.presentingViewController dismissViewControllerAnimated: YES completion: ^() {
-            [[NSNotificationCenter defaultCenter] postNotificationName: TFToolbarAccountDrawerClosed object: nil];
-        }];
-    } else {
-        [self.navigationController popViewControllerAnimated: YES];
-    }
-
-    [self.presentingViewController dismissViewControllerAnimated: YES
-            completion: nil];
+    [self _notifyDrawerControllerShouldDismiss];
 
 }
 

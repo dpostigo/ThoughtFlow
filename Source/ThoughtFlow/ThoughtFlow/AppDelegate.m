@@ -12,45 +12,54 @@
 #import "NSObject+AutoDescription.h"
 #import "TFNode.h"
 #import "UIColor+TFApp.h"
-#import "AFOAuth2Client.h"
-#import "APIModel.h"
+#import <Crashlytics/Crashlytics.h>
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    Model *_model;
+}
 
 - (BOOL) application: (UIApplication *) application didFinishLaunchingWithOptions: (NSDictionary *) launchOptions {
-    //  [TestFlight takeOff: @"fa4efa7c-ddc8-4377-a8da-c2708c1b0216"];
-    [self testOAuth];
+
     [self testDestore];
+
+    //    [self _setupSampleProject];
     //    [self preloadKeyboard];
 
     [[UITextField appearance] setKeyboardAppearance: UIKeyboardAppearanceDark];
 
     self.window.backgroundColor = [UIColor tfBackgroundColor];
+    [Crashlytics startWithAPIKey: @"7c4a623c37a77f191460d4ffa903c608f7577228"];
 
     return YES;
 }
 
-- (void) testOAuth {
-    //    NSURL *url = [NSURL URLWithString: @"http://example.com/"];
-    //    AFOAuth2Client *oauthClient = [AFOAuth2Client clientWithBaseURL: url clientID: kClientID secret: kClientSecret];
-    //
-    //    [oauthClient authenticateUsingOAuthWithPath: @"/oauth/token"
-    //            username: @"username"
-    //            password: @"password"
-    //            scope: @"email"
-    //            success: ^(AFOAuthCredential *credential) {
-    //                NSLog(@"I have a token! %@", credential.accessToken);
-    //                [AFOAuthCredential storeCredential: credential withIdentifier: oauthClient.serviceProviderIdentifier];
-    //            }
-    //            failure: ^(NSError *error) {
-    //                NSLog(@"Error: %@", error);
-    //            }];
 
+- (void) _setupSampleProject {
+    _model = [Model sharedModel];
+    Project *project = [[Project alloc] initWithWord: @"test2"];
+    project.modifiedDate = [NSDate date];
+
+    //    TFNode *node = [[TFNode alloc] initWithTitle: @"node1" position: CGPointMake(100, 300)];
+    //    [node.mutableChildren addObject: [[TFNode alloc] initWithTitle: @"node1 child1" position: CGPointMake(100, 200)]];
+    //    [node.mutableChildren addObject: [[TFNode alloc] initWithTitle: @"node1 child2" position: CGPointMake(100, 300)]];
+    //    [node.mutableChildren addObject: [[TFNode alloc] initWithTitle: @"node1 child2" position: CGPointMake(100, 300)]];
+
+    TFNode *node = [[TFNode alloc] initWithTitle: @"node1" position: CGPointMake(100, 100)];
+    [node.mutableChildren addObject: [[TFNode alloc] initWithTitle: @"node1 child1" position: CGPointMake(300, 100)]];
+    [node.mutableChildren addObject: [[TFNode alloc] initWithTitle: @"node1 child2" position: CGPointMake(300, 200)]];
+    [node.mutableChildren addObject: [[TFNode alloc] initWithTitle: @"node1 child3" position: CGPointMake(300, 300)]];
+
+    [project.firstNode.mutableChildren addObject: node];
+    [project.firstNode.mutableChildren addObject: [[TFNode alloc] initWithTitle: @"node2" position: CGPointMake(700, 300)]];
+    [project.firstNode.mutableChildren addObject: [[TFNode alloc] initWithTitle: @"node3" position: CGPointMake(700, 200)]];
+
+    [_model addProject: project];
 
 }
 
+
 - (void) testDestore {
-    Model *_model = [Model sharedModel];
+    _model = [Model sharedModel];
     NSLog(@"[_model.projects count] = %u", [_model.projects count]);
 
     for (Project *project in _model.projects) {

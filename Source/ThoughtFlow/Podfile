@@ -9,7 +9,8 @@ pod 'UIAlertView+Blocks'
 pod 'AFNetworking'
 pod 'NSAttributedString-DDHTML'
 
-pod 'CALayer-DPUtils'
+pod 'CALayer-DPUtils', :path => '~/Development/LocalPods/Utilities/CALayer-DPUtils'
+
 pod 'DPCollectionView'
 
 pod 'DPKit-Utils', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-Utils'

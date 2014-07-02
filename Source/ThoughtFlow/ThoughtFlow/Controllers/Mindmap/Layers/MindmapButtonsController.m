@@ -8,6 +8,8 @@
 #import "MindmapButtonsController.h"
 #import "UIViewController+TFControllers.h"
 #import "TFDrawerController.h"
+#import "UIViewController+TFContentNavigationController.h"
+#import "TFContentNavigationController.h"
 
 @implementation MindmapButtonsController
 
@@ -36,11 +38,18 @@
 }
 
 - (IBAction) handleInfoButton: (UIButton *) sender {
-    if (self.drawerPresenter) {
-        TFDrawerController *controller = (TFDrawerController *) self.imageDrawerController;
-        controller.presenter = self.drawerPresenter;
-        [self.drawerPresenter presentDrawerController: controller];
-    }
+    //    if (self.drawerPresenter) {
+    //        TFDrawerController *controller = (TFDrawerController *) self.imageDrawerController;
+    //        controller.presenter = self.drawerPresenter;
+    //        [self.drawerPresenter presentDrawerController: controller];
+    //    }
+
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
+    NSLog(@"self.contentNavigationController = %@", self.contentNavigationController);
+
+    self.contentNavigationController.rightDrawerController = (id) self.imageDrawerController;
+    [self.contentNavigationController openRightContainer];
 
 }
 

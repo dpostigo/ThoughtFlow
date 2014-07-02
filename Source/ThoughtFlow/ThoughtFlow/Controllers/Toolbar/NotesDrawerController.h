@@ -5,9 +5,9 @@
 
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
-#import "TFDrawerController.h"
+#import "TFNewDrawerController.h"
 
-@interface NotesDrawerController : TFDrawerController <UITextViewDelegate> {
+@interface NotesDrawerController : TFNewDrawerController <UITextViewDelegate> {
 
 }
 

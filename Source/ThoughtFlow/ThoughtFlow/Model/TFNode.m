@@ -4,20 +4,30 @@
 //
 
 #import "TFNode.h"
+#import "TFNodeView.h"
 
 @implementation TFNode
 
-@synthesize title;
-
-@synthesize positionX;
-@synthesize positionY;
-@synthesize position;
 NSString *const TFNodeUpdate = @"TFNodeUpdate";
+
+- (instancetype) initWithTitle: (NSString *) aTitle position: (CGPoint) position {
+    self = [super init];
+    if (self) {
+        _title = aTitle;
+        _position = position;
+    }
+
+    return self;
+}
+
++ (instancetype) nodeWithTitle: (NSString *) aTitle position: (CGPoint) position {
+    return [[self alloc] initWithTitle: aTitle position: position];
+}
 
 - (instancetype) initWithTitle: (NSString *) aTitle {
     self = [super init];
     if (self) {
-        title = aTitle;
+        _title = aTitle;
     }
 
     return self;
@@ -29,8 +39,8 @@ NSString *const TFNodeUpdate = @"TFNodeUpdate";
 
 
 - (void) setTitle: (NSString *) title1 {
-    if (![title isEqualToString: title1]) {
-        title = [title1 mutableCopy];
+    if (![_title isEqualToString: title1]) {
+        _title = [title1 mutableCopy];
         [[NSNotificationCenter defaultCenter] postNotificationName: TFNodeUpdate object: self];
 
     }
@@ -43,32 +53,42 @@ NSString *const TFNodeUpdate = @"TFNodeUpdate";
 //}
 //
 //
-//- (CGPoint) position {
-//    return CGPointMake([self.positionX floatValue], [self.positionY floatValue]);
-//}
-//
-//#pragma mark Setters with save
-//
-//- (void) setPositionX: (NSNumber *) positionX1 {
-//    if (positionX.floatValue != positionX1.floatValue) {
-//        positionX = positionX1;
-//        [self save];
-//    }
-//
-//}
-//
-//- (void) setPositionY: (NSNumber *) positionY1 {
-//    if (positionY.floatValue != positionY1.floatValue) {
-//        positionY = positionY1;
-//        [self save];
-//    }
-//}
 
 
 - (void) setPosition: (CGPoint) position1 {
-    position = position1;
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"TFNodeDidUpdatePosition" object: nil];
+    if (!CGPointEqualToPoint(_position, position1)) {
+        _position = position1;
+        [[NSNotificationCenter defaultCenter] postNotificationName: @"TFNodeDidUpdatePosition" object: nil];
+    }
 }
 
+
+- (CGPoint) center {
+    return CGPointMake(_position.x + (TFNodeViewWidth / 2), _position.y + (TFNodeViewHeight / 2));
+}
+
+
+- (NSArray *) allChildren {
+    return [self getNodeChildren: self];
+}
+
+
+- (NSArray *) getNodeChildren: (TFNode *) node {
+    NSMutableArray *ret = [[NSMutableArray alloc] init];
+
+    NSArray *children = [node children];
+    [ret addObjectsFromArray: children];
+
+    for (int j = 0; j < [children count]; j++) {
+        [ret addObjectsFromArray: [self getNodeChildren: [children objectAtIndex: j]]];
+    }
+
+    return ret;
+}
+
+
+- (TFNode *) parentNode {
+    return self.parent != nil ? ([self.parent isKindOfClass: [TFNode class]] ? self.parent : nil) : nil;
+}
 
 @end

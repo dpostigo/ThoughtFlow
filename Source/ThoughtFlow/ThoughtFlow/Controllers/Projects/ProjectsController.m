@@ -13,6 +13,7 @@
 #import "APIModel.h"
 #import "APIUser.h"
 #import "UIViewController+TFControllers.h"
+#import "TFMindmapController.h"
 
 @implementation ProjectsController
 
@@ -21,6 +22,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    [self _setup];
     collection.delegate = self;
     collection.dataSource = self;
     [collection reloadData];
@@ -60,7 +62,7 @@
 #pragma mark IBActions
 
 - (IBAction) handleNewProject: (id) sender {
-    [self.navigationController popViewControllerAnimated: YES];
+    [self.navigationController setViewControllers: @[self.createProjectController] animated: YES];
 }
 
 
@@ -73,7 +75,11 @@
     _model.selectedProject = [self projectForIndexPath: indexPath];
 
     [self postNavigationNotificationForType: TFControllerMindmap pushes: NO];
-    [self.navigationController pushViewController: self.mindmapController animated: YES];
+    //    [self.navigationController pushViewController: self.mindmapController animated: YES];
+
+    TFMindmapController *controller = [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"TFMindmapController"];
+    controller.project = _model.selectedProject;
+    [self.navigationController pushViewController: controller animated: YES];
 
 }
 
@@ -120,5 +126,15 @@
     return ret;
 }
 
+
+#pragma mark - Private
+
+- (void) _setup {
+    self.view.opaque = NO;
+    self.view.backgroundColor = [UIColor clearColor];
+
+    self.navigationController.view.opaque = NO;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+}
 
 @end

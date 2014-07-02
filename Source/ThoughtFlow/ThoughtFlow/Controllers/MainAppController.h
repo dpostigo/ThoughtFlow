@@ -18,12 +18,14 @@
 @class TFLeftDrawerNavAnimator;
 @class TFDrawerNavAnimator;
 @class TFDrawerModalAnimator;
+@class TFNewToolbarController;
 
 @interface MainAppController : TFViewController <TFToolbarDelegate, UINavigationControllerDelegate> {
 
     BOOL showsPrelogin;
 
     TFToolbarController *toolbarController;
+    TFNewToolbarController *newToolbarController;
     UINavigationController *navController;
     IBOutlet UIViewController *contentController;
 

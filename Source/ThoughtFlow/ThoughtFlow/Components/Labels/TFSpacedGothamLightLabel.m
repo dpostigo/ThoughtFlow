@@ -13,12 +13,12 @@
 - (void) awakeFromNib {
     [super awakeFromNib];
 
-    self.font = [UIFont gothamRoundedFontOfSize: self.font.pointSize];
+    self.font = [UIFont gothamRoundedLightFontOfSize: self.font.pointSize];
 }
 
 
 + (CGFloat) lineSpacing {
-    return 20 / 12;
+    return 100 / 12;
 }
 
 @end

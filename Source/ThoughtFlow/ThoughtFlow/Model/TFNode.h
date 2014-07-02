@@ -9,23 +9,18 @@
 extern NSString *const TFNodeUpdate;
 
 
-@interface TFNode : LibraryObject {
-    NSString *title;
-
-
-    CGPoint position;
-    NSNumber *positionX;
-    NSNumber *positionY;
-
-
-}
+@interface TFNode : LibraryObject
 
 @property(nonatomic) CGPoint position;
 @property(nonatomic, copy) NSString *title;
-@property(nonatomic, strong) NSNumber *positionX;
-@property(nonatomic, strong) NSNumber *positionY;
 
 - (instancetype) initWithTitle: (NSString *) aTitle;
+- (instancetype) initWithTitle: (NSString *) aTitle position: (CGPoint) position;
++ (instancetype) nodeWithTitle: (NSString *) aTitle position: (CGPoint) position;
+
+- (CGPoint) center;
+- (NSArray *) allChildren;
+- (TFNode *) parentNode;
 + (instancetype) nodeWithTitle: (NSString *) aTitle;
 
 @end

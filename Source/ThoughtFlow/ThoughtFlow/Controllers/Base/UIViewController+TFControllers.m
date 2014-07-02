@@ -32,8 +32,25 @@
 
 
 - (UIViewController *) mainController {
-    return [self.mainStoryboard instantiateViewControllerWithIdentifier: @"MainAppController"];
+    return [self.mainStoryboard instantiateViewControllerWithIdentifier: @"NewMainAppController"];
 }
+
+
+
+#pragma mark - Projects
+
+
+- (UIViewController *) projectsController {
+    return [self.mainStoryboard instantiateViewControllerWithIdentifier: @"ProjectsController"];
+}
+
+
+
+
+- (UIViewController *) createProjectController {
+    return [self.mainStoryboard instantiateViewControllerWithIdentifier: @"CreateProjectController"];
+}
+
 
 
 

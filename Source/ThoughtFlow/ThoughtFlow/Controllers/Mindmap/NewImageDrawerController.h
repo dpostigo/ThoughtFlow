@@ -4,12 +4,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TFDrawerController.h"
+#import "TFNewDrawerController.h"
 
 @class DPTableView;
 
-@interface NewImageDrawerController : TFDrawerController <UITableViewDelegate, UITableViewDataSource> {
-
+@interface NewImageDrawerController : TFNewDrawerController <UITableViewDelegate, UITableViewDataSource> {
 
 }
 

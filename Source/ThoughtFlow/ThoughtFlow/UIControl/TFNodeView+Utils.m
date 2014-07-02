@@ -33,7 +33,7 @@
 
 - (CGFloat) constrainPositionX: (CGFloat) snapX {
     const CGFloat absoluteMaxX = 0;
-    const CGFloat absoluteMinX = -containerView.frame.size.width + TFNodeViewWidth;
+    const CGFloat absoluteMinX = -self.containerView.frame.size.width + TFNodeViewWidth;
 
     CGFloat maxX = fminf(absoluteMaxX, startingPoint.x + TFNodeViewWidth);
     CGFloat minX = fmaxf(absoluteMinX, startingPoint.x - TFNodeViewWidth);
@@ -63,7 +63,7 @@
 
 
 
-- (void) createNormalView {
+- (void) _setupNormalView {
     UIButton *ret = [UIButton buttonWithType: UIButtonTypeCustom];
     ret.frame = self.bounds;
     ret.translatesAutoresizingMaskIntoConstraints = NO;
@@ -74,11 +74,11 @@
     ret.titleLabel.textAlignment = NSTextAlignmentCenter;
     ret.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [ret setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
-    [containerView addSubview: ret];
+    [self.containerView addSubview: ret];
     viewNormal = ret;
 }
 
-- (void) createGreenView {
+- (void) _setupGreenView {
 
     UIButton *ret = [UIButton buttonWithType: UIButtonTypeCustom];
     ret.frame = self.bounds;
@@ -95,11 +95,11 @@
     ret.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
     ret.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     ret.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [containerView addSubview: ret];
+    [self.containerView addSubview: ret];
     greenButton = ret;
 }
 
-- (void) createRedView {
+- (void) _setupRedView {
     UIButton *ret = [UIButton buttonWithType: UIButtonTypeCustom];
     ret.frame = self.bounds;
     ret.backgroundColor = [UIColor tfRedColor];
@@ -118,12 +118,12 @@
     //    ret.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
     //    ret.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //    ret.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [containerView addSubview: ret];
+    [self.containerView addSubview: ret];
     redButton = ret;
 }
 
 
-- (void) createRelatedView {
+- (void) _setupRelatedView {
     relatedButton = [UIButton buttonWithType: UIButtonTypeCustom];
     relatedButton.frame = self.bounds;
     relatedButton.backgroundColor = [UIColor tfPurpleColor];
@@ -138,7 +138,7 @@
             10);
     relatedButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     relatedButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [containerView addSubview: relatedButton];
+    [self.containerView addSubview: relatedButton];
 
 }
 

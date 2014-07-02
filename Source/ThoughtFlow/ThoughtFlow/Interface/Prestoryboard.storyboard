@@ -60,7 +60,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRu-qx-YU9" customClass="TFUserButton">
                                 <rect key="frame" x="30" y="155" width="240" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.29411765933036804" green="0.29803922772407532" blue="0.4745098352432251" alpha="0.5" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" red="0.29411765933036804" green="0.29803922772407532" blue="0.4745098352432251" alpha="0.70000000000000007" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Bnl-0P-o4E"/>
                                     <constraint firstAttribute="width" constant="240" id="rf0-p3-UG8"/>

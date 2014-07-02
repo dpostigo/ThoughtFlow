@@ -33,23 +33,10 @@
 }
 
 
-- (void) handleTap: (UITapGestureRecognizer *) recognizer {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-
-//    [super handleTap: recognizer];
-}
-
-
 - (IBAction) handleDoneButton: (id) sender {
     _model.selectedProject.notes = _textView.text;
 
-    if (self.presentingViewController) {
-        [self.presentingViewController dismissViewControllerAnimated: YES
-                completion: nil];
-    } else {
-        [self.navigationController popViewControllerAnimated: YES];
-
-    }
+    [self _notifyDrawerControllerShouldDismiss];
 
 }
 

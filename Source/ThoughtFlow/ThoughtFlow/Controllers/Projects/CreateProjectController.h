@@ -8,6 +8,7 @@
 
 @interface CreateProjectController : TFViewController <UITextFieldDelegate, UINavigationControllerDelegate> {
 
-    IBOutlet UITextField *textField;
 }
+
+@property(weak) IBOutlet UITextField *textField;
 @end

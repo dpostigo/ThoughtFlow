@@ -5,7 +5,6 @@
 
 #import <DPTransitions/CustomModalSegue.h>
 #import "TFMindmapController.h"
-#import "TFMindmapButtonsViewController.h"
 #import "MindmapBackgroundController.h"
 #import "UIViewController+TFControllers.h"
 #import "UIViewController+DPKit.h"
@@ -17,8 +16,9 @@
 #import "Model.h"
 #import "UIViewController+TFContentNavigationController.h"
 #import "TFContentViewNavigationController.h"
-#import "TFMindmapGridViewController.h"
 #import "TFPhoto.h"
+#import "TFImageDrawerViewController.h"
+#import "TFNewMindmapBackgroundViewController.h"
 
 
 @implementation TFMindmapController
@@ -57,7 +57,10 @@
 - (void) _setupChildControllers {
 
     _backgroundController = (MindmapBackgroundController *) self.mindmapBackgroundController;
-    [self embedFullscreenController: _backgroundController];
+    //    [self embedFullscreenController: _backgroundController];
+
+    _bgController = [[TFNewMindmapBackgroundViewController alloc] initWithProject: _project node: _project.firstNode];
+    [self embedFullscreenController: _bgController];
 
     _linesController = [[MindmapLinesController alloc] init];
     [self embedFullscreenController: _linesController];
@@ -66,9 +69,11 @@
     _nodesController.delegate = self;
     [self embedFullscreenController: _nodesController];
 
-    TFMindmapButtonsViewController *buttonsController = (TFMindmapButtonsViewController *) self.mindmapButtonsController;
-    buttonsController.delegate = self;
-    [self embedFullscreenController: buttonsController];
+
+    //
+    //    TFMindmapButtonsViewController *buttonsController = (TFMindmapButtonsViewController *) self.mindmapButtonsController;
+    //    buttonsController.delegate = self;
+    //    [self embedFullscreenController: buttonsController];
 
     NSLog(@"self.navigationController = %@", self.navigationController);
 
@@ -105,8 +110,14 @@
             break;
 
         case TFMindmapButtonTypeInfo : {
-            self.contentNavigationController.rightDrawerController = (id) self.imageDrawerController;
-            [self.contentNavigationController openRightContainer];
+
+            //            TFPhoto *image = [gridViewController.images objectAtIndex: indexPath.item];
+            //            self.contentNavigationController.rightDrawerController = [[TFImageDrawerViewController alloc] initWithImage: image];
+            //            [self.contentNavigationController openRightContainer];
+
+            //
+            //            self.contentNavigationController.rightDrawerController = (id) self.imageDrawerController;
+            //            [self.contentNavigationController openRightContainer];
         }
             break;
 
@@ -177,7 +188,7 @@
 
 
 - (void) nodesControllerDidEndCreatingNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node {
-    node.title = @"I'm a test node";
+    node.title = @"node";
     //    [self performSegueWithIdentifier: @"EditModalSegue" sender: nil];
 
 }
@@ -196,7 +207,6 @@
 - (void) nodesControllerDidDoubleTapNode: (TFNode *) node {
     _model.selectedNode = node;
     [self performSegueWithIdentifier: @"EditModalSegue" sender: nil];
-
 }
 
 - (void) nodesControllerDidTapRelated: (TFNodeView *) nodeView forNode: (TFNode *) node {
@@ -206,7 +216,10 @@
 
 
 - (void) nodesControllerDidSelectNode: (TFNode *) node {
+
+    NSLog(@"node.title = %@", node.title);
     _selectedNode = node;
+    _bgController.node = _selectedNode;
     _backgroundController.imageString = node.title;
 
 }

@@ -6,7 +6,6 @@
 #import "TFEmptyViewController.h"
 
 
-
 @implementation TFEmptyViewController
 
 - (instancetype) initWithTitle: (NSString *) title {

@@ -10,4 +10,6 @@
 @interface TFMoodboardFullscreenViewController : TFMoodboardGridViewController <TFImageGridViewControllerDelegate> {
 
 }
+
+@property(nonatomic, strong) TFPhoto *selectedImage;
 @end

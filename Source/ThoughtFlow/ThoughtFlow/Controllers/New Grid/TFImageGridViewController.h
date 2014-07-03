@@ -16,12 +16,14 @@
 - (void) imageGridViewController: (TFImageGridViewController *) controller dequeuedCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath;
 - (void) imageGridViewController: (TFImageGridViewController *) controller didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath;
 - (void) imageGridViewController: (TFImageGridViewController *) controller didSelectImage: (TFPhoto *) image atIndexPath: (NSIndexPath *) indexPath;
+- (void) imageGridViewController: (TFImageGridViewController *) controller didScrollToImage: (TFPhoto *) image;
 @end
 
 @interface TFImageGridViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic, assign) id <TFImageGridViewControllerDelegate> delegate;
 @property(nonatomic, strong) UICollectionView *collection;
 @property(nonatomic, strong) NSArray *images;
+@property(nonatomic, strong) TFPhoto *selectedImage;
+@property(nonatomic, assign) id <TFImageGridViewControllerDelegate> delegate;
 - (void) addTargetToButton: (UIButton *) button;
 @end

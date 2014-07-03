@@ -10,7 +10,7 @@
 @implementation TFContentViewNavigationController
 
 - (void) toggleViewController: (UIViewController *) controller animated: (BOOL) flag {
-    if ([self.visibleViewController isKindOfClass: [controller class]]) {
+    if (self.visibleViewController == controller || [self.visibleViewController isKindOfClass: [controller class]]) {
         [self popViewControllerAnimated: flag];
     } else {
         [self pushViewController: controller animated: flag];

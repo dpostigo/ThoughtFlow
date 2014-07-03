@@ -3,14 +3,11 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import <AFNetworking/AFHTTPSessionManager.h>
-#import <AFOAuth2Client/AFOAuth2Client.h>
 #import "NewRegisterController.h"
 #import "DPTableView.h"
 #import "FieldTableViewCell.h"
 #import "UIAlertView+Blocks.h"
 #import "Model.h"
-#import "DPTableView+DataUtils.h"
 #import "APIModel.h"
 
 @implementation NewRegisterController

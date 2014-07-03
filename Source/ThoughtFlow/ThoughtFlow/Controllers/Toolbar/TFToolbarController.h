@@ -26,25 +26,3 @@ typedef enum {
 
 } TFToolbarButtonType;
 
-@interface TFToolbarController : TFViewController <UIViewControllerTransitioningDelegate> {
-
-    __unsafe_unretained id <TFToolbarDelegate> delegate;
-    IBOutlet UIView *buttonsView;
-
-    UIViewController *toolbarDrawer;
-    TFToolbarMode toolbarMode;
-
-    TFRightDrawerAnimator *rightDrawerAnimator;
-
-}
-
-@property(nonatomic, strong) NSArray *buttons;
-@property(nonatomic) TFToolbarMode toolbarMode;
-
-@property(weak) IBOutlet UIButton *projectsButton;
-@property(weak) IBOutlet UIButton *notesButton;
-@property(weak) IBOutlet UIButton *accountButton;
-@property(weak) IBOutlet UIButton *settingsButton;
-@property(weak) IBOutlet UIButton *moodButton;
-@property(nonatomic, assign) id <TFToolbarDelegate> delegate;
-@end

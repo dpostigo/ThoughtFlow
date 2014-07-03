@@ -38,6 +38,19 @@
 }
 
 
+- (void) setSelectedImage: (TFPhoto *) selectedImage {
+
+    if ([_images containsObject: selectedImage]) {
+
+        _selectedImage = selectedImage;
+        NSUInteger index = [_images indexOfObject: selectedImage];
+        [_collection scrollToItemAtIndexPath: [NSIndexPath indexPathForItem: index inSection: 0] atScrollPosition: UICollectionViewScrollPositionCenteredHorizontally animated: YES];
+    }
+
+}
+
+
+
 #pragma mark - Setup
 
 - (void) _setupView {
@@ -120,6 +133,17 @@
 }
 
 
+- (void) scrollViewDidEndDecelerating: (UIScrollView *) scrollView {
+    NSIndexPath *indexPath = [_collection indexPathForItemAtPoint: _collection.contentOffset];
+    TFPhoto *image = [self.images objectAtIndex: indexPath.item];
+    _selectedImage = image;
+
+    [self _notifyDidScrollToImage: image];
+
+}
+
+
+
 #pragma mark - Buttons
 
 - (void) addTargetToButton: (UIButton *) button {
@@ -179,6 +203,13 @@
 - (void) _notifyDidClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
     if (_delegate && [_delegate respondsToSelector: @selector(imageGridViewController:didClickButton:inCell:atIndexPath:)]) {
         [_delegate imageGridViewController: self didClickButton: button inCell: cell atIndexPath: indexPath];
+    }
+}
+
+
+- (void) _notifyDidScrollToImage: (TFPhoto *) image {
+    if (_delegate && [_delegate respondsToSelector: @selector(imageGridViewController:didScrollToImage:)]) {
+        [_delegate imageGridViewController: self didScrollToImage: image];
     }
 }
 

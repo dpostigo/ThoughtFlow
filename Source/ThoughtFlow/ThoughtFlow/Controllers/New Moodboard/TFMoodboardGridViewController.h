@@ -21,4 +21,5 @@
 @property(nonatomic, strong) TFImageGridViewController *imagesController;
 - (instancetype) initWithProject: (Project *) project;
 
+- (void) _setupControllers;
 @end

@@ -3,7 +3,6 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import <DPKit-Utils/UIView+DPKit.h>
 #import "MoodboardItemController.h"
 #import "TFRightDrawerAnimator.h"
 

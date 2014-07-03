@@ -9,17 +9,15 @@
 #import "UITableView+DPTableView.h"
 #import "UIView+DPConstraints.h"
 #import "FieldTableViewCell.h"
-#import "UIView+DPKitKeyboard.h"
-#import "TFLoginOperation.h"
 #import "DPTableView+DataUtils.h"
 #import "TFCustomTextField.h"
 #import "UIView+TFFonts.h"
-#import "AFOAuth2Client.h"
 #import "Model.h"
 #import "UIAlertView+Blocks.h"
 #import "APIModel.h"
 #import "APIUser.h"
 #import "UIViewController+TFControllers.h"
+
 
 @implementation LoginModalController {
     UITextField *_currentTextField;

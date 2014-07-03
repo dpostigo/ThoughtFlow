@@ -91,9 +91,6 @@
 
 - (void) _setupControllers {
 
-    _emptyController = [[TFEmptyViewController alloc] initWithTitle: @"You don't have any pins in your moodboard."];
-    [self embedFullscreenController: _emptyController];
-
     _imagesController = [[TFImageGridViewController alloc] init];
     _imagesController.delegate = self;
     [self embedFullscreenController: _imagesController];

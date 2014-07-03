@@ -12,7 +12,6 @@
 #import "DPPassThroughView.h"
 
 
-
 @implementation TFNodesViewController {
     TFNodeViewState _lastNodeState;
     TFNodeView *currentNodeView;
@@ -130,6 +129,11 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
     [self _notifyControllerDidSelectNode: node.node];
 }
 
+
+- (void) selectNode: (TFNodeView *) nodeView {
+    nodeView.selected = YES;
+    [self deselectOtherNodes: nodeView];
+}
 
 - (void) deselectOtherNodes: (TFNodeView *) nodeView {
     for (TFNodeView *node in _nodeViews) {

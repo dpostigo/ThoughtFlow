@@ -10,6 +10,7 @@
 #import "APIUser.h"
 #import "TFPhoto.h"
 
+
 NSString *const ThoughtFlowIdentifier = @"188.226.201.79";
 NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 
@@ -165,6 +166,7 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
            success: (void (^)(NSArray *images)) success failure: (void (^)()) failure {
 
     DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+    NSLog(@"string = %@", string);
     [self.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", string]
             parameters: @{
 

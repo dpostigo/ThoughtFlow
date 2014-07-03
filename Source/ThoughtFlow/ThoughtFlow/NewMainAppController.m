@@ -132,7 +132,7 @@
     } else if ([controllerClass isEqualToString: @"TFInfoViewController"]) {
         _toolbarController.selectedIndex = TFNewToolbarButtonTypeInfo;
 
-    } else if ([controllerClass isEqualToString: @"MoodboardController"]) {
+    } else if ([controllerClass isEqualToString: @"TFNewMoodboardViewController"]) {
         _toolbarController.selectedIndex = TFNewToolbarButtonTypeMoodboard;
 
     } else {

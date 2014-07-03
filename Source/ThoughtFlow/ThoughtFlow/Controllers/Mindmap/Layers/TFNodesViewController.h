@@ -39,4 +39,5 @@
 @property(nonatomic, strong) TFNodeView *creationNodeView;
 @property(nonatomic, assign) id <TFNodesViewDelegate> delegate;
 - (void) centerFirstNode;
+- (void) selectNode: (TFNodeView *) nodeView;
 @end

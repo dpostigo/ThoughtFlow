@@ -22,7 +22,6 @@
 
 @interface TFMindmapGridViewController : UIViewController <TFImageGridViewControllerDelegate>
 
-
 @property(nonatomic, strong) Project *project;
 @property(nonatomic, copy) NSString *imageString;
 @property(nonatomic, assign) id <TFMindmapGridViewControllerDelegate> delegate;

@@ -4,13 +4,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TFImageGridViewController.h"
 #import "TFContentViewNavigationController.h"
 
 
-@class TFImageGridViewController;
 @class Project;
-@class TFEmptyViewController;
 
 
 @interface TFMoodboardViewController : TFContentViewNavigationController {
@@ -18,8 +15,6 @@
 }
 
 @property(nonatomic, strong) Project *project;
-//@property(nonatomic, strong) TFEmptyViewController *emptyController;
-//@property(nonatomic, strong) TFImageGridViewController *imagesController;
 - (instancetype) initWithProject: (Project *) project;
 
 @end

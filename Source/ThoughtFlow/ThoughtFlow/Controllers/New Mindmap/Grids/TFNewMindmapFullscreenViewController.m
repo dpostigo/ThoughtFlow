@@ -1,32 +1,17 @@
 //
-// Created by Dani Postigo on 7/2/14.
+// Created by Dani Postigo on 7/3/14.
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import "TFMoodboardFullscreenViewController.h"
+#import "TFNewMindmapFullscreenViewController.h"
 #import "TFImageGridViewCell.h"
+#import "TFImageDrawerViewController.h"
 #import "UIViewController+TFContentNavigationController.h"
 #import "TFContentViewNavigationController.h"
-#import "UIViewController+TFControllers.h"
 #import "TFPhoto.h"
-#import "TFImageDrawerViewController.h"
 
 
-@implementation TFMoodboardFullscreenViewController
-
-- (void) imageGridViewController: (TFImageGridViewController *) controller dequeuedCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
-
-    [cell.topLeftButton setImage: [UIImage imageNamed: @"grid-icon"] forState: UIControlStateNormal];
-    [controller addTargetToButton: cell.topLeftButton];
-
-    [cell.topRightButton setImage: [UIImage imageNamed: @"info-button-icon"] forState: UIControlStateNormal];
-    [controller addTargetToButton: cell.topRightButton];
-
-    [cell.bottomRightButton setImage: [UIImage imageNamed: @"remove-button"] forState: UIControlStateNormal];
-    [controller addTargetToButton: cell.bottomRightButton];
-
-}
-
+@implementation TFNewMindmapFullscreenViewController
 
 - (void) imageGridViewController: (TFImageGridViewController *) gridViewController didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
 
@@ -49,11 +34,8 @@
 
 }
 
-
-- (void) scrollViewDidEndDecelerating: (UIScrollView *) scrollView {
-
-
-
+- (void) imageGridViewController: (TFImageGridViewController *) controller didScrollToImage: (TFPhoto *) image {
+    self.selectedImage = image;
 }
 
 
@@ -63,5 +45,4 @@
     CGSize result;
     return self.view.bounds.size;
 }
-
 @end

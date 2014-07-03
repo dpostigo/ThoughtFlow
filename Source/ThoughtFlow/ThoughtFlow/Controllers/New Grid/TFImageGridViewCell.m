@@ -21,7 +21,7 @@
     self = [super initWithFrame: frame];
     if (self) {
 
-        _edgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+        _edgeInsets = UIEdgeInsetsMake(15, 15, 15, 15);
     }
 
     return self;
@@ -31,6 +31,24 @@
 
 
 #pragma mark - Private
+
+
+- (UIView *) overlayView {
+    if (_overlayView == nil) {
+        _overlayView = [[UIView alloc] initWithFrame: self.contentView.bounds];
+        _overlayView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed: @"mesh-tile"]];
+        [self.contentView addSubview: _overlayView];
+        _overlayView.translatesAutoresizingMaskIntoConstraints = NO;
+
+        [self.contentView addConstraints: @[
+                [NSLayoutConstraint constraintWithItem: _overlayView attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.contentView attribute: NSLayoutAttributeLeading multiplier: 1.0 constant: 0.0],
+                [NSLayoutConstraint constraintWithItem: _overlayView attribute: NSLayoutAttributeTrailing relatedBy: NSLayoutRelationEqual toItem: self.contentView attribute: NSLayoutAttributeTrailing multiplier: 1.0 constant: 0.0],
+                [NSLayoutConstraint constraintWithItem: _overlayView attribute: NSLayoutAttributeTop relatedBy: NSLayoutRelationEqual toItem: self.contentView attribute: NSLayoutAttributeTop multiplier: 1.0 constant: 0.0],
+                [NSLayoutConstraint constraintWithItem: _overlayView attribute: NSLayoutAttributeBottom relatedBy: NSLayoutRelationEqual toItem: self.contentView attribute: NSLayoutAttributeBottom multiplier: 1.0 constant: 0.0]
+        ]];
+    }
+    return _overlayView;
+}
 
 
 - (UIButton *) topLeftButton {

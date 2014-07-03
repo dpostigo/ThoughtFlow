@@ -15,6 +15,7 @@
 @class MindmapBackgroundController;
 @class TFNodesViewController;
 @class MindmapLinesController;
+@class TFNewMindmapBackgroundViewController;
 
 @interface TFMindmapController : TFViewController <TFNodesViewDelegate,
         TFEditNodeControllerDelegate,
@@ -27,4 +28,5 @@
 @property(nonatomic, strong) TFNodesViewController *nodesController;
 @property(nonatomic, strong) MindmapLinesController *linesController;
 @property(nonatomic, strong) MindmapBackgroundController *backgroundController;
+@property(nonatomic, strong) TFNewMindmapBackgroundViewController *bgController;
 @end

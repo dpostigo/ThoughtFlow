@@ -3,12 +3,10 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import <DPKit-Utils/UIColor+DPKit.h>
 #import "TFNodeView+Utils.h"
-#import "TFNodeStateView.h"
 #import "UIFont+ThoughtFlow.h"
 #import "UIColor+TFApp.h"
-#import "UIButton+TFNodeView.h"
+
 
 @implementation TFNodeView (Utils)
 

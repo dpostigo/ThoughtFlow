@@ -95,7 +95,7 @@ typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
 + (instancetype) managerForAddress: (const struct sockaddr_in *) address;
 
 /**
- Initializes an instance of a network reachability manager from the specified reachability object.
+ Initializes an sharedLibrary of a network reachability manager from the specified reachability object.
  
  @param reachability The reachability object to monitor.
  

@@ -5,24 +5,28 @@
 
 #import <Foundation/Foundation.h>
 #import "TFImageGridViewController.h"
+#import "TFMindmapController.h"
 
 
 @class Project;
 @class TFImageGridViewController;
 @class TFEmptyViewController;
 @class TFPhoto;
+@protocol TFMindmapImageControllerProtocol;
 
 
-@interface TFNewMindmapGridViewController : UIViewController <TFImageGridViewControllerDelegate> {
+@interface TFNewMindmapGridViewController : UIViewController <TFImageGridViewControllerDelegate>
 
-}
-
+@property(nonatomic) TFMindmapControllerType mindmapType;
 @property(nonatomic, strong) Project *project;
 @property(nonatomic, strong) TFPhoto *selectedImage;
 @property(nonatomic, strong) NSArray *images;
-//@property(nonatomic, copy) NSString *imageString;
 @property(nonatomic, strong) TFImageGridViewController *imagesController;
+@property(nonatomic, assign) id <TFMindmapImageControllerProtocol> delegate;
 - (instancetype) initWithProject: (Project *) project images: (NSArray *) images;
 
 
+- (void) reloadVisibleItems;
+- (void) _setupControllers;
+- (void) _notifySelection: (TFPhoto *) image;
 @end

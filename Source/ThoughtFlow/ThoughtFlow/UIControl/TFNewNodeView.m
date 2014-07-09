@@ -6,6 +6,7 @@
 #import "TFNewNodeView.h"
 #import "TFNode.h"
 
+
 @implementation TFNewNodeView
 
 CGFloat const TFNewNodeViewWidth = 80;
@@ -23,6 +24,14 @@ CGFloat const TFNewNodeViewHeight = 80;
     return self;
 }
 
+- (instancetype) initWithNode: (TFNode *) node {
+    self = [super init];
+    if (self) {
+        _node = node;
+    }
+
+    return self;
+}
 
 
 - (void) _setup {

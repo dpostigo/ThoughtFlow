@@ -6,17 +6,31 @@
 #import <Foundation/Foundation.h>
 #import "TFNewDrawerController.h"
 
+
 @class TFPhoto;
+@class Project;
+@class TFImageDrawerContentViewController;
+@class TFImageDrawerViewController;
+
+@protocol TFImageDrawerViewControllerDelegate <NSObject>
+
+- (void) imageDrawerViewController: (TFImageDrawerViewController *) imagesController removedPin: (TFPhoto *) image;
+- (void) imageDrawerViewController: (TFImageDrawerViewController *) imagesController addedPin: (TFPhoto *) image;
+
+@end;
 
 @interface TFImageDrawerViewController : TFNewDrawerController
 
+@property(nonatomic, assign) id <TFImageDrawerViewControllerDelegate> delegate;
+@property(nonatomic, strong) TFImageDrawerContentViewController *contentViewController;
+@property(nonatomic, strong) Project *project;
 @property(nonatomic, strong) TFPhoto *image;
 
+
+@property(weak) IBOutlet UIButton *pinButton;
 @property(weak) IBOutlet UILabel *titleLabel;
-@property(weak) IBOutlet UILabel *tagLabel;
-@property(weak) IBOutlet UILabel *sourceLabel;
-@property(weak) IBOutlet UITextView *descriptionLabel;
-- (instancetype) initWithImage: (TFPhoto *) image;
+
+- (instancetype) initWithProject: (Project *) project image: (TFPhoto *) image;
 
 
 @end

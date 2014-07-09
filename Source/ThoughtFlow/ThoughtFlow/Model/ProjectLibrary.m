@@ -8,6 +8,7 @@
 #import "Project.h"
 #import "NSObject+AutoDescription.h"
 
+
 @implementation ProjectLibrary
 
 + (NSString *) documentsDirectory {
@@ -17,7 +18,7 @@
 + (ProjectLibrary *) sharedLibrary {
     static ProjectLibrary *sharedLibrary = nil;
     if (sharedLibrary == nil) {
-        NSString *path = [[self documentsDirectory] stringByAppendingPathComponent: @"ProjectLibrary.plist"];
+        NSString *path = [[self documentsDirectory] stringByAppendingPathComponent: @"PhotoLibrary.plist"];
         sharedLibrary = [ProjectLibrary objectWithContentsOfFile: path];
 
         if (sharedLibrary == nil) {
@@ -40,17 +41,6 @@
 
 - (void) save: (id) sender {
     [self save];
-
-}
-
-- (void) save {
-    NSString *path = [[[self class] documentsDirectory] stringByAppendingPathComponent: @"ProjectLibrary.plist"];
-    [self writeToFile: path atomically: YES];
-
-    for (int j = 0; j < [self.children count]; j++) {
-        // id item = [self.children objectAtIndex: j];
-        // NSLog(@"[item autoDescription] = %@", [item autoDescription]);
-    }
 }
 
 

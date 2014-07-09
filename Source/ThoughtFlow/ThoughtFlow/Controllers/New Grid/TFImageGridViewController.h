@@ -25,5 +25,12 @@
 @property(nonatomic, strong) NSArray *images;
 @property(nonatomic, strong) TFPhoto *selectedImage;
 @property(nonatomic, assign) id <TFImageGridViewControllerDelegate> delegate;
+- (instancetype) initWithImages: (NSArray *) images;
+
+
+- (void) reload;
+- (void) reloadImage: (TFPhoto *) image;
+- (void) reloadVisibleItems;
+- (void) scrollToImage: (TFPhoto *) image;
 - (void) addTargetToButton: (UIButton *) button;
 @end

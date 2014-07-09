@@ -6,6 +6,12 @@
 // project.
 
 
+// AFNetworkActivityLogger
+#define COCOAPODS_POD_AVAILABLE_AFNetworkActivityLogger
+#define COCOAPODS_VERSION_MAJOR_AFNetworkActivityLogger 2
+#define COCOAPODS_VERSION_MINOR_AFNetworkActivityLogger 0
+#define COCOAPODS_VERSION_PATCH_AFNetworkActivityLogger 2
+
 // AFNetworking
 #define COCOAPODS_POD_AVAILABLE_AFNetworking
 #define COCOAPODS_VERSION_MAJOR_AFNetworking 2
@@ -59,6 +65,42 @@
 #define COCOAPODS_VERSION_MAJOR_AutoCoding 2
 #define COCOAPODS_VERSION_MINOR_AutoCoding 2
 #define COCOAPODS_VERSION_PATCH_AutoCoding 0
+
+// BlocksKit
+#define COCOAPODS_POD_AVAILABLE_BlocksKit
+#define COCOAPODS_VERSION_MAJOR_BlocksKit 2
+#define COCOAPODS_VERSION_MINOR_BlocksKit 2
+#define COCOAPODS_VERSION_PATCH_BlocksKit 3
+
+// BlocksKit/All
+#define COCOAPODS_POD_AVAILABLE_BlocksKit_All
+#define COCOAPODS_VERSION_MAJOR_BlocksKit_All 2
+#define COCOAPODS_VERSION_MINOR_BlocksKit_All 2
+#define COCOAPODS_VERSION_PATCH_BlocksKit_All 3
+
+// BlocksKit/Core
+#define COCOAPODS_POD_AVAILABLE_BlocksKit_Core
+#define COCOAPODS_VERSION_MAJOR_BlocksKit_Core 2
+#define COCOAPODS_VERSION_MINOR_BlocksKit_Core 2
+#define COCOAPODS_VERSION_PATCH_BlocksKit_Core 3
+
+// BlocksKit/DynamicDelegate
+#define COCOAPODS_POD_AVAILABLE_BlocksKit_DynamicDelegate
+#define COCOAPODS_VERSION_MAJOR_BlocksKit_DynamicDelegate 2
+#define COCOAPODS_VERSION_MINOR_BlocksKit_DynamicDelegate 2
+#define COCOAPODS_VERSION_PATCH_BlocksKit_DynamicDelegate 3
+
+// BlocksKit/MessageUI
+#define COCOAPODS_POD_AVAILABLE_BlocksKit_MessageUI
+#define COCOAPODS_VERSION_MAJOR_BlocksKit_MessageUI 2
+#define COCOAPODS_VERSION_MINOR_BlocksKit_MessageUI 2
+#define COCOAPODS_VERSION_PATCH_BlocksKit_MessageUI 3
+
+// BlocksKit/UIKit
+#define COCOAPODS_POD_AVAILABLE_BlocksKit_UIKit
+#define COCOAPODS_VERSION_MAJOR_BlocksKit_UIKit 2
+#define COCOAPODS_VERSION_MINOR_BlocksKit_UIKit 2
+#define COCOAPODS_VERSION_PATCH_BlocksKit_UIKit 3
 
 // CALayer-DPUtils
 #define COCOAPODS_POD_AVAILABLE_CALayer_DPUtils
@@ -120,6 +162,12 @@
 #define COCOAPODS_VERSION_MINOR_DPKit_Utils 0
 #define COCOAPODS_VERSION_PATCH_DPKit_Utils 30
 
+// DPTableView
+#define COCOAPODS_POD_AVAILABLE_DPTableView
+#define COCOAPODS_VERSION_MAJOR_DPTableView 0
+#define COCOAPODS_VERSION_MINOR_DPTableView 0
+#define COCOAPODS_VERSION_PATCH_DPTableView 1
+
 // DPTransitions
 #define COCOAPODS_POD_AVAILABLE_DPTransitions
 #define COCOAPODS_VERSION_MAJOR_DPTransitions 0
@@ -131,6 +179,12 @@
 #define COCOAPODS_VERSION_MAJOR_DPTransitions_Segues 0
 #define COCOAPODS_VERSION_MINOR_DPTransitions_Segues 0
 #define COCOAPODS_VERSION_PATCH_DPTransitions_Segues 1
+
+// ILTranslucentView
+#define COCOAPODS_POD_AVAILABLE_ILTranslucentView
+#define COCOAPODS_VERSION_MAJOR_ILTranslucentView 0
+#define COCOAPODS_VERSION_MINOR_ILTranslucentView 0
+#define COCOAPODS_VERSION_PATCH_ILTranslucentView 1
 
 // JMSimpleDate
 #define COCOAPODS_POD_AVAILABLE_JMSimpleDate

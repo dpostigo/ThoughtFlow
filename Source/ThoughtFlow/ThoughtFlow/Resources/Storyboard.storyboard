@@ -706,7 +706,7 @@ biB3aXRoIGEgdGhvdWdodCBhbmQgc2VlIHdoZXJlIGl0IHRha2VzIHlvdS4
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qwx-aW-STg">
-                                <rect key="frame" x="60" y="185" width="904" height="430"/>
+                                <rect key="frame" x="0.0" y="185" width="964" height="430"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -806,7 +806,7 @@ siblings, joy...</string>
                             <constraint firstItem="qwx-aW-STg" firstAttribute="top" secondItem="cka-Et-Z5s" secondAttribute="bottom" constant="60" id="8AC-Bk-YSn"/>
                             <constraint firstItem="cka-Et-Z5s" firstAttribute="top" secondItem="w6C-DW-RF3" secondAttribute="bottom" constant="65" id="XXy-FM-STX"/>
                             <constraint firstAttribute="trailing" secondItem="qwx-aW-STg" secondAttribute="trailing" id="h3f-0z-QAq"/>
-                            <constraint firstItem="qwx-aW-STg" firstAttribute="leading" secondItem="lgi-sb-4jh" secondAttribute="leading" constant="60" id="hJU-qE-Kqo"/>
+                            <constraint firstItem="qwx-aW-STg" firstAttribute="leading" secondItem="lgi-sb-4jh" secondAttribute="leading" id="hJU-qE-Kqo"/>
                             <constraint firstAttribute="centerX" secondItem="cka-Et-Z5s" secondAttribute="centerX" id="pjq-HM-Yk6"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>

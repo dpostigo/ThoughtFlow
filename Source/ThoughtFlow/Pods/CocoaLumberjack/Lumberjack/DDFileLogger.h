@@ -266,7 +266,7 @@
 @property (readwrite, assign, atomic) BOOL doNotReuseLogFiles;
 
 /**
- * The DDLogFileManager instance can be used to retrieve the list of log files,
+ * The DDLogFileManager sharedLibrary can be used to retrieve the list of log files,
  * and configure the maximum number of archived log files to keep.
  * 
  * @see DDLogFileManager.maximumNumberOfLogFiles

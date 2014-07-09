@@ -14,6 +14,11 @@
     if (_imageView) {
         _imageView.image = nil;
     }
+
+    if (_topRightButton) {
+        [_topRightButton removeFromSuperview];
+        _topRightButton = nil;
+    }
 }
 
 

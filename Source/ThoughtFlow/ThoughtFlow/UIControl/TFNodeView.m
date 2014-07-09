@@ -11,9 +11,9 @@
 #import "TFNode.h"
 #import "TFNodeView+Utils.h"
 
+
 @implementation TFNodeView
 
-@synthesize node;
 @synthesize nodeState;
 @synthesize delegate;
 @synthesize enabled;
@@ -43,25 +43,35 @@ CGFloat const TFNodeViewHeight = 80;
 #pragma mark Setup
 
 
-
 - (id) initWithFrame: (CGRect) frame {
     self = [super initWithFrame: CGRectMake(frame.origin.x, frame.origin.y, TFNodeViewWidth, TFNodeViewHeight)];
     if (self) {
-        [self setup];
+        [self _setup];
     }
 
     return self;
 }
 
+- (instancetype) initWithNode: (TFNode *) aNode {
+    self = [super initWithFrame: CGRectMake(0, 0, TFNodeViewWidth, TFNodeViewHeight)];
+    if (self) {
+        _node = aNode;
+        [self _setup];
+    }
+
+    return self;
+}
+
+
 - (void) awakeFromNib {
     [super awakeFromNib];
-    [self setup];
+    [self _setup];
 }
 
 
 #pragma mark Setup
 
-- (void) setup {
+- (void) _setup {
     enabled = YES;
 
     [self _setupView];
@@ -77,6 +87,7 @@ CGFloat const TFNodeViewHeight = 80;
 
     [self setNeedsUpdateConstraints];
     self.nodeState = TFNodeViewStateNormal;
+    self.node = _node;
 
 }
 
@@ -429,23 +440,21 @@ CGFloat const TFNodeViewHeight = 80;
 
 - (void) setNode: (TFNode *) node1 {
 
-    if (node != node1) {
-        node = node1;
+    _node = node1;
 
-        [viewNormal setTitle: node.title forState: UIControlStateNormal];
-        nodeNotification = [[NSNotificationCenter defaultCenter] addObserverForName: TFNodeUpdate
-                object: nil
-                queue: nil
-                usingBlock: ^(NSNotification *notification) {
+    [viewNormal setTitle: self.node.title forState: UIControlStateNormal];
+    [[NSNotificationCenter defaultCenter] addObserverForName: TFNodeUpdate
+            object: nil
+            queue: nil
+            usingBlock: ^(NSNotification *notification) {
 
-                    TFNode *aNode = notification.object;
-                    if (notification.object == self.node) {
+                TFNode *aNode = notification.object;
+                if (notification.object == self.node) {
 
-                    }
-                    [viewNormal setTitle: node.title forState: UIControlStateNormal];
+                }
+                [viewNormal setTitle: self.node.title forState: UIControlStateNormal];
 
-                }];
-    }
+            }];
 
 }
 

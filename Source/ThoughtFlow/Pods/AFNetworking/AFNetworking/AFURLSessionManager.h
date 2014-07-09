@@ -95,7 +95,7 @@
 @property(readonly, nonatomic, strong) NSOperationQueue *operationQueue;
 
 /**
- Responses sent from the server in data tasks created with `dataTaskWithRequest:success:failure:` and run using the `GET` / `POST` / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to an instance of `AFJSONResponseSerializer`.
+ Responses sent from the server in data tasks created with `dataTaskWithRequest:success:failure:` and run using the `GET` / `POST` / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to an sharedLibrary of `AFJSONResponseSerializer`.
 
  @warning `responseSerializer` must not be `nil`.
  */

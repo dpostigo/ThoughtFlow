@@ -10,9 +10,17 @@
 #import "Project.h"
 #import "UIColor+TFApp.h"
 
+
 #define PLACEHOLDER @"Add some notes to your project..."
 
 @implementation NotesDrawerController
+
+- (instancetype) initWithProject: (Project *) project {
+    NotesDrawerController *ret = [[UIStoryboard storyboardWithName: @"Storyboard" bundle: nil] instantiateViewControllerWithIdentifier: @"NotesDrawerController"];
+    ret.project = project;
+    return ret;
+}
+
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -22,22 +30,52 @@
     _textView.delegate = self;
     [_textView setFonts];
 
-    if (_model.selectedProject.notes == nil) {
-        _textView.text = PLACEHOLDER;
-        _textView.textColor = [UIColor darkGrayColor];
-    } else {
-        _textView.text = _model.selectedProject.notes;
-        _textView.textColor = [UIColor tfOffWhiteColor];
+    if (_project) {
+        if (_project.notes == nil) {
+            _textView.text = PLACEHOLDER;
+            _textView.textColor = [UIColor darkGrayColor];
+        } else {
+            _textView.text = _project.notes;
+            _textView.textColor = [UIColor tfOffWhiteColor];
+        }
     }
 
 }
 
 
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+
+    _recognizer = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(handleTapBehind:)];
+    self.recognizer.numberOfTapsRequired = 1;
+    self.recognizer.cancelsTouchesInView = NO;
+    [self.view.window addGestureRecognizer: self.recognizer];
+}
+
+
+- (void) viewWillDisappear: (BOOL) animated {
+    [super viewWillDisappear: animated];
+    [self.view.window removeGestureRecognizer: _recognizer];
+}
+
+
 - (IBAction) handleDoneButton: (id) sender {
-    _model.selectedProject.notes = _textView.text;
-
+    _project.notes = _textView.text;
     [self _notifyDrawerControllerShouldDismiss];
+}
 
+
+- (void) handleTapBehind: (UITapGestureRecognizer *) sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint location = [sender locationInView: nil];
+        if (![self.view pointInside: [self.view convertPoint: location fromView: self.view.window]
+                withEvent: nil]) {
+
+            [_textView resignFirstResponder];
+
+            //            [self _notifyDrawerControllerShouldDismiss];
+        }
+    }
 }
 
 //- (void) didTapBehind {

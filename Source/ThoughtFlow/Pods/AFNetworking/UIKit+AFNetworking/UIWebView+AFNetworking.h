@@ -39,12 +39,12 @@
 @interface UIWebView (AFNetworking)
 
 /**
- The request serializer used to serialize requests made with the `-loadRequest:...` category methods. By default, this is an instance of `AFHTTPRequestSerializer`.
+ The request serializer used to serialize requests made with the `-loadRequest:...` category methods. By default, this is an sharedLibrary of `AFHTTPRequestSerializer`.
  */
 @property(nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> *requestSerializer;
 
 /**
- The response serializer used to serialize responses made with the `-loadRequest:...` category methods. By default, this is an instance of `AFHTTPResponseSerializer`.
+ The response serializer used to serialize responses made with the `-loadRequest:...` category methods. By default, this is an sharedLibrary of `AFHTTPResponseSerializer`.
  */
 @property(nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer;
 

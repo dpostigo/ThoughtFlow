@@ -6,6 +6,7 @@
 #import "TFKernedGothamLightLabel.h"
 #import "UIFont+DPKitFonts.h"
 
+
 @implementation TFKernedGothamLightLabel
 
 - (void) awakeFromNib {
@@ -15,10 +16,14 @@
     self.font = [UIFont gothamRoundedFontOfSize: self.font.pointSize];
 }
 
+
++ (UIFont *) font {
+    return [UIFont gothamRoundedLightFontOfSize: 12.0];
+}
+
 + (CGFloat) kerning {
     return 100;
 }
-
 
 
 @end

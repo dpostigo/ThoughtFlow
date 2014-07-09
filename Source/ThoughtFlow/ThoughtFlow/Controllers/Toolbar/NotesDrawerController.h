@@ -7,10 +7,16 @@
 #import "TFViewController.h"
 #import "TFNewDrawerController.h"
 
-@interface NotesDrawerController : TFNewDrawerController <UITextViewDelegate> {
 
-}
+@class Project;
+
+@interface NotesDrawerController : TFNewDrawerController <UITextViewDelegate>
 
 @property(weak) IBOutlet UILabel *textLabel;
 @property(weak) IBOutlet UITextView *textView;
+@property(nonatomic, strong) Project *project;
+
+@property(nonatomic, strong) UITapGestureRecognizer *recognizer;
+- (instancetype) initWithProject: (Project *) project;
+
 @end

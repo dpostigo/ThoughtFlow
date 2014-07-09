@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <DPKit-Utils/UIViewController+DPKit.h>
 #import "CreateProjectController.h"
 #import "DPFadeTransition.h"
 #import "Model.h"
@@ -11,7 +12,15 @@
 #import "TFNode.h"
 #import "UIViewController+TFControllers.h"
 
+
 @implementation CreateProjectController
+
+- (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
+    return [self viewControllerFromStoryboard: @"Storyboard"];
+}
+
+
+#pragma mark - View lifecycle
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -33,7 +42,7 @@
     //    }
 
     if ([_model.projects count] > 0) {
-//        [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
+        //        [self performSegueWithIdentifier: @"ProjectsSegue" sender: nil];
     }
 }
 

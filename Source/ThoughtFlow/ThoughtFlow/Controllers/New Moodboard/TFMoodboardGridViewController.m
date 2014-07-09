@@ -4,6 +4,7 @@
 //
 
 #import <DPKit-Utils/UIViewController+DPKit.h>
+#import <DPKit-Utils/UIView+DPKit.h>
 #import "TFMoodboardGridViewController.h"
 #import "TFImageGridViewController.h"
 #import "Project.h"
@@ -35,6 +36,12 @@
 
 }
 
+- (void) viewWillAppear: (BOOL) animated {
+    [super viewWillAppear: animated];
+    [self.view layoutIfNeeded];
+}
+
+
 
 #pragma mark - TFImageGridViewControllerDelegate
 
@@ -45,16 +52,38 @@
 
 - (void) imageGridViewController: (TFImageGridViewController *) controller didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
     TFPhoto *image = [_imagesController.images objectAtIndex: indexPath.item];
-    [_project.pinnedImages removeObject: image];
+
+    [_imagesController.collection performBatchUpdates: ^{
+
+        [_project.pinnedImages removeObject: image];
+        NSMutableArray *images = [_imagesController.images mutableCopy];
+        [images removeObject: image];
+        _imagesController.images = images;
+
+        [_imagesController.collection deleteItemsAtIndexPaths: @[indexPath]];
+
+    } completion: nil];
+
 }
 
 
 - (void) imageGridViewController: (TFImageGridViewController *) gridController didSelectImage: (TFPhoto *) image atIndexPath: (NSIndexPath *) indexPath {
     TFMoodboardFullscreenViewController *controller = [[TFMoodboardFullscreenViewController alloc] initWithProject: _project];
+    controller.selectedImage = image;
     [self.navigationController pushViewController: controller animated: YES];
 
 }
 
+
+
+//- (CGSize) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout sizeForItemAtIndexPath: (NSIndexPath *) indexPath {
+//    CGFloat cellHeight = collectionView.height / 3;
+//    return CGSizeMake(cellHeight, cellHeight);
+//}
+
+- (UIEdgeInsets) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout insetForSectionAtIndex: (NSInteger) section {
+    return UIEdgeInsetsMake(0, 0, 0, 0);;
+}
 
 #pragma mark - Setup
 
@@ -71,6 +100,7 @@
 - (void) _setupProject {
 
     if (_project) {
+
         if ([_project.pinnedImages count] == 0) {
             _imagesController.view.hidden = YES;
 

@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @class TFNodeStateView;
 @class TFNode;
 @protocol TFNodeViewDelegate;
@@ -30,7 +31,6 @@ typedef enum {
 
 @interface TFNodeView : UIView <UIGestureRecognizerDelegate> {
 
-    TFNode *node;
     TFNodeViewState nodeState;
     TFSwipeDirection swipeDirection;
 
@@ -41,7 +41,6 @@ typedef enum {
 
     IBOutlet __unsafe_unretained id <TFNodeViewDelegate> delegate;
 
-    id nodeNotification;
     BOOL isPanning;
     BOOL enabled;
     BOOL selected;
@@ -54,18 +53,21 @@ typedef enum {
     CGPoint startingPoint;
 }
 
+@property(nonatomic, strong) TFNode *node;
+@property(nonatomic, assign) TFNodeView *parentView;
 @property(nonatomic, strong) UIButton *viewNormal;
 @property(nonatomic, strong) NSString *text;
 @property(nonatomic, strong) UIView *debugView;
 @property(nonatomic, assign) id <TFNodeViewDelegate> delegate;
 @property(nonatomic) TFNodeViewState nodeState;
-@property(nonatomic, strong) TFNode *node;
 @property(nonatomic) BOOL enabled;
 @property(nonatomic) BOOL selected;
 @property(nonatomic) BOOL optimized;
 @property(nonatomic) BOOL nodeUpdateDisabled;
 @property(nonatomic) TFSwipeDirection swipeDirection;
 @property(nonatomic, strong) UIView *containerView;
+- (instancetype) initWithNode: (TFNode *) aNode;
+
 + (UIView *) greenGhostView;
 - (void) setNodeState: (TFNodeViewState) nodeState1 animated: (BOOL) flag;
 

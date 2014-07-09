@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vr3-JY-0xG">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="MxP-8Q-eyy">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Vr3-JY-0xG" sceneMemberID="viewController">
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bo9-Sf-2LG">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="pUG-E6-BdS" kind="relationship" relationship="rootViewController" id="97l-2l-XuC"/>
+                        <segue destination="jiV-dS-4rI" kind="push" id="Mi1-s5-dCu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qg6-3W-Thv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4187" y="5654"/>
+        </scene>
+        <!--Empty View Controller-->
+        <scene sceneID="Dru-v2-i3x">
+            <objects>
+                <viewController storyboardIdentifier="TFEmptyViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pUG-E6-BdS" customClass="TFEmptyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="esc-XR-JWd"/>
+                        <viewControllerLayoutGuide type="bottom" id="6lf-Jw-M8W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5ui-rs-Ti7">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any pins in your moodboard." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzQ-X7-iTY" customClass="TFKernedGothamLightLabel">
+                                <rect key="frame" x="40" y="283" width="944" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRh-L3-EKa" customClass="TFSpacedGothamLightLabel">
+                                <rect key="frame" x="40" y="328" width="944" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="vzQ-X7-iTY" secondAttribute="centerY" constant="92.5" id="2JU-RV-YAM"/>
+                            <constraint firstItem="vzQ-X7-iTY" firstAttribute="leading" secondItem="rRh-L3-EKa" secondAttribute="leading" id="3qZ-Gr-bdi"/>
+                            <constraint firstAttribute="trailing" secondItem="vzQ-X7-iTY" secondAttribute="trailing" constant="40" id="IKO-1r-zUd"/>
+                            <constraint firstItem="vzQ-X7-iTY" firstAttribute="trailing" secondItem="rRh-L3-EKa" secondAttribute="trailing" id="ZIl-v8-XiH"/>
+                            <constraint firstItem="rRh-L3-EKa" firstAttribute="top" secondItem="vzQ-X7-iTY" secondAttribute="bottom" constant="28" id="e2n-6x-39b"/>
+                            <constraint firstItem="vzQ-X7-iTY" firstAttribute="leading" secondItem="5ui-rs-Ti7" secondAttribute="leading" constant="40" id="wA4-ZX-yRb"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="kWK-FM-nTb"/>
+                    <connections>
+                        <outlet property="detailTextLabel" destination="rRh-L3-EKa" id="856-nW-nzC"/>
+                        <outlet property="textLabel" destination="vzQ-X7-iTY" id="dqj-4Q-c45"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rAf-YX-8FF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5433" y="6625"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rXE-JL-rUL">
+            <objects>
+                <viewController storyboardIdentifier="TFTranslucentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jiV-dS-4rI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GfE-zH-UJ4"/>
+                        <viewControllerLayoutGuide type="bottom" id="xkt-jL-9Rr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lkc-hB-lFQ" customClass="TFTranslucentView">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wga-Ym-k6k"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="70K-ab-CkI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5433" y="7592"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

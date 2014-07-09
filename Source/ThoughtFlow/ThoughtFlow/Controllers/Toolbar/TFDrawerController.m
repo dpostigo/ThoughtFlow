@@ -30,10 +30,7 @@
 
 
 - (IBAction) closeDrawer: (id) sender {
-    NSLog(@"self.navigationController = %@", self.navigationController);
-    NSLog(@"self.parentViewController = %@", self.parentViewController);
-    NSLog(@"self.presentingViewController = %@", self.presentingViewController);
-    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
 
     if (self.presenter) {
         [self.presenter dismissDrawerController: self];

@@ -4,17 +4,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TFContentViewNavigationController.h"
 
 
 @class Project;
+@class TFContentViewNavigationController;
+@class TFContentView;
+@class TFEmptyViewController;
 
-
-@interface TFMoodboardViewController : TFContentViewNavigationController {
+@interface TFMoodboardViewController : UIViewController {
 
 }
 
 @property(nonatomic, strong) Project *project;
+@property(nonatomic, strong) TFContentView *contentView;
+@property(nonatomic, strong) TFContentViewNavigationController *contentNavigationController;
+
 - (instancetype) initWithProject: (Project *) project;
 
 @end

@@ -456,7 +456,7 @@ NSString *DDExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
  * 
  * These methods are executed in the logging thread/queue.
  * This is the same thread/queue that will execute every logMessage: invocation.
- * Loggers may use these methods for thread synchronization or other setup/teardown tasks.
+ * Loggers may use these methods for thread synchronization or other _setup/teardown tasks.
 **/
 - (void)didAddLogger;
 - (void)willRemoveLogger;
@@ -513,7 +513,7 @@ NSString *DDExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 @optional
 
 /**
- * A single formatter instance can be added to multiple loggers.
+ * A single formatter sharedLibrary can be added to multiple loggers.
  * These methods provides hooks to notify the formatter of when it's added/removed.
  *
  * This is primarily for thread-safety.

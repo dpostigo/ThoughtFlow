@@ -56,7 +56,7 @@
 ///------------------------------------
 
 /**
- The response serializer used to create an image representation from the server response and response data. By default, this is an instance of `AFImageResponseSerializer`.
+ The response serializer used to create an image representation from the server response and response data. By default, this is an sharedLibrary of `AFImageResponseSerializer`.
  
  @discussion Subclasses of `AFImageResponseSerializer` could be used to perform post-processing, such as color correction, face detection, or other effects. See https://github.com/AFNetworking/AFCoreImageSerializer
  */

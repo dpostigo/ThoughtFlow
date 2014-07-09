@@ -5,20 +5,25 @@
 
 #import <Foundation/Foundation.h>
 
+
 @class Model;
 @class APIUser;
 @class AFOAuth2Client;
+@class PhotoLibrary;
+@class TFLibrary;
 
 extern NSString *const ThoughtFlowIdentifier;
 extern NSString *const ThoughtFlowBaseURL;
 
 @interface APIModel : NSObject {
-    AFOAuth2Client *authClient;
-    APIUser *currentUser;
     Model *_model;
 }
 
+@property(nonatomic) BOOL usesConnections;
+@property(nonatomic) BOOL usesDummyData;
 @property(nonatomic, strong) APIUser *currentUser;
+@property(nonatomic, strong) PhotoLibrary *photoLibrary;
+@property(nonatomic, strong) TFLibrary *library;
 @property(nonatomic, strong) AFOAuth2Client *authClient;
 + (void) alertErrorWithTitle: (NSString *) title message: (NSString *) message;
 + (APIModel *) sharedModel;
@@ -29,4 +34,5 @@ extern NSString *const ThoughtFlowBaseURL;
 - (void) userExists: (NSString *) username completion: (void (^)(BOOL exists)) success;
 - (void) registerUser: (NSString *) username password: (NSString *) password email: (NSString *) email success: (void (^)()) success failure: (void (^)()) failure;
 - (void) getImages: (NSString *) string success: (void (^)(NSArray *images)) success failure: (void (^)()) failure;
+- (void) preloadImages: (NSArray *) images;
 @end

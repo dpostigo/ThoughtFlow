@@ -9,6 +9,21 @@
 
 @implementation TFContentViewNavigationController
 
+- (void) viewWillDisappear: (BOOL) animated {
+    [super viewWillDisappear: animated];
+
+    if (_autocloses) {
+        if (self.leftContainerIsOpen) {
+            [self closeLeftContainer];
+        }
+
+        if (self.rightContainerIsOpen) {
+            [self closeRightContainer];
+        }
+    }
+}
+
+
 - (void) toggleViewController: (UIViewController *) controller animated: (BOOL) flag {
     if (self.visibleViewController == controller || [self.visibleViewController isKindOfClass: [controller class]]) {
         [self popViewControllerAnimated: flag];
@@ -17,6 +32,18 @@
     }
 }
 
+
+- (BOOL) leftContainerIsOpen {
+    return _contentView.leftContainerIsOpen;
+}
+
+- (BOOL) rightContainerIsOpen {
+    return _contentView.rightContainerIsOpen;
+}
+
+- (BOOL) isOpen {
+    return _contentView.isOpen;
+}
 
 #pragma mark - Content view
 
@@ -50,6 +77,16 @@
     [self.contentView openRightContainer];
 
 }
+
+- (void) closeLeftContainer {
+    [self.contentView closeLeftContainer];
+}
+
+- (void) closeRightContainer {
+    [self.contentView closeRightContainer];
+
+}
+
 
 #pragma mark - TFContentViewDelegate
 

@@ -1,4 +1,6 @@
 PODS:
+  - AFNetworkActivityLogger (2.0.2):
+    - AFNetworking/NSURLSession (~> 2.0)
   - AFNetworking (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
@@ -23,6 +25,21 @@ PODS:
   - AFOAuth2Client (0.1.1):
     - AFNetworking (~> 2.0)
   - AutoCoding (2.2)
+  - BlocksKit (2.2.3):
+    - BlocksKit/All
+  - BlocksKit/All (2.2.3):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.3)
+  - BlocksKit/DynamicDelegate (2.2.3)
+  - BlocksKit/MessageUI (2.2.3):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.3):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
   - CALayer-DPUtils (0.1.6):
     - DPKit-Utils
   - CocoaLumberjack (1.9.1):
@@ -41,6 +58,9 @@ PODS:
     - DPKit-Utils
   - DPKit-Utils (0.0.30):
     - JMSimpleDate
+  - DPTableView (0.0.1):
+    - DPKit-UIView
+    - DPKit-Utils
   - DPTransitions (0.0.1):
     - DPAnimators (= 0.0.1)
     - DPKit-Utils
@@ -48,6 +68,7 @@ PODS:
   - DPTransitions/Segues (0.0.1):
     - DPAnimators (= 0.0.1)
     - DPKit-Utils
+  - ILTranslucentView (0.0.1)
   - JMSimpleDate (0.0.6)
   - NSAttributedString-DDHTML (0.0.1)
   - NSObject+AutoDescription (0.1)
@@ -56,9 +77,11 @@ PODS:
   - UIColorCategories (0.1.0)
 
 DEPENDENCIES:
+  - AFNetworkActivityLogger
   - AFNetworking
   - AFOAuth2Client (from `https://github.com/mlwelles/AFOAuth2Client`)
   - AutoCoding
+  - BlocksKit
   - CALayer-DPUtils (from `~/Development/LocalPods/Utilities/CALayer-DPUtils`)
   - CocoaLumberjack
   - CrashlyticsFramework
@@ -67,7 +90,9 @@ DEPENDENCIES:
   - DPKit-UIFont (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIFont`)
   - DPKit-UIView (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIView`)
   - DPKit-Utils (from `~/Development/LocalPods/DPKit-Suite/DPKit-Utils`)
+  - DPTableView (from `~/Development/LocalPods/DPKit-Suite/DPTableView`)
   - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
+  - ILTranslucentView
   - NSAttributedString-DDHTML
   - NSObject+AutoDescription
   - Reveal-iOS-SDK
@@ -87,13 +112,17 @@ EXTERNAL SOURCES:
     :path: ~/Development/LocalPods/DPKit-Suite/DPKit-UIView
   DPKit-Utils:
     :path: ~/Development/LocalPods/DPKit-Suite/DPKit-Utils
+  DPTableView:
+    :path: ~/Development/LocalPods/DPKit-Suite/DPTableView
   DPTransitions:
     :path: ~/Development/LocalPods/DPTransitions
 
 SPEC CHECKSUMS:
+  AFNetworkActivityLogger: 45ca411593444cbdc401b12924b4c17082ad512a
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   AFOAuth2Client: 05536bd4175add72e7efcb6b749d4e9685ed02f7
   AutoCoding: 2a15d57acf78912b72cc3b3a472e614b2f112a18
+  BlocksKit: 07c8a80f04275efac6a5f8b973782489c083a182
   CALayer-DPUtils: cdd3ef1b054136ee30215aa7c06b0675f442f084
   CocoaLumberjack: 94accd5749f5c5d15134c8d50f34a973aed8ef69
   CrashlyticsFramework: a9d172599c3a34e68067e16446a764041b980162
@@ -102,7 +131,9 @@ SPEC CHECKSUMS:
   DPKit-UIFont: 5128d629296622358f66b6d8d9fd16ab532578ea
   DPKit-UIView: 069926abffec4884ea0236a7f1072005eb9cf0be
   DPKit-Utils: 367b2b35209031eb0d322db082bbb03f68194c76
+  DPTableView: c5617cb4751ae277a0fa75ae4d0a15e74ffe68bb
   DPTransitions: fb247247ff38c47a0fb2ca0f97d9d9ad4b8924b8
+  ILTranslucentView: fa20cc89ceb451b54ae3d993c7dfb789873ef153
   JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
   NSAttributedString-DDHTML: b660068de47108746a88474e29f98ac32b5d3e16
   NSObject+AutoDescription: 741983bfabbfd2813c77078fdc91526853bad16d

@@ -324,7 +324,7 @@
             //    then we need to stop the saveTimer. (And we might as well release it.)
             // 
             // 2. If the saveInterval was previously disabled and it just got enabled,
-            //    then we need to setup the saveTimer. (Plus we might need to do an immediate save.)
+            //    then we need to _setup the saveTimer. (Plus we might need to do an immediate save.)
             // 
             // 3. If the saveInterval increased, then we need to reset the timer so that it fires at the later date.
             // 
@@ -429,7 +429,7 @@
             //    then we need to stop the deleteTimer. (And we might as well release it.)
             // 
             // 2. If the maxAge was previously disabled and it just got enabled,
-            //    then we need to setup the deleteTimer. (Plus we might need to do an immediate delete.)
+            //    then we need to _setup the deleteTimer. (Plus we might need to do an immediate delete.)
             // 
             // 3. If the maxAge was increased,
             //    then we don't need to do anything.
@@ -534,7 +534,7 @@
             //    then we need to stop the deleteTimer. (And we might as well release it.)
             // 
             // 2. If the deleteInterval was previously disabled and it just got enabled,
-            //    then we need to setup the deleteTimer. (Plus we might need to do an immediate delete.)
+            //    then we need to _setup the deleteTimer. (Plus we might need to do an immediate delete.)
             // 
             // 3. If the deleteInterval increased, then we need to reset the timer so that it fires at the later date.
             // 

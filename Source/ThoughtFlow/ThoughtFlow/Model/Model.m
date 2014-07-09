@@ -9,6 +9,7 @@
 #import "NSArray+DPKit.h"
 #import "APIModel.h"
 #import "TFPhoto.h"
+#import "TFLibrary.h"
 
 
 @implementation Model
@@ -18,7 +19,6 @@
 @synthesize selectedProject;
 @synthesize selectedProjectDictionary;
 
-@synthesize projectLibrary;
 @synthesize selectedNode;
 @synthesize loggedIn;
 
@@ -39,6 +39,16 @@ static NSString *baseURL = @"http://188.226.201.79/api";
         }
     }
     return _instance;
+}
+
+
+- (id) init {
+    self = [super init];
+    if (self) {
+        _tfLibrary = [TFLibrary sharedLibrary];
+    }
+
+    return self;
 }
 
 #pragma mark Getters
@@ -81,16 +91,21 @@ static NSString *baseURL = @"http://188.226.201.79/api";
 }
 
 - (ProjectLibrary *) projectLibrary {
-    if (projectLibrary == nil) {
-        projectLibrary = [ProjectLibrary sharedLibrary];
+    return _tfLibrary.projectsLibrary;
+}
+
+
+- (TFLibrary *) tfLibrary {
+    if (_tfLibrary == nil) {
+        _tfLibrary = [TFLibrary sharedLibrary];
     }
-    return projectLibrary;
+    return _tfLibrary;
 }
 
 #pragma mark Projects
 
 - (void) addProject: (Project *) project {
-    [self.projectLibrary addItem: project];
+    [self.projectLibrary addChild: project];
 }
 
 - (void) addProjects: (NSArray *) projects {

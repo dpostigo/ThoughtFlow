@@ -8,6 +8,7 @@
 
 @class TFNode;
 @class TFNodeView;
+@class TFLiveUpdateLayer;
 
 @interface MindmapLinesController : TFViewController
 
@@ -15,12 +16,15 @@
 
 //@property(nonatomic, strong) NSArray *nodeViews;
 @property(nonatomic, strong) TFNode *rootNode;
-@property(nonatomic, strong) CALayer *mainLayer;
-@property(nonatomic, strong) CALayer *updateLayer;
-@property(nonatomic, strong) CALayer *tempLayer;
+@property(nonatomic, strong) TFLiveUpdateLayer *liveLayer;
 @property(nonatomic, strong) UIColor *lineColor;
-- (void) targetNode: (TFNode *) targetNode;
+- (void) startPinchWithNodeViews: (NSArray *) nodeViews;
+- (void) updatePinchWithNodeViews: (NSArray *) nodeViews;
+- (void) endPinchWithNodeViews: (NSArray *) nodeViews;
+- (void) startTargetNode: (TFNode *) targetNode;
 - (void) updateTargetNode: (TFNode *) targetNode withNodeView: (TFNodeView *) nodeView;
 - (void) endTargetNode;
+- (void) startMoveWithNodeView: (TFNodeView *) nodeView withParent: (TFNodeView *) parentNodeView;
 - (void) updateTempLineFromPoint: (CGPoint) a toPoint: (CGPoint) b;
+- (void) endMoveWithNodeView: (TFNodeView *) nodeView withParent: (TFNodeView *) parentNodeView;
 @end

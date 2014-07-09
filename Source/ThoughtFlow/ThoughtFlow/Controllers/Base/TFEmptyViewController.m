@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <DPKit-Utils/UIViewController+DPKit.h>
 #import "TFEmptyViewController.h"
 
 
@@ -12,13 +13,19 @@
     return [self initWithTitle: title subtitle: @""];
 }
 
-
 - (instancetype) initWithTitle: (NSString *) title subtitle: (NSString *) subtitle {
-    TFEmptyViewController *ret = [[UIStoryboard storyboardWithName: @"Moodboard" bundle: nil] instantiateViewControllerWithIdentifier: @"TFEmptyViewController"];
-    ret.textLabel.text = title;
-    ret.detailTextLabel.text = @"";
-    return ret;
+    self = [super init];
+    if (self) {
+        self.title = title;
+        _subtitle = subtitle;
 
+    }
+
+    return self;
+}
+
+- (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
+    return [self viewControllerFromStoryboard: @"Misc"];
 }
 
 
@@ -27,10 +34,12 @@
 
     [self _setupView];
 
+    _textLabel.text = self.title;
+    _detailTextLabel.text = _subtitle;
+
 }
 
 - (void) _setupView {
-
     self.view.backgroundColor = [UIColor clearColor];
     self.view.opaque = NO;
 }

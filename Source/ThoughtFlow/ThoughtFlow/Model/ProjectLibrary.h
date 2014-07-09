@@ -10,6 +10,5 @@
 
 
 + (ProjectLibrary *) sharedLibrary;
-- (void) save;
 
 @end

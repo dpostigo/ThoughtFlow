@@ -7,6 +7,8 @@
 
 
 @class TFMindmapButtonsViewController;
+@class TFPhoto;
+@class Project;
 
 typedef NS_ENUM(NSInteger, TFMindmapButtonType) {
     TFMindmapButtonTypeGrid,
@@ -21,5 +23,11 @@ typedef NS_ENUM(NSInteger, TFMindmapButtonType) {
 
 @interface TFMindmapButtonsViewController : UIViewController
 
+@property(weak) IBOutlet UIButton *gridButton;
+@property(weak) IBOutlet UIButton *infoButton;
+@property(weak) IBOutlet UIButton *pinButton;
+
 @property(nonatomic, assign) id <TFMindmapButtonsViewControllerDelegate> delegate;
+- (void) updatePinButtonForImage: (TFPhoto *) image inProject: (Project *) project;
+- (UIButton *) buttonForType: (TFMindmapButtonType) type;
 @end

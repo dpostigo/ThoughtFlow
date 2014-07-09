@@ -13,6 +13,9 @@
     <content url="file://$MODULE_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils">
       <sourceFolder url="file://$MODULE_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../../LocalPods/DPKit-Suite/DPTableView">
+      <sourceFolder url="file://$MODULE_DIR$/../../../LocalPods/DPKit-Suite/DPTableView" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../../LocalPods/DPTransitions">
       <sourceFolder url="file://$MODULE_DIR$/../../../LocalPods/DPTransitions" isTestSource="false" />
     </content>

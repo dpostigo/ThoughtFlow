@@ -31,6 +31,7 @@
 - (NavigationFadeAnimator *) animator {
     if (animator == nil) {
         animator = [NavigationFadeAnimator new];
+        animator.opaque = YES;
     }
     return animator;
 }

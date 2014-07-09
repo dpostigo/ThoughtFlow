@@ -9,6 +9,7 @@
 
 
 @class TFNode;
+@class TFPhoto;
 
 @interface Project : LibraryObject
 
@@ -16,7 +17,9 @@
 @property(nonatomic, strong) NSDate *modifiedDate;
 @property(nonatomic, copy) NSString *word;
 @property(nonatomic, copy) NSString *notes;
-@property(nonatomic, strong) NSMutableArray *pinnedImages;
+
+
+//@property(nonatomic, readonly) NSMutableArray *pinnedImages;
 
 - (instancetype) initWithWord: (NSString *) aWord;
 + (instancetype) projectWithWord: (NSString *) aWord;
@@ -24,5 +27,8 @@
 
 - (TFNode *) firstNode;
 - (NSArray *) flattenedChildren;
+- (void) addPin: (TFPhoto *) image;
+- (void) removePin: (TFPhoto *) image;
+- (NSMutableArray *) pinnedImages;
 - (void) addNode: (id) node;
 @end

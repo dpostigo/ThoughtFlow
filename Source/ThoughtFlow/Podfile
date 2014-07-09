@@ -11,6 +11,7 @@ pod 'NSAttributedString-DDHTML'
 
 pod 'CALayer-DPUtils', :path => '~/Development/LocalPods/Utilities/CALayer-DPUtils'
 
+pod 'DPTableView', :path => '~/Development/LocalPods/DPKit-Suite/DPTableView'
 pod 'DPCollectionView'
 
 pod 'DPKit-Utils', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-Utils'
@@ -19,11 +20,17 @@ pod 'DPKit-UIView', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-UIView'
 
 pod 'DPAnimators', :path => '~/Development/LocalPods/DPAnimators'
 
-pod 'AFOAuth2Client', :git => 'https://github.com/mlwelles/AFOAuth2Client'
 
 pod 'DPKit-UIFont', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-UIFont'
 
-
+pod 'AFOAuth2Client', :git => 'https://github.com/mlwelles/AFOAuth2Client'
+pod 'AFNetworkActivityLogger'
 pod 'Reveal-iOS-SDK'
 pod 'CrashlyticsFramework'
 pod 'CocoaLumberjack'
+pod 'ILTranslucentView'
+pod 'UIAlertView+Blocks'
+pod 'BlocksKit'
+
+
+# Temp

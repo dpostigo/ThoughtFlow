@@ -3,54 +3,164 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import <DPKit-Utils/NSMutableAttributedString+DPKit.h>
-#import <NSAttributedString-DDHTML/NSAttributedString+DDHTML.h>
-#import <DPKit-Utils/UIView+DPKitDebug.h>
 #import <DPKit-Utils/UIView+DPKit.h>
+#import <DPKit-Utils/UIView+DPKitDebug.h>
 #import "TFImageDrawerViewController.h"
 #import "TFPhoto.h"
-#import "UIColor+TFApp.h"
+#import "Project.h"
+#import "TFImageDrawerContentViewController.h"
 
 
 @implementation TFImageDrawerViewController
+//
+//- (instancetype) initWithImage: (TFPhoto *) image {
+//    TFImageDrawerViewController *ret = [[UIStoryboard storyboardWithName: @"Mindmap" bundle: nil] instantiateViewControllerWithIdentifier: @"TFImageDrawerViewController"];
+//    ret.image = image;
+//    return ret;
+//}
+//
+//- (instancetype) initWithProject: (Project *) project image: (TFPhoto *) image {
+//    TFImageDrawerViewController *ret = [[UIStoryboard storyboardWithName: @"Mindmap" bundle: nil] instantiateViewControllerWithIdentifier: @"TFImageDrawerViewController"];
+//    ret.image = image;
+//    ret.project = project;
+//    return ret;
+//}
+//
+//
+//
 
-- (instancetype) initWithImage: (TFPhoto *) image {
+
+- (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
     TFImageDrawerViewController *ret = [[UIStoryboard storyboardWithName: @"Mindmap" bundle: nil] instantiateViewControllerWithIdentifier: @"TFImageDrawerViewController"];
-    ret.image = image;
     return ret;
+    //    self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
+    //    if (self) {
+    //
+    //    }
+    //
+    //    return self;
+}
+
+- (instancetype) initWithProject: (Project *) project image: (TFPhoto *) image {
+    self = [super init];
+    if (self) {
+        _project = project;
+        _image = image;
+    }
+
+    return self;
 }
 
 
 #pragma mark - View lifecycle
 
+
+- (void) viewWillAppear: (BOOL) animated {
+    [super viewWillAppear: animated];
+    [self.view layoutIfNeeded];
+}
+
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+    [self.view layoutIfNeeded];
+}
+
+
+- (void) viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    _titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(_titleLabel.frame);
+
+}
+
+
 - (void) viewDidLoad {
     [super viewDidLoad];
-    _tagLabel.preferredMaxLayoutWidth = _tagLabel.width;
-    [_tagLabel addDebugBorder: [UIColor redColor]];
-    //    [_descriptionLabel addDebugBorder: [UIColor redColor]];
+
+    _titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(_titleLabel.frame);
+
+    [_pinButton setTitle: @"PIN TO MOODBOARD" forState: UIControlStateNormal];
+    [_pinButton setTitle: @"REMOVE FROM MOODBOARD" forState: UIControlStateSelected];
+
+    //    [_titleLabel addDebugBorder: [UIColor redColor]];
 
     self.image = _image;
 }
 
+#pragma mark - Set image
 
 - (void) setImage: (TFPhoto *) image {
     _image = image;
-    if (_image && self.isViewLoaded) {
 
-        _titleLabel.text = [_image.title uppercaseString];
-        //
-        //        NSMutableAttributedString *attributedString;
-        //        attributedString = [[NSAttributedString attributedStringFromHTML: _image.description boldFont: [UIFont boldSystemFontOfSize: 12.0]] mutableCopy];
-        //        [attributedString addAttribute: NSForegroundColorAttributeName value: [UIColor tfDetailTextColor]];
-        //        [attributedString addAttribute: NSFontAttributeName value: _descriptionLabel.font];
-        //        _descriptionLabel.attributedText = attributedString;
-        //        _descriptionLabel.textContainerInset = UIEdgeInsetsMake(0, -3, 0, 0);
+    if (self.isViewLoaded) {
+        if (_image) {
 
-        _sourceLabel.text = @"Author from Source";
-        _tagLabel.text = _image.tagString;
-        _tagLabel.text = @"tag tag tag tag\ntag tag tag tag";
+            _titleLabel.text = [_image.title uppercaseString];
+            _contentViewController.image = _image;
+
+            if (_project) {
+                _pinButton.selected = [_project.pinnedImages containsObject: _image];
+            } else {
+                NSLog(@"no project");
+
+            }
+
+            [self.view layoutIfNeeded];
+
+        }
     }
 }
 
+#pragma mark - Remove
+
+
+- (IBAction) handlePinButton: (UIButton *) button {
+    button.selected = !button.selected;
+
+    if (button.selected) {
+
+        if (![_project.pinnedImages containsObject: _image]) {
+            [_project.pinnedImages addObject: _image];
+            [self _notifyAddedPin: _image];
+        }
+    } else {
+        if ([_project.pinnedImages containsObject: _image]) {
+            [_project.pinnedImages removeObject: _image];
+            [self _notifyRemovedPin: _image];
+        }
+    }
+}
+
+
+- (void) _notifyRemovedPin: (TFPhoto *) image {
+    if (_delegate && [_delegate respondsToSelector: @selector(imageDrawerViewController:removedPin:)]) {
+        [_delegate imageDrawerViewController: self removedPin: image];
+    }
+}
+
+- (void) _notifyAddedPin: (TFPhoto *) image {
+    if (_delegate && [_delegate respondsToSelector: @selector(imageDrawerViewController:addedPin:)]) {
+        [_delegate imageDrawerViewController: self addedPin: image];
+    }
+}
+
+
+
+#pragma mark - Setup
+
+- (void) _setupView {
+
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.opaque = NO;
+}
+
+
+- (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender {
+    [super prepareForSegue: segue sender: sender];
+
+    if ([segue.identifier isEqualToString: @"ContentEmbedSegue"]) {
+        _contentViewController = segue.destinationViewController;
+        _contentViewController.image = _image;
+    }
+}
 
 @end

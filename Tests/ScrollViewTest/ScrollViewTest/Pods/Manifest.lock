@@ -1,0 +1,26 @@
+PODS:
+  - CHTStickerView (0.5)
+  - DPKit-UIView (0.0.3):
+    - DPKit-Utils
+  - DPKit-Utils (0.0.31):
+    - JMSimpleDate
+  - JMSimpleDate (0.0.6)
+
+DEPENDENCIES:
+  - CHTStickerView
+  - DPKit-UIView (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIView`)
+  - DPKit-Utils (from `~/Development/LocalPods/DPKit-Suite/DPKit-Utils`)
+
+EXTERNAL SOURCES:
+  DPKit-UIView:
+    :path: ~/Development/LocalPods/DPKit-Suite/DPKit-UIView
+  DPKit-Utils:
+    :path: ~/Development/LocalPods/DPKit-Suite/DPKit-Utils
+
+SPEC CHECKSUMS:
+  CHTStickerView: 5194e965a47055fbf13eb7ddaf3e15275ac198b6
+  DPKit-UIView: 069926abffec4884ea0236a7f1072005eb9cf0be
+  DPKit-Utils: 59b1c7b4b0fcf2fbc96b545e408d8a862fb53ecd
+  JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
+
+COCOAPODS: 0.33.1

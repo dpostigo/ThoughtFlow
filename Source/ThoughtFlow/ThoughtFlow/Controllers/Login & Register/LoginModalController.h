@@ -8,14 +8,15 @@
 #import "TFViewController.h"
 #import "TFModalViewController.h"
 
+
 @class DPTableView;
 
-@interface LoginModalController : TFModalViewController <TLFreeformModalProtocol, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface LoginModalController : TFModalViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
 
 }
 
-@property (weak) IBOutlet DPTableView *table;
+@property(weak) IBOutlet DPTableView *table;
 - (void) prepareDatasource;
-- (IBAction) signInInstead: (id) sender;
+- (IBAction) handleSignInButton: (id) sender;
 - (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath;
 @end

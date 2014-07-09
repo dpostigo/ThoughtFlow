@@ -80,7 +80,7 @@ OBJC_EXTERN void CLSNSLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 
 /**
  *
- * Access the singleton Crashlytics instance.
+ * Access the singleton Crashlytics sharedLibrary.
  *
  **/
 + (Crashlytics *)sharedInstance;
@@ -195,7 +195,7 @@ OBJC_EXTERN void CLSNSLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 
 /**
  *
- * Called once a Crashlytics instance has determined that the last execution of the
+ * Called once a Crashlytics sharedLibrary has determined that the last execution of the
  * application ended in a crash.  This is called some time after the crash reporting
  * process has begun.  If you have specified a delay in one of the
  * startWithAPIKey:... calls, this will take at least that long to be invoked.
@@ -206,7 +206,7 @@ OBJC_EXTERN void CLSNSLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 /**
  *
  * Just like crashlyticsDidDetectCrashDuringPreviousExecution this delegate method is
- * called once a Crashlytics instance has determined that the last execution of the
+ * called once a Crashlytics sharedLibrary has determined that the last execution of the
  * application ended in a crash. A CLSCrashReport is passed back that contains data about
  * the last crash report that was generated. See the CLSCrashReport protocol for method details.
  * This method is called after crashlyticsDidDetectCrashDuringPreviousExecution.

@@ -14,4 +14,6 @@ extern CGFloat const TFNewNodeViewHeight;
 @interface TFNewNodeView : UIView
 
 @property(nonatomic, strong) TFNode *node;
+- (instancetype) initWithNode: (TFNode *) node;
+
 @end

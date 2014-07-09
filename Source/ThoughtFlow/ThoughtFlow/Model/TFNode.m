@@ -3,8 +3,11 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <AutoCoding/AutoCoding.h>
+#import <NSObject+AutoDescription/NSObject+AutoDescription.h>
 #import "TFNode.h"
 #import "TFNodeView.h"
+
 
 @implementation TFNode
 
@@ -90,5 +93,12 @@ NSString *const TFNodeUpdate = @"TFNodeUpdate";
 - (TFNode *) parentNode {
     return self.parent != nil ? ([self.parent isKindOfClass: [TFNode class]] ? self.parent : nil) : nil;
 }
+
+
+- (void) setWithCoder: (NSCoder *) aDecoder {
+    [super setWithCoder: aDecoder];
+
+}
+
 
 @end

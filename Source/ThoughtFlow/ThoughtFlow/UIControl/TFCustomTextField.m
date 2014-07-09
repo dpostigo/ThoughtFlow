@@ -8,6 +8,7 @@
 #import "UIColor+TFApp.h"
 #import "UIView+DPKitChildren.h"
 
+
 CGFloat const leftAccessoryWidth = 30;
 CGFloat const TFTextFieldBorderWidth = 0.5;
 
@@ -23,8 +24,6 @@ CGFloat const TFTextFieldBorderWidth = 0.5;
 
     self.rightView = [self createRightAccessoryView];
     self.rightViewMode = UITextFieldViewModeUnlessEditing;
-
-    //    super.delegate = self;
 
 }
 

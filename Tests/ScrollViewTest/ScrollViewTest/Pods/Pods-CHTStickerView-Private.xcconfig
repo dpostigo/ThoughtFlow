@@ -1,0 +1,5 @@
+#include "Pods-CHTStickerView.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/CHTStickerView" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/CHTStickerView" "${PODS_ROOT}/Headers/DPKit-UIView" "${PODS_ROOT}/Headers/DPKit-Utils" "${PODS_ROOT}/Headers/JMSimpleDate"
+OTHER_LDFLAGS = -ObjC
+PODS_ROOT = ${SRCROOT}

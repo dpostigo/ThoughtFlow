@@ -5,6 +5,7 @@
 
 #import "TFNewToolbarController.h"
 
+
 @implementation TFNewToolbarController
 
 - (void) viewDidLoad {
@@ -42,6 +43,9 @@
 }
 
 
+- (UIButton *) buttonForType: (TFNewToolbarButtonType) type {
+    return [self.buttons objectAtIndex: type];
+}
 #pragma mark - Notify
 
 - (void) _notifyButtonClickedWithType: (TFNewToolbarButtonType) type {

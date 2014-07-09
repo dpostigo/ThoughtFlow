@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A559A09FD7C74A789642841B"
+               BlueprintIdentifier = "3088C27698E7468B8892B47D"
                BuildableName = "DPKitFonts.bundle"
                BlueprintName = "DPKitFonts"
                ReferencedContainer = "container:Pods.xcodeproj">

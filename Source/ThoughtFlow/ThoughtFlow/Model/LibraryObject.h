@@ -5,16 +5,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LibraryObject : NSObject {
-    __unsafe_unretained id parent;
-
-}
+@interface LibraryObject : NSObject
 
 @property(nonatomic, assign) id parent;
 @property(nonatomic, strong) NSArray *children;
+@property(nonatomic, copy) NSString *uniqueIdentifier;
 - (void) save;
-- (void) addItem: (id) item;
+- (void) addChild: (id) item;
 - (void) addItems: (NSArray *) items1;
-- (void) removeItem: (id) item;
+- (void) removeChild: (id) item;
 - (NSMutableArray *) mutableChildren;
 @end

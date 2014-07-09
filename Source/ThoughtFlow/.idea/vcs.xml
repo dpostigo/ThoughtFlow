@@ -5,6 +5,7 @@
     <mapping directory="$PROJECT_DIR$/../../../LocalPods/DPAnimators" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIView" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPTableView" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../../LocalPods/DPTransitions" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../../LocalPods/Utilities/CALayer-DPUtils" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../.." vcs="Git" />

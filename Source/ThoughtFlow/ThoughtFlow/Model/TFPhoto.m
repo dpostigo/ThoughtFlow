@@ -3,45 +3,43 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <AutoCoding/AutoCoding.h>
 #import "TFPhoto.h"
+#import "PhotoLibrary.h"
+
 
 @implementation TFPhoto
-
-@synthesize description;
-@synthesize title;
-@synthesize URL;
-
-@synthesize tagString;
-
-- (instancetype) initWithTitle: (NSString *) aTitle description: (NSString *) aDescription URL: (NSURL *) aURL {
-    self = [super init];
-    if (self) {
-        title = aTitle;
-        description = aDescription;
-        URL = aURL;
-    }
-
-    return self;
-}
-
-+ (instancetype) photoWithTitle: (NSString *) aTitle description: (NSString *) aDescription URL: (NSURL *) aURL {
-    return [[self alloc] initWithTitle: aTitle description: aDescription URL: aURL];
-}
 
 - (instancetype) initWithTitle: (NSString *) aTitle description: (NSString *) aDescription URL: (NSURL *) aURL tagString: (NSString *) aTagString {
     self = [super init];
     if (self) {
-        title = aTitle;
-        description = aDescription;
-        URL = aURL;
-        tagString = aTagString;
+        _title = aTitle;
+        _description = aDescription;
+        _URL = aURL;
+        _tagString = aTagString;
     }
 
     return self;
 }
 
-+ (instancetype) photoWithTitle: (NSString *) aTitle description: (NSString *) aDescription URL: (NSURL *) aURL tagString: (NSString *) aTagString {
-    return [[self alloc] initWithTitle: aTitle description: aDescription URL: aURL tagString: aTagString];
+- (instancetype) initWithDictionary: (NSDictionary *) aDictionary {
+    return [[PhotoLibrary sharedLibrary] photoFromDictionary: aDictionary];
+
+}
+
+
+- (id) init {
+    self = [super init];
+    if (self) {
+
+    }
+
+    return self;
+}
+
+
+- (void) setWithCoder: (NSCoder *) aDecoder {
+    [super setWithCoder: aDecoder];
 }
 
 
@@ -49,14 +47,18 @@
 #pragma mark Safety
 
 - (NSString *) description {
-    if (description == nil) {
-        description = @"";
+    if (_description == nil) {
+        _description = @"";
     }
-    return description;
+    return _description;
 }
 
 - (NSString *) tagString {
-    return tagString;
+    if (_tagString == nil) {
+        _tagString = @"";
+    }
+    return _tagString;
+
 }
 
 

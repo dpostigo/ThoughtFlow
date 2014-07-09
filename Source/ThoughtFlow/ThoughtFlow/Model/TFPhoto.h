@@ -5,22 +5,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TFPhoto : NSObject {
-    NSString *title;
-    NSString *description;
-    NSURL *URL;
-    NSString *tagString;
+@interface TFPhoto : NSObject
 
-}
-
-@property(nonatomic, copy) NSString *description;
 @property(nonatomic, copy) NSString *title;
-@property(nonatomic, strong) NSURL *URL;
+@property(nonatomic, copy) NSString *description;
 @property(nonatomic, copy) NSString *tagString;
-- (instancetype) initWithTitle: (NSString *) aTitle description: (NSString *) aDescription URL: (NSURL *) aURL;
-- (instancetype) initWithTitle: (NSString *) aTitle description: (NSString *) aDescription URL: (NSURL *) aURL tagString: (NSString *) aTagString;
-+ (instancetype) photoWithTitle: (NSString *) aTitle description: (NSString *) aDescription URL: (NSURL *) aURL tagString: (NSString *) aTagString;
+@property(nonatomic, strong) NSURL *URL;
 
-+ (instancetype) photoWithTitle: (NSString *) aTitle description: (NSString *) aDescription URL: (NSURL *) aURL;
+- (instancetype) initWithDictionary: (NSDictionary *) aDictionary;
+
 
 @end

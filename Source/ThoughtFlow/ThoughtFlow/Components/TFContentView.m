@@ -31,13 +31,33 @@
 
 - (void) _setup {
     self.clipsToBounds = YES;
+    self.backgroundColor = [UIColor clearColor];
+    self.opaque = NO;
+
     _leftContainerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 290, self.height)];
-    _leftContainerView.backgroundColor = [UIColor blackColor];
+    _leftContainerView.backgroundColor = [UIColor clearColor];
+    _leftContainerView.opaque = NO;
     _leftContainerView.translatesAutoresizingMaskIntoConstraints = NO;
 
     _rightContainerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 450, self.height)];
-    _rightContainerView.backgroundColor = [UIColor blackColor];
+    _rightContainerView.backgroundColor = [UIColor clearColor];
+    _rightContainerView.opaque = NO;
     _rightContainerView.translatesAutoresizingMaskIntoConstraints = NO;
+}
+
+
+#pragma mark - Getters
+
+- (BOOL) leftContainerIsOpen {
+    return _leftContainerView.superview != nil;
+}
+
+- (BOOL) rightContainerIsOpen {
+    return _rightContainerView.superview != nil;
+}
+
+- (BOOL) isOpen {
+    return _leftContainerView.superview || _rightContainerView.superview;
 }
 
 #pragma mark - Containers
@@ -66,15 +86,19 @@
     [self layoutIfNeeded];
     [_leftContainerView updateSuperLeadingConstraint: 0];
 
+    [_leftDrawerController viewWillAppear: YES];
+
+    NSLog(@"_leftContainerView.bounds = %@", NSStringFromCGRect(_leftContainerView.bounds));
     [UIView animateWithDuration: 0.4
             delay: 0.0
-            usingSpringWithDamping: 0.9
-            initialSpringVelocity: 1.0
+            usingSpringWithDamping: 1.0
+            initialSpringVelocity: 2.0
             options: UIViewAnimationOptionCurveLinear
             animations: ^{
                 [self layoutIfNeeded];
             }
             completion: ^(BOOL finished) {
+                [_leftDrawerController viewDidAppear: YES];
                 [self _notifyDidOpenLeftController: _leftDrawerController];
 
                 if (completion) {
@@ -112,7 +136,7 @@
 
     [UIView animateWithDuration: 0.4
             delay: 0.0
-            usingSpringWithDamping: 0.8
+            usingSpringWithDamping: 1.0
             initialSpringVelocity: 2.0
             options: UIViewAnimationOptionCurveLinear
             animations: ^{
@@ -128,14 +152,25 @@
 
 }
 
+
+- (void) closeLeftContainer {
+    [self closeLeftContainer: nil];
+}
+
 - (void) closeLeftContainer: (void (^)()) completion {
 
+
+    //    UIView *snapshot = [_leftContainerView snapshotViewAfterScreenUpdates: YES];
+    //    snapshot.frame = _leftContainerView.bounds;
+    //    [_leftContainerView addSubview: snapshot];
+
+    [self layoutIfNeeded];
     [_leftContainerView updateSuperLeadingConstraint: -_leftContainerView.width];
     [UIView animateWithDuration: 0.4
             delay: 0.0
-            usingSpringWithDamping: 0.8
+            usingSpringWithDamping: 1.0
             initialSpringVelocity: 2.0
-            options: UIViewAnimationOptionCurveLinear
+            options: UIViewAnimationOptionCurveEaseOut
             animations: ^{
                 [self layoutIfNeeded];
             }
@@ -156,12 +191,16 @@
 }
 
 
+- (void) closeRightContainer {
+    [self closeRightContainer: nil];
+}
+
 - (void) closeRightContainer: (void (^)()) completion {
 
     [_rightContainerView updateSuperTrailingConstraint: _rightContainerView.width];
     [UIView animateWithDuration: 0.4
             delay: 0.0
-            usingSpringWithDamping: 0.8
+            usingSpringWithDamping: 1.0
             initialSpringVelocity: 2.0
             options: UIViewAnimationOptionCurveLinear
             animations: ^{

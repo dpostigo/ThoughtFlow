@@ -3,12 +3,14 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <NSObject+AutoDescription/NSObject+AutoDescription.h>
 #import "APIModel.h"
 #import "Model.h"
 #import "AFOAuth2Client.h"
 #import "UIAlertView+Blocks.h"
 #import "APIUser.h"
 #import "TFPhoto.h"
+#import "PhotoLibrary.h"
 
 
 NSString *const ThoughtFlowIdentifier = @"188.226.201.79";
@@ -16,13 +18,51 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 
 @implementation APIModel
 
-@synthesize currentUser;
-@synthesize authClient;
-
 - (id) init {
     self = [super init];
     if (self) {
         _model = [Model sharedModel];
+        _photoLibrary = [PhotoLibrary sharedLibrary];
+
+        NSURL *url = [NSURL URLWithString: @"http://188.226.201.79/api/v1"];
+        _authClient = [AFOAuth2Client clientWithBaseURL: url
+                clientID: @"2dc300c232a003156fddd1d9aecb38d9da9ad49a"
+                secret: @"66df225f66bdbe89d5f04825aea2efa9731edd5a"];
+
+        //        _authClient.responseSerializer = [AFHTTPResponseSerializer serializer];
+        //        _authClient.responseSerializer = [AFJSONResponseSerializer serializer];
+
+        [_authClient.reachabilityManager setReachabilityStatusChangeBlock: ^(AFNetworkReachabilityStatus status) {
+            switch (status) {
+
+                case AFNetworkReachabilityStatusUnknown : {
+                    NSLog(@"Unknown.");
+
+                }
+                    break;
+                case AFNetworkReachabilityStatusNotReachable : {
+                    NSLog(@"Not reachable.");
+                    if (DEBUG) {
+                        _usesDummyData = YES;
+                    }
+
+                }
+                    break;
+                case AFNetworkReachabilityStatusReachableViaWWAN : {
+                    NSLog(@"AFNetworkReachabilityStatusReachableViaWWAN");
+                }
+
+                    break;
+                case AFNetworkReachabilityStatusReachableViaWiFi : {
+                    NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
+                }
+                    break;
+            }
+        }];
+
+
+        //        [self.authClient.reachabilityManager startMonitoring];
+
     }
 
     return self;
@@ -42,14 +82,21 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 }
 
 - (BOOL) loggedIn {
+
     AFOAuthCredential *credential = [AFOAuthCredential retrieveCredentialWithIdentifier: ThoughtFlowIdentifier];
+
     if (credential) {
-
-        NSData *encodedObject = [[NSUserDefaults standardUserDefaults] objectForKey: @"currentUser"];
-        self.currentUser = [NSKeyedUnarchiver unarchiveObjectWithData: encodedObject];
-
+        if (credential.isExpired) {
+            [AFOAuthCredential deleteCredentialWithIdentifier: ThoughtFlowIdentifier];
+        } else {
+            NSData *encodedObject = [[NSUserDefaults standardUserDefaults] objectForKey: @"currentUser"];
+            if (encodedObject) {
+                _currentUser = [NSKeyedUnarchiver unarchiveObjectWithData: encodedObject];
+            }
+        }
     }
-    return credential != nil;
+
+    return _currentUser != nil;
 }
 
 #pragma mark Errors
@@ -123,9 +170,12 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
             parameters: nil
             success: ^(AFHTTPRequestOperation *task, id responseObject) {
                 success(YES);
+                DDLogVerbose(@"%s, responseObject = %@", __PRETTY_FUNCTION__, responseObject);
+
             }
             failure: ^(AFHTTPRequestOperation *task, NSError *error) {
                 success(NO);
+                DDLogVerbose(@"%s, error = %@", __PRETTY_FUNCTION__, error);
             }];
 }
 
@@ -165,39 +215,60 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 - (void) getImages: (NSString *) string
            success: (void (^)(NSArray *images)) success failure: (void (^)()) failure {
 
-    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
-    NSLog(@"string = %@", string);
-    [self.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", string]
-            parameters: @{
+    @try {
+        [self.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", string]
+                parameters: @{
 
-            }
-            success: ^(AFHTTPRequestOperation *task, id responseObject) {
-                NSArray *photos = [responseObject objectForKey: @"photos"];
-                NSMutableArray *ret = [[NSMutableArray alloc] init];
-                for (NSDictionary *photo in photos) {
-                    TFPhoto *tfPhoto = [[TFPhoto alloc] initWithTitle: [photo objectForKey: @"title"]
-                            description: [photo objectForKey: @"description"]
-                            URL: [NSURL URLWithString: [photo objectForKey: @"url"]]
-                            tagString: [photo objectForKey: @"tags"]];
+                }
+                success: ^(AFHTTPRequestOperation *task, id responseObject) {
+                    NSArray *photos = [responseObject objectForKey: @"photos"];
 
-                    [ret addObject: tfPhoto];
-                }
+                    DDLogVerbose(@"%s, [photos count] = %u", __PRETTY_FUNCTION__, [photos count]);
 
-                if (success) {
-                    success(ret);
+                    NSMutableArray *ret = [[NSMutableArray alloc] init];
+                    for (NSDictionary *photo in photos) {
+                        TFPhoto *tfPhoto = [[PhotoLibrary sharedLibrary] photoFromDictionary: photo];
+                        [ret addObject: tfPhoto];
+                    }
+
+                    if (success) {
+                        success(ret);
+                    }
                 }
-            }
-            failure: ^(AFHTTPRequestOperation *task, NSError *error) {
-                if (failure) {
-                    failure();
-                }
-            }];
+                failure: ^(AFHTTPRequestOperation *task, NSError *error) {
+                    if (failure) {
+                        failure();
+                    }
+                }];
+
+    } @catch (NSException *exception1) {
+
+    }
+
 }
 
 - (void) preloadImages: (NSArray *) images {
 
+    for (TFPhoto *photo in images) {
+        NSURLRequest *imageRequest = [[NSURLRequest alloc] initWithURL: photo.URL];
+
+        AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest: imageRequest];
+        requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
+        requestOperation.queuePriority = NSOperationQueuePriorityLow;
+        [requestOperation setCompletionBlockWithSuccess: ^(AFHTTPRequestOperation *operation, id responseObject) {
+            //            NSLog(@"Response: %@", responseObject);
+
+        } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+            //            NSLog(@"Image error: %@", error);
+        }];
+
+        [[NSOperationQueue mainQueue] addOperation: requestOperation];
+
+    }
+
+
+
     //
-    //    NSURLRequest *imageRequest = [[NSURLRequest alloc] initWithURL: photo.URL];
     //    [ret.imageView setImageWithURLRequest: imageRequest placeholderImage: nil
     //            success: ^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
     //                ret.imageView.alpha = 0;
@@ -218,14 +289,11 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 
 
 - (AFOAuth2Client *) authClient {
-    if (authClient == nil) {
+    if (_authClient == nil) {
 
-        NSURL *url = [NSURL URLWithString: @"http://188.226.201.79/api/v1"];
-        authClient = [AFOAuth2Client clientWithBaseURL: url
-                clientID: @"2dc300c232a003156fddd1d9aecb38d9da9ad49a"
-                secret: @"66df225f66bdbe89d5f04825aea2efa9731edd5a"];
     }
-    return authClient;
+    return _authClient;
 }
+
 
 @end

@@ -23,11 +23,40 @@
     UITextField *_currentTextField;
 }
 
+
+#pragma mark - View lifecycle
+
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+
+    if (_model.apiModel.loggedIn) {
+        [self submit: nil];
+    }
+}
+
 - (void) viewDidLoad {
     [super viewDidLoad];
     dismisses = NO;
 
     [self _setup];
+
+}
+
+
+#pragma mark - Setup
+
+- (void) _setup {
+    [self _setupView];
+    [self _setupTableView];
+    [self _setupTapRecognizer];
+}
+
+- (void) _setupView {
+    [self.view convertFonts];
+    self.view.backgroundColor = [UIColor clearColor];
+}
+
+- (void) _setupTableView {
     _table.delegate = self;
     _table.dataSource = self;
     _table.populateTextLabels = YES;
@@ -56,28 +85,21 @@
 
 }
 
-
-- (void) viewDidAppear: (BOOL) animated {
-    [super viewDidAppear: animated];
-
-    if (_model.apiModel.loggedIn) {
-        [self handleLogin: nil];
-    }
-}
-
 - (void) prepareDatasource {
     [_table.rows addObject: @{DPTableViewTextLabelName : @"Username or email", DPTableViewImageName : [UIImage imageNamed: @"user-icon"]}];
     [_table.rows addObject: @{DPTableViewTextLabelName : @"Password", DPTableViewImageName : [UIImage imageNamed: @"password-icon"]}];
 }
 
 
-#pragma mark IBActions
 
-- (IBAction) signInInstead: (id) sender {
+
+#pragma mark Actions
+
+- (IBAction) handleSignInButton: (id) sender {
     [self.navigationController popViewControllerAnimated: YES];
 }
 
-- (IBAction) handleLogin: (id) sender {
+- (IBAction) submit: (UIButton *) button {
 
     if (!USE_API) {
         [self loginDidSucceed];
@@ -100,37 +122,45 @@
                 tapBlock: nil];
     } else {
 
-        [_model.apiModel userExists: self.usernameField.text completion: ^(BOOL exists) {
-            if (exists) {
-                [_model.apiModel login: self.usernameField.text
-                        password: self.passwordField.text
-                        completion: ^{
-                            [self loginDidSucceed];
-                        }
-                        failure: ^{
-                            [UIAlertView showWithTitle: @"Login Error"
-                                    message: @"There was an error."
-                                    cancelButtonTitle: @"OK"
-                                    otherButtonTitles: @[]
-                                    tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                        //                            if (buttonIndex == [alertView cancelButtonIndex]) {
-                                        //                                NSLog(@"Cancelled");
-                                        //                            } else if ([[alertView buttonTitleAtIndex: buttonIndex] isEqualToString: @"Beer"]) {
-                                        //                                NSLog(@"Have a cold beer");
-                                        //                            } else if ([[alertView buttonTitleAtIndex: buttonIndex] isEqualToString: @"Wine"]) {
-                                        //                                NSLog(@"Have a glass of chardonnay");
-                                        //                            }
-                                    }];
-                        }];
-            } else {
-                [UIAlertView showWithTitle: @"User doesn't exist"
-                        message: @"No user exists with this username."
-                        cancelButtonTitle: @"OK"
-                        otherButtonTitles: @[]
-                        tapBlock: nil];
+        button.enabled = NO;
 
-            }
-        }];
+        [_model.apiModel userExists: self.usernameField.text
+                completion: ^(BOOL exists) {
+                    NSLog(@"completion.");
+
+                    button.enabled = YES;
+
+                    if (exists) {
+                        [_model.apiModel login: self.usernameField.text
+                                password: self.passwordField.text
+                                completion: ^{
+                                    [self loginDidSucceed];
+                                }
+                                failure: ^{
+                                    [UIAlertView showWithTitle: @"Login Error"
+                                            message: @"There was an error."
+                                            cancelButtonTitle: @"OK"
+                                            otherButtonTitles: @[]
+                                            tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                //                            if (buttonIndex == [alertView cancelButtonIndex]) {
+                                                //                                NSLog(@"Cancelled");
+                                                //                            } else if ([[alertView buttonTitleAtIndex: buttonIndex] isEqualToString: @"Beer"]) {
+                                                //                                NSLog(@"Have a cold beer");
+                                                //                            } else if ([[alertView buttonTitleAtIndex: buttonIndex] isEqualToString: @"Wine"]) {
+                                                //                                NSLog(@"Have a glass of chardonnay");
+                                                //                            }
+                                            }];
+
+                                }];
+                    } else {
+                        [UIAlertView showWithTitle: @"User doesn't exist"
+                                message: @"No user exists with this username."
+                                cancelButtonTitle: @"OK"
+                                otherButtonTitles: @[]
+                                tapBlock: nil];
+
+                    }
+                }];
 
     }
 
@@ -142,32 +172,26 @@
 
 }
 
-#pragma mark TLFreeformModalProtocol
-- (CGSize) freeformSizeForViewController {
-    return CGSizeMake(300, 380);
-}
-
-
-#pragma mark UITableViewDelegate
-
-
-#pragma mark UITableViewDatasource
+#pragma mark - Delegates
+#pragma mark - UITableViewDelegate
 
 - (NSInteger) tableView: (UITableView *) tableView numberOfRowsInSection: (NSInteger) section {
-    return [_table numOfRowsInSection: section];
+    return [_table numberOfRowsInSection: section];
 }
 
 - (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath {
     UITableViewCell *ret = [tableView dequeueReusableCellWithIdentifier: @"TableCell"];
 
 
-    NSDictionary *dictionary = [_table dataForIndexPath: indexPath];
+    NSDictionary *dictionary = [_table rowDataForIndexPath: indexPath];
     if ([ret isKindOfClass: [FieldTableViewCell class]]) {
         FieldTableViewCell *cell = (FieldTableViewCell *) ret;
         cell.textField.delegate = self;
         cell.textField.placeholder = [_table textLabelForIndexPath: indexPath];
         cell.imageView.image = [_table imageForIndexPath: indexPath];
         cell.textField.rightView = nil;
+        cell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        cell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 
         if ([[_table textLabelForIndexPath: indexPath] isEqualToString: @"Password"]) {
             cell.textField.secureTextEntry = YES;
@@ -191,7 +215,6 @@
 }
 
 - (void) textFieldDidBeginEditing: (UITextField *) textField {
-
     _currentTextField = textField;
     //    [self.view adjustViewForKeyboard: 20];
 
@@ -204,6 +227,7 @@
     if (nextTextField) {
         [nextTextField becomeFirstResponder];
     } else {
+        [self submit: nil];
         //        [self.view unadjustViewForKeyboard: 20];
     }
 
@@ -234,13 +258,6 @@
 
 #pragma mark - Private
 
-- (void) _setup {
-
-    [self.view convertFonts];
-    self.view.backgroundColor = [UIColor clearColor];
-
-    [self _setupTapRecognizer];
-}
 
 - (void) _setupTapRecognizer {
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(handleTap:)];

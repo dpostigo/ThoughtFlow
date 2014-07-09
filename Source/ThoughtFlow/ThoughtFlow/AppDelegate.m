@@ -14,7 +14,15 @@
 #import "UIColor+TFApp.h"
 #import "DDTTYLogger.h"
 #import "DDASLLogger.h"
+#import "APIModel.h"
+#import "AFNetworkActivityLogger.h"
 #import <Crashlytics/Crashlytics.h>
+
+
+@interface AppDelegate ()
+
+@property(nonatomic, strong) APIModel *apiModel;
+@end
 
 @implementation AppDelegate {
     Model *_model;
@@ -22,9 +30,11 @@
 
 - (BOOL) application: (UIApplication *) application didFinishLaunchingWithOptions: (NSDictionary *) launchOptions {
 
-    [self _setup];
-    [self testDestore];
+    _apiModel = [APIModel sharedModel];
 
+    [self _setup];
+    [self _testAPI];
+    //    [self testDestore];
     //    [self _setupSampleProject];
     //    [self preloadKeyboard];
 
@@ -37,17 +47,30 @@
 }
 
 
+- (void) _testAPI {
+
+    [_apiModel userExists: @"alex1" completion: ^(BOOL exists) {
+        NSLog(@"%s", __PRETTY_FUNCTION__);
+    }];
+}
+
 - (void) _setup {
-    [self _setupLumberjack];
+    //    [self _setupAppearance];
+    [self _setupLogging];
 }
 
 
-- (void) _setupLumberjack {
+- (void) _setupLogging {
     [DDLog addLogger: [DDASLLogger sharedInstance]];
     [DDLog addLogger: [DDTTYLogger sharedInstance]];
 
     [[DDTTYLogger sharedInstance] setColorsEnabled: YES];
     [[DDTTYLogger sharedInstance] setForegroundColor: [UIColor colorWithRed: (255 / 255.0) green: (58 / 255.0) blue: (159 / 255.0) alpha: 1.0] backgroundColor: nil forFlag: LOG_FLAG_VERBOSE];
+
+    //    [[AFNetworkActivityLogger sharedLogger] startLogging];
+}
+
+- (void) _setupAppearance {
 
 }
 
@@ -85,6 +108,8 @@
         for (TFNode *node in nodes) {
             NSLog(@"[node autoDescription] = %@", [node autoDescription]);
         }
+
+        NSLog(@"project.pinnedImages = %@", project.pinnedImages);
     }
 
 }

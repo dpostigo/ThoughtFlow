@@ -24,4 +24,5 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 static const int ddLogLevel = LOG_LEVEL_ERROR;
 #endif
 
+#define MAS_SHORTHAND
 #endif

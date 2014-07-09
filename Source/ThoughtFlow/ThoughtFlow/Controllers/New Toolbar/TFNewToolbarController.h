@@ -35,4 +35,5 @@ typedef NS_ENUM(NSInteger, TFNewToolbarButtonType) {
 @property(weak) IBOutlet UIView *buttonsView;
 @property(nonatomic, assign) id <TFNewToolbarControllerDelegate> delegate;
 @property(nonatomic, strong) NSArray *buttons;
+- (UIButton *) buttonForType: (TFNewToolbarButtonType) type;
 @end

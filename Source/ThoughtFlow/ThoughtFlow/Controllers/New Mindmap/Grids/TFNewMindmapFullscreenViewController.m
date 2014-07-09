@@ -3,46 +3,134 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <DPKit-Utils/UIViewController+DPKit.h>
 #import "TFNewMindmapFullscreenViewController.h"
+#import "UIViewController+TFControllers.h"
 #import "TFImageGridViewCell.h"
-#import "TFImageDrawerViewController.h"
-#import "UIViewController+TFContentNavigationController.h"
-#import "TFContentViewNavigationController.h"
+#import "Project.h"
 #import "TFPhoto.h"
+#import "TFImageDrawerViewController.h"
 
 
 @implementation TFNewMindmapFullscreenViewController
 
-- (void) imageGridViewController: (TFImageGridViewController *) gridViewController didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
+@synthesize selectedIndex;
 
-    if (button == cell.topLeftButton) {
-        [self.navigationController popViewControllerAnimated: YES];
+- (instancetype) initWithProject: (Project *) project images: (NSArray *) images {
+    self = [super init];
+    if (self) {
+        _project = project;
+        _images = images;
 
-    } else if (button == cell.topRightButton) {
+        [self _setupControllers];
+    }
 
-        TFPhoto *image = [gridViewController.images objectAtIndex: indexPath.item];
-        self.contentNavigationController.rightDrawerController = [[TFImageDrawerViewController alloc] initWithImage: image];
-        [self.contentNavigationController openRightContainer];
+    return self;
+}
 
-    } else if (button == cell.bottomRightButton) {
+
+
+#pragma mark - Public
+
+- (void) setImages: (NSArray *) images {
+    _images = images;
+    _imagesController.images = images;
+
+}
+
+
+
+#pragma mark - Setup
+- (void) _setupControllers {
+    _imagesController = [[TFImageGridViewController alloc] initWithImages: _images];
+    _imagesController.delegate = self;
+    _imagesController.images = _images;
+    _imagesController.collection.pagingEnabled = YES;
+    [self embedFullscreenController: _imagesController];
+
+    _buttonsController = (TFMindmapButtonsViewController *) self.mindmapButtonsController;
+    _buttonsController.delegate = self;
+    [self embedFullscreenController: _buttonsController];
+
+    //    [self _updateButtons];
+
+}
+
+
+- (void) _updateButtonsForImage: (TFPhoto *) image {
+    if ([_project.pinnedImages containsObject: image]) {
+        _buttonsController.pinButton.alpha = 0.5;
+    } else {
+        _buttonsController.pinButton.alpha = 1;
 
     }
+
+}
+
+#pragma mark - TFImageGridViewControllerDelegate
+
+- (void) imageGridViewController: (TFImageGridViewController *) controller dequeuedCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
+    cell.overlayView.alpha = 1;
+}
+
+- (void) imageGridViewController: (TFImageGridViewController *) controller didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
+    return;
 }
 
 
-- (void) imageGridViewController: (TFImageGridViewController *) controller didSelectImage: (TFPhoto *) image atIndexPath: (NSIndexPath *) indexPath {
+- (void) imageGridViewController: (TFImageGridViewController *) gridController didSelectImage: (TFPhoto *) image atIndexPath: (NSIndexPath *) indexPath {
+    //    TFMindmapFullscreenViewController *controller = [[TFMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
+    //    controller.selectedImage = image;
+    //    [self.navigationController pushViewController: controller animated: YES];
 
 }
+
 
 - (void) imageGridViewController: (TFImageGridViewController *) controller didScrollToImage: (TFPhoto *) image {
-    self.selectedImage = image;
+    [self _updateButtonsForImage: image];
+
 }
 
-
-#pragma mark - UICollectionViewLayout
 
 - (CGSize) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout sizeForItemAtIndexPath: (NSIndexPath *) indexPath {
-    CGSize result;
     return self.view.bounds.size;
 }
+
+
+
+
+#pragma mark - TFMindmapButtonsViewControllerDelegate
+
+- (void) buttonsController: (TFMindmapButtonsViewController *) buttonsViewController tappedButtonWithType: (TFMindmapButtonType) type {
+
+    switch (type) {
+
+        case TFMindmapButtonTypeGrid : {
+            //                        TFMindmapFullscreenViewController *controller = [[TFMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
+            //                        [_contentController toggleViewController: controller animated: YES];
+        }
+            break;
+
+        case TFMindmapButtonTypeInfo : {
+            //                        self.contentNavigationController.rightDrawerController = [[TFImageDrawerViewController alloc] initWithImage: self.currentImageController.selectedImage];
+            //                        [self.contentNavigationController openRightContainer];
+        }
+            break;
+
+        case TFMindmapButtonTypePin : {
+            //            if ([self.currentImageController isKindOfClass: [TFMindmapFullscreenViewController class]]) {
+            //                TFPhoto *image = self.currentImageController.selectedImage;
+            //                [_project.pinnedImages addObject: image];
+            //                [self.currentImageController.imagesController reloadImage: image];
+            //            }
+
+        }
+            break;
+
+        default :
+            break;
+    }
+
+}
+
 @end

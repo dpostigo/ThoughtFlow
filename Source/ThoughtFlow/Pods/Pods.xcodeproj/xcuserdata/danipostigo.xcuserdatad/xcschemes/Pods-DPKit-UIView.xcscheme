@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "50AFE0275C93415FA3DF768A"
+               BlueprintIdentifier = "BC49614ED6BE47DF8A43249D"
                BuildableName = "libPods-DPKit-UIView.a"
                BlueprintName = "Pods-DPKit-UIView"
                ReferencedContainer = "container:Pods.xcodeproj">

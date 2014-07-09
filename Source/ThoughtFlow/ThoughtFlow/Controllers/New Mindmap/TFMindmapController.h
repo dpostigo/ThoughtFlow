@@ -5,9 +5,9 @@
 
 #import <Foundation/Foundation.h>
 #import "TFNodesViewController.h"
-#import "TFEditNodeController.h"
 #import "TFMindmapButtonsViewController.h"
 #import "TFMindmapGridViewController.h"
+#import "TFNewEditNodeController.h"
 
 
 @class Project;
@@ -16,17 +16,28 @@
 @class TFNodesViewController;
 @class MindmapLinesController;
 @class TFNewMindmapBackgroundViewController;
+@class TFContentView;
+@class TFNodeScrollView;
 
-@interface TFMindmapController : TFViewController <TFNodesViewDelegate,
-        TFEditNodeControllerDelegate,
-        TFMindmapButtonsViewControllerDelegate,
-        TFMindmapGridViewControllerDelegate> {
+
+typedef NS_ENUM(NSInteger, TFMindmapControllerType) {
+    TFMindmapControllerTypeExpanded,
+    TFMindmapControllerTypeMinimized
+};
+
+@interface TFMindmapController : TFViewController <TFNodesViewControllerDelegate,
+        TFMindmapGridViewControllerDelegate,
+        TFNewEditNodeControllerDelegate> {
+    TFNodeScrollView *_scrollView;
+    TFNodesViewController *_scalingNodesController;
 }
 
+@property(nonatomic) TFMindmapControllerType mindmapType;
 @property(nonatomic, strong) Project *project;
 @property(nonatomic, strong) TFNode *selectedNode;
-@property(nonatomic, strong) TFNodesViewController *nodesController;
-@property(nonatomic, strong) MindmapLinesController *linesController;
-@property(nonatomic, strong) MindmapBackgroundController *backgroundController;
-@property(nonatomic, strong) TFNewMindmapBackgroundViewController *bgController;
+
+@property(nonatomic, strong) TFContentView *contentView;
+@property(nonatomic, strong) TFNodesViewController *scalingNodesController;
+- (instancetype) initWithProject: (Project *) project;
+
 @end

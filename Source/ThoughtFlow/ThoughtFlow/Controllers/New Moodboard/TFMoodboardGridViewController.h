@@ -17,6 +17,7 @@
 }
 
 @property(nonatomic, strong) Project *project;
+@property(nonatomic, strong) TFPhoto *currentImage;
 @property(nonatomic, strong) TFEmptyViewController *emptyController;
 @property(nonatomic, strong) TFImageGridViewController *imagesController;
 - (instancetype) initWithProject: (Project *) project;

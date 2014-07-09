@@ -3,9 +3,17 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <AutoCoding/AutoCoding.h>
 #import "Project.h"
 #import "TFNode.h"
+#import "PhotoLibrary.h"
+#import "TFPhoto.h"
 
+
+@interface Project ()
+
+@property(nonatomic, strong) NSArray *pins;
+@end
 
 @implementation Project
 
@@ -17,6 +25,11 @@
         _word = aWord;
 
         [self.mutableChildren addObject: [[TFNode alloc] initWithTitle: _word]];
+
+        _pins = [[PhotoLibrary sharedLibrary] pinsForProject: self];
+
+        [self _postSetup];
+
     }
 
     return self;
@@ -40,7 +53,7 @@
 }
 
 //- (void) removeNode: (id) node {
-//    [self removeItem: node];
+//    [self removeChild: node];
 //}
 
 
@@ -70,20 +83,81 @@
 
 - (NSArray *) flattenedChildren {
     NSMutableArray *ret = [[NSMutableArray alloc] init];
-    [ret addObject: self.firstNode];
     [ret addObjectsFromArray: [self.firstNode allChildren]];
+    [ret addObject: self.firstNode];
     return ret;
 }
 
 
+- (void) setWithCoder: (NSCoder *) aDecoder {
+    [super setWithCoder: aDecoder];
 
+    [self _postSetup];
+
+}
+
+
+
+
+#pragma mark - Pinned images
+
+- (void) addPin: (TFPhoto *) image {
+    if (![self.pinnedImages containsObject: image]) {
+        [self.pinnedImages addObject: image];
+    }
+}
+
+- (void) removePin: (TFPhoto *) image {
+    if ([self.pinnedImages containsObject: image]) {
+        [self.pinnedImages removeObject: image];
+    }
+}
 #pragma mark - Private
 
+
 - (NSMutableArray *) pinnedImages {
-    if (_pinnedImages == nil) {
-        _pinnedImages = [[NSMutableArray alloc] init];
+    return [self mutableArrayValueForKey: @"pins"];
+}
+
+
+//- (NSArray *) pins {
+//    if (_pins == nil) {
+//        _pins = [[PhotoLibrary sharedLibrary] pinsForProject: self];
+//    }
+//    return _pins;
+//}
+
+- (void) observeValueForKeyPath: (NSString *) keyPath ofObject: (id) object change: (NSDictionary *) change context: (void *) context {
+    if (object == self && [keyPath isEqualToString: @"pins"]) {
+
+        //        NSLog(@"%s", __PRETTY_FUNCTION__);
+        //        NSLog(@"[_pins count] = %u", [_pins count]);
+        //        [[PhotoLibrary sharedLibrary] storePins: self.pinnedImages forProject: self];
+        //        NSArray *array = [[PhotoLibrary sharedLibrary] pinsForProject: self];
+        //        NSLog(@"[array count] = %u", [array count]);
+        //        _pins = array;
+
+        NSLog(@"[_pins count] = %u", [_pins count]);
+        NSLog(@"[self.pinnedImages count] = %u", [self.pinnedImages count]);
+        NSLog(@"self.pinnedImages = %@", self.pinnedImages);
+
+        _pins = [[PhotoLibrary sharedLibrary] storePins: self.pinnedImages forProject: self];
+        NSLog(@"[_pins count] = %u", [_pins count]);
+
+    } else {
+        [super observeValueForKeyPath: keyPath ofObject: object change: change context: context];
     }
-    return _pinnedImages;
+}
+
+
+
+#pragma mark - Setup
+
+- (void) _postSetup {
+
+    _pins = [[PhotoLibrary sharedLibrary] pinsForProject: self];
+    [self addObserver: self forKeyPath: @"pins" options: 0 context: NULL];
+
 }
 
 @end

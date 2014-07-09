@@ -5,50 +5,154 @@
 
 #import <DPKit-Utils/UIView+DPKit.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
-#import <DPKit-Utils/UIView+DPKitDebug.h>
+#import <NSObject+AutoDescription/NSObject+AutoDescription.h>
 #import "TFImageGridViewController.h"
-#import "TFMoodboardCollectionViewCell.h"
 #import "TFImageGridViewCell.h"
 #import "TFPhoto.h"
-#import "TFImageGridViewCell.h"
 
 
 @implementation TFImageGridViewController
 
-- (id) init {
-    TFImageGridViewController *ret = [[UIStoryboard storyboardWithName: @"Moodboard" bundle: nil] instantiateViewControllerWithIdentifier: @"TFImageGridViewController"];
-    ret.images = [NSArray array];
-    return ret;
+- (instancetype) initWithImages: (NSArray *) images {
+    self = [super init];
+    if (self) {
+        _images = images;
+
+    }
+
+    return self;
 }
 
+
+- (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
+    self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
+    if (self) {
+        _images = [NSArray array];
+        [self _setupView];
+        [self _setupCollection];
+    }
+
+    return self;
+}
+
+
+#pragma mark - View lifecycle
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    [self _setupView];
-    [self _setupCollection];
+    self.images = _images;
+
+    //    if (_selectedImage) {
+    //
+    //        NSInteger index = [_images indexOfObject: _selectedImage];
+    //        [_collection scrollToItemAtIndexPath: [NSIndexPath indexPathForItem: index inSection: 0] atScrollPosition: UICollectionViewScrollPositionLeft animated: NO];
+    //        //            [_collection.collectionViewLayout invalidateLayout];
+    //    }
 }
 
 
+- (void) viewWillAppear: (BOOL) animated {
+    [super viewWillAppear: animated];
+
+    if (_selectedImage) {
+        //        [self scrollToImage: _selectedImage animated: YES];
+        //        NSInteger index = [_images indexOfObject: _selectedImage];
+        //        if (index != -1) {
+
+        //            [_collection scrollToItemAtIndexPath: [NSIndexPath indexPathForItem: index inSection: 0]
+        //                    atScrollPosition: UICollectionViewScrollPositionNone
+        //                    animated: NO];
+        //            [_collection.collectionViewLayout invalidateLayout];
+        //        }
+    }
+}
+
+- (void) viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+
+    if (_selectedImage) {
+        [self scrollToImage: _selectedImage animated: YES];
+    }
+
+}
+
+
+
+
+
+
+#pragma mark - Public
+
+
+- (void) reload {
+    [_collection reloadData];
+}
+
+- (void) reloadImage: (TFPhoto *) image {
+    NSUInteger index = [self.images indexOfObject: image];
+    [self reloadImageAtIndexPath: [NSIndexPath indexPathForItem: index inSection: 0]];
+}
+
+- (void) reloadImageAtIndexPath: (NSIndexPath *) indexPath {
+    [_collection reloadItemsAtIndexPaths: @[indexPath]];
+}
+
+- (void) reloadVisibleItems {
+    [_collection reloadItemsAtIndexPaths: [_collection indexPathsForVisibleItems]];
+
+}
 
 #pragma mark - Reload
 
 - (void) setImages: (NSArray *) images {
     _images = images;
-    [_collection reloadData];
+    if ([_images count] > 0) {
+        _selectedImage = _images[0];
+    }
+    if (self.isViewLoaded) {
+        [_collection reloadData];
+    }
 }
 
 
 - (void) setSelectedImage: (TFPhoto *) selectedImage {
+    _selectedImage = selectedImage;
+}
 
-    if ([_images containsObject: selectedImage]) {
 
-        _selectedImage = selectedImage;
-        NSUInteger index = [_images indexOfObject: selectedImage];
-        [_collection scrollToItemAtIndexPath: [NSIndexPath indexPathForItem: index inSection: 0] atScrollPosition: UICollectionViewScrollPositionCenteredHorizontally animated: YES];
+
+#pragma mark - Scroll
+
+
+- (void) scrollToImage: (TFPhoto *) image {
+    [self scrollToImage: image animated: NO];
+}
+
+
+- (void) scrollToImage: (TFPhoto *) image animated: (BOOL) flag {
+
+    if (_images) {
+
+        NSUInteger index = [self.images indexOfObject: image];
+
+        NSLog(@"index = %u", index);
+
+        if (index != -1) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem: index inSection: 0];
+            @try {
+
+                [_collection scrollToItemAtIndexPath: indexPath atScrollPosition: UICollectionViewScrollPositionNone animated: NO];
+                [self _notifyDidScrollToImage: image];
+
+            }
+            @catch (NSException *exception) {
+
+            }
+
+        }
     }
 
 }
-
 
 
 #pragma mark - Setup
@@ -71,8 +175,8 @@
     [self.view addSubview: _collection];
 
     _collection.translatesAutoresizingMaskIntoConstraints = NO;
-    _collection.pagingEnabled = YES;
     _collection.backgroundColor = [UIColor clearColor];
+    _collection.opaque = NO;
 
     [self.view addConstraints: @[
             [NSLayoutConstraint constraintWithItem: _collection attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeLeading multiplier: 1.0 constant: 0.0],
@@ -86,7 +190,7 @@
     _collection.dataSource = self;
     _collection.allowsMultipleSelection = YES;
 
-    [_collection reloadData];
+    //    [_collection reloadData];
 
 }
 
@@ -105,20 +209,48 @@
     //    cell.layer.borderColor = [UIColor tfToolbarBorderColor].CGColor;
 
     cell.infoButton.tag = indexPath.item;
+    cell.backgroundColor = [UIColor clearColor];
+    cell.opaque = NO;
 
     TFPhoto *photo = [self.images objectAtIndex: indexPath.item];
     cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [cell.imageView setImageWithURL: photo.URL];
+
+    BOOL oldCaching = NO;
+
+    if (oldCaching) {
+        [cell.imageView setImageWithURL: photo.URL];
+
+    } else {
+        NSURLRequest *imageRequest = [[NSURLRequest alloc] initWithURL: photo.URL];
+        UIImage *cachedImage = [[[UIImageView class] sharedImageCache] cachedImageForRequest: imageRequest];
+
+        if (cachedImage) {
+            cell.imageView.image = cachedImage;
+            [cell rasterize];
+
+        } else {
+
+            cell.alpha = 0;
+            __weak TFImageGridViewCell *weakCell = cell;
+            [cell.imageView setImageWithURLRequest: imageRequest
+                    placeholderImage: nil
+                    success: ^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+
+                        __strong TFImageGridViewCell *strongCell = weakCell;
+                        if (strongCell) {
+                            strongCell.imageView.image = image;
+                            [UIView animateWithDuration: 0.4 animations: ^{
+                                strongCell.alpha = 1;
+                            }];
+                        }
+
+                    }
+                    failure: nil];
+        }
+
+    }
 
     [self _notifyDequeuedCell: cell atIndexPath: indexPath];
-
-    //        Project *project = [self projectForIndexPath: indexPath];
-    //        if (project) {
-    //            cell.project = project;
-    //        }
-    //        cell.button.tag = indexPath.item;
-    //        [cell.button addTarget: self action: @selector(handleTrashButton:)
-    //              forControlEvents: UIControlEventTouchUpInside];
 
     return cell;
 }
@@ -186,7 +318,7 @@
     if (_delegate && [_delegate respondsToSelector: @selector(collectionView:layout:insetForSectionAtIndex:)]) {
         return [_delegate collectionView: collectionView layout: collectionViewLayout insetForSectionAtIndex: section];
     }
-    return UIEdgeInsetsMake(0, 0, 0, 0);
+    return UIEdgeInsetsMake(-22, 0, 0, 0);
 }
 
 

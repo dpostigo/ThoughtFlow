@@ -5,11 +5,16 @@
 
 #import <Foundation/Foundation.h>
 #import "TFMoodboardGridViewController.h"
+#import "TFCornerButtonsViewController.h"
 
 
-@interface TFMoodboardFullscreenViewController : TFMoodboardGridViewController <TFImageGridViewControllerDelegate> {
+@class TFCornerButtonsViewController;
+
+
+@interface TFMoodboardFullscreenViewController : TFMoodboardGridViewController <TFImageGridViewControllerDelegate, TFCornerButtonsViewControllerDelegate> {
 
 }
 
 @property(nonatomic, strong) TFPhoto *selectedImage;
+@property(nonatomic, strong) TFCornerButtonsViewController *buttonsController;
 @end

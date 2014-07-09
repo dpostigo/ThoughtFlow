@@ -17,14 +17,13 @@
 #import "MindmapController+LineDrawing.h"
 #import "MindmapController+UIPinch.h"
 #import "MindmapBackgroundController.h"
-#import "TFRightDrawerAnimator.h"
 #import "UIViewController+TFControllers.h"
 #import "TFDrawerController.h"
 #import "TFMindmapButtonsViewController.h"
 
+
 @implementation MindmapController {
     TFNodeViewState lastNodeState;
-    TFRightDrawerAnimator *rightDrawerAnimator;
 }
 
 @synthesize creationNode;
@@ -166,6 +165,7 @@
 #pragma mark Pinch
 
 - (void) handlePinch: (UIPinchGestureRecognizer *) gesture {
+
     TFNodeView *node = self.selectedNode;
     if (node == nil)
         return;
@@ -177,8 +177,11 @@
 
     switch (gesture.state) {
 
-        case UIGestureRecognizerStateBegan :
+        case UIGestureRecognizerStateBegan : {
+            NSLog(@"Pinch began.");
             [self startPinchWithScale: newScale];
+
+        }
             break;
 
         case UIGestureRecognizerStateChanged : {
@@ -193,6 +196,12 @@
         case UIGestureRecognizerStateCancelled :
             [self endPinchWithScale: newScale];
             break;
+
+        case UIGestureRecognizerStatePossible : {
+
+            NSLog(@"Pinch possible.");
+        }
+            break;
     }
 }
 
@@ -200,16 +209,47 @@
 
 - (void) handleDoublePan: (UIPanGestureRecognizer *) gesture {
 
+    switch (gesture.state) {
+
+        case UIGestureRecognizerStateBegan : {
+            NSLog(@"Pan began.");
+
+        }
+            break;
+
+        case UIGestureRecognizerStateChanged : {
+        }
+            break;
+
+        case UIGestureRecognizerStateEnded :
+        case UIGestureRecognizerStateFailed :
+        case UIGestureRecognizerStateCancelled : {
+
+        }
+            break;
+
+        case UIGestureRecognizerStatePossible : {
+            NSLog(@"Pan possible.");
+
+        }
+            break;
+    }
+
+    return;
+
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (gesture.numberOfTouches > 1) {
         CGPoint translation = [gesture translationInView: gesture.view.superview];
 
         CGPoint startPoint;
 
         switch (gesture.state) {
-            case UIGestureRecognizerStateBegan :
-                nodeContainerView.startingPoint = nodeContainerView.frame.origin;
+            case UIGestureRecognizerStateBegan : {
+                //                nodeContainerView.startingPoint = nodeContainerView.frame.origin;
+
+            }
                 break;
-            case UIGestureRecognizerStateChanged :
+            case UIGestureRecognizerStateChanged : {
                 startPoint = nodeContainerView.startingPoint;
 
                 CGPoint newPoint = CGPointMake(startPoint.x + translation.x, startPoint.y + translation.y);
@@ -224,6 +264,8 @@
                 if (newPoint.y < 0) {
                     [nodeContainerView updateSuperHeightConstraint: -newPoint.y];
                 }
+
+            }
 
                 break;
 
@@ -301,7 +343,7 @@
 
     NSUInteger index = [self.nodeViews indexOfObject: node];
 
-    [_model.selectedProject removeItem: node.node];
+    [_model.selectedProject removeChild: node.node];
     [[lineView.layer.sublayers objectAtIndex: index] removeFromSuperlayer];
     [self.nodeViews removeObject: node];
 

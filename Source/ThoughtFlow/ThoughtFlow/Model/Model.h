@@ -5,12 +5,14 @@
 
 #import <Foundation/Foundation.h>
 
+
 @class Project;
 @class ProjectLibrary;
 @class TFNode;
 @class AFHTTPSessionManager;
 @class APIModel;
 @class TFPhoto;
+@class TFLibrary;
 
 NSString *const TFProjectName;
 NSString *const TFSelectedPhotoDidChange;
@@ -20,7 +22,6 @@ NSString *const TFSelectedPhotoDidChange;
     BOOL loggedIn;
     APIModel *apiModel;
     NSOperationQueue *queue;
-    ProjectLibrary *projectLibrary;
 
     TFPhoto *selectedPhoto;
     Project *selectedProject;
@@ -33,7 +34,8 @@ NSString *const TFSelectedPhotoDidChange;
 @property(nonatomic, strong) NSDictionary *selectedProjectDictionary;
 @property(nonatomic, strong) Project *selectedProject;
 @property(nonatomic, strong) TFNode *selectedNode;
-@property(nonatomic, strong) ProjectLibrary *projectLibrary;
+@property(nonatomic, readonly) ProjectLibrary *projectLibrary;
+@property(nonatomic, strong) TFLibrary *tfLibrary;
 @property(nonatomic) BOOL loggedIn;
 @property(nonatomic, strong) APIModel *apiModel;
 @property(nonatomic, strong) TFPhoto *selectedPhoto;

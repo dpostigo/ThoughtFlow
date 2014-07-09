@@ -71,7 +71,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="handleLogin:" destination="7xe-h4-Oom" eventType="touchUpInside" id="0qj-XZ-4fO"/>
+                                    <action selector="submit:" destination="7xe-h4-Oom" eventType="touchUpInside" id="0qj-XZ-4fO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpA-Vg-zkD">
@@ -358,7 +358,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="signInInstead:" destination="SZO-IQ-IG8" eventType="touchUpInside" id="T3W-gK-eJI"/>
+                                    <action selector="handleSignInButton:" destination="SZO-IQ-IG8" eventType="touchUpInside" id="T3W-gK-eJI"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REGISTER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJB-X9-c9c" customClass="TFKernedGothamLightLabel">
@@ -502,7 +502,7 @@ bmQgd2Ugd2lsbCBzZW5kIHlvdSADYSBuZXcgb25lLg
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="signInInstead:" destination="wAP-BJ-ZJy" eventType="touchUpInside" id="IOV-bV-FRg"/>
+                                    <action selector="handleSignInButton:" destination="wAP-BJ-ZJy" eventType="touchUpInside" id="IOV-bV-FRg"/>
                                 </connections>
                             </button>
                         </subviews>

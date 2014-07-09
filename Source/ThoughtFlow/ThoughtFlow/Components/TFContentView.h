@@ -26,8 +26,15 @@
 @property(nonatomic, strong) UIView *leftContainerView;
 @property(nonatomic, strong) UIView *rightContainerView;
 @property(nonatomic, assign) id <TFContentViewDelegate> delegate;
+- (BOOL) leftContainerIsOpen;
+- (BOOL) rightContainerIsOpen;
+- (BOOL) isOpen;
 - (void) openLeftContainer;
 - (void) openLeftContainer: (void (^)()) completion;
 - (void) openRightContainer;
 - (void) openRightContainer: (void (^)()) completion;
+- (void) closeLeftContainer;
+- (void) closeLeftContainer: (void (^)()) completion;
+- (void) closeRightContainer;
+- (void) closeRightContainer: (void (^)()) completion;
 @end

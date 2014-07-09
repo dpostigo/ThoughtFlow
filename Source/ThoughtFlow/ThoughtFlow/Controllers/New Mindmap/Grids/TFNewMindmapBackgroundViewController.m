@@ -10,14 +10,22 @@
 #import "TFNode.h"
 #import "UIViewController+TFControllers.h"
 #import "MindmapBackgroundController.h"
-#import "UIViewController+TFContentNavigationController.h"
 #import "TFContentViewNavigationController.h"
 #import "TFMindmapGridViewController.h"
 #import "TFNewMindmapGridViewController.h"
-#import "TFNewMindmapFullscreenViewController.h"
+#import "TFMindmapFullscreenViewController.h"
 #import "TFImageDrawerViewController.h"
 #import "APIModel.h"
+#import "TFPhoto.h"
+#import "TFNewMindmapFullscreenViewController.h"
 
+
+@interface TFNewMindmapBackgroundViewController ()
+
+@property(nonatomic, strong) TFContentViewNavigationController *contentController;
+@property(nonatomic, strong) TFMindmapButtonsViewController *buttonsController;
+@property(nonatomic, strong) TFNewMindmapGridViewController *gridController;
+@end
 
 @implementation TFNewMindmapBackgroundViewController
 
@@ -34,8 +42,8 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-
     [self _setupControllers];
+    self.node = _node;
 }
 
 
@@ -44,32 +52,57 @@
 
 - (void) setNode: (TFNode *) node {
     _node = node;
-    if (_node && self.isViewLoaded) {
-        self.imageString = _node.title;
-    }
+    self.imageString = _node.title;
 }
 
 - (void) setImageString: (NSString *) imageString {
     _imageString = [imageString mutableCopy];
-    [[APIModel sharedModel] getImages: _imageString success: ^(NSArray *imageArray) {
-        self.images = imageArray;
-        //        [self.collection scrollToItemAtIndexPath: [NSIndexPath indexPathForItem: 0 inSection: 0] atScrollPosition: UICollectionViewScrollPositionNone animated: NO];
-        //            [UIView animateWithDuration: 0.4 animations: ^{
-        //                self.collection.alpha = 1;
-        //            }];
 
-    } failure: nil];
+    [[APIModel sharedModel] getImages: _imageString
+            success: ^(NSArray *imageArray) {
+                self.images = imageArray;
+            }
+            failure: nil];
 }
 
 
 - (void) setImages: (NSArray *) images {
     _images = images;
-    self.currentImageController.images = _images;
+
+    if ([_images count] > 0) {
+        _selectedImage = _images[0];
+    }
+    if (self.isViewLoaded) {
+        _gridController.images = _images;
+        self.currentImageController.images = _images;
+
+        if (_fullscreenController2) {
+            _fullscreenController2.images = _images;
+        }
+    }
+
+    [[APIModel sharedModel] preloadImages: _images];
+}
+
+
+- (void) setMindmapType: (TFMindmapControllerType) mindmapType {
+    _mindmapType = mindmapType;
+    _gridController.mindmapType = _mindmapType;
 }
 
 
 
+#pragma mark - Delegates
 
+#pragma mark - TFImageDrawerViewControllerDelegate
+
+- (void) imageDrawerViewController: (TFImageDrawerViewController *) imagesController removedPin: (TFPhoto *) image {
+    [self _refreshButtonsController];
+}
+
+- (void) imageDrawerViewController: (TFImageDrawerViewController *) imagesController addedPin: (TFPhoto *) image {
+    [self _refreshButtonsController];
+}
 
 
 #pragma mark - TFMindmapButtonsViewControllerDelegate
@@ -79,18 +112,45 @@
     switch (type) {
 
         case TFMindmapButtonTypeGrid : {
-            TFNewMindmapFullscreenViewController *controller = [[TFNewMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
+            TFMindmapFullscreenViewController *controller = [[TFMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
             [_contentController toggleViewController: controller animated: YES];
         }
             break;
 
         case TFMindmapButtonTypeInfo : {
-            self.contentNavigationController.rightDrawerController = [[TFImageDrawerViewController alloc] initWithImage: self.currentImageController.selectedImage];
-            [self.contentNavigationController openRightContainer];
+            //            self.contentNavigationController.rightDrawerController = [[TFImageDrawerViewController alloc] initWithProject: _project image: _selectedImage];
+            //            [self.contentNavigationController openRightContainer];
+            TFImageDrawerViewController *controller = [[TFImageDrawerViewController alloc] initWithProject: _project image: _selectedImage];
+            controller.delegate = self;
+            _contentController.rightDrawerController = controller;
+            [_contentController openRightContainer];
+
         }
             break;
 
         case TFMindmapButtonTypePin : {
+            if ([self.currentImageController isKindOfClass: [TFMindmapFullscreenViewController class]]) {
+
+                UIButton *button = [buttonsViewController buttonForType: type];
+                button.selected = !button.selected;
+
+                TFPhoto *image = _selectedImage;
+
+                NSLog(@"button.selected = %d", button.selected);
+                if (button.selected) {
+                    if (![_project.pinnedImages containsObject: image]) {
+                        [_project.pinnedImages addObject: image];
+                    }
+
+                    //                    [self.currentImageController.imagesController reloadImage: image];
+
+                } else {
+                    if ([_project.pinnedImages containsObject: image]) {
+                        [_project.pinnedImages removeObject: image];
+                    }
+                }
+
+            }
 
         }
             break;
@@ -107,11 +167,11 @@
 
 - (void) navigationController: (UINavigationController *) navigationController willShowViewController: (UIViewController *) viewController animated: (BOOL) animated {
 
-    BOOL isFullscreen = [viewController isKindOfClass: [TFNewMindmapFullscreenViewController class]];
+    BOOL isFullscreen = [viewController isKindOfClass: [TFMindmapFullscreenViewController class]];
 
     _buttonsController.view.hidden = NO;
     [UIView animateWithDuration: 0.4
-            delay: 0.0f
+            delay: 0.2
             usingSpringWithDamping: 0.8
             initialSpringVelocity: 2.0
             options: UIViewAnimationOptionCurveLinear
@@ -131,16 +191,40 @@
 }
 
 
+
+#pragma mark - TFMindmapImageControllerProtocol
+
+- (void) imageController: (UIViewController *) imageController didSelectImage: (TFPhoto *) image {
+    _selectedImage = image;
+
+    if (_contentController.isOpen) {
+        if ([_contentController.rightDrawerController isKindOfClass: [TFImageDrawerViewController class]]) {
+            TFImageDrawerViewController *controller = (TFImageDrawerViewController *) _contentController.rightDrawerController;
+            controller.image = image;
+        }
+    }
+
+    [self _refreshButtonsController];
+}
+
+
+
 #pragma mark - Private
 
 - (void) _setupControllers {
 
-    TFNewMindmapGridViewController *controller = [[TFNewMindmapGridViewController alloc] initWithProject: _project images: _images];
-    TFNewMindmapFullscreenViewController *controller2 = [[TFNewMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
+    _gridController = [[TFNewMindmapGridViewController alloc] initWithProject: _project images: _images];
+    _gridController.delegate = self;
 
-    _contentController = [[TFContentViewNavigationController alloc] initWithRootViewController: controller];
+    TFMindmapFullscreenViewController *controller2 = [[TFMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
+    controller2.delegate = self;
+
+    _fullscreenController2 = [[TFNewMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
+
+    _contentController = [[TFContentViewNavigationController alloc] initWithRootViewController: _gridController];
     _contentController.navigationBarHidden = YES;
     _contentController.delegate = self;
+    _contentController.contentView = _contentView;
     [_contentController pushViewController: controller2 animated: NO];
     [self embedFullscreenController: _contentController];
 
@@ -152,7 +236,7 @@
 
 
 - (TFNewMindmapGridViewController *) currentImageController {
-    return (TFNewMindmapGridViewController *) _contentController.visibleViewController;
+    return (TFNewMindmapGridViewController *) ([_contentController.visibleViewController isKindOfClass: [TFNewMindmapGridViewController class]] ? _contentController.visibleViewController : nil);
 }
 
 - (NavigationFadeAnimator *) fadeAnimator {
@@ -162,5 +246,12 @@
     return _fadeAnimator;
 }
 
+
+
+#pragma mark - Refresh
+
+- (void) _refreshButtonsController {
+    [_buttonsController updatePinButtonForImage: _selectedImage inProject: _project];
+}
 
 @end

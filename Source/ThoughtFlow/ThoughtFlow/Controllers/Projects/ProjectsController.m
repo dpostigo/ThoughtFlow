@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <UIAlertView+Blocks/UIAlertView+Blocks.h>
 #import "ProjectsController.h"
 #import "Model.h"
 #import "UIView+TFFonts.h"
@@ -14,6 +15,7 @@
 #import "APIUser.h"
 #import "UIViewController+TFControllers.h"
 #import "TFMindmapController.h"
+
 
 @implementation ProjectsController
 
@@ -72,13 +74,14 @@
 #pragma mark UICollectionView
 
 - (void) collectionView: (UICollectionView *) collectionView didSelectItemAtIndexPath: (NSIndexPath *) indexPath {
-    _model.selectedProject = [self projectForIndexPath: indexPath];
+    Project *project = [self projectForIndexPath: indexPath];
+    _model.selectedProject = project;
 
     [self postNavigationNotificationForType: TFControllerMindmap pushes: NO];
     //    [self.navigationController pushViewController: self.mindmapController animated: YES];
 
-    TFMindmapController *controller = [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"TFMindmapController"];
-    controller.project = _model.selectedProject;
+    //    TFMindmapController *controller = [self.mindmapStoryboard instantiateViewControllerWithIdentifier: @"TFMindmapController"];
+    TFMindmapController *controller = [[TFMindmapController alloc] initWithProject: _model.selectedProject];
     [self.navigationController pushViewController: controller animated: YES];
 
 }
@@ -111,13 +114,26 @@
         NSIndexPath *indexPath = [collection indexPathForCell: cell];
         Project *project = [self projectForIndexPath: indexPath];
 
-        [_model.projectLibrary removeItem: project];
-        [collection deleteItemsAtIndexPaths: @[indexPath]];
-
-        if ([_model.projects count] == 0) {
-            [self postNavigationNotificationForType: TFControllerCreateProject pushes: YES];
-        }
+        [UIAlertView showWithTitle: @"Delete Project"
+                message: @"Are you sure you'd like to delete this project?"
+                cancelButtonTitle: @"Cancel" otherButtonTitles: @[@"Yes, Delete"]
+                tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    if (buttonIndex != alertView.cancelButtonIndex) {
+                        [self deleteProject: project atIndexPath: indexPath];
+                    }
+                }];
     }
+}
+
+
+- (void) deleteProject: (Project *) project atIndexPath: (NSIndexPath *) indexPath {
+    [_model.projectLibrary removeChild: project];
+    [collection deleteItemsAtIndexPaths: @[indexPath]];
+
+    if ([_model.projects count] == 0) {
+        [self postNavigationNotificationForType: TFControllerCreateProject pushes: YES];
+    }
+
 }
 
 - (Project *) projectForIndexPath: (NSIndexPath *) indexPath {

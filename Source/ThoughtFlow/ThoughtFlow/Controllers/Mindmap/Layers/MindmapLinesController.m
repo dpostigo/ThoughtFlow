@@ -3,12 +3,22 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <NSObject+AutoDescription/NSObject+AutoDescription.h>
 #import "MindmapLinesController.h"
 #import "TFLayer.h"
 #import "CALayer+SublayerUtils.h"
 #import "TFNode.h"
 #import "TFNodeView.h"
 #import "DPPassThroughView.h"
+#import "TFLiveUpdateLayer.h"
+
+
+@interface MindmapLinesController ()
+
+@property(nonatomic, strong) CALayer *updateLayer;
+@property(nonatomic, strong) CALayer *mainLayer;
+@property(nonatomic, strong) CALayer *tempLayer;
+@end
 
 @implementation MindmapLinesController {
     NSArray *_affectedNodes;
@@ -34,12 +44,34 @@
         _tempLayer.frame = self.view.bounds;
         _tempLayer.backgroundColor = _lineColor.CGColor;
         _tempLayer.hidden = YES;
-        //        _tempLayer.delegate = self;
         [self.view.layer addSublayer: _tempLayer];
+
+        _liveLayer = [TFLiveUpdateLayer layer];
+        _liveLayer.frame = self.view.bounds;
+        _liveLayer.lineColor = [UIColor redColor];
+        //        _liveLayer.hidden = YES;
+        _liveLayer.delegate = self;
+        [self.view.layer addSublayer: _liveLayer];
     }
 
     return self;
 }
+
+#pragma mark - View lifecycle
+
+
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+    [_mainLayer setNeedsDisplay];
+}
+
+- (void) viewWillDisappear: (BOOL) animated {
+    [super viewWillDisappear: animated];
+
+    _liveLayer.nodeViews = nil;
+    _liveLayer.delegate = nil;
+}
+
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -51,17 +83,14 @@
 }
 
 
-- (void) viewDidAppear: (BOOL) animated {
-    [super viewDidAppear: animated];
-    [_mainLayer setNeedsDisplay];
-}
-
-
 - (void) setRootNode: (TFNode *) rootNode {
     if (_rootNode) [_mainLayer removeAllSublayers];
     _rootNode = rootNode;
 
     [self enumerateParentNode: _rootNode];
+
+    _tempLayer.hidden = YES;
+
 }
 
 
@@ -83,8 +112,31 @@
 }
 
 
-- (void) targetNode: (TFNode *) targetNode {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
+
+
+#pragma mark - Pinch
+
+- (void) startPinchWithNodeViews: (NSArray *) nodeViews {
+    _mainLayer.hidden = YES;
+    _liveLayer.nodeViews = nodeViews;
+    _liveLayer.hidden = NO;
+}
+
+
+- (void) updatePinchWithNodeViews: (NSArray *) nodeViews {
+    _liveLayer.nodeViews = nodeViews;
+
+}
+
+- (void) endPinchWithNodeViews: (NSArray *) nodeViews {
+    _mainLayer.hidden = NO;
+    _liveLayer.hidden = YES;
+    _liveLayer.nodeViews = nil;
+}
+
+#pragma mark - Move targeted node
+
+- (void) startTargetNode: (TFNode *) targetNode {
 
     _affectedNodes = [self affectedNodesForNode: targetNode];
 
@@ -93,6 +145,8 @@
     [self enumerateLayers: _rootNode excludingNodes: _affectedNodes];
 
     [_updateLayer setSublayerDelegate: self];
+
+    NSLog(@"_affectedNodes = %@", _affectedNodes);
 
 }
 
@@ -106,11 +160,10 @@
 
         TFNode *child = _affectedNodes[j];
         TFLayer *sublayer = [_updateLayer.sublayers objectAtIndex: j];
-        NSLog(@"sublayer = %@", sublayer);
-
-        NSLog(@"child = %@", child);
-        NSLog(@"targetNode = %@", targetNode);
-        NSLog(@"targetNode.parentNode = %@", targetNode.parentNode);
+        //        NSLog(@"sublayer = %@", sublayer);
+        //        NSLog(@"child = %@", child);
+        //        NSLog(@"targetNode = %@", targetNode);
+        //        NSLog(@"targetNode.parentNode = %@", targetNode.parentNode);
 
         if (child == targetNode) {
             if (targetNode.parentNode != nil) {
@@ -176,7 +229,12 @@
 
 - (NSArray *) affectedNodesForNode: (TFNode *) node {
     NSMutableArray *ret = [[NSMutableArray alloc] init];
-    if (node.parentNode) [ret addObject: node];
+    if (node.parentNode) {
+        [ret addObject: node];
+    } else {
+        NSLog(@"No parent node.");
+
+    }
     [ret addObjectsFromArray: node.children];
     return ret;
 }
@@ -242,52 +300,6 @@
     return nil;
 }
 
-//- (void) enumerateChildNode: (TFNode *) node {
-//
-//    NSArray *children = node.children;
-//    if ([children count] == 0) {
-//        // draw line from node to parent
-//    } else {
-//
-//        [children enumerateObjectsUsingBlock: ^(TFNode *child, NSUInteger index, BOOL *stop) {
-//            TFLayer *sublayer = [TFLayer layer];
-//            sublayer.backgroundColor = _lineColor.CGColor;
-//            sublayer.frame = self.view.bounds;
-//            [_mainLayer addSublayer: sublayer];
-//            [self setLayerLine: sublayer fromPoint: child.center toPoint: parentNode.center];
-//
-//
-//        }];
-//    }
-//}
-//
-//- (void) setNodeViews: (NSArray *) nodeViews {
-//    if (_nodeViews != nodeViews) {
-//        if (_nodeViews) [_mainLayer removeAllSublayers];
-//
-//        _nodeViews = nodeViews;
-//
-//        [_nodeViews enumerateObjectsUsingBlock: ^(UIView *node, NSUInteger index, BOOL *stop) {
-//
-//            if (index > 0) {
-//                NSLog(@"index = %u", index);
-//                UIView *previous = _nodeViews[index - 1];
-//
-//                TFLayer *sublayer = [TFLayer layer];
-//                sublayer.backgroundColor = _lineColor.CGColor;
-//                sublayer.frame = self.view.bounds;
-//                [_mainLayer addSublayer: sublayer];
-//
-//                [self setLayerLine: sublayer fromPoint: node.center toPoint: previous.center];
-//
-//            }
-//        }];
-//
-//        //        [self.view setNeedsUpdateConstraints];
-//
-//    }
-//}
-//
 
 - (void) drawLineForIndex: (int) j {
     //    if (j < [self.nodeViews count]) {
@@ -299,10 +311,22 @@
     //    }
 }
 
-- (void) updateTempLineFromPoint: (CGPoint) a
-                         toPoint:
-                                 (CGPoint) b {
+
+
+#pragma mark - Move node
+
+- (void) startMoveWithNodeView: (TFNodeView *) nodeView withParent: (TFNodeView *) parentNodeView {
+    [self updateTempLineFromPoint: nodeView.center toPoint: parentNodeView.center];
+    _tempLayer.hidden = NO;
+}
+
+- (void) updateTempLineFromPoint: (CGPoint) a toPoint: (CGPoint) b {
     [self setLayerLine: _tempLayer fromPoint: a toPoint: b];
+}
+
+- (void) endMoveWithNodeView: (TFNodeView *) nodeView withParent: (TFNodeView *) parentNodeView {
+    //    [self updateTempLineFromPoint: nodeView.center toPoint: parentNodeView.center];
+    _tempLayer.hidden = YES;
 }
 
 

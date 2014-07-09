@@ -5,6 +5,8 @@
 
 #import <Foundation/Foundation.h>
 #import "TFMindmapButtonsViewController.h"
+#import "TFMindmapController.h"
+#import "TFImageDrawerViewController.h"
 
 
 @class Project;
@@ -14,23 +16,31 @@
 @class TFContentViewNavigationController;
 @class TFMindmapGridViewController;
 @class TFNewMindmapGridViewController;
-@class TFNewMindmapFullscreenViewController;
+@class TFMindmapFullscreenViewController;
 @class NavigationFadeAnimator;
+@class TFNewMindmapFullscreenViewController;
+@class TFPhoto;
+@class TFContentView;
 
 
-@interface TFNewMindmapBackgroundViewController : UIViewController <TFMindmapButtonsViewControllerDelegate, UINavigationControllerDelegate>
+@protocol TFMindmapImageControllerProtocol <NSObject>
+- (void) imageController: (UIViewController *) controller didSelectImage: (TFPhoto *) image;
+@end
 
+@interface TFNewMindmapBackgroundViewController : UIViewController <TFMindmapButtonsViewControllerDelegate,
+        UINavigationControllerDelegate,
+        TFMindmapImageControllerProtocol,
+        TFImageDrawerViewControllerDelegate>
+
+@property(nonatomic) TFMindmapControllerType mindmapType;
 @property(nonatomic, strong) Project *project;
+@property(nonatomic, strong) TFPhoto *selectedImage;
 @property(nonatomic, strong) TFNode *node;
 @property(nonatomic, strong) NSArray *images;
 @property(nonatomic, copy) NSString *imageString;
-
-
-@property(nonatomic, strong) TFContentViewNavigationController *contentController;
-@property(nonatomic, strong) TFMindmapButtonsViewController *buttonsController;
-@property(nonatomic, strong) TFNewMindmapGridViewController *gridController;
-
-
+@property(nonatomic, strong) TFNewMindmapFullscreenViewController *fullscreenController2;
+@property(nonatomic, strong) TFMindmapFullscreenViewController *fullscreenController;
+@property(nonatomic, strong) TFContentView *contentView;
 @property(nonatomic, strong) NavigationFadeAnimator *fadeAnimator;
 - (instancetype) initWithProject: (Project *) project node: (TFNode *) node;
 

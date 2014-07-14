@@ -7,16 +7,14 @@
 #import "TFNodesViewController.h"
 #import "TFNode.h"
 #import "UIView+DPKit.h"
-#import "TFNodeView.h"
 #import "TFNewNodeView.h"
 #import "DPPassThroughView.h"
-#import "TFBaseNodeView.h"
 
 
 @interface TFNodesViewController ()
 
 @property(nonatomic) BOOL isPinched;
-@property(nonatomic, strong) TFBaseNodeView *creationNodeView;
+@property(nonatomic, strong) UIView *creationNodeView;
 @property(nonatomic, strong) Class nodeClass;
 @end
 
@@ -34,12 +32,7 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 - (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
     self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
-
-        if (DEBUG) {
-            _nodeClass = [TFNewNodeView class];
-        } else {
-            _nodeClass = [TFNodeView class];
-        }
+        _nodeClass = [TFNewNodeView class];
         _nodeViews = [[NSMutableArray alloc] init];
     }
 
@@ -424,7 +417,7 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 
 - (void) startCreateNodeFromNode: (TFBaseNodeView *) node location: (CGPoint) location {
 
-    _creationNodeView = [TFNodeView greenGhostView];
+    _creationNodeView = [TFBaseNodeView greenGhostView];
     _creationNodeView.center = location;
     _creationNodeView.alpha = 0;
     _creationNodeView.transform = CGAffineTransformMakeScale(0.9, 0.9);

@@ -6,11 +6,9 @@
 #import <DPTransitions/CustomModalSegue.h>
 #import <DPAnimators/NavigationFadeAnimator.h>
 #import "NewMainAppController.h"
-#import "UIViewController+TFControllers.h"
 #import "NavigationSlideAnimator.h"
 #import "Model.h"
 #import "TFContentViewNavigationController.h"
-#import "TFInfoViewController.h"
 #import "TFMindmapGridViewController.h"
 #import "ProjectsController.h"
 #import "TFNewSettingsDrawerController.h"
@@ -32,7 +30,9 @@
     _contentNavigationController.contentView = _contentView;
 
     if ([_model.projects count] > 0) {
-        [_contentNavigationController setViewControllers: @[self.projectsController] animated: NO];
+
+        ProjectsController *controller = [[ProjectsController alloc] init];
+        [_contentNavigationController setViewControllers: @[controller] animated: NO];
     }
 }
 
@@ -58,7 +58,7 @@
         _contentNavigationController.delegate = self;
 
     } else if ([segue.identifier isEqualToString: @"ToolbarEmbedSegue"]) {
-        _toolbarController = (TFNewToolbarController *) controller;
+        _toolbarController = (TFToolbarViewController *) controller;
         _toolbarController.delegate = self;
 
     }
@@ -67,7 +67,7 @@
 
 #pragma mark - TFNewToolbarControllerDelegate
 
-- (void) toolbarControllerClickedButtonWithType: (TFNewToolbarButtonType) type {
+- (void) toolbarControllerClickedButtonWithType: (TFToolbarButtonType) type {
 
     switch (type) {
 
@@ -75,7 +75,12 @@
             break;
 
         case TFNewToolbarButtonTypeProjects : {
-            UIViewController *controller = [_model.projects count] > 0 ? self.projectsController : [[CreateProjectController alloc] init];
+            UIViewController *controller = nil;
+            if ([_model.projects count] > 0) {
+                controller = [[ProjectsController alloc] init];
+            } else {
+                controller = [[CreateProjectController alloc] init];
+            }
             [_contentNavigationController setViewControllers: @[controller] animated: YES];
         }
             break;
@@ -115,10 +120,8 @@
             break;
 
         case TFNewToolbarButtonTypeInfo : {
-
             TFNewAboutViewController *controller = [[TFNewAboutViewController alloc] init];
             [_contentNavigationController toggleViewController: controller animated: YES];
-            //            [_contentNavigationController toggleViewController: self.infoViewController animated: YES];
 
         }
             break;
@@ -156,12 +159,11 @@
 }
 
 - (void) navigationController: (UINavigationController *) navigationController didShowViewController: (UIViewController *) viewController animated: (BOOL) animated {
-    NSString *controllerClass = NSStringFromClass([viewController class]);
 
     if ([viewController isKindOfClass: [ProjectsController class]]) {
         _toolbarController.selectedIndex = TFNewToolbarButtonTypeProjects;
 
-    } else if ([viewController isKindOfClass: [TFInfoViewController class]]) {
+    } else if ([viewController isKindOfClass: [TFNewAboutViewController class]]) {
         _toolbarController.selectedIndex = TFNewToolbarButtonTypeInfo;
 
     } else if ([viewController isKindOfClass: [TFNewMoodboardViewController class]]) {
@@ -185,14 +187,13 @@
         _fadingNavigationAnimator.opaque = NO;
     }
 
-    if ([destinationController isKindOfClass: [TFInfoViewController class]] ||
+    if (
             [destinationController isKindOfClass: [TFNewAboutViewController class]] ||
 
+                    [destinationController isKindOfClass: [TFNewMoodboardViewController class]] ||
+                    [sourceController isKindOfClass: [TFNewMoodboardViewController class]] ||
 
-            [destinationController isKindOfClass: [TFNewMoodboardViewController class]] ||
-            [sourceController isKindOfClass: [TFNewMoodboardViewController class]] ||
-
-            [destinationController isKindOfClass: [TFMindmapGridViewController class]]) {
+                    [destinationController isKindOfClass: [TFMindmapGridViewController class]]) {
         ret = self.fadingNavigationAnimator;
 
     } else {

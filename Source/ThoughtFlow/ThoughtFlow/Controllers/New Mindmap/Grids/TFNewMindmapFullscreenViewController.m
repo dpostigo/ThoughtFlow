@@ -53,7 +53,7 @@
     _imagesController.collection.pagingEnabled = YES;
     [self embedFullscreenController: _imagesController];
 
-    _buttonsController = (TFMindmapButtonsViewController *) self.mindmapButtonsController;
+    _buttonsController = [[TFMindmapButtonsViewController alloc] init];
     _buttonsController.delegate = self;
     [self embedFullscreenController: _buttonsController];
 

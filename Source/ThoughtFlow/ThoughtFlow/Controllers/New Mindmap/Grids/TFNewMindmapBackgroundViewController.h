@@ -5,25 +5,18 @@
 
 #import <Foundation/Foundation.h>
 #import "TFMindmapButtonsViewController.h"
-#import "TFMindmapController.h"
+#import "TFMindmapViewController.h"
 #import "TFImageDrawerViewController.h"
 
 
 @class Project;
 @class TFNode;
-@class TFMindmapButtonsViewController;
-@class MindmapBackgroundController;
-@class TFContentViewNavigationController;
-@class TFMindmapGridViewController;
-@class TFNewMindmapGridViewController;
-@class TFMindmapFullscreenViewController;
-@class NavigationFadeAnimator;
-@class TFNewMindmapFullscreenViewController;
 @class TFPhoto;
 @class TFContentView;
 
 
 @protocol TFMindmapImageControllerProtocol <NSObject>
+
 - (void) imageController: (UIViewController *) controller didSelectImage: (TFPhoto *) image;
 @end
 
@@ -38,10 +31,7 @@
 @property(nonatomic, strong) TFNode *node;
 @property(nonatomic, strong) NSArray *images;
 @property(nonatomic, copy) NSString *imageString;
-@property(nonatomic, strong) TFNewMindmapFullscreenViewController *fullscreenController2;
-@property(nonatomic, strong) TFMindmapFullscreenViewController *fullscreenController;
 @property(nonatomic, strong) TFContentView *contentView;
-@property(nonatomic, strong) NavigationFadeAnimator *fadeAnimator;
 - (instancetype) initWithProject: (Project *) project node: (TFNode *) node;
 
 @end

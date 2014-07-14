@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TFImageGridViewController.h"
-#import "TFMindmapController.h"
+#import "TFMindmapViewController.h"
 
 
 @class Project;

@@ -5,10 +5,11 @@
 
 #import <DPKit-Utils/UIImage+DPKit.h>
 #import "UIButton+TFNodeView.h"
-#import "TFNodeView+Utils.h"
 #import "UIFont+ThoughtFlow.h"
 #import "UIColor+TFApp.h"
 #import "UIView+DPConstraints.h"
+#import "TFBaseNodeView.h"
+
 
 @implementation UIButton (TFNodeView)
 

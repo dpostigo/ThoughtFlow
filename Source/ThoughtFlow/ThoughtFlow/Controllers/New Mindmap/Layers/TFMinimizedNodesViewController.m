@@ -7,11 +7,9 @@
 #import <DPKit-Utils/UIView+DPKit.h>
 #import "TFMinimizedNodesViewController.h"
 #import "TFNode.h"
-#import "Project.h"
 #import "TFMinimizedNodeButton.h"
 #import "TFNodesViewController.h"
-#import "TFNodeView.h"
-#import "UIView+DPKitDebug.h"
+#import "TFBaseNodeView.h"
 
 
 CGFloat const TFMindmapMinimizedX = 10;

@@ -4,9 +4,8 @@
 //
 
 #import <AutoCoding/AutoCoding.h>
-#import <NSObject+AutoDescription/NSObject+AutoDescription.h>
 #import "TFNode.h"
-#import "TFNodeView.h"
+#import "TFBaseNodeView.h"
 
 
 @implementation TFNode

@@ -9,15 +9,13 @@
 #import "Project.h"
 #import "TFNode.h"
 #import "UIViewController+TFControllers.h"
-#import "MindmapBackgroundController.h"
 #import "TFContentViewNavigationController.h"
-#import "TFMindmapGridViewController.h"
 #import "TFNewMindmapGridViewController.h"
 #import "TFMindmapFullscreenViewController.h"
-#import "TFImageDrawerViewController.h"
 #import "APIModel.h"
 #import "TFPhoto.h"
 #import "TFNewMindmapFullscreenViewController.h"
+#import "TFContentView.h"
 
 
 @interface TFNewMindmapBackgroundViewController ()
@@ -25,6 +23,9 @@
 @property(nonatomic, strong) TFContentViewNavigationController *contentController;
 @property(nonatomic, strong) TFMindmapButtonsViewController *buttonsController;
 @property(nonatomic, strong) TFNewMindmapGridViewController *gridController;
+@property(nonatomic, strong) NavigationFadeAnimator *fadeAnimator;
+@property(nonatomic, strong) TFNewMindmapFullscreenViewController *fullscreenController2;
+@property(nonatomic, strong) TFMindmapFullscreenViewController *fullscreenController;
 @end
 
 @implementation TFNewMindmapBackgroundViewController
@@ -246,7 +247,7 @@
     [_contentController pushViewController: controller2 animated: NO];
     [self embedFullscreenController: _contentController];
 
-    _buttonsController = (TFMindmapButtonsViewController *) self.mindmapButtonsController;
+    _buttonsController = [[TFMindmapButtonsViewController alloc] init];
     _buttonsController.delegate = self;
     [self embedFullscreenController: _buttonsController];
 

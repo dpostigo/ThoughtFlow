@@ -5,8 +5,7 @@
 
 #import <DPKit-Utils/UIView+DPKit.h>
 #import "TFMinimizedNodeButton.h"
-#import "TFNodeView.h"
-#import "UIView+DPKitAnimations.h"
+#import "TFBaseNodeView.h"
 
 
 @interface TFMinimizedNodeButton ()

@@ -10,7 +10,6 @@
 
 @class TFNode;
 @class DPPassThroughView;
-@class TFNodeScrollView;
 @class TFBaseNodeView;
 
 @protocol TFNodesViewControllerDelegate <NSObject>

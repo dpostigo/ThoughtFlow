@@ -25,7 +25,6 @@
 @property(nonatomic, strong) Project *project;
 @property(nonatomic, copy) NSString *imageString;
 @property(nonatomic, assign) id <TFMindmapGridViewControllerDelegate> delegate;
-@property(nonatomic, strong) TFEmptyViewController *emptyController;
 @property(nonatomic, strong) TFImageGridViewController *imagesController;
 
 - (instancetype) initWithImageString: (NSString *) imageString;

@@ -11,8 +11,7 @@
 #import "DPPassThroughView.h"
 #import "TFScrollView.h"
 #import "TFScrollViewContentView.h"
-#import "UIView+DPKitDebug.h"
-#import "TFNodeView.h"
+#import "TFBaseNodeView.h"
 
 
 @interface TFScrollingMindmapViewController ()

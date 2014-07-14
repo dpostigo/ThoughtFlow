@@ -40,6 +40,12 @@ NSString *const TFTableViewDefaultCellIdentifier = @"TableCell";
 }
 
 
+#pragma mark - Public
+
+- (void) reloadData {
+    [self.tableView reloadData];
+}
+
 #pragma mark - Setup
 
 - (void) _setup {

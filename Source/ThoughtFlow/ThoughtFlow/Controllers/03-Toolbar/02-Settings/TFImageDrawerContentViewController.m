@@ -4,6 +4,7 @@
 //
 
 #import <DPKit-Utils/UIView+DPKitDebug.h>
+#import <DPKit-Utils/UIViewController+DPKit.h>
 #import "TFImageDrawerContentViewController.h"
 #import "DPTableViewCell.h"
 #import "TFPhoto.h"
@@ -12,9 +13,9 @@
 #import "NSMutableAttributedString+DPKit.h"
 
 
-#define IMAGE_CREDITS  @"Image Credits"
-#define IMAGE_DESCRIPTION  @"Image Description"
-#define IMAGE_TAGS  @"Tags From Source"
+NSString *const TFImageDrawerImageCredits = @"Image Credits";
+NSString *const TFImageDrawerImageDescription = @"Image Description";
+NSString *const TFImageDrawerImageTags = @"Tags From Source";
 
 @interface TFImageDrawerContentViewController ()
 
@@ -24,10 +25,18 @@
 
 @implementation TFImageDrawerContentViewController
 
+- (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
+    return [self viewControllerFromStoryboard: @"Mindmap"];
+}
+
+
+#pragma mark - View lifecycle
+
+
 - (void) viewDidLoad {
     [super viewDidLoad];
 
-    _rows = @[IMAGE_CREDITS, IMAGE_DESCRIPTION, IMAGE_TAGS];
+    _rows = @[TFImageDrawerImageCredits, TFImageDrawerImageDescription, TFImageDrawerImageTags];
 
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.opaque = NO;
@@ -58,10 +67,10 @@
     cell.textLabel.text = [title uppercaseString];
 
     if (_image) {
-        if ([title isEqualToString: IMAGE_CREDITS]) {
+        if ([title isEqualToString: TFImageDrawerImageCredits]) {
             cell.detailTextLabel.text = @"Image credits";
 
-        } else if ([title isEqualToString: IMAGE_DESCRIPTION]) {
+        } else if ([title isEqualToString: TFImageDrawerImageDescription]) {
 
             NSMutableAttributedString *attributedString;
             attributedString = [[NSAttributedString attributedStringFromHTML: _image.description boldFont: [UIFont boldSystemFontOfSize: 12.0]] mutableCopy];
@@ -73,7 +82,7 @@
             //        cell.detailTextLabel.text = _image.description;
             //        cell.detailTextLabel.text = @"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
-        } else if ([title isEqualToString: IMAGE_TAGS]) {
+        } else if ([title isEqualToString: TFImageDrawerImageTags]) {
             cell.detailTextLabel.text = _image.tagString;
         }
     }

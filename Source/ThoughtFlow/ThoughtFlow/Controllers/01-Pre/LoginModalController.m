@@ -58,8 +58,6 @@
         return;
     }
 
-    NSString *errorTitle = nil;
-    NSString *errorMessage = nil;
     if ([self.usernameField.text length] == 0 || [self.usernameField.text isEqualToString: @""]) {
         [UIAlertView showWithTitle: @"No username"
                 message: @"Please fill out a username."
@@ -178,7 +176,7 @@
     UITableViewCell *ret = [tableView dequeueReusableCellWithIdentifier: @"TableCell"];
 
 
-    NSDictionary *dictionary = [_table rowDataForIndexPath: indexPath];
+   // NSDictionary *dictionary = [_table rowDataForIndexPath: indexPath];
     if ([ret isKindOfClass: [FieldTableViewCell class]]) {
         FieldTableViewCell *cell = (FieldTableViewCell *) ret;
         cell.textField.delegate = self;

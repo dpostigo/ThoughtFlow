@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M0p-I1-YtG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-915" y="2276"/>
+            <point key="canvasLocation" x="-851" y="2264"/>
         </scene>
         <!--New Main App Controller-->
         <scene sceneID="2a-l3f-bZ-BVA">
@@ -235,8 +235,8 @@ biB3aXRoIGEgdGhvdWdodCBhbmQgc2VlIHdoZXJlIGl0IHRha2VzIHlvdS4
                                             <rect key="frame" x="0.0" y="0.0" width="450" height="430"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soup" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hva-Hx-YRU">
-                                                    <rect key="frame" x="50" y="55" width="120" height="67"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soup" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="350" translatesAutoresizingMaskIntoConstraints="NO" id="hva-Hx-YRU">
+                                                    <rect key="frame" x="50" y="55" width="350" height="67"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="60"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -291,6 +291,7 @@ siblings, joy...</string>
                                             <constraint firstAttribute="trailing" secondItem="bBN-IG-ZR0" secondAttribute="trailing" constant="50" id="HXr-qJ-LgE"/>
                                             <constraint firstItem="bBN-IG-ZR0" firstAttribute="top" secondItem="lJS-fm-lzv" secondAttribute="bottom" constant="22" id="MGB-om-IgF"/>
                                             <constraint firstItem="Qw8-Z2-thQ" firstAttribute="leading" secondItem="hva-Hx-YRU" secondAttribute="leading" id="MvB-oo-SJb"/>
+                                            <constraint firstAttribute="trailing" secondItem="hva-Hx-YRU" secondAttribute="trailing" constant="50" id="SCc-2D-dvI"/>
                                             <constraint firstItem="lJS-fm-lzv" firstAttribute="top" secondItem="hva-Hx-YRU" secondAttribute="bottom" constant="36" id="XZF-qC-E13"/>
                                             <constraint firstItem="hva-Hx-YRU" firstAttribute="leading" secondItem="MQf-Ae-EkK" secondAttribute="leading" constant="50" id="ddY-jU-yyY"/>
                                             <constraint firstAttribute="trailing" secondItem="yf9-9Y-F21" secondAttribute="trailing" constant="20" id="geD-L2-niS"/>

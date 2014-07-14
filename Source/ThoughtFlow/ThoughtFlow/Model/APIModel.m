@@ -11,6 +11,7 @@
 #import "APIUser.h"
 #import "TFPhoto.h"
 #import "PhotoLibrary.h"
+#import "NSString+RMURLEncoding.h"
 
 
 NSString *const TFScopeEmail = @"email";
@@ -317,7 +318,6 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
     //    [AFOAuthCredential deleteCredentialWithIdentifier: ThoughtFlowIdentifier];
     _currentUser = nil;
 
-    NSLog(@"self.authClient.credential = %@", self.authClient.credential);
     AFOAuthCredential *storedCredential = [AFOAuthCredential retrieveCredentialWithIdentifier: self.authClient.serviceProviderIdentifier];
 
     //    [self.authClient authenticateUsingOAuthWithURLString: TFAuthURL
@@ -392,7 +392,7 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
            success: (void (^)(NSArray *images)) success failure: (void (^)()) failure {
 
     @try {
-        [self.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", string]
+        [self.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", [string rm_URLEncodedString]]
                 parameters: @{
 
                 }

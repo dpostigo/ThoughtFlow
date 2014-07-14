@@ -9,21 +9,6 @@
 
 @implementation TFContentViewNavigationController
 
-- (void) viewWillDisappear: (BOOL) animated {
-    [super viewWillDisappear: animated];
-
-    if (_autocloses) {
-        if (self.leftContainerIsOpen) {
-            [self closeLeftContainer];
-        }
-
-        if (self.rightContainerIsOpen) {
-            [self closeRightContainer];
-        }
-    }
-}
-
-
 - (void) toggleViewController: (UIViewController *) controller animated: (BOOL) flag {
     if (self.visibleViewController == controller || [self.visibleViewController isKindOfClass: [controller class]]) {
         [self popViewControllerAnimated: flag];
@@ -44,6 +29,70 @@
 - (BOOL) isOpen {
     return _contentView.isOpen;
 }
+
+
+#pragma mark - View lifecycle
+
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+
+    if (self.rightContainerIsOpen) {
+        [self.rightDrawerController viewDidAppear: animated];
+    }
+    if (self.leftContainerIsOpen) {
+        [self.leftDrawerController viewDidAppear: animated];
+    }
+
+}
+
+
+- (void) viewWillAppear: (BOOL) animated {
+    [super viewWillAppear: animated];
+
+    if (self.rightContainerIsOpen) {
+        [self.rightDrawerController viewWillAppear: animated];
+    }
+    if (self.leftContainerIsOpen) {
+        [self.leftDrawerController viewWillAppear: animated];
+    }
+}
+
+
+- (void) viewWillDisappear: (BOOL) animated {
+    [super viewWillDisappear: animated];
+
+    if (self.rightContainerIsOpen) {
+        [self.rightDrawerController viewWillDisappear: animated];
+    }
+    if (self.leftContainerIsOpen) {
+        [self.leftDrawerController viewWillDisappear: animated];
+    }
+
+    if (_autocloses) {
+        if (self.leftContainerIsOpen) {
+            [self closeLeftContainer];
+        }
+
+        if (self.rightContainerIsOpen) {
+            [self closeRightContainer];
+        }
+    }
+}
+
+
+- (void) viewDidDisappear: (BOOL) animated {
+    [super viewDidDisappear: animated];
+
+    if (self.rightContainerIsOpen) {
+        [self.rightDrawerController viewDidDisappear: animated];
+    }
+    if (self.leftContainerIsOpen) {
+        [self.leftDrawerController viewDidDisappear: animated];
+    }
+
+}
+
+
 
 #pragma mark - Content view
 
@@ -70,11 +119,17 @@
 }
 
 - (void) openLeftContainer {
-    [self.contentView openLeftContainer];
+    [self.leftDrawerController willMoveToParentViewController: self.parentViewController];
+    [self.contentView openLeftContainer: ^() {
+        [self.leftDrawerController didMoveToParentViewController: self.parentViewController];
+    }];
 }
 
 - (void) openRightContainer {
-    [self.contentView openRightContainer];
+    [self.rightDrawerController willMoveToParentViewController: self.parentViewController];
+    [self.contentView openRightContainer: ^() {
+        [self.rightDrawerController didMoveToParentViewController: self.parentViewController];
+    }];
 
 }
 
@@ -88,7 +143,10 @@
 }
 
 
+
+
 #pragma mark - TFContentViewDelegate
+
 
 - (void) contentView: (TFContentView *) contentView didCloseLeftController: (TFNewDrawerController *) leftController {
     if (self.delegate && [self.delegate respondsToSelector: @selector(navigationController:didShowViewController:animated:)]) {

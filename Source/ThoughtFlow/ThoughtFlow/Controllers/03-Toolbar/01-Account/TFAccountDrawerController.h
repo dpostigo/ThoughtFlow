@@ -5,7 +5,6 @@
 
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
-#import "TLFreeformModalProtocol.h"
 #import "TFNewDrawerController.h"
 #import "TFNewTextField.h"
 

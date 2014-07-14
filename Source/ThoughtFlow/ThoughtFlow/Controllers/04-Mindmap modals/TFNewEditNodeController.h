@@ -22,6 +22,7 @@
 
 @property(weak) IBOutlet UIView *containerView;
 @property(weak) IBOutlet UIButton *doneButton;
+@property(weak) IBOutlet UIButton *trashButton;
 @property(weak) IBOutlet UITextView *textView;
 @property(weak) IBOutlet UILabel *charactersLabel;
 

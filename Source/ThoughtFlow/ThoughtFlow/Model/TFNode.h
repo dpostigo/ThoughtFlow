@@ -18,6 +18,7 @@ extern NSString *const TFNodeUpdate;
 - (instancetype) initWithTitle: (NSString *) aTitle position: (CGPoint) position;
 + (instancetype) nodeWithTitle: (NSString *) aTitle position: (CGPoint) position;
 
+- (CGRect) rect;
 - (CGPoint) center;
 - (NSArray *) allChildren;
 - (TFNode *) parentNode;

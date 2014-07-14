@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85C62193CC2443EB874D55E9"
-               BuildableName = "libPods-REPagedScrollView.a"
-               BlueprintName = "Pods-REPagedScrollView"
+               BlueprintIdentifier = "FC07EF8B6890416FA0991773"
+               BuildableName = "libPods-NSString+RMURLEncoding.a"
+               BlueprintName = "Pods-NSString+RMURLEncoding"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

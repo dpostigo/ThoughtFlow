@@ -21,14 +21,13 @@
 
 @interface TFImageDrawerViewController : TFNewDrawerController
 
-@property(nonatomic, assign) id <TFImageDrawerViewControllerDelegate> delegate;
-@property(nonatomic, strong) TFImageDrawerContentViewController *contentViewController;
-@property(nonatomic, strong) Project *project;
 @property(nonatomic, strong) TFPhoto *image;
+@property(nonatomic, strong) Project *project;
+@property(nonatomic, assign) id <TFImageDrawerViewControllerDelegate> delegate;
 
-
-@property(weak) IBOutlet UIButton *pinButton;
 @property(weak) IBOutlet UILabel *titleLabel;
+@property(weak) IBOutlet UIButton *pinButton;
+@property(weak) IBOutlet UIView *containerView;
 
 - (instancetype) initWithProject: (Project *) project image: (TFPhoto *) image;
 

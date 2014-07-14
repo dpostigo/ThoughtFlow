@@ -9,6 +9,7 @@
 #import "UIViewController+TFContentNavigationController.h"
 #import "TFContentViewNavigationController.h"
 #import "TFPhoto.h"
+#import "TFNewImageDrawerViewController.h"
 
 
 @implementation TFMindmapFullscreenViewController
@@ -28,18 +29,22 @@
 
 
 - (void) imageGridViewController: (TFImageGridViewController *) gridViewController didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
+    // TODO : Does this ever get called?
 
-    if (button == cell.topLeftButton) {
-        [self.navigationController popViewControllerAnimated: YES];
-
-    } else if (button == cell.topRightButton) {
-        TFPhoto *image = [gridViewController.images objectAtIndex: indexPath.item];
-        self.contentNavigationController.rightDrawerController = [[TFImageDrawerViewController alloc] initWithProject: self.project image: image];
-        [self.contentNavigationController openRightContainer];
-
-    } else if (button == cell.bottomRightButton) {
-
-    }
+    //    if (button == cell.topLeftButton) {
+    //        [self.navigationController popViewControllerAnimated: YES];
+    //
+    //    } else if (button == cell.topRightButton) {
+    //        TFPhoto *image = [gridViewController.images objectAtIndex: indexPath.item];
+    //        //        TFImageDrawerViewController *controller = [[TFImageDrawerViewController alloc] initWithProject: self.project image: image];
+    //        TFNewImageDrawerViewController *controller = [[TFNewImageDrawerViewController alloc] initWithProject: self.project image: image];
+    //
+    //        self.contentNavigationController.rightDrawerController = controller;
+    //        [self.contentNavigationController openRightContainer];
+    //
+    //    } else if (button == cell.bottomRightButton) {
+    //
+    //    }
 }
 
 

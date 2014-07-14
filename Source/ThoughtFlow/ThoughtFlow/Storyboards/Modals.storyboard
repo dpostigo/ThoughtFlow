@@ -36,7 +36,7 @@
                                 <rect key="frame" x="342" y="214" width="340" height="340"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 CHARACTERS LEFT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Era-7W-VCa" customClass="TFKernedGothamLightLabel">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 CHARACTERS LEFT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Era-7W-VCa">
                                         <rect key="frame" x="20" y="19" width="117" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
@@ -69,9 +69,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="handleSave:" destination="n7P-d3-GoL" eventType="touchUpInside" id="PSG-n7-SVI"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -105,6 +102,7 @@
                         <outlet property="containerView" destination="TIg-2T-ZKd" id="eaD-qN-klE"/>
                         <outlet property="doneButton" destination="6T1-IL-egx" id="0nj-5C-gLj"/>
                         <outlet property="textView" destination="ouo-bU-FSW" id="1QA-W5-SZL"/>
+                        <outlet property="trashButton" destination="Mea-oe-rhG" id="YSP-NL-nOE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5XH-nK-LSp" userLabel="First Responder" sceneMemberID="firstResponder"/>

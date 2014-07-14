@@ -12,6 +12,7 @@
 #import "TFPhoto.h"
 #import "TFImageDrawerViewController.h"
 #import "TFCornerButtonsViewController.h"
+#import "TFNewImageDrawerViewController.h"
 
 
 @implementation TFMoodboardFullscreenViewController
@@ -53,7 +54,7 @@
 
         case TFCornerTypeTopRight : {
             //            TFPhoto *image = [self.imagesController.images objectAtIndex: indexPath.item];
-            self.contentNavigationController.rightDrawerController = [[TFImageDrawerViewController alloc] initWithProject: self.project image: _selectedImage];
+            self.contentNavigationController.rightDrawerController = [[TFNewImageDrawerViewController alloc] initWithProject: self.project image: _selectedImage];
             [self.contentNavigationController openRightContainer];
         }
 
@@ -96,7 +97,7 @@
 
     } else if (button == cell.topRightButton) {
 
-        self.contentNavigationController.rightDrawerController = [[TFImageDrawerViewController alloc] initWithProject: self.project image: _selectedImage];
+        self.contentNavigationController.rightDrawerController = [[TFNewImageDrawerViewController alloc] initWithProject: self.project image: _selectedImage];
         [self.contentNavigationController openRightContainer];
 
     } else if (button == cell.bottomRightButton) {
@@ -114,8 +115,8 @@
     _selectedImage = image;
 
     if (self.contentNavigationController.isOpen) {
-        if ([self.contentNavigationController.rightDrawerController isKindOfClass: [TFImageDrawerViewController class]]) {
-            TFImageDrawerViewController *controller = (TFImageDrawerViewController *) self.contentNavigationController.rightDrawerController;
+        if ([self.contentNavigationController.rightDrawerController isKindOfClass: [TFNewImageDrawerViewController class]]) {
+            TFNewImageDrawerViewController *controller = (TFNewImageDrawerViewController *) self.contentNavigationController.rightDrawerController;
             controller.image = image;
         }
     }
@@ -127,7 +128,6 @@
 #pragma mark - UICollectionViewLayout
 
 - (CGSize) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout sizeForItemAtIndexPath: (NSIndexPath *) indexPath {
-    CGSize result;
     return self.view.bounds.size;
 }
 

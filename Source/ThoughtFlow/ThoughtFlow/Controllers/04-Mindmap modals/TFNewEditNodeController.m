@@ -12,6 +12,7 @@
 #import "NSNotification+DPKit.h"
 #import "UIView+DPKit.h"
 #import "UIView+DPConstraints.h"
+#import "UIControl+BlocksKit.h"
 
 
 static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
@@ -51,12 +52,6 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
 
 
 
-//- (void) loadView {
-//    [super loadView];
-//
-//    [self.view layoutIfNeeded];
-//
-//}
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -70,14 +65,32 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
     [self registerKeyboardWillHide: @selector(handleKeyboard:)];
     //    [self.view layoutIfNeeded];
 
+    [self _refreshCharacterCount];
+
+    [self _setupButtons];
+
 }
 
+
+- (void) _setupButtons {
+    [_doneButton bk_addEventHandler: ^(id sender) {
+        [self _notifyEditNodeControllerDismissedWithName: _textView.text];
+        [self.presentingViewController dismissViewControllerAnimated: YES  completion: nil];
+    } forControlEvents: UIControlEventTouchUpInside];
+
+    [_trashButton bk_addEventHandler: ^(id sender) {
+
+    } forControlEvents: UIControlEventTouchUpInside];
+
+}
 
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
     [_textView becomeFirstResponder];
 
 }
+
+
 
 #pragma mark - Keyboard
 
@@ -92,9 +105,6 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
         //        centerConstraint.constant = newHeight / 2;
         //        centerConstraint.constant = (keyboardHeight - _containerView.height) / 2;
         centerConstraint.constant = keyboardHeight - (_containerView.height / 2);
-
-        NSLog(@"_startingValue = %f", _startingValue);
-        NSLog(@"newHeight = %f", newHeight);
 
     } else if ([notification.name isEqualToString: UIKeyboardWillHideNotification]) {
         centerConstraint.constant = _startingValue;
@@ -137,7 +147,7 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
 
 - (void) textViewDidChange: (UITextView *) textView {
     [self _refreshDoneButton];
-    [self updateCharactersLabel];
+    [self _refreshCharacterCount];
 }
 
 
@@ -155,20 +165,27 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
 #pragma mark - Refresh
 
 - (void) _refreshDoneButton {
-    _doneButton.enabled = [_textView.text length] > 0;
+    NSInteger characterCount = self.characterCount;
+    _doneButton.enabled = (characterCount >= 0) && ([_textView.text length] > 0);
 }
 
-- (void) updateCharactersLabel {
-    CGFloat characterCount = TFNewEditNodeControllerCharacterLimit - [_textView.text length];
-    NSString *string = [NSString stringWithFormat: @"%.0f %@ LEFT", characterCount, fabsf(characterCount) == 1 ? @"CHARACTER" : @"CHARACTERS"];
+- (void) _refreshCharacterCount {
+    NSInteger characterCount = self.characterCount;
+    NSString *string = [NSString stringWithFormat: @"%i %@ LEFT", characterCount, fabsf(characterCount) == 1 ? @"CHARACTER" : @"CHARACTERS"];
+
     NSMutableDictionary *attributes = [[UIFont attributesForFont: [UIFont fontWithName: @"GothamRounded-Light" size: _charactersLabel.font.pointSize]] mutableCopy];
     if (characterCount < 0) {
         [attributes setObject: [UIColor tfRedColor] forKey: NSForegroundColorAttributeName];
     }
+
     _charactersLabel.attributedText = [[NSMutableAttributedString alloc] initWithString: string attributes: attributes];
 }
 
 
+- (NSInteger) characterCount {
+    return TFNewEditNodeControllerCharacterLimit - [_textView.text length];
+
+}
 
 #pragma mark - Setup
 
@@ -176,6 +193,7 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
     self.view.backgroundColor = [UIColor clearColor];
     self.view.opaque = NO;
 }
+
 #pragma mark - Private
 
 - (void) _notifyEditNodeControllerDismissedWithName: (NSString *) name {

@@ -5,30 +5,19 @@
 
 #import <DPKit-Utils/UIView+DPKit.h>
 #import <DPKit-Utils/UIView+DPKitDebug.h>
+#import <DPKit-Utils/UIViewController+DPKit.h>
 #import "TFImageDrawerViewController.h"
 #import "TFPhoto.h"
 #import "Project.h"
 #import "TFImageDrawerContentViewController.h"
 
 
-@implementation TFImageDrawerViewController
-//
-//- (instancetype) initWithImage: (TFPhoto *) image {
-//    TFImageDrawerViewController *ret = [[UIStoryboard storyboardWithName: @"Mindmap" bundle: nil] instantiateViewControllerWithIdentifier: @"TFImageDrawerViewController"];
-//    ret.image = image;
-//    return ret;
-//}
-//
-//- (instancetype) initWithProject: (Project *) project image: (TFPhoto *) image {
-//    TFImageDrawerViewController *ret = [[UIStoryboard storyboardWithName: @"Mindmap" bundle: nil] instantiateViewControllerWithIdentifier: @"TFImageDrawerViewController"];
-//    ret.image = image;
-//    ret.project = project;
-//    return ret;
-//}
-//
-//
-//
+@interface TFImageDrawerViewController ()
 
+@property(nonatomic, strong) TFImageDrawerContentViewController *contentViewController;
+@end
+
+@implementation TFImageDrawerViewController
 
 - (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
     TFImageDrawerViewController *ret = [[UIStoryboard storyboardWithName: @"Mindmap" bundle: nil] instantiateViewControllerWithIdentifier: @"TFImageDrawerViewController"];
@@ -63,6 +52,7 @@
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
     [self.view layoutIfNeeded];
+
 }
 
 
@@ -76,12 +66,12 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    _contentViewController = [[TFImageDrawerContentViewController alloc] init];
+    [self embedController: _contentViewController inView: _containerView];
     _titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(_titleLabel.frame);
 
     [_pinButton setTitle: @"PIN TO MOODBOARD" forState: UIControlStateNormal];
     [_pinButton setTitle: @"REMOVE FROM MOODBOARD" forState: UIControlStateSelected];
-
-    //    [_titleLabel addDebugBorder: [UIColor redColor]];
 
     self.image = _image;
 }
@@ -95,6 +85,8 @@
         if (_image) {
 
             _titleLabel.text = [_image.title uppercaseString];
+
+            NSLog(@"_titleLabel.text = %@", _titleLabel.text);
             _contentViewController.image = _image;
 
             if (_project) {
@@ -106,7 +98,11 @@
 
             [self.view layoutIfNeeded];
 
+        } else {
+
         }
+    } else {
+
     }
 }
 
@@ -150,7 +146,6 @@
 #pragma mark - Setup
 
 - (void) _setupView {
-
     self.view.backgroundColor = [UIColor clearColor];
     self.view.opaque = NO;
 }
@@ -159,10 +154,10 @@
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender {
     [super prepareForSegue: segue sender: sender];
 
-    if ([segue.identifier isEqualToString: @"ContentEmbedSegue"]) {
-        _contentViewController = segue.destinationViewController;
-        _contentViewController.image = _image;
-    }
+    //    if ([segue.identifier isEqualToString: @"ContentEmbedSegue"]) {
+    //        _contentViewController = segue.destinationViewController;
+    //        _contentViewController.image = _image;
+    //    }
 }
 
 @end

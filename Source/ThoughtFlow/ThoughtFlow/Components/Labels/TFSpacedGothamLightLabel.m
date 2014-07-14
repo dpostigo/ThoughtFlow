@@ -33,8 +33,12 @@
 - (CGSize) intrinsicContentSize {
     CGSize ret = [super intrinsicContentSize];
 
-    CGFloat minHeight = self.font.pointSize + [[self class] lineSpacing];
-    return CGSizeMake(ret.width, fmaxf(ret.height, minHeight));
+    CGFloat lineSpacing = [[self class] lineSpacing];
+    CGFloat minHeight = self.font.pointSize + lineSpacing;
+    //    CGFloat minHeight = self.font.pointSize;
+
+    return CGSizeMake(ret.width, fmaxf(ret.height + lineSpacing, minHeight));
+    //    return CGSizeMake(ret.width, fmaxf(ret.height, minHeight));
 }
 
 

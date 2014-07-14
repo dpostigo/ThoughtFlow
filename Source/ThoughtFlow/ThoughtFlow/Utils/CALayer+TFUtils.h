@@ -8,5 +8,6 @@
 
 @interface CALayer (TFUtils)
 
+- (void) setLineFromRect: (CGRect) rect toRect: (CGRect) toRect;
 - (void) setLineFromPoint: (CGPoint) a toPoint: (CGPoint) b;
 @end

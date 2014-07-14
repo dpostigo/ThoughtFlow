@@ -50,7 +50,7 @@
     NSDictionary *normalAttributes = [TFBarButtonItem defaultAttributes];
 
     NSDictionary *selectedAttributes = [TFString attributesWithAttributes: nil
-            font: [UIFont gothamRoundedLightFontOfSize: 10.0]
+            font: [UIFont gothamRoundedLightFontOfSize: 11.0]
             color: [UIColor tfGreenColor]
             kerning: 100
             lineSpacing: 1
@@ -74,7 +74,7 @@
     NSDictionary *ret = [TFString attributesWithAttributes: nil
             font: [UIFont gothamRoundedLightFontOfSize: 11.0]
             color: [UIColor whiteColor]
-            kerning: 50
+            kerning: 100
             lineSpacing: 1
             textAlignment: NSTextAlignmentLeft];
 

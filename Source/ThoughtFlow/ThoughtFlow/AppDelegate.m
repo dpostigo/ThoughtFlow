@@ -34,6 +34,7 @@
 
     [self _setup];
     [self _testAPI];
+
     //    [self testDestore];
     //    [self _setupSampleProject];
     //    [self preloadKeyboard];
@@ -49,9 +50,9 @@
 
 - (void) _testAPI {
 
-//    [_apiModel userExists: @"alex1" completion: ^(BOOL exists) {
-//        NSLog(@"%s", __PRETTY_FUNCTION__);
-//    }];
+    //    [_apiModel userExists: @"alex1" completion: ^(BOOL exists) {
+    //        NSLog(@"%s", __PRETTY_FUNCTION__);
+    //    }];
 }
 
 - (void) _setup {

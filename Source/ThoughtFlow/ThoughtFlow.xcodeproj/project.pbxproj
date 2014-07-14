@@ -60,9 +60,9 @@
 		3347CF5C1974268D00D52108 /* TFMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CF431974268D00D52108 /* TFMenuButton.m */; };
 		3347CF5D1974268D00D52108 /* TFToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CF451974268D00D52108 /* TFToggleButton.m */; };
 		3347CF5F1974268D00D52108 /* TFUserButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CF491974268D00D52108 /* TFUserButton.m */; };
-		3347CF601974268D00D52108 /* TFProjectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CF4C1974268D00D52108 /* TFProjectCollectionViewCell.m */; };
 		3347CF611974268D00D52108 /* TFBaseNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CF4F1974268D00D52108 /* TFBaseNodeView.m */; };
 		3347CF621974268D00D52108 /* TFNewNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CF521974268D00D52108 /* TFNewNodeView.m */; };
+		3347CF6B1974803100D52108 /* TFProjectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CF6A1974803100D52108 /* TFProjectCollectionViewCell.m */; };
 		335C8AA1196EAB4B001CE821 /* TFLinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335C8A9E196EAB4B001CE821 /* TFLinesViewController.m */; };
 		335C8AA2196EAB4B001CE821 /* TFNodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335C8AA0196EAB4B001CE821 /* TFNodesViewController.m */; };
 		335C8AA6196EBBD8001CE821 /* CCARadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 335C8AA5196EBBD8001CE821 /* CCARadialGradientLayer.m */; };
@@ -111,6 +111,7 @@
 		5C202FE88EF8455D89258345 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2C77D73AEEB49B6B04A2464 /* libPods.a */; };
 		F29B80D46077DCE6D8B259C3 /* NSMutableAttributedString+TFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B873BCE07B7B8305A7FB9 /* NSMutableAttributedString+TFUtils.m */; };
 		F29B80F9E1BFCDC315D4F293 /* TFFadeAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8AD289642B22EE79403D /* TFFadeAnimator.m */; };
+		F29B811697E60355BBB00A73 /* TFNewImageDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8CC9AD0B89E38CB51868 /* TFNewImageDrawerViewController.m */; };
 		F29B811FDE2A647D26F9CF5D /* TFAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8A8673011C7C6D78BC3A /* TFAttributedString.m */; };
 		F29B8150727C8F6724840F40 /* TFScrollingMindmapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8AFA9B74E747F113F21E /* TFScrollingMindmapViewController.m */; };
 		F29B816408D2ABDC9B5E9E55 /* TFNewMindmapGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8E2F30E36A60A34D8FE0 /* TFNewMindmapGridViewController.m */; };
@@ -264,13 +265,13 @@
 		3347CF451974268D00D52108 /* TFToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFToggleButton.m; sourceTree = "<group>"; };
 		3347CF481974268D00D52108 /* TFUserButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUserButton.h; sourceTree = "<group>"; };
 		3347CF491974268D00D52108 /* TFUserButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUserButton.m; sourceTree = "<group>"; };
-		3347CF4B1974268D00D52108 /* TFProjectCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFProjectCollectionViewCell.h; sourceTree = "<group>"; };
-		3347CF4C1974268D00D52108 /* TFProjectCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFProjectCollectionViewCell.m; sourceTree = "<group>"; };
 		3347CF4E1974268D00D52108 /* TFBaseNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFBaseNodeView.h; sourceTree = "<group>"; };
 		3347CF4F1974268D00D52108 /* TFBaseNodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFBaseNodeView.m; sourceTree = "<group>"; };
 		3347CF501974268D00D52108 /* TFBaseNodeViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFBaseNodeViewDelegate.h; sourceTree = "<group>"; };
 		3347CF511974268D00D52108 /* TFNewNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNewNodeView.h; sourceTree = "<group>"; };
 		3347CF521974268D00D52108 /* TFNewNodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFNewNodeView.m; sourceTree = "<group>"; };
+		3347CF691974803100D52108 /* TFProjectCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFProjectCollectionViewCell.h; sourceTree = "<group>"; };
+		3347CF6A1974803100D52108 /* TFProjectCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFProjectCollectionViewCell.m; sourceTree = "<group>"; };
 		335C8A9D196EAB4B001CE821 /* TFLinesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFLinesViewController.h; sourceTree = "<group>"; };
 		335C8A9E196EAB4B001CE821 /* TFLinesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFLinesViewController.m; sourceTree = "<group>"; };
 		335C8A9F196EAB4B001CE821 /* TFNodesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNodesViewController.h; sourceTree = "<group>"; };
@@ -409,8 +410,10 @@
 		F29B8BE5DC431D44BCEE1E34 /* TFKernedGothamLightLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFKernedGothamLightLabel.m; sourceTree = "<group>"; };
 		F29B8C46D4E51A2142A696DC /* TFNewEmptyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNewEmptyViewController.h; sourceTree = "<group>"; };
 		F29B8C5D4661A5533609C8C0 /* APIUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIUser.h; sourceTree = "<group>"; };
+		F29B8C73EB28234587A9E1AA /* TFNewImageDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNewImageDrawerViewController.h; sourceTree = "<group>"; };
 		F29B8C90987303919AA73834 /* TFLabelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFLabelButton.m; sourceTree = "<group>"; };
 		F29B8CB94049E79A5D9A481E /* UIButton+TFNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+TFNodeView.h"; sourceTree = "<group>"; };
+		F29B8CC9AD0B89E38CB51868 /* TFNewImageDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFNewImageDrawerViewController.m; sourceTree = "<group>"; };
 		F29B8CF97F99C573220CFBED /* TFAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFAttributedString.h; sourceTree = "<group>"; };
 		F29B8D7FD729F4B8788B6D3A /* BaseLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLibrary.h; sourceTree = "<group>"; };
 		F29B8D839B55E4F9A5F5D9A6 /* TFMindmapFullscreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMindmapFullscreenViewController.h; sourceTree = "<group>"; };
@@ -607,6 +610,8 @@
 		3347CE9319741C4C00D52108 /* 02-Projects */ = {
 			isa = PBXGroup;
 			children = (
+				3347CF691974803100D52108 /* TFProjectCollectionViewCell.h */,
+				3347CF6A1974803100D52108 /* TFProjectCollectionViewCell.m */,
 				3347CE9419741C4C00D52108 /* CreateProjectController.h */,
 				3347CE9519741C4C00D52108 /* CreateProjectController.m */,
 				3347CE9619741C4C00D52108 /* ProjectsController.h */,
@@ -711,6 +716,8 @@
 				3347CECD19741FD100D52108 /* TFImageDrawerViewController.m */,
 				3347CEC619741F9200D52108 /* TFNewSettingsDrawerController.h */,
 				3347CEC719741F9200D52108 /* TFNewSettingsDrawerController.m */,
+				F29B8CC9AD0B89E38CB51868 /* TFNewImageDrawerViewController.m */,
+				F29B8C73EB28234587A9E1AA /* TFNewImageDrawerViewController.h */,
 			);
 			path = "02-Settings";
 			sourceTree = "<group>";
@@ -795,8 +802,6 @@
 		3347CF4A1974268D00D52108 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				3347CF4B1974268D00D52108 /* TFProjectCollectionViewCell.h */,
-				3347CF4C1974268D00D52108 /* TFProjectCollectionViewCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1353,7 +1358,6 @@
 				3347CE6E1974151100D52108 /* TFTranslucentView.m in Sources */,
 				3347CF16197423BF00D52108 /* UIViewController+TFContentNavigationController.m in Sources */,
 				3386D0E61911959C007A96AA /* UILabel+TFFonts.m in Sources */,
-				3347CF601974268D00D52108 /* TFProjectCollectionViewCell.m in Sources */,
 				3343C76019095CBC00B9C582 /* main.m in Sources */,
 				3386D0EC1911ABBB007A96AA /* Model.m in Sources */,
 				3347CE9919741C4C00D52108 /* ProjectsController.m in Sources */,
@@ -1395,6 +1399,7 @@
 				F29B8E6AFCCEF428079247EB /* LibraryObject.m in Sources */,
 				F29B859AE09B88C85BA00DFF /* PreloginContainerController.m in Sources */,
 				3347CF621974268D00D52108 /* TFNewNodeView.m in Sources */,
+				3347CF6B1974803100D52108 /* TFProjectCollectionViewCell.m in Sources */,
 				33B30DCC1945CC2800B05AB7 /* FieldTableViewCell.m in Sources */,
 				F29B82A2574CDADF50B82C04 /* NewRegisterController.m in Sources */,
 				33B6B69B194E2DC2001B0BB3 /* UIViewController+TFControllers.m in Sources */,
@@ -1453,6 +1458,7 @@
 				F29B86794E8E140E3515C61B /* TFBarButtonItem.m in Sources */,
 				F29B8E00788F0B0862246747 /* TFNewTextField.m in Sources */,
 				F29B8D56E4C78062CE3D1089 /* TFNewEmptyViewController.m in Sources */,
+				F29B811697E60355BBB00A73 /* TFNewImageDrawerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

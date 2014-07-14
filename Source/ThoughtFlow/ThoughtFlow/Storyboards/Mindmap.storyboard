@@ -93,7 +93,7 @@
         <!--Image Drawer View Controller-->
         <scene sceneID="B55-9e-bHP">
             <objects>
-                <viewController storyboardIdentifier="TFImageDrawerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6PL-ta-i3q" customClass="TFImageDrawerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TFImageDrawerViewController2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6PL-ta-i3q" customClass="TFImageDrawerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mXq-aw-Off"/>
                         <viewControllerLayoutGuide type="bottom" id="V2T-ol-x9y"/>
@@ -184,7 +184,7 @@
         <!--Image Drawer Content View Controller-->
         <scene sceneID="ySQ-es-PgK">
             <objects>
-                <tableViewController id="i9A-48-bWh" customClass="TFImageDrawerContentViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TFImageDrawerContentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i9A-48-bWh" customClass="TFImageDrawerContentViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="ykD-IN-M4R">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -243,6 +243,183 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tOq-Xc-TvM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5639" y="4440"/>
+        </scene>
+        <!--New Image Drawer View Controller-->
+        <scene sceneID="ZFg-f7-a8Y">
+            <objects>
+                <viewController storyboardIdentifier="TFNewImageDrawerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="010-hj-agO" customClass="TFNewImageDrawerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JwQ-Xn-nCt"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mqt-do-37G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rkU-gl-uXf" customClass="TFTranslucentView">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" text="[IMAGE TITLE]" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="e3j-zT-Ajc" customClass="TFSpacedGothamLightLabel">
+                                <rect key="frame" x="20" y="20" width="260" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rk-mF-xcD" customClass="TFUserButton">
+                                <rect key="frame" x="20" y="708" width="254" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.24313727020000001" green="0.24313727020000001" blue="0.27450981740000002" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="qyw-xK-WMv"/>
+                                    <constraint firstAttribute="height" constant="40" id="yHf-bz-O6q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                <state key="normal" title="CLOSE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeDrawer:" destination="010-hj-agO" eventType="touchUpInside" id="r3S-6a-uEn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5T2-GH-WQ9" customClass="TFUserButton">
+                                <rect key="frame" x="20" y="658" width="254" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.28627450980000002" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="H9h-bz-AiV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="PIN TO MOODBOARD" image="icon-button-pin">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handlePinButton:" destination="010-hj-agO" eventType="touchUpInside" id="Peb-cw-qVe"/>
+                                </connections>
+                            </button>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xF-J4-Sve">
+                                <rect key="frame" x="0.0" y="60" width="300" height="578"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.074509806930000005" green="0.074509806930000005" blue="0.086274512110000007" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="5T2-GH-WQ9" firstAttribute="trailing" secondItem="7rk-mF-xcD" secondAttribute="trailing" id="0ZK-Tc-x5E"/>
+                            <constraint firstItem="Mqt-do-37G" firstAttribute="top" secondItem="7rk-mF-xcD" secondAttribute="bottom" priority="250" constant="20" id="0cS-zN-KQx"/>
+                            <constraint firstItem="e3j-zT-Ajc" firstAttribute="trailing" secondItem="7rk-mF-xcD" secondAttribute="trailing" constant="6" id="4dN-Ww-E2t"/>
+                            <constraint firstItem="5T2-GH-WQ9" firstAttribute="top" secondItem="7xF-J4-Sve" secondAttribute="bottom" constant="20" id="9U5-Ce-XyX"/>
+                            <constraint firstItem="e3j-zT-Ajc" firstAttribute="top" secondItem="JwQ-Xn-nCt" secondAttribute="bottom" constant="20" id="SA6-vc-Yeb"/>
+                            <constraint firstItem="e3j-zT-Ajc" firstAttribute="leading" secondItem="7rk-mF-xcD" secondAttribute="leading" id="Tu9-Yd-jCQ"/>
+                            <constraint firstAttribute="trailing" secondItem="7xF-J4-Sve" secondAttribute="trailing" id="WpW-dG-Fgu"/>
+                            <constraint firstItem="7rk-mF-xcD" firstAttribute="top" secondItem="5T2-GH-WQ9" secondAttribute="bottom" constant="10" id="eZa-VS-MFM"/>
+                            <constraint firstAttribute="trailing" secondItem="e3j-zT-Ajc" secondAttribute="trailing" constant="20" id="fjy-hu-0Y1"/>
+                            <constraint firstItem="7xF-J4-Sve" firstAttribute="leading" secondItem="rkU-gl-uXf" secondAttribute="leading" id="kVY-2o-ONf"/>
+                            <constraint firstItem="5T2-GH-WQ9" firstAttribute="leading" secondItem="7rk-mF-xcD" secondAttribute="leading" id="mui-0O-R2W"/>
+                            <constraint firstItem="7xF-J4-Sve" firstAttribute="top" secondItem="e3j-zT-Ajc" secondAttribute="bottom" constant="20" id="vsf-wH-lJS"/>
+                            <constraint firstItem="e3j-zT-Ajc" firstAttribute="leading" secondItem="rkU-gl-uXf" secondAttribute="leading" constant="20" id="zAV-3B-ENq"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="768"/>
+                    <connections>
+                        <outlet property="containerView" destination="7xF-J4-Sve" id="v3r-ND-fB3"/>
+                        <outlet property="pinButton" destination="5T2-GH-WQ9" id="4FN-ck-n85"/>
+                        <outlet property="titleLabel" destination="e3j-zT-Ajc" id="Tmi-YH-mpE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A5r-E3-vRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4474" y="4352"/>
+        </scene>
+        <!--Image Drawer View Controller-->
+        <scene sceneID="7Wy-qn-hgX">
+            <objects>
+                <viewController storyboardIdentifier="TFImageDrawerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qmc-GJ-UH8" customClass="TFImageDrawerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ffB-ET-ryl"/>
+                        <viewControllerLayoutGuide type="bottom" id="MQ6-2P-qh4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i25-M9-Zvt" customClass="TFTranslucentView">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="zaY-aW-HYh" customClass="TFSpacedGothamLightLabel">
+                                <rect key="frame" x="20" y="20" width="260" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">[IMAGE TITLE] [IMAGE TITLE][IMAGE TITLE] [IMAGE TITLE][IMAGE TITLE] [IMAGE TITLE][IMAGE TITLE] [IMAGE TITLE][IMAGE TITLE] [IMAGE TITLE][IMAGE TITLE] [IMAGE TITLE][IMAGE TITLE] [IMAGE TITLE][IMAGE TITLE] [IMAGE TITLE]</string>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkR-0b-5W8" customClass="TFUserButton">
+                                <rect key="frame" x="20" y="708" width="254" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.24313727020000001" green="0.24313727020000001" blue="0.27450981740000002" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="2mp-Sy-H6D"/>
+                                    <constraint firstAttribute="height" constant="40" id="t28-hb-OPa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                <state key="normal" title="CLOSE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeDrawer:" destination="Qmc-GJ-UH8" eventType="touchUpInside" id="YKj-yV-ViL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2j-Mx-bd0" customClass="TFUserButton">
+                                <rect key="frame" x="20" y="658" width="254" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.28627450980000002" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KYo-j1-aiJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="PIN TO MOODBOARD" image="icon-button-pin">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gp-Nd-8mu">
+                                <rect key="frame" x="0.0" y="100" width="300" height="538"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.074509806930000005" green="0.074509806930000005" blue="0.086274512110000007" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="zaY-aW-HYh" firstAttribute="trailing" secondItem="rkR-0b-5W8" secondAttribute="trailing" constant="6" id="BDO-qn-qNk"/>
+                            <constraint firstItem="0gp-Nd-8mu" firstAttribute="top" secondItem="ffB-ET-ryl" secondAttribute="bottom" constant="100" id="IKl-pR-fTP"/>
+                            <constraint firstAttribute="trailing" secondItem="zaY-aW-HYh" secondAttribute="trailing" constant="20" id="Isy-bV-51X"/>
+                            <constraint firstItem="0gp-Nd-8mu" firstAttribute="leading" secondItem="i25-M9-Zvt" secondAttribute="leading" id="QdL-hO-7Wa"/>
+                            <constraint firstAttribute="trailing" secondItem="0gp-Nd-8mu" secondAttribute="trailing" id="Z2D-Vb-6kV"/>
+                            <constraint firstItem="U2j-Mx-bd0" firstAttribute="top" secondItem="0gp-Nd-8mu" secondAttribute="bottom" constant="20" id="bRI-i6-S4Z"/>
+                            <constraint firstItem="U2j-Mx-bd0" firstAttribute="trailing" secondItem="rkR-0b-5W8" secondAttribute="trailing" id="eVO-jX-ild"/>
+                            <constraint firstItem="0gp-Nd-8mu" firstAttribute="top" secondItem="zaY-aW-HYh" secondAttribute="bottom" id="jr3-0T-HsR"/>
+                            <constraint firstItem="U2j-Mx-bd0" firstAttribute="leading" secondItem="rkR-0b-5W8" secondAttribute="leading" id="kPk-j4-P9I"/>
+                            <constraint firstItem="zaY-aW-HYh" firstAttribute="leading" secondItem="rkR-0b-5W8" secondAttribute="leading" id="rmF-hk-N7H"/>
+                            <constraint firstItem="zaY-aW-HYh" firstAttribute="top" secondItem="ffB-ET-ryl" secondAttribute="bottom" constant="20" id="t7A-Cd-oCb"/>
+                            <constraint firstItem="rkR-0b-5W8" firstAttribute="top" secondItem="U2j-Mx-bd0" secondAttribute="bottom" constant="10" id="wcq-hr-F4q"/>
+                            <constraint firstItem="MQ6-2P-qh4" firstAttribute="top" secondItem="rkR-0b-5W8" secondAttribute="bottom" priority="250" constant="20" id="xcF-CO-E8M"/>
+                            <constraint firstItem="zaY-aW-HYh" firstAttribute="leading" secondItem="i25-M9-Zvt" secondAttribute="leading" constant="20" id="z5j-ha-QgM"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="768"/>
+                    <connections>
+                        <outlet property="containerView" destination="0gp-Nd-8mu" id="AFJ-IH-tdV"/>
+                        <outlet property="pinButton" destination="U2j-Mx-bd0" id="p1e-wp-Jdf"/>
+                        <outlet property="titleLabel" destination="zaY-aW-HYh" id="oP0-7d-Reb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Trx-Rw-6gF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4836" y="4334"/>
         </scene>
     </scenes>
     <resources>

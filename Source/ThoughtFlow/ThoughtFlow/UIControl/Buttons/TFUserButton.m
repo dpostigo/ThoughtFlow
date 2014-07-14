@@ -15,6 +15,7 @@
 
     self.layer.cornerRadius = 2;
 
+    [self setTitle: [self titleForState: UIControlStateNormal] forState: UIControlStateNormal];
     [self setTitleColor: [UIColor lightGrayColor] forState: UIControlStateDisabled];
     //    [self setBackgroundImage: [UIImage imageWithColor: [UIColor colorWithWhite: 0.8 alpha: 0.5]] forState: UIControlStateDisabled];
 }
@@ -26,7 +27,9 @@
     CGFloat kerningSize = 60 * (pointSize / 1000);
     NSDictionary *attributes = @{
             NSFontAttributeName : [UIFont gothamLight: pointSize],
+            NSForegroundColorAttributeName : [self titleColorForState: state],
             NSKernAttributeName : @(kerningSize)
+
     };
 
     NSAttributedString *string = [[NSAttributedString alloc] initWithString: title attributes: attributes];

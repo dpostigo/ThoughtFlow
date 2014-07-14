@@ -4,7 +4,6 @@
 //
 
 #import "TFNewTutorialViewController.h"
-#import "REPagedScrollView.h"
 #import "UIView+DPKit.h"
 #import "DRPaginatedScrollView.h"
 #import "UIControl+BlocksKit.h"
@@ -22,8 +21,6 @@
 
     self.view.backgroundColor = [UIColor clearColor];
     self.view.opaque = NO;
-
-    //    [self _setupIntroView];
 
     _scrollView = [DRPaginatedScrollView new];
     _scrollView.delegate = self;
@@ -69,38 +66,6 @@
 }
 
 #pragma mark - Setup
-
-- (void) _setupIntroView {
-
-    CGRect rect = self.view.bounds;
-
-    CGRect pageRect = CGRectMake(0, 0, self.view.width, self.view.frame.size.height - 40);
-
-    REPagedScrollView *scrollView = [[REPagedScrollView alloc] initWithFrame: self.view.bounds];
-    scrollView.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    scrollView.pageControl.currentPageIndicatorTintColor = [UIColor grayColor];
-    [self.view embedView: scrollView];
-
-    UIView *test = [[UIView alloc] initWithFrame: pageRect];
-    test.backgroundColor = [UIColor lightGrayColor];
-    [scrollView addPage: test];
-
-    test = [[UIView alloc] initWithFrame: pageRect];
-    test.backgroundColor = [UIColor blueColor];
-    [scrollView addPage: test];
-
-    test = [[UIView alloc] initWithFrame: pageRect];
-    test.backgroundColor = [UIColor greenColor];
-    [scrollView addPage: test];
-
-    test = [[UIView alloc] initWithFrame: pageRect];
-    test.backgroundColor = [UIColor redColor];
-    [scrollView addPage: test];
-
-    test = [[UIView alloc] initWithFrame: pageRect];
-    test.backgroundColor = [UIColor yellowColor];
-    [scrollView addPage: test];
-}
 
 
 @end

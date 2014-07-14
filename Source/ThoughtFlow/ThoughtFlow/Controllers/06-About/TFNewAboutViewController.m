@@ -37,7 +37,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithWhite: 1.0 alpha: 0.5];
     self.view.opaque = NO;
 
     _bg = [[TFTranslucentView alloc] initWithFrame: self.view.bounds];

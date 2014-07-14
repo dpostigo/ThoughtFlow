@@ -9,6 +9,10 @@
 @class TFPhoto;
 
 
+extern NSString *const TFImageDrawerImageCredits;
+NSString *const TFImageDrawerImageDescription;
+NSString *const TFImageDrawerImageTags;
+
 @interface TFImageDrawerContentViewController : UITableViewController
 
 @property(nonatomic, strong) TFPhoto *image;

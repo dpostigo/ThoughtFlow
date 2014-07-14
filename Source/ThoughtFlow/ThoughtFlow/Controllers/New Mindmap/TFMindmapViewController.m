@@ -82,6 +82,14 @@
 }
 
 
+- (void) viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+
+    //    NSLog(@"%s", __PRETTY_FUNCTION__);
+    //    NSLog(@"self.view.frame = %@", NSStringFromCGRect(self.view.frame));
+    //    [self _updateLayer];
+}
+
 - (void) viewDidLoad {
     [super viewDidLoad];
 
@@ -161,6 +169,13 @@
 - (void) nodesControllerDidUpdateViews: (NSArray *) nodeViews {
     _linesController.rootNode = _project.firstNode;
 
+    [self _updateLayer];
+
+}
+
+
+- (void) _updateLayer {
+    [_linesController updateLayerWithNodeViews: _nodesController.nodeViews];
 }
 
 
@@ -363,7 +378,6 @@
 #pragma mark - Selection
 
 - (void) nodesControllerDidSelectNode: (TFNode *) node {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     _selectedNode = node;
     _bgController.node = _selectedNode;
 

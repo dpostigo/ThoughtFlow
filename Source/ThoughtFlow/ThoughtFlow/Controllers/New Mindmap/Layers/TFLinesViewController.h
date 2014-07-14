@@ -20,6 +20,7 @@
 @property(nonatomic, strong) UIColor *lineColor;
 
 
+- (void) updateLayerWithNodeViews: (NSArray *) nodeViews;
 - (void) startPinchWithNodeViews: (NSArray *) nodeViews;
 - (void) updatePinchWithNodeViews: (NSArray *) nodeViews;
 - (void) endPinchWithNodeViews: (NSArray *) nodeViews;

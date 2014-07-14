@@ -232,7 +232,7 @@
                 CGPoint remainder = CGPointMake(offset.x / TFNodeViewWidth, offset.y / TFNodeViewHeight);
                 CGPoint newOffset = CGPointMake(roundf(remainder.x) * TFNodeViewWidth, roundf(remainder.y) * TFNodeViewHeight);
 
-                CGPoint velocity = [gesture velocityInView: gesture.view];
+                // CGPoint velocity = [gesture velocityInView: gesture.view];
                 //                CGFloat springVelocity = (-0.1f * velocity.x) / (curX - snapX);
                 [UIView animateWithDuration: 0.4
                         delay: 0.0
@@ -387,6 +387,7 @@
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.font = [UIFont italicSerif: 14];
     _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _textLabel.numberOfLines = 0;
     [_centerContentView embedView: _textLabel withInsets: UIEdgeInsetsMake(6, 6, 6, 6)];
 
 

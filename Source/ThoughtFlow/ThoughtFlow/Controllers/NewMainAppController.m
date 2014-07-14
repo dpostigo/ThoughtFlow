@@ -183,6 +183,7 @@
             && [destinationController isKindOfClass: [ProjectsController class]]) {
         _fadingNavigationAnimator.opaque = YES;
         return _fadingNavigationAnimator;
+
     } else {
         _fadingNavigationAnimator.opaque = NO;
     }
@@ -200,22 +201,22 @@
         ret = self.slidingNavigationAnimator;
     }
 
-    switch (operation) {
-        case UINavigationControllerOperationNone : {
-            NSLog(@"UINavigationControllerOperationNone");
-        }
-            break;
-
-        case UINavigationControllerOperationPush : {
-            NSLog(@"UINavigationControllerOperationPush");
-        }
-            break;
-
-        case UINavigationControllerOperationPop : {
-            NSLog(@"UINavigationControllerOperationPop");
-        }
-            break;
-    }
+    //    switch (operation) {
+    //        case UINavigationControllerOperationNone : {
+    //            NSLog(@"UINavigationControllerOperationNone");
+    //        }
+    //            break;
+    //
+    //        case UINavigationControllerOperationPush : {
+    //            NSLog(@"UINavigationControllerOperationPush");
+    //        }
+    //            break;
+    //
+    //        case UINavigationControllerOperationPop : {
+    //            NSLog(@"UINavigationControllerOperationPop");
+    //        }
+    //            break;
+    //    }
 
     NSLog(@"%@: %@ -> %@", ret, sourceController, destinationController);
     ret.isPresenting = operation == UINavigationControllerOperationPush ? YES : NO;

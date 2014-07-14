@@ -12,14 +12,17 @@
 #import "DPPassThroughView.h"
 #import "TFLiveUpdateLayer.h"
 #import "TFBaseNodeView.h"
+#import "CALayer+TFUtils.h"
 
 
 @interface TFLinesViewController ()
 
+@property(nonatomic) BOOL masksLines;
 @property(nonatomic, strong) CALayer *updateLayer;
 @property(nonatomic, strong) CALayer *mainLayer;
 @property(nonatomic, strong) CALayer *tempLayer;
 @property(nonatomic, strong) TFLiveUpdateLayer *liveLayer;
+@property(nonatomic, strong) CALayer *testLayer;
 @end
 
 @implementation TFLinesViewController {
@@ -36,6 +39,7 @@
 
         _mainLayer = [CALayer layer];
         _mainLayer.frame = self.view.bounds;
+        _mainLayer.delegate = self;
         [self.view.layer addSublayer: _mainLayer];
 
         _updateLayer = [CALayer layer];
@@ -51,13 +55,19 @@
         _liveLayer = [TFLiveUpdateLayer layer];
         _liveLayer.frame = self.view.bounds;
         _liveLayer.lineColor = [UIColor redColor];
-        //        _liveLayer.hidden = YES;
         _liveLayer.delegate = self;
         [self.view.layer addSublayer: _liveLayer];
+
+        //        if (_masksLines) {
+        //            _testLayer = self.view.layer;
+        //            _testLayer.opaque = NO;
+        //        }
     }
 
     return self;
 }
+
+
 
 #pragma mark - View lifecycle
 
@@ -85,6 +95,33 @@
 }
 
 
+- (void) updateLayerWithNodeViews: (NSArray *) nodeViews {
+
+    if (_masksLines) {
+
+        // create the mask that will be applied to the layer on top of the yellow background
+        CAShapeLayer *maskLayer = [CAShapeLayer layer];
+        maskLayer.fillRule = kCAFillRuleEvenOdd;
+        maskLayer.frame = _testLayer.frame;
+
+        CGMutablePathRef p1 = CGPathCreateMutable();
+        CGPathAddPath(p1, nil, CGPathCreateWithRect(maskLayer.bounds, nil));
+
+        for (int j = 0; j < [nodeViews count]; j++) {
+            TFBaseNodeView *view = nodeViews[j];
+            CGPathAddPath(p1, nil, CGPathCreateWithRect(view.frame, nil));
+        }
+
+        maskLayer.path = p1;
+        _testLayer.mask = maskLayer;
+
+        CGPathRelease(p1);
+
+    }
+
+}
+
+
 - (void) setRootNode: (TFNode *) rootNode {
     if (_rootNode) [_mainLayer removeAllSublayers];
     _rootNode = rootNode;
@@ -103,7 +140,9 @@
         sublayer.backgroundColor = _lineColor.CGColor;
         sublayer.frame = self.view.bounds;
         [_mainLayer addSublayer: sublayer];
-        [self setLayerLine: sublayer fromPoint: child.center toPoint: parentNode.center];
+
+        //        [sublayer setLineFromPoint: child.center toPoint: parentNode.center];
+        [sublayer setLineFromRect: child.rect toRect: parentNode.rect];
 
         //        NSLog(@"Drew  %@ to %@", NSStringFromCGPoint(child.center), NSStringFromCGPoint(parentNode.center));
 
@@ -167,12 +206,15 @@
 
         if (child == targetNode) {
             if (targetNode.parentNode != nil) {
-                [self setLayerLine: sublayer fromPoint: nodeView.center toPoint: targetNode.parentNode.center];
+                [sublayer setLineFromRect: nodeView.frame toRect: targetNode.parentNode.rect];
+                //                [sublayer setLineFromPoint: nodeView.center toPoint: targetNode.parentNode.center];
+                //                [self setLayerLine: sublayer fromPoint: nodeView.center toPoint: targetNode.parentNode.center];
             }
         }
 
         else if ([targetNode.children containsObject: child]) {
-            [self setLayerLine: sublayer fromPoint: child.center toPoint: nodeView.center];
+            [sublayer setLineFromRect: child.rect toRect: nodeView.frame];
+            //            [sublayer setLineFromPoint: child.center toPoint: nodeView.center];
 
         }
     }
@@ -211,13 +253,16 @@
 
         if ([exclude containsObject: child]) {
             [_updateLayer addSublayer: sublayer];
-            sublayer.backgroundColor = [UIColor yellowColor].CGColor;
-            [self setLayerLine: sublayer fromPoint: child.center toPoint: parentNode.center];
+            sublayer.backgroundColor = [UIColor whiteColor].CGColor;
+            //            [sublayer setLineFromPoint: child.center toPoint: parentNode.center];
+            [sublayer setLineFromRect: child.rect toRect: parentNode.rect];
 
         } else {
             [_mainLayer addSublayer: sublayer];
             sublayer.backgroundColor = _lineColor.CGColor;
-            [self setLayerLine: sublayer fromPoint: child.center toPoint: parentNode.center];
+            //            [sublayer setLineFromPoint: child.center toPoint: parentNode.center];
+            [sublayer setLineFromRect: child.rect toRect: parentNode.rect];
+            //            [self setLayerLine: sublayer fromPoint: child.center toPoint: parentNode.center];
         }
 
         if ([child.children count] > 0) {
@@ -249,53 +294,13 @@
 
             NSLog(@"child.title = %@", child.title);
             NSLog(@"targetedNode.title = %@", targetedNode.title);
-            sublayer.backgroundColor = [UIColor yellowColor].CGColor;
+            sublayer.backgroundColor = [UIColor whiteColor].CGColor;
         }
 
         if ([child.children count] > 0) {
             [self affectedLayersForTargetedNode: targetedNode inNode: child];
         }
     }];
-
-    //
-    //    NSMutableArray *ret = [[NSMutableArray alloc] init];
-    //
-    //    [parentNode.children enumerateObjectsUsingBlock: ^(TFNode *child, NSUInteger index, BOOL *stop) {
-    //        TFLayer *sublayer = [_mainLayer.sublayers objectAtIndex: index];
-    //
-    //        if ([targetNode.children count] == 0) {
-    //
-    //            BOOL shouldAdd = NO;
-    //            if (child == targetNode) {
-    //                sublayer.backgroundColor = [UIColor yellowColor].CGColor;
-    //            } else if (child == targetNode.parent) {
-    //
-    //                //                TFNode *parentNode = child.parent;
-    //
-    //                //                shouldAdd = YES;
-    //            }
-    //
-    //            if (shouldAdd) {
-    //                [ret addObject: sublayer];
-    //            }
-    //        } else {
-    //
-    //            if (child == targetNode || child == targetNode.parent || child.parent == targetNode) {
-    //                //                [ret addObject: sublayer];
-    //            } else {
-    //
-    //                if ([child.parent isKindOfClass: [TFNode class]]) {
-    //                    TFNode *parentNode = child.parent;
-    //
-    //                }
-    //
-    //            }
-    //
-    //        }
-    //
-    //        [ret addObjectsFromArray: [self affectedLayersForTargetedNode: targetNode inNode: child]];
-    //
-    //    }];
 
     return nil;
 }
@@ -321,7 +326,7 @@
 }
 
 - (void) updateTempLineFromPoint: (CGPoint) a toPoint: (CGPoint) b {
-    [self setLayerLine: _tempLayer fromPoint: a toPoint: b];
+    [_tempLayer setLineFromPoint: a toPoint: b];
 }
 
 - (void) endMoveWithNodeView: (TFBaseNodeView *) nodeView withParent: (TFBaseNodeView *) parentNodeView {
@@ -331,31 +336,6 @@
 
 
 #pragma mark Lines
-
-- (void) setLayerLine: (CALayer *) layer fromPoint: (CGPoint) a toPoint: (CGPoint) b {
-    [self setLayerLine: layer fromPoint: a toPoint: b animated: NO];
-}
-
-- (void) setLayerLine: (CALayer *) layer fromPoint: (CGPoint) a toPoint: (CGPoint) b animated: (BOOL) flag {
-
-    CGFloat lineWidth = 0.5;
-    CGPoint center = {0.5 * (a.x + b.x), 0.5 * (a.y + b.y)};
-    CGFloat length = (CGFloat) sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
-    CGFloat angle = (CGFloat) atan2(a.y - b.y, a.x - b.x);
-
-    if (flag) {
-
-
-        //        layer.delegate = nil;
-    } else {
-
-    }
-
-    layer.position = center;
-    layer.bounds = (CGRect) {{0, 0}, {length + lineWidth, lineWidth}};
-    layer.transform = CATransform3DMakeRotation(angle, 0, 0, 1);
-
-}
 
 
 #pragma mark - Private

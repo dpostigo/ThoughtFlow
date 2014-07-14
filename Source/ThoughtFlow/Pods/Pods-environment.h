@@ -222,11 +222,11 @@
 #define COCOAPODS_VERSION_MINOR_NSObject_AutoDescription 1
 #define COCOAPODS_VERSION_PATCH_NSObject_AutoDescription 0
 
-// REPagedScrollView
-#define COCOAPODS_POD_AVAILABLE_REPagedScrollView
-#define COCOAPODS_VERSION_MAJOR_REPagedScrollView 1
-#define COCOAPODS_VERSION_MINOR_REPagedScrollView 0
-#define COCOAPODS_VERSION_PATCH_REPagedScrollView 0
+// NSString+RMURLEncoding
+#define COCOAPODS_POD_AVAILABLE_NSString_RMURLEncoding
+#define COCOAPODS_VERSION_MAJOR_NSString_RMURLEncoding 0
+#define COCOAPODS_VERSION_MINOR_NSString_RMURLEncoding 1
+#define COCOAPODS_VERSION_PATCH_NSString_RMURLEncoding 0
 
 // Reveal-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Reveal_iOS_SDK

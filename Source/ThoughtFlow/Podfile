@@ -37,10 +37,10 @@ pod 'CocoaLumberjack'
 pod 'ILTranslucentView'
 pod 'UIAlertView+Blocks'
 pod 'BlocksKit'
-pod 'REPagedScrollView'
 
 pod 'CJStringValidator'
 pod 'DRPaginatedScrollView'
+pod 'NSString+RMURLEncoding'
 
 
 # Temp

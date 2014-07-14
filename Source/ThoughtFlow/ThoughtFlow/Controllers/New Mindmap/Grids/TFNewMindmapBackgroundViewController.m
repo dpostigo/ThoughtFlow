@@ -8,14 +8,12 @@
 #import "TFNewMindmapBackgroundViewController.h"
 #import "Project.h"
 #import "TFNode.h"
-#import "UIViewController+TFControllers.h"
 #import "TFContentViewNavigationController.h"
 #import "TFNewMindmapGridViewController.h"
 #import "TFMindmapFullscreenViewController.h"
 #import "APIModel.h"
 #import "TFPhoto.h"
 #import "TFNewMindmapFullscreenViewController.h"
-#import "TFContentView.h"
 
 
 @interface TFNewMindmapBackgroundViewController ()
@@ -40,6 +38,10 @@
     return self;
 }
 
+
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+}
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -95,14 +97,13 @@
 
 
 #pragma mark - Delegates
+#pragma mark - TFNewImageDrawerViewControllerDelegate
 
-#pragma mark - TFImageDrawerViewControllerDelegate
-
-- (void) imageDrawerViewController: (TFImageDrawerViewController *) imagesController removedPin: (TFPhoto *) image {
+- (void) imageDrawerViewController: (TFNewImageDrawerViewController *) imagesController removedPin: (TFPhoto *) image {
     [self _refreshButtonsController];
 }
 
-- (void) imageDrawerViewController: (TFImageDrawerViewController *) imagesController addedPin: (TFPhoto *) image {
+- (void) imageDrawerViewController: (TFNewImageDrawerViewController *) imagesController addedPin: (TFPhoto *) image {
     [self _refreshButtonsController];
 }
 
@@ -120,9 +121,7 @@
             break;
 
         case TFMindmapButtonTypeInfo : {
-            //            self.contentNavigationController.rightDrawerController = [[TFImageDrawerViewController alloc] initWithProject: _project image: _selectedImage];
-            //            [self.contentNavigationController openRightContainer];
-            TFImageDrawerViewController *controller = [[TFImageDrawerViewController alloc] initWithProject: _project image: _selectedImage];
+            TFNewImageDrawerViewController *controller = [[TFNewImageDrawerViewController alloc] initWithProject: _project image: _selectedImage];
             controller.delegate = self;
             _contentController.rightDrawerController = controller;
             [_contentController openRightContainer];
@@ -194,7 +193,6 @@
 
     if (operation == UINavigationControllerOperationPush) {
         NSLog(@"Push");
-
         ret.isPresenting = YES;
     } else if (operation == UINavigationControllerOperationPop) {
         NSLog(@"pop");
@@ -217,8 +215,12 @@
     _selectedImage = image;
 
     if (_contentController.isOpen) {
-        if ([_contentController.rightDrawerController isKindOfClass: [TFImageDrawerViewController class]]) {
-            TFImageDrawerViewController *controller = (TFImageDrawerViewController *) _contentController.rightDrawerController;
+        //        if ([_contentController.rightDrawerController isKindOfClass: [TFImageDrawerViewController class]]) {
+        //            TFImageDrawerViewController *controller = (TFImageDrawerViewController *) _contentController.rightDrawerController;
+        //            controller.image = image;
+        //        }
+        if ([_contentController.rightDrawerController isKindOfClass: [TFNewImageDrawerViewController class]]) {
+            TFNewImageDrawerViewController *controller = (TFNewImageDrawerViewController *) _contentController.rightDrawerController;
             controller.image = image;
         }
     }
@@ -238,7 +240,7 @@
     TFMindmapFullscreenViewController *controller2 = [[TFMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
     controller2.delegate = self;
 
-    _fullscreenController2 = [[TFNewMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
+    //    _fullscreenController2 = [[TFNewMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
 
     _contentController = [[TFContentViewNavigationController alloc] initWithRootViewController: _gridController];
     _contentController.navigationBarHidden = YES;

@@ -7,6 +7,7 @@
 #import "TFMindmapButtonsViewController.h"
 #import "TFMindmapViewController.h"
 #import "TFImageDrawerViewController.h"
+#import "TFNewImageDrawerViewController.h"
 
 
 @class Project;
@@ -16,14 +17,14 @@
 
 
 @protocol TFMindmapImageControllerProtocol <NSObject>
-
 - (void) imageController: (UIViewController *) controller didSelectImage: (TFPhoto *) image;
 @end
 
 @interface TFNewMindmapBackgroundViewController : UIViewController <TFMindmapButtonsViewControllerDelegate,
         UINavigationControllerDelegate,
         TFMindmapImageControllerProtocol,
-        TFImageDrawerViewControllerDelegate>
+        TFNewImageDrawerViewControllerDelegate> {
+}
 
 @property(nonatomic) TFMindmapControllerType mindmapType;
 @property(nonatomic, strong) Project *project;
@@ -32,6 +33,7 @@
 @property(nonatomic, strong) NSArray *images;
 @property(nonatomic, copy) NSString *imageString;
 @property(nonatomic, strong) TFContentView *contentView;
+
 - (instancetype) initWithProject: (Project *) project node: (TFNode *) node;
 
 @end

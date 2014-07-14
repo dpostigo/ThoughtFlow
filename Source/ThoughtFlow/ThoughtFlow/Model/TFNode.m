@@ -65,6 +65,10 @@ NSString *const TFNodeUpdate = @"TFNodeUpdate";
 }
 
 
+- (CGRect) rect {
+    return CGRectMake(_position.x, _position.y, TFNodeViewWidth, TFNodeViewHeight);
+}
+
 - (CGPoint) center {
     return CGPointMake(_position.x + (TFNodeViewWidth / 2), _position.y + (TFNodeViewHeight / 2));
 }

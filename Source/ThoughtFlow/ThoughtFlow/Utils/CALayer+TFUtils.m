@@ -8,6 +8,33 @@
 
 @implementation CALayer (TFUtils)
 
+- (void) setLineFromRect: (CGRect) rect toRect: (CGRect) toRect {
+
+    //    CGFloat minX = fminf(CGRectGetMinX(rect), CGRectGetMinX(toRect));
+    //    CGFloat maxX = fmaxf(CGRectGetMinX(rect), CGRectGetMinX(toRect));
+    //
+    //    if (CGRectGetMinX(rect) < CGRectGetMinX(toRect)) {
+    //        NSLog(@"rect = %@ to %@", NSStringFromCGRect(rect), NSStringFromCGRect(toRect));
+    //        NSLog(@"minX = %f", minX);
+    //        CGPoint pointA = CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    //        CGPoint pointB = CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    //        return;
+    //    }
+    //
+    //    //    CGPoint pointA = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+    //
+    //    if (pointA.x > pointB.x) {
+    //        NSLog(@"pointA = %@, pointB = %@", NSStringFromCGPoint(pointA), NSStringFromCGPoint(pointB));
+    //
+    //    } else {
+    //
+    //    }
+    CGPoint pointA = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+    CGPoint pointB = CGPointMake(CGRectGetMidX(toRect), CGRectGetMidY(toRect));
+    [self setLineFromPoint: pointA toPoint: pointB];
+}
+
+
 - (void) setLineFromPoint: (CGPoint) a toPoint: (CGPoint) b {
 
     CGFloat lineWidth = 0.5;

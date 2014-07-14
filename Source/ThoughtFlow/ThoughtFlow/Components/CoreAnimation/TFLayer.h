@@ -9,6 +9,4 @@
 
 }
 
-- (void) setLineFromPoint: (CGPoint) a toPoint: (CGPoint) b;
-- (void) setLineFromPoint: (CGPoint) a toPoint: (CGPoint) b animated: (BOOL) flag;
 @end

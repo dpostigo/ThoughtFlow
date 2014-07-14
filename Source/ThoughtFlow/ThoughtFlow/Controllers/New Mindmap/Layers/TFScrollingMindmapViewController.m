@@ -58,9 +58,9 @@
 
     [self.view layoutIfNeeded];
 
-    //    [_nodesController.view addDebugBorder: [UIColor yellowColor]];
-
 }
+
+
 
 
 #pragma mark - Public
@@ -344,7 +344,9 @@
     CGPoint convertedPoint4 = [_nodesController.view convertPoint: corePoint toView: self.view];
 
     CGPoint offset = _scrollView.contentOffset;
-    _nodesController.pinchEndPoint = corePoint;
+    _nodesController.pinchEndPoint = offset;
+
+    [_linesController updateLayerWithNodeViews: _nodesController.nodeViews];
 }
 
 

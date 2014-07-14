@@ -9,6 +9,15 @@
 
 @implementation TFSpacedGothamLightLabel
 
+- (id) initWithFrame: (CGRect) frame {
+    self = [super initWithFrame: frame];
+    if (self) {
+        self.fontAttribute = [UIFont gothamRoundedLightFontOfSize: [UIFont systemFontSize]];
+    }
+
+    return self;
+}
+
 - (void) awakeFromNib {
     [super awakeFromNib];
 
@@ -19,5 +28,40 @@
 + (CGFloat) lineSpacing {
     return 100 / 12;
 }
+
+
+- (CGSize) intrinsicContentSize {
+    CGSize ret = [super intrinsicContentSize];
+
+    CGFloat minHeight = self.font.pointSize + [[self class] lineSpacing];
+    return CGSizeMake(ret.width, fmaxf(ret.height, minHeight));
+}
+
+
+
+
+//- (NSDictionary *) defaultAttributes {
+//
+//    NSLog(@"self.fontAttribute = %@", self.fontAttribute);
+//
+//    NSDictionary *attributes = nil;
+//    CGFloat pointSize = self.font.pointSize;
+//    CGFloat kerningSize = (self.kerning == 0 ? [[self class] defaultClassKerning] : self.kerning) * (pointSize / 1000);
+//
+//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+//    paragraphStyle.lineSpacing = [[self class] lineSpacing];
+//    paragraphStyle.alignment = self.textAlignment;
+//    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+//
+//    attributes = @{
+//            NSForegroundColorAttributeName : self.textColor,
+//            NSFontAttributeName : self.fontAttribute,
+//            NSKernAttributeName : @(kerningSize),
+//            NSParagraphStyleAttributeName : paragraphStyle
+//    };
+//
+//    return attributes;
+//
+//}
 
 @end

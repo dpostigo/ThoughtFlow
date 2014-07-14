@@ -14,10 +14,12 @@
 @class TFNode;
 @class MindmapBackgroundController;
 @class TFNodesViewController;
-@class MindmapLinesController;
+@class TFLinesViewController;
 @class TFNewMindmapBackgroundViewController;
 @class TFContentView;
 @class TFNodeScrollView;
+@class TFPanningNodesViewController;
+@class TFScrollingMindmapViewController;
 
 
 typedef NS_ENUM(NSInteger, TFMindmapControllerType) {
@@ -27,9 +29,16 @@ typedef NS_ENUM(NSInteger, TFMindmapControllerType) {
 
 @interface TFMindmapController : TFViewController <TFNodesViewControllerDelegate,
         TFMindmapGridViewControllerDelegate,
-        TFNewEditNodeControllerDelegate> {
-    TFNodeScrollView *_scrollView;
+        TFNewEditNodeControllerDelegate,
+        UIScrollViewDelegate> {
+
+    UIScrollView *_scrollView;
     TFNodesViewController *_scalingNodesController;
+    TFPanningNodesViewController *_panningController;
+    UIView *_mindmapView;
+    NSLayoutConstraint *_widthConstraint;
+    NSLayoutConstraint *_heightConstraint;
+    TFScrollingMindmapViewController *_scrollingController;
 }
 
 @property(nonatomic) TFMindmapControllerType mindmapType;
@@ -38,6 +47,9 @@ typedef NS_ENUM(NSInteger, TFMindmapControllerType) {
 
 @property(nonatomic, strong) TFContentView *contentView;
 @property(nonatomic, strong) TFNodesViewController *scalingNodesController;
+@property(nonatomic, strong) UIView *mindmapView;
+@property(nonatomic, strong) NSLayoutConstraint *widthConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
 - (instancetype) initWithProject: (Project *) project;
 
 @end

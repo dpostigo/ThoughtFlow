@@ -7,15 +7,25 @@
 #import "TFViewController.h"
 #import "TLFreeformModalProtocol.h"
 #import "TFNewDrawerController.h"
+#import "TFNewTextField.h"
 
-@class TFCustomTextField;
 
-@interface TFAccountDrawerController : TFNewDrawerController <TLFreeformModalProtocol> {
+@class TFTextField;
+@class TFNewTextField;
 
-    IBOutlet TFCustomTextField *usernameField;
-    IBOutlet TFCustomTextField *emailField;
+@interface TFAccountDrawerController : TFNewDrawerController <UITextFieldDelegate,
+        TFNewTextFieldDelegate> {
 
-    IBOutlet TFCustomTextField *passwordField;
+    IBOutlet TFTextField *usernameFieldOld;
+    IBOutlet TFTextField *emailFieldOld;
+
+    IBOutlet TFTextField *passwordFieldOld;
 
 }
+
+@property(weak) IBOutlet TFNewTextField *emailField;
+@property(weak) IBOutlet TFNewTextField *passwordField;
+@property(weak) IBOutlet TFNewTextField *usernameField;
+@property(weak) IBOutlet UIButton *signOutButton;
+@property(nonatomic, strong) UITextField *currentTextField;
 @end

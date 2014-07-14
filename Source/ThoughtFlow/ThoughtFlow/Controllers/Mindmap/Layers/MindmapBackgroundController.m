@@ -234,8 +234,8 @@
 //    CGPoint currentOffset = [self.collection contentOffset];
 //    int currentIndex = (int) (currentOffset.x / self.collection.frame.size.width);
 //
-//    float offset = currentIndex * currentSize.width;
-//    [self.collection setContentOffset: CGPointMake(offset, 0)];
+//    float startingOffset = currentIndex * currentSize.width;
+//    [self.collection setContentOffset: CGPointMake(startingOffset, 0)];
 //}
 
 

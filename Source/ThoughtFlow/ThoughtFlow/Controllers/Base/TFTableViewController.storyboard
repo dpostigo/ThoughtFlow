@@ -57,8 +57,50 @@
                                     <outlet property="_textLabel" destination="Yx9-c2-oGe" id="ykB-Yi-QBQ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageSettingsCell" rowHeight="100" id="igh-vK-iAa" customClass="TFTableViewCell">
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RelatedCell" rowHeight="100" id="jfy-fM-Lf0" customClass="TFTableViewCell">
                                 <rect key="frame" x="0.0" y="122" width="400" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jfy-fM-Lf0" id="uHS-kN-JSl">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="99"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="BULL-FIGHTING" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWP-yh-Xvt" customClass="TFKernedGothamLightLabel">
+                                            <rect key="frame" x="20" y="10" width="365" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="wC7-55-UKX"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Subtitle" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="365" translatesAutoresizingMaskIntoConstraints="NO" id="hHh-cs-Jpo" customClass="TFSpacedGothamLightLabel">
+                                            <rect key="frame" x="20" y="40" width="365" height="49"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="hWP-yh-Xvt" firstAttribute="leading" secondItem="uHS-kN-JSl" secondAttribute="leading" constant="20" id="7mO-C7-U4H"/>
+                                        <constraint firstAttribute="trailing" secondItem="hWP-yh-Xvt" secondAttribute="trailing" constant="15" id="O2j-LQ-H2Z"/>
+                                        <constraint firstAttribute="bottom" secondItem="hHh-cs-Jpo" secondAttribute="bottom" constant="10" id="OfV-yg-uVs"/>
+                                        <constraint firstAttribute="trailing" secondItem="hHh-cs-Jpo" secondAttribute="trailing" constant="15" id="PWs-GD-as9"/>
+                                        <constraint firstItem="hHh-cs-Jpo" firstAttribute="leading" secondItem="uHS-kN-JSl" secondAttribute="leading" constant="20" id="gBV-WX-hHc"/>
+                                        <constraint firstItem="hHh-cs-Jpo" firstAttribute="top" secondItem="hWP-yh-Xvt" secondAttribute="bottom" constant="8" id="kmj-4n-xWm"/>
+                                        <constraint firstItem="hWP-yh-Xvt" firstAttribute="top" secondItem="uHS-kN-JSl" secondAttribute="top" constant="10" id="wYc-dJ-MFA"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="_detailTextLabel" destination="hHh-cs-Jpo" id="tFF-Q6-VGR"/>
+                                    <outlet property="_textLabel" destination="hWP-yh-Xvt" id="n61-nK-tVV"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageSettingsCell" rowHeight="100" id="igh-vK-iAa" customClass="TFTableViewCell">
+                                <rect key="frame" x="0.0" y="222" width="400" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="igh-vK-iAa" id="c81-PY-l9d">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="99"/>

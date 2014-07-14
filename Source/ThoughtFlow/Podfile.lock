@@ -42,12 +42,14 @@ PODS:
     - BlocksKit/DynamicDelegate
   - CALayer-DPUtils (0.1.6):
     - DPKit-Utils
+  - CJStringValidator (1.0.1)
   - CocoaLumberjack (1.9.1):
     - CocoaLumberjack/Extensions
   - CocoaLumberjack/Core (1.9.1)
   - CocoaLumberjack/Extensions (1.9.1):
     - CocoaLumberjack/Core
   - CrashlyticsFramework (2.2.1)
+  - DKAccessoryButton (1.0.1)
   - DPAnimators (0.0.1):
     - DPKit-UIView
     - DPKit-Utils
@@ -68,10 +70,12 @@ PODS:
   - DPTransitions/Segues (0.0.1):
     - DPAnimators (= 0.0.1)
     - DPKit-Utils
+  - DRPaginatedScrollView (0.1)
   - ILTranslucentView (0.0.1)
   - JMSimpleDate (0.0.6)
   - NSAttributedString-DDHTML (0.0.1)
   - NSObject+AutoDescription (0.1)
+  - REPagedScrollView (1.0)
   - Reveal-iOS-SDK (1.0.4)
   - UIAlertView+Blocks (0.8.1)
   - UIColorCategories (0.1.0)
@@ -83,8 +87,10 @@ DEPENDENCIES:
   - AutoCoding
   - BlocksKit
   - CALayer-DPUtils (from `~/Development/LocalPods/Utilities/CALayer-DPUtils`)
+  - CJStringValidator
   - CocoaLumberjack
   - CrashlyticsFramework
+  - DKAccessoryButton
   - DPAnimators (from `~/Development/LocalPods/DPAnimators`)
   - DPCollectionView
   - DPKit-UIFont (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIFont`)
@@ -92,9 +98,11 @@ DEPENDENCIES:
   - DPKit-Utils (from `~/Development/LocalPods/DPKit-Suite/DPKit-Utils`)
   - DPTableView (from `~/Development/LocalPods/DPKit-Suite/DPTableView`)
   - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
+  - DRPaginatedScrollView
   - ILTranslucentView
   - NSAttributedString-DDHTML
   - NSObject+AutoDescription
+  - REPagedScrollView
   - Reveal-iOS-SDK
   - UIAlertView+Blocks
   - UIColorCategories
@@ -124,8 +132,10 @@ SPEC CHECKSUMS:
   AutoCoding: 2a15d57acf78912b72cc3b3a472e614b2f112a18
   BlocksKit: 07c8a80f04275efac6a5f8b973782489c083a182
   CALayer-DPUtils: cdd3ef1b054136ee30215aa7c06b0675f442f084
+  CJStringValidator: 6b13b71275d3fce869b37ccbca025a2151712966
   CocoaLumberjack: 94accd5749f5c5d15134c8d50f34a973aed8ef69
   CrashlyticsFramework: a9d172599c3a34e68067e16446a764041b980162
+  DKAccessoryButton: dc1e496dbf83cc03dae1692408874ef3830764cd
   DPAnimators: b5d8bf1ed85f17a49cabad1bcc22010c70d27ba8
   DPCollectionView: f9fa97254c21ff6dcec0a8e33f93b21bb315ac99
   DPKit-UIFont: 5128d629296622358f66b6d8d9fd16ab532578ea
@@ -133,10 +143,12 @@ SPEC CHECKSUMS:
   DPKit-Utils: 367b2b35209031eb0d322db082bbb03f68194c76
   DPTableView: c5617cb4751ae277a0fa75ae4d0a15e74ffe68bb
   DPTransitions: fb247247ff38c47a0fb2ca0f97d9d9ad4b8924b8
+  DRPaginatedScrollView: 510eec673cbf0f142b3eb580ffc4fb182faba412
   ILTranslucentView: fa20cc89ceb451b54ae3d993c7dfb789873ef153
   JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
   NSAttributedString-DDHTML: b660068de47108746a88474e29f98ac32b5d3e16
   NSObject+AutoDescription: 741983bfabbfd2813c77078fdc91526853bad16d
+  REPagedScrollView: d1e032f937f067fb67371a4dd4971b951ed51c6c
   Reveal-iOS-SDK: d3c8e109d42219daaa7a6e1ad2de34f0bdbb7a88
   UIAlertView+Blocks: 0b749f1f7bd5131ff2233b30a406c1585a7171b2
   UIColorCategories: 8fbcc33a0ed3a03395caabfcb39f77231986413b

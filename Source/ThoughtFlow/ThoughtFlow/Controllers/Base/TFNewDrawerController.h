@@ -15,12 +15,9 @@
 @end
 
 
-@interface TFNewDrawerController : TFViewController {
-
-    __unsafe_unretained id <TFNewDrawerControllerDelegate> drawerDelegate;
-
-}
+@interface TFNewDrawerController : TFViewController
 
 @property(nonatomic, assign) id <TFNewDrawerControllerDelegate> drawerDelegate;
+- (IBAction) closeDrawer: (id) sender;
 - (void) _notifyDrawerControllerShouldDismiss;
 @end

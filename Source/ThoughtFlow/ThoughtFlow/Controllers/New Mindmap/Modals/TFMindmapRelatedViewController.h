@@ -4,15 +4,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFTableViewController.h"
 
 
 @class TFNode;
 @class TFTableViewController;
 
 
-@interface TFMindmapRelatedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TFMindmapRelatedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TFTableViewControllerDelegate>
 
 @property(weak) IBOutlet UIView *containerView;
+@property(weak) IBOutlet UILabel *textLabel;
 
 @property(nonatomic, strong) NSArray *suggestions;
 @property(nonatomic, strong) UITapGestureRecognizer *recognizer;

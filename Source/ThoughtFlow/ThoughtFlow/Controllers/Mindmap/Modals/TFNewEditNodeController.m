@@ -19,6 +19,7 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
 @interface TFNewEditNodeController ()
 
 @property(nonatomic, strong) MVPopupTransition *animator;
+@property(nonatomic) CGFloat startingValue;
 @end
 
 @implementation TFNewEditNodeController
@@ -36,6 +37,10 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
     self = [super init];
     if (self) {
         _node = node;
+        self.modalPresentationStyle = UIModalPresentationCustom;
+        self.transitioningDelegate = self;
+        _animator = [MVPopupTransition createWithSize: [UIScreen mainScreen].bounds.size dimBackground: YES shouldDismissOnBackgroundViewTap: YES delegate: nil];
+
     }
 
     return self;
@@ -46,12 +51,12 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
 
 
 
-- (void) loadView {
-    [super loadView];
-
-    [self.view layoutIfNeeded];
-
-}
+//- (void) loadView {
+//    [super loadView];
+//
+//    [self.view layoutIfNeeded];
+//
+//}
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -70,7 +75,6 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
 
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
-
     [_textView becomeFirstResponder];
 
 }
@@ -84,7 +88,13 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
     if ([notification.name isEqualToString: UIKeyboardWillShowNotification]) {
         _startingValue = centerConstraint.constant;
         CGFloat newHeight = self.view.height - keyboardHeight;
-        centerConstraint.constant = (newHeight - _containerView.height) / 2;
+        //        centerConstraint.constant = (newHeight - _containerView.height) / 2;
+        //        centerConstraint.constant = newHeight / 2;
+        //        centerConstraint.constant = (keyboardHeight - _containerView.height) / 2;
+        centerConstraint.constant = keyboardHeight - (_containerView.height / 2);
+
+        NSLog(@"_startingValue = %f", _startingValue);
+        NSLog(@"newHeight = %f", newHeight);
 
     } else if ([notification.name isEqualToString: UIKeyboardWillHideNotification]) {
         centerConstraint.constant = _startingValue;
@@ -159,6 +169,13 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
 }
 
 
+
+#pragma mark - Setup
+
+- (void) _setupView {
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.opaque = NO;
+}
 #pragma mark - Private
 
 - (void) _notifyEditNodeControllerDismissedWithName: (NSString *) name {

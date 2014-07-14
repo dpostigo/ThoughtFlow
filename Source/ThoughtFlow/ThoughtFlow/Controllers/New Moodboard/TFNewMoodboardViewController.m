@@ -14,6 +14,7 @@
 #import "TFTranslucentViewController.h"
 #import "TFMoodboardGridViewController.h"
 #import "UIView+DPKit.h"
+#import "MVPopupTransition.h"
 
 
 @implementation TFNewMoodboardViewController
@@ -22,8 +23,10 @@
     self = [super init];
     if (self) {
         _project = project;
-        self.view = [[TFTranslucentView alloc] init];
-        [self _setup];
+        self.modalPresentationStyle = UIModalPresentationCustom;
+        self.transitioningDelegate = self;
+        _animator = [MVPopupTransition createWithSize: [UIScreen mainScreen].bounds.size dimBackground: YES shouldDismissOnBackgroundViewTap: YES delegate: nil];
+
     }
 
     return self;
@@ -34,8 +37,9 @@
 }
 
 - (void) loadView {
-    [super loadView];
-    NSLog(@"%s", __PRETTY_FUNCTION__);
+
+    self.view = [[UIView alloc] init];
+    [self _setup];
 }
 
 - (void) viewWillAppear: (BOOL) animated {
@@ -54,14 +58,6 @@
     _bg.alpha = 0;
     [self embedFullscreenView: self.bg];
 
-    //    TFTranslucentViewController *bgController = [[TFTranslucentViewController alloc] init];
-    //    bgController.view.hidden = NO;
-    //    [self embedFullscreenController: bgController];
-
-    _emptyController = [[TFEmptyViewController alloc] initWithTitle: @"You don't have any pins in your moodboard."];
-    //    _emptyController.view.hidden = NO;
-    [self embedFullscreenController: _emptyController];
-
     _contentView = [[TFContentView alloc] initWithFrame: self.view.bounds];
     _contentView.alpha = 0;
     [self embedFullscreenView: _contentView];
@@ -75,6 +71,19 @@
     [_contentView embedController: _contentNavigationController];
 
     [self.view setNeedsUpdateConstraints];
+}
+
+
+
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id) animationControllerForPresentedController: (UIViewController *) presented presentingController: (UIViewController *) presenting sourceController: (UIViewController *) source {
+    return self.animator;
+}
+
+- (id) animationControllerForDismissedController: (UIViewController *) dismissed {
+    return self.animator;
 }
 
 @end

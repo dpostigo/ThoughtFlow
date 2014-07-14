@@ -417,7 +417,7 @@
 /**
  Sets a block to be executed when a download task has been resumed, as handled by the `NSURLSessionDownloadDelegate` method `URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:`.
  
- @param block A block object to be executed when a download task has been resumed. The block has no return value and takes four arguments: the session, the download task, the file offset of the resumed download, and the total number of bytes expected to be downloaded.
+ @param block A block object to be executed when a download task has been resumed. The block has no return value and takes four arguments: the session, the download task, the file startingOffset of the resumed download, and the total number of bytes expected to be downloaded.
  */
 - (void) setDownloadTaskDidResumeBlock: (void (^)(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t fileOffset, int64_t expectedTotalBytes)) block;
 

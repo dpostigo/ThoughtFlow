@@ -49,9 +49,9 @@
 
 - (void) _testAPI {
 
-    [_apiModel userExists: @"alex1" completion: ^(BOOL exists) {
-        NSLog(@"%s", __PRETTY_FUNCTION__);
-    }];
+//    [_apiModel userExists: @"alex1" completion: ^(BOOL exists) {
+//        NSLog(@"%s", __PRETTY_FUNCTION__);
+//    }];
 }
 
 - (void) _setup {
@@ -109,7 +109,6 @@
             NSLog(@"[node autoDescription] = %@", [node autoDescription]);
         }
 
-        NSLog(@"project.pinnedImages = %@", project.pinnedImages);
     }
 
 }

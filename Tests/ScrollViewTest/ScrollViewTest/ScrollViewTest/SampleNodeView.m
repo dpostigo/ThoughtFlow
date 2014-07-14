@@ -21,6 +21,7 @@
         CHTStickerView *stickerView = [[CHTStickerView alloc] initWithContentView: label];
         [self addSubview: stickerView];
 
+
         //
         //        [self addSubview: label];
         //        label.translatesAutoresizingMaskIntoConstraints = NO;
@@ -29,18 +30,18 @@
         //                [NSLayoutConstraint constraintWithItem: label attribute: NSLayoutAttributeTop relatedBy: NSLayoutRelationEqual toItem: self attribute: NSLayoutAttributeTop multiplier: 1.0 constant: 10.0]
         //        ]];
 
-        UILabel *label2 = [[UILabel alloc] init];
-        label2.text = @"Right";
-        [self addSubview: label2];
-        label2.translatesAutoresizingMaskIntoConstraints = NO;
+        UILabel *toprightLabel = [[UILabel alloc] init];
+        toprightLabel.text = @"Top Right";
+        [self addSubview: toprightLabel];
+        toprightLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
         [self addConstraints: @[
-                [NSLayoutConstraint constraintWithItem: label2 attribute: NSLayoutAttributeTrailing relatedBy: NSLayoutRelationEqual toItem: self attribute: NSLayoutAttributeTrailing multiplier: 1.0 constant: 0.0],
-                [NSLayoutConstraint constraintWithItem: label2 attribute: NSLayoutAttributeCenterY relatedBy: NSLayoutRelationEqual toItem: self attribute: NSLayoutAttributeCenterY multiplier: 1.0 constant: 0.0]
+                [NSLayoutConstraint constraintWithItem: toprightLabel attribute: NSLayoutAttributeTrailing relatedBy: NSLayoutRelationEqual toItem: self attribute: NSLayoutAttributeTrailing multiplier: 1.0 constant: 0.0],
+                [NSLayoutConstraint constraintWithItem: toprightLabel attribute: NSLayoutAttributeTop relatedBy: NSLayoutRelationEqual toItem: self attribute: NSLayoutAttributeTop multiplier: 1.0 constant: 0.0],
         ]];
 
         UILabel *label3 = [[UILabel alloc] init];
-        label3.text = @"Bottom";
+        label3.text = @"Bottom Right";
         [self addSubview: label3];
         label3.translatesAutoresizingMaskIntoConstraints = NO;
 

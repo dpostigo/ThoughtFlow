@@ -135,8 +135,8 @@
             shadow.shadowBlurRadius = 2.0;
             shadow.shadowColor = [UIColor blackColor];
 
-            if ([attributeDictionary objectForKey: @"offset"]) {
-                shadow.shadowOffset = CGSizeFromString([attributeDictionary objectForKey: @"offset"]);
+            if ([attributeDictionary objectForKey: @"startingOffset"]) {
+                shadow.shadowOffset = CGSizeFromString([attributeDictionary objectForKey: @"startingOffset"]);
             }
             if ([attributeDictionary objectForKey: @"blurradius"]) {
                 shadow.shadowBlurRadius = [[attributeDictionary objectForKey: @"blurradius"] doubleValue];

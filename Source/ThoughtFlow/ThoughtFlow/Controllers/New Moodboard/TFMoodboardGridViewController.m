@@ -55,14 +55,18 @@
 
     [_imagesController.collection performBatchUpdates: ^{
 
-        [_project.pinnedImages removeObject: image];
+        if (image == _imagesController.selectedImage) {
+            _imagesController.selectedImage = nil;
+        }
+        [_project removePin: image];
         NSMutableArray *images = [_imagesController.images mutableCopy];
         [images removeObject: image];
         _imagesController.images = images;
-
         [_imagesController.collection deleteItemsAtIndexPaths: @[indexPath]];
 
-    } completion: nil];
+    } completion: ^(BOOL finished) {
+        [self _refresh];
+    }];
 
 }
 
@@ -85,6 +89,29 @@
     return UIEdgeInsetsMake(0, 0, 0, 0);;
 }
 
+
+
+#pragma mark - Refresh
+
+- (void) _refresh {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSLog(@"%s, [_project.pinnedImages count] = %u", __PRETTY_FUNCTION__, [_project.pinnedImages count]);
+
+    if ([_project.pinnedImages count] == 0) {
+        _imagesController.view.hidden = YES;
+        _emptyController.view.alpha = 0;
+        _emptyController.view.hidden = NO;
+
+        [UIView animateWithDuration: 0.4 animations: ^{
+            _emptyController.view.alpha = 1;
+        }];
+
+    } else {
+        _emptyController.view.hidden = YES;
+        _imagesController.images = _project.pinnedImages;
+    }
+
+}
 #pragma mark - Setup
 
 - (void) _setupControllers {

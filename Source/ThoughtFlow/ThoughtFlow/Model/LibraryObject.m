@@ -52,7 +52,7 @@
 }
 
 
-- (void) addItems: (NSArray *) items {
+- (void) addChildren: (NSArray *) items {
     [self.mutableChildren addObjectsFromArray: items];
     [items enumerateObjectsUsingBlock: ^(id item, NSUInteger idx, BOOL *stop) {
         if ([item respondsToSelector: @selector(setParent:)]) {

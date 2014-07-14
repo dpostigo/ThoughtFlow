@@ -4,9 +4,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFNewDrawerController.h"
 
 
-@interface TFNewAccountViewController : UIViewController {
+@class TFNewAccountViewController;
 
+
+@protocol TFNewAccountViewControllerDelegate <NSObject>
+
+- (void) accountViewController: (TFNewAccountViewController *) accountViewController clickedSignOutButton: (UIButton *) button;
+
+@end;
+
+@interface TFNewAccountViewController : TFNewDrawerController {
 }
+
+@property(nonatomic, strong) UIViewController *containerController;
+@property(nonatomic, assign) id <TFNewAccountViewControllerDelegate> delegate;
 @end

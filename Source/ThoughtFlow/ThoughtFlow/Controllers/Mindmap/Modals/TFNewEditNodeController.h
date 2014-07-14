@@ -7,7 +7,6 @@
 
 
 @class MVPopupTransition;
-@protocol TFEditNodeControllerDelegate;
 @class TFNewEditNodeController;
 @class TFNode;
 
@@ -15,12 +14,10 @@
 @protocol TFNewEditNodeControllerDelegate <NSObject>
 
 - (void) editNodeController: (TFNewEditNodeController *) controller didEditNode: (TFNode *) node withName: (NSString *) name;
-
 @end
 
 
-@interface TFNewEditNodeController : UIViewController <UIViewControllerTransitioningDelegate, UITextViewDelegate> {
-    CGFloat _startingValue;
+@interface TFNewEditNodeController : UIViewController <UITextViewDelegate, UIViewControllerTransitioningDelegate> {
 }
 
 @property(weak) IBOutlet UIView *containerView;
@@ -30,7 +27,6 @@
 
 @property(nonatomic, assign) id <TFNewEditNodeControllerDelegate> delegate;
 @property(nonatomic, strong) TFNode *node;
-@property(nonatomic) CGFloat startingValue;
 - (instancetype) initWithNode: (TFNode *) node;
 
 @end

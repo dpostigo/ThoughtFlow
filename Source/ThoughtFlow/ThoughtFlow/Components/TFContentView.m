@@ -88,7 +88,6 @@
 
     [_leftDrawerController viewWillAppear: YES];
 
-    NSLog(@"_leftContainerView.bounds = %@", NSStringFromCGRect(_leftContainerView.bounds));
     [UIView animateWithDuration: 0.4
             delay: 0.0
             usingSpringWithDamping: 1.0
@@ -99,6 +98,7 @@
             }
             completion: ^(BOOL finished) {
                 [_leftDrawerController viewDidAppear: YES];
+
                 [self _notifyDidOpenLeftController: _leftDrawerController];
 
                 if (completion) {
@@ -143,6 +143,8 @@
                 [self layoutIfNeeded];
             }
             completion: ^(BOOL finished) {
+
+                [_rightDrawerController viewDidAppear: YES];
 
                 [self _notifyDidOpenRightController: _rightDrawerController];
                 if (completion) {
@@ -197,6 +199,7 @@
 
 - (void) closeRightContainer: (void (^)()) completion {
 
+    [self layoutIfNeeded];
     [_rightContainerView updateSuperTrailingConstraint: _rightContainerView.width];
     [UIView animateWithDuration: 0.4
             delay: 0.0

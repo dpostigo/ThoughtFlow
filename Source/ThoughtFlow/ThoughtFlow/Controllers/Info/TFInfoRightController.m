@@ -9,6 +9,7 @@
 #import "UIColor+TFApp.h"
 #import "UIView+TFFonts.h"
 
+
 @implementation TFInfoRightController
 
 - (void) viewDidLoad {
@@ -35,7 +36,6 @@
     [self setupDescriptionLabel];
 
 }
-
 
 
 - (void) setupDescriptionLabel {

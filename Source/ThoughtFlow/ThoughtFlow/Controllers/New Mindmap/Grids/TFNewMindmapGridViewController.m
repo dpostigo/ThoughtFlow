@@ -121,7 +121,7 @@
     controller.delegate = _delegate;
     [self.navigationController pushViewController: controller animated: YES];
     [self _notifySelection: image];
-    _delegate = nil;
+    //    _delegate = nil;
 }
 
 

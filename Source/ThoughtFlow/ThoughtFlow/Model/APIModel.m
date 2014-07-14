@@ -13,8 +13,13 @@
 #import "PhotoLibrary.h"
 
 
+NSString *const TFScopeEmail = @"email";
+
+
 NSString *const ThoughtFlowIdentifier = @"188.226.201.79";
 NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
+NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
+
 
 @implementation APIModel
 
@@ -24,42 +29,11 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
         _model = [Model sharedModel];
         _photoLibrary = [PhotoLibrary sharedLibrary];
 
-        NSURL *url = [NSURL URLWithString: @"http://188.226.201.79/api/v1"];
-        _authClient = [AFOAuth2Client clientWithBaseURL: url
-                clientID: @"2dc300c232a003156fddd1d9aecb38d9da9ad49a"
-                secret: @"66df225f66bdbe89d5f04825aea2efa9731edd5a"];
+        [self initAuthClient];
 
-        //        _authClient.responseSerializer = [AFHTTPResponseSerializer serializer];
-        //        _authClient.responseSerializer = [AFJSONResponseSerializer serializer];
-
-        [_authClient.reachabilityManager setReachabilityStatusChangeBlock: ^(AFNetworkReachabilityStatus status) {
-            switch (status) {
-
-                case AFNetworkReachabilityStatusUnknown : {
-                    NSLog(@"Unknown.");
-
-                }
-                    break;
-                case AFNetworkReachabilityStatusNotReachable : {
-                    NSLog(@"Not reachable.");
-                    if (DEBUG) {
-                        _usesDummyData = YES;
-                    }
-
-                }
-                    break;
-                case AFNetworkReachabilityStatusReachableViaWWAN : {
-                    NSLog(@"AFNetworkReachabilityStatusReachableViaWWAN");
-                }
-
-                    break;
-                case AFNetworkReachabilityStatusReachableViaWiFi : {
-                    NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
-                }
-                    break;
-            }
-        }];
-
+        //        if (!self.loggedIn) {
+        //        [self authenticateWithCompletion: nil failure: nil];
+        //        }
 
         //        [self.authClient.reachabilityManager startMonitoring];
 
@@ -87,13 +61,20 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 
     if (credential) {
         if (credential.isExpired) {
-            [AFOAuthCredential deleteCredentialWithIdentifier: ThoughtFlowIdentifier];
+            DDLogWarn(@"Credential is expired.");
+            //            [AFOAuthCredential deleteCredentialWithIdentifier: ThoughtFlowIdentifier];
+
         } else {
             NSData *encodedObject = [[NSUserDefaults standardUserDefaults] objectForKey: @"currentUser"];
             if (encodedObject) {
+                DDLogVerbose(@"Got user.");
                 _currentUser = [NSKeyedUnarchiver unarchiveObjectWithData: encodedObject];
+            } else {
+                DDLogVerbose(@"No saved user.");
             }
         }
+    } else {
+        DDLogWarn(@"Credential does not exist.");
     }
 
     return _currentUser != nil;
@@ -108,6 +89,17 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 }
 
 
+- (void (^)()) failureBlockWithTitle: (NSString *) title message: (NSString *) message {
+    return ^{
+        [UIAlertView showWithTitle: title
+                message: message
+                cancelButtonTitle: @"OK"
+                otherButtonTitles: @[]
+                tapBlock: nil];
+    };
+}
+
+
 + (void) alertErrorWithTitle: (NSString *) title message: (NSString *) message {
     [UIAlertView showWithTitle: title
             message: message
@@ -116,34 +108,26 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
             tapBlock: nil];
 }
 
-#pragma mark Login / Register
 
-- (void) login: (NSString *) username password: (NSString *) password completion: (void (^)()) completion failure: (void (^)()) failure {
-    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+#pragma mark - Authentication
 
-    [self.authClient authenticateUsingOAuthWithURLString: @"http://188.226.201.79/api/oauth/token"
-            username: username
-            password: password
-            scope: @"email"
+
+- (void) authenticateWithCompletion: (void (^)()) completion failure: (void (^)()) failure {
+    DDLogVerbose(@"AUTH started.");
+
+    [self.authClient authenticateUsingOAuthWithURLString: TFAuthURL
+            username: @"alex1"
+            password: @"qwerty"
+            scope: TFScopeEmail
             success: ^(AFOAuthCredential *credential) {
-                NSLog(@"_model.authClient.serviceProviderIdentifier = %@", self.authClient.serviceProviderIdentifier);
-
-                self.currentUser = [[APIUser alloc] initWithUsername: username password: password];
-                [[NSUserDefaults standardUserDefaults] setObject: [NSKeyedArchiver archivedDataWithRootObject: self.currentUser] forKey: @"currentUser"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-
-                [self getUserInfo: username completion: ^(id response) {
-                    self.currentUser.email = [response objectForKey: @"email"];
-                } failure: nil];
-
+                DDLogVerbose(@"AUTH Authentication succeeded.");
                 [AFOAuthCredential storeCredential: credential withIdentifier: self.authClient.serviceProviderIdentifier];
-
                 if (completion) {
                     completion();
                 }
             }
             failure: ^(NSError *error) {
-                NSLog(@"%s, error = %@", __PRETTY_FUNCTION__, error);
+                DDLogVerbose(@"AUTH Authentication failed. Error = %@", error);
                 if (failure) {
                     failure();
                 }
@@ -152,30 +136,26 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 }
 
 
-- (void) getUserInfo: (NSString *) username completion: (void (^)(id response)) success failure: (void (^)()) failure {
-    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
-    [self.authClient GET: [NSString stringWithFormat: @"user/%@", username]
-            parameters: nil
-            success: ^(AFHTTPRequestOperation *task, id responseObject) {
-                success(responseObject);
-            }
-            failure: ^(AFHTTPRequestOperation *task, NSError *error) {
-                failure();
-            }];
-}
+#pragma mark Login / Register
+
+
 
 - (void) userExists: (NSString *) username completion: (void (^)(BOOL exists)) success {
-    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+    DDLogVerbose(@"USEREXISTS, username = %@", username);
+
     [self.authClient GET: [NSString stringWithFormat: @"username/%@", username]
             parameters: nil
             success: ^(AFHTTPRequestOperation *task, id responseObject) {
-                success(YES);
-                DDLogVerbose(@"%s, responseObject = %@", __PRETTY_FUNCTION__, responseObject);
-
+                DDLogVerbose(@"USEREXISTS, user does exist.");
+                if (success) {
+                    success(YES);
+                }
             }
             failure: ^(AFHTTPRequestOperation *task, NSError *error) {
-                success(NO);
-                DDLogVerbose(@"%s, error = %@", __PRETTY_FUNCTION__, error);
+                if (success) {
+                    success(NO);
+                }
+                DDLogVerbose(@"USEREXISTS, user does NOT exist.");
             }];
 }
 
@@ -204,9 +184,205 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
             }];
 }
 
+- (void) loginUser: (NSString *) username password: (NSString *) password completion: (void (^)()) completion failure: (void (^)()) failure {
+    DDLogVerbose(@"LOGIN with username: %@, password: %@", username, password);
 
-- (void) updateUser: (NSString *) username email: (NSString *) email {
+    [self.authClient authenticateUsingOAuthWithURLString: TFAuthURL
+            username: username
+            password: password
+            scope: TFScopeEmail
+            success: ^(AFOAuthCredential *credential) {
+                DDLogVerbose(@"LOGIN succeeded.");
 
+                [AFOAuthCredential storeCredential: credential withIdentifier: self.authClient.serviceProviderIdentifier];
+
+                self.currentUser = [[APIUser alloc] initWithUsername: username password: password];
+                [[NSUserDefaults standardUserDefaults] setObject: [NSKeyedArchiver archivedDataWithRootObject: self.currentUser] forKey: @"currentUser"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+
+                [self getUserInfo: username completion: ^(id response) {
+                    self.currentUser.email = [response objectForKey: @"email"];
+                } failure: nil];
+
+                if (completion) {
+                    completion();
+                }
+
+            }
+
+            failure: ^(NSError *error) {
+                DDLogVerbose(@"LOGIN failed. Error = %@", error);
+
+                if (failure) {
+                    failure();
+                }
+            }];
+
+    return;
+
+    DDLogVerbose(@"LOGIN with username: %@, password: %@", username, password);
+
+    [self getUserInfo: username completion: ^(id response) {
+        DDLogVerbose(@"LOGIN succeeded.");
+
+        self.currentUser = [[APIUser alloc] initWithUsername: username password: password];
+        self.currentUser.email = [response objectForKey: @"email"];
+        [[NSUserDefaults standardUserDefaults] setObject: [NSKeyedArchiver archivedDataWithRootObject: self.currentUser] forKey: @"currentUser"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
+        if (completion) {
+            completion();
+        }
+
+    } failure: ^(NSError *error) {
+        DDLogVerbose(@"LOGIN failed. Error = %@", error);
+
+        if (failure) {
+            failure();
+        }
+    }];
+
+    return;
+
+}
+
+
+- (void) updateCurrentUserWithPassword: (NSString *) password
+                               success: (void (^)()) success
+                               failure: (void (^)(NSString *message)) failure {
+
+    if ([self.currentUser.password isEqualToString: password]) {
+        return;
+    }
+    [self updateUser: self.currentUser.username password: password success: success failure: failure];
+}
+
+- (void) updateCurrentUserWithEmail: (NSString *) email
+                            success: (void (^)()) success
+                            failure: (void (^)(NSString *message)) failure {
+    if ([self.currentUser.email isEqualToString: email]) {
+        return;
+    }
+    [self updateUser: self.currentUser.username email: email success: success failure: failure];
+}
+
+- (void) updateUser: (NSString *) username password: (NSString *) password
+            success: (void (^)()) success failure: (void (^)(NSString *message)) failure {
+    [self updateUser: self.currentUser.username
+            params: @{@"password" : password}
+            success: success
+            failure: failure];
+}
+
+
+- (void) updateUser: (NSString *) username email: (NSString *) email
+            success: (void (^)()) success failure: (void (^)(NSString *message)) failure {
+
+    [self updateUser: self.currentUser.username
+            params: @{@"email" : email}
+            success: success
+            failure: failure];
+}
+
+- (void) updateUser: (NSString *) username
+             params: (NSDictionary *) params
+            success: (void (^)()) success
+            failure: (void (^)(NSString *message)) failure {
+
+    [self.authClient PUT: [NSString stringWithFormat: @"user/%@", username]
+            parameters: params
+            success: ^(AFHTTPRequestOperation *task, id responseObject) {
+                DDLogVerbose(@"UPDATE USER succeeded.");
+                if (success) {
+                    success();
+                }
+            }
+            failure: ^(AFHTTPRequestOperation *task, NSError *error) {
+                NSError *jsonError;
+                NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: task.responseData options: 0 error: &jsonError];
+                NSString *message = [jsonDict objectForKey: @"message"];
+
+                DDLogVerbose(@"UPDATE USER failed. Error = %@", error);
+                if (failure) {
+                    failure(message);
+                } else {
+                    [self failureBlockWithTitle: @"Oops" message: message]();
+                }
+            }];
+}
+
+
+- (void) signOutWithCompletion: (void (^)()) completion {
+
+    //    [AFOAuthCredential deleteCredentialWithIdentifier: ThoughtFlowIdentifier];
+    _currentUser = nil;
+
+    NSLog(@"self.authClient.credential = %@", self.authClient.credential);
+    AFOAuthCredential *storedCredential = [AFOAuthCredential retrieveCredentialWithIdentifier: self.authClient.serviceProviderIdentifier];
+
+    //    [self.authClient authenticateUsingOAuthWithURLString: TFAuthURL
+    //            username: @"dani3"
+    //            password: @"dani3"
+    //            scope: TFScopeEmail
+    //            success: ^(AFOAuthCredential *credential) {
+    //
+    //                NSLog(@"%s", __PRETTY_FUNCTION__);
+    //            }
+    //
+    //            failure: ^(NSError *error) {
+    //
+    //                NSLog(@"%s", __PRETTY_FUNCTION__);
+    //            }];
+
+    NSLog(@"storedCredential = %@", storedCredential);
+
+    [self.authClient authenticateUsingOAuthWithURLString: TFAuthURL
+            refreshToken: storedCredential.refreshToken
+            success: ^(AFOAuthCredential *credential) {
+
+                NSLog(@"Succeeded refresh token.");
+
+                //                NSLog(@"credential = %@", credential);
+            }
+
+            failure: ^(NSError *error) {
+
+                NSLog(@"error = %@", error);
+                //                NSLog(@"%s", __PRETTY_FUNCTION__);
+            }];
+
+    //    _authClient = nil;
+
+
+
+    [[NSUserDefaults standardUserDefaults] setObject: nil forKey: @"currentUser"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    DDLogVerbose(@"Sign out completed. %s", __PRETTY_FUNCTION__);
+    if (completion) {
+        completion();
+    }
+}
+
+#pragma mark - TFUser
+
+
+- (void) getUserInfo: (NSString *) username completion: (void (^)(id response)) success failure: (void (^)(NSError *error)) failure {
+    DDLogVerbose(@"USERINFO with username = %@.", username);
+    [self.authClient GET: [NSString stringWithFormat: @"user/%@", username]
+            parameters: nil
+            success: ^(AFHTTPRequestOperation *task, id responseObject) {
+                DDLogVerbose(@"USERINFO Suceeded.");
+                if (success) {
+                    success(responseObject);
+                }
+            }
+            failure: ^(AFHTTPRequestOperation *task, NSError *error) {
+                DDLogVerbose(@"USERINFO Failed.");
+                if (failure) {
+                    failure(error);
+                }
+            }];
 }
 
 
@@ -290,10 +466,52 @@ NSString *const ThoughtFlowBaseURL = @"http://188.226.201.79";
 
 - (AFOAuth2Client *) authClient {
     if (_authClient == nil) {
-
+        [self initAuthClient];
     }
     return _authClient;
 }
 
+
+- (void) initAuthClient {
+    NSURL *url = [NSURL URLWithString: @"http://188.226.201.79/api/v1"];
+    _authClient = [AFOAuth2Client clientWithBaseURL: url
+            clientID: @"2dc300c232a003156fddd1d9aecb38d9da9ad49a"
+            secret: @"66df225f66bdbe89d5f04825aea2efa9731edd5a"];
+
+    //    _authClient.shouldUseCredentialStorage = YES;
+
+    //    _authClient.
+
+    //        _authClient.responseSerializer = [AFHTTPResponseSerializer serializer];
+    //        _authClient.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    [_authClient.reachabilityManager setReachabilityStatusChangeBlock: ^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+
+            case AFNetworkReachabilityStatusUnknown : {
+                NSLog(@"Unknown.");
+
+            }
+                break;
+            case AFNetworkReachabilityStatusNotReachable : {
+                NSLog(@"Not reachable.");
+                //                    if (DEBUG) {
+                //                        _usesDummyData = YES;
+                //                    }
+
+            }
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN : {
+                NSLog(@"AFNetworkReachabilityStatusReachableViaWWAN");
+            }
+
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi : {
+                NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
+            }
+                break;
+        }
+    }];
+}
 
 @end

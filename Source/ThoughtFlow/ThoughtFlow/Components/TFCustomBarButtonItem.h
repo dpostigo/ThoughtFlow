@@ -9,6 +9,7 @@
 @interface TFCustomBarButtonItem : UIBarButtonItem {
 }
 
+@property(nonatomic, strong) UIButton *button;
 - (instancetype) initWithTitle: (NSString *) aTitle image: (UIImage *) anImage;
 
 @end

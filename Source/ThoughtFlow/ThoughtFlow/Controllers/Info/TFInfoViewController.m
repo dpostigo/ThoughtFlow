@@ -7,23 +7,44 @@
 #import "UIView+DPKitChildren.h"
 #import "UINavigationController+DPKit.h"
 #import "MindmapController.h"
+#import "TFTranslucentView.h"
+#import "UIView+DPKit.h"
+
 
 @implementation TFInfoViewController
 
+
+
+#pragma mark - View lifecycle
+
+
+//- (void) loadView {
+//    [super loadView];
+//    //
+//
+//    //    TFTranslucentView *bg = [[TFTranslucentView alloc] init];
+//    //    [self.view embedView: bg];
+//    //    [self.view sendSubviewToBack: bg];
+//}
+
 - (void) viewDidLoad {
     [super viewDidLoad];
-
     _imageSearchLabel.alpha = 0;
     [self hideLabels];
 
-}
+    //    [self _setup];
 
+
+}
 
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
 
     [self showLabels];
 }
+
+
+#pragma mark - Labels
 
 - (void) hideLabels {
     NSMutableArray *labels = [[self.view childrenOfClass: [UILabel class]] mutableCopy];
@@ -58,14 +79,13 @@
             completion: nil];
 }
 
-- (UIViewController *) previousController {
-    UIViewController *ret = nil;
-    NSUInteger index = [self.navigationController.viewControllers indexOfObject: self];
 
-    if (index != -1 && index - 1 > 0) {
-        ret = [self.navigationController.viewControllers objectAtIndex: index - 1];
-    }
-    return ret;
+#pragma mark - Setup
 
+
+- (void) _setup {
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.opaque = NO;
 }
+
 @end

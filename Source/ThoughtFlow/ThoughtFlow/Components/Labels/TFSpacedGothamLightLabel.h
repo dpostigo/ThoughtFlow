@@ -4,7 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DPKernedLabel.h"
+#import <DPKit-UIFont/DPKernedLabel.h>
+
 
 @interface TFSpacedGothamLightLabel : DPKernedLabel {
 

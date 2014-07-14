@@ -103,19 +103,19 @@
 
 - (void) addPin: (TFPhoto *) image {
     if (![self.pinnedImages containsObject: image]) {
-        [self.pinnedImages addObject: image];
+        [[self mutableArrayValueForKey: @"pins"] addObject: image];
     }
 }
 
 - (void) removePin: (TFPhoto *) image {
     if ([self.pinnedImages containsObject: image]) {
-        [self.pinnedImages removeObject: image];
+        [[self mutableArrayValueForKey: @"pins"] removeObject: image];
     }
 }
 #pragma mark - Private
 
 
-- (NSMutableArray *) pinnedImages {
+- (NSArray *) pinnedImages {
     return [self mutableArrayValueForKey: @"pins"];
 }
 
@@ -137,12 +137,12 @@
         //        NSLog(@"[array count] = %u", [array count]);
         //        _pins = array;
 
-        NSLog(@"[_pins count] = %u", [_pins count]);
-        NSLog(@"[self.pinnedImages count] = %u", [self.pinnedImages count]);
-        NSLog(@"self.pinnedImages = %@", self.pinnedImages);
+        //        NSLog(@"[_pins count] = %u", [_pins count]);
+        //        NSLog(@"[self.pinnedImages count] = %u", [self.pinnedImages count]);
+        //        NSLog(@"self.pinnedImages = %@", self.pinnedImages);
 
         _pins = [[PhotoLibrary sharedLibrary] storePins: self.pinnedImages forProject: self];
-        NSLog(@"[_pins count] = %u", [_pins count]);
+        //        NSLog(@"[_pins count] = %u", [_pins count]);
 
     } else {
         [super observeValueForKeyPath: keyPath ofObject: object change: change context: context];

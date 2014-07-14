@@ -71,9 +71,9 @@
     [super viewDidLayoutSubviews];
 
     if (_selectedImage) {
+
         [self scrollToImage: _selectedImage animated: YES];
     }
-
 }
 
 
@@ -134,8 +134,6 @@
     if (_images) {
 
         NSUInteger index = [self.images indexOfObject: image];
-
-        NSLog(@"index = %u", index);
 
         if (index != -1) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem: index inSection: 0];

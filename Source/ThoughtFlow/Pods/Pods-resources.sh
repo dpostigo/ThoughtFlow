@@ -41,6 +41,8 @@ install_resource()
       ;;
   esac
 }
+install_resource "DKAccessoryButton/DKAccessoryButton/Assets/arrow.png"
+install_resource "DKAccessoryButton/DKAccessoryButton/Assets/arrow@2x.png"
 install_resource "${BUILT_PRODUCTS_DIR}/DPKitFonts.bundle"
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

@@ -87,6 +87,7 @@
 
 - (void) setMindmapType: (TFMindmapControllerType) mindmapType {
     _mindmapType = mindmapType;
+
     _gridController.mindmapType = _mindmapType;
 }
 
@@ -139,14 +140,15 @@
                 NSLog(@"button.selected = %d", button.selected);
                 if (button.selected) {
                     if (![_project.pinnedImages containsObject: image]) {
-                        [_project.pinnedImages addObject: image];
+                        //                        [_project.pinnedImages addObject: image];
+                        [_project addPin: image];
                     }
 
                     //                    [self.currentImageController.imagesController reloadImage: image];
 
                 } else {
                     if ([_project.pinnedImages containsObject: image]) {
-                        [_project.pinnedImages removeObject: image];
+                        [_project removePin: image];
                     }
                 }
 
@@ -186,7 +188,23 @@
 
 
 - (id <UIViewControllerAnimatedTransitioning>) navigationController: (UINavigationController *) navigationController animationControllerForOperation: (UINavigationControllerOperation) operation fromViewController: (UIViewController *) fromVC toViewController: (UIViewController *) toVC {
-    self.fadeAnimator.isPresenting = operation == UINavigationControllerOperationPush ? YES : NO;
+
+    NavigationFadeAnimator *ret = self.fadeAnimator;
+
+    if (operation == UINavigationControllerOperationPush) {
+        NSLog(@"Push");
+
+        ret.isPresenting = YES;
+    } else if (operation == UINavigationControllerOperationPop) {
+        NSLog(@"pop");
+
+        ret.isPresenting = NO;
+    } else {
+        NSLog(@"help");
+
+    }
+
+    //        self.fadeAnimator.isPresenting = operation == UINavigationControllerOperationPush ? YES : NO;
     return self.fadeAnimator;
 }
 
@@ -209,7 +227,7 @@
 
 
 
-#pragma mark - Private
+#pragma mark - Setup
 
 - (void) _setupControllers {
 

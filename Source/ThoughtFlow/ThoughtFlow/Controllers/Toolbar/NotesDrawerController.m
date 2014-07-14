@@ -122,7 +122,6 @@
         textView.textColor = [UIColor darkGrayColor]; //optional
     }
     [textView resignFirstResponder];
-
 }
 
 @end

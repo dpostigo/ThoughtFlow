@@ -16,7 +16,7 @@
     self.layer.cornerRadius = 2;
 
     [self setTitleColor: [UIColor lightGrayColor] forState: UIControlStateDisabled];
-//    [self setBackgroundImage: [UIImage imageWithColor: [UIColor colorWithWhite: 0.8 alpha: 0.5]] forState: UIControlStateDisabled];
+    //    [self setBackgroundImage: [UIImage imageWithColor: [UIColor colorWithWhite: 0.8 alpha: 0.5]] forState: UIControlStateDisabled];
 }
 
 - (void) setTitle: (NSString *) title forState: (UIControlState) state {

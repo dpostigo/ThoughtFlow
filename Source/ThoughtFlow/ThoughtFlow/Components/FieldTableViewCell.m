@@ -4,7 +4,7 @@
 //
 
 #import "FieldTableViewCell.h"
-#import "TFCustomTextField.h"
+#import "TFTextField.h"
 
 @implementation FieldTableViewCell
 
@@ -21,8 +21,8 @@
 }
 
 
-- (TFCustomTextField *) tfCustomTextField {
-    return (TFCustomTextField *) ([self.textField isKindOfClass: [TFCustomTextField class]] ? self.textField : nil);
+- (TFTextField *) tfCustomTextField {
+    return (TFTextField *) ([self.textField isKindOfClass: [TFTextField class]] ? self.textField : nil);
 }
 
 @end

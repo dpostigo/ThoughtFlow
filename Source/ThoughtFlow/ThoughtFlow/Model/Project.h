@@ -7,7 +7,6 @@
 #import "LibraryObject.h"
 
 
-
 @class TFNode;
 @class TFPhoto;
 
@@ -29,6 +28,6 @@
 - (NSArray *) flattenedChildren;
 - (void) addPin: (TFPhoto *) image;
 - (void) removePin: (TFPhoto *) image;
-- (NSMutableArray *) pinnedImages;
+- (NSArray *) pinnedImages;
 - (void) addNode: (id) node;
 @end

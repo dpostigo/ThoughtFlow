@@ -9,4 +9,6 @@
 @interface NewRegisterController : LoginModalController {
 
 }
+
+@property (weak) IBOutlet UIButton *insteadButton;
 @end

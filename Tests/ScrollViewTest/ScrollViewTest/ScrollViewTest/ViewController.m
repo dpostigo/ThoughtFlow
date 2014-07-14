@@ -21,6 +21,7 @@
     //    [_container embedView: _innerView];
 
     //    [_scrollView addSubview: _container];
+    _scrollView.backgroundColor = [[UIColor redColor] colorWithAlphaComponent: 0.3];
     [_scrollView setContentSize: CGSizeMake(self.view.width * 2, self.view.height * 2)];
     _scrollView.delegate = self;
 
@@ -34,6 +35,7 @@
     //    [_scrollView recenterIfNecessary];
 
     CGPoint offset = scrollView.contentOffset;
+    NSLog(@"offset = %@", NSStringFromCGPoint(offset));
 
 }
 

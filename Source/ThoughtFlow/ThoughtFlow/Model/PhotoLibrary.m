@@ -48,8 +48,9 @@
 }
 
 
-- (NSArray *) storePins: (NSMutableArray *) pins forProject: (Project *) project {
+- (NSArray *) storePins: (NSArray *) pins forProject: (Project *) project {
 
+    NSLog(@"%s, pins = %@", __PRETTY_FUNCTION__, pins);
     NSMutableArray *currentPins = [self pinsForProject: project];
     NSMutableArray *newPins = [pins mutableCopy];
 
@@ -58,18 +59,20 @@
         [currentPins addObjectsFromArray: newPins];
     } else {
         currentPins = [newPins mutableCopy];
-
     }
 
     if ([newPins count] == 0) {
         // was removing...
+        NSLog(@"Removed....");
 
     } else {
+
     }
 
+    NSUInteger index = [_pinIds indexOfObject: project.uniqueIdentifier];
+    [self.mutablePins replaceObjectAtIndex: index withObject: currentPins];
     [self save];
     return currentPins;
-
     //    [pins removeAllObjects];
 
 }
@@ -124,8 +127,6 @@
 
 - (void) observeValueForKeyPath: (NSString *) keyPath ofObject: (id) object change: (NSDictionary *) change context: (void *) context {
     if (object == self && [keyPath isEqualToString: @"pins"]) {
-
-        NSLog(@"%s", __PRETTY_FUNCTION__);
 
     } else {
 

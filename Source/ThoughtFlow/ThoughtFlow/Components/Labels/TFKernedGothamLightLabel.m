@@ -9,6 +9,15 @@
 
 @implementation TFKernedGothamLightLabel
 
+- (id) initWithFrame: (CGRect) frame {
+    self = [super initWithFrame: frame];
+    if (self) {
+        self.fontAttribute = [UIFont gothamRoundedLightFontOfSize: [UIFont systemFontSize]];
+    }
+
+    return self;
+}
+
 - (void) awakeFromNib {
     [super awakeFromNib];
 
@@ -21,7 +30,7 @@
     return [UIFont gothamRoundedLightFontOfSize: 12.0];
 }
 
-+ (CGFloat) kerning {
++ (CGFloat) defaultClassKerning {
     return 100;
 }
 

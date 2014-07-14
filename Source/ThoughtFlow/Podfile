@@ -23,6 +23,12 @@ pod 'DPAnimators', :path => '~/Development/LocalPods/DPAnimators'
 
 pod 'DPKit-UIFont', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-UIFont'
 
+
+# UI Pods
+
+pod 'DKAccessoryButton'
+
+# General
 pod 'AFOAuth2Client', :git => 'https://github.com/mlwelles/AFOAuth2Client'
 pod 'AFNetworkActivityLogger'
 pod 'Reveal-iOS-SDK'
@@ -31,6 +37,10 @@ pod 'CocoaLumberjack'
 pod 'ILTranslucentView'
 pod 'UIAlertView+Blocks'
 pod 'BlocksKit'
+pod 'REPagedScrollView'
+
+pod 'CJStringValidator'
+pod 'DRPaginatedScrollView'
 
 
 # Temp

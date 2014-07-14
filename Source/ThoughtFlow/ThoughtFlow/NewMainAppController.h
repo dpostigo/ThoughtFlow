@@ -6,6 +6,8 @@
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
 #import "TFNewToolbarController.h"
+#import "TFNewAccountViewController.h"
+
 
 @class TFNewToolbarController;
 @class NavigationSlideAnimator;
@@ -13,7 +15,9 @@
 @class TFContentView;
 @class NavigationFadeAnimator;
 
-@interface NewMainAppController : TFViewController <TFNewToolbarControllerDelegate, UINavigationControllerDelegate> {
+@interface NewMainAppController : TFViewController <TFNewToolbarControllerDelegate,
+        UINavigationControllerDelegate,
+        TFNewAccountViewControllerDelegate> {
 
 }
 

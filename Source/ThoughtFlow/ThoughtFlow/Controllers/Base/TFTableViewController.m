@@ -9,6 +9,8 @@
 #import "NSMutableAttributedString+DPKit.h"
 
 
+NSString *const TFTableViewDefaultCellIdentifier = @"TableCell";
+
 @interface TFTableViewController ()
 
 @property(nonatomic, strong) DPTableViewCell *prototype;
@@ -24,8 +26,7 @@
 - (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
     self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
-        _cellIdentifier = @"TableCell";
-
+        _cellIdentifier = TFTableViewDefaultCellIdentifier;
     }
 
     return self;

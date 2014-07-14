@@ -9,7 +9,6 @@
 #import "TFImageGridViewCell.h"
 #import "Project.h"
 #import "TFPhoto.h"
-#import "TFImageDrawerViewController.h"
 
 
 @implementation TFNewMindmapFullscreenViewController
@@ -22,7 +21,7 @@
         _project = project;
         _images = images;
 
-        [self _setupControllers];
+        [self _setup];
     }
 
     return self;
@@ -41,6 +40,12 @@
 
 
 #pragma mark - Setup
+
+- (void) _setup {
+    [self _setupControllers];
+    [self _setupRecognizers];
+}
+
 - (void) _setupControllers {
     _imagesController = [[TFImageGridViewController alloc] initWithImages: _images];
     _imagesController.delegate = self;
@@ -56,6 +61,18 @@
 
 }
 
+
+- (void) _setupRecognizers {
+    UICollectionView *collectionView = _imagesController.collection;
+    NSLog(@"collectionView = %@", collectionView);
+    for (UIGestureRecognizer *gestureRecognizer in collectionView.gestureRecognizers) {
+        if ([gestureRecognizer isKindOfClass: [UIPanGestureRecognizer class]]) {
+            UIPanGestureRecognizer *panGesture = (UIPanGestureRecognizer *) gestureRecognizer;
+            panGesture.maximumNumberOfTouches = 1;
+            //            panGesture.delegate = self;
+        }
+    }
+}
 
 - (void) _updateButtonsForImage: (TFPhoto *) image {
     if ([_project.pinnedImages containsObject: image]) {

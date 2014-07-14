@@ -100,7 +100,7 @@
     CGPoint newOffset = CGPointMake(centerOffsetX, centerOffsetY);
 
     _contentView.left = newOffset.x;
-    _contentView.top = newOffset.y;
+    //    _contentView.top = newOffset.y;
     self.contentOffset = newOffset;
 
     // move content by the same amount so it appears to stay still

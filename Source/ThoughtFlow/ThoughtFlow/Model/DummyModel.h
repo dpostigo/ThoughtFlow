@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface DummyModel : NSObject {
+@interface DummyModel : NSObject
 
-}
+@property(nonatomic, strong) NSMutableDictionary *dictionary;
 @end

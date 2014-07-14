@@ -295,8 +295,8 @@
             node.node.position = nodePoint;
         }
 
-        //        [lineView updateSuperLeadingConstraint: lineView.left - offset.x];
-        //        [lineView updateSuperTopConstraint: lineView.top - offset.y];
+        //        [lineView updateSuperLeadingConstraint: lineView.left - startingOffset.x];
+        //        [lineView updateSuperTopConstraint: lineView.top - startingOffset.y];
 
         [nodeContainerView updateSuperTopConstraint: 0];
         [nodeContainerView updateSuperLeadingConstraint: 0];

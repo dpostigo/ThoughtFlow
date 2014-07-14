@@ -7,28 +7,17 @@
 #import "UIView+DPConstraints.h"
 #import "UIView+DPKit.h"
 #import "UIColor+TFApp.h"
-#import "TFNodeViewDelegate.h"
+#import "TFBaseNodeViewDelegate.h"
 #import "TFNode.h"
 #import "TFNodeView+Utils.h"
 
 
 @implementation TFNodeView
 
-@synthesize nodeState;
-@synthesize delegate;
 @synthesize enabled;
-@synthesize selected;
-@synthesize debugView;
-
 @synthesize viewNormal;
-
 @synthesize optimized;
-@synthesize swipeDirection;
-
 @synthesize nodeUpdateDisabled;
-
-CGFloat const TFNodeViewWidth = 80;
-CGFloat const TFNodeViewHeight = 80;
 
 + (UIView *) greenGhostView {
     UIView *ret = [[UIView alloc] initWithFrame: CGRectMake(0, 0, TFNodeViewWidth,
@@ -52,10 +41,10 @@ CGFloat const TFNodeViewHeight = 80;
     return self;
 }
 
-- (instancetype) initWithNode: (TFNode *) aNode {
-    self = [super initWithFrame: CGRectMake(0, 0, TFNodeViewWidth, TFNodeViewHeight)];
+
+- (instancetype) initWithNode: (TFNode *) node {
+    self = [super initWithNode: node];
     if (self) {
-        _node = aNode;
         [self _setup];
     }
 
@@ -87,7 +76,7 @@ CGFloat const TFNodeViewHeight = 80;
 
     [self setNeedsUpdateConstraints];
     self.nodeState = TFNodeViewStateNormal;
-    self.node = _node;
+    self.node = self.node;
 
 }
 
@@ -156,13 +145,14 @@ CGFloat const TFNodeViewHeight = 80;
 
 
 - (void) _setupGestures {
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(handlePanGesture:)];
+
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(handleDoubleTap:)];
     doubleTap.numberOfTapsRequired = 2;
 
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(toggleSelection:)];
     singleTap.numberOfTapsRequired = 1;
 
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(handlePanGesture:)];
     [self.containerView addGestureRecognizer: pan];
     [viewNormal addGestureRecognizer: doubleTap];
     [viewNormal addGestureRecognizer: singleTap];
@@ -218,23 +208,23 @@ CGFloat const TFNodeViewHeight = 80;
 
     CGPoint translation = [gesture translationInView: gesture.view];
 
-    if ((translation.x == 0 || self.containerView.top != 0) && swipeDirection != TFSwipeDirectionHorizontal) {
+    if ((translation.x == 0 || self.containerView.top != 0) && self.swipeDirection != TFSwipeDirectionHorizontal) {
         [self panVertically: gesture];
 
-    } else if (!isSnappingDown && swipeDirection != TFSwipeDirectionVertical) {
+    } else if (!isSnappingDown && self.swipeDirection != TFSwipeDirectionVertical) {
         [self panHorizontally: gesture];
     }
 
-    if (swipeDirection == TFSwipeDirectionNone) {
+    if (self.swipeDirection == TFSwipeDirectionNone) {
         if (fabsf(self.containerView.top) > 20) {
-            swipeDirection = TFSwipeDirectionVertical;
+            self.swipeDirection = TFSwipeDirectionVertical;
         } else if (fabsf(self.containerView.left + 80) > 20) {
-            swipeDirection = TFSwipeDirectionHorizontal;
+            self.swipeDirection = TFSwipeDirectionHorizontal;
         }
     }
 
     if (gesture.state == UIGestureRecognizerStateEnded) {
-        swipeDirection = TFSwipeDirectionNone;
+        self.swipeDirection = TFSwipeDirectionNone;
     }
 }
 
@@ -253,7 +243,7 @@ CGFloat const TFNodeViewHeight = 80;
             topConstraint.constant = newY;
 
             if (fabsf(newY) > 10) {
-                swipeDirection = TFSwipeDirectionVertical;
+                self.swipeDirection = TFSwipeDirectionVertical;
             }
         }
             break;
@@ -440,7 +430,7 @@ CGFloat const TFNodeViewHeight = 80;
 
 - (void) setNode: (TFNode *) node1 {
 
-    _node = node1;
+    [super setNode: node1];
 
     [viewNormal setTitle: self.node.title forState: UIControlStateNormal];
     [[NSNotificationCenter defaultCenter] addObserverForName: TFNodeUpdate
@@ -458,29 +448,67 @@ CGFloat const TFNodeViewHeight = 80;
 
 }
 
-- (void) setNodeState: (TFNodeViewState) nodeState1 {
-    [self setNodeState: nodeState1 animated: NO];
-}
+- (void) setNodeState: (TFNodeViewState) nodeState animated: (BOOL) flag {
+    //    [super setNodeState: nodeState animated: flag];
 
-- (void) setNodeState: (TFNodeViewState) nodeState1 animated: (BOOL) flag {
-    if (nodeState1 != nodeState) {
+    //    void (^completionBlock)(BOOL finished) = ^(BOOL finished) {
+    //        [super setNodeState: nodeState];
+    //        [self nodeViewDidChangeState];
+    //    };
+    //
+    //    if (flag) {
+    //        [UIView animateWithDuration: 0.3
+    //                animations: ^{
+    //                    self.containerView.left = [self positionForNodeState: nodeState];
+    //                }
+    //                completion:
+    //                        completionBlock];
+    //    } else {
+    //        completionBlock(YES);
+    //    }
 
-        void (^completionBlock)(BOOL finished) = ^(BOOL finished) {
-            nodeState = nodeState1;
-            [self nodeViewDidChangeState];
-        };
 
-        if (flag) {
-            [UIView animateWithDuration: 0.3
-                    animations: ^{
-                        self.containerView.left = [self positionForNodeState: nodeState1];
-                    }
-                    completion: completionBlock];
-        } else {
-            completionBlock(YES);
-        }
+    __block TFNodeViewState state = nodeState;
+
+    if (flag) {
+        [UIView animateWithDuration: 0.3
+                animations: ^{
+                    self.containerView.left = [self positionForNodeState: state];
+                }
+                completion: ^(BOOL finished) {
+                    //                    _nodeState = state;
+                    [super setNodeState: state animated: flag];
+                    [self nodeViewDidChangeState];
+                }];
+
+    } else {
+
+        [super setNodeState: state animated: flag];
+        [self nodeViewDidChangeState];
     }
 }
+
+
+
+//- (void) setNodeState: (TFNodeViewState) nodeState1 animated: (BOOL) flag {
+//    if (nodeState1 != self.nodeState) {
+//
+//        void (^completionBlock)(BOOL finished) = ^(BOOL finished) {
+//            self.nodeState = nodeState1;
+//            [self nodeViewDidChangeState];
+//        };
+//
+//        if (flag) {
+//            [UIView animateWithDuration: 0.3
+//                    animations: ^{
+//                        self.containerView.left = [self positionForNodeState: nodeState1];
+//                    }
+//                    completion: completionBlock];
+//        } else {
+//            completionBlock(YES);
+//        }
+//    }
+//}
 
 
 - (CGFloat) positionForNodeState: (TFNodeViewState) state {
@@ -498,33 +526,33 @@ CGFloat const TFNodeViewHeight = 80;
 #pragma mark Delegate notifications
 
 - (void) nodeViewDidDoubleTap {
-    if (delegate && [delegate respondsToSelector: @selector(nodeViewDidDoubleTap:)]) {
-        [delegate performSelector: @selector(nodeViewDidDoubleTap:) withObject: self];
+    if (self.delegate && [self.delegate respondsToSelector: @selector(nodeViewDidDoubleTap:)]) {
+        [self.delegate performSelector: @selector(nodeViewDidDoubleTap:) withObject: self];
     }
 }
 
 - (void) nodeViewDidChangeState {
-    if (delegate && [delegate respondsToSelector: @selector(nodeViewDidChangeState:)]) {
-        [delegate performSelector: @selector(nodeViewDidChangeState:) withObject: self];
+    if (self.delegate && [self.delegate respondsToSelector: @selector(nodeViewDidChangeState:)]) {
+        [self.delegate performSelector: @selector(nodeViewDidChangeState:) withObject: self];
     }
 }
 
 - (void) nodeViewDidChangeSelection {
-    if (delegate && [delegate respondsToSelector: @selector(nodeViewDidChangeSelection:)]) {
-        [delegate performSelector: @selector(nodeViewDidChangeSelection:) withObject: self];
+    if (self.delegate && [self.delegate respondsToSelector: @selector(nodeViewDidChangeSelection:)]) {
+        [self.delegate performSelector: @selector(nodeViewDidChangeSelection:) withObject: self];
     }
 }
 
 - (void) nodeViewDidTriggerDeletion {
-    if (delegate && [delegate respondsToSelector: @selector(nodeViewDidTriggerDeletion:)]) {
-        [delegate performSelector: @selector(nodeViewDidTriggerDeletion:) withObject: self];
+    if (self.delegate && [self.delegate respondsToSelector: @selector(nodeViewDidTriggerDeletion:)]) {
+        [self.delegate performSelector: @selector(nodeViewDidTriggerDeletion:) withObject: self];
     }
 }
 
 
 - (void) nodeViewDidTriggerRelated {
-    if (delegate && [delegate respondsToSelector: @selector(nodeViewDidTriggerRelated:)]) {
-        [delegate performSelector: @selector(nodeViewDidTriggerRelated:) withObject: self];
+    if (self.delegate && [self.delegate respondsToSelector: @selector(nodeViewDidTriggerRelated:)]) {
+        [self.delegate performSelector: @selector(nodeViewDidTriggerRelated:) withObject: self];
     }
 }
 
@@ -535,20 +563,12 @@ CGFloat const TFNodeViewHeight = 80;
 #pragma mark Setters
 
 
-- (void) setFrame: (CGRect) frame {
-    [super setFrame: frame];
 
-    //    if (!nodeUpdateDisabled && node) {
-    //        node.position = frame.origin;
-    //    }
-}
 
-- (void) setSelected: (BOOL) selected1 {
-    if (selected != selected1) {
-        selected = selected1;
-        viewNormal.backgroundColor = selected ? [UIColor whiteColor] : [UIColor deselectedNodeBackgroundColor];
-        if (selected) [self nodeViewDidChangeSelection];
-    }
+- (void) setSelected: (BOOL) selected {
+    [super setSelected: selected];
+    viewNormal.backgroundColor = self.selected ? [UIColor whiteColor] : [UIColor deselectedNodeBackgroundColor];
+    if (self.selected) [self nodeViewDidChangeSelection];
 }
 
 

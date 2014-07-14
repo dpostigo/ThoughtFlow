@@ -109,7 +109,7 @@ static NSString *baseURL = @"http://188.226.201.79/api";
 }
 
 - (void) addProjects: (NSArray *) projects {
-    [self.projectLibrary addItems: projects];
+    [self.projectLibrary addChildren: projects];
 }
 
 @end

@@ -4,16 +4,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFBaseNodeView.h"
+
 
 @class TFNode;
+@class TFWhiteTranslucentView;
 
 
-extern CGFloat const TFNewNodeViewWidth;
-extern CGFloat const TFNewNodeViewHeight;
+@interface TFNewNodeView : TFBaseNodeView <UIGestureRecognizerDelegate> {
+    CGPoint _startingOffset;
+}
 
-@interface TFNewNodeView : UIView
-
-@property(nonatomic, strong) TFNode *node;
-- (instancetype) initWithNode: (TFNode *) node;
-
+@property(nonatomic) CGPoint startingOffset;
+@property(nonatomic, strong) UILabel *textLabel;
+@property(nonatomic, strong) UIView *selectionBg;
 @end

@@ -47,8 +47,8 @@
         //        UICollectionViewCell *cell = [collection cellForItemAtIndexPath: indexPath];
         //
         //
-        //        CGPoint offset = CGPointMake(700, 0);
-        //        [collection setContentOffset: offset animated: YES];
+        //        CGPoint startingOffset = CGPointMake(700, 0);
+        //        [collection setContentOffset: startingOffset animated: YES];
 
     }
 

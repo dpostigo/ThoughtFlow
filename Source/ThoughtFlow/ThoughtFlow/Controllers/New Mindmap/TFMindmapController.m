@@ -10,7 +10,7 @@
 #import "Project.h"
 #import "TFNodeView.h"
 #import "TFNode.h"
-#import "MindmapLinesController.h"
+#import "TFLinesViewController.h"
 #import "UIView+DPKit.h"
 #import "Model.h"
 #import "TFContentViewNavigationController.h"
@@ -20,7 +20,8 @@
 #import "TFMinimizedNodesViewController.h"
 #import "UIAlertView+Blocks.h"
 #import "UIView+DPKitDebug.h"
-#import "TFNodeScrollView.h"
+#import "TFPanningNodesViewController.h"
+#import "TFScrollingMindmapViewController.h"
 
 
 @interface TFMindmapController ()
@@ -30,34 +31,16 @@
 @property(nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 
 @property(nonatomic, strong) TFNewMindmapBackgroundViewController *bgController;
-@property(nonatomic, strong) MindmapLinesController *linesController;
+@property(nonatomic, strong) TFLinesViewController *linesController;
 @property(nonatomic, strong) TFNodesViewController *nodesController;
 @property(nonatomic, strong) TFMinimizedNodesViewController *minimizedController;
 @end
 
 @implementation TFMindmapController
 
-//- (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
-//    self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
-//    if (self) {
-//        _contentView = [[TFContentView alloc] init];
-//        self.view = _contentView;
-//
-//    }
-//
-//    return self;
-//}
-
 - (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
     TFMindmapController *ret = [[UIStoryboard storyboardWithName: @"Mindmap" bundle: nil] instantiateViewControllerWithIdentifier: @"TFMindmapController"];
-
     return ret;
-    //    self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
-    //    if (self) {
-    //
-    //    }
-    //
-    //    return self;
 }
 
 
@@ -73,6 +56,10 @@
 
 #pragma mark - View lifecycle
 
+- (void) viewWillAppear: (BOOL) animated {
+    [super viewWillAppear: animated];
+
+}
 
 
 - (void) viewWillDisappear: (BOOL) animated {
@@ -86,20 +73,13 @@
     [super viewDidAppear: animated];
 
     if (_project.modifiedDate == nil) {
-        TFNodeView *nodeView = _nodesController.nodeViews[0];
+        TFBaseNodeView *nodeView = _nodesController.nodeViews[0];
         nodeView.node.position = nodeView.origin;
         _project.modifiedDate = [NSDate date];
         [_project save];
     }
 
     [_nodesController selectFirstNodeView];
-    _scrollView.contentSize = CGSizeMake(self.view.width * 2, self.view.height * 2);
-
-}
-
-
-- (void) viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
 
 }
 
@@ -112,6 +92,7 @@
     }
 
     [self _setup];
+
 }
 
 
@@ -134,48 +115,66 @@
     _bgController.contentView = _contentView;
     [self embedFullscreenController: _bgController];
 
-    //    BOOL useScrollView = NO;
+    _scrollingController = [[TFScrollingMindmapViewController alloc] init];
+    [self embedFullscreenController: _scrollingController];
+
+    _linesController = _scrollingController.linesController;
+
+    _nodesController = _scrollingController.nodesController;
+    _nodesController.delegate = self;
+
+
+
     //
-    //    if (useScrollView) {
-    //        [self _setupScrollView];
-    //    } else {
+    //
+    //    _scrollView = [[UIScrollView alloc] initWithFrame: self.view.bounds];
+    //    [self embedFullscreenView: _scrollView];
+    //
+    //    _mindmapView = [[UIView alloc] initWithFrame: self.view.bounds];
+    //    [_scrollView embedView: _mindmapView];
+    //    _widthConstraint = [NSLayoutConstraint constraintWithItem: _mindmapView attribute: NSLayoutAttributeWidth relatedBy: NSLayoutRelationEqual toItem: nil attribute: NSLayoutAttributeNotAnAttribute multiplier: 1.0 constant: 2000];
+    //    _heightConstraint = [NSLayoutConstraint constraintWithItem: _mindmapView attribute: NSLayoutAttributeHeight relatedBy: NSLayoutRelationEqual toItem: nil attribute: NSLayoutAttributeNotAnAttribute multiplier: 1.0 constant: 2000];
+    //    [_scrollView addConstraints: @[
+    //            _widthConstraint,
+    //            _heightConstraint
+    //    ]];
+    //
+    //    _linesController = [[TFLinesViewController alloc] init];
+    //    [_mindmapView embedController: _linesController];
+    //
+    //    _nodesController = [[TFNodesViewController alloc] init];
+    //    _nodesController.delegate = self;
+    //    [_mindmapView embedController: _nodesController];
+    //
+    //    _scrollView.delegate = self;
+    //    _scrollView.minimumZoomScale = 1.0;
+    //    _scrollView.maximumZoomScale = 2.0;
+    //    _scrollView.zoomScale = 1.0;
 
-    _linesController = [[MindmapLinesController alloc] init];
-    [self embedFullscreenController: _linesController];
-
-    _nodesController = [[TFNodesViewController alloc] init];
-    _nodesController.delegate = self;
-    [self embedFullscreenController: _nodesController];
-    //    }
-
-
-    //    _scalingNodesController = [[TFNodesViewController alloc] init];
-    //    _scalingNodesController.delegate = self;
-    //    [self embedFullscreenController: _scalingNodesController];
-
-}
-
-
-- (void) _setupScrollView {
-
-    _scrollView = [[TFNodeScrollView alloc] initWithFrame: self.view.bounds];
-    [self embedFullscreenView: _scrollView withInsets: UIEdgeInsetsMake(40, 40, 40, 40)];
-
-    _linesController = [[MindmapLinesController alloc] init];
+    //    _linesController = [[TFLinesViewController alloc] init];
     //    [self embedFullscreenController: _linesController];
-
-    _nodesController = [[TFNodesViewController alloc] init];
-    _nodesController.delegate = self;
-
-    [self _setupScrollSubviews];
+    //
+    //    _nodesController = [[TFNodesViewController alloc] init];
+    //    _nodesController.delegate = self;
+    //    [self embedFullscreenController: _nodesController];
 
 }
 
-- (void) _setupScrollSubviews {
 
-    [_scrollView addSubview: _linesController.view];
-    [_scrollView addSubview: _nodesController.view];
+- (void) scrollViewDidScroll: (UIScrollView *) scrollView {
 
+    CGPoint offset = scrollView.contentOffset;
+    offset.x += scrollView.width;
+
+    if (offset.x >= _mindmapView.width) {
+        CGFloat currentWidth = _mindmapView.width;
+        _widthConstraint.constant = currentWidth + (1 / _scrollView.zoomScale);
+    }
+
+    else if (offset.y >= _mindmapView.height) {
+        CGFloat currentHeight = _mindmapView.width;
+        _heightConstraint.constant = currentHeight + (1 / _scrollView.zoomScale);
+    }
 }
 
 - (void) _setupProject {
@@ -186,6 +185,8 @@
         if (_project.modifiedDate == nil) {
             [_nodesController centerFirstNode];
         }
+
+        _panningController = [[TFPanningNodesViewController alloc] initWithProject: _project];
     }
 }
 
@@ -208,7 +209,7 @@
 #pragma mark - TFMindmapGridViewControllerDelegate
 
 - (void) mindmapGridViewController: (TFMindmapGridViewController *) controller clickedButtonForImage: (TFPhoto *) image {
-    [_project.pinnedImages addObject: image];
+    [_project addPin: image];
     [_project save];
     [controller reloadImage: image];
 
@@ -225,17 +226,41 @@
 
 #pragma mark - TFNodesViewControllerDelegate, Moving
 
-- (void) nodesControllerDidBeginMovingNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node {
+- (void) nodesControllerDidBeginMovingNodeView: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
     [_linesController startTargetNode: node];
 }
 
-- (void) nodesControllerDidUpdateMovingNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node {
+- (void) nodesControllerDidUpdateMovingNodeView: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
     //    _linesController.rootNode = _project.firstNode;
     [_linesController updateTargetNode: node withNodeView: nodeView];
+
+    CGPoint rightEdge = [self maxRightEdgeInNode: _nodesController.nodeViews];
+
+    //    NSLog(@"rightEdge = %@", NSStringFromCGPoint(rightEdge));
+    //    _scrollingController.maximumPoint = rightEdge;
+
 }
 
 
-- (void) nodesControllerDidEndMovingNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node {
+- (CGPoint) maxRightEdgeInNode: (NSArray *) nodes {
+    CGFloat maxX = 0;
+    CGFloat maxY = 0;
+
+    for (int j = 0; j < [nodes count]; j++) {
+        TFBaseNodeView *nodeView = nodes[j];
+
+        if (nodeView.right > maxX) {
+            maxX = nodeView.right;
+        }
+        if (nodeView.bottom > maxY) {
+            maxY = nodeView.bottom;
+        }
+    }
+
+    return CGPointMake(maxX, maxY);
+}
+
+- (void) nodesControllerDidEndMovingNodeView: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
 
     node.position = nodeView.origin;
     [_project save];
@@ -247,16 +272,16 @@
 
 #pragma mark - TFNodesViewControllerDelegate, Creation
 
-- (void) nodesControllerDidBeginCreatingNodeView: (TFNodeView *) nodeView withParent: (TFNodeView *) parentNodeView {
+- (void) nodesControllerDidBeginCreatingNodeView: (TFBaseNodeView *) nodeView withParent: (TFBaseNodeView *) parentNodeView {
     [_linesController startMoveWithNodeView: nodeView withParent: parentNodeView];
 }
 
-- (void) nodesControllerDidUpdateCreatingNodeView: (TFNodeView *) nodeView withParent: (TFNodeView *) parentNodeView {
+- (void) nodesControllerDidUpdateCreatingNodeView: (TFBaseNodeView *) nodeView withParent: (TFBaseNodeView *) parentNodeView {
     [_linesController updateTempLineFromPoint: nodeView.center toPoint: parentNodeView.center];
 }
 
 
-- (void) nodesControllerDidEndCreatingNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node {
+- (void) nodesControllerDidEndCreatingNodeView: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
     node.title = @"node";
     [_linesController endMoveWithNodeView: nil withParent: nil];
 
@@ -264,8 +289,11 @@
 
 
 - (void) nodesControllerDidCreateNode: (TFNode *) node withRoot: (TFNode *) rootNode {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     [rootNode.mutableChildren addObject: node];
     [self _refreshNodes];
+
+    [_project save];
 
 }
 
@@ -278,10 +306,17 @@
 
     TFNewEditNodeController *controller = [[TFNewEditNodeController alloc] initWithNode: node];
     controller.delegate = self;
+    //    controller.modalPresentationStyle = UIModalPresentationCurrentContext;
+    //    self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self presentViewController: controller animated: YES completion: nil];
+
+    //    controller.view.superview.frame = self.view.bounds;
+    //    controller.view.superview.backgroundColor = [UIColor clearColor];
+    //    controller.view.superview.opaque = NO;
+
 }
 
-- (void) nodesControllerDidTapRelated: (TFNodeView *) nodeView forNode: (TFNode *) node {
+- (void) nodesControllerDidTapRelated: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
     _model.selectedNode = node;
 
     TFMindmapRelatedViewController *controller = [[TFMindmapRelatedViewController alloc] initWithNode: _model.selectedNode];
@@ -303,6 +338,7 @@
 
 - (void) nodesControllerDidDeleteNode: (TFNode *) node {
 
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (node == _project.firstNode) {
         [UIAlertView showWithTitle: @"Delete Node"
                 message: @"You can't delete the first word of your project."
@@ -312,11 +348,24 @@
 
     } else {
 
-        if (node.parentNode.parentNode) {
-            [node.parentNode.parentNode addChild: node];
+        NSLog(@"[_project.flattenedChildren count] = %u", [_project.flattenedChildren count]);
+
+        if ([node.children count] > 0) {
+            NSArray *children = node.children;
+            if (node.parentNode) {
+                TFNode *parentNode = node.parentNode;
+                [parentNode addChildren: children];
+            }
+            //            if (node.parentNode.parentNode) {
+            //                [node.parentNode.parentNode addChild: node];
+            //            }
+
         }
 
         [node.parentNode removeChild: node];
+
+        NSLog(@"[_project.flattenedChildren count] = %u", [_project.flattenedChildren count]);
+
         [self _refreshNodes];
     }
 
@@ -326,25 +375,25 @@
 #pragma mark - TFNodesViewControllerDelegate Pinch
 
 
-- (void) nodesControllerDidBeginPinchingNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node {
+- (void) nodesControllerDidBeginPinchingNodeView: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
     [_linesController startPinchWithNodeViews: _nodesController.nodeViews];
 
 }
 
-- (void) nodesControllerDidUpdatePinchWithNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node {
+- (void) nodesControllerDidUpdatePinchWithNodeView: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
     [_linesController updatePinchWithNodeViews: _nodesController.nodeViews];
     //    [self _refreshLines];
 
 }
 
 
-- (void) nodesControllerDidEndPinchingNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node {
+- (void) nodesControllerDidEndPinchingNodeView: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
     [_linesController endPinchWithNodeViews: _nodesController.nodeViews];
 
 }
 
 
-- (void) nodesControllerDidCompletePinchWithNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node {
+- (void) nodesControllerDidCompletePinchWithNodeView: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
     _bgController.mindmapType = TFMindmapControllerTypeMinimized;
 
     _minimizedController = [[TFMinimizedNodesViewController alloc] init];
@@ -357,7 +406,7 @@
 }
 
 
-- (void) nodesControllerDidUnpinchWithNodeView: (TFNodeView *) nodeView forNode: (TFNode *) node {
+- (void) nodesControllerDidUnpinchWithNodeView: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
 
     [_minimizedController animateOut: ^{
 
@@ -374,7 +423,7 @@
 #pragma mark - Selection
 
 - (void) nodesControllerDidSelectNode: (TFNode *) node {
-
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     _selectedNode = node;
     _bgController.node = _selectedNode;
 
@@ -388,7 +437,7 @@
 
 - (void) editNodeController: (TFNewEditNodeController *) controller didEditNode: (TFNode *) node withName: (NSString *) name {
 
-    __block TFNodeView *nodeView;
+    __block TFBaseNodeView *nodeView;
     NSUInteger index = [_project.flattenedChildren indexOfObject: node];
     _model.selectedNode.title = name;
     nodeView = [_nodesController.nodeViews objectAtIndex: index];
@@ -459,87 +508,37 @@
 
 #pragma mark - Double pan
 
-- (void) handlePinch: (UIPinchGestureRecognizer *) gesture {
-    TFNodeView *node = _nodesController.selectedNodeView;
-    if (node == nil)
-        return;
-
-    [node.superview bringSubviewToFront: node];
-
-    CGFloat newScale = fmaxf(0, (gesture.scale - 0.3) / 0.7);
-    newScale = 1 - newScale;
-
-    switch (gesture.state) {
-
-        case UIGestureRecognizerStateBegan : {
-            NSLog(@"Pinch starting.");
-
-            _scrollView.scrollEnabled = NO;
-            [_nodesController startPinchWithScale: newScale];
-        }
-            break;
-
-        case UIGestureRecognizerStateChanged : {
-            if (gesture.scale < 1) {
-                [_nodesController updatePinchWithScale: newScale];
-            }
-        }
-            break;
-
-        case UIGestureRecognizerStateEnded :
-        case UIGestureRecognizerStateFailed :
-        case UIGestureRecognizerStateCancelled : {
-
-            [_nodesController endPinchWithScale: newScale];
-            _scrollView.scrollEnabled = YES;
-        }
-            break;
-
-        case UIGestureRecognizerStatePossible : {
-            NSLog(@"Pinch possible.");
-
-        }
-            break;
-    }
-}
-
-
 - (void) handleDoublePan: (UIPanGestureRecognizer *) gesture {
+    CGPoint translation = [gesture translationInView: gesture.view];
 
     switch (gesture.state) {
-
         case UIGestureRecognizerStateBegan : {
-            NSLog(@"Pan began.");
-            _scrollView = [[TFNodeScrollView alloc] initWithFrame: self.view.bounds];
-            [self embedFullscreenView: _scrollView withInsets: UIEdgeInsetsMake(40, 40, 40, 40)];
-
-            [_scrollView addSubview: _linesController.view];
-            [_scrollView addSubview: _nodesController.view];
-
+            [_scrollingController startPan: gesture];
         }
             break;
 
         case UIGestureRecognizerStateChanged : {
+            [_scrollingController updatePan: gesture];
         }
             break;
 
         case UIGestureRecognizerStateEnded :
-        case UIGestureRecognizerStateFailed :
-        case UIGestureRecognizerStateCancelled : {
-            NSLog(@"Pan ended.");
+        case UIGestureRecognizerStateCancelled :
+        case UIGestureRecognizerStateFailed : {
+
+            [_scrollingController endPan: gesture];
+            //            [self unembedController: _panningController];
 
         }
             break;
 
         case UIGestureRecognizerStatePossible : {
-            NSLog(@"Pan possible.");
 
         }
             break;
     }
 
     return;
-
     UIView *nodeContainerView = _nodesController.view;
     //    CGPoint translation = [gesture translationInView: gesture.view.superview];
 
@@ -549,26 +548,19 @@
 
         switch (gesture.state) {
             case UIGestureRecognizerStateBegan : {
-                //                [self startPan: gesture];
-                [_nodesController startPan];
+                [self startPan: gesture];
             }
                 break;
 
             case UIGestureRecognizerStateChanged : {
-                //                [self updatePan: gesture];
-
-                [_nodesController updatePan: gesture];
-
+                [self updatePan: gesture];
             }
                 break;
 
             case UIGestureRecognizerStateEnded :
             case UIGestureRecognizerStateFailed :
             case UIGestureRecognizerStateCancelled : {
-                //                [self endPan: gesture];
-
-                [_nodesController endPan];
-
+                [self endPan: gesture];
             }
 
                 break;
@@ -584,7 +576,7 @@
     //
     //        NSLog(@"nodeContainerView.origin = %@", NSStringFromCGPoint(nodeContainerView.origin));
     //
-    //        CGPoint offset = nodeContainerView.origin;
+    //        CGPoint startingOffset = nodeContainerView.origin;
     //        if (nodeContainerView.left > 0) {
     //            [nodeContainerView updateSuperWidthConstraint: nodeContainerView.left];
     //        }
@@ -592,15 +584,15 @@
     //            [nodeContainerView updateSuperHeightConstraint: nodeContainerView.top];
     //        }
     //
-    //        //        for (TFNodeView *node in self.nodeViews) {
-    //        //            CGPoint nodePoint = CGPointMake(node.left + offset.x, node.top + offset.y);
+    //        //        for (TFBaseNodeView *node in self.nodeViews) {
+    //        //            CGPoint nodePoint = CGPointMake(node.left + startingOffset.x, node.top + startingOffset.y);
     //        //            [node updateSuperLeadingConstraint: nodePoint.x];
     //        //            [node updateSuperTopConstraint: nodePoint.y];
     //        //            node.node.position = nodePoint;
     //        //        }
     //
-    //        //        [lineView updateSuperLeadingConstraint: lineView.left - offset.x];
-    //        //        [lineView updateSuperTopConstraint: lineView.top - offset.y];
+    //        //        [lineView updateSuperLeadingConstraint: lineView.left - startingOffset.x];
+    //        //        [lineView updateSuperTopConstraint: lineView.top - startingOffset.y];
     //
     //        [nodeContainerView updateSuperTopConstraint: 0];
     //        [nodeContainerView updateSuperLeadingConstraint: 0];
@@ -613,6 +605,7 @@
     //
     //    }
 }
+
 
 - (void) startPan: (UIPanGestureRecognizer *) gesture {
 
@@ -653,7 +646,7 @@
 
         nodeContainerView.left = _startingPoint.x + translation.x;
         nodeContainerView.top = _startingPoint.y + translation.y;
-        nodeContainerView.width = self.view.width + fabsf(translation.x);
+        nodeContainerView.width = self.view.width + newPoint.x;
         nodeContainerView.height = self.view.height - fabsf(translation.y);
 
         NSLog(@"translation = %@", NSStringFromCGPoint(translation));
@@ -693,15 +686,52 @@
 
 #pragma mark Pinch
 
+- (void) handlePinch: (UIPinchGestureRecognizer *) gesture {
+    TFBaseNodeView *node = _nodesController.selectedNodeView;
+    if (node == nil)
+        return;
+
+    [node.superview bringSubviewToFront: node];
+
+    CGFloat newScale = fmaxf(0, (gesture.scale - 0.3) / 0.7);
+    newScale = 1 - newScale;
+
+    switch (gesture.state) {
+
+        case UIGestureRecognizerStateBegan : {
+            [_scrollingController startPinchWithScale: newScale];
+        }
+            break;
+
+        case UIGestureRecognizerStateChanged : {
+            if (gesture.scale < 1) {
+                [_scrollingController updatePinchWithScale: newScale];
+            }
+        }
+            break;
+
+        case UIGestureRecognizerStateEnded :
+        case UIGestureRecognizerStateFailed :
+        case UIGestureRecognizerStateCancelled : {
+            [_scrollingController endPinchWithScale: newScale];
+        }
+            break;
+
+        default :
+            break;
+    }
+}
+
 
 #pragma mark - Utils
 
 - (void) _refreshNodes {
-    //    _nodesController.nodes = _project.flattenedChildren;
     _nodesController.rootNode = _project.firstNode;
 }
 
 - (void) _refreshLines {
     _linesController.rootNode = _project.firstNode;
 }
+
+
 @end

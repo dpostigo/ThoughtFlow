@@ -17,7 +17,7 @@
     _nodeViews = nodeViews;
     [self removeAllSublayers];
     if (_nodeViews && [_nodeViews count] > 0) {
-        TFNodeView *nodeView = nodeViews[0];
+        TFBaseNodeView *nodeView = nodeViews[0];
         CGPoint lastPoint = nodeView.center;
         for (int j = 1; j < [nodeViews count]; j++) {
             nodeView = nodeViews[j];

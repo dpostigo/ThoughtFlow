@@ -8,13 +8,19 @@
 
 
 @class Project;
+@class TFDrawerNavigationController;
 
 
-@interface TFNewNotesDrawerController : TFNewDrawerController {
-
+@interface TFNewNotesDrawerController : TFNewDrawerController <UITextViewDelegate> {
 }
 
 @property(weak) IBOutlet UILabel *textLabel;
-@property(weak) IBOutlet UITextView *textView;
 @property(nonatomic, strong) Project *project;
+@property(nonatomic, strong) UIViewController *innerController;
+@property(nonatomic, strong) UITextField *textField;
+@property(nonatomic, strong) UITextView *textView;
+@property(nonatomic, strong) UITapGestureRecognizer *recognizer;
+
+- (instancetype) initWithProject: (Project *) project;
+
 @end

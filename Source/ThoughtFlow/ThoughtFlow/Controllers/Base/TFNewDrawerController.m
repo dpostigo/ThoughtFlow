@@ -5,17 +5,16 @@
 
 #import "TFNewDrawerController.h"
 
-@implementation TFNewDrawerController
 
-@synthesize drawerDelegate;
+@implementation TFNewDrawerController
 
 - (IBAction) closeDrawer: (id) sender {
     [self _notifyDrawerControllerShouldDismiss];
 }
 
 - (void) _notifyDrawerControllerShouldDismiss {
-    if (drawerDelegate && [drawerDelegate respondsToSelector: @selector(drawerControllerShouldDismiss:)]) {
-        [drawerDelegate drawerControllerShouldDismiss: self];
+    if (_drawerDelegate && [_drawerDelegate respondsToSelector: @selector(drawerControllerShouldDismiss:)]) {
+        [_drawerDelegate drawerControllerShouldDismiss: self];
     }
 }
 @end

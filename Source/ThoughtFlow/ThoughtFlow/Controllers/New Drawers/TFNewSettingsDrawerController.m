@@ -8,6 +8,7 @@
 #import "TFCustomBarButtonItem.h"
 #import "TFTranslucentView.h"
 #import "TFTableViewCell.h"
+#import "TFBarButtonItem.h"
 
 
 static NSString *const TFSettingsTableCell = @"ImageSettingsCell";
@@ -19,20 +20,29 @@ static NSString *const TFSettingsTableCell = @"ImageSettingsCell";
 
 @implementation TFNewSettingsDrawerController
 
+- (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
+    self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
+    if (self) {
+
+        //    _rows = [NSArray array];
+
+        _rows = @[
+                @{
+                        @"title" : @"IMAGE SEARCH",
+                        @"subtitle" : @"Turn this OFF to use the default canvas when working with your mindmap."
+                },
+                @{
+                        @"title" : @"AUTO-REFRESH",
+                        @"subtitle" : @"Automatically update image results when interacting with your mindmap."
+                }];
+    }
+
+    return self;
+}
+
+
 - (void) loadView {
     [super loadView];
-
-    _rows = [NSArray array];
-
-    _rows = @[
-            @{
-                    @"title" : @"IMAGE SEARCH",
-                    @"subtitle" : @"Turn this OFF to use the default canvas when working with your mindmap."
-            },
-            @{
-                    @"title" : @"AUTO-REFRESH",
-                    @"subtitle" : @"Automatically update image results when interacting with your mindmap."
-            }];
 
     self.view = [[TFTranslucentView alloc] initWithFrame: self.view.bounds];
     [self _setup];
@@ -64,26 +74,38 @@ static NSString *const TFSettingsTableCell = @"ImageSettingsCell";
 
 - (void) _setup {
     [self _setupControllers];
-    [self _setupNavigationController];
 
 }
 
 - (void) _setupControllers {
+
+    UIViewController *container = [[UIViewController alloc] init];
+    container.navigationItem.leftBarButtonItem = [[TFBarButtonItem alloc] initWithTitle: @"SETTINGS"];
+
+    TFCustomBarButtonItem *rightItem = [[TFCustomBarButtonItem alloc] initWithTitle: @"CLOSE" image: [UIImage imageNamed: @"icon-chevron-left"]];
+    rightItem.target = self;
+    rightItem.action = @selector(closeDrawer:);
+    [rightItem.button addTarget: self action: @selector(closeDrawer:) forControlEvents: UIControlEventTouchUpInside];
+    container.navigationItem.rightBarButtonItem = rightItem;
+
     _tableViewController = [[TFTableViewController alloc] init];
     _tableViewController.cellIdentifier = TFSettingsTableCell;
     _tableViewController.delegate = self;
+    [container embedFullscreenController: _tableViewController withInsets: UIEdgeInsetsMake(10, 0, 0, 0)];
 
-    _viewNavigationController = [[UINavigationController alloc] initWithRootViewController: _tableViewController];
+    _viewNavigationController = [[UINavigationController alloc] initWithRootViewController: container];
+    _viewNavigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     [self embedFullscreenController: _viewNavigationController];
-    //    [self embedFullscreenController: _viewNavigationController withInsets: UIEdgeInsetsMake(10, 5, 40, 5)];
 
+    [self _setupNavItems];
 }
 
-- (void) _setupNavigationController {
+- (void) _setupNavItems {
+    UIViewController *controller = _viewNavigationController.visibleViewController;
 
-    _viewNavigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    _tableViewController.navigationItem.leftBarButtonItem = [[TFCustomBarButtonItem alloc] initWithTitle: @"SETTINGS" image: nil];
-    _tableViewController.navigationItem.rightBarButtonItem = [[TFCustomBarButtonItem alloc] initWithTitle: @"CLOSE" image: [UIImage imageNamed: @"icon-chevron-left"]];
+    TFBarButtonItem *rightItem = [[TFBarButtonItem alloc] initWithButton: [TFBarButtonItem closeButton]];
+    [rightItem.button addTarget: self action: @selector(closeDrawer:) forControlEvents: UIControlEventTouchUpInside];
+    controller.navigationItem.rightBarButtonItem = rightItem;
 
 }
 

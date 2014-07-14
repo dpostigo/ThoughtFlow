@@ -25,6 +25,7 @@
 		F29B808E78C0D42DD8156DAA /* TFNodeScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8602EA1614640CFACC1D /* TFNodeScrollView.m */; };
 		F29B81C6A6DEAD3E2BA65251 /* TFNodeScrollViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B88FB78EA38795A603A49 /* TFNodeScrollViewContainer.m */; };
 		F29B842B0641BA7ED66A5C7D /* SampleNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8BFF4EAD636A47626BAE /* SampleNodeView.m */; };
+		F29B887E501224ECDC1371CC /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8A71EF9AD18C67574302 /* ViewController2.m */; };
 		F29B8A4BC7DBE8919993BCD6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B87875C8CB30BFC10F3E8 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -62,9 +63,11 @@
 		E2CEA7814E954EDFBA15FD28 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29B807D3712498C1AE63EE4 /* TFNodeScrollViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNodeScrollViewContainer.h; sourceTree = "<group>"; };
 		F29B8211D033376AD2261000 /* TFNodeScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNodeScrollView.h; sourceTree = "<group>"; };
+		F29B8461894A3438A6172A4D /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
 		F29B8602EA1614640CFACC1D /* TFNodeScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFNodeScrollView.m; sourceTree = "<group>"; };
 		F29B87875C8CB30BFC10F3E8 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F29B88FB78EA38795A603A49 /* TFNodeScrollViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFNodeScrollViewContainer.m; sourceTree = "<group>"; };
+		F29B8A71EF9AD18C67574302 /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
 		F29B8AB6812CA27B9060D30B /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F29B8B0F75B3BB22001FA896 /* SampleNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleNodeView.h; sourceTree = "<group>"; };
 		F29B8BFF4EAD636A47626BAE /* SampleNodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleNodeView.m; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				F29B8B0F75B3BB22001FA896 /* SampleNodeView.h */,
 				F29B88FB78EA38795A603A49 /* TFNodeScrollViewContainer.m */,
 				F29B807D3712498C1AE63EE4 /* TFNodeScrollViewContainer.h */,
+				F29B8A71EF9AD18C67574302 /* ViewController2.m */,
+				F29B8461894A3438A6172A4D /* ViewController2.h */,
 			);
 			path = ScrollViewTest;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				F29B808E78C0D42DD8156DAA /* TFNodeScrollView.m in Sources */,
 				F29B842B0641BA7ED66A5C7D /* SampleNodeView.m in Sources */,
 				F29B81C6A6DEAD3E2BA65251 /* TFNodeScrollViewContainer.m in Sources */,
+				F29B887E501224ECDC1371CC /* ViewController2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

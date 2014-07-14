@@ -12,7 +12,7 @@
 @property(nonatomic, copy) NSString *uniqueIdentifier;
 - (void) save;
 - (void) addChild: (id) item;
-- (void) addItems: (NSArray *) items1;
+- (void) addChildren: (NSArray *) items1;
 - (void) removeChild: (id) item;
 - (NSMutableArray *) mutableChildren;
 @end

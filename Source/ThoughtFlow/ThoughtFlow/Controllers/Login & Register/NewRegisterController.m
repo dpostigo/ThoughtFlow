@@ -10,6 +10,7 @@
 #import "Model.h"
 #import "APIModel.h"
 
+
 @implementation NewRegisterController
 
 - (void) prepareDatasource {
@@ -24,9 +25,19 @@
 
 
 
-#pragma mark IBActions
+#pragma mark Actions
 
 - (IBAction) handleRegister: (id) sender {
+
+    [self submit: nil];
+}
+
+- (IBAction) submit: (UIButton *) button {
+
+    if (self.currentTextField) {
+        [self.currentTextField resignFirstResponder];
+    }
+
     __block NSDictionary *dictionary = nil;
 
     if ([self.usernameField.text length] == 0) {
@@ -62,7 +73,7 @@
                         email: self.emailField.text
                         success: ^{
 
-                            [_model.apiModel login: self.usernameField.text
+                            [_model.apiModel loginUser: self.usernameField.text
                                     password: self.passwordField.text
                                     completion: ^{
                                         [self.presentingViewController dismissViewControllerAnimated: YES completion: nil];
@@ -87,6 +98,13 @@
 }
 
 
+
+#pragma mark - Buttons
+
+- (void) disableButtons {
+
+}
+
 #pragma mark Getters
 
 - (UITextField *) usernameField {
@@ -95,12 +113,12 @@
 }
 
 - (UITextField *) emailField {
-    FieldTableViewCell *cell = (FieldTableViewCell *) [self.table cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 2 inSection: 0]];
+    FieldTableViewCell *cell = (FieldTableViewCell *) [self.table cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 1 inSection: 0]];
     return cell.textField;
 }
 
 - (UITextField *) passwordField {
-    FieldTableViewCell *cell = (FieldTableViewCell *) [self.table cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 1 inSection: 0]];
+    FieldTableViewCell *cell = (FieldTableViewCell *) [self.table cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 2 inSection: 0]];
     return cell.textField;
 }
 

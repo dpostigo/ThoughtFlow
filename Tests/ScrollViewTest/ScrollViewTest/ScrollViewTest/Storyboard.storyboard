@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="pGg-U0-jT3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="JPI-Wx-kI9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -36,6 +36,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AC6-m1-nUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="240" y="-763"/>
+        </scene>
+        <!--View Controller2-->
+        <scene sceneID="bBg-UB-fEg">
+            <objects>
+                <viewController id="JPI-Wx-kI9" customClass="ViewController2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x85-I1-r6a"/>
+                        <viewControllerLayoutGuide type="bottom" id="DAA-CR-OIJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="61h-F6-MGx">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bb3-z5-erf">
+                                <rect key="frame" x="40" y="40" width="688" height="944"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DAA-CR-OIJ" firstAttribute="top" secondItem="bb3-z5-erf" secondAttribute="bottom" constant="40" id="1fW-p0-cpF"/>
+                            <constraint firstItem="bb3-z5-erf" firstAttribute="leading" secondItem="61h-F6-MGx" secondAttribute="leading" constant="40" id="UEQ-sv-X8K"/>
+                            <constraint firstItem="bb3-z5-erf" firstAttribute="top" secondItem="61h-F6-MGx" secondAttribute="top" constant="40" id="mUT-aZ-Aov"/>
+                            <constraint firstAttribute="trailing" secondItem="bb3-z5-erf" secondAttribute="trailing" constant="40" id="xX6-oe-WKg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="bb3-z5-erf" id="4bN-HA-arO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rdw-Xt-DYV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192" y="1237"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

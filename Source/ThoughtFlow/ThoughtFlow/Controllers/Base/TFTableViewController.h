@@ -14,6 +14,8 @@
 
 @interface TFTableViewController : UITableViewController
 
+extern NSString *const TFTableViewDefaultCellIdentifier;
+
 @property(nonatomic, assign) id <TFTableViewControllerDelegate> delegate;
 @property(nonatomic, copy) NSString *cellIdentifier;
 @end

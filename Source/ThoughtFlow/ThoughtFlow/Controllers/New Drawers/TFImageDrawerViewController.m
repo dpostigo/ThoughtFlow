@@ -119,12 +119,14 @@
     if (button.selected) {
 
         if (![_project.pinnedImages containsObject: _image]) {
-            [_project.pinnedImages addObject: _image];
+            //            [_project.pinnedImages addObject: _image];
+            [_project addPin: _image];
             [self _notifyAddedPin: _image];
         }
     } else {
         if ([_project.pinnedImages containsObject: _image]) {
-            [_project.pinnedImages removeObject: _image];
+            //            [_project.pinnedImages removeObject: _image];
+            [_project removePin: _image];
             [self _notifyRemovedPin: _image];
         }
     }

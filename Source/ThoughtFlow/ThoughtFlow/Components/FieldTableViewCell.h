@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class TFCustomTextField;
+@class TFTextField;
 
 @interface FieldTableViewCell : UITableViewCell {
     IBOutlet UITextField *textField;
@@ -13,5 +13,5 @@
 }
 
 @property(nonatomic, strong) UITextField *textField;
-- (TFCustomTextField *) tfCustomTextField;
+- (TFTextField *) tfCustomTextField;
 @end

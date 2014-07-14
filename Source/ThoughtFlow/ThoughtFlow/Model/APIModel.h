@@ -26,13 +26,18 @@ extern NSString *const ThoughtFlowBaseURL;
 @property(nonatomic, strong) TFLibrary *library;
 @property(nonatomic, strong) AFOAuth2Client *authClient;
 + (void) alertErrorWithTitle: (NSString *) title message: (NSString *) message;
+- (void) authenticateWithCompletion: (void (^)()) completion failure: (void (^)()) failure;
 + (APIModel *) sharedModel;
 
 - (BOOL) loggedIn;
 - (void (^)()) generalFailureBlock;
-- (void) login: (NSString *) username password: (NSString *) password completion: (void (^)()) completion failure: (void (^)()) failure;
+- (void (^)()) failureBlockWithTitle: (NSString *) title message: (NSString *) message;
+- (void) loginUser: (NSString *) username password: (NSString *) password completion: (void (^)()) completion failure: (void (^)()) failure;
+- (void) updateCurrentUserWithPassword: (NSString *) password success: (void (^)()) success failure: (void (^)(NSString *message)) failure;
+- (void) updateCurrentUserWithEmail: (NSString *) email success: (void (^)()) success failure: (void (^)(NSString *message)) failure;
 - (void) userExists: (NSString *) username completion: (void (^)(BOOL exists)) success;
 - (void) registerUser: (NSString *) username password: (NSString *) password email: (NSString *) email success: (void (^)()) success failure: (void (^)()) failure;
+- (void) signOutWithCompletion: (void (^)()) completion;
 - (void) getImages: (NSString *) string success: (void (^)(NSArray *images)) success failure: (void (^)()) failure;
 - (void) preloadImages: (NSArray *) images;
 @end

@@ -108,6 +108,12 @@
 #define COCOAPODS_VERSION_MINOR_CALayer_DPUtils 1
 #define COCOAPODS_VERSION_PATCH_CALayer_DPUtils 6
 
+// CJStringValidator
+#define COCOAPODS_POD_AVAILABLE_CJStringValidator
+#define COCOAPODS_VERSION_MAJOR_CJStringValidator 1
+#define COCOAPODS_VERSION_MINOR_CJStringValidator 0
+#define COCOAPODS_VERSION_PATCH_CJStringValidator 1
+
 // CocoaLumberjack
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack
 #define COCOAPODS_VERSION_MAJOR_CocoaLumberjack 1
@@ -131,6 +137,12 @@
 #define COCOAPODS_VERSION_MAJOR_CrashlyticsFramework 2
 #define COCOAPODS_VERSION_MINOR_CrashlyticsFramework 2
 #define COCOAPODS_VERSION_PATCH_CrashlyticsFramework 1
+
+// DKAccessoryButton
+#define COCOAPODS_POD_AVAILABLE_DKAccessoryButton
+#define COCOAPODS_VERSION_MAJOR_DKAccessoryButton 1
+#define COCOAPODS_VERSION_MINOR_DKAccessoryButton 0
+#define COCOAPODS_VERSION_PATCH_DKAccessoryButton 1
 
 // DPAnimators
 #define COCOAPODS_POD_AVAILABLE_DPAnimators
@@ -180,6 +192,12 @@
 #define COCOAPODS_VERSION_MINOR_DPTransitions_Segues 0
 #define COCOAPODS_VERSION_PATCH_DPTransitions_Segues 1
 
+// DRPaginatedScrollView
+#define COCOAPODS_POD_AVAILABLE_DRPaginatedScrollView
+#define COCOAPODS_VERSION_MAJOR_DRPaginatedScrollView 0
+#define COCOAPODS_VERSION_MINOR_DRPaginatedScrollView 1
+#define COCOAPODS_VERSION_PATCH_DRPaginatedScrollView 0
+
 // ILTranslucentView
 #define COCOAPODS_POD_AVAILABLE_ILTranslucentView
 #define COCOAPODS_VERSION_MAJOR_ILTranslucentView 0
@@ -203,6 +221,12 @@
 #define COCOAPODS_VERSION_MAJOR_NSObject_AutoDescription 0
 #define COCOAPODS_VERSION_MINOR_NSObject_AutoDescription 1
 #define COCOAPODS_VERSION_PATCH_NSObject_AutoDescription 0
+
+// REPagedScrollView
+#define COCOAPODS_POD_AVAILABLE_REPagedScrollView
+#define COCOAPODS_VERSION_MAJOR_REPagedScrollView 1
+#define COCOAPODS_VERSION_MINOR_REPagedScrollView 0
+#define COCOAPODS_VERSION_PATCH_REPagedScrollView 0
 
 // Reveal-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Reveal_iOS_SDK

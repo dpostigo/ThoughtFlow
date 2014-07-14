@@ -5,14 +5,14 @@
 
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
-#import "TFNodeViewDelegate.h"
+#import "TFBaseNodeViewDelegate.h"
 #import "TFDrawerPresenter.h"
 
 @class TFNodeView;
 @class PanningView;
 @class MindmapBackgroundController;
 
-@interface MindmapController : TFViewController <TFNodeViewDelegate, TFDrawerPresenter> {
+@interface MindmapController : TFViewController <TFBaseNodeViewDelegate, TFDrawerPresenter> {
     MindmapBackgroundController *backgroundController;
 
 

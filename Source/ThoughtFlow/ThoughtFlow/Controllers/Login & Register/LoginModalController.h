@@ -16,7 +16,11 @@
 }
 
 @property(weak) IBOutlet DPTableView *table;
+@property(nonatomic, strong) UITextField *currentTextField;
 - (void) prepareDatasource;
-- (IBAction) handleSignInButton: (id) sender;
+
+
+- (IBAction) signInInstead: (id) sender;
+- (IBAction) submit: (UIButton *) button;
 - (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath;
 @end

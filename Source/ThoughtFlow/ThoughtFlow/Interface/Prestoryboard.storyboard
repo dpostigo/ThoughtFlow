@@ -33,7 +33,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Vm-zf-3xi" customClass="TFCustomTextField">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Vm-zf-3xi" customClass="TFTextField">
                                                     <rect key="frame" x="2" y="3" width="228" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
@@ -179,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uvK-4R-WgO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="193" y="1558"/>
+            <point key="canvasLocation" x="165" y="1642"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IyB-Be-XOe">
@@ -218,7 +218,7 @@
         <!--View Controller-->
         <scene sceneID="xBB-CJ-7Ci">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="NZS-dm-2Ce" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitialViewController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NZS-dm-2Ce" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v8K-a6-RQZ"/>
                         <viewControllerLayoutGuide type="bottom" id="WLX-1a-6CB"/>
@@ -296,7 +296,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9tk-za-Qp3" customClass="TFCustomTextField">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9tk-za-Qp3" customClass="TFTextField">
                                                     <rect key="frame" x="2" y="3" width="228" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
@@ -358,7 +358,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="handleSignInButton:" destination="SZO-IQ-IG8" eventType="touchUpInside" id="T3W-gK-eJI"/>
+                                    <action selector="signInInstead:" destination="SZO-IQ-IG8" eventType="touchUpInside" id="T3W-gK-eJI"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REGISTER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJB-X9-c9c" customClass="TFKernedGothamLightLabel">
@@ -386,6 +386,7 @@
                     <navigationItem key="navigationItem" id="Ivg-DT-iEB"/>
                     <size key="freeformSize" width="300" height="380"/>
                     <connections>
+                        <outlet property="insteadButton" destination="5PZ-aK-52N" id="ZnK-zP-5N7"/>
                         <outlet property="table" destination="DFt-NS-o8l" id="9PQ-de-0xF"/>
                     </connections>
                 </viewController>
@@ -443,7 +444,7 @@ bmQgd2Ugd2lsbCBzZW5kIHlvdSADYSBuZXcgb25lLg
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q7w-oU-lRf" customClass="TFCustomTextField">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q7w-oU-lRf" customClass="TFTextField">
                                                     <rect key="frame" x="2" y="3" width="228" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
@@ -502,7 +503,7 @@ bmQgd2Ugd2lsbCBzZW5kIHlvdSADYSBuZXcgb25lLg
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="handleSignInButton:" destination="wAP-BJ-ZJy" eventType="touchUpInside" id="IOV-bV-FRg"/>
+                                    <action selector="signInInstead:" destination="wAP-BJ-ZJy" eventType="touchUpInside" id="IOV-bV-FRg"/>
                                 </connections>
                             </button>
                         </subviews>

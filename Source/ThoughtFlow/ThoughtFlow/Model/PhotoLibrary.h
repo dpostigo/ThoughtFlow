@@ -21,7 +21,7 @@
 
 - (void) save;
 - (NSMutableArray *) pinsForProject: (Project *) project;
-- (NSArray *) storePins: (NSMutableArray *) pins forProject: (Project *) project;
+- (NSArray *) storePins: (NSArray *) pins forProject: (Project *) project;
 - (TFPhoto *) photoFromDictionary: (NSDictionary *) dictionary;
 - (void) addPhoto: (TFPhoto *) image;
 @end

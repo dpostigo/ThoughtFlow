@@ -18,7 +18,6 @@
 @class TFNewMindmapBackgroundViewController;
 @class TFContentView;
 @class TFNodeScrollView;
-@class TFPanningNodesViewController;
 @class TFScrollingMindmapViewController;
 
 
@@ -29,24 +28,13 @@ typedef NS_ENUM(NSInteger, TFMindmapControllerType) {
 
 @interface TFMindmapController : TFViewController <TFNodesViewControllerDelegate,
         TFMindmapGridViewControllerDelegate,
-        TFNewEditNodeControllerDelegate,
-        UIScrollViewDelegate> {
-
-    UIScrollView *_scrollView;
-    TFNodesViewController *_scalingNodesController;
-    TFPanningNodesViewController *_panningController;
-    UIView *_mindmapView;
-    NSLayoutConstraint *_widthConstraint;
-    NSLayoutConstraint *_heightConstraint;
-    TFScrollingMindmapViewController *_scrollingController;
-}
+        TFNewEditNodeControllerDelegate>
 
 @property(nonatomic) TFMindmapControllerType mindmapType;
 @property(nonatomic, strong) Project *project;
 @property(nonatomic, strong) TFNode *selectedNode;
 
 @property(nonatomic, strong) TFContentView *contentView;
-@property(nonatomic, strong) TFNodesViewController *scalingNodesController;
 @property(nonatomic, strong) UIView *mindmapView;
 @property(nonatomic, strong) NSLayoutConstraint *widthConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *heightConstraint;

@@ -20,20 +20,22 @@
 #import "TFMinimizedNodesViewController.h"
 #import "UIAlertView+Blocks.h"
 #import "UIView+DPKitDebug.h"
-#import "TFPanningNodesViewController.h"
 #import "TFScrollingMindmapViewController.h"
 
 
 @interface TFMindmapController ()
 
 @property(nonatomic) CGPoint startingPoint;
-@property(nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
+
 @property(nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
+@property(nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
 
 @property(nonatomic, strong) TFNewMindmapBackgroundViewController *bgController;
 @property(nonatomic, strong) TFLinesViewController *linesController;
 @property(nonatomic, strong) TFNodesViewController *nodesController;
 @property(nonatomic, strong) TFMinimizedNodesViewController *minimizedController;
+@property(nonatomic, strong) TFScrollingMindmapViewController *scrollingController;
+
 @end
 
 @implementation TFMindmapController
@@ -56,10 +58,6 @@
 
 #pragma mark - View lifecycle
 
-- (void) viewWillAppear: (BOOL) animated {
-    [super viewWillAppear: animated];
-
-}
 
 
 - (void) viewWillDisappear: (BOOL) animated {
@@ -123,70 +121,15 @@
     _nodesController = _scrollingController.nodesController;
     _nodesController.delegate = self;
 
-
-
-    //
-    //
-    //    _scrollView = [[UIScrollView alloc] initWithFrame: self.view.bounds];
-    //    [self embedFullscreenView: _scrollView];
-    //
-    //    _mindmapView = [[UIView alloc] initWithFrame: self.view.bounds];
-    //    [_scrollView embedView: _mindmapView];
-    //    _widthConstraint = [NSLayoutConstraint constraintWithItem: _mindmapView attribute: NSLayoutAttributeWidth relatedBy: NSLayoutRelationEqual toItem: nil attribute: NSLayoutAttributeNotAnAttribute multiplier: 1.0 constant: 2000];
-    //    _heightConstraint = [NSLayoutConstraint constraintWithItem: _mindmapView attribute: NSLayoutAttributeHeight relatedBy: NSLayoutRelationEqual toItem: nil attribute: NSLayoutAttributeNotAnAttribute multiplier: 1.0 constant: 2000];
-    //    [_scrollView addConstraints: @[
-    //            _widthConstraint,
-    //            _heightConstraint
-    //    ]];
-    //
-    //    _linesController = [[TFLinesViewController alloc] init];
-    //    [_mindmapView embedController: _linesController];
-    //
-    //    _nodesController = [[TFNodesViewController alloc] init];
-    //    _nodesController.delegate = self;
-    //    [_mindmapView embedController: _nodesController];
-    //
-    //    _scrollView.delegate = self;
-    //    _scrollView.minimumZoomScale = 1.0;
-    //    _scrollView.maximumZoomScale = 2.0;
-    //    _scrollView.zoomScale = 1.0;
-
-    //    _linesController = [[TFLinesViewController alloc] init];
-    //    [self embedFullscreenController: _linesController];
-    //
-    //    _nodesController = [[TFNodesViewController alloc] init];
-    //    _nodesController.delegate = self;
-    //    [self embedFullscreenController: _nodesController];
-
 }
 
-
-- (void) scrollViewDidScroll: (UIScrollView *) scrollView {
-
-    CGPoint offset = scrollView.contentOffset;
-    offset.x += scrollView.width;
-
-    if (offset.x >= _mindmapView.width) {
-        CGFloat currentWidth = _mindmapView.width;
-        _widthConstraint.constant = currentWidth + (1 / _scrollView.zoomScale);
-    }
-
-    else if (offset.y >= _mindmapView.height) {
-        CGFloat currentHeight = _mindmapView.width;
-        _heightConstraint.constant = currentHeight + (1 / _scrollView.zoomScale);
-    }
-}
 
 - (void) _setupProject {
-    if (_project) {
+    if (!_project) return;
+    [self _refreshNodes];
 
-        [self _refreshNodes];
-
-        if (_project.modifiedDate == nil) {
-            [_nodesController centerFirstNode];
-        }
-
-        _panningController = [[TFPanningNodesViewController alloc] initWithProject: _project];
+    if (_project.modifiedDate == nil) {
+        [_nodesController centerFirstNode];
     }
 }
 
@@ -203,9 +146,6 @@
 
 
 #pragma mark - Delegates
-
-
-
 #pragma mark - TFMindmapGridViewControllerDelegate
 
 - (void) mindmapGridViewController: (TFMindmapGridViewController *) controller clickedButtonForImage: (TFPhoto *) image {
@@ -539,71 +479,7 @@
     }
 
     return;
-    UIView *nodeContainerView = _nodesController.view;
-    //    CGPoint translation = [gesture translationInView: gesture.view.superview];
 
-    if (gesture.numberOfTouches > 1) {
-        CGPoint translation = [gesture translationInView: _nodesController.view.superview];
-        CGPoint startPoint;
-
-        switch (gesture.state) {
-            case UIGestureRecognizerStateBegan : {
-                [self startPan: gesture];
-            }
-                break;
-
-            case UIGestureRecognizerStateChanged : {
-                [self updatePan: gesture];
-            }
-                break;
-
-            case UIGestureRecognizerStateEnded :
-            case UIGestureRecognizerStateFailed :
-            case UIGestureRecognizerStateCancelled : {
-                [self endPan: gesture];
-            }
-
-                break;
-
-            default :
-                break;
-        }
-    }
-
-    //    if (gesture.state == UIGestureRecognizerStateEnded ||
-    //            gesture.state == UIGestureRecognizerStateFailed ||
-    //            gesture.state == UIGestureRecognizerStateCancelled) {
-    //
-    //        NSLog(@"nodeContainerView.origin = %@", NSStringFromCGPoint(nodeContainerView.origin));
-    //
-    //        CGPoint startingOffset = nodeContainerView.origin;
-    //        if (nodeContainerView.left > 0) {
-    //            [nodeContainerView updateSuperWidthConstraint: nodeContainerView.left];
-    //        }
-    //        if (nodeContainerView.top > 0) {
-    //            [nodeContainerView updateSuperHeightConstraint: nodeContainerView.top];
-    //        }
-    //
-    //        //        for (TFBaseNodeView *node in self.nodeViews) {
-    //        //            CGPoint nodePoint = CGPointMake(node.left + startingOffset.x, node.top + startingOffset.y);
-    //        //            [node updateSuperLeadingConstraint: nodePoint.x];
-    //        //            [node updateSuperTopConstraint: nodePoint.y];
-    //        //            node.node.position = nodePoint;
-    //        //        }
-    //
-    //        //        [lineView updateSuperLeadingConstraint: lineView.left - startingOffset.x];
-    //        //        [lineView updateSuperTopConstraint: lineView.top - startingOffset.y];
-    //
-    //        [nodeContainerView updateSuperTopConstraint: 0];
-    //        [nodeContainerView updateSuperLeadingConstraint: 0];
-    //        [nodeContainerView setNeedsUpdateConstraints];
-    //        [nodeContainerView layoutIfNeeded];
-    //
-    //        //        [self assignDelegate: self];
-    //        //        [self redrawLines];
-    //        //        [self assignDelegate: nil];
-    //
-    //    }
 }
 
 

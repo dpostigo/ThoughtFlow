@@ -530,7 +530,6 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 - (void) startPinchWithScale: (CGFloat) scale {
 
     NSLayoutConstraint *widthConstraint = self.view.staticWidthConstraint;
-    NSLog(@"widthConstraint = %@", widthConstraint);
     [self _notifyDidBeginPinchingNodeView: _selectedNodeView];
 
 }

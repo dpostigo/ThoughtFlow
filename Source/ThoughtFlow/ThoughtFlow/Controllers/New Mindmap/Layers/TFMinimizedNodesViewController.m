@@ -38,7 +38,6 @@ CGFloat const TFMindmapMinimizedOffsetY = 10;
 - (void) loadView {
     [super loadView];
 
-    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 

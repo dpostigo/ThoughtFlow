@@ -12,8 +12,6 @@
 #import "TFContentViewNavigationController.h"
 #import "TFInfoViewController.h"
 #import "TFMindmapGridViewController.h"
-#import "TFMoodboardViewController.h"
-#import "NotesDrawerController.h"
 #import "ProjectsController.h"
 #import "TFNewSettingsDrawerController.h"
 #import "CreateProjectController.h"

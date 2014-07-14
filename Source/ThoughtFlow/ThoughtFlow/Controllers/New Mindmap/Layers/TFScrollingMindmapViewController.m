@@ -254,29 +254,6 @@
 
 
 
-- (void) scrollViewDidScroll: (UIScrollView *) scrollView {
-
-    //    CGPoint startingOffset = scrollView.contentOffset;
-    //    startingOffset.x += scrollView.width;
-    //
-    //    CGFloat limitX = self.view.width + TFScrollingMindmapWidthLimit;
-    //    CGFloat limitY = self.view.height + TFScrollingMindmapHeightLimit;
-    //    //    NSLog(@"startingOffset = %@, limitX = %f", NSStringFromCGPoint(startingOffset), limitX);
-    //
-    //    if (startingOffset.x >= _mindmapView.width && startingOffset.x < self.view.width + TFScrollingMindmapWidthLimit) {
-    //
-    //        CGFloat currentWidth = _mindmapView.width;
-    //        _widthConstraint.constant = currentWidth + (1 / _scrollView.zoomScale);
-    //        //        _widthConstraint.constant = currentWidth + 1;
-    //    }
-    //
-    //    else if (startingOffset.y >= _mindmapView.height && startingOffset.y < self.view.height + TFScrollingMindmapHeightLimit) {
-    //        CGFloat currentHeight = _mindmapView.width;
-    //        _heightConstraint.constant = currentHeight + (1 / _scrollView.zoomScale);
-    //        //        _heightConstraint.constant = currentHeight + 1;
-    //    }
-}
-
 
 
 
@@ -317,8 +294,6 @@
 }
 
 - (void) _setupMindmapView {
-    //    _mindmapView = [[DPPassThroughView alloc] initWithFrame: self.view.bounds];
-    //    _mindmapView = [[TFScrollViewContentView alloc] initWithFrame: self.view.bounds];
     _mindmapView = [[TFScrollViewContentView alloc] initWithFrame: self.view.bounds];
     [_scrollView embedView: _mindmapView];
 
@@ -370,7 +345,6 @@
     CGPoint convertedPoint4 = [_nodesController.view convertPoint: corePoint toView: self.view];
 
     CGPoint offset = _scrollView.contentOffset;
-    NSLog(@"offset = %@", NSStringFromCGPoint(offset));
     _nodesController.pinchEndPoint = corePoint;
 }
 

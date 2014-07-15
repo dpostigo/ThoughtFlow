@@ -21,7 +21,11 @@
 
 @class Project;
 @class TFPhoto;
-@protocol TFImageDrawerViewControllerDelegate;
+@protocol TFNewImageDrawerViewControllerDelegate;
+
+extern NSString *const TFImageDrawerImageCredits;
+extern NSString *const TFImageDrawerImageDescription;
+extern NSString *const TFImageDrawerImageTags;
 
 
 @interface TFNewImageDrawerViewController : TFNewDrawerController <TFTableViewControllerDelegate> {

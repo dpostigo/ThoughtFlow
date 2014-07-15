@@ -4,6 +4,7 @@
 //
 
 #import <DPKit-Utils/UIViewController+DPKit.h>
+#import <DPKit-Utils/UIView+DPKitDebug.h>
 #import "TFMoodboardGridViewController.h"
 #import "Project.h"
 #import "TFImageGridViewCell.h"
@@ -29,6 +30,9 @@
 }
 
 
+
+#pragma mark - View lifecycle
+
 - (void) viewDidLoad {
     [super viewDidLoad];
 
@@ -45,18 +49,12 @@
 
 
 
-#pragma mark - TFImageGridViewControllerDelegate
+#pragma mark - Public
 
-- (void) imageGridViewController: (TFImageGridViewController *) controller dequeuedCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
-    [cell.bottomRightButton setImage: [UIImage imageNamed: @"remove-button"] forState: UIControlStateNormal];
-    [controller addTargetToButton: cell.bottomRightButton];
-}
-
-- (void) imageGridViewController: (TFImageGridViewController *) controller didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
+- (void) deleteItemAtIndexPath: (NSIndexPath *) indexPath {
     TFPhoto *image = [_imagesController.images objectAtIndex: indexPath.item];
 
     [_imagesController.collection performBatchUpdates: ^{
-
         if (image == _imagesController.selectedImage) {
             _imagesController.selectedImage = nil;
         }
@@ -67,8 +65,19 @@
         [_imagesController.collection deleteItemsAtIndexPaths: @[indexPath]];
 
     } completion: ^(BOOL finished) {
-        [self _refresh];
+        [self _refreshControllers];
     }];
+}
+
+#pragma mark - TFImageGridViewControllerDelegate
+
+- (void) imageGridViewController: (TFImageGridViewController *) controller dequeuedCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
+    [cell.bottomRightButton setImage: [UIImage imageNamed: @"remove-button"] forState: UIControlStateNormal];
+    [controller addTargetToButton: cell.bottomRightButton];
+}
+
+- (void) imageGridViewController: (TFImageGridViewController *) controller didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
+    [self deleteItemAtIndexPath: indexPath];
 
 }
 
@@ -95,7 +104,7 @@
 
 #pragma mark - Refresh
 
-- (void) _refresh {
+- (void) _refreshControllers {
 
     if ([_project.pinnedImages count] == 0) {
         _imagesController.view.hidden = YES;
@@ -114,8 +123,12 @@
 }
 #pragma mark - Setup
 
-- (void) _setupControllers {
+- (void) _setupView {
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.opaque = NO;
+}
 
+- (void) _setupControllers {
     _emptyController = [[TFNewEmptyViewController alloc] initWithText: @"You don't have any pins in your moodboard."];
     [self embedFullscreenController: _emptyController];
 
@@ -127,7 +140,6 @@
 - (void) _setupProject {
 
     if (_project) {
-
         if ([_project.pinnedImages count] == 0) {
             _imagesController.view.hidden = YES;
 
@@ -137,11 +149,6 @@
 
         }
     }
-}
-
-- (void) _setupView {
-    self.view.backgroundColor = [UIColor clearColor];
-    self.view.opaque = NO;
 }
 
 @end

@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <DPKit-Utils/UIView+DPKitDebug.h>
 #import "TFNewEmptyViewController.h"
 #import "TFTranslucentView.h"
 #import "TFKernedGothamLightLabel.h"
@@ -55,9 +56,11 @@
     [self.view addSubview: _detailTextLabel];
     _detailTextLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
+    //    [_textLabel addDebugBorder: [UIColor yellowColor]];
+
     [self.view addConstraints: @[
             [NSLayoutConstraint constraintWithItem: _textLabel attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeLeading multiplier: 1.0 constant: 40.0],
-            [NSLayoutConstraint constraintWithItem: _textLabel attribute: NSLayoutAttributeTrailing relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeTrailing multiplier: 1.0 constant: 40.0],
+            [NSLayoutConstraint constraintWithItem: _textLabel attribute: NSLayoutAttributeTrailing relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeTrailing multiplier: 1.0 constant: -40.0],
 
             [NSLayoutConstraint constraintWithItem: _textLabel attribute: NSLayoutAttributeBottom relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeCenterY multiplier: 1.0 constant: -40.0],
             [NSLayoutConstraint constraintWithItem: _detailTextLabel attribute: NSLayoutAttributeTop relatedBy: NSLayoutRelationEqual toItem: _textLabel attribute: NSLayoutAttributeBottom multiplier: 1.0 constant: 0.0],

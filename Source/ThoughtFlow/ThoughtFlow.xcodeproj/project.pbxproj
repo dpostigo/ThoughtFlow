@@ -42,14 +42,12 @@
 		3347CEC119741F5E00D52108 /* TFTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CEC019741F5E00D52108 /* TFTableViewCell.m */; };
 		3347CEC819741F9200D52108 /* TFNewAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CEC419741F9200D52108 /* TFNewAccountViewController.m */; };
 		3347CEC919741F9200D52108 /* TFNewSettingsDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CEC719741F9200D52108 /* TFNewSettingsDrawerController.m */; };
-		3347CECE19741FD100D52108 /* TFImageDrawerContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CECB19741FD100D52108 /* TFImageDrawerContentViewController.m */; };
-		3347CECF19741FD100D52108 /* TFImageDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CECD19741FD100D52108 /* TFImageDrawerViewController.m */; };
 		3347CED319741FEC00D52108 /* TFNewNotesDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CED219741FEC00D52108 /* TFNewNotesDrawerController.m */; };
 		3347CED71974201100D52108 /* TFDrawerNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CED61974201100D52108 /* TFDrawerNavigationController.m */; };
 		3347CEDF1974205900D52108 /* TFNewEditNodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CEDE1974205900D52108 /* TFNewEditNodeController.m */; };
 		3347CEE71974208900D52108 /* TFMoodboardFullscreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CEE21974208900D52108 /* TFMoodboardFullscreenViewController.m */; };
 		3347CEE81974208900D52108 /* TFMoodboardGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CEE41974208900D52108 /* TFMoodboardGridViewController.m */; };
-		3347CEE91974208900D52108 /* TFNewMoodboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CEE61974208900D52108 /* TFNewMoodboardViewController.m */; };
+		3347CEE91974208900D52108 /* TFMoodboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CEE61974208900D52108 /* TFMoodboardViewController.m */; };
 		3347CEEB1974222800D52108 /* TFEmptyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3347CEEA1974222800D52108 /* TFEmptyViewController.storyboard */; };
 		3347CEEE197422D300D52108 /* TFMindmapRelatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CEED197422D300D52108 /* TFMindmapRelatedViewController.m */; };
 		3347CF14197423BF00D52108 /* TFContentViewNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3347CF0F197423BF00D52108 /* TFContentViewNavigationController.m */; };
@@ -230,10 +228,6 @@
 		3347CEC419741F9200D52108 /* TFNewAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFNewAccountViewController.m; sourceTree = "<group>"; };
 		3347CEC619741F9200D52108 /* TFNewSettingsDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNewSettingsDrawerController.h; sourceTree = "<group>"; };
 		3347CEC719741F9200D52108 /* TFNewSettingsDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFNewSettingsDrawerController.m; sourceTree = "<group>"; };
-		3347CECA19741FD100D52108 /* TFImageDrawerContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFImageDrawerContentViewController.h; sourceTree = "<group>"; };
-		3347CECB19741FD100D52108 /* TFImageDrawerContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFImageDrawerContentViewController.m; sourceTree = "<group>"; };
-		3347CECC19741FD100D52108 /* TFImageDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFImageDrawerViewController.h; sourceTree = "<group>"; };
-		3347CECD19741FD100D52108 /* TFImageDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFImageDrawerViewController.m; sourceTree = "<group>"; };
 		3347CED119741FEC00D52108 /* TFNewNotesDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNewNotesDrawerController.h; sourceTree = "<group>"; };
 		3347CED219741FEC00D52108 /* TFNewNotesDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFNewNotesDrawerController.m; sourceTree = "<group>"; };
 		3347CED51974201100D52108 /* TFDrawerNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDrawerNavigationController.h; sourceTree = "<group>"; };
@@ -244,8 +238,8 @@
 		3347CEE21974208900D52108 /* TFMoodboardFullscreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFMoodboardFullscreenViewController.m; sourceTree = "<group>"; };
 		3347CEE31974208900D52108 /* TFMoodboardGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMoodboardGridViewController.h; sourceTree = "<group>"; };
 		3347CEE41974208900D52108 /* TFMoodboardGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFMoodboardGridViewController.m; sourceTree = "<group>"; };
-		3347CEE51974208900D52108 /* TFNewMoodboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNewMoodboardViewController.h; sourceTree = "<group>"; };
-		3347CEE61974208900D52108 /* TFNewMoodboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFNewMoodboardViewController.m; sourceTree = "<group>"; };
+		3347CEE51974208900D52108 /* TFMoodboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMoodboardViewController.h; sourceTree = "<group>"; };
+		3347CEE61974208900D52108 /* TFMoodboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFMoodboardViewController.m; sourceTree = "<group>"; };
 		3347CEEA1974222800D52108 /* TFEmptyViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TFEmptyViewController.storyboard; sourceTree = "<group>"; };
 		3347CEEC197422D300D52108 /* TFMindmapRelatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMindmapRelatedViewController.h; sourceTree = "<group>"; };
 		3347CEED197422D300D52108 /* TFMindmapRelatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFMindmapRelatedViewController.m; sourceTree = "<group>"; };
@@ -710,10 +704,6 @@
 		3347CEC519741F9200D52108 /* 02-Settings */ = {
 			isa = PBXGroup;
 			children = (
-				3347CECA19741FD100D52108 /* TFImageDrawerContentViewController.h */,
-				3347CECB19741FD100D52108 /* TFImageDrawerContentViewController.m */,
-				3347CECC19741FD100D52108 /* TFImageDrawerViewController.h */,
-				3347CECD19741FD100D52108 /* TFImageDrawerViewController.m */,
 				3347CEC619741F9200D52108 /* TFNewSettingsDrawerController.h */,
 				3347CEC719741F9200D52108 /* TFNewSettingsDrawerController.m */,
 				F29B8CC9AD0B89E38CB51868 /* TFNewImageDrawerViewController.m */,
@@ -758,8 +748,8 @@
 				3347CEE21974208900D52108 /* TFMoodboardFullscreenViewController.m */,
 				3347CEE31974208900D52108 /* TFMoodboardGridViewController.h */,
 				3347CEE41974208900D52108 /* TFMoodboardGridViewController.m */,
-				3347CEE51974208900D52108 /* TFNewMoodboardViewController.h */,
-				3347CEE61974208900D52108 /* TFNewMoodboardViewController.m */,
+				3347CEE51974208900D52108 /* TFMoodboardViewController.h */,
+				3347CEE61974208900D52108 /* TFMoodboardViewController.m */,
 			);
 			path = "05-Moodboard";
 			sourceTree = "<group>";
@@ -1373,7 +1363,6 @@
 				3347CE611974149600D52108 /* TFLayer.m in Sources */,
 				F29B84891D7A30E4CE40AD17 /* UIColor+TFApp.m in Sources */,
 				3347CE9F19741C8F00D52108 /* TFTableViewController.m in Sources */,
-				3347CECF19741FD100D52108 /* TFImageDrawerViewController.m in Sources */,
 				3347CE621974149600D52108 /* TFLiveUpdateLayer.m in Sources */,
 				3347CEB919741DF000D52108 /* TFEmptyViewController.m in Sources */,
 				F29B8D2957A56C68737432FB /* ProjectLibrary.m in Sources */,
@@ -1409,14 +1398,13 @@
 				F29B89FF587ADA304D699EC2 /* TFImage.m in Sources */,
 				F29B8BA167A3E4ADFD9611AD /* APIModel.m in Sources */,
 				3347CF5C1974268D00D52108 /* TFMenuButton.m in Sources */,
-				3347CECE19741FD100D52108 /* TFImageDrawerContentViewController.m in Sources */,
 				F29B8ACF0AC293AEE39D5E73 /* APIUser.m in Sources */,
 				F29B8BC8FE997F9AE8EB28FD /* TFPhoto.m in Sources */,
 				F29B84E597A32E3A51628089 /* TFAPIModel.m in Sources */,
 				F29B86C6539C12FBA5298C18 /* TFGothamLightLabelOld.m in Sources */,
 				F29B87C0FCDE647E52E7106E /* TFKernedGothamLightLabel.m in Sources */,
 				3347CEA619741CBD00D52108 /* TFImageGridViewCell.m in Sources */,
-				3347CEE91974208900D52108 /* TFNewMoodboardViewController.m in Sources */,
+				3347CEE91974208900D52108 /* TFMoodboardViewController.m in Sources */,
 				F29B85142A3063CB0DF5D99A /* TFSpacedGothamLightLabel.m in Sources */,
 				F29B8A9A8F4C2DF615862750 /* TFMindmapViewController.m in Sources */,
 				3347CE8F19741C3600D52108 /* TFInfoRightController.m in Sources */,

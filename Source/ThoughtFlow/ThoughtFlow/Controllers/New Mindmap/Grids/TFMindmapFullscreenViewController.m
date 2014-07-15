@@ -5,11 +5,7 @@
 
 #import "TFMindmapFullscreenViewController.h"
 #import "TFImageGridViewCell.h"
-#import "TFImageDrawerViewController.h"
-#import "UIViewController+TFContentNavigationController.h"
-#import "TFContentViewNavigationController.h"
 #import "TFPhoto.h"
-#import "TFNewImageDrawerViewController.h"
 
 
 @implementation TFMindmapFullscreenViewController

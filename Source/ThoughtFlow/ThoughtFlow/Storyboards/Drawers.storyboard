@@ -321,7 +321,6 @@ A2FuZCB3b3JkLWFzc29jaWF0aW9ucy4
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="closeDrawer:" destination="BxU-Dp-V2p" eventType="touchUpInside" id="eg1-SI-Q1b"/>
                                             <action selector="handleCloseButton:" destination="FLI-ao-Qhp" eventType="touchUpInside" id="m0l-RN-G8I"/>
                                         </connections>
                                     </button>
@@ -364,6 +363,7 @@ A2FuZCB3b3JkLWFzc29jaWF0aW9ucy4
                     <navigationItem key="navigationItem" id="Tqq-dv-dmh"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="closeButton" destination="yOe-XM-3nf" id="jg5-46-vdW"/>
                         <outlet property="containerView" destination="1ZG-tR-e1R" id="uoK-Eb-eee"/>
                         <outlet property="imageSearchLabel" destination="mWk-Ur-8oC" id="vG0-4T-ag4"/>
                         <outlet property="moodboardLabel" destination="Zl6-Md-He9" id="CLk-hM-5RU"/>

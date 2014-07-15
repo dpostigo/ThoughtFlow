@@ -13,14 +13,11 @@
 #import "ProjectsController.h"
 #import "TFNewSettingsDrawerController.h"
 #import "CreateProjectController.h"
-#import "TFNewMoodboardViewController.h"
+#import "TFMoodboardViewController.h"
 #import "TFNewNotesDrawerController.h"
 #import "APIModel.h"
 #import "TFNewAboutViewController.h"
 
-
-#define NEW_MOODBOARD DEBUG
-#define NEW_IMAGE_SETTINGS DEBUG
 
 @implementation NewMainAppController
 
@@ -30,7 +27,6 @@
     _contentNavigationController.contentView = _contentView;
 
     if ([_model.projects count] > 0) {
-
         ProjectsController *controller = [[ProjectsController alloc] init];
         [_contentNavigationController setViewControllers: @[controller] animated: NO];
     }
@@ -81,12 +77,12 @@
             } else {
                 controller = [[CreateProjectController alloc] init];
             }
+
             [_contentNavigationController setViewControllers: @[controller] animated: YES];
         }
             break;
 
         case TFNewToolbarButtonTypeNotes : {
-
             TFNewDrawerController *controller = [[TFNewNotesDrawerController alloc] initWithProject: _model.selectedProject];
             _contentNavigationController.rightDrawerController = controller;
             [_contentNavigationController openRightContainer];
@@ -95,10 +91,10 @@
             break;
 
         case TFNewToolbarButtonTypeMoodboard : {
-            TFNewMoodboardViewController *controller = [[TFNewMoodboardViewController alloc] initWithProject: _model.selectedProject];
+            TFMoodboardViewController *controller = [[TFMoodboardViewController alloc] initWithProject: _model.selectedProject];
             [_contentNavigationController toggleViewController: controller animated: YES];
-        }
             break;
+        }
 
         case TFNewToolbarButtonTypeAccount : {
             TFNewAccountViewController *controller = [[TFNewAccountViewController alloc] init];;
@@ -107,8 +103,8 @@
             _contentNavigationController.leftDrawerController = controller;
             [_contentNavigationController openLeftContainer];
             _toolbarController.selectedIndex = type;
-        }
             break;
+        }
 
         case TFNewToolbarButtonTypeImageSettings : {
             TFNewSettingsDrawerController *controller = [[TFNewSettingsDrawerController alloc] init];
@@ -116,15 +112,14 @@
 
             [_contentNavigationController openLeftContainer];
             _toolbarController.selectedIndex = type;
-        }
             break;
+        }
 
         case TFNewToolbarButtonTypeInfo : {
             TFNewAboutViewController *controller = [[TFNewAboutViewController alloc] init];
             [_contentNavigationController toggleViewController: controller animated: YES];
-
-        }
             break;
+        }
 
         default :
             break;
@@ -160,26 +155,26 @@
 
 - (void) navigationController: (UINavigationController *) navigationController didShowViewController: (UIViewController *) viewController animated: (BOOL) animated {
 
+    //    Class classReference = [viewController class];
     if ([viewController isKindOfClass: [ProjectsController class]]) {
         _toolbarController.selectedIndex = TFNewToolbarButtonTypeProjects;
 
     } else if ([viewController isKindOfClass: [TFNewAboutViewController class]]) {
         _toolbarController.selectedIndex = TFNewToolbarButtonTypeInfo;
 
-    } else if ([viewController isKindOfClass: [TFNewMoodboardViewController class]]) {
+    } else if ([viewController isKindOfClass: [TFMoodboardViewController class]]) {
         _toolbarController.selectedIndex = TFNewToolbarButtonTypeMoodboard;
 
     } else {
         _toolbarController.selectedIndex = -1;
     }
+
 }
 
 - (id <UIViewControllerAnimatedTransitioning>) navigationController: (UINavigationController *) navigationController animationControllerForOperation: (UINavigationControllerOperation) operation fromViewController: (UIViewController *) sourceController toViewController: (UIViewController *) destinationController {
     BasicAnimator *ret = nil;
 
-    NSLog(@"sourceController = %@", sourceController);
-    NSLog(@"destinationController = %@", destinationController);
-    if ([sourceController isKindOfClass: [TFNewMoodboardViewController class]]
+    if ([sourceController isKindOfClass: [TFMoodboardViewController class]]
             && [destinationController isKindOfClass: [ProjectsController class]]) {
         _fadingNavigationAnimator.opaque = YES;
         return _fadingNavigationAnimator;
@@ -191,8 +186,8 @@
     if (
             [destinationController isKindOfClass: [TFNewAboutViewController class]] ||
 
-                    [destinationController isKindOfClass: [TFNewMoodboardViewController class]] ||
-                    [sourceController isKindOfClass: [TFNewMoodboardViewController class]] ||
+                    [destinationController isKindOfClass: [TFMoodboardViewController class]] ||
+                    [sourceController isKindOfClass: [TFMoodboardViewController class]] ||
 
                     [destinationController isKindOfClass: [TFMindmapGridViewController class]]) {
         ret = self.fadingNavigationAnimator;
@@ -200,23 +195,6 @@
     } else {
         ret = self.slidingNavigationAnimator;
     }
-
-    //    switch (operation) {
-    //        case UINavigationControllerOperationNone : {
-    //            NSLog(@"UINavigationControllerOperationNone");
-    //        }
-    //            break;
-    //
-    //        case UINavigationControllerOperationPush : {
-    //            NSLog(@"UINavigationControllerOperationPush");
-    //        }
-    //            break;
-    //
-    //        case UINavigationControllerOperationPop : {
-    //            NSLog(@"UINavigationControllerOperationPop");
-    //        }
-    //            break;
-    //    }
 
     NSLog(@"%@: %@ -> %@", ret, sourceController, destinationController);
     ret.isPresenting = operation == UINavigationControllerOperationPush ? YES : NO;

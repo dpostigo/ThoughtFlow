@@ -61,6 +61,8 @@
 - (void) setImageString: (NSString *) imageString {
     _imageString = [imageString mutableCopy];
 
+    NSLog(@"_imageString = %@", _imageString);
+
     [[APIModel sharedModel] getImages: _imageString
             success: ^(NSArray *imageArray) {
                 self.images = imageArray;

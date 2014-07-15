@@ -33,13 +33,13 @@
     self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
 
+        _masksLines = NO;
         self.view = [[DPPassThroughView alloc] init];
 
         _lineColor = [UIColor colorWithWhite: 0.5 alpha: 1.0];
 
         _mainLayer = [CALayer layer];
         _mainLayer.frame = self.view.bounds;
-        _mainLayer.delegate = self;
         [self.view.layer addSublayer: _mainLayer];
 
         _updateLayer = [CALayer layer];
@@ -54,14 +54,14 @@
 
         _liveLayer = [TFLiveUpdateLayer layer];
         _liveLayer.frame = self.view.bounds;
-        _liveLayer.lineColor = [UIColor redColor];
+        _liveLayer.lineColor = _lineColor;
         _liveLayer.delegate = self;
         [self.view.layer addSublayer: _liveLayer];
 
-        //        if (_masksLines) {
-        //            _testLayer = self.view.layer;
-        //            _testLayer.opaque = NO;
-        //        }
+        if (_masksLines) {
+            _testLayer = self.view.layer;
+            _testLayer.opaque = NO;
+        }
     }
 
     return self;
@@ -82,6 +82,7 @@
 
     _liveLayer.nodeViews = nil;
     _liveLayer.delegate = nil;
+    _mainLayer.delegate = nil;
 }
 
 
@@ -96,9 +97,7 @@
 
 
 - (void) updateLayerWithNodeViews: (NSArray *) nodeViews {
-
     if (_masksLines) {
-
         // create the mask that will be applied to the layer on top of the yellow background
         CAShapeLayer *maskLayer = [CAShapeLayer layer];
         maskLayer.fillRule = kCAFillRuleEvenOdd;
@@ -116,9 +115,7 @@
         _testLayer.mask = maskLayer;
 
         CGPathRelease(p1);
-
     }
-
 }
 
 
@@ -170,9 +167,12 @@
 }
 
 - (void) endPinchWithNodeViews: (NSArray *) nodeViews {
+
+    _mainLayer.delegate = self;
     _mainLayer.hidden = NO;
     _liveLayer.hidden = YES;
     _liveLayer.nodeViews = nil;
+    _mainLayer.delegate = nil;
 }
 
 #pragma mark - Move targeted node

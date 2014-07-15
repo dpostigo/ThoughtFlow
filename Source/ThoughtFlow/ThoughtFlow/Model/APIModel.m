@@ -391,35 +391,62 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
 - (void) getImages: (NSString *) string
            success: (void (^)(NSArray *images)) success failure: (void (^)()) failure {
 
-    @try {
-        [self.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", [string rm_URLEncodedString]]
-                parameters: @{
+    DDLogVerbose(@"IMAGES started.");
 
+    [self.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", [string rm_URLEncodedString]]
+            parameters: @{
+
+            }
+            success: ^(AFHTTPRequestOperation *task, id responseObject) {
+                NSArray *photos = [responseObject objectForKey: @"photos"];
+
+                DDLogVerbose(@"%s, [photos count] = %u", __PRETTY_FUNCTION__, [photos count]);
+                NSMutableArray *ret = [[NSMutableArray alloc] init];
+                for (NSDictionary *photo in photos) {
+                    TFPhoto *tfPhoto = [[PhotoLibrary sharedLibrary] photoFromDictionary: photo];
+                    [ret addObject: tfPhoto];
                 }
-                success: ^(AFHTTPRequestOperation *task, id responseObject) {
-                    NSArray *photos = [responseObject objectForKey: @"photos"];
 
-                    DDLogVerbose(@"%s, [photos count] = %u", __PRETTY_FUNCTION__, [photos count]);
-
-                    NSMutableArray *ret = [[NSMutableArray alloc] init];
-                    for (NSDictionary *photo in photos) {
-                        TFPhoto *tfPhoto = [[PhotoLibrary sharedLibrary] photoFromDictionary: photo];
-                        [ret addObject: tfPhoto];
-                    }
-
-                    if (success) {
-                        success(ret);
-                    }
+                if (success) {
+                    success(ret);
                 }
-                failure: ^(AFHTTPRequestOperation *task, NSError *error) {
-                    if (failure) {
-                        failure();
-                    }
-                }];
-
-    } @catch (NSException *exception1) {
-
-    }
+            }
+            failure: ^(AFHTTPRequestOperation *task, NSError *error) {
+                DDLogVerbose(@"IMAGES failed.");
+                if (failure) {
+                    failure();
+                }
+            }];
+    //
+    //    @try {
+    //        [self.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", string]
+    //                parameters: @{
+    //
+    //                }
+    //                success: ^(AFHTTPRequestOperation *task, id responseObject) {
+    //                    NSArray *photos = [responseObject objectForKey: @"photos"];
+    //
+    //                    DDLogVerbose(@"%s, [photos count] = %u", __PRETTY_FUNCTION__, [photos count]);
+    //                    NSMutableArray *ret = [[NSMutableArray alloc] init];
+    //                    for (NSDictionary *photo in photos) {
+    //                        TFPhoto *tfPhoto = [[PhotoLibrary sharedLibrary] photoFromDictionary: photo];
+    //                        [ret addObject: tfPhoto];
+    //                    }
+    //
+    //                    if (success) {
+    //                        success(ret);
+    //                    }
+    //                }
+    //                failure: ^(AFHTTPRequestOperation *task, NSError *error) {
+    //                    DDLogVerbose(@"IMAGES failed.");
+    //                    if (failure) {
+    //                        failure();
+    //                    }
+    //                }];
+    //
+    //    } @catch (NSException *exception1) {
+    //
+    //    }
 
 }
 

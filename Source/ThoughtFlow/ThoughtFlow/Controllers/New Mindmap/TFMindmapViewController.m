@@ -78,17 +78,8 @@
     }
 
     [_nodesController selectFirstNodeView];
-
 }
 
-
-- (void) viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-
-    //    NSLog(@"%s", __PRETTY_FUNCTION__);
-    //    NSLog(@"self.view.frame = %@", NSStringFromCGRect(self.view.frame));
-    //    [self _updateLayer];
-}
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -125,7 +116,6 @@
     [self embedFullscreenController: _scrollingController];
 
     _linesController = _scrollingController.linesController;
-
     _nodesController = _scrollingController.nodesController;
     _nodesController.delegate = self;
 
@@ -167,16 +157,11 @@
 #pragma mark - TFNodesViewControllerDelegate
 
 - (void) nodesControllerDidUpdateViews: (NSArray *) nodeViews {
-    _linesController.rootNode = _project.firstNode;
-
-    [self _updateLayer];
+    [self _refreshLines];
+    //    [_linesController updateLayerWithNodeViews: _nodesController.nodeViews];
 
 }
 
-
-- (void) _updateLayer {
-    [_linesController updateLayerWithNodeViews: _nodesController.nodeViews];
-}
 
 
 #pragma mark - TFNodesViewControllerDelegate, Moving
@@ -220,7 +205,7 @@
     node.position = nodeView.origin;
     [_project save];
 
-    _linesController.rootNode = _project.firstNode;
+    [self _refreshLines];
     [_linesController endTargetNode];
 }
 
@@ -414,29 +399,6 @@
 }
 
 
-#pragma mark Custom modal
-
-- (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender {
-    [super prepareForSegue: segue sender: sender];
-
-    if ([segue isKindOfClass: [CustomModalSegue class]]) {
-        CustomModalSegue *customSegue = (CustomModalSegue *) segue;
-        customSegue.modalSize = CGSizeMake(340, 340);
-
-        UIViewController *destinationController = segue.destinationViewController;
-        destinationController.modalPresentationStyle = UIModalPresentationFormSheet;
-        destinationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-
-        if ([segue.identifier isEqualToString: @"RelatedSegue"]) {
-            customSegue.modalSize = CGSizeMake(815, 650);
-            //            destinationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        }
-    }
-}
-
-
-
-
 
 #pragma mark - Double pan
 
@@ -599,6 +561,13 @@
 
 - (void) _refreshLines {
     _linesController.rootNode = _project.firstNode;
+    [self _refreshTransparentNodes];
+
+}
+
+
+- (void) _refreshTransparentNodes {
+    [_linesController updateLayerWithNodeViews: _nodesController.nodeViews];
 }
 
 

@@ -14,7 +14,7 @@
 @class MVPopupTransition;
 
 
-@interface TFNewMoodboardViewController : UIViewController <UIViewControllerTransitioningDelegate>
+@interface TFMoodboardViewController : UIViewController <UIViewControllerTransitioningDelegate>
 
 @property(nonatomic, strong) Project *project;
 @property(nonatomic, strong) TFContentView *contentView;

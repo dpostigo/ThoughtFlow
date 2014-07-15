@@ -16,11 +16,12 @@
 
 @interface TFScrollingMindmapViewController ()
 
+@property(nonatomic) BOOL isPinching;
+@property(nonatomic) CGPoint startingOffset;
 @property(nonatomic, strong) NSLayoutConstraint *widthConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
 @property(nonatomic, strong) UIView *mindmapView;
 @property(nonatomic, strong) TFScrollView *scrollView;
-@property(nonatomic) CGPoint startingOffset;
 @end
 
 @implementation TFScrollingMindmapViewController
@@ -204,6 +205,7 @@
 #pragma mark - Public, Pinch
 
 - (void) startPinchWithScale: (CGFloat) scale {
+    _isPinching = YES;
     [_nodesController startPinchWithScale: scale];
 }
 
@@ -213,6 +215,7 @@
 
 
 - (void) endPinchWithScale: (CGFloat) scale {
+    _isPinching = NO;
     [_nodesController endPinchWithScale: scale];
 }
 
@@ -226,7 +229,6 @@
 
 - (void) updatePan: (UIPanGestureRecognizer *) recognizer {
     CGPoint translation = [recognizer translationInView: recognizer.view];
-    CGPoint currentOffset = _scrollView.contentOffset;
     translation = CGPointMake(_startingOffset.x - translation.x, _startingOffset.y - translation.y);
 
     _scrollView.contentOffset = translation;
@@ -239,6 +241,7 @@
 - (void) endPan: (UIPanGestureRecognizer *) recognizer {
     CGPoint offset = _scrollView.contentOffset;
     self.maxContentOffset = CGSizeMake(offset.x, offset.y);
+    [self _refreshPinchPoint];
 }
 
 
@@ -329,24 +332,24 @@
     _widthConstraint.constant = self.view.width + _maxContentOffset.width;
     _heightConstraint.constant = self.view.height + _maxContentOffset.height;
 
+    [self _refreshPinchPoint];
+
 }
 
 
 - (void) viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    if (!_isPinching) {
+        [self _refreshPinchPoint];
+    }
+}
+
+- (void) _refreshPinchPoint {
 
     CGPoint corePoint = CGPointMake(10, self.view.height - TFNodeViewHeight - 10);
-    //    CGPoint convertedPoint = [self.view convertPoint: corePoint toView: _nodesController.view];
-    //    CGPoint convertedPoint = [_nodesController.view convertPoint: corePoint fromView: self.view];
-    CGPoint convertedPoint = [self.view convertPoint: corePoint fromView: _nodesController.view];
-    CGPoint convertedPoint3 = [self.view convertPoint: corePoint toView: _nodesController.view];
-    CGPoint convertedPoint2 = [_nodesController.view convertPoint: corePoint fromView: self.view];
-    CGPoint convertedPoint4 = [_nodesController.view convertPoint: corePoint toView: self.view];
-
     CGPoint offset = _scrollView.contentOffset;
-    _nodesController.pinchEndPoint = offset;
+    _nodesController.pinchEndPoint = CGPointMake(corePoint.x + offset.x, corePoint.y + offset.y);
 
-    [_linesController updateLayerWithNodeViews: _nodesController.nodeViews];
 }
 
 

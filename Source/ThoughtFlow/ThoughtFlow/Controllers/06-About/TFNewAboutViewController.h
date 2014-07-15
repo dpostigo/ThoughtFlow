@@ -13,6 +13,7 @@
 @interface TFNewAboutViewController : TFNewDrawerController
 
 @property(weak) IBOutlet UIView *containerView;
+@property(weak) IBOutlet UIButton *closeButton;
 @property(weak) IBOutlet UILabel *moodboardLabel;
 @property(weak) IBOutlet UILabel *notesLabel;
 @property(weak) IBOutlet UILabel *imageSearchLabel;

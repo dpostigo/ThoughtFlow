@@ -8,10 +8,7 @@
 #import "TFImageGridViewCell.h"
 #import "UIViewController+TFContentNavigationController.h"
 #import "TFContentViewNavigationController.h"
-#import "UIViewController+TFControllers.h"
 #import "TFPhoto.h"
-#import "TFImageDrawerViewController.h"
-#import "TFCornerButtonsViewController.h"
 #import "TFNewImageDrawerViewController.h"
 
 

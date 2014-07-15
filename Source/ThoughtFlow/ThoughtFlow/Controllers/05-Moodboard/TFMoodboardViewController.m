@@ -4,7 +4,7 @@
 //
 
 #import <DPKit-Utils/UIViewController+DPKit.h>
-#import "TFNewMoodboardViewController.h"
+#import "TFMoodboardViewController.h"
 #import "Project.h"
 #import "TFTranslucentView.h"
 #import "TFContentView.h"
@@ -14,7 +14,7 @@
 #import "MVPopupTransition.h"
 
 
-@implementation TFNewMoodboardViewController
+@implementation TFMoodboardViewController
 
 - (instancetype) initWithProject: (Project *) project {
     self = [super init];
@@ -29,13 +29,12 @@
     return self;
 }
 
-- (void) viewDidLoad {
-    [super viewDidLoad];
-}
+#pragma mark - View lifecycle
+
 
 - (void) loadView {
-
-    self.view = [[UIView alloc] init];
+    self.view = [[TFTranslucentView alloc] init];
+    //    self.view = [[UIView alloc] init];
     [self _setup];
 }
 
@@ -49,11 +48,15 @@
 }
 
 
+
+
+#pragma mark - Setup
+
 - (void) _setup {
 
-    _bg = [[TFTranslucentView alloc] initWithFrame: self.view.bounds];
-    _bg.alpha = 0;
-    [self embedFullscreenView: self.bg];
+    //    _bg = [[TFTranslucentView alloc] initWithFrame: self.view.bounds];
+    //    _bg.alpha = 0;
+    //    [self embedFullscreenView: self.bg];
 
     _contentView = [[TFContentView alloc] initWithFrame: self.view.bounds];
     _contentView.alpha = 0;

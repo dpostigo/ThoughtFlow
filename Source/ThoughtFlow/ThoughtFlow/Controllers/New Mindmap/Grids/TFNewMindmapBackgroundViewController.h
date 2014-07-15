@@ -6,7 +6,6 @@
 #import <Foundation/Foundation.h>
 #import "TFMindmapButtonsViewController.h"
 #import "TFMindmapViewController.h"
-#import "TFImageDrawerViewController.h"
 #import "TFNewImageDrawerViewController.h"
 
 
@@ -17,6 +16,7 @@
 
 
 @protocol TFMindmapImageControllerProtocol <NSObject>
+
 - (void) imageController: (UIViewController *) controller didSelectImage: (TFPhoto *) image;
 @end
 

@@ -9,6 +9,7 @@
 #import "TFTranslucentView.h"
 #import "UINavigationController+DPKit.h"
 #import "UIView+DPKit.h"
+#import "UIControl+BlocksKit.h"
 
 
 @interface TFNewAboutViewController ()
@@ -22,22 +23,11 @@
     return [self viewControllerFromStoryboard: @"Drawers"];
 }
 
-//- (void) loadView {
-//    [super loadView];
-//    //    self.view.backgroundColor = [UIColor clearColor];
-//    //    self.view.opaque = NO;
-//    //    //    //    self.view.opaque = NO;
-//    //    //
-//    //    //    //    _bg = [[TFTranslucentView alloc] initWithFrame: self.view.bounds];
-//    //    //    //    [self embedFullscreenView: _bg];
-//    //    //    //    [self.view sendSubviewToBack: _bg];
-//}
-
 
 - (void) viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor colorWithWhite: 1.0 alpha: 0.5];
+    self.view.backgroundColor = [UIColor clearColor];
     self.view.opaque = NO;
 
     _bg = [[TFTranslucentView alloc] initWithFrame: self.view.bounds];
@@ -47,6 +37,9 @@
     _containerView.alpha = 0;
     _bg.alpha = 0;
     _imageSearchLabel.alpha = 0;
+
+    [self _setupButtons];
+
 }
 
 
@@ -62,6 +55,12 @@
 
 #pragma mark - Setup
 
+- (void) _setupButtons {
+    [_closeButton bk_addEventHandler: ^(id sender) {
+        [self _notifyDrawerControllerShouldDismiss];
+    } forControlEvents: UIControlEventTouchUpInside];
+
+}
 
 - (void) hideLabels {
     NSMutableArray *labels = [[self.view childrenOfClass: [UILabel class]] mutableCopy];
@@ -72,7 +71,6 @@
 }
 
 - (void) showLabels {
-    UIViewController *controller = [self.navigationController controllerBeforeController: self];
     NSMutableArray *labels = [[self.view childrenOfClass: [UILabel class]] mutableCopy];
 
     [UIView animateWithDuration: 0.4

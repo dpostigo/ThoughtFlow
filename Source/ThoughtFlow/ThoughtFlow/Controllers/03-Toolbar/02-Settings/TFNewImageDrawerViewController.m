@@ -15,6 +15,11 @@
 #import "UIControl+BlocksKit.h"
 
 
+NSString *const TFImageDrawerImageCredits = @"Image Credits";
+NSString *const TFImageDrawerImageDescription = @"Image Description";
+NSString *const TFImageDrawerImageTags = @"Tags From Source";
+
+
 @interface TFNewImageDrawerViewController ()
 
 @property(nonatomic, strong) TFTableViewController *tableViewController;

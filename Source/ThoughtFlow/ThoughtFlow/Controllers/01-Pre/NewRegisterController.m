@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <BlocksKit/UIControl+BlocksKit.h>
 #import "NewRegisterController.h"
 #import "DPTableView.h"
 #import "FieldTableViewCell.h"
@@ -24,15 +25,11 @@
 
 
 
+#pragma mark - Public
 
-#pragma mark Actions
+- (void) submit {
 
-- (IBAction) handleRegister: (id) sender {
-
-    [self submit: nil];
-}
-
-- (IBAction) submit: (UIButton *) button {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 
     if (self.currentTextField) {
         [self.currentTextField resignFirstResponder];
@@ -85,7 +82,6 @@
             }
         }];
     }
-
 }
 
 

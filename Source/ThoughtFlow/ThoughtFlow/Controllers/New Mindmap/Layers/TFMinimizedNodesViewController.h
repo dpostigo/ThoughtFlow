@@ -21,5 +21,7 @@ extern CGFloat const TFMindmapMinimizedOffsetY;
 @property(nonatomic, strong) id <TFNodesViewControllerDelegate> delegate;
 @property(nonatomic, strong) Project *project;
 @property(nonatomic, strong) TFNode *node;
+- (instancetype) initWithNode: (TFNode *) node;
+
 - (void) animateOut: (void (^)()) completion;
 @end

@@ -9,7 +9,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="TFTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eHj-Eo-KcK" customClass="TFTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="SND-bS-wQk">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -131,6 +131,9 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="selected" image="switch-on"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="toggleDisabled" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -150,7 +153,75 @@
                                 <connections>
                                     <outlet property="_detailTextLabel" destination="WIp-ST-AoW" id="dri-VK-uag"/>
                                     <outlet property="_textLabel" destination="e5B-Iz-zoi" id="YiE-Iu-4mN"/>
+                                    <outlet property="button" destination="i2W-Ho-KVG" id="R7c-FN-EFq"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TFAccountCell" rowHeight="100" id="qk3-Yy-7PY" customClass="TFTableViewCell">
+                                <rect key="frame" x="0.0" y="322" width="400" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qk3-Yy-7PY" id="0yv-HW-FSJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="99"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="johndoe20" placeholder="PASSWORD HIDDEN" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EM9-fM-u5T" customClass="TFNewTextField">
+                                            <rect key="frame" x="20" y="20" width="360" height="59"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.32941177490000001" green="0.33333334329999997" blue="0.36470589040000001" alpha="1" colorSpace="deviceRGB"/>
+                                            <color key="textColor" red="0.66666666669999997" green="0.6705882353" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="12"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="EM9-fM-u5T" secondAttribute="trailing" constant="20" id="bes-di-wxP"/>
+                                        <constraint firstAttribute="centerY" secondItem="EM9-fM-u5T" secondAttribute="centerY" id="lb9-jX-FdE"/>
+                                        <constraint firstItem="EM9-fM-u5T" firstAttribute="leading" secondItem="0yv-HW-FSJ" secondAttribute="leading" constant="20" id="u4l-4N-gSY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="textField" destination="EM9-fM-u5T" id="gtm-BV-3l8"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TFButtonCell" rowHeight="100" id="ufY-dN-1Jr" customClass="TFTableViewCell">
+                                <rect key="frame" x="0.0" y="422" width="400" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ufY-dN-1Jr" id="tuW-I8-Suq">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="99"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DuV-EE-IIj">
+                                            <rect key="frame" x="20" y="40" width="250" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="SIGN OUT" image="closePanel-icon">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="DuV-EE-IIj" firstAttribute="leading" secondItem="tuW-I8-Suq" secondAttribute="leading" constant="20" id="Crq-cV-MJD"/>
+                                        <constraint firstAttribute="centerY" secondItem="DuV-EE-IIj" secondAttribute="centerY" constant="-0.5" id="THf-dJ-CQH"/>
+                                        <constraint firstAttribute="trailing" secondItem="DuV-EE-IIj" secondAttribute="trailing" constant="130" id="ziz-YS-8O2"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="button" destination="DuV-EE-IIj" id="gWc-Lk-QWy"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TFBlankCell" rowHeight="100" id="hGf-oK-xUn" customClass="TFTableViewCell">
+                                <rect key="frame" x="0.0" y="522" width="400" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hGf-oK-xUn" id="es0-5T-CYc">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="99"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -159,7 +230,7 @@
                         </connections>
                     </tableView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="400" height="400"/>
+                    <size key="freeformSize" width="400" height="600"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TsW-m2-9FR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,6 +238,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="closePanel-icon" width="20" height="20"/>
         <image name="switch-off" width="70" height="30"/>
         <image name="switch-on" width="70" height="30"/>
     </resources>

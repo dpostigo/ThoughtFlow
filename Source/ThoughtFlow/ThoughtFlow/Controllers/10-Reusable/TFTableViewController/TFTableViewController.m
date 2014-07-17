@@ -10,6 +10,9 @@
 
 
 NSString *const TFTableViewDefaultCellIdentifier = @"TableCell";
+NSString *const TFButtonTableViewCellIdentifier = @"TFButtonCell";
+NSString *const TFTableViewBlankCellIdentifier = @"TFBlankCell";
+
 
 @interface TFTableViewController ()
 
@@ -44,6 +47,10 @@ NSString *const TFTableViewDefaultCellIdentifier = @"TableCell";
 
 - (void) reloadData {
     [self.tableView reloadData];
+}
+
+- (void) reloadRowsAtIndexPaths: (NSArray *) indexPaths withRowAnimation: (UITableViewRowAnimation) animation {
+    [self.tableView reloadRowsAtIndexPaths: indexPaths withRowAnimation: animation];
 }
 
 #pragma mark - Setup
@@ -102,9 +109,6 @@ NSString *const TFTableViewDefaultCellIdentifier = @"TableCell";
 
 
 - (CGFloat) tableView: (UITableView *) tableView heightForRowAtIndexPath: (NSIndexPath *) indexPath {
-    //    if (_delegate && [_delegate respondsToSelector: @selector(tableView:heightForRowAtIndexPath:)]) {
-    //        [_delegate tableView: tableView heightForRowAtIndexPath: indexPath];
-    //    }
 
     [self configureCell: self.prototype atIndexPath: indexPath];
 
@@ -112,7 +116,14 @@ NSString *const TFTableViewDefaultCellIdentifier = @"TableCell";
     [self.prototype layoutIfNeeded];
 
     CGFloat height = [self.prototype.contentView systemLayoutSizeFittingSize: UILayoutFittingCompressedSize].height;
-    return height + 1;
+
+    if (_delegate && [_delegate respondsToSelector: @selector(tableView:heightForRowAtIndexPath:)]) {
+        return [_delegate tableView: tableView heightForRowAtIndexPath: indexPath];
+    } else {
+        return height + 1;
+    }
+    return 0;
+
 }
 
 

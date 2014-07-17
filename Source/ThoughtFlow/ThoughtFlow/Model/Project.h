@@ -14,20 +14,18 @@
 
 @property(nonatomic, strong) NSDate *creationDate;
 @property(nonatomic, strong) NSDate *modifiedDate;
-@property(nonatomic, copy) NSString *word;
 @property(nonatomic, copy) NSString *notes;
 
 
-//@property(nonatomic, readonly) NSMutableArray *pinnedImages;
+@property(nonatomic, readonly) TFNode *firstNode;
+@property(nonatomic, readonly) NSString *word;
+@property(nonatomic, readonly) NSArray *nodes;
+@property(nonatomic, readonly) NSArray *flattenedChildren;
+@property(nonatomic, readonly) NSArray *pinnedImages;
 
-- (instancetype) initWithWord: (NSString *) aWord;
-+ (instancetype) projectWithWord: (NSString *) aWord;
-- (NSArray *) nodes;
+- (instancetype) initWithWord: (NSString *) word;
 
-- (TFNode *) firstNode;
-- (NSArray *) flattenedChildren;
 - (void) addPin: (TFPhoto *) image;
 - (void) removePin: (TFPhoto *) image;
-- (NSArray *) pinnedImages;
-- (void) addNode: (id) node;
+
 @end

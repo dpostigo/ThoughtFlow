@@ -81,6 +81,15 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
     return _currentUser != nil;
 }
 
+
+#pragma mark - Public, User
+
+- (void) saveUser {
+    [[NSUserDefaults standardUserDefaults] setObject: _currentUser == nil ? nil : [NSKeyedArchiver archivedDataWithRootObject: self.currentUser] forKey: @"currentUser"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
 #pragma mark Errors
 
 - (void (^)()) generalFailureBlock {
@@ -162,7 +171,8 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
 
 
 - (void) registerUser: (NSString *) username password: (NSString *) password email: (NSString *) email
-              success: (void (^)()) success failure: (void (^)()) failure {
+              success: (void (^)()) success
+              failure: (void (^)()) failure {
 
     DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
     [self.authClient POST: @"user"
@@ -198,8 +208,7 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
                 [AFOAuthCredential storeCredential: credential withIdentifier: self.authClient.serviceProviderIdentifier];
 
                 self.currentUser = [[APIUser alloc] initWithUsername: username password: password];
-                [[NSUserDefaults standardUserDefaults] setObject: [NSKeyedArchiver archivedDataWithRootObject: self.currentUser] forKey: @"currentUser"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+                [self saveUser];
 
                 [self getUserInfo: username completion: ^(id response) {
                     self.currentUser.email = [response objectForKey: @"email"];
@@ -320,33 +329,14 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
 
     AFOAuthCredential *storedCredential = [AFOAuthCredential retrieveCredentialWithIdentifier: self.authClient.serviceProviderIdentifier];
 
-    //    [self.authClient authenticateUsingOAuthWithURLString: TFAuthURL
-    //            username: @"dani3"
-    //            password: @"dani3"
-    //            scope: TFScopeEmail
-    //            success: ^(AFOAuthCredential *credential) {
-    //
-    //                NSLog(@"%s", __PRETTY_FUNCTION__);
-    //            }
-    //
-    //            failure: ^(NSError *error) {
-    //
-    //                NSLog(@"%s", __PRETTY_FUNCTION__);
-    //            }];
-
-    NSLog(@"storedCredential = %@", storedCredential);
-
     [self.authClient authenticateUsingOAuthWithURLString: TFAuthURL
             refreshToken: storedCredential.refreshToken
             success: ^(AFOAuthCredential *credential) {
-
                 NSLog(@"Succeeded refresh token.");
-
                 //                NSLog(@"credential = %@", credential);
             }
 
             failure: ^(NSError *error) {
-
                 NSLog(@"error = %@", error);
                 //                NSLog(@"%s", __PRETTY_FUNCTION__);
             }];
@@ -355,8 +345,7 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
 
 
 
-    [[NSUserDefaults standardUserDefaults] setObject: nil forKey: @"currentUser"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self saveUser];
 
     DDLogVerbose(@"Sign out completed. %s", __PRETTY_FUNCTION__);
     if (completion) {
@@ -388,6 +377,21 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
 
 #pragma mark Image query
 
+- (void) hasImages: (NSString *) string completion: (void (^)(BOOL hasImages)) completion {
+
+    [self getImages: string success: ^(NSArray *images) {
+
+        if (completion) {
+            completion([images count] > 0);
+        }
+
+    } failure: ^() {
+        if (completion) {
+            completion(NO);
+        }
+    }];
+}
+
 - (void) getImages: (NSString *) string
            success: (void (^)(NSArray *images)) success failure: (void (^)()) failure {
 
@@ -417,37 +421,6 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
                     failure();
                 }
             }];
-    //
-    //    @try {
-    //        [self.authClient GET: [NSString stringWithFormat: @"inspiration?q=%@", string]
-    //                parameters: @{
-    //
-    //                }
-    //                success: ^(AFHTTPRequestOperation *task, id responseObject) {
-    //                    NSArray *photos = [responseObject objectForKey: @"photos"];
-    //
-    //                    DDLogVerbose(@"%s, [photos count] = %u", __PRETTY_FUNCTION__, [photos count]);
-    //                    NSMutableArray *ret = [[NSMutableArray alloc] init];
-    //                    for (NSDictionary *photo in photos) {
-    //                        TFPhoto *tfPhoto = [[PhotoLibrary sharedLibrary] photoFromDictionary: photo];
-    //                        [ret addObject: tfPhoto];
-    //                    }
-    //
-    //                    if (success) {
-    //                        success(ret);
-    //                    }
-    //                }
-    //                failure: ^(AFHTTPRequestOperation *task, NSError *error) {
-    //                    DDLogVerbose(@"IMAGES failed.");
-    //                    if (failure) {
-    //                        failure();
-    //                    }
-    //                }];
-    //
-    //    } @catch (NSException *exception1) {
-    //
-    //    }
-
 }
 
 - (void) preloadImages: (NSArray *) images {

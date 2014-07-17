@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5F687AA2BFDB4CF99E1E66B6"
+               BlueprintIdentifier = "BDE61FE80190429CB60A2069"
                BuildableName = "libPods-DRPaginatedScrollView.a"
                BlueprintName = "Pods-DRPaginatedScrollView"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -80,10 +80,10 @@
 }
 
 
-#pragma mark UICollectionViewDelegateFlowLayout
+#pragma mark - Delegates
 
+#pragma mark - UICollectionViewDelegate
 
-#pragma mark UICollectionView
 
 - (void) collectionView: (UICollectionView *) collectionView didSelectItemAtIndexPath: (NSIndexPath *) indexPath {
     Project *project = [self projectForIndexPath: indexPath];

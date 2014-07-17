@@ -6,19 +6,40 @@
 #import "TFMenuButton.h"
 #import "UIColor+TFApp.h"
 #import "UIView+DPKit.h"
+#import "TWRBorderedView.h"
+#import "TWRBorderedView.h"
+
 
 @implementation TFMenuButton
 
-- (void) awakeFromNib {
-    [super awakeFromNib];
+- (id) initWithFrame: (CGRect) frame {
+    self = [super initWithFrame: frame];
+    if (self) {
+        [self _setup];
+    }
 
-    //    self.layer.borderWidth = 0.5;
-    //    self.layer.borderColor = [UIColor tfToolbarBorderColor].CGColor;
-
-//    CALayer *rightBorder = [CALayer layer];
-    //    rightBorder.backgroundColor = [UIColor tfToolbarBorderColor].CGColor;
-    //    rightBorder.frame = CGRectMake(0, 0, self.width, 1);
-    //    [self.layer addSublayer: rightBorder];
+    return self;
 }
 
+
+- (void) awakeFromNib {
+    [super awakeFromNib];
+    [self _setup];
+}
+
+
+- (void) _setup {
+
+    if (ALT_STYLING) {
+        _borderedView = [[TWRBorderedView alloc] initWithFrame: self.bounds
+                borderWidth: 0.5
+                color: [UIColor tfToolbarBorderColor]
+                andMask: TWRBorderMaskBottom];
+        _borderedView.backgroundColor = [UIColor clearColor];
+        _borderedView.userInteractionEnabled = NO;
+
+        [self embedView: _borderedView];
+    }
+
+}
 @end

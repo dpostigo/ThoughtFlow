@@ -33,8 +33,7 @@
 
 
 - (void) loadView {
-    self.view = [[TFTranslucentView alloc] init];
-    //    self.view = [[UIView alloc] init];
+    self.view = [[UIView alloc] init];
     [self _setup];
 }
 
@@ -54,9 +53,9 @@
 
 - (void) _setup {
 
-    //    _bg = [[TFTranslucentView alloc] initWithFrame: self.view.bounds];
-    //    _bg.alpha = 0;
-    //    [self embedFullscreenView: self.bg];
+    _bg = [[TFTranslucentView alloc] initWithFrame: self.view.bounds];
+    _bg.alpha = 0;
+    [self embedFullscreenView: self.bg];
 
     _contentView = [[TFContentView alloc] initWithFrame: self.view.bounds];
     _contentView.alpha = 0;

@@ -6,9 +6,9 @@
 #import <Foundation/Foundation.h>
 #import "LoginModalController.h"
 
+
 @interface NewRegisterController : LoginModalController {
 
 }
 
-@property (weak) IBOutlet UIButton *insteadButton;
 @end

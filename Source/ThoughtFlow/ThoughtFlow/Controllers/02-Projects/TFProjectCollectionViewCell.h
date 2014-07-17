@@ -6,6 +6,7 @@
 #import <Foundation/Foundation.h>
 
 @class Project;
+@class TFTranslucentView;
 
 @interface TFProjectCollectionViewCell : UICollectionViewCell {
 
@@ -18,4 +19,5 @@
 @property(weak) IBOutlet UILabel *wordsField;
 @property(weak) IBOutlet UILabel *connectionsField;
 @property(nonatomic, assign) Project *project;
+@property(nonatomic, strong) TFTranslucentView *bg;
 @end

@@ -8,6 +8,8 @@
 #import "UIColor+TFApp.h"
 #import "UIView+TFFonts.h"
 #import "UIFont+ThoughtFlow.h"
+#import "TFTranslucentView.h"
+#import "UIView+DPKit.h"
 
 
 @implementation TFProjectCollectionViewCell
@@ -18,9 +20,33 @@
 
 @synthesize project;
 
+- (id) initWithFrame: (CGRect) frame {
+    self = [super initWithFrame: frame];
+    if (self) {
+
+    }
+
+    return self;
+}
+
+
 - (void) awakeFromNib {
     [super awakeFromNib];
+    [self _setup];
+}
+
+
+
+#pragma mark - Setup
+- (void) _setup {
+
     [self convertFonts];
+
+    _bg = [[TFTranslucentView alloc] initWithFrame: self.contentView.bounds];
+    _bg.translucentAlpha = 0.8;
+    [self.contentView embedView: _bg];
+    [self.contentView sendSubviewToBack: _bg];
+
 }
 
 - (void) setProject: (Project *) project1 {
@@ -28,12 +54,15 @@
 
     if (project) {
         firstWordField.text = project.word;
-        [self updateConnectionsField];
+        [self _refreshConnectionsField];
         [self updateWordsField];
     }
 }
 
-- (void) updateConnectionsField {
+
+#pragma mark - Refresh
+
+- (void) _refreshConnectionsField {
     connectionsField.text = nil;
     connectionsField.attributedText = self.connectionsFieldString;
 }

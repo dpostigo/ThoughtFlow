@@ -12,11 +12,17 @@
 #import "TFNewImageDrawerViewController.h"
 
 
+@interface TFMoodboardFullscreenViewController ()
+
+@property(nonatomic, strong) NSIndexPath *selectedIndexPath;
+@end
+
 @implementation TFMoodboardFullscreenViewController
 
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    _selectedIndexPath = [NSIndexPath indexPathForItem: 0 inSection: 0];
     _buttonsController = [[TFCornerButtonsViewController alloc] init];
     _buttonsController.delegate = self;
     [self embedFullscreenController: _buttonsController];
@@ -53,16 +59,15 @@
             //            TFPhoto *image = [self.imagesController.images objectAtIndex: indexPath.item];
             self.contentNavigationController.rightDrawerController = [[TFNewImageDrawerViewController alloc] initWithProject: self.project image: _selectedImage];
             [self.contentNavigationController openRightContainer];
+            break;
         }
 
+        case TFCornerTypeBottomRight : {
+            [self deleteItemAtIndexPath: _selectedIndexPath];
             break;
+        }
 
         case TFCornerTypeBottomLeft :
-            break;
-
-        case TFCornerTypeBottomRight:
-            break;
-
         case TFCornerTypeNone :
         default :
             break;
@@ -117,6 +122,12 @@
             controller.image = image;
         }
     }
+
+}
+
+
+- (void) imageGridViewController: (TFImageGridViewController *) controller didScrollToIndexPath: (NSIndexPath *) indexPath {
+    _selectedIndexPath = indexPath;
 
 }
 

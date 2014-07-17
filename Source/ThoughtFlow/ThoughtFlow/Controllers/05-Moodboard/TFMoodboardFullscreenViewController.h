@@ -11,9 +11,7 @@
 @class TFCornerButtonsViewController;
 
 
-@interface TFMoodboardFullscreenViewController : TFMoodboardGridViewController <TFImageGridViewControllerDelegate, TFCornerButtonsViewControllerDelegate> {
-
-}
+@interface TFMoodboardFullscreenViewController : TFMoodboardGridViewController <TFImageGridViewControllerDelegate, TFCornerButtonsViewControllerDelegate>
 
 @property(nonatomic, strong) TFPhoto *selectedImage;
 @property(nonatomic, strong) TFCornerButtonsViewController *buttonsController;

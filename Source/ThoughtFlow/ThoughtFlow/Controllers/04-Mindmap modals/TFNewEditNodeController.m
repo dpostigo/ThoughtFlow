@@ -15,7 +15,7 @@
 #import "UIControl+BlocksKit.h"
 
 
-static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
+const NSInteger TFNewEditNodeControllerCharacterLimit = 40;
 
 @interface TFNewEditNodeController ()
 
@@ -60,6 +60,7 @@ static NSInteger TFNewEditNodeControllerCharacterLimit = 40;
     self.view.opaque = NO;
     _textView.text = _node.title;
     _textView.delegate = self;
+    _textView.keyboardAppearance = UIKeyboardAppearanceDark;
 
     [self registerKeyboardWillShow: @selector(handleKeyboard:)];
     [self registerKeyboardWillHide: @selector(handleKeyboard:)];

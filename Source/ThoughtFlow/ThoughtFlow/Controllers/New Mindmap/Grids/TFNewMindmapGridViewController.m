@@ -34,13 +34,9 @@
 }
 
 
-- (void) viewDidAppear: (BOOL) animated {
-    [super viewDidAppear: animated];
-}
 
 
 #pragma mark - Public
-
 
 - (void) reloadVisibleItems {
 
@@ -121,6 +117,8 @@
     controller.delegate = _delegate;
     [self.navigationController pushViewController: controller animated: YES];
     [self _notifySelection: image];
+
+
     //    _delegate = nil;
 }
 
@@ -137,7 +135,6 @@
 }
 
 - (void) _setupControllers {
-
     _imagesController = [[TFImageGridViewController alloc] initWithImages: _images];
     _imagesController.delegate = self;
     _imagesController.images = _images;

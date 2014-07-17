@@ -13,6 +13,7 @@
 @class TFNode;
 @class TFPhoto;
 @class TFContentView;
+@class TFContentViewNavigationController;
 
 
 @protocol TFMindmapImageControllerProtocol <NSObject>
@@ -34,6 +35,7 @@
 @property(nonatomic, copy) NSString *imageString;
 @property(nonatomic, strong) TFContentView *contentView;
 
+@property(nonatomic, strong) TFContentViewNavigationController *contentController;
 - (instancetype) initWithProject: (Project *) project node: (TFNode *) node;
 
 @end

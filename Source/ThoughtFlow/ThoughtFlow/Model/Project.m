@@ -17,14 +17,13 @@
 
 @implementation Project
 
-- (instancetype) initWithWord: (NSString *) aWord {
+- (instancetype) initWithWord: (NSString *) word {
     self = [super init];
     if (self) {
 
         _creationDate = [NSDate date];
-        _word = aWord;
 
-        [self.mutableChildren addObject: [[TFNode alloc] initWithTitle: _word]];
+        [self.mutableChildren addObject: [[TFNode alloc] initWithTitle: word]];
 
         _pins = [[PhotoLibrary sharedLibrary] pinsForProject: self];
 
@@ -35,29 +34,27 @@
     return self;
 }
 
-+ (instancetype) projectWithWord: (NSString *) aWord {
-    return [[self alloc] initWithWord: aWord];
-}
-
 - (NSUInteger) numNodes {
     return 0;
 }
 
 
 
-#pragma mark Nodes
 
-- (void) addNode: (id) node {
-    [self.mutableChildren addObject: node];
-    [self save];
+#pragma mark - Public
+
+- (void) addPin: (TFPhoto *) image {
+    if (![self.pinnedImages containsObject: image]) {
+        [[self mutableArrayValueForKey: @"pins"] addObject: image];
+    }
 }
 
-//- (void) removeNode: (id) node {
-//    [self removeChild: node];
-//}
+- (void) removePin: (TFPhoto *) image {
+    if ([self.pinnedImages containsObject: image]) {
+        [[self mutableArrayValueForKey: @"pins"] removeObject: image];
+    }
+}
 
-
-#pragma mark Setters with save
 
 - (void) setNotes: (NSString *) notes1 {
     if (![_notes isEqualToString: notes1]) {
@@ -69,8 +66,9 @@
 
 #pragma mark Getters
 
-
-
+- (NSString *) word {
+    return self.firstNode.title;
+}
 
 - (NSArray *) nodes {
     return self.children;
@@ -89,29 +87,22 @@
 }
 
 
+
+#pragma mark - Setup
+
 - (void) setWithCoder: (NSCoder *) aDecoder {
     [super setWithCoder: aDecoder];
 
     [self _postSetup];
-
 }
 
 
-
-
-#pragma mark - Pinned images
-
-- (void) addPin: (TFPhoto *) image {
-    if (![self.pinnedImages containsObject: image]) {
-        [[self mutableArrayValueForKey: @"pins"] addObject: image];
-    }
+- (void) _postSetup {
+    _pins = [[PhotoLibrary sharedLibrary] pinsForProject: self];
+    [self addObserver: self forKeyPath: @"pins" options: 0 context: NULL];
 }
 
-- (void) removePin: (TFPhoto *) image {
-    if ([self.pinnedImages containsObject: image]) {
-        [[self mutableArrayValueForKey: @"pins"] removeObject: image];
-    }
-}
+
 #pragma mark - Private
 
 
@@ -119,13 +110,6 @@
     return [self mutableArrayValueForKey: @"pins"];
 }
 
-
-//- (NSArray *) pins {
-//    if (_pins == nil) {
-//        _pins = [[PhotoLibrary sharedLibrary] pinsForProject: self];
-//    }
-//    return _pins;
-//}
 
 - (void) observeValueForKeyPath: (NSString *) keyPath ofObject: (id) object change: (NSDictionary *) change context: (void *) context {
     if (object == self && [keyPath isEqualToString: @"pins"]) {
@@ -149,15 +133,5 @@
     }
 }
 
-
-
-#pragma mark - Setup
-
-- (void) _postSetup {
-
-    _pins = [[PhotoLibrary sharedLibrary] pinsForProject: self];
-    [self addObserver: self forKeyPath: @"pins" options: 0 context: NULL];
-
-}
 
 @end

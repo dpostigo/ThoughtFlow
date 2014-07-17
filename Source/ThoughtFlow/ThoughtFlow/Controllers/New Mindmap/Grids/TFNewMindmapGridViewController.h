@@ -27,6 +27,7 @@
 
 
 - (void) reloadVisibleItems;
+- (void) _setup;
 - (void) _setupControllers;
 - (void) _notifySelection: (TFPhoto *) image;
 @end

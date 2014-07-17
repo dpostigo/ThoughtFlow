@@ -4,11 +4,18 @@
 //
 
 #import <DPKit-Utils/UIViewController+DPKit.h>
+#import <DPKit-UIFont/UIFont+DPKitFonts.h>
+#import <UIAlertView+Blocks/UIAlertView+Blocks.h>
 #import "CreateProjectController.h"
 #import "DPFadeTransition.h"
 #import "Model.h"
 #import "Project.h"
 #import "ProjectsController.h"
+#import "TFCharacterCountTextField.h"
+#import "TFNewEditNodeController.h"
+#import "TFString.h"
+#import "APIModel.h"
+#import "UIView+DPKit.h"
 
 
 @implementation CreateProjectController
@@ -53,13 +60,53 @@
 
 #pragma mark - Actions
 - (void) createProject {
+    if ([_textField.text length] == 0) {
+        [UIAlertView showWithTitle: @"Enter a word or phrase"
+                message: @"Please enter a phrase to get started."
+                cancelButtonTitle: @"OK" otherButtonTitles: nil
+                tapBlock: nil];
 
-    Project *project = [[Project alloc] initWithWord: _textField.text];
-    _model.selectedProject = project;
-    [_model addProject: project];
+        return;
 
-    ProjectsController *controller = [[ProjectsController alloc] init];
-    [self.navigationController setViewControllers: @[controller] animated: YES];
+    } else if (_textField.charactersLeft <= 0) {
+        [UIAlertView showWithTitle: @"Too many characters"
+                message: @"Please choose a shorter phrase."
+                cancelButtonTitle: @"OK" otherButtonTitles: nil
+                tapBlock: nil];
+
+        return;
+    }
+
+    UIView *currentRightView = _textField.rightView;
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhite];
+    NSLog(@"activityView.frame = %@", NSStringFromCGRect(activityView.frame));
+    activityView.frame = CGRectMake(0, 0, _textField.height, _textField.height);
+    [activityView startAnimating];
+    _textField.rightView = activityView;
+
+    NSString *string = _textField.text;
+    [[APIModel sharedModel] hasImages: string completion: ^(BOOL hasImages) {
+
+        if (hasImages) {
+            Project *project = [[Project alloc] initWithWord: _textField.text];
+            _model.selectedProject = project;
+            [_model addProject: project];
+
+            ProjectsController *controller = [[ProjectsController alloc] init];
+            [self.navigationController setViewControllers: @[controller] animated: YES];
+
+        } else {
+            [activityView stopAnimating];
+            [UIAlertView showWithTitle: @"No images found"
+                    message: @"Sorry, we couldn't find any images for this particular phrase. Try another word or phrase."
+                    cancelButtonTitle: @"OK" otherButtonTitles: nil
+                    tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                        _textField.rightView = currentRightView;
+                        [_textField becomeFirstResponder];
+                    }];
+
+        }
+    }];
 
 }
 
@@ -68,29 +115,20 @@
 
 - (BOOL) textFieldShouldReturn: (UITextField *) textField {
     [textField resignFirstResponder];
+    [self createProject];
     return YES;
 }
 
 - (void) textFieldDidEndEditing: (UITextField *) textField {
-    if (self.isValid) {
-        [self createProject];
-    }
 
 }
 
 
 #pragma mark Validate
 
-- (BOOL) isValid {
-    if ([_textField.text length] == 0) {
-        return NO;
-    }
-    return YES;
-}
-
 
 - (void) touchesBegan: (NSSet *) touches withEvent: (UIEvent *) event {
-    [super touchesBegan: touches withEvent: event];
+    //    [super touchesBegan: touches withEvent: event];
     [_textField resignFirstResponder];
 }
 
@@ -117,6 +155,24 @@
     _textField.attributedPlaceholder = string;
     _textField.delegate = self;
     _textField.layer.cornerRadius = 2.0;
+
+    _textField.characterLabelSize = CGSizeMake(35, 0);
+    _textField.characterLimit = TFNewEditNodeControllerCharacterLimit;
+    _textField.characterCountInsets = UIEdgeInsetsMake(10, 10, 10, 0);
+
+    _textField.updateBlock = ^(NSInteger charactersLeft) {
+        NSDictionary *attributes = [TFString attributesWithAttributes: nil
+                font: [UIFont gothamRoundedLightFontOfSize: 12.0]
+                color: [UIColor colorWithWhite: 1.0 alpha: 0.3]
+                kerning: 100
+                lineSpacing: 0
+                textAlignment: NSTextAlignmentLeft];
+
+        NSString *characterString = [NSString stringWithFormat: @"%i", charactersLeft];
+        _textField.textLabel.attributedText = [[NSAttributedString alloc] initWithString: characterString attributes: attributes];
+    };
+
+    _textField.leftView = [[UIView alloc] initWithFrame: _textField.rightView.bounds];
 }
 
 

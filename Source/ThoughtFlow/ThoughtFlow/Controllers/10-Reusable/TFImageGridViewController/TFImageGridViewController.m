@@ -139,6 +139,7 @@
             @try {
 
                 [_collection scrollToItemAtIndexPath: indexPath atScrollPosition: UICollectionViewScrollPositionNone animated: NO];
+                [self _notifyDidScrollToIndexPath: indexPath];
                 [self _notifyDidScrollToImage: image];
 
             }
@@ -267,6 +268,7 @@
     TFPhoto *image = [self.images objectAtIndex: indexPath.item];
     _selectedImage = image;
 
+    [self _notifyDidScrollToIndexPath: indexPath];
     [self _notifyDidScrollToImage: image];
 
 }
@@ -335,6 +337,12 @@
     }
 }
 
+
+- (void) _notifyDidScrollToIndexPath: (NSIndexPath *) indexPath {
+    if (_delegate && [_delegate respondsToSelector: @selector(imageGridViewController:didScrollToIndexPath:)]) {
+        [_delegate imageGridViewController: self didScrollToIndexPath: indexPath];
+    }
+}
 
 - (void) _notifyDidScrollToImage: (TFPhoto *) image {
     if (_delegate && [_delegate respondsToSelector: @selector(imageGridViewController:didScrollToImage:)]) {

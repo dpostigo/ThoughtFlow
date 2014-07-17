@@ -17,6 +17,7 @@
 - (void) imageGridViewController: (TFImageGridViewController *) controller didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath;
 - (void) imageGridViewController: (TFImageGridViewController *) controller didSelectImage: (TFPhoto *) image atIndexPath: (NSIndexPath *) indexPath;
 - (void) imageGridViewController: (TFImageGridViewController *) controller didScrollToImage: (TFPhoto *) image;
+- (void) imageGridViewController: (TFImageGridViewController *) controller didScrollToIndexPath: (NSIndexPath *) indexPath;
 @end
 
 @interface TFImageGridViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -33,4 +34,5 @@
 - (void) reloadVisibleItems;
 - (void) scrollToImage: (TFPhoto *) image;
 - (void) addTargetToButton: (UIButton *) button;
+- (void) _notifyDidScrollToIndexPath: (NSIndexPath *) indexPath;
 @end

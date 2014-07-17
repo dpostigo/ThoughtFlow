@@ -22,26 +22,36 @@
     self.view.backgroundColor = [UIColor clearColor];
     self.view.opaque = NO;
 
+    _containerView.backgroundColor = [UIColor clearColor];
+    _containerView.opaque = NO;
+
     _scrollView = [DRPaginatedScrollView new];
     _scrollView.delegate = self;
     [_containerView embedView: _scrollView];
 
-    [_scrollView addPageWithHandler: ^(UIView *pageView) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame: pageView.bounds];
-        imageView.backgroundColor = [UIColor redColor];
-        [pageView embedView: imageView];
-    }];
+    NSArray *images = @[
+            [[UIImageView alloc] initWithFrame: self.view.bounds],
+            [[UIImageView alloc] initWithFrame: self.view.bounds],
+            [[UIImageView alloc] initWithFrame: self.view.bounds],
+            [[UIImageView alloc] initWithFrame: self.view.bounds],
+            [[UIImageView alloc] initWithFrame: self.view.bounds]
+    ];
 
-    [_scrollView addPageWithHandler: ^(UIView *pageView) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame: pageView.bounds];
-        imageView.backgroundColor = [UIColor blueColor];
-        [pageView embedView: imageView];
-    }];
+    int count = 5;
+
+    for (int j = 0; j < 5; j++) {
+        [_scrollView addPageWithHandler: ^(UIView *pageView) {
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame: pageView.bounds];
+            imageView.backgroundColor = [UIColor redColor];
+            [pageView embedView: imageView];
+        }];
+    }
 
     _pageControl.numberOfPages = _scrollView.numberOfPages;
     [_pageControl bk_addEventHandler: ^(id sender) {
         UIPageControl *pageControl = sender;
         [_scrollView jumpToPage: pageControl.currentPage bounce: 0.125 completion: nil];
+
     } forControlEvents: UIControlEventValueChanged];
 }
 
@@ -55,6 +65,14 @@
 }
 
 
+- (void) scrollViewDidEndDecelerating: (UIScrollView *) scrollView {
+
+    [UIView animateWithDuration: 0.4 animations: ^{
+        _swipeLabel.alpha = _pageControl.currentPage == 0 ? 1 : 0;
+    }];
+
+}
+
 
 
 
@@ -63,6 +81,7 @@
 
 - (void) _refreshPageControl {
     _pageControl.currentPage = _scrollView.currentPage;
+
 }
 
 #pragma mark - Setup

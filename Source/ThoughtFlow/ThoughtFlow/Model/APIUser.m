@@ -4,6 +4,8 @@
 //
 
 #import "APIUser.h"
+#import "TFUserPreferences.h"
+
 
 @implementation APIUser
 
@@ -29,6 +31,7 @@
         username = anUsername;
         email = anEmail;
         password = aPassword;
+        _preferences = [[TFUserPreferences alloc] init];
     }
 
     return self;
@@ -39,6 +42,7 @@
     [coder encodeObject: username forKey: @"username"];
     [coder encodeObject: email forKey: @"email"];
     [coder encodeObject: password forKey: @"password"];
+    [coder encodeObject: _preferences forKey: @"preferences"];
 }
 
 - (id) initWithCoder: (NSCoder *) coder {
@@ -47,6 +51,7 @@
         username = [coder decodeObjectForKey: @"username"];
         email = [coder decodeObjectForKey: @"email"];
         password = [coder decodeObjectForKey: @"password"];
+        _preferences = [coder decodeObjectForKey: @"preferences"];
 
     }
 

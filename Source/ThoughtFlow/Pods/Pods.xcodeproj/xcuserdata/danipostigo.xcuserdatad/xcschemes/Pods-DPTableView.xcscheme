@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CEE9D84EB32D43698FC58E10"
+               BlueprintIdentifier = "FCBF727EF1A34A8AB48ED7FC"
                BuildableName = "libPods-DPTableView.a"
                BlueprintName = "Pods-DPTableView"
                ReferencedContainer = "container:Pods.xcodeproj">

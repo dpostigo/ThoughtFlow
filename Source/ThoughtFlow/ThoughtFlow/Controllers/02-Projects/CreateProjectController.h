@@ -6,9 +6,12 @@
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
 
+
+@class TFCharacterCountTextField;
+
 @interface CreateProjectController : TFViewController <UITextFieldDelegate, UINavigationControllerDelegate> {
 
 }
 
-@property(weak) IBOutlet UITextField *textField;
+@property(weak) IBOutlet TFCharacterCountTextField *textField;
 @end

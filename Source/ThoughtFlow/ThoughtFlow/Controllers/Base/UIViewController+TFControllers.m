@@ -20,7 +20,7 @@
 
 
 - (UIViewController *) mainController {
-    return [self.mainStoryboard instantiateViewControllerWithIdentifier: @"NewMainAppController"];
+    return [self.mainStoryboard instantiateViewControllerWithIdentifier: @"TFMainViewController"];
 }
 
 

@@ -11,6 +11,7 @@
 
 @interface TFNewTutorialViewController : UIViewController <UIScrollViewDelegate>
 
+@property(weak) IBOutlet UILabel *swipeLabel;
 @property(weak) IBOutlet UIView *containerView;
 @property(weak) IBOutlet UIPageControl *pageControl;
 @end

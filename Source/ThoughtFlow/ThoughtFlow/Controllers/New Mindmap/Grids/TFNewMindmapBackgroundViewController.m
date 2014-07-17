@@ -14,11 +14,11 @@
 #import "APIModel.h"
 #import "TFPhoto.h"
 #import "TFNewMindmapFullscreenViewController.h"
+#import "TFMoodboardFullscreenViewController.h"
 
 
 @interface TFNewMindmapBackgroundViewController ()
 
-@property(nonatomic, strong) TFContentViewNavigationController *contentController;
 @property(nonatomic, strong) TFMindmapButtonsViewController *buttonsController;
 @property(nonatomic, strong) TFNewMindmapGridViewController *gridController;
 @property(nonatomic, strong) NavigationFadeAnimator *fadeAnimator;
@@ -33,6 +33,7 @@
     if (self) {
         _project = project;
         _node = node;
+        [self _initSetup];
     }
 
     return self;
@@ -51,6 +52,7 @@
 
 
 
+
 #pragma mark - Public
 
 - (void) setNode: (TFNode *) node {
@@ -59,9 +61,8 @@
 }
 
 - (void) setImageString: (NSString *) imageString {
+    if ([imageString isEqualToString: _imageString]) return;
     _imageString = [imageString mutableCopy];
-
-    NSLog(@"_imageString = %@", _imageString);
 
     [[APIModel sharedModel] getImages: _imageString
             success: ^(NSArray *imageArray) {
@@ -78,12 +79,19 @@
         _selectedImage = _images[0];
     }
     if (self.isViewLoaded) {
-        _gridController.images = _images;
-        self.currentImageController.images = _images;
 
-        if (_fullscreenController2) {
-            _fullscreenController2.images = _images;
+        if ([_contentController.visibleViewController isKindOfClass: [TFMindmapFullscreenViewController class]]) {
+            TFMindmapFullscreenViewController *controller = [[TFMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
+            controller.images = _images;
+            [_contentController pushViewController: controller animated: YES];
         }
+
+        _gridController.images = _images;
+        //        self.currentImageController.images = _images;
+        //
+        //        if (_fullscreenController2) {
+        //            _fullscreenController2.images = _images;
+        //        }
     }
 
     [[APIModel sharedModel] preloadImages: _images];
@@ -117,8 +125,9 @@
     switch (type) {
 
         case TFMindmapButtonTypeGrid : {
-            TFMindmapFullscreenViewController *controller = [[TFMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
-            [_contentController toggleViewController: controller animated: YES];
+            [_contentController popToRootViewControllerAnimated: YES];
+            //            TFMindmapFullscreenViewController *controller = [[TFMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
+            //            [_contentController toggleViewController: controller animated: YES];
         }
             break;
 
@@ -132,14 +141,13 @@
             break;
 
         case TFMindmapButtonTypePin : {
-            if ([self.currentImageController isKindOfClass: [TFMindmapFullscreenViewController class]]) {
+            if ([_contentController.visibleViewController isKindOfClass: [TFMindmapFullscreenViewController class]]) {
 
                 UIButton *button = [buttonsViewController buttonForType: type];
                 button.selected = !button.selected;
 
                 TFPhoto *image = _selectedImage;
 
-                NSLog(@"button.selected = %d", button.selected);
                 if (button.selected) {
                     if (![_project.pinnedImages containsObject: image]) {
                         //                        [_project.pinnedImages addObject: image];
@@ -174,7 +182,7 @@
     BOOL isFullscreen = [viewController isKindOfClass: [TFMindmapFullscreenViewController class]];
 
     _buttonsController.view.hidden = NO;
-    [UIView animateWithDuration: 0.4
+    [UIView animateWithDuration: 0.5
             delay: 0.2
             usingSpringWithDamping: 0.8
             initialSpringVelocity: 2.0
@@ -189,7 +197,8 @@
 }
 
 
-- (id <UIViewControllerAnimatedTransitioning>) navigationController: (UINavigationController *) navigationController animationControllerForOperation: (UINavigationControllerOperation) operation fromViewController: (UIViewController *) fromVC toViewController: (UIViewController *) toVC {
+- (id <UIViewControllerAnimatedTransitioning>) navigationController: (UINavigationController *) navigationController animationControllerForOperation: (UINavigationControllerOperation) operation
+                                                 fromViewController: (UIViewController *) sourceController toViewController: (UIViewController *) destinationController {
 
     NavigationFadeAnimator *ret = self.fadeAnimator;
 
@@ -206,7 +215,7 @@
     }
 
     //        self.fadeAnimator.isPresenting = operation == UINavigationControllerOperationPush ? YES : NO;
-    return self.fadeAnimator;
+    return _fadeAnimator;
 }
 
 
@@ -233,6 +242,11 @@
 
 
 #pragma mark - Setup
+
+
+- (void) _initSetup {
+    _fadeAnimator = [NavigationFadeAnimator new];
+}
 
 - (void) _setupControllers {
 
@@ -262,12 +276,6 @@
     return (TFNewMindmapGridViewController *) ([_contentController.visibleViewController isKindOfClass: [TFNewMindmapGridViewController class]] ? _contentController.visibleViewController : nil);
 }
 
-- (NavigationFadeAnimator *) fadeAnimator {
-    if (_fadeAnimator == nil) {
-        _fadeAnimator = [NavigationFadeAnimator new];
-    }
-    return _fadeAnimator;
-}
 
 
 

@@ -3,6 +3,8 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <BlocksKit/UIControl+BlocksKit.h>
+#import <DPKit-Utils/UIViewController+DPKit.h>
 #import "LoginModalController.h"
 #import "DPTableView.h"
 #import "UIView+DPKit.h"
@@ -19,36 +21,39 @@
 #import "UIViewController+TFControllers.h"
 
 
-@implementation LoginModalController
+@implementation LoginModalController {
+    UITapGestureRecognizer *_recognizer;
+}
 
 
 #pragma mark - View lifecycle
 
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
+    [self _setupTapRecognizer];
 
     if (_model.apiModel.loggedIn) {
-        [self submit: nil];
+        [self submit];
     }
+
 }
+
+
+- (void) viewDidDisappear: (BOOL) animated {
+    [super viewDidDisappear: animated];
+    [self.view.window removeGestureRecognizer: _recognizer];
+}
+
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-
     [self _setup];
-
 }
 
 
+#pragma mark - Public
 
-#pragma mark Actions
-
-- (IBAction) signInInstead: (id) sender {
-    [self.navigationController popViewControllerAnimated: YES];
-}
-
-- (IBAction) submit: (UIButton *) button {
-
+- (void) submit {
     if (self.currentTextField) {
         [self.currentTextField resignFirstResponder];
     }
@@ -72,7 +77,7 @@
                 tapBlock: nil];
     } else {
 
-        button.enabled = NO;
+        _submitButton.enabled = NO;
 
         [_model.apiModel userExists: self.usernameField.text
                 completion: ^(BOOL exists) {
@@ -90,7 +95,7 @@
                                             otherButtonTitles: @[]
                                             tapBlock: nil];
 
-                                    button.enabled = YES;
+                                    _submitButton.enabled = YES;
 
                                 }];
                     } else {
@@ -100,69 +105,20 @@
                                 otherButtonTitles: @[]
                                 tapBlock: nil];
 
-                        button.enabled = YES;
+                        _submitButton.enabled = YES;
 
                     }
                 }];
-
     }
-
 }
 
 
 - (void) loginDidSucceed {
     UINavigationController *navigationController = self.parentViewController.navigationController;
     [navigationController setViewControllers: @[self.mainController] animated: YES];
-
 }
 
 
-#pragma mark - Setup
-
-- (void) _setup {
-    [self _setupView];
-    [self _setupTableView];
-    [self _setupTapRecognizer];
-}
-
-- (void) _setupView {
-    [self.view convertFonts];
-    self.view.backgroundColor = [UIColor clearColor];
-}
-
-- (void) _setupTableView {
-    _table.delegate = self;
-    _table.dataSource = self;
-    _table.populateTextLabels = YES;
-
-    [self prepareDatasource];
-
-    __weak LoginModalController *weakSelf = self;
-    _table.onReload = ^(DPTableView *theTable) {
-        __strong LoginModalController *strongSelf = weakSelf;
-        if (strongSelf) {
-            CGFloat newheight = theTable.calculatedTableHeight;
-            theTable.height = newheight;
-            [theTable updateHeightConstraint: newheight];
-            [strongSelf.view setNeedsUpdateConstraints];
-
-            if (strongSelf.model.apiModel.loggedIn) {
-                strongSelf.usernameField.text = strongSelf.model.apiModel.currentUser.username;
-                strongSelf.passwordField.text = strongSelf.model.apiModel.currentUser.password;
-            }
-        }
-
-    };
-
-    [_table reloadData];
-    _table.layer.cornerRadius = 3;
-
-}
-
-- (void) prepareDatasource {
-    [_table.rows addObject: @{DPTableViewTextLabelName : @"Username or email", DPTableViewImageName : [UIImage imageNamed: @"user-icon"]}];
-    [_table.rows addObject: @{DPTableViewTextLabelName : @"Password", DPTableViewImageName : [UIImage imageNamed: @"password-icon"]}];
-}
 
 
 #pragma mark - Delegates
@@ -176,7 +132,7 @@
     UITableViewCell *ret = [tableView dequeueReusableCellWithIdentifier: @"TableCell"];
 
 
-   // NSDictionary *dictionary = [_table rowDataForIndexPath: indexPath];
+    // NSDictionary *dictionary = [_table rowDataForIndexPath: indexPath];
     if ([ret isKindOfClass: [FieldTableViewCell class]]) {
         FieldTableViewCell *cell = (FieldTableViewCell *) ret;
         cell.textField.delegate = self;
@@ -220,11 +176,83 @@
     if (nextTextField) {
         [nextTextField becomeFirstResponder];
     } else {
-        [self submit: nil];
+        [self submit];
         //        [self.view unadjustViewForKeyboard: 20];
     }
 
     return YES;
+}
+
+
+
+
+#pragma mark - Setup
+
+
+- (void) _setup {
+    [self _setupView];
+    [self _setupTableView];
+    [self _setupTapRecognizer];
+    [self _setupButtons];
+}
+
+- (void) _setupView {
+    [self.view convertFonts];
+    self.view.backgroundColor = [UIColor clearColor];
+}
+
+- (void) _setupButtons {
+
+    [_submitButton bk_addEventHandler: ^(id sender) {
+        [self submit];
+    } forControlEvents: UIControlEventTouchUpInside];
+
+    [_registerButton bk_addEventHandler: ^(id sender) {
+        [self performSegueWithIdentifier: @"RegisterSegue" sender: nil];
+    } forControlEvents: UIControlEventTouchUpInside];
+
+    [_passwordButton bk_addEventHandler: ^(id sender) {
+        [self performSegueWithIdentifier: @"PasswordSegue" sender: nil];
+    } forControlEvents: UIControlEventTouchUpInside];
+
+    [_insteadButton bk_addEventHandler: ^(id sender) {
+        [self.navigationController popViewControllerAnimated: YES];
+    } forControlEvents: UIControlEventTouchUpInside];
+
+}
+
+- (void) _setupTableView {
+    _table.delegate = self;
+    _table.dataSource = self;
+    _table.populateTextLabels = YES;
+
+    [self prepareDatasource];
+
+    __weak LoginModalController *weakSelf = self;
+    _table.onReload = ^(DPTableView *theTable) {
+        __strong LoginModalController *strongSelf = weakSelf;
+        if (strongSelf) {
+            CGFloat newheight = theTable.calculatedTableHeight;
+            theTable.height = newheight;
+            [theTable updateHeightConstraint: newheight];
+            [strongSelf.view setNeedsUpdateConstraints];
+
+            if (strongSelf.model.apiModel.loggedIn) {
+                strongSelf.usernameField.text = strongSelf.model.apiModel.currentUser.username;
+                strongSelf.passwordField.text = strongSelf.model.apiModel.currentUser.password;
+            }
+        }
+
+    };
+
+    [_table reloadData];
+    _table.layer.cornerRadius = 3;
+
+}
+
+- (void) prepareDatasource {
+    [_table.rows addObject: @{DPTableViewTextLabelName : @"Username or email", DPTableViewImageName : [UIImage imageNamed: @"user-icon"]}];
+    [_table.rows addObject: @{DPTableViewTextLabelName : @"Password", DPTableViewImageName : [UIImage imageNamed: @"password-icon"]}];
 }
 
 
@@ -242,42 +270,24 @@
 }
 
 
-- (void) touchesBegan: (NSSet *) touches withEvent: (UIEvent *) event {
-    [super touchesBegan: touches withEvent: event];
-    [self.currentTextField resignFirstResponder];
-}
-
 
 
 #pragma mark - Private
 
 
 - (void) _setupTapRecognizer {
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(handleTap:)];
-    recognizer.numberOfTapsRequired = 1;
-    recognizer.cancelsTouchesInView = NO;
-    [self.view.window addGestureRecognizer: recognizer];
-}
 
-
-- (void) handleTap: (UITapGestureRecognizer *) sender {
-
-    if (sender.state == UIGestureRecognizerStateEnded) {
-        CGPoint location = [sender locationInView: nil];
-        if (![self.view pointInside: [self.view convertPoint: location fromView: self.view.window]
-                withEvent: nil]) {
-            [self.currentTextField resignFirstResponder];
-            //            if (dismisses) {
-            //                [self modalWillDismiss];
-            //                [self.view.window removeGestureRecognizer: sender];
-            //                [self dismiss];
-            //
-            //            } else {
-            ////                [self didTapBehind];
-            //            }
-
+    __weak __typeof__ (self) weakSelf = self;
+    _recognizer = [self addTapBehindRecognizerWithBlock: ^() {
+        __strong __typeof__ (self) strongSelf = weakSelf;
+        if (strongSelf) {
+            if (strongSelf.currentTextField) {
+                [strongSelf.currentTextField resignFirstResponder];
+            }
         }
-    }
+    }];
+
 }
+
 
 @end

@@ -4,14 +4,23 @@
 //
 
 #import <DPKit-Utils/UIViewController+DPKit.h>
+#import <BlocksKit/UIControl+BlocksKit.h>
+#import <BlocksKit/NSObject+BKBlockExecution.h>
 #import "TFNewSettingsDrawerController.h"
 #import "TFCustomBarButtonItem.h"
 #import "TFTranslucentView.h"
 #import "TFTableViewCell.h"
 #import "TFBarButtonItem.h"
+#import "APIModel.h"
+#import "TFUserPreferences.h"
+#import "APIUser.h"
 
 
 static NSString *const TFSettingsTableCell = @"ImageSettingsCell";
+
+
+static NSString *const TFSettingsImageSearchString = @"IMAGE SEARCH";
+static NSString *const TFSettingsAutoRefreshString = @"AUTO-REFRESH";
 
 @interface TFNewSettingsDrawerController ()
 
@@ -26,15 +35,7 @@ static NSString *const TFSettingsTableCell = @"ImageSettingsCell";
 
         //    _rows = [NSArray array];
 
-        _rows = @[
-                @{
-                        @"title" : @"IMAGE SEARCH",
-                        @"subtitle" : @"Turn this OFF to use the default canvas when working with your mindmap."
-                },
-                @{
-                        @"title" : @"AUTO-REFRESH",
-                        @"subtitle" : @"Automatically update image results when interacting with your mindmap."
-                }];
+        [self _refreshContent];
     }
 
     return self;
@@ -57,16 +58,166 @@ static NSString *const TFSettingsTableCell = @"ImageSettingsCell";
     return ret;
 }
 
-- (void) configureCell: (UITableViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
+- (void) configureCell: (UITableViewCell *) tableCell atIndexPath: (NSIndexPath *) indexPath {
+    TFTableViewCell *cell = (TFTableViewCell *) tableCell;
     NSDictionary *dictionary = [_rows objectAtIndex: indexPath.row];
-    cell.textLabel.text = [dictionary objectForKey: @"title"];
+
+    NSString *title = [dictionary objectForKey: @"title"];
+    cell.textLabel.text = title;
     cell.detailTextLabel.text = [dictionary objectForKey: @"subtitle"];
+
+    BOOL selected = [[dictionary objectForKey: @"selected"] boolValue];
+
+    cell.button.tag = indexPath.row;
+    cell.button.selected = [[dictionary objectForKey: @"selected"] boolValue];;
+
+    [cell.button bk_addEventHandler: ^(id sender) {
+        UIButton *button = sender;
+        button.selected = !button.selected;
+
+        NSInteger row = button.tag;
+        [self toggleUserPreferenceType: (TFUserPreferenceType) row flag: button.selected];
+        //
+        //        TFUserPreferences *preferences = [APIModel sharedModel].currentUser.preferences;
+        //        if ([title isEqualToString: TFSettingsImageSearchString]) {
+        //            preferences.imageSearchEnabled = button.selected;
+        //
+        //        } else if ([title isEqualToString: TFSettingsAutoRefreshString]) {
+        //            preferences.autoRefreshEnabled = button.selected;
+        //        }
+        //
+        //        [self _refreshPreferences];
+    } forControlEvents: UIControlEventTouchUpInside];
 }
+
+
+- (void) toggleUserPreferenceType: (TFUserPreferenceType) type flag: (BOOL) flag {
+    TFUserPreferences *preferences = [APIModel sharedModel].currentUser.preferences;
+    UITableView *table = _tableViewController.tableView;
+
+    if (type == TFUserPreferenceTypeAutorefresh) {
+        [preferences toggleForType: type flag: flag];
+        [self _refreshContent];
+
+        //        [table reloadRowsAtIndexPaths: @[
+        //                [NSIndexPath indexPathForRow: 0 inSection: 0],
+        //                [NSIndexPath indexPathForRow: 1 inSection: 0]
+        //        ] withRowAnimation: UITableViewRowAnimationNone];
+
+    }
+
+    else if (type == TFUserPreferenceTypeImageSearch) {
+
+        NSUInteger row = 1;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow: row inSection: 0];
+
+        if (!flag) {
+            [preferences toggleForType: TFUserPreferenceTypeImageSearch flag: flag];
+
+            TFTableViewCell *cell = (TFTableViewCell *) [table cellForRowAtIndexPath: indexPath];
+            cell.button.selected = NO;
+
+            NSMutableArray *rows = [_rows mutableCopy];
+            NSMutableDictionary *dictionary = [[_rows objectAtIndex: row] mutableCopy];
+            [preferences toggleForType: TFUserPreferenceTypeAutorefresh flag: flag];
+            [table beginUpdates];
+            [rows removeObject: dictionary];
+            _rows = rows;
+            [table deleteRowsAtIndexPaths: @[indexPath] withRowAnimation: UITableViewRowAnimationLeft];
+            [table endUpdates];
+
+        } else {
+            // toggle autorefresh ON
+            [preferences toggleForType: TFUserPreferenceTypeImageSearch flag: flag];
+            [preferences toggleForType: TFUserPreferenceTypeAutorefresh flag: flag];
+            [self _refreshContent];
+            [table insertRowsAtIndexPaths: @[
+                    [NSIndexPath indexPathForRow: 1 inSection: 0]
+            ] withRowAnimation: UITableViewRowAnimationLeft];
+
+        }
+    }
+
+    [[APIModel sharedModel] saveUser];
+}
+
+- (void) reloadAtIndexPath: (NSIndexPath *) indexPath {
+    [_tableViewController reloadRowsAtIndexPaths: @[indexPath]
+            withRowAnimation: UITableViewRowAnimationFade];
+
+}
+
+
+- (void) deleteAtIndexPath: (NSIndexPath *) indexPath {
+    UITableView *table = _tableViewController.tableView;
+    [table beginUpdates];
+    [self _refreshContent];
+    NSMutableDictionary *dictionary = [[_rows objectAtIndex: indexPath.row] mutableCopy];
+
+    [table deleteRowsAtIndexPaths: @[indexPath] withRowAnimation: UITableViewRowAnimationLeft];
+    [table endUpdates];
+
+}
+
+- (void) _refreshPreferences {
+    TFUserPreferences *preferences = [APIModel sharedModel].currentUser.preferences;
+
+
+    if (!preferences.imageSearchEnabled && preferences.autoRefreshEnabled) {
+
+        NSIndexPath *refreshIndexPath = [NSIndexPath indexPathForRow: 1 inSection: 0];
+        preferences.autoRefreshEnabled = NO;
+        [_tableViewController reloadRowsAtIndexPaths: @[refreshIndexPath]
+                withRowAnimation: UITableViewRowAnimationFade];
+
+        [self bk_performBlock: ^(id obj) {
+
+            NSLog(@"obj = %@", obj);
+            UITableView *table = _tableViewController.tableView;
+            [table beginUpdates];
+            [self _refreshContent];
+
+            NSLog(@"[_rows count] = %u", [_rows count]);
+            [table deleteRowsAtIndexPaths: @[refreshIndexPath] withRowAnimation: UITableViewRowAnimationLeft];
+            [table endUpdates];
+
+        } afterDelay: 1.0];
+    }
+}
+
 
 - (NSInteger) tableView: (UITableView *) tableView numberOfRowsInSection: (NSInteger) section {
     return [_rows count];
 }
 
+
+
+#pragma mark - Refresh
+
+- (void) _refreshContent {
+    _rows = [self _refreshedRows];
+}
+
+- (NSArray *) _refreshedRows {
+    NSMutableArray *ret = [[NSMutableArray alloc] init];
+    TFUserPreferences *preferences = [APIModel sharedModel].currentUser.preferences;
+
+    [ret addObject: @{
+            @"title" : TFSettingsImageSearchString,
+            @"subtitle" : @"Turn this OFF to use the default canvas when working with your mindmap.",
+            @"selected" : @(preferences.imageSearchEnabled)
+    }];
+
+    if (preferences.imageSearchEnabled) {
+        [ret addObject: @{
+                @"title" : TFSettingsAutoRefreshString,
+                @"subtitle" : @"Automatically update image results when interacting with your mindmap.",
+                @"selected" : @(preferences.autoRefreshEnabled)
+        }];
+    }
+
+    return ret;
+}
 
 
 #pragma mark - Setup

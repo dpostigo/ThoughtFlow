@@ -14,11 +14,14 @@
 }
 
 @property(weak) IBOutlet DPTableView *table;
+@property(weak) IBOutlet UIButton *submitButton;
+@property(weak) IBOutlet UIButton *registerButton;
+@property(weak) IBOutlet UIButton *passwordButton;
+@property(weak) IBOutlet UIButton *insteadButton;
 @property(nonatomic, strong) UITextField *currentTextField;
+- (void) submit;
 - (void) prepareDatasource;
 
 
-- (IBAction) signInInstead: (id) sender;
-- (IBAction) submit: (UIButton *) button;
 - (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath;
 @end

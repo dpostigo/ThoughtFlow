@@ -17,6 +17,7 @@
 @class TFNewMindmapBackgroundViewController;
 @class TFContentView;
 @class TFScrollingMindmapViewController;
+@class TFUserPreferences;
 
 
 typedef NS_ENUM(NSInteger, TFMindmapControllerType) {
@@ -31,11 +32,9 @@ typedef NS_ENUM(NSInteger, TFMindmapControllerType) {
 @property(nonatomic) TFMindmapControllerType mindmapType;
 @property(nonatomic, strong) Project *project;
 @property(nonatomic, strong) TFNode *selectedNode;
-
 @property(nonatomic, strong) TFContentView *contentView;
-@property(nonatomic, strong) UIView *mindmapView;
-@property(nonatomic, strong) NSLayoutConstraint *widthConstraint;
-@property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
+
+
 - (instancetype) initWithProject: (Project *) project;
 
 @end

@@ -15,8 +15,11 @@
 @interface TFTableViewController : UITableViewController
 
 extern NSString *const TFTableViewDefaultCellIdentifier;
+extern NSString *const TFButtonTableViewCellIdentifier;
+extern NSString *const TFTableViewBlankCellIdentifier;
 
 @property(nonatomic, assign) id <TFTableViewControllerDelegate> delegate;
 @property(nonatomic, copy) NSString *cellIdentifier;
 - (void) reloadData;
+- (void) reloadRowsAtIndexPaths: (NSArray *) indexPaths withRowAnimation: (UITableViewRowAnimation) animation;
 @end

@@ -5,19 +5,25 @@
 
 #import <Foundation/Foundation.h>
 
+
+@class TFUserPreferences;
+
+
 @interface APIUser : NSObject <NSCoding> {
     NSString *username;
     NSString *email;
     NSString *password;
+
 }
 
 @property(nonatomic, copy) NSString *username;
 @property(nonatomic, copy) NSString *email;
 @property(nonatomic, copy) NSString *password;
+
+@property(nonatomic, strong) TFUserPreferences *preferences;
 - (instancetype) initWithUsername: (NSString *) anUsername email: (NSString *) anEmail password: (NSString *) aPassword;
 - (instancetype) initWithUsername: (NSString *) anUsername password: (NSString *) aPassword;
 + (instancetype) userWithUsername: (NSString *) anUsername password: (NSString *) aPassword;
-
 + (instancetype) userWithUsername: (NSString *) anUsername email: (NSString *) anEmail password: (NSString *) aPassword;
 
 @end

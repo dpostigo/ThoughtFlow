@@ -5,7 +5,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TFMenuButton : UIButton {
 
-}
+@class TWRBorderedView;
+
+@interface TFMenuButton : UIButton
+
+@property(nonatomic, strong) TWRBorderedView *borderedView;
 @end

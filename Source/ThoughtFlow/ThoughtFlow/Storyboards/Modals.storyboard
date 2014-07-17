@@ -43,10 +43,10 @@
                                         <color key="textColor" red="0.66666668650000005" green="0.67058825489999996" blue="0.69803923369999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mea-oe-rhG">
-                                        <rect key="frame" x="296" y="8" width="40" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mea-oe-rhG">
+                                        <rect key="frame" x="304" y="17" width="16" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="project-delete-icon">
+                                        <state key="normal" image="icon-editnode-delete">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
@@ -81,7 +81,7 @@
                                     <constraint firstAttribute="trailing" secondItem="6T1-IL-egx" secondAttribute="trailing" constant="3" id="OAX-mu-qav"/>
                                     <constraint firstAttribute="bottom" secondItem="6T1-IL-egx" secondAttribute="bottom" constant="4" id="dDb-Zr-TdK"/>
                                     <constraint firstItem="Era-7W-VCa" firstAttribute="top" secondItem="TIg-2T-ZKd" secondAttribute="top" constant="19" id="iHq-aY-R4l"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mea-oe-rhG" secondAttribute="trailing" constant="4" id="kTP-pf-x1Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mea-oe-rhG" secondAttribute="trailing" constant="20" id="kTP-pf-x1Q"/>
                                     <constraint firstItem="ouo-bU-FSW" firstAttribute="top" secondItem="Era-7W-VCa" secondAttribute="bottom" constant="30" id="nAi-uV-94D"/>
                                     <constraint firstAttribute="width" constant="340" id="s12-Qx-bSi"/>
                                     <constraint firstItem="ouo-bU-FSW" firstAttribute="leading" secondItem="TIg-2T-ZKd" secondAttribute="leading" constant="40" id="uAH-CG-vdQ"/>
@@ -195,7 +195,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="project-delete-icon" width="40" height="40"/>
+        <image name="icon-editnode-delete" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

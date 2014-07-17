@@ -6,7 +6,11 @@
 #import "PasswordController.h"
 #import "DPTableView.h"
 
+
 @implementation PasswordController
+
+- (void) submit {
+}
 
 - (void) prepareDatasource {
     [self.table.rows addObject: @{DPTableViewTextLabelName : @"Email address", DPTableViewImageName : [UIImage imageNamed: @"email-icon"]}];

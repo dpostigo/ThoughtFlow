@@ -5,7 +5,10 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface TFToggleButton : UIButton {
 
 }
+
+@property(nonatomic) BOOL toggleDisabled;
 @end

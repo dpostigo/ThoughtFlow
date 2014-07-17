@@ -10,6 +10,7 @@
 #import "TFMinimizedNodeButton.h"
 #import "TFNodesViewController.h"
 #import "TFBaseNodeView.h"
+#import "TFNodeLabel.h"
 
 
 CGFloat const TFMindmapMinimizedX = 10;
@@ -25,8 +26,15 @@ CGFloat const TFMindmapMinimizedOffsetY = 10;
 - (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
     self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
-        self.view = [[DPPassThroughView alloc] init];
-        [self _setup];
+    }
+
+    return self;
+}
+
+- (instancetype) initWithNode: (TFNode *) node {
+    self = [super init];
+    if (self) {
+        _node = node;
     }
 
     return self;
@@ -34,7 +42,8 @@ CGFloat const TFMindmapMinimizedOffsetY = 10;
 
 
 - (void) loadView {
-    [super loadView];
+    self.view = [[DPPassThroughView alloc] init];
+    [self _setup];
 
 }
 
@@ -42,7 +51,6 @@ CGFloat const TFMindmapMinimizedOffsetY = 10;
 #pragma mark - View lifecycle
 - (void) viewDidLoad {
     [super viewDidLoad];
-    [self _setup];
 }
 
 
@@ -76,6 +84,7 @@ CGFloat const TFMindmapMinimizedOffsetY = 10;
 - (void) _setup {
 
     _nodeButton = [TFMinimizedNodeButton buttonWithType: UIButtonTypeCustom];
+    _nodeButton.textLabel.text = _node.title;
     _nodeButton.frame = CGRectMake(TFMindmapMinimizedX, self.view.height - TFNodeViewHeight, TFNodeViewWidth, TFNodeViewHeight);
     [self.view addSubview: _nodeButton];
     [_nodeButton addTarget: self action: @selector(handleNodeButton:) forControlEvents: UIControlEventTouchUpInside];

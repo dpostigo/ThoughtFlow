@@ -41,6 +41,8 @@ pod 'BlocksKit'
 pod 'CJStringValidator'
 pod 'DRPaginatedScrollView'
 pod 'NSString+RMURLEncoding'
+pod 'PREBorderView'
+pod 'TWRBorderedView'
 
 
 # Temp

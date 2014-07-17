@@ -10,4 +10,7 @@
 @interface TFTableViewCell : DPTableViewCell {
 
 }
+
+@property (weak) IBOutlet UIButton *button;
+@property (weak) IBOutlet UITextField *textField;
 @end

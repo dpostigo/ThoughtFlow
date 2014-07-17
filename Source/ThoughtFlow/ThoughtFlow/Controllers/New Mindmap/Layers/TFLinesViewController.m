@@ -3,12 +3,10 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import <NSObject+AutoDescription/NSObject+AutoDescription.h>
 #import "TFLinesViewController.h"
 #import "TFLayer.h"
 #import "CALayer+SublayerUtils.h"
 #import "TFNode.h"
-//#import "TFNodeView.h"
 #import "DPPassThroughView.h"
 #import "TFLiveUpdateLayer.h"
 #import "TFBaseNodeView.h"
@@ -303,17 +301,6 @@
     }];
 
     return nil;
-}
-
-
-- (void) drawLineForIndex: (int) j {
-    //    if (j < [self.nodeViews count]) {
-    //        TFNodeView *nodeView = [self.nodeViews objectAtIndex: j];
-    //        TFNodeView *previousView = [self.nodeViews objectAtIndex: j - 1];
-    //
-    //        CALayer *layer = [lineView.layer.sublayers objectAtIndex: j];
-    //        [self setLayerLine: layer fromPoint: nodeView.center toPoint: previousView.center];
-    //    }
 }
 
 

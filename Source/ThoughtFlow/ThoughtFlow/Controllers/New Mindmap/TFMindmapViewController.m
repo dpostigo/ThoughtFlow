@@ -5,6 +5,7 @@
 
 #import <DPTransitions/CustomModalSegue.h>
 #import <DPKit-UIView/UIView+DPConstraints.h>
+#import <BlocksKit/NSObject+BKBlockObservation.h>
 #import "TFMindmapViewController.h"
 #import "UIViewController+DPKit.h"
 #import "Project.h"
@@ -21,6 +22,10 @@
 #import "UIView+DPKitDebug.h"
 #import "TFScrollingMindmapViewController.h"
 #import "TFBaseNodeView.h"
+#import "TFUserPreferences.h"
+#import "APIModel.h"
+#import "APIUser.h"
+#import "NSObject+BKBlockExecution.h"
 
 
 @interface TFMindmapViewController ()
@@ -36,6 +41,7 @@
 @property(nonatomic, strong) TFMinimizedNodesViewController *minimizedController;
 @property(nonatomic, strong) TFScrollingMindmapViewController *scrollingController;
 
+@property(nonatomic, strong) TFUserPreferences *preferences;
 @end
 
 @implementation TFMindmapViewController
@@ -50,6 +56,10 @@
     self = [super init];
     if (self) {
         _project = project;
+
+        _preferences = [APIModel sharedModel].currentUser.preferences;
+        _bgController = [[TFNewMindmapBackgroundViewController alloc] initWithProject: _project node: _project.firstNode];
+
     }
 
     return self;
@@ -57,7 +67,6 @@
 
 
 #pragma mark - View lifecycle
-
 
 
 - (void) viewWillDisappear: (BOOL) animated {
@@ -108,7 +117,6 @@
 
 - (void) _setupChildControllers {
 
-    _bgController = [[TFNewMindmapBackgroundViewController alloc] initWithProject: _project node: _project.firstNode];
     _bgController.contentView = _contentView;
     [self embedFullscreenController: _bgController];
 
@@ -140,6 +148,7 @@
     _panRecognizer.minimumNumberOfTouches = 2;
     [self.view addGestureRecognizer: _panRecognizer];
 }
+
 
 
 
@@ -336,7 +345,7 @@
 - (void) nodesControllerDidCompletePinchWithNodeView: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
     _bgController.mindmapType = TFMindmapControllerTypeMinimized;
 
-    _minimizedController = [[TFMinimizedNodesViewController alloc] init];
+    _minimizedController = [[TFMinimizedNodesViewController alloc] initWithNode: node];
     _minimizedController.delegate = self;
     [self embedFullscreenController: _minimizedController];
 
@@ -364,7 +373,10 @@
 
 - (void) nodesControllerDidSelectNode: (TFNode *) node {
     _selectedNode = node;
-    _bgController.node = _selectedNode;
+
+    if (self.preferences.autoRefreshEnabled) {
+        _bgController.node = _selectedNode;
+    }
 
 }
 
@@ -389,6 +401,11 @@
     [UIView animateWithDuration: 0.4 animations: ^{
         //            nodeView.alpha = 1;
     }];
+
+    [self bk_performBlockInBackground: ^(id obj) {
+        [_project save];
+    } afterDelay: 0.0];
+
 
     //        [UIView animateWithDuration: 0.4 animations: ^{
     //            nodeView.alpha = 0;
@@ -466,7 +483,6 @@
 - (void) updatePan: (UIPanGestureRecognizer *) gesture {
 
     UIView *nodeContainerView = _nodesController.view;
-    CGPoint startPoint = self.startingPoint;
     CGPoint translation = [gesture translationInView: _nodesController.view.superview];
 
     int option = 0;
@@ -479,7 +495,6 @@
         nodeContainerView.width = self.view.width + newPoint.x;
         nodeContainerView.height = self.view.height - fabsf(translation.y);
 
-        NSLog(@"translation = %@", NSStringFromCGPoint(translation));
     } else if (option == 1) {
 
         //    [nodeContainerView updateSuperCenterXConstraint: -translation.x];

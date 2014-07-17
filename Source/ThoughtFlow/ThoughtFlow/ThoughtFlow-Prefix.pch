@@ -17,6 +17,7 @@
 #import "DDLog.h"
 
 #define USE_API 1
+#define ALT_STYLING 0
 
 
 #ifdef DEBUG

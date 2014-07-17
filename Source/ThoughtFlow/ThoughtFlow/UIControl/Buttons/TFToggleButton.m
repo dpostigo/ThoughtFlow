@@ -5,16 +5,18 @@
 
 #import "TFToggleButton.h"
 
+
 @implementation TFToggleButton
 
 - (void) awakeFromNib {
     [super awakeFromNib];
 
-    [self addTarget: self action: @selector(handleToggle:) forControlEvents: UIControlEventTouchUpInside];
+    if (!_toggleDisabled) {
+        [self addTarget: self action: @selector(handleToggle:) forControlEvents: UIControlEventTouchUpInside];
+    }
 }
 
 - (void) handleToggle: (id) sender {
-
     self.selected = !self.selected;
 
 }

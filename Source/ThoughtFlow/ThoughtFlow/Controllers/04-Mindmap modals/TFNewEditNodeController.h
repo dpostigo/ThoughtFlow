@@ -17,6 +17,8 @@
 @end
 
 
+extern const NSInteger TFNewEditNodeControllerCharacterLimit;
+
 @interface TFNewEditNodeController : UIViewController <UITextViewDelegate, UIViewControllerTransitioningDelegate> {
 }
 

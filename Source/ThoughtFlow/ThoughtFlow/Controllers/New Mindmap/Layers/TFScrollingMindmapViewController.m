@@ -54,8 +54,6 @@
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
     self.maxContentOffset = CGSizeMake(0, 0);
-    //    _heightConstraint.constant = self.view.height + _maxContentOffset.height;
-    //    _heightConstraint.constant = self.view.height + _maxContentOffset.height;
 
     [self.view layoutIfNeeded];
 
@@ -102,102 +100,6 @@
 
     return;
 
-    if (maximumPoint.x > _maximumPoint.x ||
-            maximumPoint.y > _maximumPoint.y) {
-
-        _maximumPoint = maximumPoint;
-
-        CGPoint contentOffset = _scrollView.contentOffset;
-        CGPoint newOffset = CGPointMake(contentOffset.x + 1, contentOffset.y + 1);
-
-        //    newOffset.x -= 10;
-        //    newOffset.y -= TFNodeViewHeight;
-
-        _scrollView.contentOffset = newOffset;
-
-    } else {
-        NSLog(@"Stop.");
-
-    }
-
-    return;
-
-    //    maximumPoint = CGPointMake(fmaxf(maximumPoint.x, _maximumPoint.x), fmaxf(maximumPoint.y, _maximumPoint.y));
-
-
-    //    maximumPoint = CGPointMake(fmaxf(maximumPoint.x, _maximumPoint.x), fmaxf(maximumPoint.y, _maximumPoint.y));
-
-    //    maximumPoint.x += 50;
-    //    maximumPoint.y += 50;
-
-
-    maximumPoint = CGPointMake(fmaxf(maximumPoint.x, self.view.width), fmaxf(maximumPoint.y, self.view.height));
-
-    _maximumPoint = maximumPoint;
-
-    NSLog(@"_maximumPoint = %@", NSStringFromCGPoint(_maximumPoint));
-    CGSize extra = CGSizeMake(_maximumPoint.x - self.view.width, _maximumPoint.y - self.view.height);
-
-    NSLog(@"extra = %@", NSStringFromCGSize(extra));
-    CGPoint contentOffset = _scrollView.contentOffset;
-
-    CGPoint newOffset = CGPointMake(contentOffset.x + extra.width, contentOffset.y + extra.height);
-
-    //    newOffset.x -= 10;
-    //    newOffset.y -= TFNodeViewHeight;
-
-    _scrollView.contentOffset = newOffset;
-
-    //    self.maxContentOffset = extra;
-
-    //    [self.view layoutIfNeeded];
-
-
-
-    //
-    //    //    CGFloat maxX = fminf(_maximumPoint.x - self.view.width, self.view.width);
-    //    //    CGFloat maxY = fminf(_maximumPoint.y - self.view.height, self.view.width);
-    //
-    //    NSLog(@"extra = %@", NSStringFromCGSize(extra));
-    //    //    CGFloat width = fmaxf(_maximumPoint.x, self.view.width + _maxContentOffset.width) - self.view.width;
-    //    //    CGFloat height = fmaxf(_maximumPoint.y, self.view.height) - self.view.height;
-    //    //
-    //    //    //    NSLog(@"width = %f", width);
-    //    //    CGSize offset = CGSizeMake(width, height);
-    //    //
-    //    //    NSLog(@"extra = %@, offset = %@", NSStringFromCGSize(extra), NSStringFromCGSize(offset));
-    //
-    //
-
-    //    CGPoint newOffset = CGPointMake(contentOffset.x - extra.width, contentOffset.y - extra.height);
-    //    _scrollView.contentOffset = newOffset;
-
-
-    //    _maxContentOffset = extra;
-    //    _widthConstraint.constant = self.view.width + _maxContentOffset.width;
-    //    _heightConstraint.constant = self.view.height + _maxContentOffset.height;
-    //
-    //    [UIView animateWithDuration: 0.4 animations: ^{
-    //
-    //        [self.view layoutIfNeeded];
-    //    } completion: ^(BOOL finished) {
-    //
-    //        _scrollView.contentOffset = contentOffset;
-    //
-    //    }];
-
-
-    //
-    //    self.maxContentOffset = extra;
-    //
-    //    if (_scrollView.contentOffset.x > contentOffset.x) {
-    //
-    //        NSLog(@"contentOffset = %@", NSStringFromCGPoint(contentOffset));
-    //        NSLog(@"_scrollView.contentOffset = %@", NSStringFromCGPoint(_scrollView.contentOffset));
-    //
-    //    }
-
-    //    _scrollView.contentOffset = contentOffset;
 }
 
 
@@ -270,10 +172,8 @@
     [self _setupMindmapView];
     [self _setupControllers];
 
-    //    [_mindmapView addDebugBorder: [UIColor yellowColor]];
     //    [_nodesController.view addDebugBorder: [UIColor redColor]];
 
-    NSLog(@"_mindmapView.height = %f", _mindmapView.height);
 
 }
 

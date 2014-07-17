@@ -484,9 +484,6 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 }
 
 - (TFBaseNodeView *) instantiateNodeViewForNode: (TFNode *) projectNode {
-    // TODO: Reimplement
-    //    [_model.selectedProject addNode: projectNode];
-    //    _model.selectedNode = projectNode;
 
     TFBaseNodeView *ret = [[_nodeClass alloc] init];
     ret.node = projectNode;
@@ -502,18 +499,8 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
     return ret;
 }
 
-//- (CGRect) frameForNewNode {
-//    CGRect ret = self.creationNodeView.frame;
-//
-//    for (TFNodeView *node in self.nodeViews) {
-//        CGRect nodeFrame = node.frame;
-//        if (CGRectIntersectsRect(ret, nodeFrame)) {
-//
-//        }
-//    }
-//
-//    return ret;
-//}
+
+
 
 
 

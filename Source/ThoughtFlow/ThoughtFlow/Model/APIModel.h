@@ -30,6 +30,7 @@ extern NSString *const ThoughtFlowBaseURL;
 + (APIModel *) sharedModel;
 
 - (BOOL) loggedIn;
+- (void) saveUser;
 - (void (^)()) generalFailureBlock;
 - (void (^)()) failureBlockWithTitle: (NSString *) title message: (NSString *) message;
 - (void) loginUser: (NSString *) username password: (NSString *) password completion: (void (^)()) completion failure: (void (^)()) failure;
@@ -38,6 +39,7 @@ extern NSString *const ThoughtFlowBaseURL;
 - (void) userExists: (NSString *) username completion: (void (^)(BOOL exists)) success;
 - (void) registerUser: (NSString *) username password: (NSString *) password email: (NSString *) email success: (void (^)()) success failure: (void (^)()) failure;
 - (void) signOutWithCompletion: (void (^)()) completion;
+- (void) hasImages: (NSString *) string completion: (void (^)(BOOL hasImages)) completion;
 - (void) getImages: (NSString *) string success: (void (^)(NSArray *images)) success failure: (void (^)()) failure;
 - (void) preloadImages: (NSArray *) images;
 @end

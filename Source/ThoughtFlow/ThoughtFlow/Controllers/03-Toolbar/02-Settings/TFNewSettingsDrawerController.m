@@ -77,16 +77,7 @@ static NSString *const TFSettingsAutoRefreshString = @"AUTO-REFRESH";
 
         NSInteger row = button.tag;
         [self toggleUserPreferenceType: (TFUserPreferenceType) row flag: button.selected];
-        //
-        //        TFUserPreferences *preferences = [APIModel sharedModel].currentUser.preferences;
-        //        if ([title isEqualToString: TFSettingsImageSearchString]) {
-        //            preferences.imageSearchEnabled = button.selected;
-        //
-        //        } else if ([title isEqualToString: TFSettingsAutoRefreshString]) {
-        //            preferences.autoRefreshEnabled = button.selected;
-        //        }
-        //
-        //        [self _refreshPreferences];
+
     } forControlEvents: UIControlEventTouchUpInside];
 }
 
@@ -161,7 +152,6 @@ static NSString *const TFSettingsAutoRefreshString = @"AUTO-REFRESH";
 
 - (void) _refreshPreferences {
     TFUserPreferences *preferences = [APIModel sharedModel].currentUser.preferences;
-
 
     if (!preferences.imageSearchEnabled && preferences.autoRefreshEnabled) {
 

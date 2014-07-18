@@ -12,6 +12,7 @@
 #import "TFPhoto.h"
 #import "PhotoLibrary.h"
 #import "NSString+RMURLEncoding.h"
+#import "TFUserPreferences.h"
 
 
 NSString *const TFScopeEmail = @"email";
@@ -66,12 +67,17 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
             //            [AFOAuthCredential deleteCredentialWithIdentifier: ThoughtFlowIdentifier];
 
         } else {
-            NSData *encodedObject = [[NSUserDefaults standardUserDefaults] objectForKey: @"currentUser"];
-            if (encodedObject) {
-                DDLogVerbose(@"Got user.");
-                _currentUser = [NSKeyedUnarchiver unarchiveObjectWithData: encodedObject];
-            } else {
-                DDLogVerbose(@"No saved user.");
+            if (_currentUser == nil) {
+                NSData *encodedObject = [[NSUserDefaults standardUserDefaults] objectForKey: @"currentUser"];
+                if (encodedObject) {
+                    DDLogVerbose(@"Got user.");
+                    _currentUser = [NSKeyedUnarchiver unarchiveObjectWithData: encodedObject];
+
+                    NSLog(@"_currentUser.preferences.imageSearchEnabled = %d", _currentUser.preferences.imageSearchEnabled);
+                    NSLog(@"_currentUser.preferences.autoRefreshEnabled = %d", _currentUser.preferences.autoRefreshEnabled);
+                } else {
+                    DDLogVerbose(@"No saved user.");
+                }
             }
         }
     } else {
@@ -85,6 +91,7 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
 #pragma mark - Public, User
 
 - (void) saveUser {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     [[NSUserDefaults standardUserDefaults] setObject: _currentUser == nil ? nil : [NSKeyedArchiver archivedDataWithRootObject: self.currentUser] forKey: @"currentUser"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -207,7 +214,9 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
 
                 [AFOAuthCredential storeCredential: credential withIdentifier: self.authClient.serviceProviderIdentifier];
 
-                self.currentUser = [[APIUser alloc] initWithUsername: username password: password];
+                TFUserPreferences *preferences = _currentUser.preferences;
+                _currentUser = [[APIUser alloc] initWithUsername: username password: password];
+                _currentUser.preferences = preferences;
                 [self saveUser];
 
                 [self getUserInfo: username completion: ^(id response) {

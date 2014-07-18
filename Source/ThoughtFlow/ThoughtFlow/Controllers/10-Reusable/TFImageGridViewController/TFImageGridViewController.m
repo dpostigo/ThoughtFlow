@@ -70,7 +70,6 @@
     [super viewDidLayoutSubviews];
 
     if (_selectedImage) {
-
         [self scrollToImage: _selectedImage animated: YES];
     }
 }
@@ -175,6 +174,8 @@
     _collection.translatesAutoresizingMaskIntoConstraints = NO;
     _collection.backgroundColor = [UIColor clearColor];
     _collection.opaque = NO;
+    _collection.showsHorizontalScrollIndicator = NO;
+    _collection.showsVerticalScrollIndicator = NO;
 
     [self.view addConstraints: @[
             [NSLayoutConstraint constraintWithItem: _collection attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeLeading multiplier: 1.0 constant: 0.0],

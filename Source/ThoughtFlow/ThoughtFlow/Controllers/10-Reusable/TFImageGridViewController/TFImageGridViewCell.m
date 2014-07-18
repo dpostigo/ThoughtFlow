@@ -4,6 +4,7 @@
 //
 
 #import "TFImageGridViewCell.h"
+#import "UIView+DPKitDebug.h"
 
 
 @implementation TFImageGridViewCell
@@ -25,7 +26,6 @@
 - (id) initWithFrame: (CGRect) frame {
     self = [super initWithFrame: frame];
     if (self) {
-
         _edgeInsets = UIEdgeInsetsMake(15, 15, 15, 15);
     }
 
@@ -111,6 +111,7 @@
                 [NSLayoutConstraint constraintWithItem: _imageView attribute: NSLayoutAttributeBottom relatedBy: NSLayoutRelationEqual toItem: self.contentView attribute: NSLayoutAttributeBottom multiplier: 1.0 constant: 0.0],
                 [NSLayoutConstraint constraintWithItem: _imageView attribute: NSLayoutAttributeTrailing relatedBy: NSLayoutRelationEqual toItem: self.contentView attribute: NSLayoutAttributeTrailing multiplier: 1.0 constant: 0.0]
         ]];
+
     }
     return _imageView;
 }

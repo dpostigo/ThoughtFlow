@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFBaseToolbarViewController.h"
 
 
 typedef NS_ENUM(NSInteger, TFToolbarButtonType) {
@@ -27,7 +28,7 @@ typedef NS_ENUM(NSInteger, TFToolbarButtonType) {
 extern CGFloat const TFToolbarButtonWidth;
 extern CGFloat const TFToolbarButtonHeight;
 
-@interface TFNewToolbarViewController : UIViewController
+@interface TFToolbarViewController : TFBaseToolbarViewController
 
 @property(nonatomic) NSInteger selectedIndex;
 @property(nonatomic, assign) id <TFToolbarViewControllerDelegate> delegate;

@@ -82,7 +82,7 @@
     UIView *grayView = [[UIView alloc] initWithFrame: self.bounds];
     grayView.top = 10;
     grayView.left = 10;
-    grayView.backgroundColor = [UIColor lightGrayColor];
+    grayView.backgroundColor = [UIColor colorWithWhite: 0.4 alpha: 0.7];
     grayView.userInteractionEnabled = NO;
     [self addSubview: grayView];
     grayView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -100,7 +100,7 @@
     UIView *whiteView = [[UIView alloc] initWithFrame: self.bounds];
     whiteView.left = 10;
     whiteView.top = 10;
-    whiteView.backgroundColor = [UIColor whiteColor];
+    whiteView.backgroundColor = [UIColor colorWithWhite: 1.0 alpha: 0.7];
     whiteView.userInteractionEnabled = NO;
     [self addSubview: whiteView];
     whiteView.translatesAutoresizingMaskIntoConstraints = NO;

@@ -15,6 +15,7 @@
 
 @interface TFMindmapFullscreenViewController ()
 
+@property(nonatomic, strong) UIImageView *bg;
 @property(nonatomic, strong) TFUserPreferences *preferences;
 @end
 
@@ -25,11 +26,6 @@
 
 
 
-- (void) viewDidLoad {
-    [super viewDidLoad];
-
-    //    [self _setup];
-}
 
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
@@ -55,9 +51,10 @@
 - (void) _setup {
     [super _setup];
 
-    UIImageView *bg = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"texture"]];
-    [self embedFullscreenView: bg];
-    [self.view sendSubviewToBack: bg];
+    _bg = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"texture"]];
+    _bg.frame = self.view.bounds;
+    [self embedFullscreenView: _bg];
+    [self.view sendSubviewToBack: _bg];
 
     [self _setupUserPreferences];
 }
@@ -70,15 +67,20 @@
 
     [self bk_addObserverForKeyPath: @"preferences.imageSearchEnabled" task: ^(id target) {
         view.hidden = NO;
+
+        BOOL shouldShowView = self.preferences.imageSearchEnabled;
         [UIView animateWithDuration: 0.4 delay: 00.
                 usingSpringWithDamping: 2.0
                 initialSpringVelocity: 0.8
                 options: UIViewAnimationOptionCurveLinear
                 animations: ^() {
-                    view.alpha = self.preferences.imageSearchEnabled ? 1 : 0;
+
+                    view.alpha = shouldShowView ? 1 : 0;
+                    _bg.alpha = shouldShowView ? 0 : 1;
                 }
                 completion: ^(BOOL finished) {
-                    view.hidden = !self.preferences.imageSearchEnabled;
+                    view.hidden = !shouldShowView;
+                    _bg.hidden = !shouldShowView;
 
                 }];
     }];
@@ -121,8 +123,13 @@
 #pragma mark - UICollectionViewLayout
 
 - (CGSize) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout sizeForItemAtIndexPath: (NSIndexPath *) indexPath {
-    CGSize result;
     return self.view.bounds.size;
+}
+
+
+- (UIEdgeInsets) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout insetForSectionAtIndex: (NSInteger) section {
+
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 

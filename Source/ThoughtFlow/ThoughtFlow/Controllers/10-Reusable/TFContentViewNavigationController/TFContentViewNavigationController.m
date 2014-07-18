@@ -134,11 +134,17 @@
 }
 
 - (void) closeLeftContainer {
-    [self.contentView closeLeftContainer];
+    [self.contentView closeLeftContainer: ^{
+        //        [self.leftDrawerController didMoveToParentViewController: nil];
+
+    }];
 }
 
 - (void) closeRightContainer {
-    [self.contentView closeRightContainer];
+    [self.contentView closeRightContainer: ^{
+        //        [self.rightDrawerController didMoveToParentViewController: nil];
+
+    }];
 
 }
 

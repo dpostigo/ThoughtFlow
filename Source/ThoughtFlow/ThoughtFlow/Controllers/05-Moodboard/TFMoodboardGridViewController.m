@@ -51,7 +51,7 @@
 
 #pragma mark - Public
 
-- (void) deleteItemAtIndexPath: (NSIndexPath *) indexPath {
+- (void) deleteItemAtIndexPath: (NSIndexPath *) indexPath completion: (void (^)()) completion {
     TFPhoto *image = [_imagesController.images objectAtIndex: indexPath.item];
 
     [_imagesController.collection performBatchUpdates: ^{
@@ -66,6 +66,9 @@
 
     } completion: ^(BOOL finished) {
         [self _refreshControllers];
+        if (completion) {
+            completion();
+        }
     }];
 }
 
@@ -79,7 +82,7 @@
 }
 
 - (void) imageGridViewController: (TFImageGridViewController *) controller didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
-    [self deleteItemAtIndexPath: indexPath];
+    [self deleteItemAtIndexPath: indexPath completion: nil];
 
 }
 

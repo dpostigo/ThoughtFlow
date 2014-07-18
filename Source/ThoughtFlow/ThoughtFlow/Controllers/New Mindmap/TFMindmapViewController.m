@@ -41,7 +41,6 @@
 @property(nonatomic, strong) TFMinimizedNodesViewController *minimizedController;
 @property(nonatomic, strong) TFScrollingMindmapViewController *scrollingController;
 
-@property(nonatomic, strong) TFUserPreferences *preferences;
 @end
 
 @implementation TFMindmapViewController
@@ -57,8 +56,7 @@
     if (self) {
         _project = project;
 
-        _preferences = [APIModel sharedModel].currentUser.preferences;
-        _bgController = [[TFNewMindmapBackgroundViewController alloc] initWithProject: _project node: _project.firstNode];
+        [APIModel sharedModel].currentUser.preferences;
 
     }
 
@@ -68,6 +66,14 @@
 
 #pragma mark - View lifecycle
 
+
+
+- (void) viewWillAppear: (BOOL) animated {
+    [super viewWillAppear: animated];
+
+    [self.view addGestureRecognizer: _pinchRecognizer];
+    [self.view addGestureRecognizer: _panRecognizer];
+}
 
 - (void) viewWillDisappear: (BOOL) animated {
     [super viewWillDisappear: animated];
@@ -117,6 +123,7 @@
 
 - (void) _setupChildControllers {
 
+    _bgController = [[TFNewMindmapBackgroundViewController alloc] initWithProject: _project node: _project.firstNode];
     _bgController.contentView = _contentView;
     [self embedFullscreenController: _bgController];
 
@@ -142,11 +149,9 @@
 
 - (void) _setupGestureRecognizers {
     _pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget: self action: @selector(handlePinch:)];
-    [self.view addGestureRecognizer: _pinchRecognizer];
 
     _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(handleDoublePan:)];
     _panRecognizer.minimumNumberOfTouches = 2;
-    [self.view addGestureRecognizer: _panRecognizer];
 }
 
 
@@ -374,7 +379,8 @@
 - (void) nodesControllerDidSelectNode: (TFNode *) node {
     _selectedNode = node;
 
-    if (self.preferences.autoRefreshEnabled) {
+    TFUserPreferences *preferences = [APIModel sharedModel].currentUser.preferences;
+    if (preferences.autoRefreshEnabled) {
         _bgController.node = _selectedNode;
     }
 

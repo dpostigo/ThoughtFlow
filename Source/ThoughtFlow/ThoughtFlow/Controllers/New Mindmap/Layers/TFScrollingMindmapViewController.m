@@ -53,8 +53,7 @@
 
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
-    self.maxContentOffset = CGSizeMake(0, 0);
-
+    //    self.maxContentOffset = CGSizeMake(0, 0);
     [self.view layoutIfNeeded];
 
 }
@@ -135,7 +134,6 @@
 
     _scrollView.contentOffset = translation;
 
-    //    self.maxContentOffset = CGSizeMake(fmaxf(0, translation.x), fmaxf(0, translation.y));
     self.maxContentOffset = CGSizeMake(translation.x, translation.y);
 
 }

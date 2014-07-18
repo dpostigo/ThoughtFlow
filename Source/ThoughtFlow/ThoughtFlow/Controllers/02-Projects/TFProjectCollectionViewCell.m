@@ -42,10 +42,13 @@
 
     [self convertFonts];
 
-    _bg = [[TFTranslucentView alloc] initWithFrame: self.contentView.bounds];
-    _bg.translucentAlpha = 0.8;
-    [self.contentView embedView: _bg];
-    [self.contentView sendSubviewToBack: _bg];
+    self.contentView.backgroundColor = [UIColor colorWithWhite: 0.0 alpha: 0.3];
+    self.contentView.opaque = NO;
+
+    //    _bg = [[TFTranslucentView alloc] initWithFrame: self.contentView.bounds];
+    //    _bg.translucentAlpha = 0.8;
+    //    [self.contentView embedView: _bg];
+    //    [self.contentView sendSubviewToBack: _bg];
 
 }
 

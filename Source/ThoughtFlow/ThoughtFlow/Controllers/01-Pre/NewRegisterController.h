@@ -4,10 +4,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LoginModalController.h"
+#import "TFLoginViewController.h"
 
 
-@interface NewRegisterController : LoginModalController {
+@interface NewRegisterController : TFLoginViewController {
 
 }
 

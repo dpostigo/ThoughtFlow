@@ -5,7 +5,7 @@
 
 #import <BlocksKit/UIControl+BlocksKit.h>
 #import <DPKit-Utils/UIViewController+DPKit.h>
-#import "LoginModalController.h"
+#import "TFLoginViewController.h"
 #import "DPTableView.h"
 #import "UIView+DPKit.h"
 #import "UITableView+DPTableView.h"
@@ -21,7 +21,7 @@
 #import "UIViewController+TFControllers.h"
 
 
-@implementation LoginModalController {
+@implementation TFLoginViewController {
     UITapGestureRecognizer *_recognizer;
 }
 
@@ -32,7 +32,7 @@
     [super viewDidAppear: animated];
     [self _setupTapRecognizer];
 
-    if (_model.apiModel.loggedIn) {
+    if ([APIModel sharedModel].loggedIn) {
         [self submit];
     }
 
@@ -228,9 +228,9 @@
 
     [self prepareDatasource];
 
-    __weak LoginModalController *weakSelf = self;
+    __weak TFLoginViewController *weakSelf = self;
     _table.onReload = ^(DPTableView *theTable) {
-        __strong LoginModalController *strongSelf = weakSelf;
+        __strong TFLoginViewController *strongSelf = weakSelf;
         if (strongSelf) {
             CGFloat newheight = theTable.calculatedTableHeight;
             theTable.height = newheight;

@@ -10,6 +10,7 @@
 #import "TFContentViewNavigationController.h"
 #import "TFPhoto.h"
 #import "TFNewImageDrawerViewController.h"
+#import "Project.h"
 
 
 @interface TFMoodboardFullscreenViewController ()
@@ -63,7 +64,20 @@
         }
 
         case TFCornerTypeBottomRight : {
-            [self deleteItemAtIndexPath: _selectedIndexPath];
+            [self deleteItemAtIndexPath: _selectedIndexPath completion: ^{
+
+                if ([self.project.pinnedImages count] == 0) {
+                    [UIView animateWithDuration: 0.4 animations: ^{
+                        _buttonsController.view.alpha = 0;
+                    }];
+                    //
+                } else {
+                    [UIView animateWithDuration: 0.4 animations: ^{
+                        _buttonsController.view.alpha = 1;
+                    }];
+                }
+
+            }];
             break;
         }
 

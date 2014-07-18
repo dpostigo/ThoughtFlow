@@ -4,10 +4,7 @@
 //
 
 #import <DPKit-Utils/UIViewController+DPKit.h>
-#import <DPKit-Utils/UIView+DPKitDebug.h>
-#import <DPKit-Utils/UIView+DPKit.h>
 #import "TFMindmapGridViewController.h"
-#import "TFEmptyViewController.h"
 #import "APIModel.h"
 #import "TFImageGridViewCell.h"
 #import "TFPhoto.h"

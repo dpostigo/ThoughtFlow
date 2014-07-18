@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Login Modal Controller-->
+        <!--Login View Controller-->
         <scene sceneID="7fz-FL-S9s">
             <objects>
-                <viewController storyboardIdentifier="CustomModal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7xe-h4-Oom" customClass="LoginModalController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CustomModal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7xe-h4-Oom" customClass="TFLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kKh-Lj-4pK"/>
                         <viewControllerLayoutGuide type="bottom" id="fXm-EY-037"/>

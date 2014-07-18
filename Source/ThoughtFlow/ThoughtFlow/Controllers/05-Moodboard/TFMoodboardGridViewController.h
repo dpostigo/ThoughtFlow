@@ -20,6 +20,6 @@
 @property(nonatomic, strong) TFImageGridViewController *imagesController;
 - (instancetype) initWithProject: (Project *) project;
 
-- (void) deleteItemAtIndexPath: (NSIndexPath *) indexPath;
+- (void) deleteItemAtIndexPath: (NSIndexPath *) indexPath completion: (void (^)()) completion;
 - (void) _setupControllers;
 @end

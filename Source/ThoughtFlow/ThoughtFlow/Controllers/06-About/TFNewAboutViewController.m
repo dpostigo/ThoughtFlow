@@ -4,12 +4,11 @@
 //
 
 #import <DPKit-Utils/UIViewController+DPKit.h>
-#import <DPKit-UIView/UIView+DPKitChildren.h>
 #import "TFNewAboutViewController.h"
 #import "TFTranslucentView.h"
-#import "UINavigationController+DPKit.h"
 #import "UIView+DPKit.h"
 #import "UIControl+BlocksKit.h"
+#import "TFAboutLabelsViewController.h"
 
 
 @interface TFNewAboutViewController ()
@@ -27,16 +26,19 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    //    _labelContainerView.alpha = 0;
+    //    _tutorialContainerView.alpha = 0;
+
     self.view.backgroundColor = [UIColor clearColor];
     self.view.opaque = NO;
+    self.view.layer.allowsGroupOpacity = NO;
 
     _bg = [[TFTranslucentView alloc] initWithFrame: self.view.bounds];
     [self.view embedView: _bg];
     [self.view sendSubviewToBack: _bg];
 
-    _containerView.alpha = 0;
-    _bg.alpha = 0;
-    _imageSearchLabel.alpha = 0;
+    TFAboutLabelsViewController *controller = [[TFAboutLabelsViewController alloc] init];
+    [self embedController: controller inView: _labelContainerView];
 
     [self _setupButtons];
 
@@ -46,10 +48,18 @@
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
 
-    [UIView animateWithDuration: 1.0 animations: ^{
-        _bg.alpha = 1;
-        _containerView.alpha = 1;
-    }];
+    //
+    //    [UIView animateWithDuration: 1.0 animations: ^{
+    //        //        _bg.alpha = 1;
+    //        //        _tutorialContainerView.alpha = 1;
+    //        //        _labelContainerView.alpha = 1;
+    //    }];
+
+}
+
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+
 }
 
 
@@ -60,44 +70,6 @@
         [self _notifyDrawerControllerShouldDismiss];
     } forControlEvents: UIControlEventTouchUpInside];
 
-}
-
-- (void) hideLabels {
-    NSMutableArray *labels = [[self.view childrenOfClass: [UILabel class]] mutableCopy];
-    for (int j = 0; j < [labels count]; j++) {
-        UILabel *label = [labels objectAtIndex: j];
-        label.alpha = 0;
-    }
-}
-
-- (void) showLabels {
-    NSMutableArray *labels = [[self.view childrenOfClass: [UILabel class]] mutableCopy];
-
-    [UIView animateWithDuration: 0.4
-            delay: 0
-            usingSpringWithDamping: 1.0
-            initialSpringVelocity: 0.8
-            options: UIViewAnimationOptionTransitionNone
-            animations: ^{
-                for (int j = 0; j < [labels count]; j++) {
-                    UILabel *label = [labels objectAtIndex: j];
-
-                    //                    if (label == _notesLabel || label == _moodboardLabel) {
-                    //                        label.alpha = [controller isKindOfClass: [TFMindmapViewController class]] ? 1 : 0;
-                    //                    } else if (label == _imageSearchLabel) {
-                    //                        label.alpha = 0;
-                    //                    } else {
-                    //                        label.alpha = 1;
-                    //                    }
-
-                    if (label == _imageSearchLabel) {
-                        label.alpha = 0;
-                    } else {
-                        label.alpha = 1;
-                    }
-                }
-            }
-            completion: nil];
 }
 
 

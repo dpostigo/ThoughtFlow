@@ -7,6 +7,7 @@
 #import "UIView+DPKit.h"
 #import "DRPaginatedScrollView.h"
 #import "UIControl+BlocksKit.h"
+#import "UIView+DPKitDebug.h"
 
 
 @interface TFNewTutorialViewController ()
@@ -42,7 +43,8 @@
     for (int j = 0; j < 5; j++) {
         [_scrollView addPageWithHandler: ^(UIView *pageView) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame: pageView.bounds];
-            imageView.backgroundColor = [UIColor redColor];
+            imageView.backgroundColor = [UIColor clearColor];
+            [imageView addDebugBorder: [UIColor lightGrayColor]];
             [pageView embedView: imageView];
         }];
     }

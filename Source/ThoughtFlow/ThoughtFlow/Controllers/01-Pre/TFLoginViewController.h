@@ -9,7 +9,7 @@
 
 @class DPTableView;
 
-@interface LoginModalController : TFViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface TFLoginViewController : TFViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
 
 }
 

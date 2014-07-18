@@ -5,7 +5,6 @@
 
 #import <DPKit-Utils/UIViewController+DPKit.h>
 #import <UIAlertView+Blocks/UIAlertView+Blocks.h>
-#import <PREBorderView/UIView+PREBorderView.h>
 #import "TFNewAccountViewController.h"
 #import "TFTranslucentView.h"
 #import "TFBarButtonItem.h"
@@ -14,7 +13,6 @@
 #import "APIModel.h"
 #import "APIUser.h"
 #import "NSString+CJStringValidator.h"
-#import "UIView+DPKit.h"
 #import "TFNavigationBar.h"
 #import "UIColor+TFApp.h"
 #import "TWRBorderedView.h"
@@ -116,19 +114,13 @@ static NSString *const TFAccountSignOutString = @"Sign Out";
 
 #pragma mark - Delegates
 
-
-
-
-#pragma mark - UITextFieldDelegate
-#pragma mark - TFNewTextFieldDelegate
+#pragma mark - UITextFieldDelegate / TFNewTextFieldDelegate
 
 - (void) textFieldDidBeginEditing: (UITextField *) textField {
     _currentTextField = textField;
 }
 
-
 - (void) textFieldDidSave: (TFNewTextField *) textField {
-
     TFTableViewCell *cell = (TFTableViewCell *) textField.superview.superview.superview;
 
 

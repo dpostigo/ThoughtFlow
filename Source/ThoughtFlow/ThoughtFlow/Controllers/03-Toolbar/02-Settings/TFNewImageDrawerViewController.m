@@ -65,7 +65,6 @@ NSString *const TFImageDrawerImageTags = @"Tags From Source";
 
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
-
     [self.view layoutIfNeeded];
 }
 
@@ -88,25 +87,20 @@ NSString *const TFImageDrawerImageTags = @"Tags From Source";
 - (void) setImage: (TFPhoto *) image {
     _image = image;
 
-    NSLog(@"self.isViewLoaded = %d", self.isViewLoaded);
     if (self.isViewLoaded) {
-        if (_image) {
-
-            _titleLabel.text = [_image.title uppercaseString];
-            [_tableViewController reloadData];
-
-            if (_project) {
-                _pinButton.selected = [_project.pinnedImages containsObject: _image];
-            } else {
-
-            }
-
-            [self.view layoutIfNeeded];
+        if (_image == nil) {
 
         } else {
 
+            _titleLabel.text = [_image.title uppercaseString];
+
+            if (_project) {
+                _pinButton.selected = [_project.pinnedImages containsObject: _image];
+            }
+
+            [_tableViewController reloadData];
+            [self.view layoutIfNeeded];
         }
-    } else {
 
     }
 }
@@ -154,11 +148,22 @@ NSString *const TFImageDrawerImageTags = @"Tags From Source";
 
         } else if ([title isEqualToString: TFImageDrawerImageDescription]) {
 
-            NSMutableAttributedString *attributedString;
-            attributedString = [[NSAttributedString attributedStringFromHTML: _image.description boldFont: [UIFont boldSystemFontOfSize: 12.0]] mutableCopy];
-            [attributedString addAttribute: NSForegroundColorAttributeName value: cell.detailTextLabel.textColor];
-            //        [attributedString addAttribute: NSFontAttributeName value: _descriptionLabel.font];
-            cell.detailTextLabel.attributedText = attributedString;
+            NSString *description = _image.description;
+            if (description != nil) {
+                //                NSAttributedString *attributedString = [NSAttributedString attributedStringFromHTML: _image.description
+                //                        boldFont: [UIFont boldSystemFontOfSize: 12.0]];
+                //
+                //                if (attributedString) {
+                //                    NSMutableAttributedString *mutableString = [[NSAttributedString attributedStringFromHTML: _image.description
+                //                            boldFont: [UIFont boldSystemFontOfSize: 12.0]] mutableCopy];
+                //                    [mutableString addAttribute: NSForegroundColorAttributeName value: cell.detailTextLabel.textColor];
+                //                    //        [attributedString addAttribute: NSFontAttributeName value: _descriptionLabel.font];
+                //
+                //
+                //                    cell.detailTextLabel.attributedText = mutableString;
+                //                }
+                //
+            }
 
         } else if ([title isEqualToString: TFImageDrawerImageTags]) {
             cell.detailTextLabel.text = _image.tagString;

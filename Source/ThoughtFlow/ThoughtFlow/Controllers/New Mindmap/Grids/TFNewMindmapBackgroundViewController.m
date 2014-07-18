@@ -83,6 +83,7 @@
         if ([_contentController.visibleViewController isKindOfClass: [TFMindmapFullscreenViewController class]]) {
             TFMindmapFullscreenViewController *controller = [[TFMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
             controller.images = _images;
+            controller.delegate = self;
             [_contentController pushViewController: controller animated: YES];
         }
 

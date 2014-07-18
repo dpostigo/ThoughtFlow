@@ -46,12 +46,6 @@
 
 #pragma mark Safety
 
-- (NSString *) description {
-    if (_description == nil) {
-        _description = @"";
-    }
-    return _description;
-}
 
 - (NSString *) tagString {
     if (_tagString == nil) {

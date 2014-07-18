@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TFViewController.h"
-#import "TFNewToolbarViewController.h"
+#import "TFToolbarViewController.h"
 
 
 @class TFContentView;

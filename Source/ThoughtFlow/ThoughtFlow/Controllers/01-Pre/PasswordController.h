@@ -4,9 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LoginModalController.h"
+#import "TFLoginViewController.h"
 
-@interface PasswordController : LoginModalController {
+@interface PasswordController : TFLoginViewController {
 
 }
 @end

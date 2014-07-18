@@ -34,17 +34,30 @@
 
 - (void) loadView {
     self.view = [[UIView alloc] init];
+
     [self _setup];
 }
 
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
 
-    [UIView animateWithDuration: 1.0 animations: ^{
-        _bg.alpha = 1;
-        _contentView.alpha = 1;
-    }];
+    //    [UIView animateWithDuration: 0.5 animations: ^{
+    //        _bg.alpha = 1;
+    //        _contentView.alpha = 1;
+    //    }];
 }
+
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear: animated];
+    //
+    //    [UIView animateWithDuration: 0.3
+    //            animations: ^{
+    //                _bg.alpha = 1;
+    //                _contentView.alpha = 1;
+    //            }];
+}
+
+
 
 
 
@@ -53,12 +66,13 @@
 
 - (void) _setup {
 
+    self.view.layer.allowsGroupOpacity = NO;
+
     _bg = [[TFTranslucentView alloc] initWithFrame: self.view.bounds];
-    _bg.alpha = 0;
-    [self embedFullscreenView: self.bg];
+    [self embedFullscreenView: _bg];
 
     _contentView = [[TFContentView alloc] initWithFrame: self.view.bounds];
-    _contentView.alpha = 0;
+    //    _contentView.alpha = 0;
     [self embedFullscreenView: _contentView];
 
     TFMoodboardGridViewController *controller = [[TFMoodboardGridViewController alloc] initWithProject: _project];

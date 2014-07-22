@@ -1,5 +1,6 @@
 PODS:
-  - AFNetworkActivityLogger (2.0.2):
+  - AFNetworkActivityLogger (2.0.3):
+    - AFNetworking/NSURLConnection (~> 2.0)
     - AFNetworking/NSURLSession (~> 2.0)
   - AFNetworking (2.3.1):
     - AFNetworking/NSURLConnection
@@ -71,6 +72,17 @@ PODS:
     - DPAnimators (= 0.0.1)
     - DPKit-Utils
   - DRPaginatedScrollView (0.1)
+  - DTCoreText (1.6.13):
+    - DTFoundation/Core (~> 1.7.1)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.1)
+    - DTFoundation/DTHTMLParser (~> 1.7.1)
+    - DTFoundation/UIKit (~> 1.7.1)
+  - DTFoundation/Core (1.7.1)
+  - DTFoundation/DTAnimatedGIF (1.7.1)
+  - DTFoundation/DTHTMLParser (1.7.1):
+    - DTFoundation/Core
+  - DTFoundation/UIKit (1.7.1):
+    - DTFoundation/Core
   - ILTranslucentView (0.0.1)
   - JMSimpleDate (0.0.6)
   - NSAttributedString-DDHTML (0.0.1)
@@ -80,6 +92,7 @@ PODS:
   - TWRBorderedView (0.1)
   - UIAlertView+Blocks (0.8.1)
   - UIColorCategories (0.1.0)
+  - VCTransitionsLibrary (1.4.0)
 
 DEPENDENCIES:
   - AFNetworkActivityLogger
@@ -100,6 +113,7 @@ DEPENDENCIES:
   - DPTableView (from `~/Development/LocalPods/DPKit-Suite/DPTableView`)
   - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
   - DRPaginatedScrollView
+  - DTCoreText
   - ILTranslucentView
   - NSAttributedString-DDHTML
   - NSObject+AutoDescription
@@ -108,6 +122,7 @@ DEPENDENCIES:
   - TWRBorderedView
   - UIAlertView+Blocks
   - UIColorCategories
+  - VCTransitionsLibrary
 
 EXTERNAL SOURCES:
   AFOAuth2Client:
@@ -128,7 +143,7 @@ EXTERNAL SOURCES:
     :path: ~/Development/LocalPods/DPTransitions
 
 SPEC CHECKSUMS:
-  AFNetworkActivityLogger: 45ca411593444cbdc401b12924b4c17082ad512a
+  AFNetworkActivityLogger: d6a2d2755fada3a1fbf1f490ec0dd92224e092a4
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   AFOAuth2Client: 05536bd4175add72e7efcb6b749d4e9685ed02f7
   AutoCoding: 2a15d57acf78912b72cc3b3a472e614b2f112a18
@@ -146,6 +161,8 @@ SPEC CHECKSUMS:
   DPTableView: c5617cb4751ae277a0fa75ae4d0a15e74ffe68bb
   DPTransitions: fb247247ff38c47a0fb2ca0f97d9d9ad4b8924b8
   DRPaginatedScrollView: 510eec673cbf0f142b3eb580ffc4fb182faba412
+  DTCoreText: 84eb8ba2e70448fdd9d837540e371f9f587b65ba
+  DTFoundation: ef6fb95da64f202d1600bc23dde79c6fd74c0c2d
   ILTranslucentView: fa20cc89ceb451b54ae3d993c7dfb789873ef153
   JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
   NSAttributedString-DDHTML: b660068de47108746a88474e29f98ac32b5d3e16
@@ -155,5 +172,6 @@ SPEC CHECKSUMS:
   TWRBorderedView: 34508430c24fc249d2079f1c508f9f63d07f4bd0
   UIAlertView+Blocks: 0b749f1f7bd5131ff2233b30a406c1585a7171b2
   UIColorCategories: 8fbcc33a0ed3a03395caabfcb39f77231986413b
+  VCTransitionsLibrary: 0624c9163552cf5ded57f80f6285e20fa2863607
 
 COCOAPODS: 0.33.1

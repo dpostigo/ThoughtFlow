@@ -11,7 +11,7 @@ typedef NS_ENUM(NSInteger, TFUserPreferenceType) {
     TFUserPreferenceTypeAutorefresh
 };
 
-@interface TFUserPreferences : NSObject
+@interface TFUserPreferences : NSObject <NSCoding>
 
 @property(nonatomic) BOOL imageSearchEnabled;
 @property(nonatomic) BOOL autoRefreshEnabled;

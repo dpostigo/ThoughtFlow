@@ -5,19 +5,12 @@
 
 #import <AutoCoding/AutoCoding.h>
 #import <NSObject+AutoDescription/NSObject+AutoDescription.h>
+#import <BlocksKit/NSObject+BKBlockObservation.h>
 #import "LibraryObject.h"
 #import "TFNode.h"
 
 
 @implementation LibraryObject
-
-- (void) save {
-    if (self.parent) {
-        if ([self.parent respondsToSelector: @selector(save)]) {
-            [self.parent performSelector: @selector(save)];
-        }
-    }
-}
 
 - (id) init {
     self = [super init];
@@ -29,19 +22,14 @@
     return self;
 }
 
+#pragma mark - Public
 
-+ (NSString *) uuid {
-    CFUUIDRef uuidRef = CFUUIDCreate(NULL);
-    CFStringRef uuidStringRef = CFUUIDCreateString(NULL, uuidRef);
-    CFRelease(uuidRef);
-    return (__bridge NSString *) uuidStringRef;
-}
 
-- (void) observeValueForKeyPath: (NSString *) keyPath ofObject: (id) object change: (NSDictionary *) change context: (void *) context {
-    if (object == self && [keyPath isEqualToString: @"children"]) {
-        [self setParentForChildren];
-    } else {
-        [super observeValueForKeyPath: keyPath ofObject: object change: change context: context];
+- (void) save {
+    if (self.parent) {
+        if ([self.parent respondsToSelector: @selector(save)]) {
+            [self.parent performSelector: @selector(save)];
+        }
     }
 }
 
@@ -50,7 +38,6 @@
     [self.mutableChildren addObject: item];
     [self save];
 }
-
 
 - (void) addChildren: (NSArray *) items {
     [self.mutableChildren addObjectsFromArray: items];
@@ -71,6 +58,52 @@
 }
 
 
+#pragma mark - Setup
+
+
+- (void) setWithCoder: (NSCoder *) aDecoder {
+    [super setWithCoder: aDecoder];
+
+    [self _postSetup];
+    [self _setParentForChildren];
+
+}
+
+
+- (void) _postSetup {
+    [self addObserver: self forKeyPath: @"children" options: 0 context: NULL];
+
+}
+
+
+- (void) _setParentForChildren {
+    [self.children enumerateObjectsUsingBlock: ^(id obj, NSUInteger index, BOOL *stop) {
+        if ([obj isKindOfClass: [LibraryObject class]]) {
+            LibraryObject *libraryObject = obj;
+            libraryObject.parent = self;
+        }
+    }];
+}
+
+- (void) dealloc {
+    [self removeObserver: self forKeyPath: @"children"];
+
+}
+
+
+#pragma mark - Observers
+
+- (void) observeValueForKeyPath: (NSString *) keyPath ofObject: (id) object change: (NSDictionary *) change context: (void *) context {
+    if (object == self && [keyPath isEqualToString: @"children"]) {
+        [self _setParentForChildren];
+    } else {
+        [super observeValueForKeyPath: keyPath ofObject: object change: change context: context];
+    }
+}
+
+
+#pragma mark - Getters
+
 - (NSArray *) children {
     if (_children == nil) {
         _children = [NSArray array];
@@ -83,28 +116,13 @@
     return [self mutableArrayValueForKey: @"children"];
 }
 
+#pragma mark - Class methods
 
-- (void) setWithCoder: (NSCoder *) aDecoder {
-    [super setWithCoder: aDecoder];
-
-    [self _postSetup];
-    [self setParentForChildren];
-
++ (NSString *) uuid {
+    CFUUIDRef uuidRef = CFUUIDCreate(NULL);
+    CFStringRef uuidStringRef = CFUUIDCreateString(NULL, uuidRef);
+    CFRelease(uuidRef);
+    return (__bridge NSString *) uuidStringRef;
 }
 
-
-- (void) _postSetup {
-    [self addObserver: self forKeyPath: @"children" options: 0 context: NULL];
-
-}
-
-- (void) setParentForChildren {
-
-    [self.children enumerateObjectsUsingBlock: ^(id obj, NSUInteger index, BOOL *stop) {
-        if ([obj isKindOfClass: [LibraryObject class]]) {
-            LibraryObject *libraryObject = obj;
-            libraryObject.parent = self;
-        }
-    }];
-}
 @end

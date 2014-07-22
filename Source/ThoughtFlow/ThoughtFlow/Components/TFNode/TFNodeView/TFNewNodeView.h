@@ -16,4 +16,6 @@
 
 @property(nonatomic, strong) UILabel *textLabel;
 @property(nonatomic, strong) UIView *selectionBg;
+@property(nonatomic, strong) UIPanGestureRecognizer *verticalPan;
+@property(nonatomic, strong) UIPanGestureRecognizer *horizontalPan;
 @end

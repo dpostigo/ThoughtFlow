@@ -9,7 +9,7 @@
 #import "TFImageGridViewCell.h"
 #import "TFPhoto.h"
 #import "TFMindmapFullscreenViewController.h"
-#import "TFNewMindmapBackgroundViewController.h"
+#import "TFMindmapBackgroundViewController.h"
 
 
 @implementation TFNewMindmapGridViewController
@@ -25,12 +25,17 @@
 }
 
 
+- (void) loadView {
+    self.view = [[UIView alloc] init];
+
+    [self _setup];
+}
+
 
 #pragma mark - View lifecycle
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    [self _setup];
 }
 
 

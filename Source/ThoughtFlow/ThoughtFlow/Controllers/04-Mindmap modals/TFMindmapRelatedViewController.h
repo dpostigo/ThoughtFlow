@@ -16,7 +16,6 @@
 @property(weak) IBOutlet UIView *containerView;
 @property(weak) IBOutlet UILabel *textLabel;
 
-@property(nonatomic, strong) NSArray *suggestions;
 @property(nonatomic, strong) UITapGestureRecognizer *recognizer;
 @property(nonatomic, strong) TFTableViewController *tableViewController;
 @property(nonatomic, strong) TFNode *node;

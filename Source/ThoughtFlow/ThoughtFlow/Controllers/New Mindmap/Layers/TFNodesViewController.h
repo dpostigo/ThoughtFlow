@@ -33,14 +33,14 @@
 
 - (void) nodesControllerDidCreateNode: (TFNode *) node withRoot: (TFNode *) rootNode;
 - (void) nodesControllerDidSelectNode: (TFNode *) node;
-- (void) nodesControllerDidDeleteNode: (TFNode *) node;
+- (void) nodesControllerDidDeleteNode: (TFNode *) node withNodeView: (TFBaseNodeView *) nodeView;
 - (void) nodesControllerDidDoubleTapNode: (TFNode *) node;
 - (void) nodesControllerDidTapRelated: (TFBaseNodeView *) nodeView forNode: (TFNode *) node;
 
 
 @end
 
-@interface TFNodesViewController : TFViewController <TFBaseNodeViewDelegate>
+@interface TFNodesViewController : TFViewController <TFBaseNodeViewDelegate, UIGestureRecognizerDelegate>
 
 @property(nonatomic, strong) TFNode *rootNode;
 @property(nonatomic, strong) NSArray *nodes;
@@ -51,6 +51,7 @@
 @property(nonatomic) CGPoint pinchEndPoint;
 @property(nonatomic) CGPoint centerPoint;
 
+- (void) removeNodeView: (TFBaseNodeView *) nodeView;
 - (void) centerFirstNode;
 - (void) selectFirstNodeView;
 

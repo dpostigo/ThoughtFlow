@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B4B64B9B8B8E4CD593E6B7DC"
+               BlueprintIdentifier = "F9843DD9DC474E2FBF38ED81"
                BuildableName = "libPods-TWRBorderedView.a"
                BlueprintName = "Pods-TWRBorderedView"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -49,13 +49,8 @@
 
     NSDictionary *normalAttributes = [TFBarButtonItem defaultAttributes];
 
-    NSDictionary *selectedAttributes = [TFString attributesWithAttributes: nil
-            font: [UIFont gothamRoundedLightFontOfSize: 11.0]
-            color: [UIColor tfGreenColor]
-            kerning: 100
-            lineSpacing: 1
-            textAlignment: NSTextAlignmentRight];
-
+    NSMutableDictionary *selectedAttributes = [[TFBarButtonItem defaultAttributes] mutableCopy];
+    [selectedAttributes setObject: NSForegroundColorAttributeName forKey: [UIColor tfGreenColor]];
 
     NSAttributedString *normalString = [[NSAttributedString alloc] initWithString: @"EDIT" attributes: normalAttributes];
     NSAttributedString *selectedString = [[NSAttributedString alloc] initWithString: @"SAVE" attributes: selectedAttributes];
@@ -72,7 +67,7 @@
 
 + (NSDictionary *) defaultAttributes {
     NSDictionary *ret = [TFString attributesWithAttributes: nil
-            font: [UIFont gothamRoundedLightFontOfSize: 11.0]
+            font: [UIFont gothamRoundedLightFontOfSize: 12.0]
             color: [UIColor whiteColor]
             kerning: 100
             lineSpacing: 1

@@ -15,6 +15,7 @@
 @interface TFTableViewController : UITableViewController
 
 extern NSString *const TFTableViewDefaultCellIdentifier;
+extern NSString *const TFTableViewImageDrawerCellIdentifier;
 extern NSString *const TFButtonTableViewCellIdentifier;
 extern NSString *const TFTableViewBlankCellIdentifier;
 

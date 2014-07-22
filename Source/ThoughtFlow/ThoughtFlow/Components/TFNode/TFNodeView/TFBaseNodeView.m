@@ -29,7 +29,7 @@ CGFloat const TFNodeViewHeight = 80;
 + (UIView *) greenGhostView {
     UIView *ret = [[UIView alloc] initWithFrame: CGRectMake(0, 0, TFNodeViewWidth,
             TFNodeViewHeight)];
-    ret.backgroundColor = [UIColor tfGreenColor];
+    ret.backgroundColor = [[UIColor tfGreenColor] colorWithAlphaComponent: 0.5];
 
     return ret;
 }

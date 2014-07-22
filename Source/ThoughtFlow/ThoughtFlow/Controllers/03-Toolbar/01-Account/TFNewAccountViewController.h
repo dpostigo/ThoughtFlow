@@ -22,8 +22,8 @@
 
 }
 
-@property(nonatomic) CGFloat navigationBarHeight;
 @property(nonatomic) CGFloat rowHeight;
+@property(nonatomic) CGFloat navigationBarHeight;
 @property(nonatomic, assign) id <TFNewAccountViewControllerDelegate> delegate;
 
 @end

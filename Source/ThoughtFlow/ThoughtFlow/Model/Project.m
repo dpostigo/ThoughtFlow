@@ -102,6 +102,11 @@
     [self addObserver: self forKeyPath: @"pins" options: 0 context: NULL];
 }
 
+- (void) dealloc {
+    [self removeObserver: self forKeyPath: @"pins"];
+}
+
+
 
 #pragma mark - Private
 

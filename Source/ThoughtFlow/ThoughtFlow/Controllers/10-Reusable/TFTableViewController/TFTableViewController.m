@@ -10,6 +10,7 @@
 
 
 NSString *const TFTableViewDefaultCellIdentifier = @"TableCell";
+NSString *const TFTableViewImageDrawerCellIdentifier = @"TFImageDrawerCell";
 NSString *const TFButtonTableViewCellIdentifier = @"TFButtonCell";
 NSString *const TFTableViewBlankCellIdentifier = @"TFBlankCell";
 

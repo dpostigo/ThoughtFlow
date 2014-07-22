@@ -9,10 +9,18 @@
 @implementation TFUserPreferences
 
 - (void) toggleForType: (TFUserPreferenceType) type flag: (BOOL) flag {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
     if (type == TFUserPreferenceTypeImageSearch) {
+        NSLog(@"flag = %d", flag);
         self.imageSearchEnabled = flag;
+        NSLog(@"self.imageSearchEnabled = %d", self.imageSearchEnabled);
+
     } else if (type == TFUserPreferenceTypeAutorefresh) {
         self.autoRefreshEnabled = flag;
+
+    } else {
+        NSLog(@"type = %d", type);
     }
 }
 

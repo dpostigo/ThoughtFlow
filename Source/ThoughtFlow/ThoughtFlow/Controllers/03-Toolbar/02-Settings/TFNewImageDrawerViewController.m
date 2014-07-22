@@ -4,15 +4,22 @@
 //
 
 #import <DPKit-Utils/UIViewController+DPKit.h>
-#import <DPKit-Utils/UIView+DPKitDebug.h>
+#import <DPKit-Utils/NSMutableAttributedString+DPKit.h>
+#import <DTCoreText/DTAttributedTextContentView.h>
+#import <BlocksKit/NSObject+BKBlockExecution.h>
 #import "TFNewImageDrawerViewController.h"
 #import "Project.h"
 #import "TFPhoto.h"
 #import "TFTableViewCell.h"
 #import "TFImageDrawerContentViewController.h"
-#import "NSMutableAttributedString+DPKit.h"
-#import "NSAttributedString+DDHTML.h"
 #import "UIControl+BlocksKit.h"
+#import "NSAttributedString+HTML.h"
+#import "DTCoreTextConstants.h"
+#import "NSString+HTML.h"
+#import "NSString+Paragraphs.h"
+#import "TFAttributedTableViewCell.h"
+#import "DTAttributedLabel.h"
+#import "NSAttributedString+DDHTML.h"
 
 
 NSString *const TFImageDrawerImageCredits = @"Image Credits";
@@ -147,23 +154,7 @@ NSString *const TFImageDrawerImageTags = @"Tags From Source";
             cell.detailTextLabel.text = @"Image credits";
 
         } else if ([title isEqualToString: TFImageDrawerImageDescription]) {
-
-            NSString *description = _image.description;
-            if (description != nil) {
-                //                NSAttributedString *attributedString = [NSAttributedString attributedStringFromHTML: _image.description
-                //                        boldFont: [UIFont boldSystemFontOfSize: 12.0]];
-                //
-                //                if (attributedString) {
-                //                    NSMutableAttributedString *mutableString = [[NSAttributedString attributedStringFromHTML: _image.description
-                //                            boldFont: [UIFont boldSystemFontOfSize: 12.0]] mutableCopy];
-                //                    [mutableString addAttribute: NSForegroundColorAttributeName value: cell.detailTextLabel.textColor];
-                //                    //        [attributedString addAttribute: NSFontAttributeName value: _descriptionLabel.font];
-                //
-                //
-                //                    cell.detailTextLabel.attributedText = mutableString;
-                //                }
-                //
-            }
+            [self handleDescriptionLabel: (TFTableViewCell *) cell];
 
         } else if ([title isEqualToString: TFImageDrawerImageTags]) {
             cell.detailTextLabel.text = _image.tagString;
@@ -173,6 +164,156 @@ NSString *const TFImageDrawerImageTags = @"Tags From Source";
     cell.detailTextLabel.alpha = 0.7;
 
 }
+
+
+- (void) handleDescriptionLabel: (TFTableViewCell *) cell {
+
+    NSData *data;
+    NSString *description = _image.description;
+
+    if (description != nil) {
+
+        description = [description stringByReplacingHTMLEntities];
+        data = [description dataUsingEncoding: NSUTF8StringEncoding];
+
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithHTMLData: data documentAttributes: NULL];
+
+        if (attributedString) {
+            NSMutableAttributedString *mutableString = [attributedString mutableCopy];
+            [mutableString addAttribute: NSForegroundColorAttributeName value: cell.detailTextLabel.textColor];
+
+
+
+            //        [attributedString addAttribute: NSFontAttributeName value: _descriptionLabel.font];
+
+
+            cell.detailTextLabel.attributedText = mutableString;
+        }
+
+    }
+
+    return;
+
+    if (description) {
+
+        NSAttributedString *attrString = nil;
+        attrString = [[NSAttributedString alloc] initWithHTMLData: data
+                options: @{
+                        DTDefaultFontFamily : cell.detailTextLabel.font.fontName,
+                        DTDefaultTextColor : [UIColor redColor]
+                }
+                documentAttributes: NULL];
+
+        if (attrString) {
+            //                    NSMutableAttributedString *mutableString = [attrString mutableCopy];
+            //                [mutableString addAttribute: NSForegroundColorAttributeName value: cell.detailTextLabel.textColor];
+
+            cell.detailTextLabel.attributedText = attrString;
+
+        }
+    }
+
+    return;
+
+    if ([cell isKindOfClass: [TFAttributedTableViewCell class]]) {
+        TFAttributedTableViewCell *attributedTableViewCell = (TFAttributedTableViewCell *) cell;
+
+
+        //
+
+        if (description) {
+            NSData *data = [description dataUsingEncoding: NSUTF8StringEncoding];
+
+            NSAttributedString *attrString = [[NSAttributedString alloc] initWithHTMLData: data
+                    options: @{
+                            DTDefaultFontFamily : cell.detailTextLabel.font.fontName,
+                            DTDefaultTextColor : [UIColor redColor]
+                    }
+                    documentAttributes: NULL];
+            attributedTableViewCell.attributedLabel.attributedString = attrString;
+        }
+    } else {
+
+        //                description = [description stringByReplacingHTMLEntities];
+        NSData *data = [description dataUsingEncoding: NSUTF8StringEncoding];
+
+        NSAttributedString *attrString;
+        attrString = [[NSAttributedString alloc] initWithHTMLData: data
+                options: @{
+                        DTDefaultFontFamily : cell.detailTextLabel.font.fontName,
+                        DTDefaultTextColor : [UIColor redColor]
+                }
+                documentAttributes: NULL];
+
+        if (attrString) {
+            //                    NSMutableAttributedString *mutableString = [attrString mutableCopy];
+            //                [mutableString addAttribute: NSForegroundColorAttributeName value: cell.detailTextLabel.textColor];
+
+            cell.detailTextLabel.attributedText = attrString;
+
+        }
+
+    }
+
+    //
+    //            //            description = [description string]
+    //
+    //            NSLog(@"description = %@", description);
+    //
+
+
+    //
+    //            NSLog(@"description.numberOfParagraphs = %u", description.numberOfParagraphs);
+    //
+    //            attrString = [[NSAttributedString alloc] initWithString: description];
+    //
+    //            if (attrString) {
+    //                NSMutableAttributedString *mutableString = [attrString mutableCopy];
+    //                //                [mutableString addAttribute: NSForegroundColorAttributeName value: cell.detailTextLabel.textColor];
+    //
+    //                cell.detailTextLabel.attributedText = mutableString;
+    //
+    //            }
+
+
+    //
+    //
+    //            [self bk_performBlockInBackground: ^(id obj) {
+    //                NSLog(@"description = %@", description);
+    //
+    //                if (description != nil) {
+    //                    NSAttributedString *attributedString = [NSAttributedString attributedStringFromHTML: description boldFont: [UIFont boldSystemFontOfSize: 12.0]];
+    //
+    //                    if (attributedString) {
+    //                        NSMutableAttributedString *mutableString = [attributedString mutableCopy];
+    //                        [mutableString addAttribute: NSForegroundColorAttributeName value: cell.detailTextLabel.textColor];
+    //
+    //                        NSLog(@"mutableString = %@", mutableString);
+    //
+    //
+    //                        //        [attributedString addAttribute: NSFontAttributeName value: _descriptionLabel.font];
+    //
+    //
+    //                        cell.detailTextLabel.attributedText = mutableString;
+    //                    }
+    //
+    //                }
+    //
+    //            } afterDelay: 0.0];
+
+}
+
+- (NSString *) styledHTMLwithHTML: (NSString *) HTML {
+    NSString *style = @"<meta charset=\"UTF-8\"><style> body { font-family: 'HelveticaNeue'; font-size: 20px; } b {font-family: 'MarkerFelt-Wide'; }</style>";
+
+    return [NSString stringWithFormat: @"%@%@", style, HTML];
+}
+
+- (NSAttributedString *) attributedStringWithHTML: (NSString *) HTML {
+    NSDictionary *options = @{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType};
+    return [[NSAttributedString alloc] initWithData: [HTML dataUsingEncoding: NSUTF8StringEncoding] options: options documentAttributes: NULL error: NULL];
+}
+
 
 - (NSInteger) tableView: (UITableView *) tableView numberOfRowsInSection: (NSInteger) section {
     return [_rows count];

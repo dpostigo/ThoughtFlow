@@ -8,10 +8,9 @@
 
 @interface ProjectsController : TFViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource> {
 
-    IBOutlet UICollectionView *collection;
 }
 
-@property(nonatomic, strong) UICollectionView *collection;
+@property(weak) IBOutlet UICollectionView *collection;
 
-//@property(weak) IBOutlet UIButton *newProjectButton;
+@property(weak) IBOutlet UIButton *addProjectButton;
 @end

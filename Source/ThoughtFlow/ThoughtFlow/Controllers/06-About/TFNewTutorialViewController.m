@@ -30,21 +30,15 @@
     _scrollView.delegate = self;
     [_containerView embedView: _scrollView];
 
-    NSArray *images = @[
-            [[UIImageView alloc] initWithFrame: self.view.bounds],
-            [[UIImageView alloc] initWithFrame: self.view.bounds],
-            [[UIImageView alloc] initWithFrame: self.view.bounds],
-            [[UIImageView alloc] initWithFrame: self.view.bounds],
-            [[UIImageView alloc] initWithFrame: self.view.bounds]
-    ];
-
+    __block UIImage *image;
     int count = 5;
 
-    for (int j = 0; j < 5; j++) {
+    for (int j = 1; j < 7; j++) {
         [_scrollView addPageWithHandler: ^(UIView *pageView) {
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame: pageView.bounds];
-            imageView.backgroundColor = [UIColor clearColor];
-            [imageView addDebugBorder: [UIColor lightGrayColor]];
+
+            image = [UIImage imageNamed: [NSString stringWithFormat: @"guide-0%i", j]];
+            UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
+            //            imageView.backgroundColor = [UIColor clearColor];
             [pageView embedView: imageView];
         }];
     }

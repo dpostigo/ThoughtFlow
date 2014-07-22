@@ -94,6 +94,9 @@
         [self.mutablePhotos addObject: ret];
         [self.mutablePhotoURLs addObject: urlString];
 
+        id description = [dictionary objectForKey: @"description"];
+//        NSLog(@"description = %@", description);
+
     }
 
     return ret;

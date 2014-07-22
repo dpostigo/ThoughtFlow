@@ -80,9 +80,9 @@
 
 
 - (void) _setupOld {
-    emailFieldOld.text = _apiModel.currentUser.email;
-    passwordFieldOld.text = _apiModel.currentUser.password;
-    usernameFieldOld.text = _apiModel.currentUser.username;
+    emailFieldOld.text = [APIModel sharedModel].currentUser.email;
+    passwordFieldOld.text = [APIModel sharedModel].currentUser.password;
+    usernameFieldOld.text = [APIModel sharedModel].currentUser.username;
 
     emailFieldOld.leftAccessoryImageView.image = [UIImage imageNamed: @"email-icon"];
     usernameFieldOld.leftAccessoryImageView.image = [UIImage imageNamed: @"user-icon"];

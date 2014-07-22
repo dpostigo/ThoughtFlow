@@ -32,8 +32,11 @@
         self.view = [[TWRBorderedView alloc] initWithFrame: CGRectMake(0, 0, 300, 300) borderWidth: 0.5 color: [UIColor tfToolbarBorderColor] andMask: TWRBorderMaskRight];
     } else {
         self.view = [[UIView alloc] init];
-        self.view.backgroundColor = [UIColor colorWithWhite: 0.0 alpha: 0.5];
     }
+
+    self.view.backgroundColor = [UIColor colorWithWhite: 0.0 alpha: 0.4];
+    self.view.backgroundColor = [[UIColor tfToolbarBackgroundColor] colorWithAlphaComponent: 0.5];
+    self.view.opaque = NO;
 
     [self _setup];
 }

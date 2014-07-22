@@ -6,6 +6,7 @@
 
 #import <Availability.h>
 
+
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."
 #endif
@@ -16,9 +17,9 @@
 #import <Foundation/Foundation.h>
 #import "DDLog.h"
 
+
 #define USE_API 1
 #define ALT_STYLING 0
-
 
 #ifdef DEBUG
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;

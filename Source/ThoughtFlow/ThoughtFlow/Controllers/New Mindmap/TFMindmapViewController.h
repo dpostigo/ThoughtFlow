@@ -14,7 +14,7 @@
 @class TFNode;
 @class TFNodesViewController;
 @class TFLinesViewController;
-@class TFNewMindmapBackgroundViewController;
+@class TFMindmapBackgroundViewController;
 @class TFContentView;
 @class TFScrollingMindmapViewController;
 @class TFUserPreferences;

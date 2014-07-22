@@ -19,11 +19,12 @@ extern NSString *const ThoughtFlowBaseURL;
     Model *_model;
 }
 
+@property(nonatomic, readonly) PhotoLibrary *photoLibrary;
+@property(nonatomic, strong) TFLibrary *library;
+@property(nonatomic, readonly) NSArray *projects;
 @property(nonatomic) BOOL usesConnections;
 @property(nonatomic) BOOL usesDummyData;
 @property(nonatomic, strong) APIUser *currentUser;
-@property(nonatomic, strong) PhotoLibrary *photoLibrary;
-@property(nonatomic, strong) TFLibrary *library;
 @property(nonatomic, strong) AFOAuth2Client *authClient;
 + (void) alertErrorWithTitle: (NSString *) title message: (NSString *) message;
 - (void) authenticateWithCompletion: (void (^)()) completion failure: (void (^)()) failure;
@@ -41,5 +42,6 @@ extern NSString *const ThoughtFlowBaseURL;
 - (void) signOutWithCompletion: (void (^)()) completion;
 - (void) hasImages: (NSString *) string completion: (void (^)(BOOL hasImages)) completion;
 - (void) getImages: (NSString *) string success: (void (^)(NSArray *images)) success failure: (void (^)()) failure;
+- (void) getRelated: (NSString *) string success: (void (^)(NSArray *topics)) success failure: (void (^)(NSError *)) failure;
 - (void) preloadImages: (NSArray *) images;
 @end

@@ -15,7 +15,7 @@
 @end
 
 
-@interface TFNewDrawerController : TFViewController
+@interface TFNewDrawerController : UIViewController
 
 @property(nonatomic, assign) id <TFNewDrawerControllerDelegate> drawerDelegate;
 - (IBAction) closeDrawer: (id) sender;

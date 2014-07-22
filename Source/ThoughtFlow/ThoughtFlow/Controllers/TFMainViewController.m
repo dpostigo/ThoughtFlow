@@ -13,20 +13,22 @@
 #import "TFContentViewNavigationController.h"
 #import "TFMindmapGridViewController.h"
 #import "ProjectsController.h"
-#import "TFNewSettingsDrawerController.h"
+#import "TFSettingsDrawerController.h"
 #import "CreateProjectController.h"
 #import "TFMoodboardViewController.h"
 #import "TFNewNotesDrawerController.h"
 #import "APIModel.h"
 #import "TFNewAboutViewController.h"
 #import "UIView+DPKit.h"
+#import "TFSlideUpAnimator.h"
 
 
 @interface TFMainViewController ()
 
 @property(weak) IBOutlet UIView *toolbarContainerView;
 @property(nonatomic, strong) TFToolbarViewController *toolbarViewController;
-@property(nonatomic, strong) NavigationFadeAnimator *fadingNavigationAnimator;
+@property(nonatomic, strong) NavigationFadeAnimator *fadeAnimator;
+@property(nonatomic, strong) TFSlideUpAnimator *slideUpAnimator;
 @property(nonatomic, strong) NavigationSlideAnimator *slidingNavigationAnimator;
 @end
 
@@ -40,8 +42,8 @@
 - (id) initWithCoder: (NSCoder *) coder {
     self = [super initWithCoder: coder];
     if (self) {
-        _fadingNavigationAnimator = [NavigationFadeAnimator new];
-
+        _fadeAnimator = [NavigationFadeAnimator new];
+        _slideUpAnimator = [TFSlideUpAnimator new];
         _slidingNavigationAnimator = [NavigationSlideAnimator new];
     }
 
@@ -100,7 +102,6 @@
     switch (type) {
 
         case TFToolbarButtonTypeHome : {
-
             break;
         }
 
@@ -133,6 +134,7 @@
         case TFToolbarButtonTypeAccount : {
 
             TFNewAccountViewController *controller = [[TFNewAccountViewController alloc] init];
+            controller.delegate = self;
             controller.navigationBarHeight = [_toolbarViewController buttonForType: TFToolbarButtonTypeHome].height;
             controller.rowHeight = [_toolbarViewController buttonForType: TFToolbarButtonTypeProjects].height;
 
@@ -143,7 +145,9 @@
         }
 
         case TFToolbarButtonTypeImageSettings : {
-            TFNewSettingsDrawerController *controller = [[TFNewSettingsDrawerController alloc] init];
+            TFSettingsDrawerController *controller = [[TFSettingsDrawerController alloc] init];
+            controller.navigationBarHeight = [_toolbarViewController buttonForType: TFToolbarButtonTypeHome].height;
+
             _contentNavigationController.leftDrawerController = controller;
             [_contentNavigationController openLeftContainer];
             _toolbarViewController.selectedIndex = type;
@@ -154,7 +158,6 @@
 
             UIViewController *visibleController = _contentNavigationController.visibleViewController;
             if ([visibleController isKindOfClass: [TFNewAboutViewController class]]) {
-
                 NSLog(@"visibleController.isBeingPresented = %d", visibleController.isBeingPresented);
                 if (visibleController.isBeingPresented) {
 
@@ -164,14 +167,17 @@
 
             TFNewAboutViewController *controller = [[TFNewAboutViewController alloc] init];
             controller.drawerDelegate = self;
+
             //            [_contentNavigationController presentViewController: controller animated: YES completion: nil];
             [_contentNavigationController toggleViewController: controller animated: YES];
 
             break;
         }
 
-        default :
+        default : {
+
             break;
+        }
     }
 
 }
@@ -231,24 +237,30 @@
 - (id <UIViewControllerAnimatedTransitioning>) navigationController: (UINavigationController *) navigationController animationControllerForOperation: (UINavigationControllerOperation) operation fromViewController: (UIViewController *) sourceController toViewController: (UIViewController *) destinationController {
     BasicAnimator *ret = nil;
 
-    if ([sourceController isKindOfClass: [TFMoodboardViewController class]]
-            && [destinationController isKindOfClass: [ProjectsController class]]) {
-        _fadingNavigationAnimator.opaque = YES;
-        return _fadingNavigationAnimator;
+    //    if ([sourceController isKindOfClass: [TFMoodboardViewController class]]
+    //            && [destinationController isKindOfClass: [ProjectsController class]]) {
+    //        _fadeAnimator.opaque = YES;
+    //        return _fadeAnimator;
+    //
+    //    } else {
+    //        _fadeAnimator.opaque = NO;
+    //    }
 
+    if ([destinationController isKindOfClass: [ProjectsController class]]) {
+        _fadeAnimator.opaque = YES;
     } else {
-        _fadingNavigationAnimator.opaque = NO;
+        _fadeAnimator.opaque = NO;
     }
 
     if (
-            [destinationController isKindOfClass: [TFNewAboutViewController class]] ||
-                    [sourceController isKindOfClass: [TFNewAboutViewController class]] ||
-
-                    [destinationController isKindOfClass: [TFMoodboardViewController class]] ||
+            [destinationController isKindOfClass: [TFMoodboardViewController class]] ||
                     [sourceController isKindOfClass: [TFMoodboardViewController class]] ||
 
+                    [destinationController isKindOfClass: [TFNewAboutViewController class]] ||
+                    [sourceController isKindOfClass: [TFNewAboutViewController class]] ||
+
                     [destinationController isKindOfClass: [TFMindmapGridViewController class]]) {
-        ret = _fadingNavigationAnimator;
+        ret = _fadeAnimator;
 
     } else {
         ret = _slidingNavigationAnimator;

@@ -29,8 +29,6 @@
 @property(nonatomic, strong) UIView *rightContentView;
 @property(nonatomic, strong) UIView *topContentView;
 
-@property(nonatomic, strong) UIPanGestureRecognizer *verticalPan;
-@property(nonatomic, strong) UIPanGestureRecognizer *horizontalPan;
 @property(nonatomic, strong) UITapGestureRecognizer *doubleTapGesture;
 @property(nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @property(nonatomic) CGPoint startingOffset;
@@ -43,7 +41,6 @@
     frame.size.height = TFNodeViewHeight;
     self = [super initWithFrame: frame];
     if (self) {
-
         [self _setup];
     }
 
@@ -197,6 +194,8 @@
             [self _notifyDidTriggerRelated];
         } else if (self.nodeState == TFNodeViewStateDelete) {
             [self _notifyDidTriggerDeletion];
+        } else if (self.nodeState == TFNodeViewStateNormal) {
+            self.selected = YES;
         }
     }];
     [_hotView addGestureRecognizer: _tapGesture];

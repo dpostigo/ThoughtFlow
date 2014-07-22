@@ -19,7 +19,7 @@
     UILabel *label = aButton.prototype;
     //    aButton.prototypeClass = [TFKernedGothamLightLabel class];
     aButton.prototype.text = aTitle;
-    aButton.prototype.font = [UIFont fontWithName: label.font.fontName size: 12.0];
+    aButton.prototype.font = [UIFont fontWithName: label.font.fontName size: 11.0];
     aButton.prototype.textColor = [UIColor whiteColor];
     [aButton setTitle: aTitle forState: UIControlStateNormal];
     [aButton setImage: anImage forState: UIControlStateNormal];

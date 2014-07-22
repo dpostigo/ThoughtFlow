@@ -7,7 +7,13 @@
 #import "TFNewKernedGothamLightLabel.h"
 
 
-@interface TFNewSpacedGothamLightLabel : DPNewKernedLabel {
+@interface TFNewSpacedGothamLightLabel : UILabel {
 
 }
+
+@property(nonatomic, strong) NSString *fontName;
+@property(nonatomic) CGFloat pointSize;
+@property(nonatomic) CGFloat kerning;
+@property(nonatomic) CGFloat lineSpacing;
+
 @end

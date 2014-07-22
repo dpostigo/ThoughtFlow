@@ -17,10 +17,7 @@ pod 'DPCollectionView'
 pod 'DPKit-Utils', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-Utils'
 pod 'DPTransitions', :path => '~/Development/LocalPods/DPTransitions'
 pod 'DPKit-UIView', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-UIView'
-
 pod 'DPAnimators', :path => '~/Development/LocalPods/DPAnimators'
-
-
 pod 'DPKit-UIFont', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-UIFont'
 
 
@@ -42,6 +39,10 @@ pod 'CJStringValidator'
 pod 'DRPaginatedScrollView'
 pod 'NSString+RMURLEncoding'
 pod 'TWRBorderedView'
+
+pod 'DTCoreText'
+
+pod 'VCTransitionsLibrary'
 
 
 # Temp

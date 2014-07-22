@@ -9,12 +9,7 @@
 @class TFUserPreferences;
 
 
-@interface APIUser : NSObject <NSCoding> {
-    NSString *username;
-    NSString *email;
-    NSString *password;
-
-}
+@interface APIUser : NSObject <NSCoding>
 
 @property(nonatomic, copy) NSString *username;
 @property(nonatomic, copy) NSString *email;

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "135DAB105E1849AEAC192334"
+               BlueprintIdentifier = "15B0B95BC18F4666BA6D3BD9"
                BuildableName = "libPods-CJStringValidator.a"
                BlueprintName = "Pods-CJStringValidator"
                ReferencedContainer = "container:Pods.xcodeproj">

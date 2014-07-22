@@ -6,10 +6,15 @@
 #import <DPKit-Utils/UIColor+DPKit.h>
 #import "UIColor+TFApp.h"
 
+
 @implementation UIColor (TFApp)
 
 + (UIColor *) tfBackgroundColor {
     return [UIColor colorWithString: @"29292E"];
+}
+
++ (UIColor *) tfToolbarBackgroundColor {
+    return [UIColor colorWithRed: (19 / 255) green: (19 / 255) blue: (22 / 255) alpha: 1.0];
 }
 
 

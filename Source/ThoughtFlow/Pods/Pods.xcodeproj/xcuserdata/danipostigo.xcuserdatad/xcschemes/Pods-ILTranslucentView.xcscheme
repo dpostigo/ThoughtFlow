@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "901AE1933AB847B7ACD77D0A"
+               BlueprintIdentifier = "D4D53289BA024AA3BEAD9294"
                BuildableName = "libPods-ILTranslucentView.a"
                BlueprintName = "Pods-ILTranslucentView"
                ReferencedContainer = "container:Pods.xcodeproj">

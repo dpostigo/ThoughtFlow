@@ -16,6 +16,7 @@
 #import "TFNavigationBar.h"
 #import "UIColor+TFApp.h"
 #import "TWRBorderedView.h"
+#import "TFCustomDrawerNavigationController.h"
 
 
 @interface TFNewAccountViewController ()
@@ -23,7 +24,7 @@
 @property(nonatomic, strong) NSArray *rows;
 @property(nonatomic, strong) UITextField *currentTextField;
 @property(nonatomic, strong) TFTableViewController *tableViewController;
-@property(nonatomic, strong) UINavigationController *viewNavigationController;
+@property(nonatomic, strong) TFCustomDrawerNavigationController *viewNavigationController;
 @end
 
 
@@ -83,16 +84,18 @@ static NSString *const TFAccountSignOutString = @"Sign Out";
     _tableViewController.cellIdentifier = TFAccountCellIdentifier;
     _tableViewController.delegate = self;
     _tableViewController.tableView.estimatedRowHeight = _rowHeight - 0.5;
+    _tableViewController.tableView.scrollEnabled = NO;
     [container embedFullscreenController: _tableViewController withInsets: UIEdgeInsetsMake(0, 0, 0, 0)];
 
-    _viewNavigationController = [[UINavigationController alloc] initWithRootViewController: container];
-    if (ALT_STYLING) {
-        TFNavigationBar *navigationBar = [[TFNavigationBar alloc] init];
-        navigationBar.customHeight = _navigationBarHeight - 20.5;
-        [_viewNavigationController setValue: navigationBar forKeyPath: @"navigationBar"];
-    }
-
-    _viewNavigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    _viewNavigationController = [[TFCustomDrawerNavigationController alloc] initWithRootViewController: container];
+    _viewNavigationController.navigationBarHeight = _navigationBarHeight - 20.5;
+    //    if (ALT_STYLING) {
+    //        TFNavigationBar *navigationBar = [[TFNavigationBar alloc] init];
+    //        navigationBar.customHeight = _navigationBarHeight - 20.5;
+    //        [_viewNavigationController setValue: navigationBar forKeyPath: @"navigationBar"];
+    //    }
+    //
+    //    _viewNavigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     [self embedFullscreenController: _viewNavigationController];
 
     [self _setupNavItems];
@@ -200,6 +203,7 @@ static NSString *const TFAccountSignOutString = @"Sign Out";
     } else if ([title isEqualToString: TFAccountPasswordString]) {
         textField.image = [UIImage imageNamed: @"password-icon"];
         textField.text = [APIModel sharedModel].currentUser.password;
+        textField.secureTextEntry = YES;
 
     } else if ([title isEqualToString: TFAccountBlankString]) {
         //        cell.contentView.hidden = YES;
@@ -274,6 +278,8 @@ static NSString *const TFAccountSignOutString = @"Sign Out";
 
 
 #pragma mark - Notify
+
+
 
 - (void) _notifyClickedSignOutButton: (UIButton *) button {
     if (_delegate && [_delegate respondsToSelector: @selector(accountViewController:clickedSignOutButton:)]) {

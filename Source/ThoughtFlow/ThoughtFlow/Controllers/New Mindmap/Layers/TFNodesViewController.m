@@ -4,6 +4,7 @@
 //
 
 #import <DPKit-UIView/UIView+DPConstraints.h>
+#import <BlocksKit/UIGestureRecognizer+BlocksKit.h>
 #import "TFNodesViewController.h"
 #import "TFNode.h"
 #import "UIView+DPKit.h"
@@ -49,6 +50,14 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] bk_initWithHandler: ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        NSLog(@"location = %@", NSStringFromCGPoint(location));
+
+    }];
+    tap.numberOfTouchesRequired = 1;
+    //    tap.delegate = self;
+    [self.view addGestureRecognizer: tap];
+
 }
 
 
@@ -59,12 +68,17 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 
 
 
-#pragma mark - Setters
+#pragma mark - Public
+
+- (void) removeNodeView: (TFBaseNodeView *) nodeView {
+    NSMutableArray *nodeViews = [_nodeViews mutableCopy];
+    [nodeViews removeObject: nodeView];
+    _nodeViews = nodeViews;
+}
 
 - (void) setRootNode: (TFNode *) rootNode {
     _rootNode = rootNode;
     NSArray *array = [self nodeViewsForNodes: @[_rootNode] parent: nil];
-
     self.nodeViews = [array mutableCopy];
 
 }
@@ -152,12 +166,10 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 }
 
 - (NSArray *) nodeViewsForNodes: (NSArray *) nodes {
-
     NSMutableArray *ret = [[NSMutableArray alloc] init];
     [nodes enumerateObjectsUsingBlock: ^(TFNode *node, NSUInteger index, BOOL *stop) {
+        TFBaseNodeView *nodeView = [self instantiateNodeViewForNode: node];
 
-        TFBaseNodeView *nodeView = [[_nodeClass alloc] initWithNode: node];
-        [self addNodeView: nodeView forNode: node];
         [ret addObject: nodeView];
 
     }];
@@ -165,6 +177,12 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 
 }
 
+
+- (TFBaseNodeView *) instantiateNodeViewForNode: (TFNode *) node {
+    TFBaseNodeView *nodeView = [[_nodeClass alloc] initWithNode: node];
+    [self addNodeView: nodeView forNode: node];
+    return nodeView;
+}
 
 - (void) addNodeView: (TFBaseNodeView *) nodeView forNode: (TFNode *) node {
     [self.view addSubview: nodeView];
@@ -180,13 +198,52 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
             [NSLayoutConstraint constraintWithItem: nodeView attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeLeading multiplier: 1.0 constant: node.position.x]
     ]];
 
-    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(nodeViewDidLongPress:)];
-    recognizer.minimumPressDuration = 0.15;
-    [nodeView addGestureRecognizer: recognizer];
+    [self _setupGesturesForNodeView: nodeView];
+
 }
 
 
+- (void) _setupGesturesForNodeView: (TFNewNodeView *) view {
+
+    UILongPressGestureRecognizer *createRecognizer = [[UILongPressGestureRecognizer alloc] bk_initWithHandler: ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        [self createNodeViewWithLongPress: (UILongPressGestureRecognizer *) sender];
+    }];
+    createRecognizer.delegate = self;
+    createRecognizer.minimumPressDuration = 0.2;
+    [view addGestureRecognizer: createRecognizer];
+
+    UILongPressGestureRecognizer *moveRecognizer = [[UILongPressGestureRecognizer alloc] bk_initWithHandler: ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        TFBaseNodeView *node = (TFBaseNodeView *) sender.view;
+        [self moveNodeViewWithGesture: (UILongPressGestureRecognizer *) sender];
+    }];
+    moveRecognizer.delegate = self;
+    moveRecognizer.minimumPressDuration = 0.1;
+    //    [moveRecognizer requireGestureRecognizerToFail: view.horizontalPan];
+    [view addGestureRecognizer: moveRecognizer];
+
+}
+
+
+- (BOOL) gestureRecognizerShouldBegin: (UIGestureRecognizer *) gestureRecognizer {
+    if ([gestureRecognizer isKindOfClass: [UILongPressGestureRecognizer class]]) {
+        UILongPressGestureRecognizer *longPress = (UILongPressGestureRecognizer *) gestureRecognizer;
+
+        TFBaseNodeView *nodeView = (TFBaseNodeView *) gestureRecognizer.view;
+
+        NSLog(@"nodeView.nodeState = %d", nodeView.nodeState);
+        if (longPress.minimumPressDuration == 0.1) {
+            return nodeView.nodeState == TFNodeViewStateNormal;
+        }
+        if (longPress.minimumPressDuration == 0.2) {
+            return nodeView.nodeState == TFNodeViewStateCreate;
+        }
+    }
+
+    return YES;
+}
+
 #pragma mark - TFNodeViewDelegate
+
 
 - (void) nodeViewDidDoubleTap: (TFBaseNodeView *) nodeView {
     [self _notifyControllerDidDoubleTapNode: nodeView.node];
@@ -207,9 +264,8 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 }
 
 
-- (void) nodeViewDidTriggerDeletion: (TFBaseNodeView *) node {
-
-    [self _notifyControllerDidDeleteNode: node.node];
+- (void) nodeViewDidTriggerDeletion: (TFBaseNodeView *) nodeView {
+    [self _notifyControllerDidDeleteNode: nodeView.node withNodeView: nodeView];
 }
 
 
@@ -219,7 +275,6 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
         [self selectNodeView: firstNodeView];
     }
 }
-
 
 - (void) selectNodeView: (TFBaseNodeView *) nodeView {
     nodeView.selected = YES;
@@ -259,6 +314,7 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
     }
 }
 
+
 - (void) moveNodeViewWithGesture: (UILongPressGestureRecognizer *) gesture {
     TFBaseNodeView *node = (TFBaseNodeView *) gesture.view;
     CGPoint location = [gesture locationInView: node.superview];
@@ -283,13 +339,11 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
     }
 }
 
-
-
 #pragma mark - Move
 
 - (void) startNodeMove: (TFBaseNodeView *) node location: (CGPoint) location {
 
-    node.selected = YES;
+    //    node.selected = YES;
     CGFloat springVelocity = (-0.1 * 30.0) / (node.frame.origin.x - location.x);
 
     [UIView animateWithDuration: 1.0 delay: 0.0
@@ -351,6 +405,7 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 
 }
 
+
 - (CGPoint) constrainNodeCenter: (TFBaseNodeView *) node forLocation: (CGPoint) location {
 
     CGPoint ret = node.center;
@@ -387,7 +442,6 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 }
 
 
-
 #pragma mark - Creation
 
 
@@ -414,13 +468,13 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
     }
 }
 
-
 - (void) startCreateNodeFromNode: (TFBaseNodeView *) node location: (CGPoint) location {
 
     _creationNodeView = [TFBaseNodeView greenGhostView];
     _creationNodeView.center = location;
     _creationNodeView.alpha = 0;
     _creationNodeView.transform = CGAffineTransformMakeScale(0.9, 0.9);
+    _creationNodeView.userInteractionEnabled = NO;
     [self.view addSubview: _creationNodeView];
     [node setNodeState: TFNodeViewStateNormal animated: YES];
 
@@ -433,6 +487,7 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
     [self _notifyControllerDidBeginCreatingNodeView: _creationNodeView withParent: currentNodeView];
     //    [self updateLineForNodeView: currentNodeView location: self.creationNodeView.center];
 }
+
 
 - (void) updateCreateNodeAtLocation: (CGPoint) location {
     CGFloat distance = Distance(_creationNodeView.center, currentNodeView.center);
@@ -452,7 +507,6 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
 
 }
 
-
 - (void) endCreateNode {
     // TODO : Implement in LinesLayer
     //    [tempLine removeFromSuperlayer];
@@ -462,41 +516,36 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
     node.position = CGPointMake(_creationNodeView.left, _creationNodeView.top);
 
     TFBaseNodeView *newNodeView = [self instantiateNodeViewForNode: node];
-    newNodeView.selected = YES;
+    //    newNodeView.selected = YES;
+    //    newNodeView.transform = CGAffineTransformMakeScale(0.9, 0.9);
+
+
+    [self.view exchangeSubviewAtIndex: [self.view.subviews indexOfObject: newNodeView]
+            withSubviewAtIndex: [self.view.subviews indexOfObject: _creationNodeView]];
+
+    //    _creationNodeView.translatesAutoresizingMaskIntoConstraints = NO;
+    //    [_creationNodeView updateSuperLeadingConstraint: _creationNodeView.left];
+    //    [_creationNodeView updateSuperTopConstraint: _creationNodeView.top];
 
     [UIView animateWithDuration: 0.4
             animations: ^{
                 _creationNodeView.alpha = 0;
+
             }
             completion: ^(BOOL finished) {
                 if (_creationNodeView.superview) {
                     [_creationNodeView removeFromSuperview];
                 }
-                // TODO:
-                //                [self updateLastNode];
 
-                //                self.nodes = [self.nodes arrayByAddingObject: node];
+                [newNodeView removeFromSuperview];
+
+                NSLog(@"_creationNodeView = %@", _creationNodeView);
+
+                [self _notifyControllerDidEndCreateNodeView: newNodeView forNode: node];
+                [self _notifyControllerDidCreateNode: node withRoot: currentNodeView.node];
+
             }];
 
-    [self _notifyControllerDidEndCreateNodeView: newNodeView forNode: node];
-    [self _notifyControllerDidCreateNode: node withRoot: currentNodeView.node];
-
-}
-
-- (TFBaseNodeView *) instantiateNodeViewForNode: (TFNode *) projectNode {
-
-    TFBaseNodeView *ret = [[_nodeClass alloc] init];
-    ret.node = projectNode;
-    //    ret.center = self.creationNodeView.center;
-    // TODO:
-    //    ret.frame = [self frameForNewNode];
-    //    ret.node.position = ret.origin;
-
-
-    // TODO :
-    //    [self setupNodeView: ret];
-
-    return ret;
 }
 
 
@@ -624,9 +673,9 @@ CGFloat Distance(CGPoint point1, CGPoint point2) {
     }
 }
 
-- (void) _notifyControllerDidDeleteNode: (TFNode *) node {
-    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidDeleteNode:)]) {
-        [_delegate nodesControllerDidDeleteNode: node];
+- (void) _notifyControllerDidDeleteNode: (TFNode *) node withNodeView: (TFBaseNodeView *) nodeView {
+    if (_delegate && [_delegate respondsToSelector: @selector(nodesControllerDidDeleteNode:withNodeView:)]) {
+        [_delegate nodesControllerDidDeleteNode: node withNodeView: nodeView];
     }
 }
 

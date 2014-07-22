@@ -7,8 +7,8 @@
 #import "TFNewMindmapGridViewController.h"
 
 
-@interface TFMindmapFullscreenViewController : TFNewMindmapGridViewController {
+@interface TFMindmapFullscreenViewController : TFNewMindmapGridViewController
 
-}
+@property(nonatomic) BOOL isMinimized;
 
 @end

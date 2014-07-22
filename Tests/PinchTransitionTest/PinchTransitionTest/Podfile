@@ -1,0 +1,8 @@
+platform :ios, '7.0'
+
+
+pod 'DPTransitions', :path => '~/Development/LocalPods/DPTransitions'
+pod 'DPKit-UIView', :path => '~/Development/LocalPods/DPKit-Suite/DPKit-UIView'
+#pod 'DPAnimators', :path => '~/Development/LocalPods/DPAnimators'
+
+pod 'VCTransitionsLibrary'

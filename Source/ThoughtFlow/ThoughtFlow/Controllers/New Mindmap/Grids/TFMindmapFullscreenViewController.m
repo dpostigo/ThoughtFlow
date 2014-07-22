@@ -4,6 +4,9 @@
 //
 
 #import <DPKit-Utils/UIViewController+DPKit.h>
+#import <BlocksKit/UIGestureRecognizer+BlocksKit.h>
+#import <DPKit-Utils/UIView+DPKit.h>
+#import <DPKit-Utils/UIView+DPKitDebug.h>
 #import "TFMindmapFullscreenViewController.h"
 #import "TFImageGridViewCell.h"
 #import "TFPhoto.h"
@@ -17,9 +20,13 @@
 
 @property(nonatomic, strong) UIImageView *bg;
 @property(nonatomic, strong) TFUserPreferences *preferences;
+@property(nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
+@property(nonatomic, strong) UIView *snapshot;
 @end
 
-@implementation TFMindmapFullscreenViewController
+@implementation TFMindmapFullscreenViewController {
+
+}
 
 
 #pragma mark - View lifecycle
@@ -30,9 +37,14 @@
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
 
+    BOOL shouldShowView = _preferences.imageSearchEnabled;
+
     UIView *view = self.imagesController.view;
     view.alpha = _preferences.imageSearchEnabled ? 1 : 0;
     view.hidden = !_preferences.imageSearchEnabled;
+
+    _bg.alpha = shouldShowView ? 0 : 1;
+    _bg.hidden = shouldShowView;
 
 }
 
@@ -57,6 +69,7 @@
     [self.view sendSubviewToBack: _bg];
 
     [self _setupUserPreferences];
+    //    [self _setupGestures];
 }
 
 
@@ -67,6 +80,7 @@
 
     [self bk_addObserverForKeyPath: @"preferences.imageSearchEnabled" task: ^(id target) {
         view.hidden = NO;
+        _bg.hidden = NO;
 
         BOOL shouldShowView = self.preferences.imageSearchEnabled;
         [UIView animateWithDuration: 0.4 delay: 00.
@@ -80,7 +94,7 @@
                 }
                 completion: ^(BOOL finished) {
                     view.hidden = !shouldShowView;
-                    _bg.hidden = !shouldShowView;
+                    _bg.hidden = shouldShowView;
 
                 }];
     }];
@@ -88,7 +102,67 @@
 }
 
 
+- (void) _setupControllers {
+    [super _setupControllers];
+
+    self.imagesController.collection.pagingEnabled = YES;
+    self.imagesController.selectedImage = self.selectedImage;
+
+}
+
+- (void) _setupGestures {
+
+    _pinchRecognizer = [[UIPinchGestureRecognizer alloc] bk_initWithHandler: ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        UIPinchGestureRecognizer *pinch = (UIPinchGestureRecognizer *) sender;
+
+        switch (pinch.state) {
+
+            case UIGestureRecognizerStateBegan : {
+
+                _snapshot = [self.view snapshotViewAfterScreenUpdates: YES];
+                //                [self.view addSubview: _snapshot];
+                [self.view embedView: _snapshot];
+
+                [_snapshot addDebugBorder: [UIColor blueColor]];
+
+                self.imagesController.view.hidden = YES;
+                break;
+            }
+
+            case UIGestureRecognizerStateChanged : {
+                NSLog(@"pinch.scale = %f", pinch.scale);
+                CGFloat scale = pinch.scale;
+                _snapshot.transform = CGAffineTransformMakeScale(scale, scale);
+                break;
+            }
+
+            case UIGestureRecognizerStateEnded :
+            case UIGestureRecognizerStateCancelled :
+            case UIGestureRecognizerStateFailed : {
+                break;
+            }
+
+            case UIGestureRecognizerStatePossible:
+                break;
+        }
+
+    }];
+
+    [self.view addGestureRecognizer: _pinchRecognizer];
+
+}
+
+#pragma mark - Public
+
+- (void) setIsMinimized: (BOOL) isMinimized {
+    _isMinimized = isMinimized;
+    _pinchRecognizer.enabled = _isMinimized;
+
+}
+
+
 #pragma mark - Delegates
+
 
 - (void) imageGridViewController: (TFImageGridViewController *) gridViewController didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
     // TODO : Does this ever get called?
@@ -109,18 +183,18 @@
     //    }
 }
 
-
 - (void) imageGridViewController: (TFImageGridViewController *) controller didSelectImage: (TFPhoto *) image atIndexPath: (NSIndexPath *) indexPath {
 
 }
+
 
 - (void) imageGridViewController: (TFImageGridViewController *) controller didScrollToImage: (TFPhoto *) image {
     self.selectedImage = image;
     [self _notifySelection: image];
 }
 
-
 #pragma mark - UICollectionViewLayout
+
 
 - (CGSize) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout sizeForItemAtIndexPath: (NSIndexPath *) indexPath {
     return self.view.bounds.size;
@@ -132,16 +206,6 @@
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
-
-
 #pragma mark - Private
-
-- (void) _setupControllers {
-    [super _setupControllers];
-
-    self.imagesController.collection.pagingEnabled = YES;
-    self.imagesController.selectedImage = self.selectedImage;
-
-}
 
 @end

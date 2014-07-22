@@ -1,0 +1,41 @@
+PODS:
+  - DPAnimators (0.0.1):
+    - DPKit-UIView
+    - DPKit-Utils
+  - DPKit-UIView (0.0.3):
+    - DPKit-Utils
+  - DPKit-Utils (0.0.30):
+    - JMSimpleDate
+  - DPTransitions (0.0.1):
+    - DPAnimators (= 0.0.1)
+    - DPKit-Utils
+    - DPTransitions/Segues
+  - DPTransitions/Segues (0.0.1):
+    - DPAnimators (= 0.0.1)
+    - DPKit-Utils
+  - JMSimpleDate (0.0.6)
+  - VCTransitionsLibrary (1.4.0)
+
+DEPENDENCIES:
+  - DPAnimators (from `~/Development/LocalPods/DPAnimators`)
+  - DPKit-UIView (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIView`)
+  - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
+  - VCTransitionsLibrary
+
+EXTERNAL SOURCES:
+  DPAnimators:
+    :path: ~/Development/LocalPods/DPAnimators
+  DPKit-UIView:
+    :path: ~/Development/LocalPods/DPKit-Suite/DPKit-UIView
+  DPTransitions:
+    :path: ~/Development/LocalPods/DPTransitions
+
+SPEC CHECKSUMS:
+  DPAnimators: b5d8bf1ed85f17a49cabad1bcc22010c70d27ba8
+  DPKit-UIView: 069926abffec4884ea0236a7f1072005eb9cf0be
+  DPKit-Utils: 367b2b35209031eb0d322db082bbb03f68194c76
+  DPTransitions: fb247247ff38c47a0fb2ca0f97d9d9ad4b8924b8
+  JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
+  VCTransitionsLibrary: 0624c9163552cf5ded57f80f6285e20fa2863607
+
+COCOAPODS: 0.33.1

@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
+#import <DPKit-Utils/UIView+DPKitDebug.h>
 #import "TFScrollingMindmapViewController.h"
 #import "TFNodesViewController.h"
 #import "TFLinesViewController.h"
@@ -43,6 +44,8 @@
 - (void) loadView {
     self.view = [[DPPassThroughView alloc] initWithFrame: [UIScreen mainScreen].bounds];
     [self _setup];
+
+    [self.view addDebugBorder: [UIColor yellowColor]];
 }
 
 
@@ -53,7 +56,7 @@
 
 - (void) viewDidAppear: (BOOL) animated {
     [super viewDidAppear: animated];
-    //    self.maxContentOffset = CGSizeMake(0, 0);
+    self.maxContentOffset = CGSizeMake(0, 0);
     [self.view layoutIfNeeded];
 
 }

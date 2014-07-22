@@ -9,10 +9,6 @@
 
 @implementation APIUser
 
-@synthesize username;
-@synthesize email;
-@synthesize password;
-
 - (instancetype) initWithUsername: (NSString *) anUsername password: (NSString *) aPassword {
     return [self initWithUsername: anUsername email: nil password: aPassword];
 }
@@ -28,9 +24,9 @@
 - (instancetype) initWithUsername: (NSString *) anUsername email: (NSString *) anEmail password: (NSString *) aPassword {
     self = [super init];
     if (self) {
-        username = anUsername;
-        email = anEmail;
-        password = aPassword;
+        _username = anUsername;
+        _email = anEmail;
+        _password = aPassword;
         _preferences = [[TFUserPreferences alloc] init];
     }
 
@@ -39,19 +35,23 @@
 
 
 - (void) encodeWithCoder: (NSCoder *) coder {
-    [coder encodeObject: username forKey: @"username"];
-    [coder encodeObject: email forKey: @"email"];
-    [coder encodeObject: password forKey: @"password"];
+    [coder encodeObject: _username forKey: @"username"];
+    [coder encodeObject: _email forKey: @"email"];
+    [coder encodeObject: _password forKey: @"password"];
     [coder encodeObject: _preferences forKey: @"preferences"];
 }
 
 - (id) initWithCoder: (NSCoder *) coder {
     self = [super init];
     if (self) {
-        username = [coder decodeObjectForKey: @"username"];
-        email = [coder decodeObjectForKey: @"email"];
-        password = [coder decodeObjectForKey: @"password"];
+        _username = [coder decodeObjectForKey: @"username"];
+        _email = [coder decodeObjectForKey: @"email"];
+        _password = [coder decodeObjectForKey: @"password"];
         _preferences = [coder decodeObjectForKey: @"preferences"];
+
+        if (_preferences == nil) {
+            _preferences = [[TFUserPreferences alloc] init];
+        }
 
     }
 

@@ -13,6 +13,12 @@
 #import "PhotoLibrary.h"
 #import "NSString+RMURLEncoding.h"
 #import "TFUserPreferences.h"
+#import "TFLibrary.h"
+#import "LibraryObject.h"
+#import "ProjectLibrary.h"
+#import "NSDictionary+DTError.h"
+#import "TFTopic.h"
+#import "NSString+DPKitUtils.h"
 
 
 NSString *const TFScopeEmail = @"email";
@@ -29,7 +35,7 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
     self = [super init];
     if (self) {
         _model = [Model sharedModel];
-        _photoLibrary = [PhotoLibrary sharedLibrary];
+        _library = [TFLibrary sharedLibrary];
 
         [self initAuthClient];
 
@@ -72,15 +78,13 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
                 if (encodedObject) {
                     DDLogVerbose(@"Got user.");
                     _currentUser = [NSKeyedUnarchiver unarchiveObjectWithData: encodedObject];
-
-                    NSLog(@"_currentUser.preferences.imageSearchEnabled = %d", _currentUser.preferences.imageSearchEnabled);
-                    NSLog(@"_currentUser.preferences.autoRefreshEnabled = %d", _currentUser.preferences.autoRefreshEnabled);
                 } else {
                     DDLogVerbose(@"No saved user.");
                 }
             }
         }
     } else {
+
         DDLogWarn(@"Credential does not exist.");
     }
 
@@ -432,6 +436,60 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
             }];
 }
 
+
+#pragma mark - Node, Related
+
+- (void) getRelated: (NSString *) string success: (void (^)(NSArray *topics)) success failure: (void (^)(NSError *)) failure {
+
+    DDLogVerbose(@"RELATED started.");
+    NSString *relatedURL = @"http://api.duckduckgo.com/?q=%@&format=json";
+    NSString *url = [NSString stringWithFormat: relatedURL, [string stringByReplacingOccurrencesOfString: @" " withString: @"+"]];
+
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: url]];
+
+
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest: request];
+    [operation setCompletionBlockWithSuccess: ^(AFHTTPRequestOperation *anOperation, id responseObject) {
+        DDLogVerbose(@"RELATED succeeded.");
+        NSError *dictError = nil;
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData: responseObject options: 0 error: &dictError];
+
+        if (dictError) {
+            if (failure) {
+                failure(dictError);
+            }
+        } else {
+
+            NSArray *related = [responseDictionary objectForKey: @"RelatedTopics"];
+
+            NSMutableArray *ret = [[NSMutableArray alloc] init];
+            for (NSDictionary *dictionary in related) {
+                TFTopic *topic = [[TFTopic alloc] initWithDictionary: dictionary];
+                if (topic && ![topic.urlString containsString: @"https://duckduckgo.com/c/"]) {
+                    [ret addObject: topic];
+                }
+            }
+
+            if (success) {
+                success(ret);
+            }
+        }
+
+    } failure: ^(AFHTTPRequestOperation *anOperation, NSError *error) {
+
+        DDLogVerbose(@"RELATED failed.");
+        if (failure) {
+            failure(error);
+        }
+    }];
+
+    [self.authClient.operationQueue addOperation: operation];
+
+
+    //    http://api.duckduckgo.com/?q=running+with+the+bulls&format=json&pretty=1
+}
+
 - (void) preloadImages: (NSArray *) images {
 
     for (TFPhoto *photo in images) {
@@ -522,5 +580,18 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
         }
     }];
 }
+
+
+
+#pragma mark - Getters
+
+- (NSArray *) projects {
+    return _library.projectsLibrary.children;
+}
+
+- (PhotoLibrary *) photoLibrary {
+    return _library.photoLibrary;
+}
+
 
 @end

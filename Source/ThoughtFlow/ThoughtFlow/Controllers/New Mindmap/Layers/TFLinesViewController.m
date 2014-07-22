@@ -252,6 +252,7 @@
         if ([exclude containsObject: child]) {
             [_updateLayer addSublayer: sublayer];
             sublayer.backgroundColor = [UIColor whiteColor].CGColor;
+            //            sublayer.backgroundColor = _lineColor.CGColor;
             //            [sublayer setLineFromPoint: child.center toPoint: parentNode.center];
             [sublayer setLineFromRect: child.rect toRect: parentNode.rect];
 

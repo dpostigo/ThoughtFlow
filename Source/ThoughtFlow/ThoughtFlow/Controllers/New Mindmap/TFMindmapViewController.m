@@ -6,6 +6,7 @@
 #import <DPTransitions/CustomModalSegue.h>
 #import <DPKit-UIView/UIView+DPConstraints.h>
 #import <BlocksKit/NSObject+BKBlockObservation.h>
+#import <BlocksKit/UIGestureRecognizer+BlocksKit.h>
 #import "TFMindmapViewController.h"
 #import "UIViewController+DPKit.h"
 #import "Project.h"
@@ -15,7 +16,7 @@
 #import "Model.h"
 #import "TFContentViewNavigationController.h"
 #import "TFPhoto.h"
-#import "TFNewMindmapBackgroundViewController.h"
+#import "TFMindmapBackgroundViewController.h"
 #import "TFMindmapRelatedViewController.h"
 #import "TFMinimizedNodesViewController.h"
 #import "UIAlertView+Blocks.h"
@@ -30,12 +31,13 @@
 
 @interface TFMindmapViewController ()
 
+@property(nonatomic) BOOL isMinimized;
 @property(nonatomic) CGPoint startingPoint;
 
 @property(nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 @property(nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
 
-@property(nonatomic, strong) TFNewMindmapBackgroundViewController *bgController;
+@property(nonatomic, strong) TFMindmapBackgroundViewController *bgController;
 @property(nonatomic, strong) TFLinesViewController *linesController;
 @property(nonatomic, strong) TFNodesViewController *nodesController;
 @property(nonatomic, strong) TFMinimizedNodesViewController *minimizedController;
@@ -55,8 +57,6 @@
     self = [super init];
     if (self) {
         _project = project;
-
-        [APIModel sharedModel].currentUser.preferences;
 
     }
 
@@ -115,15 +115,15 @@
     self.view.backgroundColor = [UIColor clearColor];
     self.view.opaque = NO;
 
-    [self _setupChildControllers];
+    [self _setupControllers];
     [self _setupProject];
     [self _setupGestureRecognizers];
 
 }
 
-- (void) _setupChildControllers {
+- (void) _setupControllers {
 
-    _bgController = [[TFNewMindmapBackgroundViewController alloc] initWithProject: _project node: _project.firstNode];
+    _bgController = [[TFMindmapBackgroundViewController alloc] initWithProject: _project node: _project.firstNode];
     _bgController.contentView = _contentView;
     [self embedFullscreenController: _bgController];
 
@@ -148,7 +148,15 @@
 
 
 - (void) _setupGestureRecognizers {
-    _pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget: self action: @selector(handlePinch:)];
+
+    _pinchRecognizer = [[UIPinchGestureRecognizer alloc] bk_initWithHandler: ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        if (self.isMinimized) {
+
+        } else {
+            [self handlePinch: (UIPinchGestureRecognizer *) sender];
+        }
+
+    }];
 
     _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(handleDoublePan:)];
     _panRecognizer.minimumNumberOfTouches = 2;
@@ -290,7 +298,8 @@
 }
 
 
-- (void) nodesControllerDidDeleteNode: (TFNode *) node {
+- (void) nodesControllerDidDeleteNode: (TFNode *) node withNodeView: (TFBaseNodeView *) nodeView {
+    TFBaseNodeView *deleteNodeView = nodeView;
 
     NSLog(@"%s", __PRETTY_FUNCTION__);
     if (node == _project.firstNode) {
@@ -302,27 +311,40 @@
 
     } else {
 
-        NSLog(@"[_project.flattenedChildren count] = %u", [_project.flattenedChildren count]);
-
         if ([node.children count] > 0) {
             NSArray *children = node.children;
             if (node.parentNode) {
                 TFNode *parentNode = node.parentNode;
                 [parentNode addChildren: children];
             }
-            //            if (node.parentNode.parentNode) {
-            //                [node.parentNode.parentNode addChild: node];
-            //            }
-
         }
 
         [node.parentNode removeChild: node];
-
-        NSLog(@"[_project.flattenedChildren count] = %u", [_project.flattenedChildren count]);
-
         [self _refreshNodes];
-    }
 
+        [_nodesController.view layoutIfNeeded];
+
+        CGPoint point = deleteNodeView.frame.origin;
+
+
+        //        [self.view layoutIfNeeded];
+
+        [_nodesController.view addSubview: deleteNodeView];
+        [deleteNodeView updateSuperTopConstraint: self.view.height];
+        [deleteNodeView updateSuperLeadingConstraint: point.x];
+
+        [UIView animateWithDuration: 0.4
+                delay: 0.0
+                usingSpringWithDamping: 2.0
+                initialSpringVelocity: 0.8
+                options: UIViewAnimationOptionCurveLinear
+                animations: ^{
+                    [self.view layoutIfNeeded];
+                }
+                completion: ^(BOOL finished) {
+
+                }];
+    }
 }
 
 
@@ -354,8 +376,7 @@
     _minimizedController.delegate = self;
     [self embedFullscreenController: _minimizedController];
 
-    _nodesController.view.hidden = YES;
-    _linesController.view.hidden = YES;
+    self.isMinimized = YES;
 
 }
 
@@ -364,14 +385,36 @@
 
     [_minimizedController animateOut: ^{
 
-        _nodesController.view.hidden = NO;
-        _linesController.view.hidden = NO;
+        self.isMinimized = NO;
         [self unembedController: _minimizedController];
         [_nodesController unpinch];
+
+        _minimizedController = nil;
 
     }];
 
 }
+
+
+- (void) setIsMinimized: (BOOL) isMinimized {
+    _isMinimized = isMinimized;
+
+    if (_isMinimized) {
+
+        _nodesController.view.hidden = YES;
+        _nodesController.view.userInteractionEnabled = NO;
+        _linesController.view.hidden = YES;
+        _linesController.view.userInteractionEnabled = NO;
+        _pinchRecognizer.enabled = NO;
+
+    } else {
+        _nodesController.view.hidden = NO;
+        _linesController.view.hidden = NO;
+        _pinchRecognizer.enabled = YES;
+
+    }
+}
+
 
 
 #pragma mark - Selection

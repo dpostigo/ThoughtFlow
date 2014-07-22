@@ -5,23 +5,20 @@
 
 #import <UIAlertView+Blocks/UIAlertView+Blocks.h>
 #import <DPKit-Utils/UIViewController+DPKit.h>
+#import <DPKit-Utils/UIView+DPKit.h>
+#import <BlocksKit/UIControl+BlocksKit.h>
 #import "ProjectsController.h"
 #import "Model.h"
-#import "UIView+TFFonts.h"
 #import "TFProjectCollectionViewCell.h"
 #import "Project.h"
-#import "TFConstants.h"
 #import "ProjectLibrary.h"
 #import "APIModel.h"
-#import "APIUser.h"
-#import "UIViewController+TFControllers.h"
 #import "TFMindmapViewController.h"
 #import "CreateProjectController.h"
+#import "TFLibrary.h"
 
 
 @implementation ProjectsController
-
-@synthesize collection;
 
 - (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
     return [self viewControllerFromStoryboard: @"Storyboard"];
@@ -36,10 +33,11 @@
     [super viewDidLoad];
 
     [self _setup];
-    collection.delegate = self;
-    collection.dataSource = self;
-    [collection reloadData];
+    _collection.delegate = self;
+    _collection.dataSource = self;
+    [_collection reloadData];
 
+    [self _refreshCollectionAlignment: NO];
 }
 
 
@@ -47,29 +45,31 @@
     [super viewDidAppear: animated];
     if (_model.selectedProject) {
 
-        //        NSUInteger index = [_model.projects indexOfObject: _model.selectedProject];
-        //        NSIndexPath *indexPath = [NSIndexPath indexPathForItem: index
-        //                                                     inSection: 0];
-        //
-        //
-        //        CGFloat collectionViewHeight = 450;
-        //        collection.contentInset = UIEdgeInsetsMake(collectionViewHeight / 2, 0, collectionViewHeight / 2, 0);
-        //
-        //        UICollectionViewCell *cell = [collection cellForItemAtIndexPath: indexPath];
-        //
-        //
-        //        CGPoint startingOffset = CGPointMake(700, 0);
-        //        [collection setContentOffset: startingOffset animated: YES];
-
     }
 
 }
 
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
-    [collection reloadData];
+
 }
 
+
+- (void) _refreshCollectionAlignment: (BOOL) animated {
+    NSUInteger projectCount = [[APIModel sharedModel].projects count];
+    NSLog(@"projectCount = %u", projectCount);
+    if (_collection.contentSize.width < self.view.width && projectCount < 3) {
+        CGFloat differenceX = self.view.width - _collection.contentSize.width;
+        //        _collection.contentOffset = CGPointMake(-differenceX / 2, 0);
+        [_collection setContentOffset: CGPointMake(-differenceX / 2, 0) animated: animated];
+    }
+}
+
+
+- (void) viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self _refreshCollectionAlignment: YES];
+}
 
 
 #pragma mark IBActions
@@ -81,8 +81,9 @@
 
 
 #pragma mark - Delegates
-
 #pragma mark - UICollectionViewDelegate
+
+
 
 
 - (void) collectionView: (UICollectionView *) collectionView didSelectItemAtIndexPath: (NSIndexPath *) indexPath {
@@ -102,7 +103,7 @@
 }
 
 - (UICollectionViewCell *) collectionView: (UICollectionView *) collectionView cellForItemAtIndexPath: (NSIndexPath *) indexPath {
-    TFProjectCollectionViewCell *cell = [collection dequeueReusableCellWithReuseIdentifier: @"CollectionCell"
+    TFProjectCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"CollectionCell"
             forIndexPath: indexPath];
 
 
@@ -111,6 +112,7 @@
         cell.project = project;
     }
     cell.button.tag = indexPath.item;
+
     [cell.button addTarget: self action: @selector(handleTrashButton:)
             forControlEvents: UIControlEventTouchUpInside];
 
@@ -121,7 +123,7 @@
 
     TFProjectCollectionViewCell *cell = (TFProjectCollectionViewCell *) button.superview.superview;
     if (cell) {
-        NSIndexPath *indexPath = [collection indexPathForCell: cell];
+        NSIndexPath *indexPath = [_collection indexPathForCell: cell];
         Project *project = [self projectForIndexPath: indexPath];
 
         [UIAlertView showWithTitle: @"Delete Project"
@@ -138,7 +140,7 @@
 
 - (void) deleteProject: (Project *) project atIndexPath: (NSIndexPath *) indexPath {
     [_model.projectLibrary removeChild: project];
-    [collection deleteItemsAtIndexPaths: @[indexPath]];
+    [_collection deleteItemsAtIndexPaths: @[indexPath]];
 
     if ([_model.projects count] == 0) {
         [self postNavigationNotificationForType: TFControllerCreateProject pushes: YES];
@@ -163,4 +165,15 @@
     self.navigationController.view.backgroundColor = [UIColor clearColor];
 }
 
+
+- (void) _setupButtons {
+
+    [_addProjectButton bk_addEventHandler: ^(id sender) {
+
+        CreateProjectController *controller = [[CreateProjectController alloc] init];
+        [self.navigationController setViewControllers: @[controller] animated: YES];
+
+    } forControlEvents: UIControlEventTouchUpInside];
+
+}
 @end

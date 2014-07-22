@@ -1,1 +1,1 @@
-../../../../../../../LocalPods/DPAnimators/DPAnimators/BasicAnimator.h
+../../DPAnimators/DPAnimators/BasicAnimator.h

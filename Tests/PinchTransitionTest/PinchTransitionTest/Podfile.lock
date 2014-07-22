@@ -17,14 +17,11 @@ PODS:
   - VCTransitionsLibrary (1.4.0)
 
 DEPENDENCIES:
-  - DPAnimators (from `~/Development/LocalPods/DPAnimators`)
   - DPKit-UIView (from `~/Development/LocalPods/DPKit-Suite/DPKit-UIView`)
   - DPTransitions (from `~/Development/LocalPods/DPTransitions`)
   - VCTransitionsLibrary
 
 EXTERNAL SOURCES:
-  DPAnimators:
-    :path: ~/Development/LocalPods/DPAnimators
   DPKit-UIView:
     :path: ~/Development/LocalPods/DPKit-Suite/DPKit-UIView
   DPTransitions:

@@ -17,7 +17,9 @@
 
 @interface TFNewMindmapGridViewController : UIViewController <TFImageGridViewControllerDelegate>
 
+@property(nonatomic) BOOL isMinimized;
 @property(nonatomic) TFMindmapControllerType mindmapType;
+@property(nonatomic, readonly) UICollectionView *collectionView;
 @property(nonatomic, strong) Project *project;
 @property(nonatomic, strong) TFPhoto *selectedImage;
 @property(nonatomic, strong) NSArray *images;

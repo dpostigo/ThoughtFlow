@@ -6,7 +6,10 @@
 #import <Foundation/Foundation.h>
 
 
-@interface InteractionController : NSObject <UIViewControllerInteractiveTransitioning> {
+@interface InteractionController : UIPercentDrivenInteractiveTransition <UIViewControllerInteractiveTransitioning> {
 
 }
+
+@property (nonatomic, assign) BOOL interactionInProgress;
+@property(nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
 @end

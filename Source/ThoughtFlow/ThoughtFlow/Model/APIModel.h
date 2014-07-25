@@ -19,18 +19,18 @@ extern NSString *const ThoughtFlowBaseURL;
     Model *_model;
 }
 
-@property(nonatomic, readonly) PhotoLibrary *photoLibrary;
-@property(nonatomic, strong) TFLibrary *library;
-@property(nonatomic, readonly) NSArray *projects;
 @property(nonatomic) BOOL usesConnections;
 @property(nonatomic) BOOL usesDummyData;
+@property(nonatomic, readonly) BOOL loggedIn;
+@property(nonatomic, readonly) PhotoLibrary *photoLibrary;
+@property(nonatomic, readonly) NSArray *projects;
+@property(nonatomic, strong) TFLibrary *library;
 @property(nonatomic, strong) APIUser *currentUser;
 @property(nonatomic, strong) AFOAuth2Client *authClient;
 + (void) alertErrorWithTitle: (NSString *) title message: (NSString *) message;
 - (void) authenticateWithCompletion: (void (^)()) completion failure: (void (^)()) failure;
 + (APIModel *) sharedModel;
 
-- (BOOL) loggedIn;
 - (void) saveUser;
 - (void (^)()) generalFailureBlock;
 - (void (^)()) failureBlockWithTitle: (NSString *) title message: (NSString *) message;

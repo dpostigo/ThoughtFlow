@@ -29,7 +29,7 @@ CGFloat const TestAnimatorDefaultHeight = 300;
     UIView *controllerView = destinationController.view;
     UIView *containerView = transitionContext.containerView;
 
-    void (^animations) () = nil;
+    void (^animations)() = nil;
 
     if (self.isPresenting) {
 
@@ -52,80 +52,16 @@ CGFloat const TestAnimatorDefaultHeight = 300;
     }
 
     [UIView animateWithDuration: duration
-                          delay: 0.0
-                        options: UIViewAnimationOptionCurveEaseOut
-                     animations: animations
-                     completion: ^(BOOL finished) {
-                         [transitionContext completeTransition: YES];
-                     }];
-
-
-    //    if (self.isPresenting) {
-    //        [self animatePresentForContext: transitionContext];
-    //    } else {
-    //        [self animateDismissForContext: transitionContext];
-    //    }
-
-    //    void (^animations)() = nil;
-    //    if (self.isPresenting) {
-    //        switch (destinationController.modalTransitionStyle) {
-    //            case UIModalTransitionStyleCoverVertical : {
-    //                controllerView.alpha = 0;
-    //                [containerView addSubview: controllerView];
-    //                animations = ^{
-    //                    controllerView.alpha = 1;
-    //                };
-    //            }
-    //                break;
-    //
-    //            case UIModalTransitionStyleCrossDissolve : {
-    //                controllerView.alpha = 0;
-    //                [containerView addSubview: controllerView];
-    //                animations = ^{
-    //                    controllerView.alpha = 1;
-    //                };
-    //            }
-    //                break;
-    //
-    //            default :
-    //                break;
-    //
-    //        }
-    //
-    //    } else {
-    //
-    //        switch (destinationController.modalTransitionStyle) {
-    //            case UIModalTransitionStyleCoverVertical : {
-    //
-    //            }
-    //                break;
-    //
-    //            case UIModalTransitionStyleCrossDissolve : {
-    //                controllerView.alpha = 1;
-    //                [containerView addSubview: sourceView];
-    //                [containerView addSubview: controllerView];
-    //                animations = ^{
-    //                    controllerView.alpha = 0;
-    //                };
-    //            }
-    //                break;
-    //
-    //            default :
-    //                break;
-    //
-    //        }
-    //
-    //    }
-    //
-    //    [UIView animateWithDuration: transitionDuration
-    //                          delay: 1.0
-    //                        options: UIViewAnimationOptionCurveEaseOut
-    //                     animations: animations
-    //                     completion: ^(BOOL finished) {
-    //                         [transitionContext completeTransition: YES];
-    //                     }];
+            delay: 0.0
+            options: UIViewAnimationOptionCurveEaseOut
+            animations: animations
+            completion: ^(BOOL finished) {
+                [transitionContext completeTransition: YES];
+            }];
 
 }
+
+
 
 
 - (void) animatePresentForContext: (id <UIViewControllerContextTransitioning>) transitionContext {
@@ -135,7 +71,7 @@ CGFloat const TestAnimatorDefaultHeight = 300;
     UIView *controllerView = destinationController.view;
 
 
-    void (^animations) () = nil;
+    void (^animations)() = nil;
 
     switch (destinationController.modalTransitionStyle) {
         case UIModalTransitionStyleCoverVertical : {
@@ -158,12 +94,12 @@ CGFloat const TestAnimatorDefaultHeight = 300;
     }
 
     [UIView animateWithDuration: duration
-                          delay: 1.0
-                        options: UIViewAnimationOptionCurveEaseOut
-                     animations: animations
-                     completion: ^(BOOL finished) {
-                         [transitionContext completeTransition: YES];
-                     }];
+            delay: 1.0
+            options: UIViewAnimationOptionCurveEaseOut
+            animations: animations
+            completion: ^(BOOL finished) {
+                [transitionContext completeTransition: YES];
+            }];
 }
 
 

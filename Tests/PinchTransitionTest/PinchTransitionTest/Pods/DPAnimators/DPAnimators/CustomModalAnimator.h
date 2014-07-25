@@ -3,12 +3,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BasicAnimator.h"
+#import "BasicModalAnimator.h"
 
 extern CGFloat const TestAnimatorDefaultWidth;
 extern CGFloat const TestAnimatorDefaultHeight;
 
-@interface CustomModalAnimator : BasicAnimator <UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning> {
+@interface CustomModalAnimator : BasicModalAnimator <UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning> {
     CGSize modalPresentationSize;
 }
 

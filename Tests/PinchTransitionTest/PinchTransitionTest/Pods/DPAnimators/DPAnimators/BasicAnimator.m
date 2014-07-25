@@ -4,10 +4,21 @@
 
 #import "BasicAnimator.h"
 
+
 @implementation BasicAnimator
 
-@synthesize transitionDuration;
 @synthesize isPresenting;
+@synthesize releasesAnimator;
+
+- (id) init {
+    self = [super init];
+    if (self) {
+        _transitionDuration = 0.4;
+
+    }
+
+    return self;
+}
 
 - (void) animateWithContext: (id <UIViewControllerContextTransitioning>) transitionContext {
     [transitionContext completeTransition: YES];
@@ -23,6 +34,11 @@
 
 }
 
+- (void) animationEnded: (BOOL) transitionCompleted {
+
+}
+
+
 
 #pragma mark Helpers
 
@@ -37,23 +53,12 @@
 #pragma mark UIViewControllerAnimatedTransitioning
 
 - (NSTimeInterval) transitionDuration: (id <UIViewControllerContextTransitioning>) transitionContext {
-    return self.transitionDuration == 0 ? 0.4 : self.transitionDuration;
+    return _transitionDuration;
 }
 
 - (void) animateTransition: (id <UIViewControllerContextTransitioning>) transitionContext {
     [self animateWithContext: transitionContext];
 }
 
-#pragma mark UIViewControllerTransitioningDelegate
-
-- (id <UIViewControllerAnimatedTransitioning>) animationControllerForPresentedController: (UIViewController *) presented presentingController: (UIViewController *) presenting sourceController: (UIViewController *) source {
-    self.isPresenting = YES;
-    return self;
-}
-
-- (id <UIViewControllerAnimatedTransitioning>) animationControllerForDismissedController: (UIViewController *) dismissed {
-    self.isPresenting = NO;
-    return self;
-}
 
 @end

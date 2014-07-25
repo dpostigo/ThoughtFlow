@@ -1,1 +1,1 @@
-../../DPKit-Utils/DPKit-Utils/ios/UIViewController+DPKitDebug.h
+../../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIViewController+DPKitDebug.h

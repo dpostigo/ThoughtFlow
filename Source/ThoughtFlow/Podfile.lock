@@ -25,6 +25,7 @@ PODS:
     - AFNetworking/NSURLSession
   - AFOAuth2Client (0.1.1):
     - AFNetworking (~> 2.0)
+  - AHEasing (1.2)
   - AutoCoding (2.2)
   - BlocksKit (2.2.3):
     - BlocksKit/All
@@ -77,19 +78,24 @@ PODS:
     - DTFoundation/DTAnimatedGIF (~> 1.7.1)
     - DTFoundation/DTHTMLParser (~> 1.7.1)
     - DTFoundation/UIKit (~> 1.7.1)
-  - DTFoundation/Core (1.7.1)
-  - DTFoundation/DTAnimatedGIF (1.7.1)
-  - DTFoundation/DTHTMLParser (1.7.1):
+  - DTFoundation/Core (1.7.2)
+  - DTFoundation/DTAnimatedGIF (1.7.2)
+  - DTFoundation/DTHTMLParser (1.7.2):
     - DTFoundation/Core
-  - DTFoundation/UIKit (1.7.1):
+  - DTFoundation/UIKit (1.7.2):
     - DTFoundation/Core
   - ILTranslucentView (0.0.1)
   - JMSimpleDate (0.0.6)
+  - KRLCollectionViewGridLayout (0.1.1)
   - NSAttributedString-DDHTML (0.0.1)
   - NSObject+AutoDescription (0.1)
   - NSString+RMURLEncoding (0.1.0)
   - Reveal-iOS-SDK (1.0.4)
+  - TLLayoutTransitioning (1.0.1):
+    - AHEasing
   - TWRBorderedView (0.1)
+  - TWTPopTransitionController (0.0.1)
+  - TWTToast/UIKit/ViewControllerTransitions (0.10)
   - UIAlertView+Blocks (0.8.1)
   - UIColorCategories (0.1.0)
   - VCTransitionsLibrary (1.4.0)
@@ -115,11 +121,15 @@ DEPENDENCIES:
   - DRPaginatedScrollView
   - DTCoreText
   - ILTranslucentView
+  - KRLCollectionViewGridLayout
   - NSAttributedString-DDHTML
   - NSObject+AutoDescription
   - NSString+RMURLEncoding
   - Reveal-iOS-SDK
+  - TLLayoutTransitioning
   - TWRBorderedView
+  - TWTPopTransitionController (from `~/Development/LocalPods/Forked/TWTPopTransitionController`)
+  - TWTToast/UIKit/ViewControllerTransitions (~> 0.7)
   - UIAlertView+Blocks
   - UIColorCategories
   - VCTransitionsLibrary
@@ -141,11 +151,14 @@ EXTERNAL SOURCES:
     :path: ~/Development/LocalPods/DPKit-Suite/DPTableView
   DPTransitions:
     :path: ~/Development/LocalPods/DPTransitions
+  TWTPopTransitionController:
+    :path: ~/Development/LocalPods/Forked/TWTPopTransitionController
 
 SPEC CHECKSUMS:
   AFNetworkActivityLogger: d6a2d2755fada3a1fbf1f490ec0dd92224e092a4
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   AFOAuth2Client: 05536bd4175add72e7efcb6b749d4e9685ed02f7
+  AHEasing: ecab36683ef8c3a9a925fb85e892d1335e750f31
   AutoCoding: 2a15d57acf78912b72cc3b3a472e614b2f112a18
   BlocksKit: 07c8a80f04275efac6a5f8b973782489c083a182
   CALayer-DPUtils: cdd3ef1b054136ee30215aa7c06b0675f442f084
@@ -162,14 +175,18 @@ SPEC CHECKSUMS:
   DPTransitions: fb247247ff38c47a0fb2ca0f97d9d9ad4b8924b8
   DRPaginatedScrollView: 510eec673cbf0f142b3eb580ffc4fb182faba412
   DTCoreText: 84eb8ba2e70448fdd9d837540e371f9f587b65ba
-  DTFoundation: ef6fb95da64f202d1600bc23dde79c6fd74c0c2d
+  DTFoundation: 126729614911ae7dbab3dcc1c078f189943bee66
   ILTranslucentView: fa20cc89ceb451b54ae3d993c7dfb789873ef153
   JMSimpleDate: 22c1acdf6b6e57fbc2032f7ba9f3d77d8ddbacd2
+  KRLCollectionViewGridLayout: 6bb02f60f0be933ef213a51fe254863133731a66
   NSAttributedString-DDHTML: b660068de47108746a88474e29f98ac32b5d3e16
   NSObject+AutoDescription: 741983bfabbfd2813c77078fdc91526853bad16d
   NSString+RMURLEncoding: 359c9dbfafeb38aa80c8b1689fb24a3768c1289c
   Reveal-iOS-SDK: d3c8e109d42219daaa7a6e1ad2de34f0bdbb7a88
+  TLLayoutTransitioning: 03d71f0d35c6e7311b17031e3429114e417e3419
   TWRBorderedView: 34508430c24fc249d2079f1c508f9f63d07f4bd0
+  TWTPopTransitionController: ec69c7c5ced75d26444cac4dbb5162ee9d96c02e
+  TWTToast: 8b412ef2b7f3cb8c911c1ac1125737c573c0bcc3
   UIAlertView+Blocks: 0b749f1f7bd5131ff2233b30a406c1585a7171b2
   UIColorCategories: 8fbcc33a0ed3a03395caabfcb39f77231986413b
   VCTransitionsLibrary: 0624c9163552cf5ded57f80f6285e20fa2863607

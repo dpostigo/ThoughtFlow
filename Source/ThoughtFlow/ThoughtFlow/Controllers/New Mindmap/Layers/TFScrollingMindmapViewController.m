@@ -45,7 +45,6 @@
     self.view = [[DPPassThroughView alloc] initWithFrame: [UIScreen mainScreen].bounds];
     [self _setup];
 
-    [self.view addDebugBorder: [UIColor yellowColor]];
 }
 
 

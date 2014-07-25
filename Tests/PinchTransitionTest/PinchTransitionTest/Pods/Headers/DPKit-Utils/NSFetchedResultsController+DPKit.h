@@ -1,1 +1,1 @@
-../../DPKit-Utils/DPKit-Utils/ios/NSFetchedResultsController+DPKit.h
+../../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/NSFetchedResultsController+DPKit.h

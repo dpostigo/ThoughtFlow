@@ -7,8 +7,8 @@
     <content url="file://$MODULE_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-UIView">
       <sourceFolder url="file://$MODULE_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-UIView" isTestSource="false" />
     </content>
-    <content url="file://$MODULE_DIR$/../../../../LocalPods/DPTransitions">
-      <sourceFolder url="file://$MODULE_DIR$/../../../../LocalPods/DPTransitions" isTestSource="false" />
+    <content url="file://$MODULE_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../LocalPods/DPKit-Suite/DPKit-Utils" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />

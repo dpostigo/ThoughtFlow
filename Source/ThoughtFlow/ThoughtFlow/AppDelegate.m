@@ -30,9 +30,10 @@
 
 - (BOOL) application: (UIApplication *) application didFinishLaunchingWithOptions: (NSDictionary *) launchOptions {
 
+    [self _setup];
+
     _apiModel = [APIModel sharedModel];
 
-    [self _setup];
     [self _testAPI];
 
     //    [self testDestore];

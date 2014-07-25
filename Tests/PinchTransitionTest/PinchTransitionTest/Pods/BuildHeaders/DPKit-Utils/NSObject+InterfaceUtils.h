@@ -1,1 +1,1 @@
-../../DPKit-Utils/DPKit-Utils/ios/NSObject+InterfaceUtils.h
+../../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/NSObject+InterfaceUtils.h

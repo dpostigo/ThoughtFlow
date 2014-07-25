@@ -214,6 +214,18 @@
     TFPhoto *photo = [self.images objectAtIndex: indexPath.item];
     cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
 
+    //    __weak TFImageGridViewCell *weakCell = cell;
+    //
+    ////    void (^presentationBlock)(UIImage *image) = ^(UIImage *image) {
+    ////
+    ////        __strong TFImageGridViewCell *strongCell = weakCell;
+    ////        if (strongCell) {
+    ////            strongCell.imageView.image = image;
+    ////            [UIView animateWithDuration: 0.4 animations: ^{
+    ////                strongCell.alpha = 1;
+    ////            }];
+    ////        }
+    ////    };
     BOOL oldCaching = NO;
 
     if (oldCaching) {
@@ -321,6 +333,13 @@
     return UIEdgeInsetsMake(-22, 0, 0, 0);
 }
 
+
+- (UICollectionViewTransitionLayout *) collectionView: (UICollectionView *) collectionView transitionLayoutForOldLayout: (UICollectionViewLayout *) fromLayout newLayout: (UICollectionViewLayout *) toLayout {
+    if (_delegate && [_delegate respondsToSelector: @selector(collectionView:layout:transitionLayoutForOldLayout:newLayout:)]) {
+        return [_delegate collectionView: collectionView transitionLayoutForOldLayout: fromLayout newLayout: toLayout];
+    }
+    return nil;
+}
 
 
 #pragma mark - Notify

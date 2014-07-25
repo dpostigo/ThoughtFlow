@@ -14,20 +14,20 @@
 #import "APIModel.h"
 #import "NSObject+BKBlockObservation.h"
 #import "APIUser.h"
+#import "TWTPopTransitionController.h"
+#import "TWTNavigationControllerDelegate.h"
+#import "TFTransitionLayout.h"
 
 
 @interface TFMindmapFullscreenViewController ()
 
 @property(nonatomic, strong) UIImageView *bg;
 @property(nonatomic, strong) TFUserPreferences *preferences;
-@property(nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
 @property(nonatomic, strong) UIView *snapshot;
+
 @end
 
-@implementation TFMindmapFullscreenViewController {
-
-}
-
+@implementation TFMindmapFullscreenViewController
 
 #pragma mark - View lifecycle
 
@@ -59,6 +59,11 @@
 //
 //}
 
+- (void) viewDidLoad {
+    [super viewDidLoad];
+
+}
+
 
 - (void) _setup {
     [super _setup];
@@ -70,6 +75,8 @@
 
     [self _setupUserPreferences];
     //    [self _setupGestures];
+
+
 }
 
 
@@ -155,14 +162,21 @@
 #pragma mark - Public
 
 - (void) setIsMinimized: (BOOL) isMinimized {
-    _isMinimized = isMinimized;
-    _pinchRecognizer.enabled = _isMinimized;
+    [super setIsMinimized: isMinimized];
+    _pinchRecognizer.enabled = self.isMinimized;
 
 }
 
 
 #pragma mark - Delegates
 
+
+#pragma mark - TWTTransitionControllerDelegate
+
+- (void) transitionControllerInteractionDidStart: (id <TWTTransitionController>) transitionController {
+    [self.navigationController popToRootViewControllerAnimated: YES];
+
+}
 
 - (void) imageGridViewController: (TFImageGridViewController *) gridViewController didClickButton: (UIButton *) button inCell: (TFImageGridViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
     // TODO : Does this ever get called?
@@ -188,6 +202,12 @@
 }
 
 
+- (void) imageGridViewController: (TFImageGridViewController *) controller didScrollToIndexPath: (NSIndexPath *) indexPath {
+    self.selectedIndexPath = indexPath;
+
+}
+
+
 - (void) imageGridViewController: (TFImageGridViewController *) controller didScrollToImage: (TFPhoto *) image {
     self.selectedImage = image;
     [self _notifySelection: image];
@@ -205,6 +225,12 @@
 
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
+
+- (UICollectionViewTransitionLayout *) collectionView: (UICollectionView *) collectionView transitionLayoutForOldLayout: (UICollectionViewLayout *) fromLayout newLayout: (UICollectionViewLayout *) toLayout {
+    TFTransitionLayout *ret = [[TFTransitionLayout alloc] initWithCurrentLayout: fromLayout nextLayout: toLayout];
+    return ret;
+}
+
 
 #pragma mark - Private
 

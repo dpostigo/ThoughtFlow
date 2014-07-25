@@ -60,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_AFOAuth2Client 1
 #define COCOAPODS_VERSION_PATCH_AFOAuth2Client 1
 
+// AHEasing
+#define COCOAPODS_POD_AVAILABLE_AHEasing
+#define COCOAPODS_VERSION_MAJOR_AHEasing 1
+#define COCOAPODS_VERSION_MINOR_AHEasing 2
+#define COCOAPODS_VERSION_PATCH_AHEasing 0
+
 // AutoCoding
 #define COCOAPODS_POD_AVAILABLE_AutoCoding
 #define COCOAPODS_VERSION_MAJOR_AutoCoding 2
@@ -208,25 +214,25 @@
 #define COCOAPODS_POD_AVAILABLE_DTFoundation_Core
 #define COCOAPODS_VERSION_MAJOR_DTFoundation_Core 1
 #define COCOAPODS_VERSION_MINOR_DTFoundation_Core 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_Core 1
+#define COCOAPODS_VERSION_PATCH_DTFoundation_Core 2
 
 // DTFoundation/DTAnimatedGIF
 #define COCOAPODS_POD_AVAILABLE_DTFoundation_DTAnimatedGIF
 #define COCOAPODS_VERSION_MAJOR_DTFoundation_DTAnimatedGIF 1
 #define COCOAPODS_VERSION_MINOR_DTFoundation_DTAnimatedGIF 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_DTAnimatedGIF 1
+#define COCOAPODS_VERSION_PATCH_DTFoundation_DTAnimatedGIF 2
 
 // DTFoundation/DTHTMLParser
 #define COCOAPODS_POD_AVAILABLE_DTFoundation_DTHTMLParser
 #define COCOAPODS_VERSION_MAJOR_DTFoundation_DTHTMLParser 1
 #define COCOAPODS_VERSION_MINOR_DTFoundation_DTHTMLParser 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_DTHTMLParser 1
+#define COCOAPODS_VERSION_PATCH_DTFoundation_DTHTMLParser 2
 
 // DTFoundation/UIKit
 #define COCOAPODS_POD_AVAILABLE_DTFoundation_UIKit
 #define COCOAPODS_VERSION_MAJOR_DTFoundation_UIKit 1
 #define COCOAPODS_VERSION_MINOR_DTFoundation_UIKit 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_UIKit 1
+#define COCOAPODS_VERSION_PATCH_DTFoundation_UIKit 2
 
 // ILTranslucentView
 #define COCOAPODS_POD_AVAILABLE_ILTranslucentView
@@ -239,6 +245,12 @@
 #define COCOAPODS_VERSION_MAJOR_JMSimpleDate 0
 #define COCOAPODS_VERSION_MINOR_JMSimpleDate 0
 #define COCOAPODS_VERSION_PATCH_JMSimpleDate 6
+
+// KRLCollectionViewGridLayout
+#define COCOAPODS_POD_AVAILABLE_KRLCollectionViewGridLayout
+#define COCOAPODS_VERSION_MAJOR_KRLCollectionViewGridLayout 0
+#define COCOAPODS_VERSION_MINOR_KRLCollectionViewGridLayout 1
+#define COCOAPODS_VERSION_PATCH_KRLCollectionViewGridLayout 1
 
 // NSAttributedString-DDHTML
 #define COCOAPODS_POD_AVAILABLE_NSAttributedString_DDHTML
@@ -264,11 +276,29 @@
 #define COCOAPODS_VERSION_MINOR_Reveal_iOS_SDK 0
 #define COCOAPODS_VERSION_PATCH_Reveal_iOS_SDK 4
 
+// TLLayoutTransitioning
+#define COCOAPODS_POD_AVAILABLE_TLLayoutTransitioning
+#define COCOAPODS_VERSION_MAJOR_TLLayoutTransitioning 1
+#define COCOAPODS_VERSION_MINOR_TLLayoutTransitioning 0
+#define COCOAPODS_VERSION_PATCH_TLLayoutTransitioning 1
+
 // TWRBorderedView
 #define COCOAPODS_POD_AVAILABLE_TWRBorderedView
 #define COCOAPODS_VERSION_MAJOR_TWRBorderedView 0
 #define COCOAPODS_VERSION_MINOR_TWRBorderedView 1
 #define COCOAPODS_VERSION_PATCH_TWRBorderedView 0
+
+// TWTPopTransitionController
+#define COCOAPODS_POD_AVAILABLE_TWTPopTransitionController
+#define COCOAPODS_VERSION_MAJOR_TWTPopTransitionController 0
+#define COCOAPODS_VERSION_MINOR_TWTPopTransitionController 0
+#define COCOAPODS_VERSION_PATCH_TWTPopTransitionController 1
+
+// TWTToast/UIKit/ViewControllerTransitions
+#define COCOAPODS_POD_AVAILABLE_TWTToast_UIKit_ViewControllerTransitions
+#define COCOAPODS_VERSION_MAJOR_TWTToast_UIKit_ViewControllerTransitions 0
+#define COCOAPODS_VERSION_MINOR_TWTToast_UIKit_ViewControllerTransitions 10
+#define COCOAPODS_VERSION_PATCH_TWTToast_UIKit_ViewControllerTransitions 0
 
 // UIAlertView+Blocks
 #define COCOAPODS_POD_AVAILABLE_UIAlertView_Blocks

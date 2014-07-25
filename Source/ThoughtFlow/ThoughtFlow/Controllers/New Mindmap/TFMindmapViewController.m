@@ -27,6 +27,8 @@
 #import "APIModel.h"
 #import "APIUser.h"
 #import "NSObject+BKBlockExecution.h"
+#import "TFMindmapCollectionViewController.h"
+#import "TFMindmapBackgroundCollectionViewController.h"
 
 
 @interface TFMindmapViewController ()
@@ -43,6 +45,8 @@
 @property(nonatomic, strong) TFMinimizedNodesViewController *minimizedController;
 @property(nonatomic, strong) TFScrollingMindmapViewController *scrollingController;
 
+@property(nonatomic, strong) TFMindmapCollectionViewController *bgController2;
+@property(nonatomic, strong) TFMindmapBackgroundCollectionViewController *bgController3;
 @end
 
 @implementation TFMindmapViewController
@@ -122,10 +126,16 @@
 }
 
 - (void) _setupControllers {
+    //
+    //    _bgController2 = [[TFMindmapCollectionViewController alloc] init];
+    //    [self embedFullscreenController: _bgController2];
+
+    _bgController3 = [[TFMindmapBackgroundCollectionViewController alloc] initWithContentView: _contentView];
+    [self embedFullscreenController: _bgController3];
 
     _bgController = [[TFMindmapBackgroundViewController alloc] initWithProject: _project node: _project.firstNode];
     _bgController.contentView = _contentView;
-    [self embedFullscreenController: _bgController];
+    //    [self embedFullscreenController: _bgController];
 
     _scrollingController = [[TFScrollingMindmapViewController alloc] init];
     [self embedFullscreenController: _scrollingController];
@@ -409,7 +419,9 @@
 
     } else {
         _nodesController.view.hidden = NO;
+        _nodesController.view.userInteractionEnabled = YES;
         _linesController.view.hidden = NO;
+        _linesController.view.userInteractionEnabled = YES;
         _pinchRecognizer.enabled = YES;
 
     }
@@ -425,6 +437,8 @@
     TFUserPreferences *preferences = [APIModel sharedModel].currentUser.preferences;
     if (preferences.autoRefreshEnabled) {
         _bgController.node = _selectedNode;
+        //        _bgController2.node = _selectedNode;
+        _bgController3.node = _selectedNode;
     }
 
 }

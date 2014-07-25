@@ -35,12 +35,22 @@
 
 #pragma mark - UINavigationControllerDelegate
 
+- (void) navigationController: (UINavigationController *) navigationController didShowViewController: (UIViewController *) viewController animated: (BOOL) animated {
+
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    [viewController.view addGestureRecognizer: _interactionController.pinchRecognizer];
+
+}
+
+
 - (id <UIViewControllerAnimatedTransitioning>) navigationController: (UINavigationController *) navigationController animationControllerForOperation: (UINavigationControllerOperation) operation fromViewController: (UIViewController *) fromVC toViewController: (UIViewController *) toVC {
+    _animationController.isPresenting = operation == UINavigationControllerOperationPush;
+
     return _animationController;
 }
 
 - (id <UIViewControllerInteractiveTransitioning>) navigationController: (UINavigationController *) navigationController interactionControllerForAnimationController: (id <UIViewControllerAnimatedTransitioning>) animationController {
-    return _interactionController;
+    return _interactionController.interactionInProgress ? _interactionController : nil;
 }
 
 @end

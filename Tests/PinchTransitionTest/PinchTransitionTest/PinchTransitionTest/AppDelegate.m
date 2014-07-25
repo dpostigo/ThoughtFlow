@@ -23,8 +23,8 @@
 
     UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController: [[ViewController1 alloc] init]];
     controller.delegate = navDelegate;
-    [controller pushViewController: [[ViewController2 alloc] init] animated: NO];
     self.window.rootViewController = controller;
+    //    [controller pushViewController: [[ViewController2 alloc] init] animated: NO];
     [self.window makeKeyAndVisible];
     return YES;
 }

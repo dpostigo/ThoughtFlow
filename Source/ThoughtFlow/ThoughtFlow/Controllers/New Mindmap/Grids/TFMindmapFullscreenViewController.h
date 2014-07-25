@@ -4,11 +4,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <TWTToast/TWTTransitionController.h>
 #import "TFNewMindmapGridViewController.h"
 
 
-@interface TFMindmapFullscreenViewController : TFNewMindmapGridViewController
+@interface TFMindmapFullscreenViewController : TFNewMindmapGridViewController <TWTTransitionControllerDelegate>
 
-@property(nonatomic) BOOL isMinimized;
 
+@property(nonatomic, strong) NSIndexPath *selectedIndexPath;
+@property(nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
 @end

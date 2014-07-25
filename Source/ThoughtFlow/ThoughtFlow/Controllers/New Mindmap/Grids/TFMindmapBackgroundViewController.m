@@ -5,7 +5,8 @@
 
 #import <DPKit-Utils/UIViewController+DPKit.h>
 #import <DPAnimators/NavigationFadeAnimator.h>
-#import <BlocksKit/UIGestureRecognizer+BlocksKit.h>
+#import <TWTToast/TWTNavigationControllerDelegate.h>
+#import <TWTPopTransitionController/TWTPopTransitionController.h>
 #import "TFMindmapBackgroundViewController.h"
 #import "Project.h"
 #import "TFNode.h"
@@ -14,11 +15,7 @@
 #import "TFMindmapFullscreenViewController.h"
 #import "APIModel.h"
 #import "TFPhoto.h"
-#import "TFPinchAnimator.h"
-#import "CEBaseInteractionController.h"
-#import "CEPinchInteractionController.h"
-#import "CETurnAnimationController.h"
-#import "CEHorizontalSwipeInteractionController.h"
+#import "TFMindmapGridAnimator.h"
 
 
 @interface TFMindmapBackgroundViewController ()
@@ -26,8 +23,9 @@
 @property(nonatomic, strong) TFMindmapButtonsViewController *buttonsController;
 @property(nonatomic, strong) TFNewMindmapGridViewController *gridController;
 @property(nonatomic, strong) NavigationFadeAnimator *fadeAnimator;
-@property(nonatomic, strong) CEReversibleAnimationController *pinchAnimationControler;
-@property(nonatomic, strong) CEHorizontalSwipeInteractionController *pinchInteractionController;
+@property(nonatomic, strong) TWTPopTransitionController *popTransitionController;
+@property(nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
+@property(nonatomic, strong) TFMindmapGridAnimator *gridAnimator;
 @end
 
 @implementation TFMindmapBackgroundViewController
@@ -39,8 +37,14 @@
         _node = node;
 
         _fadeAnimator = [NavigationFadeAnimator new];
-        _pinchAnimationControler = [CETurnAnimationController new];
-        _pinchInteractionController = [CEHorizontalSwipeInteractionController new];
+
+        if (DEV) {
+            _popTransitionController = [[TWTPopTransitionController alloc] init];
+            _popTransitionController.delegate = self;
+            _pinchRecognizer = _popTransitionController.pinchGestureRecognizer;
+
+            _gridAnimator = [TFMindmapGridAnimator new];
+        }
     }
 
     return self;
@@ -107,11 +111,62 @@
 - (void) setMindmapType: (TFMindmapControllerType) mindmapType {
     _mindmapType = mindmapType;
 
-    _gridController.mindmapType = _mindmapType;
+    TFNewMindmapGridViewController *controller = (TFNewMindmapGridViewController *) _contentController.visibleViewController;
+    controller.isMinimized = _mindmapType == TFMindmapControllerTypeMinimized;
+
+    self.isMinimized = _mindmapType == TFMindmapControllerTypeMinimized;
+}
+
+- (void) setIsMinimized: (BOOL) isMinimized {
+    _isMinimized = isMinimized;
+    _pinchRecognizer.enabled = _isMinimized;
+    _gridAnimator.enabled = _isMinimized;
 }
 
 
 #pragma mark - Delegates
+
+
+#pragma mark - TWTTransitionControllerDelegate
+- (void) transitionControllerInteractionDidStart: (id <TWTTransitionController>) transitionController {
+
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
+    //    if (_gridController == nil) {
+    //
+    //        NSLog(@"_gridController = %@", _gridController);
+    //        return;
+    //    }
+    //
+    //    if (_gridController != nil) {
+    //
+    //        if (self.isFullscreen) {
+    //            TFMindmapFullscreenViewController *fullController = (TFMindmapFullscreenViewController *) _contentController.visibleViewController;
+    //
+    //            NSIndexPath *indexPath = fullController.selectedIndexPath;
+    //
+    //            UICollectionView *collectionView = _gridController.imagesController.collection;
+    //
+    //            //            _gridController.collectionView
+    //
+    //            UICollectionViewCell *cell = [_gridController.collectionView cellForItemAtIndexPath: indexPath];
+    //
+    //            NSLog(@"cell = %@", cell);
+    //
+    //            CGRect rect = cell.frame;
+    //
+    //
+    //            UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    //            layout.itemSize = rect.size;
+    //            [fullController.collectionView setCollectionViewLayout: layout animated: YES];
+    //
+    //        }
+    //
+    //    }
+
+    [_contentController popToRootViewControllerAnimated: YES];
+
+}
 
 
 
@@ -180,6 +235,26 @@
 
 }
 
+
+#pragma mark - APLTransitionControllerDelegate
+
+- (void) interactionBeganAtPoint: (CGPoint) p {
+
+    //    UINavigationController *navController = (UINavigationController *) self.view.window.rootViewController;
+
+    // Very basic communication between the transition controller and the top view controller
+    // It would be easy to add more control, support pop, push or no-op.
+    //
+//    UIViewController *viewController = [(APLCollectionViewController *) _contentController.topViewController nextViewControllerAtPoint: p];
+    //    if (viewController != nil) {
+    //        [_contentController pushViewController: viewController animated: YES];
+    //    }
+    //    else {
+    //        [_contentController popViewControllerAnimated: YES];
+    //    }
+}
+
+
 #pragma mark - UINavigationControllerDelegate
 
 
@@ -203,46 +278,71 @@
 
 }
 
+- (void) navigationController: (UINavigationController *) navigationController didShowViewController: (UIViewController *) viewController animated: (BOOL) animated {
+
+    if (DEV) {
+        if (_pinchRecognizer.view) {
+            [_pinchRecognizer.view removeGestureRecognizer: _pinchRecognizer];
+        }
+
+        [self.view addGestureRecognizer: _pinchRecognizer];
+        _pinchRecognizer.enabled = _mindmapType == TFMindmapControllerTypeMinimized;
+
+        viewController.twt_popAnimationController = _popTransitionController;
+    }
+
+    TFNewMindmapGridViewController *controller = (TFNewMindmapGridViewController *) _contentController.visibleViewController;
+    _gridAnimator.collectionView = controller.collectionView;
+
+}
+
+
 - (id <UIViewControllerAnimatedTransitioning>) navigationController: (UINavigationController *) navigationController
                                     animationControllerForOperation: (UINavigationControllerOperation) operation
                                                  fromViewController: (UIViewController *) sourceController
                                                    toViewController: (UIViewController *) destinationController {
 
+    if (DEV) {
 
-    // allow the interaction controller to wire-up its gesture recognisers
-    [_pinchInteractionController wireToViewController: sourceController forOperation: CEInteractionOperationDismiss];
-    _pinchAnimationControler.reverse = operation == UINavigationControllerOperationPop;
-    return _pinchAnimationControler;
+        return _gridAnimator.hasActiveInteraction ? _gridAnimator : nil;
+        if ([destinationController isKindOfClass: [TFMindmapFullscreenViewController class]]) {
+            NavigationFadeAnimator *ret = self.fadeAnimator;
 
-    if ([destinationController isKindOfClass: [TFMindmapFullscreenViewController class]]) {
-        // allow the interaction controller to wire-up its gesture recognisers
-        [_pinchInteractionController wireToViewController: sourceController
-                forOperation: CEInteractionOperationDismiss];
-        _pinchAnimationControler.reverse = operation == UINavigationControllerOperationPop;
-        return _pinchAnimationControler;
-    }
+            if (operation == UINavigationControllerOperationPush) {
+                ret.isPresenting = YES;
+            } else if (operation == UINavigationControllerOperationPop) {
+                ret.isPresenting = NO;
+            } else {
+                NSLog(@"help");
 
-    NavigationFadeAnimator *ret = self.fadeAnimator;
+            }
 
-    if (operation == UINavigationControllerOperationPush) {
-        NSLog(@"Push");
-        ret.isPresenting = YES;
-    } else if (operation == UINavigationControllerOperationPop) {
-        NSLog(@"pop");
-
-        ret.isPresenting = NO;
+            return _fadeAnimator;
+        }
+        return [_navigationDelegate navigationController: navigationController animationControllerForOperation: operation fromViewController: sourceController toViewController: destinationController];
     } else {
-        NSLog(@"help");
+        NavigationFadeAnimator *ret = self.fadeAnimator;
 
+        if (operation == UINavigationControllerOperationPush) {
+            ret.isPresenting = YES;
+        } else if (operation == UINavigationControllerOperationPop) {
+            ret.isPresenting = NO;
+        } else {
+
+        }
+
+        return _fadeAnimator;
     }
 
-    //        self.fadeAnimator.isPresenting = operation == UINavigationControllerOperationPush ? YES : NO;
-    return _fadeAnimator;
+    return nil;
+
 }
 
 
 - (id <UIViewControllerInteractiveTransitioning>) navigationController: (UINavigationController *) navigationController interactionControllerForAnimationController: (id <UIViewControllerAnimatedTransitioning>) animationController {
-    return _pinchInteractionController.interactionInProgress ? _pinchInteractionController : nil;;
+
+    return _gridAnimator.hasActiveInteraction ? _gridAnimator : nil;
+    //    return [_navigationDelegate navigationController: navigationController interactionControllerForAnimationController: animationController];
 }
 
 
@@ -280,6 +380,8 @@
 
 - (void) _setupControllers {
 
+    _navigationDelegate = [[TWTNavigationControllerDelegate alloc] init];
+
     _gridController = [[TFNewMindmapGridViewController alloc] initWithProject: _project images: _images];
     _gridController.delegate = self;
 
@@ -299,17 +401,8 @@
 - (void) _setupFullscreenController {
     TFMindmapFullscreenViewController *controller2 = [[TFMindmapFullscreenViewController alloc] initWithProject: _project images: _images];
     controller2.delegate = self;
+
     [_contentController pushViewController: controller2 animated: YES];
-
-    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] bk_initWithHandler: ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-
-        NSLog(@"%s", __PRETTY_FUNCTION__);
-
-        //        [_pinchInteractionController performSelector: @selector(handleGesture:) withObject: sender];
-
-    }];
-
-    [controller2.view addGestureRecognizer: pinch];
 
 }
 
@@ -325,6 +418,11 @@
 
 - (void) _refreshButtonsController {
     [_buttonsController updatePinButtonForImage: _selectedImage inProject: _project];
+}
+
+
+- (BOOL) isFullscreen {
+    return [_contentController.visibleViewController isKindOfClass: [TFMindmapFullscreenViewController class]];
 }
 
 @end

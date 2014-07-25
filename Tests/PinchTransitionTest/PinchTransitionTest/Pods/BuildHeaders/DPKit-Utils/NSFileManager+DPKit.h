@@ -1,1 +1,1 @@
-../../DPKit-Utils/DPKit-Utils/NSFileManager+DPKit.h
+../../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/NSFileManager+DPKit.h

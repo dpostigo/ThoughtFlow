@@ -1,1 +1,1 @@
-../../DPAnimators/DPAnimators/SlidingModalAnimator.h
+../../../../../../../LocalPods/DPAnimators/DPAnimators/SlidingModalAnimator.h

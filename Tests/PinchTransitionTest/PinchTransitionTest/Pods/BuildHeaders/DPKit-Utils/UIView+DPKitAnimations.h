@@ -1,1 +1,1 @@
-../../DPKit-Utils/DPKit-Utils/ios/UIView+DPKitAnimations.h
+../../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKitAnimations.h

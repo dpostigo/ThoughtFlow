@@ -1,1 +1,1 @@
-../../DPKit-Utils/DPKit-Utils/NSDictionary+DPKit.h
+../../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/NSDictionary+DPKit.h

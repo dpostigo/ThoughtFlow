@@ -44,5 +44,12 @@ pod 'DTCoreText'
 
 pod 'VCTransitionsLibrary'
 
+pod 'TWTToast/UIKit/ViewControllerTransitions', '~> 0.7'
+pod 'TWTPopTransitionController', :path => '~/Development/LocalPods/Forked/TWTPopTransitionController'
+
+
+
+pod 'TLLayoutTransitioning'
+pod 'KRLCollectionViewGridLayout'
 
 # Temp

@@ -177,4 +177,36 @@
     }
 }
 
+
+
+#pragma mark - Getters
+
+- (UICollectionView *) collectionView {
+    return _imagesController.collection;
+}
+
+
+// obtain the next collection view controller based on where the user tapped in case there are multiple stacks
+- (UICollectionViewController *) nextViewControllerAtPoint: (CGPoint) p {
+    // we could have multiple section stacks, so we need to find the right one
+//    UICollectionViewFlowLayout *grid = [[UICollectionViewFlowLayout alloc] init];
+    //    grid.itemSize = CGSizeMake(75.0, 75.0);
+    //    grid.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+    //
+    //    TFNewMindmapGridViewController *nextCollectionViewController = [[TFNewMindmapGridViewController alloc] initWithCollectionViewLayout: grid];
+    //
+    //    // Set "useLayoutToLayoutNavigationTransitions" to YES before pushing a a
+    //    // UICollectionViewController onto a UINavigationController. The top view controller of
+    //    // the navigation controller must be a UICollectionViewController that was pushed with
+    //    // this property set to NO. This property should NOT be changed on a UICollectionViewController
+    //    // that has already been pushed onto a UINavigationController.
+    //    //
+    //    nextCollectionViewController.useLayoutToLayoutNavigationTransitions = YES;
+    //
+    //    nextCollectionViewController.title = @"Grid Layout";
+    //
+    //    return nextCollectionViewController;
+    return nil;
+}
+
 @end

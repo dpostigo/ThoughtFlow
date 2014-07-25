@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6C79C82A70AB4E0DB53CCFDC"
+               BlueprintIdentifier = "00746665BA60472A8125E81D"
                BuildableName = "libPods-DPTransitions.a"
                BlueprintName = "Pods-DPTransitions"
                ReferencedContainer = "container:Pods.xcodeproj">

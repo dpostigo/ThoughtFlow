@@ -9,6 +9,10 @@
 
 @implementation TFContentViewNavigationController
 
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 - (void) toggleViewController: (UIViewController *) controller animated: (BOOL) flag {
     if (self.visibleViewController == controller || [self.visibleViewController isKindOfClass: [controller class]]) {
         [self popViewControllerAnimated: flag];

@@ -29,3 +29,6 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 
 #define MAS_SHORTHAND
 #endif
+
+
+#define DEV 1

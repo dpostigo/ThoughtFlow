@@ -1,1 +1,1 @@
-../../DPKit-Utils/DPKit-Utils/ios/UIColor+DPKit.h
+../../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIColor+DPKit.h

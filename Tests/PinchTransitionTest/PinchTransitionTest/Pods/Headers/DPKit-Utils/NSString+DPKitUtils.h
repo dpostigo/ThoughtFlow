@@ -1,1 +1,1 @@
-../../DPKit-Utils/DPKit-Utils/NSString+DPKitUtils.h
+../../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/NSString+DPKitUtils.h

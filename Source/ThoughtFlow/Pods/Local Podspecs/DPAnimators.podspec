@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DPAnimators"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "DPAnimators"
   s.homepage     = "http://dpostigo.com"
   s.license      = 'BSD'
@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/dpostigo/DPAnimators.git", :tag => s.version.to_s }
   s.platform     = :ios, '7.0'
   s.frameworks   = 'Foundation', 'QuartzCore'
+  s.dependency     'BlocksKit'
   s.dependency     'DPKit-Utils'
   s.dependency     'DPKit-UIView'
   s.requires_arc = true

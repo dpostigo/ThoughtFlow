@@ -1,1 +1,1 @@
-../../DPKit-Utils/DPKit-Utils/ios/NSArray+IndexPath.h
+../../../../../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/NSArray+IndexPath.h

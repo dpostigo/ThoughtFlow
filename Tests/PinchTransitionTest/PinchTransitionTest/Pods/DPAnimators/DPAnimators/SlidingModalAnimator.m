@@ -40,24 +40,26 @@
     [containerView addSubview: toView];
 
 
-    toView.width = modalPresentationSize.width;
-    toView.height = modalPresentationSize.height;
-    toView.top = containerView.height;
-
-//    toView.frame = [self rectForDismissedState: context];
 
 
-    [UIView animateWithDuration: self.transitionDuration
-                          delay: 0.0
-                        options: UIViewAnimationOptionCurveEaseOut
-                     animations: ^{
-//                         toView.frame = [self rectForPresentedState: context];
-                         toView.top = containerView.height - toView.height;
-                     }
-                     completion: ^(BOOL finished) {
-                         [context completeTransition: YES];
-                     }];
-
+//    toView.width = viewSize.width;
+//    toView.height = viewSize.height;
+//    toView.top = containerView.height;
+//
+////    toView.frame = [self rectForDismissedState: context];
+//
+//
+//    [UIView animateWithDuration: self.transitionDuration
+//                          delay: 0.0
+//                        options: UIViewAnimationOptionCurveEaseOut
+//                     animations: ^{
+////                         toView.frame = [self rectForPresentedState: context];
+//                         toView.top = containerView.height - toView.height;
+//                     }
+//                     completion: ^(BOOL finished) {
+//                         [context completeTransition: YES];
+//                     }];
+//
 
 }
 

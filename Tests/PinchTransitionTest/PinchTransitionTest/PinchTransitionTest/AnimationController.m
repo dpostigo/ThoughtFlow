@@ -11,12 +11,14 @@
 - (void) presentWithContext: (id <UIViewControllerContextTransitioning>) context {
     [super presentWithContext: context];
 
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
     UIView *containerView = context.containerView;
     UIView *sourceView = [self fromViewController: context].view;
-
     UIView *destinationView = [self toViewController: context].view;
 
-    [destinationView removeFromSuperview];
+    [containerView addSubview: sourceView];
+    [containerView addSubview: destinationView];
 
     [context completeTransition: YES];
 
@@ -25,12 +27,15 @@
 - (void) dismissWithContext: (id <UIViewControllerContextTransitioning>) context {
     [super dismissWithContext: context];
 
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     UIView *containerView = context.containerView;
     UIView *sourceView = [self fromViewController: context].view;
-
     UIView *destinationView = [self toViewController: context].view;
 
-    [sourceView removeFromSuperview];
+    [containerView addSubview: destinationView];
+    [containerView addSubview: sourceView];
+
+    [destinationView removeFromSuperview];
 
     [context completeTransition: YES];
 }

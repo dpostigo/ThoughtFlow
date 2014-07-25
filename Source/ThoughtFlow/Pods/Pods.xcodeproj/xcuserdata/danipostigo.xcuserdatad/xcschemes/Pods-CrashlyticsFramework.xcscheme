@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5E1ECAA1CED341A2B8B6CB9B"
+               BlueprintIdentifier = "B80F797F8101469EA61D9C7E"
                BuildableName = "libPods-CrashlyticsFramework.a"
                BlueprintName = "Pods-CrashlyticsFramework"
                ReferencedContainer = "container:Pods.xcodeproj">

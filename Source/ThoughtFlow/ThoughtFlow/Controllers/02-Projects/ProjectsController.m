@@ -56,13 +56,15 @@
 
 
 - (void) _refreshCollectionAlignment: (BOOL) animated {
-    NSUInteger projectCount = [[APIModel sharedModel].projects count];
-    NSLog(@"projectCount = %u", projectCount);
-    if (_collection.contentSize.width < self.view.width && projectCount < 3) {
-        CGFloat differenceX = self.view.width - _collection.contentSize.width;
-        //        _collection.contentOffset = CGPointMake(-differenceX / 2, 0);
-        [_collection setContentOffset: CGPointMake(-differenceX / 2, 0) animated: animated];
+    if (DEV) {
+        NSUInteger projectCount = [[APIModel sharedModel].projects count];
+        if (_collection.contentSize.width < self.view.width && projectCount < 3) {
+            CGFloat differenceX = self.view.width - _collection.contentSize.width;
+            //        _collection.contentOffset = CGPointMake(-differenceX / 2, 0);
+            [_collection setContentOffset: CGPointMake(-differenceX / 2, 0) animated: animated];
+        }
     }
+
 }
 
 

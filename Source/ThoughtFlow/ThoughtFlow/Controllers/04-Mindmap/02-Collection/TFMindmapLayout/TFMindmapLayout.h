@@ -6,7 +6,10 @@
 #import <Foundation/Foundation.h>
 
 
-@interface TFMindmapGridLayout : UICollectionViewLayout
+#define ACTIVE_DISTANCE 200
+#define ZOOM_FACTOR 0.3
+
+@interface TFMindmapLayout : UICollectionViewLayout
 
 //@property(nonatomic) BOOL isFakeGrid;
 
@@ -15,9 +18,9 @@
 
 @property(nonatomic) NSInteger numberOfRows;
 @property(nonatomic) CGSize itemSize;
+@property(nonatomic) CGFloat spacing;
 @property(nonatomic) UIEdgeInsets sectionInset;
 @property(nonatomic, strong) NSMutableArray *attributesArray;
-- (instancetype) initWithCollection: (UICollectionView *) collection;
 
 - (void) setIsFullscreen: (BOOL) isFullscreen withCollectionView: (UICollectionView *) collectionView;
 @end

@@ -130,7 +130,7 @@
     //    _bgController2 = [[TFMindmapCollectionViewController alloc] init];
     //    [self embedFullscreenController: _bgController2];
 
-    _bgController3 = [[TFMindmapBackgroundCollectionViewController alloc] initWithContentView: _contentView];
+    _bgController3 = [[TFMindmapBackgroundCollectionViewController alloc] initWithContentView: _contentView project: _project node: _project.firstNode];
     [self embedFullscreenController: _bgController3];
 
     _bgController = [[TFMindmapBackgroundViewController alloc] initWithProject: _project node: _project.firstNode];

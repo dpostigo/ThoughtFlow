@@ -18,9 +18,10 @@
 #import "TFCollectionTransitionLayout.h"
 #import "NSObject+Delay.h"
 #import "JKInterpolationMath.h"
-#import "TFMindmapGridLayout.h"
+#import "TFMindmapLayout.h"
 #import "TFImageGridViewCell.h"
 #import "TFDynamicMindmapGridLayout.h"
+#import "TFMindmapGridLayout.h"
 
 
 #define NEW_CELL 0
@@ -37,9 +38,15 @@ NSString *const TFCollectionViewCellIdentifier = @"TFCollectionViewCellIdentifie
 
 - (id) init {
     //        TFCollectionViewGridLayout *layout = [[TFCollectionViewGridLayout alloc] init];
-    //    TFMindmapGridLayout *layout = [[TFMindmapGridLayout alloc] init];
-    TFDynamicMindmapGridLayout *layout = [[TFDynamicMindmapGridLayout alloc] init];
+    //    TFMindmapLayout *layout = [[TFMindmapLayout alloc] init];
+    //    TFMindmapLayout *layout = [[TFMindmapLayout alloc] init];
 
+    //    TFMindmapLayout *layout = [[TFMindmapLayout alloc] init];
+    TFMindmapGridLayout *layout = [[TFMindmapGridLayout alloc] init];
+    //    layout.numberOfRows = 3;
+
+
+    //    layout.isFullscreen = YES;
     return [self initWithCollectionViewLayout: layout];
 }
 
@@ -57,11 +64,9 @@ NSString *const TFCollectionViewCellIdentifier = @"TFCollectionViewCellIdentifie
             _isFullscreen = YES;
         }
 
-        [self.collectionView addDebugBorder: [UIColor redColor]];
-
         self.automaticallyAdjustsScrollViewInsets = NO;
         self.edgesForExtendedLayout = UIRectEdgeAll;
-        self.collectionView.pagingEnabled = YES;
+        self.collectionView.pagingEnabled = NO;
         self.collectionView.directionalLockEnabled = YES;
 
         [self.collectionView registerClass: [TFImageGridViewCell class] forCellWithReuseIdentifier: TFCollectionViewCellIdentifier];
@@ -151,7 +156,6 @@ NSString *const TFCollectionViewCellIdentifier = @"TFCollectionViewCellIdentifie
     [self.collectionView finishInteractiveTransition];
     [[UIApplication sharedApplication] endIgnoringInteractionEvents];
 
-    NSLog(@"self.collectionView.collectionViewLayout = %@", self.collectionView.collectionViewLayout);
 }
 
 
@@ -243,5 +247,14 @@ NSString *const TFCollectionViewCellIdentifier = @"TFCollectionViewCellIdentifie
 //    return nil;
 //}
 
+
+#pragma mark - Dealloc
+
+- (void) dealloc {
+    self.collectionView.dataSource = nil;
+    self.collectionView.delegate = nil;
+    self.collectionView = nil;
+
+}
 
 @end

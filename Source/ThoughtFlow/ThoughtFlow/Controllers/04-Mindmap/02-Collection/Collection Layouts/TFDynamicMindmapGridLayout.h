@@ -4,9 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TFMindmapGridLayout.h"
+#import "TFMindmapLayout.h"
 
 
-@interface TFDynamicMindmapGridLayout : TFMindmapGridLayout
+@interface TFDynamicMindmapGridLayout : TFMindmapLayout
 
 @end

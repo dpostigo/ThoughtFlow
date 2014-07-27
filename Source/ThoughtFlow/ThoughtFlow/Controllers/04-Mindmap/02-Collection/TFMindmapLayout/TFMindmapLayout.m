@@ -3,35 +3,25 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import "TFMindmapGridLayout.h"
+#import "TFMindmapLayout.h"
 
 
-//CGFloat const TFCollectionViewDynamicFullLayoutRows = 3;
-
-@implementation TFMindmapGridLayout {
+@implementation TFMindmapLayout {
 
 }
-
-- (instancetype) initWithCollection: (UICollectionView *) collection {
-    self = [super init];
-    if (self) {
-        _collection = collection;
-    }
-
-    return self;
-}
-
 
 - (id) init {
     self = [super init];
     if (self) {
         _numberOfRows = 3;
+        _spacing = 0;
 
     }
 
     return self;
 }
 
+#pragma mark - Setup
 
 - (void) _setup {
 
@@ -47,11 +37,12 @@
 }
 
 
-#pragma mark - CollectionView
+
 
 
 
 #pragma mark - Public
+
 
 - (void) setIsFullscreen: (BOOL) isFullscreen withCollectionView: (UICollectionView *) collectionView {
 
@@ -77,25 +68,22 @@
 
 }
 
-
 - (void) setIsFullscreen: (BOOL) isFullscreen {
     _isFullscreen = isFullscreen;
     [self invalidateLayout];
-}
-
-- (void) _setupFullscreen {
-
 }
 
 #pragma mark - Setup
 
 - (void) prepareLayout {
     [super prepareLayout];
+    [self _setup];
 
     if (_attributesArray == nil) {
         _attributesArray = [[NSMutableArray alloc] init];
     }
 
+    CGSize itemSize = _itemSize;
     NSInteger itemCount = [self.collectionView numberOfItemsInSection: 0];
 
     int currentRow = 0;
@@ -105,8 +93,8 @@
         attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath: [NSIndexPath indexPathForItem: j inSection: 0]];
 
         CGPoint origin;
-        origin.x = (currentCol * _itemSize.width);
-        origin.y = (currentRow * _itemSize.height) + (_sectionInset.top);
+        origin.x = (currentCol * itemSize.width);
+        origin.y = (currentRow * itemSize.height) + (_sectionInset.top);
 
         currentRow++;
 
@@ -115,11 +103,14 @@
             currentCol++;
         }
 
-        attributes.frame = CGRectMake(origin.x, origin.y, _itemSize.width, _itemSize.height);
+        attributes.frame = CGRectMake(origin.x, origin.y, itemSize.width, itemSize.height);
         [_attributesArray addObject: attributes];
     }
 
-    [self _setup];
+    if (_attributesArray && [_attributesArray count] > 0) {
+        //        NSLog(@"_attributesArray[0] = %@", _attributesArray[0]);
+    }
+
 }
 
 
@@ -127,45 +118,40 @@
     [super invalidateLayout];
 
     _attributesArray = nil;
-    [self _setup];
 }
 
 
 - (NSArray *) layoutAttributesForElementsInRect: (CGRect) rect {
 
+    NSLog(@"[_attributesArray count] = %u", [_attributesArray count]);
+    return _attributesArray;
+    NSMutableArray *ret = [[NSMutableArray alloc] init];
     CGFloat numColumns = ceilf(rect.size.width / _itemSize.width);
     int numItems = (int) (numColumns * _numberOfRows);
 
-    //    NSLog(@"numColumns = %f", numColumns);
-    //    NSLog(@"numItems = %i", numItems);
-
     if (rect.origin.x == 0) {
-        return [_attributesArray subarrayWithRange: NSMakeRange(0, numItems)];
-
-    } else {
-
-        //        NSLog(@"rect = %@", NSStringFromCGRect(rect));
-        CGFloat firstColumn = ceilf(rect.origin.x / _itemSize.width);
-        //        NSLog(@"firstColumn = %f", firstColumn);
-
-
-        //        return [_attributesArray subarrayWithRange: NSMakeRange(first, numItems)];
-
-
+        ret = [[_attributesArray subarrayWithRange: NSMakeRange(0, numItems)] mutableCopy];
     }
 
-    rect = CGRectInset(rect, -_itemSize.width, -_itemSize.height);
+    //    NSLog(@"rect = %@", NSStringFromCGRect(rect));
 
-    NSMutableArray *ret = [[NSMutableArray alloc] init];
+    CGRect visibleRect;
+    //    visibleRect.origin = self.collectionView.contentOffset;
+    //    visibleRect.size = self.collectionView.contentSize;
+    //    visibleRect = CGRectInset(visibleRect, -_itemSize.width, -_itemSize.height);
+
+    visibleRect = CGRectInset(rect, -_itemSize.width * 2, -_itemSize.height);;
+
     for (int j = 0; j < [_attributesArray count]; j++) {
         UICollectionViewLayoutAttributes *attributes = _attributesArray[j];
-
-        CGRect frame = attributes.frame;
-        if (CGRectContainsRect(rect, frame)) {
+        if (CGRectContainsRect(rect, visibleRect) || CGRectIntersectsRect(rect, visibleRect)) {
+            //        if (CGRectIntersectsRect(attributes.frame, visibleRect)) {
             [ret addObject: attributes];
         }
 
     }
+
+    //    NSLog(@"%s, ret = %@", __PRETTY_FUNCTION__, ret);
     return ret;
 }
 
@@ -194,43 +180,44 @@
 //}
 
 
-- (CGSize) collectionViewContentSize {
-    CGSize ret = [super collectionViewContentSize];
 
-    CGRect frame = self.collectionView.frame;
-    CGRect bounds = self.collectionView.bounds;
+#pragma mark - Bounds
+
+- (CGSize) collectionViewContentSize {
+    //    CGSize ret = [super collectionViewContentSize];
+
+    //    CGRect frame = self.collectionView.frame;
+    //    CGRect bounds = self.collectionView.bounds;
 
     //    ret = CGSizeMake(fmaxf(ret.width, CGRectGetWidth(frame)), fmaxf(ret.height, CGRectGetHeight(frame));
 
+    CGSize ret;
     NSInteger itemCount = [self.collectionView numberOfItemsInSection: 0];
     CGFloat numColumns = ceilf(itemCount / _numberOfRows);
 
-    if (_isFullscreen) {
-        ret.width = numColumns * _itemSize.width;
-        ret.height = _itemSize.height * _numberOfRows;
-    } else {
+    //    if (_isFullscreen) {
+    //        ret.width = numColumns * _itemSize.width;
+    //        ret.height = _itemSize.height * _numberOfRows;
+    //    } else {
+    //
+    //        ret.width = numColumns * _itemSize.width;
+    //        //        ret.height = bounds.size.height;
+    //        ret.height = _itemSize.height * _numberOfRows;
+    //    }
 
-        ret.width = numColumns * _itemSize.width;
-        ret.height = bounds.size.height;
-    }
 
-    //    ret.height += (_sectionInset.top + _sectionInset.bottom);
-    //    NSLog(@"ret = %@", NSStringFromCGSize(ret));
-
-    CGFloat boundsHeight = bounds.size.height;
-    //    NSLog(@"boundsHeight = %f, ret.height = %f", boundsHeight, ret.height);
+    ret.width = numColumns * _itemSize.width;
+    ret.height = _numberOfRows * _itemSize.height;
 
     return ret;
 }
-//
-//- (BOOL) shouldInvalidateLayoutForBoundsChange: (CGRect) newBounds {
-//    CGRect bounds = self.collectionView.bounds;
-//    return ((CGRectGetWidth(newBounds) != CGRectGetWidth(bounds) ||
-//            (CGRectGetHeight(newBounds) != CGRectGetHeight(bounds))));
-//}
+
 
 - (BOOL) shouldInvalidateLayoutForBoundsChange: (CGRect) newBounds {
-    return YES;
+
+    CGRect bounds = self.collectionView.bounds;
+
+    return !CGRectEqualToRect(bounds, newBounds);
 }
 
 
@@ -247,12 +234,8 @@
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath: indexPath];
 
             CGPoint newPoint = attributes.frame.origin;
-            point = newPoint;
 
-            NSLog(@"self.isFullscreen = %d", self.isFullscreen);
-            //        DDLogVerbose(@"proposedContentOffset = %@", NSStringFromCGPoint(proposedContentOffset));
-            //        DDLogVerbose(@"point = %@", NSStringFromCGPoint(point));
-            //        DDLogVerbose(@"newPoint = %@", NSStringFromCGPoint(newPoint));
+            point = newPoint;
 
         }
     }

@@ -143,7 +143,7 @@
     //        if (self.isFullscreen) {
     //            TFMindmapFullscreenViewController *fullController = (TFMindmapFullscreenViewController *) _contentController.visibleViewController;
     //
-    //            NSIndexPath *indexPath = fullController.selectedIndexPath;
+    //            NSIndexPath *indexPath = fullController.initialIndexPath;
     //
     //            UICollectionView *collectionView = _gridController.imagesController.collection;
     //
@@ -264,7 +264,7 @@
     BOOL isFullscreen = [viewController isKindOfClass: [TFMindmapFullscreenViewController class]];
 
     _buttonsController.view.hidden = NO;
-    [UIView animateWithDuration: 0.5
+    [UIView animateWithDuration: 0.45
             delay: 0.2
             usingSpringWithDamping: 0.8
             initialSpringVelocity: 2.0

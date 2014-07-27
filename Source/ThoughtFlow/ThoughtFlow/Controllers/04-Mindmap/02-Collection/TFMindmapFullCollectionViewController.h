@@ -7,5 +7,20 @@
 #import "TFMindmapCollectionViewController.h"
 
 
+@class TFPhoto;
+@class TFMindmapFullCollectionViewController;
+
+
+@protocol TFMindmapFullCollectionViewControllerDelegate <NSObject>
+
+- (void) mindmapCollectionViewController: (TFMindmapFullCollectionViewController *) controller selectedImage: (TFPhoto *) image;
+
+@end
+
+
 @interface TFMindmapFullCollectionViewController : TFMindmapCollectionViewController
+
+@property(nonatomic, assign) id <TFMindmapFullCollectionViewControllerDelegate> delegate;
+@property(nonatomic, strong) TFPhoto *selectedImage;
+@property(nonatomic, strong) NSIndexPath *initialIndexPath;
 @end

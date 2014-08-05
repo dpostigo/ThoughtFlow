@@ -8,8 +8,12 @@
 #import "TFNode.h"
 
 
+@class TFNewMindmapLayout;
+
+
 @interface TFMindmapCollectionViewController : TFCollectionViewController
 
 @property(nonatomic, strong) TFNode *node;
 - (void) setNode: (TFNode *) node images: (NSArray *) images;
+- (TFNewMindmapLayout *) fullscreenLayout;
 @end

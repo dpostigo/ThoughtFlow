@@ -123,8 +123,8 @@
 
 - (NSArray *) layoutAttributesForElementsInRect: (CGRect) rect {
 
-    NSLog(@"[_attributesArray count] = %u", [_attributesArray count]);
-    return _attributesArray;
+    //    NSLog(@"[_attributesArray count] = %u", [_attributesArray count]);
+    //    return _attributesArray;
     NSMutableArray *ret = [[NSMutableArray alloc] init];
     CGFloat numColumns = ceilf(rect.size.width / _itemSize.width);
     int numItems = (int) (numColumns * _numberOfRows);
@@ -234,7 +234,6 @@
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath: indexPath];
 
             CGPoint newPoint = attributes.frame.origin;
-
             point = newPoint;
 
         }

@@ -10,6 +10,9 @@
 
 }
 
+@property(nonatomic) BOOL updatesTargetedOffset;
+@property(nonatomic) BOOL updatesContentOffset;
 @property(nonatomic) CGSize itemSize;
 @property(nonatomic) NSInteger numberOfRows;
+- (void) startDynamicTransition;
 @end

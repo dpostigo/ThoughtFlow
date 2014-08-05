@@ -6,25 +6,23 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <DPKit-Utils/UIView+DPKit.h>
 #import <BlocksKit/NSObject+BKAssociatedObjects.h>
-#import <AHEasing/easing.h>
-#import <DPKit-Utils/UIView+DPKitDebug.h>
 #import "TFCollectionViewController.h"
-#import "TFCollectionViewCell.h"
 #import "TFPhoto.h"
 #import "TFCollectionViewFullLayout.h"
-#import "UICollectionView+DPKit.h"
-#import "TFFullLayout.h"
 #import "TFCollectionViewGridLayout.h"
 #import "TFCollectionTransitionLayout.h"
-#import "NSObject+Delay.h"
 #import "JKInterpolationMath.h"
 #import "TFMindmapLayout.h"
 #import "TFImageGridViewCell.h"
-#import "TFDynamicMindmapGridLayout.h"
 #import "TFMindmapGridLayout.h"
 
 
 #define NEW_CELL 0
+
+@interface TFCollectionViewController ()
+
+@property(nonatomic, strong) NSMutableArray *cachedCells;
+@end
 
 @implementation TFCollectionViewController
 
@@ -54,6 +52,8 @@ NSString *const TFCollectionViewCellIdentifier = @"TFCollectionViewCellIdentifie
     self = [super initWithCollectionViewLayout: layout];
     if (self) {
         _images = [NSArray array];
+
+        _cachedCells = [[NSMutableArray alloc] init];
 
         if ([layout isKindOfClass: [TFCollectionViewGridLayout class]]) {
             _gridLayout = (TFCollectionViewGridLayout *) layout;
@@ -165,16 +165,65 @@ NSString *const TFCollectionViewCellIdentifier = @"TFCollectionViewCellIdentifie
 }
 
 - (UICollectionViewCell *) collectionView: (UICollectionView *) collectionView cellForItemAtIndexPath: (NSIndexPath *) indexPath {
-    //    TFCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: TFCollectionViewCellIdentifier forIndexPath: indexPath];
-    //
-    //    TFPhoto *photo = [_images objectAtIndex: indexPath.item];
-    //    [cell.imageView setImageWithURL: photo.URL];
-    //    return cell;
 
     TFImageGridViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: TFCollectionViewCellIdentifier forIndexPath: indexPath];
-
     TFPhoto *photo = [_images objectAtIndex: indexPath.item];
-    [cell.imageView setImageWithURL: photo.URL];
+
+    cell.infoButton.tag = indexPath.item;
+    cell.backgroundColor = [UIColor clearColor];
+    cell.opaque = NO;
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+
+    //    __weak TFImageGridViewCell *weakCell = cell;
+    //
+    ////    void (^presentationBlock)(UIImage *image) = ^(UIImage *image) {
+    ////
+    ////        __strong TFImageGridViewCell *strongCell = weakCell;
+    ////        if (strongCell) {
+    ////            strongCell.imageView.image = image;
+    ////            [UIView animateWithDuration: 0.4 animations: ^{
+    ////                strongCell.alpha = 1;
+    ////            }];
+    ////        }
+
+
+//    NSLog(@"%s, indexPath = %@", __PRETTY_FUNCTION__, indexPath);
+    NSURLRequest *imageRequest = [[NSURLRequest alloc] initWithURL: photo.URL];
+    UIImage *cachedImage = [[[UIImageView class] sharedImageCache] cachedImageForRequest: imageRequest];
+
+    if (cachedImage) {
+        cell.imageView.image = cachedImage;
+        [cell rasterize];
+
+        //            NSLog(@"Set image, %@", indexPath);
+
+    } else {
+
+        //            cell.alpha = 0;
+        __weak TFImageGridViewCell *weakCell = cell;
+        [cell.imageView setImageWithURLRequest: imageRequest
+                placeholderImage: nil
+                success: ^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+
+                    __strong TFImageGridViewCell *strongCell = weakCell;
+                    if (strongCell) {
+                        strongCell.imageView.image = image;
+
+                    } else {
+
+                        NSLog(@"Yikes.");
+
+                    }
+
+                }
+                failure: nil];
+    }
+
+
+
+    //    [self _notifyDequeuedCell: cell atIndexPath: indexPath];
+
+
     return cell;
 }
 

@@ -23,17 +23,14 @@
 - (id) initWithCurrentLayout: (UICollectionViewLayout *) currentLayout nextLayout: (UICollectionViewLayout *) newLayout {
     self = [super initWithCurrentLayout: currentLayout nextLayout: newLayout];
     if (self) {
-
-        if ([currentLayout isKindOfClass: [TFMindmapLayout class]]) {
-            _fromMindmapLayout = (TFMindmapLayout *) currentLayout;
-            NSLog(@"_fromMindmapLayout.itemSize = %@", NSStringFromCGSize(_fromMindmapLayout.itemSize));
-
-        }
-        if ([newLayout isKindOfClass: [TFMindmapLayout class]]) {
-            _nextMindmapLayout = (TFMindmapLayout *) newLayout;
-            NSLog(@"_nextMindmapLayout.itemSize = %@", NSStringFromCGSize(_nextMindmapLayout.itemSize));
-
-        }
+        //
+        //        if ([currentLayout isKindOfClass: [TFMindmapLayout class]]) {
+        //            _fromMindmapLayout = (TFMindmapLayout *) currentLayout;
+        //
+        //        }
+        //        if ([newLayout isKindOfClass: [TFMindmapLayout class]]) {
+        //            _nextMindmapLayout = (TFMindmapLayout *) newLayout;
+        //        }
     }
 
     return self;
@@ -49,7 +46,7 @@
     CGFloat interpolatedWidth = _fromMindmapLayout.itemSize.width + (widthDifference * transitionProgress);
 
     _interpolatedSize = CGSizeMake(interpolatedWidth, interpolatedHeight);
-    [self updateValue: transitionProgress forAnimatedKey: @"progress"];
+    //    [self updateValue: transitionProgress forAnimatedKey: @"progress"];
     //    NSLog(@"self.transitionProgress = %f", self.transitionProgress);
 }
 
@@ -58,106 +55,85 @@
     //    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
+
+
+
+
+
+
+//- (CGSize) collectionViewContentSize {
+//    NSInteger numberOfRows = _fromMindmapLayout.numberOfRows;
+//    CGSize ret;
+//    NSInteger itemCount = [self.collectionView numberOfItemsInSection: 0];
+//    CGFloat numColumns = ceilf(itemCount / numberOfRows);
 //
-//- (id) initWithCurrentLayout: (UICollectionViewLayout *) currentLayout nextLayout: (UICollectionViewLayout *) newLayout {
-//    self = [super initWithCurrentLayout: currentLayout nextLayout: newLayout];
-//    if (self) {
-//
-//        if ([newLayout isKindOfClass: [TFMindmapLayout class]]) {
-//            _mindmapLayout = (TFMindmapLayout *) newLayout;
-//        }
-//    }
-//
-//    return self;
+//    ret.width = numColumns * _interpolatedSize.width;
+//    ret.height = numberOfRows * _interpolatedSize.height;
+//    return ret;
 //}
-//
-//
-//- (void) prepareForTransitionToLayout: (UICollectionViewLayout *) newLayout {
-//    [super prepareForTransitionToLayout: newLayout];
-//
-//    NSLog(@"%s, newLayout = %@", __PRETTY_FUNCTION__, newLayout);
-//    //    TFMindmapLayout *tempLayout = [[TFMindmapLayout alloc] init];
-//    //    [tempLayout setIsFullscreen: YES withCollectionView: self.collectionView];
-//    //    self.collectionView.collectionViewLayout = tempLayout;
-//}
-//
-//- (void) prepareForTransitionFromLayout: (UICollectionViewLayout *) oldLayout {
-//
-//    //    if ([self.currentLayout isKindOfClass: [TFMindmapFullscreenLayout class]]) {
-//    //        //        UICollectionViewLayout *currentLayout = self.collectionView.collectionViewLayout;
-//    //        TFMindmapLayout *tempLayout = [[TFMindmapLayout alloc] init];
-//    //        [tempLayout setIsFullscreen: YES withCollectionView: self.collectionView];
-//    //        self.collectionView.collectionViewLayout = tempLayout;
-//    //    }
-//
-//    [super prepareForTransitionFromLayout: oldLayout];
-//
-//
-//    //    NSLog(@"%s, oldLayout = %@", __PRETTY_FUNCTION__, oldLayout);
-//}
-//
-//
-//- (void) finalizeLayoutTransition {
-//    [super finalizeLayoutTransition];
-//
-//    NSLog(@"%s", __PRETTY_FUNCTION__);
-//
-//    NSLog(@"self.currentLayout = %@", self.currentLayout);
-//    NSLog(@"self.nextLayout = %@", self.nextLayout);
-//}
-//
-////
-////- (NSArray *) layoutAttributesForElementsInRect: (CGRect) rect {
-////    CGRect visibleRect;
-////    visibleRect.origin = self.collectionView.contentOffset;
-////    visibleRect.size = self.collectionView.bounds.size;
-////
-////    if (_mindmapLayout) {
-////        visibleRect = CGRectInset(visibleRect, -_mindmapLayout.itemSize.width, -_mindmapLayout.itemSize.height);
-////    }
-////
-////    //    NSLog(@"rect = %@, visibleRect = %@", NSStringFromCGRect(rect), NSStringFromCGRect(visibleRect));
-////    return [super layoutAttributesForElementsInRect: visibleRect];
-////}
 
 
 
 
-- (CGSize) collectionViewContentSize {
+- (UICollectionViewLayoutAttributes *) layoutAttributesForItemAtIndexPath: (NSIndexPath *) indexPath {
+    UICollectionViewLayoutAttributes *attributes = [super layoutAttributesForItemAtIndexPath: indexPath];
 
-    //    CGSize ret = [super collectionViewContentSize];
-    //    CGRect bounds = self.collectionView.bounds;
-    //
-    //    ret.width += 100;
-    //    ret.height += 100;
-    //
-    //    ret.height = _interpolatedSize.height * _fromMindmapLayout.numberOfRows;
-    //
-    //    //    NSLog(@"ret = %@", NSStringFromCGSize(ret));
-    //    return ret;
+    return attributes;
 
-
-    NSInteger numberOfRows = _fromMindmapLayout.numberOfRows;
-    CGSize ret;
-    NSInteger itemCount = [self.collectionView numberOfItemsInSection: 0];
-    CGFloat numColumns = ceilf(itemCount / numberOfRows);
-
-    ret.width = numColumns * _interpolatedSize.width;
-    ret.height = numberOfRows * _interpolatedSize.height;
-
-    //    NSLog(@"ret = %@", NSStringFromCGSize(ret));
-    return ret;
-
-    //    return bounds.size;
-    //    return CGSizeMake(fmaxf(ret.width, CGRectGetWidth(frame)), fmaxf(ret.height, CGRectGetHeight(frame)));
 }
+
 
 - (NSArray *) layoutAttributesForElementsInRect: (CGRect) rect {
-    NSArray *ret = [super layoutAttributesForElementsInRect: rect];
+
+    CGPoint offset = self.collectionView.contentOffset;
+    CGRect bounds = self.collectionView.bounds;
+    //    NSLog(@"height = %f", height);
+
+    CGRect visibleRect;
+    visibleRect.origin = self.collectionView.contentOffset;
+    visibleRect.size = bounds.size;
+
+    //    visibleRect = CGRectInset(visibleRect, -_interpolatedSize.width, -_interpolatedSize.height);
+    visibleRect = CGRectInset(visibleRect, -_interpolatedSize.width, -_interpolatedSize.height);
+
+    //    NSLog(@"visibleRect = %@", NSStringFromCGRect(visibleRect));
+    NSArray *array = [super layoutAttributesForElementsInRect: visibleRect];
+
+    NSMutableArray *ret = [[NSMutableArray alloc] init];
+    for (int j = 0; j < [array count]; j++) {
+        UICollectionViewLayoutAttributes *attributes = array[j];
+
+        if (CGRectIntersectsRect(visibleRect, attributes.frame)) {
+            //            NSLog(@"attributes.frame = %@", NSStringFromCGRect(attributes.frame));
+
+            [ret addObject: attributes];
+        }
+    }
 
     //    NSLog(@"[ret count] = %u", [ret count]);
+    //    NSLog(@"ret (%u) = %@", [ret count], ret);
+    if ([array count] > 10) {
+        //        NSLog(@"visibleRect = %@, [ret count] = %u", NSStringFromCGRect(rect), [ret count]);
+
+    } else {
+
+    }
     return ret;
 }
+
+
+
+
+//
+//- (CGPoint) targetContentOffsetForProposedContentOffset: (CGPoint) proposedContentOffset {
+//    //            DDLogVerbose(@"newPoint = %@", NSStringFromCGPoint(newPoint));
+//
+//    CGPoint point = [super targetContentOffsetForProposedContentOffset: proposedContentOffset];
+//
+//    DDLogVerbose(@"proposedContentOffset = %@", NSStringFromCGPoint(proposedContentOffset));
+//    DDLogVerbose(@"point = %@", NSStringFromCGPoint(point));
+//    return point;
+//}
 
 - (NSIndexPath *) selectedIndexPath {
     NSIndexPath *ret = nil;
@@ -169,15 +145,5 @@
     return ret;
 }
 
-
-- (CGPoint) targetContentOffsetForProposedContentOffset: (CGPoint) proposedContentOffset {
-    //            DDLogVerbose(@"newPoint = %@", NSStringFromCGPoint(newPoint));
-
-    CGPoint point = [super targetContentOffsetForProposedContentOffset: proposedContentOffset];
-
-    DDLogVerbose(@"proposedContentOffset = %@", NSStringFromCGPoint(proposedContentOffset));
-    DDLogVerbose(@"point = %@", NSStringFromCGPoint(point));
-    return point;
-}
 
 @end

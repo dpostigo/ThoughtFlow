@@ -3,35 +3,27 @@
 // Copyright (c) 2014 Daniela Postigo. All rights reserved.
 //
 
-#import <BlocksKit/UIGestureRecognizer+BlocksKit.h>
 #import <DPKit-Utils/UIView+DPKit.h>
-#import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
 #import "TFMindmapFullCollectionViewController.h"
 #import "TFPhoto.h"
 #import "TFMindmapLayout.h"
-#import "UIView+BlocksKit.h"
-#import "TFMindmapGridLayout.h"
-#import "TFMindmapTransitionLayout.h"
-#import "TFMindmapFullscreenLayout.h"
+#import "TFNewMindmapLayout.h"
+#import "TFNewTransitionLayout.h"
 
 
 @interface TFMindmapFullCollectionViewController ()
 
+@property(nonatomic) BOOL usesCustomTransitionLayout;
 @property(nonatomic) BOOL hasActiveInteraction;
 @property(nonatomic) CGPoint initialPinchPoint;
 @property(nonatomic) CGFloat initialPinchDistance;
 @property(nonatomic, strong) UIPinchGestureRecognizer *pinchGesture;
 @property(nonatomic, strong) UICollectionViewTransitionLayout *transitionLayout;
+@property(nonatomic, strong) TFNewTransitionLayout *customTransitionLayout;
+@property(nonatomic, strong) TFNewMindmapLayout *tempLayout;
 @end
 
 @implementation TFMindmapFullCollectionViewController
-
-//- (id) init {
-//    TFMindmapLayout *dynamicLayout = [[TFMindmapLayout alloc] init];
-//
-//    return [self initWithCollectionViewLayout: dynamicLayout];
-//}
-
 
 - (id) initWithCollectionViewLayout: (UICollectionViewLayout *) layout {
     TFMindmapLayout *newLayout = [[self class] initialLayout];
@@ -101,82 +93,173 @@
     //
     //    }];
 
-    _pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget: self action: @selector(handlePinch:)];
+    //    _pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget: self action: @selector(handleTransitionPinch:)];
+    _pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget: self action: @selector(handleManualPinch:)];
     [self.view addGestureRecognizer: _pinchGesture];
     //    _pinchGesture.enabled = NO;
 }
 
 
+#pragma mark - Interactive Transition
+
 - (void) startInteractiveTransition {
 
+    self.collectionView.userInteractionEnabled = NO;
     UICollectionViewLayout *currentLayout = self.collectionView.collectionViewLayout;
 
     DDLogWarn(@"SET TEMP LAYOUT.");
 
-    TFMindmapFullscreenLayout *tempLayout = [[TFMindmapFullscreenLayout alloc] init];
-    [tempLayout setIsFullscreen: YES  withCollectionView: self.collectionView];
-    self.collectionView.collectionViewLayout = tempLayout;
+    self.isPinching = YES;
 
-    TFMindmapFullscreenLayout *layout = [[TFMindmapFullscreenLayout alloc] init];
-    [layout setIsFullscreen: NO  withCollectionView: self.collectionView];
+    _tempLayout = [[TFNewMindmapLayout alloc] init];
+    _tempLayout.numberOfRows = 3;
+    _tempLayout.itemSize = self.view.bounds.size;
+    self.collectionView.collectionViewLayout = _tempLayout;
+    //    [self.collectionView.collectionViewLayout invalidateLayout];
+
+    CGFloat itemHeight = self.view.height / 3;
+    TFNewMindmapLayout *layout = [[TFNewMindmapLayout alloc] init];
+    layout.numberOfRows = 3;
+    layout.itemSize = CGSizeMake(itemHeight, itemHeight);
 
 
     DDLogWarn(@"START TRANSITION.");
-    _transitionLayout = [self.collectionView startInteractiveTransitionToCollectionViewLayout: layout
+    self.transitionLayout = [self.collectionView startInteractiveTransitionToCollectionViewLayout: layout
             completion: ^(BOOL completed, BOOL finish) {
 
-                self.transitionLayout = nil;
-                self.hasActiveInteraction = NO;
-                if (finish) {
-
-                    NSUInteger index = [self.navigationController.viewControllers indexOfObject: self];
-                    CGPoint contentOffset = self.collectionView.contentOffset;
-
-                    UICollectionViewController *controller = [self.navigationController.viewControllers objectAtIndex: index];
-                    controller.collectionView.contentOffset = self.collectionView.contentOffset;
-
-                    NSLog(@"Popping.");
-
-                    [self.navigationController popViewControllerAnimated: NO];
-                } else {
-                    self.collectionView.collectionViewLayout = currentLayout;
-                    [self.collectionView.collectionViewLayout invalidateLayout];
-                    self.collectionView.pagingEnabled = YES;
-                }
+                [self transitionDidComplete: finish currentLayout: currentLayout];
 
             }];
+}
 
+
+- (void) transitionDidComplete: (BOOL) didFinish currentLayout: (UICollectionViewLayout *) currentLayout {
+    self.customTransitionLayout = nil;
+    self.hasActiveInteraction = NO;
+    if (didFinish) {
+
+        NSUInteger index = [self.navigationController.viewControllers indexOfObject: self];
+        CGPoint contentOffset = self.collectionView.contentOffset;
+
+        UICollectionViewController *controller = [self.navigationController.viewControllers objectAtIndex: index];
+        controller.collectionView.contentOffset = self.collectionView.contentOffset;
+
+        NSLog(@"Popping.");
+
+        [self.navigationController popViewControllerAnimated: NO];
+    } else {
+        self.collectionView.collectionViewLayout = currentLayout;
+        [self.collectionView.collectionViewLayout invalidateLayout];
+        self.collectionView.pagingEnabled = YES;
+    }
+
+    self.isPinching = NO;
 }
 
 - (void) updateWithProgress: (CGFloat) progress {
-    if ((progress != self.transitionLayout.transitionProgress)) {
-        //        [self.transitionLayout setOffset: offset];
-        [self.transitionLayout setTransitionProgress: progress];
-        [self.transitionLayout invalidateLayout];
-        //        [self.context updateInteractiveTransition: progress];
-    }
-    //    if (self.context != nil &&  // we must have a valid context for updates
-    //            ((progress != self.transitionLayout.transitionProgress) ||
-    //                    !UIOffsetEqualToOffset(offset, self.transitionLayout.offset))) {
-    //        [self.transitionLayout setOffset: offset];
-    //        [self.transitionLayout setTransitionProgress: progress];
-    //        [self.transitionLayout invalidateLayout];
-    //        [self.context updateInteractiveTransition: progress];
+
+    _transitionLayout.transitionProgress = progress;
+
+
+    //    [self.customTransitionLayout invalidateLayout];
+    //    if ((progress != self.customTransitionLayout.transitionProgress)) {
+    //        //        [self.customTransitionLayout setOffset: offset];
+    //        [self.customTransitionLayout setTransitionProgress: progress];
+    //        [self.customTransitionLayout invalidateLayout];
+    //        //        [self.context updateInteractiveTransition: progress];
     //    }
+    //    //    if (self.context != nil &&  // we must have a valid context for updates
+    //    //            ((progress != self.customTransitionLayout.transitionProgress) ||
+    //    //                    !UIOffsetEqualToOffset(offset, self.customTransitionLayout.offset))) {
+    //    //        [self.customTransitionLayout setOffset: offset];
+    //    //        [self.customTransitionLayout setTransitionProgress: progress];
+    //    //        [self.customTransitionLayout invalidateLayout];
+    //    //        [self.context updateInteractiveTransition: progress];
+    //    //    }
 }
 
 
 - (void) endInteractionWithSuccess: (BOOL) success {
-    if ((self.transitionLayout.transitionProgress > 0.5) && success) {
+    if ((_transitionLayout.transitionProgress > 0.5) && success) {
         [self.collectionView finishInteractiveTransition];
     }
     else {
         [self.collectionView cancelInteractiveTransition];
     }
 
+    self.collectionView.userInteractionEnabled = YES;
 }
 
-- (void) handlePinch: (UIPinchGestureRecognizer *) recognizer {
+
+- (void) handleManualPinch: (UIPinchGestureRecognizer *) recognizer {
+
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        DDLogVerbose(@"Begin pinch.");
+        _tempLayout = [[TFNewMindmapLayout alloc] init];
+        _tempLayout.numberOfRows = 3;
+        _tempLayout.itemSize = self.view.bounds.size;
+        _tempLayout.updatesContentOffset = YES;
+        self.collectionView.collectionViewLayout = _tempLayout;
+        [self.collectionView.collectionViewLayout invalidateLayout];
+
+        self.isPinching = YES;
+
+    } else if (recognizer.state == UIGestureRecognizerStateChanged) {
+        if (!_tempLayout) return;
+
+        CGFloat scale = 1 - recognizer.scale;
+
+        CGFloat minHeight = self.view.height / 3;
+        CGFloat maxHeight = self.view.height;
+        CGFloat heightRange = maxHeight - minHeight;
+
+        CGFloat currentHeight = maxHeight - (heightRange * scale);
+        currentHeight = fmaxf(currentHeight, minHeight);
+        currentHeight = fminf(currentHeight, maxHeight);
+
+        CGFloat minWidth = minHeight;
+        CGFloat maxWidth = self.view.width;
+        CGFloat widthRange = maxWidth - minWidth;
+
+        CGFloat currentWidth = maxWidth - (widthRange * scale);
+        currentWidth = fmaxf(currentWidth, minWidth);
+        currentWidth = fminf(currentWidth, maxWidth);
+
+        _tempLayout.itemSize = CGSizeMake(currentWidth, currentHeight);
+        [_tempLayout invalidateLayout];
+
+    } else if (recognizer.state == UIGestureRecognizerStateEnded ||
+            recognizer.state == UIGestureRecognizerStateCancelled) {
+
+        CGFloat scale = recognizer.scale;
+
+        TFNewMindmapLayout *finalLayout = [[TFNewMindmapLayout alloc] init];
+        finalLayout.numberOfRows = 3;
+        finalLayout.updatesContentOffset = YES;
+        //        finalLayout.updatesTargetedOffset = YES;
+
+        if (scale < 0.5) {
+            CGFloat finalHeight = self.view.height / 3;
+            finalLayout.itemSize = CGSizeMake(finalHeight, finalHeight);
+        } else {
+            finalLayout.itemSize = self.view.bounds.size;
+        }
+
+        __weak __typeof (self) weakSelf = self;
+        [self.collectionView setCollectionViewLayout: finalLayout animated: YES completion: ^(BOOL finished) {
+
+            __strong __typeof (self) strongSelf = weakSelf;
+            if (strongSelf) {
+                strongSelf.isPinching = NO;
+                [strongSelf.navigationController popViewControllerAnimated: NO];
+            }
+        }];
+
+    }
+
+}
+
+- (void) handleTransitionPinch: (UIPinchGestureRecognizer *) recognizer {
 
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         [self endInteractionWithSuccess: YES];
@@ -200,7 +283,7 @@
         point = [recognizer locationInView: recognizer.view];
 
         if (recognizer.state == UIGestureRecognizerStateBegan) {
-            // start the pinch in our out
+
             if (!self.hasActiveInteraction) {
                 self.initialPinchDistance = distance;
                 self.initialPinchPoint = point;
@@ -214,7 +297,7 @@
 
         if (self.hasActiveInteraction) {
             if (recognizer.state == UIGestureRecognizerStateChanged) {
-                NSLog(@"recognizer.velocity = %f", recognizer.velocity);
+                //                NSLog(@"recognizer.velocity = %f", recognizer.velocity);
 
                 CGFloat distanceDelta = distance - self.initialPinchDistance;
                 //                if (self.navigationOperation == UINavigationControllerOperationPop) {
@@ -225,11 +308,10 @@
                 CGFloat progress = MAX(MIN((distanceDelta / dimension), 1.0), 0.0);
 
                 //                progress *= recognizer.velocity;
-                NSLog(@"progress = %f", progress);
+                //                NSLog(@"progress = %f", progress);
 
                 CGFloat scale = 1 - recognizer.scale;
 
-                NSLog(@"distanceDelta = %f", distanceDelta);
 
                 //                [self updateWithProgress: progress];
                 [self updateWithProgress: scale];
@@ -238,126 +320,57 @@
         }
     }
 
-    //
-    //    switch (recognizer.state) {
-    //
-    //
-    //
-    //        // here we expect two finger touch
-    //        CGPoint point;      // the main touch point
-    //        CGPoint point1;     // location of touch #1
-    //        CGPoint point2;     // location of touch #2
-    //        CGFloat distance;   // computed distance between both touches
-    //
-    //        case UIGestureRecognizerStateBegan: {
-    //
-    //            // return the locations of each gesture’s touches in the local coordinate system of a given view
-    //            point1 = [recognizer locationOfTouch: 0 inView: recognizer.view];
-    //            point2 = [recognizer locationOfTouch: 1 inView: recognizer.view];
-    //            distance = sqrt((point1.x - point2.x) * (point1.x - point2.x) + (point1.y - point2.y) * (point1.y - point2.y));
-    //
-    //            // get the main touch point
-    //            point = [recognizer locationInView: recognizer.view];
-    //
-    //            UICollectionViewLayout *currentLayout = self.collectionView.collectionViewLayout;
-    //
-    //            DDLogWarn(@"SET TEMP LAYOUT.");
-    //
-    //            TFMindmapFullscreenLayout *tempLayout = [[TFMindmapFullscreenLayout alloc] init];
-    //            [tempLayout setIsFullscreen: YES  withCollectionView: self.collectionView];
-    //            self.collectionView.collectionViewLayout = tempLayout;
-    //
-    //            TFMindmapFullscreenLayout *layout = [[TFMindmapFullscreenLayout alloc] init];
-    //            [layout setIsFullscreen: NO  withCollectionView: self.collectionView];
-    //
-    //
-    //            DDLogWarn(@"START TRANSITION.");
-    //            _transitionLayout = [self.collectionView startInteractiveTransitionToCollectionViewLayout: layout
-    //                    completion: ^(BOOL completed, BOOL finish) {
-    //                        if (finish) {
-    //
-    //                            NSUInteger index = [self.navigationController.viewControllers indexOfObject: self];
-    //                            CGPoint contentOffset = self.collectionView.contentOffset;
-    //
-    //                            UICollectionViewController *controller = [self.navigationController.viewControllers objectAtIndex: index];
-    //                            controller.collectionView.contentOffset = self.collectionView.contentOffset;
-    //
-    //                            NSLog(@"Popping.");
-    //
-    //                            [self.navigationController popViewControllerAnimated: NO];
-    //                        } else {
-    //                            self.collectionView.collectionViewLayout = currentLayout;
-    //                            self.collectionView.pagingEnabled = YES;
-    //                        }
-    //
-    //                        _transitionLayout = nil;
-    //                    }];
-    //
-    //            break;
-    //        }
-    //        case UIGestureRecognizerStateChanged : {
-    //            // update the progress of the transtition as the user continues to pinch
-    //            CGFloat offsetX = point.x - self.initialPinchPoint.x;
-    //            CGFloat offsetY = point.y - self.initialPinchPoint.y;
-    //            UIOffset offsetToUse = UIOffsetMake(offsetX, offsetY);
-    //
-    //            CGFloat distanceDelta = distance - self.initialPinchDistance;
-    //            if (self.navigationOperation == UINavigationControllerOperationPop) {
-    //                distanceDelta = -distanceDelta;
-    //            }
-    //            CGFloat dimension = sqrt(self.collectionView.bounds.size.width * self.collectionView.bounds.size.width + self.collectionView.bounds.size.height * self.collectionView.bounds.size.height);
-    //            CGFloat progress = MAX(MIN((distanceDelta / dimension), 1.0), 0.0);
-    //
-    //            if (_transitionLayout != nil) {
-    //                if (![_transitionLayout isKindOfClass: [TFMindmapTransitionLayout class]]) {
-    //                    NSLog(@"_transitionLayout = %@", _transitionLayout);
-    //                }
-    //                CGFloat scale = 1 - recognizer.scale;
-    //                _transitionLayout.transitionProgress = scale;
-    //            }
-    //            break;
-    //        }
-    //        case UIGestureRecognizerStateEnded : {
-    //            CGFloat scale = 1 - recognizer.scale;
-    //            if (scale > 0.8) {
-    //
-    //                [self.collectionView finishInteractiveTransition];
-    //            } else {
-    //                [self.collectionView cancelInteractiveTransition];
-    //            }
-    //
-    //            break;
-    //        }
-    //
-    //        case UIGestureRecognizerStateCancelled : {
-    //            [self.collectionView cancelInteractiveTransition];
-    //            break;
-    //        }
-    //
-    //        case UIGestureRecognizerStateFailed :
-    //            break;
-    //        case UIGestureRecognizerStatePossible :
-    //            break;
-    //    }
 }
 
-#pragma mark - Overrides:UICollectionView
 
+#pragma mark - Transition Layout
+
+
+#pragma mark - Overrides:UICollectionView
+//
+//
+//- (UICollectionViewCell *) collectionView: (UICollectionView *) collectionView cellForItemAtIndexPath: (NSIndexPath *) indexPath {
+//
+//    NSLog(@"%s", __PRETTY_FUNCTION__);
+//    UICollectionViewCell *ret;
+//
+//    if ([_cachedCells count] > indexPath.item) {
+//        ret = [_cachedCells objectAtIndex: indexPath.item];
+//    } else {
+//        ret = [super collectionView: collectionView cellForItemAtIndexPath: indexPath];
+//        [_cachedCells addObject: ret];
+//    }
+//
+//    if (_isPinching) {
+//
+//        [ret setNeedsDisplay];
+//    }
+//
+//    NSLog(@"indexPath = %@", indexPath);
+//
+//    return ret;
+//}
 
 
 - (void) collectionView: (UICollectionView *) collectionView didSelectItemAtIndexPath: (NSIndexPath *) indexPath {
-    //    [super collectionView: collectionView didSelectItemAtIndexPath: indexPath];
+    if (_isPinching) {
+        return;
+    }
 
-    //    TFMindmapLayout *layout = [[TFMindmapLayout alloc] init];
-    //    [layout setIsFullscreen: YES withCollectionView: self.collectionView];
-    //
-    //    self.collectionView.collectionViewLayout = layout;
+    //    [super collectionView: collectionView didSelectItemAtIndexPath: indexPath];
+    //    self.collectionView.collectionViewLayout = [self fullscreenLayout];
 
 }
 
 - (UICollectionViewTransitionLayout *) collectionView: (UICollectionView *) collectionView transitionLayoutForOldLayout: (UICollectionViewLayout *) fromLayout newLayout: (UICollectionViewLayout *) toLayout {
-    TFMindmapTransitionLayout *ret = [[TFMindmapTransitionLayout alloc] initWithCurrentLayout: fromLayout nextLayout: toLayout];
+    //    if (_usesCustomTransitionLayout) {
+    //    TFNewTransitionLayout *ret = [[TFNewTransitionLayout alloc] initWithCurrentLayout: fromLayout nextLayout: toLayout];
+    //    return ret;
+    //    }
+
+    UICollectionViewTransitionLayout *ret = [[UICollectionViewTransitionLayout alloc] initWithCurrentLayout: fromLayout nextLayout: toLayout];
     return ret;
+
 }
 
 
@@ -365,6 +378,9 @@
 #pragma mark - UIScrollView
 
 - (void) scrollViewDidEndDecelerating: (UIScrollView *) scrollView {
+
+    if (self.isPinching) return;
+    if (self.hasActiveInteraction) return;
 
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint: self.collectionView.contentOffset];
     [self.collectionView selectItemAtIndexPath: indexPath animated: NO scrollPosition: UICollectionViewScrollPositionNone];

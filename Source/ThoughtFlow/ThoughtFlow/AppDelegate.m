@@ -16,6 +16,8 @@
 #import "DDASLLogger.h"
 #import "APIModel.h"
 #import "AFNetworkActivityLogger.h"
+#import "TFLogFormatter.h"
+#import "UIColor+Modify.h"
 #import <Crashlytics/Crashlytics.h>
 
 
@@ -66,8 +68,10 @@
     [DDLog addLogger: [DDASLLogger sharedInstance]];
     [DDLog addLogger: [DDTTYLogger sharedInstance]];
 
+    //    [[DDTTYLogger sharedInstance] setLogFormatter: [[TFLogFormatter alloc] init]];
     [[DDTTYLogger sharedInstance] setColorsEnabled: YES];
-    [[DDTTYLogger sharedInstance] setForegroundColor: [UIColor colorWithRed: (255 / 255.0) green: (58 / 255.0) blue: (159 / 255.0) alpha: 1.0] backgroundColor: nil forFlag: LOG_FLAG_VERBOSE];
+    //    [[DDTTYLogger sharedInstance] setForegroundColor: [UIColor colorWithRed: (255 / 255.0) green: (58 / 255.0) blue: (159 / 255.0) alpha: 1.0] backgroundColor: nil forFlag: LOG_FLAG_VERBOSE];
+    [[DDTTYLogger sharedInstance] setForegroundColor: [[UIColor greenColor] darkenColor: 0.5] backgroundColor: nil forFlag: LOG_FLAG_DEBUG];
 
     //    [[AFNetworkActivityLogger sharedLogger] startLogging];
 }

@@ -90,12 +90,12 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
         switch (status) {
 
             case AFNetworkReachabilityStatusUnknown : {
-                NSLog(@"Unknown.");
+                DDLogError(@"Unknown.");
 
             }
                 break;
             case AFNetworkReachabilityStatusNotReachable : {
-                NSLog(@"Not reachable.");
+                DDLogError(@"Not reachable.");
                 //                    if (DEBUG) {
                 //                        _usesDummyData = YES;
                 //                    }
@@ -103,12 +103,12 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
             }
                 break;
             case AFNetworkReachabilityStatusReachableViaWWAN : {
-                NSLog(@"AFNetworkReachabilityStatusReachableViaWWAN");
+                DDLogError(@"AFNetworkReachabilityStatusReachableViaWWAN");
             }
 
                 break;
             case AFNetworkReachabilityStatusReachableViaWiFi : {
-                NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
+                DDLogError(@"AFNetworkReachabilityStatusReachableViaWiFi");
             }
                 break;
         }
@@ -525,7 +525,8 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
                 }
             }
             failure: ^(AFHTTPRequestOperation *task, NSError *error) {
-                DDLogVerbose(@"IMAGES failed, error = %@", error);
+                DDLogVerbose(@"IMAGES failed, error.userInfo = %@", error.userInfo);
+
                 if (failure) {
                     failure();
                 }

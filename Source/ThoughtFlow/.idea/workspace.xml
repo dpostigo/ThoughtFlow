@@ -8,27 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d8c16d6-eb25-4426-a1f8-2564ebf0e0c6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/Collection Layouts/TFCollectionTransitionLayout.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/Collection Layouts/TFCollectionTransitionLayout.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewCell.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewCell.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/Collection Layouts/TFCollectionViewFullLayout.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/Collection Layouts/TFCollectionViewFullLayout.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/Collection Layouts/TFCollectionViewGridLayout.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/Collection Layouts/TFCollectionViewGridLayout.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/Collection Layouts/TFDynamicMindmapGridLayout.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/Collection Layouts/TFDynamicMindmapGridLayout.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapFullscreenLayout.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapFullscreenLayout.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapGridLayout.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapGridLayout.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapLayout.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapTransitionLayout.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapTransitionLayout.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Debugging/Lumberjack/TFLogFormatter.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Debugging/Lumberjack/TFLogFormatter.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewTransitionLayout.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewTransitionLayout.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations/ThoughtFlow.xml" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/BasicAnimator+UIViewController.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/BasicAnimator+UIViewController.m" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/BasicAnimator.h" afterPath="" />
@@ -48,22 +32,11 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/TLTransitions/TLFreeformModalProtocol.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/UIViewController+BasicAnimator.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions/UIViewController+BasicAnimator.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionTransitionLayout.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionTransitionLayout.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewCell.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewCell.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewFullLayout.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewFullLayout.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewGridLayout.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewGridLayout.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFDynamicMindmapGridLayout.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFDynamicMindmapGridLayout.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout.m" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapGridLayout.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapLayout.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/AppDelegate.m" afterPath="$PROJECT_DIR$/ThoughtFlow/AppDelegate.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/BasicAnimator.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPAnimators/DPAnimators/BasicAnimator.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/ThoughtFlow.xcworkspace/xcuserdata/danipostigo.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/Utilities/CALayer-DPUtils/CALayer-DPUtils/CALayer+SublayerUtils.h" afterPath="$PROJECT_DIR$/../../../LocalPods/Utilities/CALayer-DPUtils/CALayer-DPUtils/CALayer+SublayerUtils.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/Utilities/CALayer-DPUtils/CALayer-DPUtils/CALayer+SublayerUtils.m" afterPath="$PROJECT_DIR$/../../../LocalPods/Utilities/CALayer-DPUtils/CALayer-DPUtils/CALayer+SublayerUtils.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/Utilities/CALayer-DPUtils/CALayer-DPUtils.podspec" afterPath="$PROJECT_DIR$/../../../LocalPods/Utilities/CALayer-DPUtils/CALayer-DPUtils.podspec" />
@@ -71,15 +44,23 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/DPPassThroughView.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/DPPassThroughView.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions.podspec" afterPath="$PROJECT_DIR$/../../../LocalPods/DPTransitions/DPTransitions.podspec" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/NSNotification+DPKit.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/NSNotification+DPKit.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapBackgroundCollectionViewController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapBackgroundCollectionViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapBackgroundCollectionViewController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapBackgroundCollectionViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/Grids/TFMindmapBackgroundViewController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/Grids/TFMindmapBackgroundViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/10-Reusable/TFImageGridViewController/TFImageGridViewCell.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/10-Reusable/TFImageGridViewController/TFImageGridViewCell.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapFullCollectionViewController.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapFullCollectionViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapFullCollectionViewController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapFullCollectionViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/TFMindmapViewController.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/TFMindmapViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/Grids/TFMindmapGridAnimator.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/Grids/TFMindmapGridAnimator.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapLayout.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapLayout.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapTransitionLayout.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapTransitionLayout.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.h" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.m" afterPath="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Documents/ThoughtFlow Todo.rtf" afterPath="$PROJECT_DIR$/../../Documents/ThoughtFlow Todo.rtf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow/ThoughtFlow-Info.plist" afterPath="$PROJECT_DIR$/ThoughtFlow/ThoughtFlow-Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtFlow.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/ThoughtFlow.xcscheme" afterPath="$PROJECT_DIR$/ThoughtFlow.xcodeproj/xcuserdata/danipostigo.xcuserdatad/xcschemes/ThoughtFlow.xcscheme" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UICollectionView+DPKit.h" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UICollectionView+DPKit.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UICollectionView+DPKit.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UICollectionView+DPKit.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/TLLayoutTransitioning/TLLayoutTransitioning/UICollectionView+TLTransitioning.m" afterPath="$PROJECT_DIR$/Pods/TLLayoutTransitioning/TLLayoutTransitioning/UICollectionView+TLTransitioning.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIView/DPKit-UIView/UIView+DPConstraints.h" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIView/DPKit-UIView/UIView+DPConstraints.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIView/DPKit-UIView/UIView+DPConstraints.m" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIView/DPKit-UIView/UIView+DPConstraints.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKit.h" afterPath="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-Utils/DPKit-Utils/ios/UIView+DPKit.h" />
@@ -104,106 +85,25 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_65cc90685de4c0bb3af229152c5172e3f4afd998" />
   <component name="FavoritesManager">
     <favorites_list name="ThoughtFlow" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TFMindmapTransitionLayout.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapTransitionLayout.m">
+      <file leaf-file-name="TFCollectionViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="158" column="15" selection-start="5751" selection-end="5751" vertical-scroll-proportion="0.0" vertical-offset="2168" max-vertical-offset="3141">
+            <state line="190" column="23" selection-start="7465" selection-end="7465" vertical-scroll-proportion="0.0" vertical-offset="2715" max-vertical-offset="5084">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UICollectionViewLayout.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UICollectionViewLayout.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="13" selection-start="5303" selection-end="5303" vertical-scroll-proportion="0.0" vertical-offset="1388" max-vertical-offset="2676">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFMindmapFullscreenLayout.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapFullscreenLayout.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="574">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFMindmapGridLayout.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapGridLayout.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="1266">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFMindmapBackgroundCollectionViewController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapBackgroundCollectionViewController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="212" column="41" selection-start="7050" selection-end="7050" vertical-scroll-proportion="0.0" vertical-offset="3371" max-vertical-offset="3831">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFMindmapBackgroundViewController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/Grids/TFMindmapBackgroundViewController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="267" column="22" selection-start="8851" selection-end="8851" vertical-scroll-proportion="0.0" vertical-offset="3941" max-vertical-offset="6816">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFMindmapFullCollectionViewController.m" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TFMindmapFullCollectionViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapFullCollectionViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="231" column="60" selection-start="8468" selection-end="8468" vertical-scroll-proportion="0.80985916" vertical-offset="3120" max-vertical-offset="6171">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/main.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="36" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="696">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFImageGridViewCell.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/10-Reusable/TFImageGridViewController/TFImageGridViewCell.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="26" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2181">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFMindmapFullscreenLayout.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapFullscreenLayout.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="318" selection-end="318" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1116">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFNewMindmapLayout.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="589">
+            <state line="203" column="39" selection-start="6878" selection-end="6878" vertical-scroll-proportion="-8.692307" vertical-offset="2819" max-vertical-offset="6438">
               <folding />
             </state>
           </provider>
@@ -212,25 +112,137 @@
       <file leaf-file-name="TFNewMindmapLayout.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="37" selection-start="278" selection-end="278" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="634">
+            <state line="12" column="47" selection-start="229" selection-end="250" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="732">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TFMindmapGridLayout.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapGridLayout.h">
+      <file leaf-file-name="TFImageGridViewCell.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/10-Reusable/TFImageGridViewController/TFImageGridViewCell.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="40" selection-start="210" selection-end="210" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="574">
+            <state line="8" column="11" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="375">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TFMindmapTransitionLayout.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapTransitionLayout.h">
+      <file leaf-file-name="TFNewMindmapLayout.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="11" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="589">
+            <state line="107" column="14" selection-start="2716" selection-end="2716" vertical-scroll-proportion="-5.8076925" vertical-offset="1454" max-vertical-offset="3273">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFMindmapFullCollectionViewController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapFullCollectionViewController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="59" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="59" max-vertical-offset="854">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFMindmapLayout.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapLayout.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="123" column="14" selection-start="2854" selection-end="2854" vertical-scroll-proportion="0.0" vertical-offset="1881" max-vertical-offset="4139">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFMindmapCollectionViewController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="11" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="734">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFMindmapCollectionViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="108" column="0" selection-start="3298" selection-end="3298" vertical-scroll-proportion="0.0" vertical-offset="1371" max-vertical-offset="2279">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFCollectionViewController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="0" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="345">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFLogFormatter.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Debugging/Lumberjack/TFLogFormatter.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="17" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="180">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFLogFormatter.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Debugging/Lumberjack/TFLogFormatter.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="40" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="435">
+              <folding>
+                <marker date="1406653456000" expanded="true" signature="0:104" placeholder="//..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFNewTransitionLayout.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewTransitionLayout.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="11" selection-start="288" selection-end="288" vertical-scroll-proportion="0.33194155" vertical-offset="6" max-vertical-offset="4994">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="APIModel.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="527" column="43" selection-start="16699" selection-end="16699" vertical-scroll-proportion="0.0" vertical-offset="7905" max-vertical-offset="10260">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppDelegate.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/AppDelegate.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="83" column="25" selection-start="2184" selection-end="2184" vertical-scroll-proportion="0.0" vertical-offset="1245" max-vertical-offset="2310">
+              <folding>
+                <marker date="1406654174000" expanded="true" signature="0:143" placeholder="//..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFMindmapLayout.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapLayout.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="47" selection-start="557" selection-end="619" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="405">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TFMindmapTransitionLayout.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapTransitionLayout.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="2" selection-start="1285" selection-end="1786" vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="2250">
               <folding />
             </state>
           </provider>
@@ -239,7 +251,7 @@
       <file leaf-file-name="TFMindmapViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/TFMindmapViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="32" selection-start="3671" selection-end="3671" vertical-scroll-proportion="0.0" vertical-offset="1643" max-vertical-offset="10171">
+            <state line="130" column="32" selection-start="3671" selection-end="3671" vertical-scroll-proportion="0.0" vertical-offset="1950" max-vertical-offset="9795">
               <folding />
             </state>
           </provider>
@@ -257,7 +269,7 @@
       <file leaf-file-name="Podfile" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Podfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="32" selection-start="1389" selection-end="1416" vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="840">
+            <state line="35" column="9" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.0" vertical-offset="437" max-vertical-offset="1378">
               <folding />
             </state>
           </provider>
@@ -281,21 +293,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapLayout.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapFullscreenLayout.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/Grids/TFMindmapBackgroundViewController.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapBackgroundCollectionViewController.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/TFMindmapViewController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapFullCollectionViewController.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.h" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapTransitionLayout.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapGridLayout.m" />
-        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapBackgroundCollectionViewController.m" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/Grids/TFMindmapBackgroundViewController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapTransitionLayout.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Debugging/Lumberjack/TFLogFormatter.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Debugging/Lumberjack/TFLogFormatter.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/AppDelegate.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewTransitionLayout.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewTransitionLayout.m" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapLayout.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.h" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/10-Reusable/TFImageGridViewController/TFImageGridViewCell.m" />
+        <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.m" />
         <option value="$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapFullCollectionViewController.m" />
       </list>
     </option>
@@ -307,7 +319,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
     <option name="width" value="1440" />
-    <option name="height" value="795" />
+    <option name="height" value="794" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -320,16 +332,58 @@
             <id>Assignment issuesJavaScript</id>
           </State>
           <State>
+            <id>Bitwise operation issuesJavaScript</id>
+          </State>
+          <State>
+            <id>C/C++</id>
+          </State>
+          <State>
             <id>CSS</id>
           </State>
           <State>
-            <id>ClassesObjective-C</id>
+            <id>Clang Issues</id>
+          </State>
+          <State>
+            <id>Code style issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Control flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>DOM issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Data flow analysisC/C++</id>
+          </State>
+          <State>
+            <id>Data flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Error handlingJavaScript</id>
+          </State>
+          <State>
+            <id>GeneralC/C++</id>
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
           </State>
           <State>
             <id>GeneralObjective-C</id>
           </State>
           <State>
+            <id>HTML</id>
+          </State>
+          <State>
+            <id>Internationalization issues</id>
+          </State>
+          <State>
             <id>JavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript function metricsJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript validity issuesJavaScript</id>
           </State>
           <State>
             <id>Message resolutionObjective-C</id>
@@ -338,20 +392,27 @@
             <id>MethodsObjective-C</id>
           </State>
           <State>
+            <id>Naming conventionsJavaScript</id>
+          </State>
+          <State>
             <id>Objective-C</id>
+          </State>
+          <State>
+            <id>Portability issues</id>
           </State>
           <State>
             <id>Potentially confusing code constructsJavaScript</id>
           </State>
           <State>
-            <id>PropertiesObjective-C</id>
+            <id>Probable bugsJavaScript</id>
+          </State>
+          <State>
+            <id>Type checksC/C++</id>
+          </State>
+          <State>
+            <id>XML</id>
           </State>
         </expanded-state>
-        <selected-state>
-          <State>
-            <id>HidesClassScope</id>
-          </State>
-        </selected-state>
       </profile-state>
     </entry>
   </component>
@@ -436,24 +497,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ThoughtFlow" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThoughtFlow" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThoughtFlow" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Utils" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -588,70 +631,6 @@
               <option name="myItemId" value="04-Mindmap" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="02-Collection" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TFCollectionViewController" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThoughtFlow" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThoughtFlow" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="04-Mindmap" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="02-Collection" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Collection Layouts" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThoughtFlow" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThoughtFlow" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="04-Mindmap" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="01-Buttons" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -671,24 +650,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Products" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -699,15 +660,15 @@
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.splitter.main.proportions" value="0.1944" />
-    <property name="TODO_SCOPE" value="Project Files" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="TODO_SCOPE" value="Project Files" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../LocalPods/DPKit-Suite/DPKit-UIFont/DPKit-UIFont" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="ThoughtFlow" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -727,16 +688,6 @@
     </configuration>
     <configuration default="true" type="OCGoogleTestRunConfigurationType" factoryName="Google Test" PROJECT_NAME="ThoughtFlow" TARGET_NAME="ThoughtFlow" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" TEST_MODE="SUITE_TEST">
       <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="ThoughtFlow" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="ThoughtFlow" PROJECT_NAME="ThoughtFlow" TARGET_NAME="ThoughtFlow" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="ThoughtFlow" RUN_TARGET_NAME="ThoughtFlow" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
-      <envs>
-        <env name="TERM" value="color" />
-      </envs>
-      <RunnerSettings RunnerId="AppRunner" />
-      <RunnerSettings RunnerId="InstrumentsRunner" />
-      <ConfigurationWrapper RunnerId="AppRunner" />
-      <ConfigurationWrapper RunnerId="InstrumentsRunner" />
       <method />
     </configuration>
     <configuration default="false" name="Pods" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Pods" PROJECT_NAME="Pods" TARGET_NAME="Pods" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
@@ -976,25 +927,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="795" extended-state="6" />
+    <frame x="0" y="22" width="1440" height="794" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37945792" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13571429" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3266762" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3281027" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2510699" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16140603" sideWeight="0.62767476" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19512194" sideWeight="0.62767476" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37232524" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15853658" sideWeight="0.70428574" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21520804" sideWeight="0.70428574" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2957143" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" x="6" y="61" width="1431" height="701" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.116929695" sideWeight="0.42653352" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37660486" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3281027" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32957748" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32957748" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -1070,6 +1022,16 @@
           <line>134</line>
           <option name="timeStamp" value="382" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.m</url>
+          <line>212</line>
+          <option name="timeStamp" value="463" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.m</url>
+          <line>51</line>
+          <option name="timeStamp" value="472" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -1081,118 +1043,118 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="431" />
+      <option name="time" value="473" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewTransitionLayout.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="589">
+        <state line="8" column="32" selection-start="153" selection-end="174" vertical-scroll-proportion="0.28915662" vertical-offset="0" max-vertical-offset="565">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UICollectionViewLayout.h">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="13" selection-start="5303" selection-end="5303" vertical-scroll-proportion="0.0" vertical-offset="1388" max-vertical-offset="2676">
+        <state line="15" column="0" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="61" max-vertical-offset="664">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapFullCollectionViewController.h">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/10-Reusable/TFImageGridViewController/TFImageGridViewCell.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="781">
+        <state line="8" column="11" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="707">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapFullscreenLayout.h">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Model/APIModel.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="574">
+        <state line="527" column="43" selection-start="16699" selection-end="16699" vertical-scroll-proportion="0.0" vertical-offset="7709" max-vertical-offset="10579">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapLayout.h">
+    <entry file="file://$PROJECT_DIR$/Podfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="30" selection-start="410" selection-end="419" vertical-scroll-proportion="0.59859157" vertical-offset="15" max-vertical-offset="786">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapTransitionLayout.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="158" column="15" selection-start="5751" selection-end="5751" vertical-scroll-proportion="0.0" vertical-offset="2168" max-vertical-offset="3141">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapFullscreenLayout.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="318" selection-end="318" vertical-scroll-proportion="0.0" vertical-offset="174" max-vertical-offset="1116">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapGridLayout.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="1266">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="4" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="621">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="14" selection-start="3034" selection-end="3034" vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="1836">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIPinchGestureRecognizer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="80" selection-start="1159" selection-end="1159" vertical-scroll-proportion="0.5798122" vertical-offset="263" max-vertical-offset="921">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapLayout.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="246" column="23" selection-start="7034" selection-end="7034" vertical-scroll-proportion="0.65023476" vertical-offset="3413" max-vertical-offset="4101">
+        <state line="35" column="9" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.0" vertical-offset="437" max-vertical-offset="1378">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThoughtFlow/main.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="36" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="696">
+        <state line="19" column="43" selection-start="347" selection-end="347" vertical-scroll-proportion="0.45833334" vertical-offset="65" max-vertical-offset="750">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapBackgroundCollectionViewController.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/10-Reusable/TFImageGridViewController/TFImageGridViewCell.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="212" column="41" selection-start="7050" selection-end="7050" vertical-scroll-proportion="0.0" vertical-offset="3371" max-vertical-offset="3831">
+        <state line="28" column="54" selection-start="576" selection-end="576" vertical-scroll-proportion="0.8768267" vertical-offset="0" max-vertical-offset="2714">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/New Mindmap/Grids/TFMindmapBackgroundViewController.m">
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFCollectionViewController/TFCollectionViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="267" column="22" selection-start="8851" selection-end="8851" vertical-scroll-proportion="0.0" vertical-offset="3941" max-vertical-offset="6816">
+        <state line="190" column="23" selection-start="7465" selection-end="7465" vertical-scroll-proportion="0.0" vertical-offset="2604" max-vertical-offset="4983">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapFullCollectionViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="59" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="59" max-vertical-offset="895">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="11" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="775">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapCollectionViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="108" column="0" selection-start="3298" selection-end="3298" vertical-scroll-proportion="0.0" vertical-offset="1371" max-vertical-offset="2279">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFMindmapLayout.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="123" column="14" selection-start="2854" selection-end="2854" vertical-scroll-proportion="0.0" vertical-offset="1881" max-vertical-offset="4139">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapFullCollectionViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="231" column="60" selection-start="8468" selection-end="8468" vertical-scroll-proportion="0.80985916" vertical-offset="3120" max-vertical-offset="6171">
+        <state line="203" column="39" selection-start="6878" selection-end="6878" vertical-scroll-proportion="-8.692307" vertical-offset="2819" max-vertical-offset="6438">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="47" selection-start="229" selection-end="250" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="844">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewMindmapLayout.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="14" selection-start="2716" selection-end="2716" vertical-scroll-proportion="-5.8076925" vertical-offset="1454" max-vertical-offset="3273">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThoughtFlow/Controllers/04-Mindmap/02-Collection/TFMindmapLayout/TFNewTransitionLayout.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="11" selection-start="288" selection-end="288" vertical-scroll-proportion="0.33194155" vertical-offset="6" max-vertical-offset="4994">
           <folding />
         </state>
       </provider>

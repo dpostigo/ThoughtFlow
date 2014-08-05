@@ -111,7 +111,7 @@
     }
 
     //    NSLog(@"[ret count] = %u", [ret count]);
-    //    NSLog(@"ret (%u) = %@", [ret count], ret);
+    NSLog(@"ret (%u) = %@", [ret count], ret);
     if ([array count] > 10) {
         //        NSLog(@"visibleRect = %@, [ret count] = %u", NSStringFromCGRect(rect), [ret count]);
 

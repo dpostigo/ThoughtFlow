@@ -23,5 +23,4 @@
 @property(nonatomic, assign) id <TFMindmapFullCollectionViewControllerDelegate> delegate;
 @property(nonatomic, strong) TFPhoto *selectedImage;
 @property(nonatomic, strong) NSIndexPath *initialIndexPath;
-@property(nonatomic) BOOL isPinching;
 @end

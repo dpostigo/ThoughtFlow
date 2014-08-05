@@ -133,7 +133,6 @@
 		F29B836F0830FBB4ABCD7B27 /* TFMindmapTransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B86AA2425A224C80F194C /* TFMindmapTransitionLayout.m */; };
 		F29B83DB3D314D427C410FB3 /* DummyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B886C0EEB114665138D8C /* DummyModel.m */; };
 		F29B83EA89023A76CCBC4F5B /* TFPopTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8CDF3CE677241999D542 /* TFPopTransitionController.m */; };
-		F29B83EF26D1CEBA8D0C4CE5 /* TFNewTransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8E83B37F24124AAD12C9 /* TFNewTransitionLayout.m */; };
 		F29B83F16139C0BC1B23E93E /* TFMindmapFullscreenLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B82CD8EA75E27211EBA99 /* TFMindmapFullscreenLayout.m */; };
 		F29B8470E38C85AF00D859C6 /* TFString.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B829A2673F0A263EC82BB /* TFString.m */; };
 		F29B84891D7A30E4CE40AD17 /* UIColor+TFApp.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B84CF614BFBC1B55102E3 /* UIColor+TFApp.m */; };
@@ -175,7 +174,6 @@
 		F29B8D2957A56C68737432FB /* ProjectLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B86ADF6D80AB38FCAFD31 /* ProjectLibrary.m */; };
 		F29B8D56E4C78062CE3D1089 /* TFNewEmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8DFEBF1B8DA19535E71A /* TFNewEmptyViewController.m */; };
 		F29B8DB27AFE9F5F4A36A96D /* TFCustomDrawerNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B8944AF5ABC5A7A9985D6 /* TFCustomDrawerNavigationController.m */; };
-		F29B8DC24AF825A1B437D1EE /* TFLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B89905549D74BFBC205D9 /* TFLogFormatter.m */; };
 		F29B8DC2633FEB7E65E219A3 /* CALayer+TFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B831F0977C3C39CAA1910 /* CALayer+TFUtils.m */; };
 		F29B8DCA926D844B175A042C /* TFScrollViewContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B85020BA654BECD5F637B /* TFScrollViewContentView.m */; };
 		F29B8DF88E2265BDF209184C /* TFNodeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B84825EE17FCBC2B6D0C7 /* TFNodeLabel.m */; };
@@ -383,7 +381,6 @@
 		F29B80490332CD564682D61E /* TFMindmapFullscreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFMindmapFullscreenViewController.m; sourceTree = "<group>"; };
 		F29B807CEC4B104A80B62F4A /* TFMindmapGridAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMindmapGridAnimator.h; sourceTree = "<group>"; };
 		F29B8089CB4D8BE4C4EB6A67 /* TFMindmapFullscreenLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMindmapFullscreenLayout.h; sourceTree = "<group>"; };
-		F29B809632747715F42EB853 /* TFLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFLogFormatter.h; sourceTree = "<group>"; };
 		F29B80DB37A96D6A292B84E1 /* TFPinchAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFPinchAnimator.h; sourceTree = "<group>"; };
 		F29B80E60522E7340E420B66 /* TFBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFBarButtonItem.h; sourceTree = "<group>"; };
 		F29B80FAF560BDB14933ED83 /* TFPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFPhoto.m; sourceTree = "<group>"; };
@@ -465,7 +462,6 @@
 		F29B89650EF39B0620E3F9E2 /* TFPopTransitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFPopTransitionController.h; sourceTree = "<group>"; };
 		F29B8975B0055601C3A72EC8 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
 		F29B8979EBE696E0C59F86BF /* UITextView+TFFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+TFFonts.h"; sourceTree = "<group>"; };
-		F29B89905549D74BFBC205D9 /* TFLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFLogFormatter.m; sourceTree = "<group>"; };
 		F29B89B55513085F15A71337 /* TFMindmapBackgroundCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMindmapBackgroundCollectionViewController.h; sourceTree = "<group>"; };
 		F29B89B73F7CD7BC604481BD /* TFFullLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFullLayout.h; sourceTree = "<group>"; };
 		F29B89C13059F5BF086EE31F /* PhotoLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoLibrary.h; sourceTree = "<group>"; };
@@ -483,7 +479,6 @@
 		F29B8AFA9B74E747F113F21E /* TFScrollingMindmapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFScrollingMindmapViewController.m; sourceTree = "<group>"; };
 		F29B8B638080D314EE972910 /* TFSlideUpAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSlideUpAnimator.h; sourceTree = "<group>"; };
 		F29B8B8AA5A7D5C753A4616D /* UIFont+ThoughtFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+ThoughtFlow.m"; sourceTree = "<group>"; };
-		F29B8B9387B57660540D63AF /* TFNewTransitionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNewTransitionLayout.h; sourceTree = "<group>"; };
 		F29B8BB9FAD96503500089A4 /* TFToolbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFToolbarViewController.h; sourceTree = "<group>"; };
 		F29B8BE5DC431D44BCEE1E34 /* TFKernedGothamLightLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFKernedGothamLightLabel.m; sourceTree = "<group>"; };
 		F29B8C0482FBF0C6DA60B64B /* TFNewKernedGothamLightLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFNewKernedGothamLightLabel.m; sourceTree = "<group>"; };
@@ -512,7 +507,6 @@
 		F29B8E4BC16EA1668E7C4EE0 /* UIColor+TFApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TFApp.h"; sourceTree = "<group>"; };
 		F29B8E797808D8E850607183 /* TFMindmapGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMindmapGridViewController.h; sourceTree = "<group>"; };
 		F29B8E7DA01308A2B6CEDEC9 /* TFNewSpacedGothamLightLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFNewSpacedGothamLightLabel.h; sourceTree = "<group>"; };
-		F29B8E83B37F24124AAD12C9 /* TFNewTransitionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFNewTransitionLayout.m; sourceTree = "<group>"; };
 		F29B8E8BA963C982E57F42BE /* TFLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFLibrary.h; sourceTree = "<group>"; };
 		F29B8EC86E159A17E8A80B39 /* TFCollectionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFCollectionAnimator.h; sourceTree = "<group>"; };
 		F29B8ECDC90CC88CE0C11759 /* TFNewTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFNewTextField.m; sourceTree = "<group>"; };
@@ -550,23 +544,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		33210A89198803BA0036EBE2 /* Debugging */ = {
-			isa = PBXGroup;
-			children = (
-				33210A8A198803BA0036EBE2 /* Lumberjack */,
-			);
-			path = Debugging;
-			sourceTree = "<group>";
-		};
-		33210A8A198803BA0036EBE2 /* Lumberjack */ = {
-			isa = PBXGroup;
-			children = (
-				F29B89905549D74BFBC205D9 /* TFLogFormatter.m */,
-				F29B809632747715F42EB853 /* TFLogFormatter.h */,
-			);
-			path = Lumberjack;
-			sourceTree = "<group>";
-		};
 		3343C74719095CBC00B9C582 = {
 			isa = PBXGroup;
 			children = (
@@ -603,7 +580,6 @@
 		3343C75919095CBC00B9C582 /* ThoughtFlow */ = {
 			isa = PBXGroup;
 			children = (
-				33210A89198803BA0036EBE2 /* Debugging */,
 				3343C76219095CBC00B9C582 /* AppDelegate.h */,
 				3343C76319095CBC00B9C582 /* AppDelegate.m */,
 				338C77D9191D415700E6DDCA /* Components */,
@@ -1317,8 +1293,6 @@
 				F29B8089CB4D8BE4C4EB6A67 /* TFMindmapFullscreenLayout.h */,
 				F29B82B7594EFB251BF00C90 /* TFNewMindmapLayout.m */,
 				F29B801EA636691C1959A7D7 /* TFNewMindmapLayout.h */,
-				F29B8E83B37F24124AAD12C9 /* TFNewTransitionLayout.m */,
-				F29B8B9387B57660540D63AF /* TFNewTransitionLayout.h */,
 			);
 			path = TFMindmapLayout;
 			sourceTree = "<group>";
@@ -1723,8 +1697,6 @@
 				F29B836F0830FBB4ABCD7B27 /* TFMindmapTransitionLayout.m in Sources */,
 				F29B83F16139C0BC1B23E93E /* TFMindmapFullscreenLayout.m in Sources */,
 				F29B8C4E46F7E5D78DEAC4BF /* TFNewMindmapLayout.m in Sources */,
-				F29B83EF26D1CEBA8D0C4CE5 /* TFNewTransitionLayout.m in Sources */,
-				F29B8DC24AF825A1B437D1EE /* TFLogFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1844,8 +1816,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Leon Wee (3Y72PG9TA2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1867,8 +1839,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Leon Wee (2M85LTTPFC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

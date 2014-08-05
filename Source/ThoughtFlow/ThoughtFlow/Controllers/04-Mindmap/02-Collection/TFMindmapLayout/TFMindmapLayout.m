@@ -234,6 +234,7 @@
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath: indexPath];
 
             CGPoint newPoint = attributes.frame.origin;
+
             point = newPoint;
 
         }

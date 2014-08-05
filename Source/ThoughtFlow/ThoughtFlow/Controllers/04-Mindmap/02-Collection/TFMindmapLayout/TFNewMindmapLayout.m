@@ -8,26 +8,11 @@
 
 @interface TFNewMindmapLayout ()
 
-@property(nonatomic) CGSize previousItemSize;
-
-@property(nonatomic, strong) NSIndexPath *selectedIndexPath;
-@property(nonatomic, strong) UICollectionViewLayoutAttributes *selectedLayoutAttributes;
 @property(nonatomic, strong) NSMutableArray *attributesArray;
 @end
 
 
 @implementation TFNewMindmapLayout
-
-
-#pragma mark - Public
-
-- (void) startDynamicTransition {
-    _previousItemSize = _itemSize;
-}
-
-
-
-#pragma mark - UICollectionViewLayout
 
 - (void) prepareLayout {
     [super prepareLayout];
@@ -38,7 +23,6 @@
 
     CGSize itemSize = _itemSize;
     NSInteger itemCount = [self.collectionView numberOfItemsInSection: 0];
-
 
     int currentRow = 0;
     int currentCol = 0;
@@ -60,23 +44,11 @@
         attributes.frame = CGRectMake(origin.x, origin.y, itemSize.width, itemSize.height);
         [_attributesArray addObject: attributes];
     }
-
-    if (_updatesContentOffset) {
-        [self _refreshContentOffset];
-    }
-
 }
-
 
 - (void) invalidateLayout {
     [super invalidateLayout];
 
-    NSArray *indexPaths = self.collectionView.indexPathsForSelectedItems;
-    if ([indexPaths count] == 1) {
-        _selectedIndexPath = indexPaths[0];
-    } else {
-        _selectedIndexPath = nil;
-    }
     _attributesArray = nil;
 }
 
@@ -92,8 +64,9 @@
 
 
 - (BOOL) shouldInvalidateLayoutForBoundsChange: (CGRect) newBounds {
-    //    NSLog(@"%s, newBounds = %@", __PRETTY_FUNCTION__, NSStringFromCGRect(newBounds));
+
     CGRect bounds = self.collectionView.bounds;
+
     return !CGRectEqualToRect(bounds, newBounds);
 }
 
@@ -116,75 +89,43 @@
     }
 
     CGRect visibleRect;
-    visibleRect = CGRectInset(rect, -_itemSize.width, -_itemSize.height);
+    //    visibleRect.origin = self.collectionView.contentOffset;
+    //    visibleRect.size = self.collectionView.contentSize;
+    //    visibleRect = CGRectInset(visibleRect, -_itemSize.width, -_itemSize.height);
+
+    visibleRect = CGRectInset(rect, -_itemSize.width * 2, -_itemSize.height);;
 
     for (int j = 0; j < [_attributesArray count]; j++) {
         UICollectionViewLayoutAttributes *attributes = _attributesArray[j];
-        if (CGRectIntersectsRect(visibleRect, attributes.frame)) {
+        if (CGRectContainsRect(rect, visibleRect) || CGRectIntersectsRect(rect, visibleRect)) {
+            //        if (CGRectIntersectsRect(attributes.frame, visibleRect)) {
             [ret addObject: attributes];
         }
+
     }
 
     return ret;
 }
 
 
+- (CGPoint) targetContentOffsetForProposedContentOffset: (CGPoint) proposedContentOffset {
+    CGPoint point = [super targetContentOffsetForProposedContentOffset: proposedContentOffset];
 
-
-
-#pragma mark - Private
-
-
-- (void) _refreshContentOffset {
-    if (_selectedIndexPath) {
-        self.collectionView.contentOffset = [self _calculatedContentOffset];
-    }
-}
-
-
-- (CGPoint) _calculatedContentOffset {
-    UICollectionViewLayoutAttributes *attributes = _attributesArray[_selectedIndexPath.item];
-    CGRect bounds = self.collectionView.bounds;
-
-    CGSize contentSize = [self collectionViewContentSize];
-    contentSize.width -= bounds.size.width;
-    contentSize.height -= bounds.size.height;
-
-    CGSize offsetSize = CGSizeMake((bounds.size.width - _itemSize.width) / 2, (bounds.size.height - _itemSize.height) / 2);
-    CGFloat offsetX = fminf(fmaxf(attributes.frame.origin.x - offsetSize.width, 0), contentSize.width);
-    CGFloat offsetY = fminf(fmaxf(attributes.frame.origin.y - offsetSize.height, 0), contentSize.height);
-
-    return CGPointMake(offsetX, offsetY);
-
-}
-
-- (NSIndexPath *) selectedIndexPath {
-    NSIndexPath *ret = nil;
-
+    //    if (self.isFullscreen) {
     NSArray *indexPaths = self.collectionView.indexPathsForSelectedItems;
     if ([indexPaths count] == 1) {
-        ret = indexPaths[0];
-    }
-    return ret;
-}
-//
-//- (CGPoint) targetContentOffsetForProposedContentOffset: (CGPoint) proposedContentOffset {
-//    CGPoint point = [super targetContentOffsetForProposedContentOffset: proposedContentOffset];
-//
-//    if (self.updatesTargetedOffset) {
-//        NSArray *indexPaths = self.collectionView.indexPathsForSelectedItems;
-//        if ([indexPaths count] == 1) {
-//            NSIndexPath *indexPath = indexPaths[0];
-//            UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath: indexPath];
-//
-//            CGPoint newPoint = attributes.frame.origin;
-//            point = newPoint;
-//
-//        }
-//    }
-//
-//    return point;
-//}
+        NSIndexPath *indexPath = indexPaths[0];
+        UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath: indexPath];
 
+        CGPoint newPoint = attributes.frame.origin;
+
+
+        NSLog(@"proposedContentOffset = %@", NSStringFromCGPoint(proposedContentOffset));
+        NSLog(@"point = %@", NSStringFromCGPoint(point));
+    }
+    //    }
+
+    return point;
+}
 
 @end

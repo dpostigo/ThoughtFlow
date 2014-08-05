@@ -11,13 +11,11 @@
 #import "TFFullLayout.h"
 #import "UICollectionView+TLTransitioning.h"
 #import "NSObject+BKAssociatedObjects.h"
-#import "TFNewMindmapLayout.h"
 #import "UIView+DPConstraints.h"
 #import "TFMindmapLayout.h"
 #import "TFImageGridViewCell.h"
 #import "TFMindmapFullCollectionViewController.h"
 #import "TFMindmapTransitionLayout.h"
-#import "TFNewMindmapLayout.h"
 
 
 @implementation TFMindmapCollectionViewController {
@@ -41,6 +39,12 @@
 
 }
 
+- (UICollectionViewCell *) collectionView: (UICollectionView *) collectionView cellForItemAtIndexPath: (NSIndexPath *) indexPath {
+    TFImageGridViewCell *cell = (TFImageGridViewCell *) [super collectionView: collectionView cellForItemAtIndexPath: indexPath];
+    cell.overlayView.alpha = 1;
+    return cell;
+}
+
 
 - (TFMindmapLayout *) preparedLayout {
     return nil;
@@ -52,7 +56,7 @@
 
     TFMindmapLayout *currentLayout = (TFMindmapLayout *) self.collectionView.collectionViewLayout;
 
-    //    TFNewMindmapLayout *layout = self.isFullscreen ? [self gridCollectionLayout] : [self fullscreenLayout];
+
     TFMindmapLayout *layout = [[TFMindmapLayout alloc] init];
     [layout setIsFullscreen: !currentLayout.isFullscreen withCollectionView: self.collectionView];
 
@@ -76,37 +80,7 @@
     return;
 }
 
-
-- (TFNewMindmapLayout *) gridCollectionLayout {
-    TFNewMindmapLayout *finalLayout = [[TFNewMindmapLayout alloc] init];
-    finalLayout.numberOfRows = 3;
-    finalLayout.updatesContentOffset = YES;
-
-    CGFloat height = self.view.height;
-    finalLayout.itemSize = CGSizeMake(height, height);
-    return finalLayout;
-}
-
-- (TFNewMindmapLayout *) fullscreenLayout {
-    TFNewMindmapLayout *finalLayout = [[TFNewMindmapLayout alloc] init];
-    finalLayout.numberOfRows = 1;
-    finalLayout.updatesContentOffset = YES;
-
-    finalLayout.itemSize = self.view.bounds.size;
-    return finalLayout;
-}
-
 //
-
-#pragma mark - UICollectionView
-
-- (UICollectionViewCell *) collectionView: (UICollectionView *) collectionView cellForItemAtIndexPath: (NSIndexPath *) indexPath {
-    TFImageGridViewCell *cell = (TFImageGridViewCell *) [super collectionView: collectionView cellForItemAtIndexPath: indexPath];
-    cell.overlayView.alpha = 1;
-    return cell;
-}
-
-
 - (UIEdgeInsets) collectionView: (UICollectionView *) collectionView layout: (UICollectionViewLayout *) collectionViewLayout insetForSectionAtIndex: (NSInteger) section {
     //    return UIEdgeInsetsMake(-22, 0, 0, 0);
     return self.isFullscreen ? UIEdgeInsetsMake(0, 0, 0, 0) : UIEdgeInsetsMake(-22, 0, 0, 0);

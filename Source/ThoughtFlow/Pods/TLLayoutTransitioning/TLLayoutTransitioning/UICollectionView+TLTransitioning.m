@@ -83,7 +83,7 @@ static char kTLEasingFunctionKey;
     UICollectionViewTransitionLayout *transitionLayout = [self startInteractiveTransitionToCollectionViewLayout:layout completion:^(BOOL completed, BOOL finish) {
         __strong UICollectionView *strongSelf = weakSelf;
         NSMutableDictionary *data = [strongSelf tl_transitionData];
-        UICollectionViewTransitionLayout *transitionLayout = data[@"customTransitionLayout"];
+        UICollectionViewTransitionLayout *transitionLayout = data[@"transitionLayout"];
         if ([transitionLayout conformsToProtocol:@protocol(TLTransitionAnimatorLayout)]) {
             id<TLTransitionAnimatorLayout>layout = (id<TLTransitionAnimatorLayout>)transitionLayout;
             [layout collectionViewDidCompleteTransitioning:strongSelf completed:completed finish:finish];
@@ -104,7 +104,7 @@ static char kTLEasingFunctionKey;
         }
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     }];
-    data[@"customTransitionLayout"] = transitionLayout;
+    data[@"transitionLayout"] = transitionLayout;
     data[@"link"] = link;
     return transitionLayout;
 }

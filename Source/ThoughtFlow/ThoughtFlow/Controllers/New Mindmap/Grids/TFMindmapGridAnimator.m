@@ -95,11 +95,11 @@
     //    TODO :
     //
     //    if (self.context != nil &&  // we must have a valid context for updates
-    //            ((progress != self.customTransitionLayout.transitionProgress) ||
-    //                    !UIOffsetEqualToOffset(offset, self.customTransitionLayout.offset))) {
-    //        [self.customTransitionLayout setOffset: offset];
-    //        [self.customTransitionLayout setTransitionProgress: progress];
-    //        [self.customTransitionLayout invalidateLayout];
+    //            ((progress != self.transitionLayout.transitionProgress) ||
+    //                    !UIOffsetEqualToOffset(offset, self.transitionLayout.offset))) {
+    //        [self.transitionLayout setOffset: offset];
+    //        [self.transitionLayout setTransitionProgress: progress];
+    //        [self.transitionLayout invalidateLayout];
     //        [self.context updateInteractiveTransition: progress];
     //    }
 }
@@ -152,7 +152,7 @@
                     CGFloat dimension = sqrt(self.collectionView.bounds.size.width * self.collectionView.bounds.size.width + self.collectionView.bounds.size.height * self.collectionView.bounds.size.height);
                     CGFloat progress = MAX(MIN((distanceDelta / dimension), 1.0), 0.0);
 
-                    // tell our UICollectionViewTransitionLayout subclass (customTransitionLayout)
+                    // tell our UICollectionViewTransitionLayout subclass (transitionLayout)
                     // the progress state of the pinch gesture
                     //
 
@@ -227,7 +227,7 @@
                 CGFloat dimension = sqrt(self.collectionView.bounds.size.width * self.collectionView.bounds.size.width + self.collectionView.bounds.size.height * self.collectionView.bounds.size.height);
                 CGFloat progress = MAX(MIN((distanceDelta / dimension), 1.0), 0.0);
 
-                // tell our UICollectionViewTransitionLayout subclass (customTransitionLayout)
+                // tell our UICollectionViewTransitionLayout subclass (transitionLayout)
                 // the progress state of the pinch gesture
                 //
 

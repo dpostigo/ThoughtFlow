@@ -525,8 +525,7 @@ NSString *const TFAuthURL = @"http://188.226.201.79/api/oauth/token";
                 }
             }
             failure: ^(AFHTTPRequestOperation *task, NSError *error) {
-                DDLogVerbose(@"IMAGES failed, error.userInfo = %@", error.userInfo);
-
+                DDLogVerbose(@"IMAGES failed, error = %@", error);
                 if (failure) {
                     failure();
                 }
